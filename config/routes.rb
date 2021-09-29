@@ -30,7 +30,8 @@ Rails.application.routes.draw do
   root "welcome#index"
   get "/welcome", to: "welcome#welcome"
   get "/consul.json", to: "installation#details"
-
+  get "/login_token", to: "gv_login#token"
+  
   resources :stats, only: [:index]
   resources :images, only: [:destroy]
   resources :documents, only: [:destroy]
