@@ -2,21 +2,40 @@ class GvLoginController < ApplicationController
 
   skip_authorization_check :token
 
-  URL = "http://gvlogin-dsa.gva.es/gvlogin-ws/".freeze
+  # X_FORWARDED_FOR
+  LOGIN_HOST = "http://gvlogin-dsa.gva.es".freeze
+
+  LOGIN_WS = "gvlogin-ws".freeze
 
   def token
-    if !cookies["gvlogin.login.GVLOGIN_COOKIE"]
+    @remote_ip = request.x_forwarded_for
+    @GVLogin_cookie = cookies["gvlogin.login.GVLOGIN_COOKIE"]
+    if @GVLogin_cookie
       client = Faraday.new(
-        url: URL,
-        headers: { 'Content-Type': "application/json" }
+        url: LOGIN_HOST,
+        headers: {
+                    'Content-Type': "application/json",
+                    'Accept': "application/json"
+                  }
       )
       body = {
-        "tokenSSO": cookies["gvlogin.login.GVLOGIN_COOKIE"],
+        "aplicacion": "PARTICIPEM_GV",
+        "tokenSSO": @GVLogin_cookie,
         "origen": {
-          "ip": request.ip
+            "ip": @remote_ip
+        },
+        "parametros": {
+            "parametro": [
+                {
+                    "nombreParametro": "url",
+                    "valorParametro": "https://gvaparticipa-dsa.gva.es/"
+                }
+            ]
         }
       }
-      @response = client.post("/verificarContexto", body.to_json)
+
+      @response = client.post("/#{LOGIN_WS}/optenerContexto", body.to_json)
+      # @response = client.post("/verificarContexto", body.to_json)
       STDERR.puts cookies.to_h
       STDERR.puts @response
     else
