@@ -34,7 +34,7 @@ class GvLoginController < ApplicationController
         }
       }
 
-      @response = client.post("/#{LOGIN_WS}/optenerContexto", body.to_json)
+      @response = client.post("/#{LOGIN_WS}/obtenerContexto", body.to_json)
       # @response = client.post("/verificarContexto", body.to_json)
       STDERR.puts cookies.to_h
       STDERR.puts @response
