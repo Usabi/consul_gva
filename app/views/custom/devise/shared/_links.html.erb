@@ -31,7 +31,7 @@
     <% end -%>
   <% end -%>
   <% if Rails.application.secrets.environment != 'Production' %>
-    <%= link_to "GVLogin", "http://gvlogin-dsa.gva.es/gvlogin/login.xhtml?app=participem_gv&url=https://gvaparticipa-dsa.gva.es/login_token" %>
+    <%= link_to "GVLogin", login_token_path %>
   <% end %>
 
 </div>
