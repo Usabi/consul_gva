@@ -7,7 +7,6 @@ module Consul
     config.autoload_paths.unshift(Rails.root.join("lib/custom"))
     config.i18n.default_locale = :val
     available_locales = [
-      "en",
       "val",
       "es"]
     config.i18n.available_locales = available_locales
