@@ -1,0 +1,21 @@
+<div id="groups_and_headings" class="groups-and-headings">
+  <% budget.groups.sort_by_name.each do |group| %>
+    <h2 id="<%= group.name.parameterize %>"><%= group.name %></h2>
+    <ul class="headings-list">
+      <% group.headings.sort_by_name.each do |heading| %>
+        <li class="heading comarca_<%= heading.id %>">
+          <%= link_to_unless(
+            (budget.informing? || budget.finished?),
+            heading.name,
+            budget_investments_path(budget.id, heading_id: heading.id)
+          ) %>
+
+          <%= price(heading) %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div>
+    <%= image_tag "budget/maps/mapa-#{I18n.locale}.png" %>
+  </div>
+</div>

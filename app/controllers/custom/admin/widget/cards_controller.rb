@@ -5,7 +5,7 @@ class Admin::Widget::CardsController
 
     def card_params
       params.require(:widget_card).permit(
-        :link_url, :button_text, :button_url, :alignment, :header, :site_customization_page_id,
+        :link_url, :button_text, :button_url, :alignment, :header,
         :columns, :middle,
         translation_params(Widget::Card),
         image_attributes: image_attributes
