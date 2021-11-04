@@ -40,8 +40,8 @@ namespace :deploy do
   Rake::Task["delayed_job:default"].clear_actions
   # Rake::Task["puma:smart_restart"].clear_actions
 
-  # after :updating, "rvm1:install:rvm"
-  # after :updating, "rvm1:install:ruby"
+  after :updating, "rvm1:install:rvm"
+  after :updating, "rvm1:install:ruby"
   after :updating, "install_bundler_gem"
 
   after "deploy:migrate", "add_new_settings"
