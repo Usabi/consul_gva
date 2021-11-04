@@ -8,7 +8,7 @@ end
 
 set :rails_env, fetch(:stage)
 set :rvm1_map_bins, -> { fetch(:rvm_map_bins).to_a.concat(%w[rake gem bundle ruby]).uniq }
-set :rvm_ruby_version, "2.5.8"
+set :rvm_ruby_version, "2.6.7"
 
 set :application, "consul"
 set :deploy_to, deploysecret(:deploy_to)
