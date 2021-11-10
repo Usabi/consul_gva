@@ -12,6 +12,7 @@
 }
 
 @mixin custom-button {
+  color: $red-gva;
   background: $white-gva;
   font-size: $base-font-size;
   border: solid 2px $red-gva;
