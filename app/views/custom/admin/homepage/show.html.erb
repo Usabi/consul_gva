@@ -9,7 +9,7 @@
     <%= link_to t("admin.homepage.create_header"), new_admin_widget_card_path(header_card: true), class: "button" %>
   </div>
 
- <%= render Admin::Widget::Cards::TableComponent.new(
+  <%= render Admin::Widget::Cards::TableComponent.new(
     @header,
     no_cards_message: t("admin.homepage.no_header")
   ) %>
@@ -20,13 +20,10 @@
 <div id="middle">
   <h3 class="inline-block"><%= t("admin.homepage.middle_title") %></h3>
 
-  <% if @middle.present? %>
-    <%= render "cards", cards: @middle %>
-  <% else %>
-    <div class="callout primary clear">
-      <%= t("admin.homepage.no_middle") %>
-    </div>
-  <% end %>
+  <%= render Admin::Widget::Cards::TableComponent.new(
+    @middle,
+    no_cards_message: t("admin.homepage.no_middle")
+  ) %>
 </div>
 
 <hr>
