@@ -6,6 +6,10 @@ class Admin::MenuComponent
 
   private
 
+    def profiles?
+      %w[administrators organizations officials moderators valuators managers users legislators budget_managers].include?(controller_name)
+    end
+
     def legislator_link
       [
         t("admin.menu.legislators"),
