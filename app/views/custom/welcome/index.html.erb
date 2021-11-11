@@ -13,7 +13,7 @@
     <% if @cards.any? %>
       <div class="small-12 columns sections-cards">
         <h3 class="title"><%= t("welcome.cards.title") %></h3>
-        <%= render "shared/cards", cards: @cards %>
+        <%= render "shared/cards" %>
       </div>
     <% end %>
     <% if feed_processes_enabled? %>
