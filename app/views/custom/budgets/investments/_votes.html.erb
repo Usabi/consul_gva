@@ -5,7 +5,7 @@
 <div class="supports js-participation">
 
   <span class="total-supports <%= "no-button" unless voting_allowed || user_voted_for %>">
-    <%= t("budgets.investments.investment.supports", count: investment.total_votes) %>
+    <%= render "budgets/investments/supports", investment: investment %>
   </span>
 
   <div class="in-favor js-in-favor">

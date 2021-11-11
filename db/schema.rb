@@ -10,12 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210706063813) do
+ActiveRecord::Schema.define(version: 20210914103703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pg_trgm"
-  enable_extension "unaccent"
 
   create_table "active_poll_translations", id: :serial, force: :cascade do |t|
     t.integer "active_poll_id", null: false
@@ -217,6 +215,7 @@ ActiveRecord::Schema.define(version: 20210706063813) do
     t.integer "max_ballot_lines", default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer "min_supports"
     t.index ["group_id"], name: "index_budget_headings_on_group_id"
   end
 

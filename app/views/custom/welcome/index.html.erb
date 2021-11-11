@@ -8,7 +8,6 @@
 <% end %>
 <%= render "header", header: @header %>
 <main>
-  <%= render 'sections_icons' %>
   <%= render 'slider' %>
   <div class="row">
     <% if @cards.any? %>
@@ -23,6 +22,7 @@
       </div>
     <% end %>
   </div>
+  <%= render 'sections_icons' %>
   <%= render "feeds" %>
   <% if feature?("user.recommendations") && (@recommended_debates.present? || @recommended_proposals.present?) %>
     <%= render "recommended",

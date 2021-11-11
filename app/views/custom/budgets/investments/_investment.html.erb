@@ -2,16 +2,15 @@
   <div class="panel <%= ("with-image" if feature?(:allow_images) && investment.image.present?) %>">
 
     <% if feature?(:allow_images) && investment.image.present? %>
-    <div class="row" data-equalizer>
-
-      <div class="small-12 medium-3 large-2 column text-center">
-        <div data-equalizer-watch>
-          <%= image_tag investment.image_url(:thumb),
+      <div class="row" data-equalizer>
+        <div class="small-12 medium-3 large-2 column text-center">
+          <div data-equalizer-watch>
+            <%= image_tag investment.image_url(:thumb),
                         alt: investment.image.title.unicode_normalize %>
+          </div>
         </div>
-      </div>
 
-      <div class="small-12 medium-6 large-7 column">
+        <div class="small-12 medium-6 large-7 column">
     <% else %>
       <div class="row">
         <div class="small-12 medium-9 column">
