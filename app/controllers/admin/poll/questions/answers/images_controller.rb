@@ -1,6 +1,4 @@
 class Admin::Poll::Questions::Answers::ImagesController < Admin::Poll::BaseController
-  include ImageAttributes
-
   before_action :load_answer, except: :destroy
 
   def index
@@ -35,7 +33,7 @@ class Admin::Poll::Questions::Answers::ImagesController < Admin::Poll::BaseContr
 
     def images_params
       params.require(:poll_question_answer).permit(:answer_id,
-        images_attributes: image_attributes)
+        images_attributes: [:id, :title, :attachment, :cached_attachment, :user_id, :_destroy])
     end
 
     def load_answer

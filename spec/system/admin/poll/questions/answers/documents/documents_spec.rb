@@ -1,6 +1,11 @@
 require "rails_helper"
 
-describe "Documents", :admin do
+describe "Documents" do
+  before do
+    admin = create(:administrator)
+    login_as(admin.user)
+  end
+
   context "Index" do
     scenario "Answer with no documents" do
       answer = create(:poll_question_answer)
@@ -21,7 +26,7 @@ describe "Documents", :admin do
     end
   end
 
-  scenario "Remove document from answer" do
+  scenario "Remove document from answer", :js do
     answer = create(:poll_question_answer)
     document = create(:document, documentable: answer)
 

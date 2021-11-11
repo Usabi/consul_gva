@@ -5,18 +5,15 @@
   <td>
     <%= booth.location %>
   </td>
-  <td>
+  <td class="text-right">
     <% if controller_name == "shifts" || controller_name == "booths" && action_name == "available" %>
-      <%= render Admin::TableActionsComponent.new(actions: []) do |actions| %>
-        <%= actions.link_to t("admin.booths.booth.shifts"),
-                            new_admin_booth_shift_path(booth),
-                            class: "shifts-link" %>
-      <% end %>
+      <%= link_to t("admin.booths.booth.shifts"),
+                  new_admin_booth_shift_path(booth),
+                  class: "button hollow" %>
     <% else %>
-      <%= render Admin::TableActionsComponent.new(booth,
-        actions: [:edit],
-        edit_text: t("admin.booths.booth.edit")
-      ) %>
+      <%= link_to t("admin.booths.booth.edit"),
+                  edit_admin_booth_path(booth),
+                  class: "button hollow" %>
     <% end %>
   </td>
 </tr>

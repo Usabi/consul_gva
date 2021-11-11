@@ -1,6 +1,11 @@
 require "rails_helper"
 
-describe "Images", :admin do
+describe "Images" do
+  before do
+    admin = create(:administrator)
+    login_as(admin.user)
+  end
+
   it_behaves_like "nested imageable",
                   "poll_question_answer",
                   "new_admin_answer_image_path",
@@ -30,7 +35,7 @@ describe "Images", :admin do
     end
   end
 
-  scenario "Add image to answer" do
+  scenario "Add image to answer", :js do
     answer = create(:poll_question_answer)
     image = create(:image)
 
@@ -46,7 +51,7 @@ describe "Images", :admin do
     expect(page).to have_content("clippy.jpg")
   end
 
-  scenario "Remove image from answer" do
+  scenario "Remove image from answer", :js do
     answer = create(:poll_question_answer)
     image = create(:image, imageable: answer)
 

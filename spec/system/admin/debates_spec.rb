@@ -1,6 +1,11 @@
 require "rails_helper"
 
-describe "Admin debates", :admin do
+describe "Admin debates" do
+  before do
+    admin = create(:administrator)
+    login_as(admin.user)
+  end
+
   it_behaves_like "flaggable", :debate, admin: true
 
   scenario "Index" do

@@ -4,6 +4,5 @@ class Budget
     validates :heading, presence: true, uniqueness: { scope: :locale }
 
     belongs_to :heading
-    delegate :name, to: :heading, allow_nil: true
   end
 end

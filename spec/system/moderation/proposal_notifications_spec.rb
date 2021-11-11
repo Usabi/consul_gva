@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Moderate proposal notifications" do
-  scenario "Hide" do
+  scenario "Hide", :js do
     citizen   = create(:user)
     proposal  = create(:proposal)
     proposal_notification = create(:proposal_notification, proposal: proposal, created_at: Date.current - 4.days)
@@ -31,7 +31,6 @@ describe "Moderate proposal notifications" do
 
     login_as(moderator.user)
     visit proposal_path(proposal)
-    click_link "Notifications (1)"
 
     within("#proposal_notification_#{proposal_notification.id}") do
       expect(page).not_to have_link("Hide")
@@ -61,37 +60,22 @@ describe "Moderate proposal notifications" do
         end
 
         scenario "Hide the proposal" do
-          accept_confirm { click_button "Hide proposals" }
-
+          click_on "Hide proposals"
           expect(page).not_to have_css("#proposal_notification_#{proposal_notification.id}")
-
-          click_link "Block users"
-          fill_in "email or name of user", with: proposal_notification.author.email
-          click_button "Search"
-
-          within "tr", text: proposal_notification.author.name do
-            expect(page).to have_link "Block"
-          end
+          expect(proposal_notification.reload).to be_hidden
+          expect(proposal_notification.author).not_to be_hidden
         end
 
         scenario "Block the author" do
           author = create(:user)
           proposal_notification.update!(author: author)
-
-          accept_confirm { click_button "Block authors" }
-
+          click_on "Block authors"
           expect(page).not_to have_css("#proposal_notification_#{proposal_notification.id}")
-
-          click_link "Block users"
-          fill_in "email or name of user", with: proposal_notification.author.email
-          click_button "Search"
-
-          within "tr", text: proposal_notification.author.name do
-            expect(page).to have_content "Blocked"
-          end
+          expect(proposal_notification.reload).to be_hidden
+          expect(author.reload).to be_hidden
         end
 
-        scenario "Ignore the proposal", :no_js do
+        scenario "Ignore the proposal" do
           click_button "Mark as viewed"
 
           expect(proposal_notification.reload).to be_ignored
@@ -100,7 +84,7 @@ describe "Moderate proposal notifications" do
         end
       end
 
-      scenario "select all/none" do
+      scenario "select all/none", :js do
         create_list(:proposal_notification, 2)
 
         visit moderation_proposal_notifications_path
@@ -122,13 +106,13 @@ describe "Moderate proposal notifications" do
 
         visit moderation_proposal_notifications_path(filter: "all", page: "2", order: "created_at")
 
-        accept_confirm { click_button "Mark as viewed" }
+        click_button "Mark as viewed"
 
         expect(page).to have_selector(".js-order-selector[data-order='created_at']")
 
-        expect(page).to have_current_path(/filter=all/)
-        expect(page).to have_current_path(/page=2/)
-        expect(page).to have_current_path(/order=created_at/)
+        expect(current_url).to include("filter=all")
+        expect(current_url).to include("page=2")
+        expect(current_url).to include("order=created_at")
       end
     end
 

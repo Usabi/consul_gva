@@ -106,10 +106,6 @@ FactoryBot.define do
     user
   end
 
-  factory :sdg_manager, class: "SDG::Manager" do
-    user
-  end
-
   factory :poll_officer, class: "Poll::Officer" do
     user { association(:user, username: name) }
 

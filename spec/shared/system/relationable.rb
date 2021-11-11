@@ -3,7 +3,6 @@ shared_examples "relationable" do |relationable_model_name|
   let(:related1) { create([:proposal, :debate, :budget_investment].sample) }
   let(:related2) { create([:proposal, :debate, :budget_investment].sample) }
   let(:user) { create(:user) }
-  let!(:url) { Setting["url"] }
 
   scenario "related contents are listed" do
     create(:related_content, parent_relationable: relationable, child_relationable: related1, author: build(:user))
@@ -28,12 +27,12 @@ shared_examples "relationable" do |relationable_model_name|
     login_as(user)
     visit relationable.url
 
-    expect(page).not_to have_selector("#related_content")
-
+    expect(page).to have_selector("#related_content", visible: false)
     click_on("Add related content")
+    expect(page).to have_selector("#related_content", visible: true)
 
     within("#related_content") do
-      fill_in "url", with: "#{url + related1.url}"
+      fill_in "url", with: "#{Setting["url"] + related1.url}"
       click_button "Add"
     end
 
@@ -47,10 +46,8 @@ shared_examples "relationable" do |relationable_model_name|
       expect(page).to have_content(relationable.title)
     end
 
-    click_on("Add related content")
-
     within("#related_content") do
-      fill_in "url", with: "#{url + related2.url}"
+      fill_in "url", with: "#{Setting["url"] + related2.url}"
       click_button "Add"
     end
 
@@ -70,7 +67,7 @@ shared_examples "relationable" do |relationable_model_name|
       click_button "Add"
     end
 
-    expect(page).to have_content("Link not valid. Remember to start with #{url}.")
+    expect(page).to have_content("Link not valid. Remember to start with #{Setting[:url]}.")
   end
 
   scenario "returns error when relating content URL to itself" do
@@ -80,14 +77,14 @@ shared_examples "relationable" do |relationable_model_name|
     click_on("Add related content")
 
     within("#related_content") do
-      fill_in "url", with: url + relationable.url.to_s
+      fill_in "url", with: Setting[:url] + relationable.url.to_s
       click_button "Add"
     end
 
     expect(page).to have_content("Link not valid. You cannot relate a content to itself")
   end
 
-  scenario "related content can be scored positively" do
+  scenario "related content can be scored positively", :js do
     related_content = create(:related_content, parent_relationable: relationable, child_relationable: related1, author: build(:user))
 
     login_as(user)
@@ -103,7 +100,7 @@ shared_examples "relationable" do |relationable_model_name|
     expect(related_content.opposite_related_content.related_content_scores.find_by(user_id: user.id, related_content_id: related_content.opposite_related_content.id).value).to eq(1)
   end
 
-  scenario "related content can be scored negatively" do
+  scenario "related content can be scored negatively", :js do
     related_content = create(:related_content, parent_relationable: relationable, child_relationable: related1, author: build(:user))
 
     login_as(user)

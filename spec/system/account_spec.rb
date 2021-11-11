@@ -198,18 +198,13 @@ describe "Account" do
 
       click_button "Save changes"
 
-      expect(page).to have_content "Changes saved"
-
       expect(find("#account_recommended_debates")).not_to be_checked
       expect(find("#account_recommended_proposals")).not_to be_checked
 
-      visit debates_path
+      user.reload
 
-      expect(page).not_to have_link("recommendations")
-
-      visit proposals_path
-
-      expect(page).not_to have_link("recommendations")
+      expect(user.recommended_debates).to be(false)
+      expect(user.recommended_proposals).to be(false)
     end
   end
 end

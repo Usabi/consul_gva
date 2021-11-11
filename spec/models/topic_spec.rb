@@ -68,4 +68,8 @@ describe Topic do
       expect(results).to eq [topic1, topic2, topic3]
     end
   end
+
+  describe "notifications" do
+    it_behaves_like "notifiable"
+  end
 end

@@ -13,11 +13,12 @@ describe "Polls" do
     end
   end
 
-  context "Admin index", :admin do
+  context "Admin index" do
     scenario "Budget polls should not appear in the list" do
       poll = create(:poll)
       budget_poll = create(:poll, :for_budget)
 
+      login_as(create(:administrator).user)
       visit admin_polls_path
 
       expect(page).to have_content(poll.name)

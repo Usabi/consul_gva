@@ -6,7 +6,7 @@ de:
         sms: "SMS"
       local_census_records/import:
         one: Lokaler Register Datensatz import
-        other: Import von lokalen Volkszählungsdaten
+        other: Lokale Register Datensätze import
     attributes:
       verification:
         residence:

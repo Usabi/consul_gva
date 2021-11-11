@@ -2,9 +2,9 @@
   <h4><%= interests_title_text(user) %></h4>
 
   <% if user.interests.any? %>
-    <ul class="tags">
+    <ul class="no-bullet tags">
       <% user.interests.each do |interest| %>
-        <li><span><%= interest %></span></li>
+        <li class="inline-block"><span><%= interest %></span></li>
       <% end %>
     </ul>
   <% end %>

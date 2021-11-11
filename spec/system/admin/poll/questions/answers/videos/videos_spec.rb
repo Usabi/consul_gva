@@ -1,6 +1,11 @@
 require "rails_helper"
 
-describe "Videos", :admin do
+describe "Videos" do
+  before do
+    admin = create(:administrator)
+    login_as(admin.user)
+  end
+
   scenario "Create" do
     question = create(:poll_question)
     answer = create(:poll_question_answer, question: question)

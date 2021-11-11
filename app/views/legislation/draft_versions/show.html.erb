@@ -42,18 +42,26 @@
 
     <%= render "legislation/processes/help_gif" %>
 
-    <div class="draft-allegation">
-      <details class="calc-index">
-        <summary class="draft-panel">
-          <span class="icon-banner" aria-hidden="true"></span>
-          <span class="panel-title"><%= t("legislation.draft_versions.show.text_toc") %></span>
-        </summary>
-
-        <div class="draft-index" data-tree-navigator>
-          <%= AdminLegislationSanitizer.new.sanitize(@draft_version.toc_html) %>
+    <div class="row draft-allegation medium-collapse comments-on">
+      <div class="small-12 calc-index column <%= "js-toggle-allegations" unless @draft_version.final_version? %>">
+        <div class="draft-panel">
+          <div>
+            <span class="icon-banner" aria-hidden="true"></span>
+            <span class="panel-title"><%= t("legislation.draft_versions.show.text_toc") %></span>
+          </div>
         </div>
-      </details>
-      <div class="calc-text border-right border-left">
+
+        <div class="draft-index-rotated text-center">
+          <span class="panel-title"><%= t("legislation.draft_versions.show.text_toc") %></span>
+        </div>
+
+        <div data-sticky-container>
+          <div data-sticky data-anchor="sticky-panel" class="draft-index sticky" data-tree-navigator>
+            <%= AdminLegislationSanitizer.new.sanitize(@draft_version.toc_html) %>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 calc-text column border-right border-left">
         <div class="draft-panel">
           <div><span class="panel-title"><%= t("legislation.draft_versions.show.text_body") %></span></div>
         </div>
@@ -72,7 +80,7 @@
       </div>
 
       <% if @draft_version.final_version? %>
-        <div class="calc-comments"></div>
+        <div class="small-12 calc-comments end column"></div>
       <% else %>
         <%= render "comments_panel", draft_version: @draft_version %>
       <% end %>

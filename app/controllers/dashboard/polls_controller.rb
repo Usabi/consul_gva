@@ -1,5 +1,4 @@
 class Dashboard::PollsController < Dashboard::BaseController
-  include DocumentAttributes
   helper_method :poll
   before_action :authorize_manage_polls
 
@@ -71,7 +70,11 @@ class Dashboard::PollsController < Dashboard::BaseController
 
     def question_answers_attributes
       [:id, :_destroy, :title, :description, :given_order, :question_id,
-       documents_attributes: document_attributes]
+       documents_attributes: documents_attributes]
+    end
+
+    def documents_attributes
+      [:id, :title, :attachment, :cached_attachment, :user_id, :_destroy]
     end
 
     def authorize_manage_polls

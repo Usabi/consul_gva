@@ -36,6 +36,7 @@ fi:
           other: "%{count} tukijaa"
         give_support: Tue
     show:
+      group: Ryhmä
       see_results: Näytä tulokset
     results:
       ballot_lines_count: Äänet

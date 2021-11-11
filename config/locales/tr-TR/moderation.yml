@@ -111,6 +111,7 @@ tr:
       index:
         hidden: Engellendi
         hide: Engelle
+        search: Ara
         search_placeholder: e-posta veya kullanıcının adı
         title: Kullanıcıları engelle
       notice_hide: Kullanıcı engellendi. Bu kullanıcının tüm tartışmaları ve yorumları gizlendi.

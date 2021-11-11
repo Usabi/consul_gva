@@ -1,12 +1,14 @@
 require "rails_helper"
 
 describe HasFilters do
-  controller(ActionController::Base) do
+  class FakeController < ActionController::Base; end
+
+  controller(FakeController) do
     include HasFilters
     has_filters ["all", "pending", "reviewed"], only: :index
 
     def index
-      render plain: "#{current_filter} (#{valid_filters.join(" ")})"
+      render plain: "#{@current_filter} (#{@valid_filters.join(" ")})"
     end
   end
 

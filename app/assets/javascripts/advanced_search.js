@@ -32,8 +32,6 @@
           App.AdvancedSearch.toggle_date_options();
         }
       });
-
-      App.SDGSyncGoalAndTargetFilters.sync($("#advanced_search_form"));
     }
   };
 }).call(this);

@@ -1,7 +1,5 @@
 module DocumentParser
   def get_document_number_variants(document_type, document_number)
-    return [] if document_number.blank?
-
     # Delete all non-alphanumerics
     document_number = document_number.to_s.gsub(/[^0-9A-Za-z]/i, "")
     variants = []

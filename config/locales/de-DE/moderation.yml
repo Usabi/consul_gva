@@ -111,6 +111,7 @@ de:
       index:
         hidden: Blockiert
         hide: Block
+        search: Suche
         search_placeholder: E-Mail oder Benutzername
         title: Benutzer blockieren
       notice_hide: Benutzer gesperrt. Alle Diskussionen und Kommentare dieses Benutzers wurden ausgeblendet.

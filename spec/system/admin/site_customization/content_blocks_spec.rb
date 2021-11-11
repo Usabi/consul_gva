@@ -1,6 +1,11 @@
 require "rails_helper"
 
-describe "Admin custom content blocks", :admin do
+describe "Admin custom content blocks" do
+  before do
+    admin = create(:administrator)
+    login_as(admin.user)
+  end
+
   scenario "Index" do
     block = create(:site_customization_content_block)
     heading_block = create(:heading_content_block)
@@ -17,7 +22,6 @@ describe "Admin custom content blocks", :admin do
       visit admin_root_path
 
       within("#side_menu") do
-        click_link "Settings"
         click_link "Custom content blocks"
       end
 
@@ -42,7 +46,6 @@ describe "Admin custom content blocks", :admin do
       visit admin_root_path
 
       within("#side_menu") do
-        click_link "Settings"
         click_link "Custom content blocks"
       end
 
@@ -69,7 +72,6 @@ describe "Admin custom content blocks", :admin do
       visit admin_root_path
 
       within("#side_menu") do
-        click_link "Settings"
         click_link "Custom content blocks"
       end
 
@@ -91,7 +93,7 @@ describe "Admin custom content blocks", :admin do
       expect(page).to have_content("#{block.name} (#{block.locale})")
       expect(page).to have_content(block.body)
 
-      accept_confirm { click_link "Delete block" }
+      click_link "Delete block"
 
       expect(page).not_to have_content("#{block.name} (#{block.locale})")
       expect(page).not_to have_content(block.body)

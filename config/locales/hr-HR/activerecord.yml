@@ -63,7 +63,7 @@ hr:
         few: "Grupa procjenitelja"
         other: "Grupa procjenitelja"
       manager:
-        one: "Upravitelj"
+        one: "Menadžer"
         few: "Menadžeri"
         other: "Menadžeri"
       newsletter:
@@ -119,9 +119,9 @@ hr:
         few: "Prijedlozi"
         other: "Prijedlozi"
       legislation/draft_versions:
-        one: "Verzija nacrta"
-        few: "Verzije nacrta"
-        other: "Verzija nacrta"
+        one: "Draft verzija"
+        few: "Draft verzije"
+        other: "Draft verzije"
       legislation/questions:
         one: "Pitanje"
         few: "Pitanja"
@@ -328,7 +328,7 @@ hr:
         summary: "Sažetak"
         description: "Opis"
       poll/question:
-        poll_id: "Anketa"
+        poll_id: "Glasovanje"
         title: "Pitanje"
         summary: "Sažetak"
         description: "Opis"
@@ -355,7 +355,7 @@ hr:
         subtitle: Podnaslov
         slug: Žeton
         status: Status
-        status_draft: "Nacrt"
+        status_draft: "Skica"
         status_published: "Objavljeno"
         title: Naziv
         updated_at: Ažurirano u
@@ -398,7 +398,7 @@ hr:
         debate_end_date: Kraj
         draft_start_date: Početak
         draft_end_date: Kraj
-        draft_publication_date: Datum objave nacrta
+        draft_publication_date: Datum objave publikacije
         allegations_start_date: Početak
         allegations_end_date: Kraj
         proposals_phase_start_date: Početak
@@ -420,11 +420,11 @@ hr:
         title: "Naziv prijedloga"
         video_url: "Poveznica na vanjski video"
       legislation/draft_version:
-        title: Naslov verzije
+        title: Naziv Verzije
         body: Tekst
         changelog: Izmjene
         status: Status
-        status_draft: "Nacrt"
+        status_draft: "Skica"
         status_published: "Objavljeno"
         final_version: Finalna verzija
       legislation/draft_version/translation:
@@ -558,7 +558,7 @@ hr:
             debate_end_date:
               invalid_date_range: mora biti na datum debate ili nakon početnog datuma
             draft_end_date:
-              invalid_date_range: mora biti na datum nacrta ili nakon njegovog početnog datuma
+              invalid_date_range: mora biti na datum drafta ili nakon početnog datuma
             allegations_end_date:
               invalid_date_range: mora biti na datum komentara ili nakon početnog datuma
         local_census_record:
@@ -602,7 +602,7 @@ hr:
       messages:
         translations_too_short: Obvezatno je priložiti barem jedan prijevod
         record_invalid: "Valicaija nije uspjela: %{errors}"
-        another_poll_active: Postoji još jedno aktivno glasanje za dani period
+        another_poll_active: Postoji još jedno aktivno glasovanje za dat period
         restrict_dependent_destroy:
           has_one: "Nemožete obrisati zapis jer ovisi o postojećem %{record}"
           has_many: "Nemožete obrisati zapis jer ovisi o postojećem %{record}"

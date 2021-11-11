@@ -10,12 +10,12 @@ describe "Commenting topics from proposals" do
     community = proposal.community
     topic = create(:topic, community: community)
     create_list(:comment, 3, commentable: topic)
-    comment = Comment.includes(:user).last
 
     visit community_topic_path(community, topic)
 
     expect(page).to have_css(".comment", count: 3)
 
+    comment = Comment.last
     within first(".comment") do
       expect(page).to have_content comment.user.name
       expect(page).to have_content I18n.l(comment.created_at, format: :datetime)
@@ -57,7 +57,7 @@ describe "Commenting topics from proposals" do
     expect(page).to have_current_path(comment_path(comment))
   end
 
-  scenario "Collapsable comments" do
+  scenario "Collapsable comments", :js do
     community = proposal.community
     topic = create(:topic, community: community)
     parent_comment = create(:comment, body: "Main comment", commentable: topic)
@@ -211,7 +211,7 @@ describe "Commenting topics from proposals" do
     end
   end
 
-  scenario "Create" do
+  scenario "Create", :js do
     community = proposal.community
     topic = create(:topic, community: community)
 
@@ -230,7 +230,7 @@ describe "Commenting topics from proposals" do
     end
   end
 
-  scenario "Errors on create" do
+  scenario "Errors on create", :js do
     community = proposal.community
     topic = create(:topic, community: community)
 
@@ -242,7 +242,7 @@ describe "Commenting topics from proposals" do
     expect(page).to have_content "Can't be blank"
   end
 
-  scenario "Reply" do
+  scenario "Reply", :js do
     community = proposal.community
     topic = create(:topic, community: community)
     citizen = create(:user, username: "Ana")
@@ -263,10 +263,10 @@ describe "Commenting topics from proposals" do
       expect(page).to have_content "It will be done next week."
     end
 
-    expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}")
+    expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}", visible: true)
   end
 
-  scenario "Reply update parent comment responses count" do
+  scenario "Reply update parent comment responses count", :js do
     community = proposal.community
     topic = create(:topic, community: community)
     comment = create(:comment, commentable: topic)
@@ -283,7 +283,7 @@ describe "Commenting topics from proposals" do
     end
   end
 
-  scenario "Reply show parent comments responses when hidden" do
+  scenario "Reply show parent comments responses when hidden", :js do
     community = proposal.community
     topic = create(:topic, community: community)
     comment = create(:comment, commentable: topic)
@@ -302,7 +302,7 @@ describe "Commenting topics from proposals" do
     end
   end
 
-  scenario "Errors on reply" do
+  scenario "Errors on reply", :js do
     community = proposal.community
     topic = create(:topic, community: community)
     comment = create(:comment, commentable: topic, user: user)
@@ -318,7 +318,7 @@ describe "Commenting topics from proposals" do
     end
   end
 
-  scenario "N replies" do
+  scenario "N replies", :js do
     community = proposal.community
     topic = create(:topic, community: community)
     parent = create(:comment, commentable: topic)
@@ -347,7 +347,7 @@ describe "Commenting topics from proposals" do
   end
 
   describe "Moderators" do
-    scenario "can create comment as a moderator" do
+    scenario "can create comment as a moderator", :js do
       community = proposal.community
       topic = create(:topic, community: community)
       moderator = create(:moderator)
@@ -367,7 +367,7 @@ describe "Commenting topics from proposals" do
       end
     end
 
-    scenario "can create reply as a moderator" do
+    scenario "can create reply as a moderator", :js do
       community = proposal.community
       topic = create(:topic, community: community)
       citizen = create(:user, username: "Ana")
@@ -393,7 +393,7 @@ describe "Commenting topics from proposals" do
         expect(page).to have_css "img.moderator-avatar"
       end
 
-      expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}")
+      expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}", visible: true)
     end
 
     scenario "can not comment as an administrator" do
@@ -409,7 +409,7 @@ describe "Commenting topics from proposals" do
   end
 
   describe "Administrators" do
-    scenario "can create comment as an administrator" do
+    scenario "can create comment as an administrator", :js do
       community = proposal.community
       topic = create(:topic, community: community)
       admin = create(:administrator)
@@ -429,7 +429,7 @@ describe "Commenting topics from proposals" do
       end
     end
 
-    scenario "can create reply as an administrator" do
+    scenario "can create reply as an administrator", :js do
       community = proposal.community
       topic = create(:topic, community: community)
       citizen = create(:user, username: "Ana")
@@ -455,13 +455,15 @@ describe "Commenting topics from proposals" do
         expect(page).to have_css "img.admin-avatar"
       end
 
-      expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}")
+      expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}", visible: true)
     end
 
-    scenario "can not comment as a moderator", :admin do
+    scenario "can not comment as a moderator" do
       community = proposal.community
       topic = create(:topic, community: community)
+      admin = create(:administrator)
 
+      login_as(admin.user)
       visit community_topic_path(community, topic)
 
       expect(page).not_to have_content "Comment as moderator"
@@ -498,7 +500,7 @@ describe "Commenting topics from proposals" do
       end
     end
 
-    scenario "Create" do
+    scenario "Create", :js do
       visit community_topic_path(proposal.community, topic)
 
       within("#comment_#{comment.id}_votes") do
@@ -516,7 +518,7 @@ describe "Commenting topics from proposals" do
       end
     end
 
-    scenario "Update" do
+    scenario "Update", :js do
       visit community_topic_path(proposal.community, topic)
 
       within("#comment_#{comment.id}_votes") do
@@ -540,7 +542,7 @@ describe "Commenting topics from proposals" do
       end
     end
 
-    scenario "Trying to vote multiple times" do
+    scenario "Trying to vote multiple times", :js do
       visit community_topic_path(proposal.community, topic)
 
       within("#comment_#{comment.id}_votes") do
@@ -574,12 +576,12 @@ describe "Commenting topics from budget investments" do
     community = investment.community
     topic = create(:topic, community: community)
     create_list(:comment, 3, commentable: topic)
-    comment = Comment.includes(:user).last
 
     visit community_topic_path(community, topic)
 
     expect(page).to have_css(".comment", count: 3)
 
+    comment = Comment.last
     within first(".comment") do
       expect(page).to have_content comment.user.name
       expect(page).to have_content I18n.l(comment.created_at, format: :datetime)
@@ -604,7 +606,7 @@ describe "Commenting topics from budget investments" do
     expect(page).to have_link "Go back to #{topic.title}", href: community_topic_path(community, topic)
   end
 
-  scenario "Collapsable comments" do
+  scenario "Collapsable comments", :js do
     community = investment.community
     topic = create(:topic, community: community)
     parent_comment = create(:comment, body: "Main comment", commentable: topic)
@@ -753,7 +755,7 @@ describe "Commenting topics from budget investments" do
     end
   end
 
-  scenario "Create" do
+  scenario "Create", :js do
     community = investment.community
     topic = create(:topic, community: community)
 
@@ -772,7 +774,7 @@ describe "Commenting topics from budget investments" do
     end
   end
 
-  scenario "Errors on create" do
+  scenario "Errors on create", :js do
     community = investment.community
     topic = create(:topic, community: community)
 
@@ -784,7 +786,7 @@ describe "Commenting topics from budget investments" do
     expect(page).to have_content "Can't be blank"
   end
 
-  scenario "Reply" do
+  scenario "Reply", :js do
     community = investment.community
     topic = create(:topic, community: community)
     citizen = create(:user, username: "Ana")
@@ -805,10 +807,10 @@ describe "Commenting topics from budget investments" do
       expect(page).to have_content "It will be done next week."
     end
 
-    expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}")
+    expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}", visible: true)
   end
 
-  scenario "Errors on reply" do
+  scenario "Errors on reply", :js do
     community = investment.community
     topic = create(:topic, community: community)
     comment = create(:comment, commentable: topic, user: user)
@@ -824,7 +826,7 @@ describe "Commenting topics from budget investments" do
     end
   end
 
-  scenario "N replies" do
+  scenario "N replies", :js do
     community = investment.community
     topic = create(:topic, community: community)
     parent = create(:comment, commentable: topic)
@@ -853,7 +855,7 @@ describe "Commenting topics from budget investments" do
   end
 
   describe "Moderators" do
-    scenario "can create comment as a moderator" do
+    scenario "can create comment as a moderator", :js do
       community = investment.community
       topic = create(:topic, community: community)
       moderator = create(:moderator)
@@ -873,7 +875,7 @@ describe "Commenting topics from budget investments" do
       end
     end
 
-    scenario "can create reply as a moderator" do
+    scenario "can create reply as a moderator", :js do
       community = investment.community
       topic = create(:topic, community: community)
       citizen = create(:user, username: "Ana")
@@ -899,7 +901,7 @@ describe "Commenting topics from budget investments" do
         expect(page).to have_css "img.moderator-avatar"
       end
 
-      expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}")
+      expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}", visible: true)
     end
 
     scenario "can not comment as an administrator" do
@@ -915,7 +917,7 @@ describe "Commenting topics from budget investments" do
   end
 
   describe "Administrators" do
-    scenario "can create comment as an administrator" do
+    scenario "can create comment as an administrator", :js do
       community = investment.community
       topic = create(:topic, community: community)
       admin = create(:administrator)
@@ -935,7 +937,7 @@ describe "Commenting topics from budget investments" do
       end
     end
 
-    scenario "can create reply as an administrator" do
+    scenario "can create reply as an administrator", :js do
       community = investment.community
       topic = create(:topic, community: community)
       citizen = create(:user, username: "Ana")
@@ -961,13 +963,15 @@ describe "Commenting topics from budget investments" do
         expect(page).to have_css "img.admin-avatar"
       end
 
-      expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}")
+      expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}", visible: true)
     end
 
-    scenario "can not comment as a moderator", :admin do
+    scenario "can not comment as a moderator" do
       community = investment.community
       topic = create(:topic, community: community)
+      admin = create(:administrator)
 
+      login_as(admin.user)
       visit community_topic_path(community, topic)
 
       expect(page).not_to have_content "Comment as moderator"
@@ -1004,7 +1008,7 @@ describe "Commenting topics from budget investments" do
       end
     end
 
-    scenario "Create" do
+    scenario "Create", :js do
       visit community_topic_path(investment.community, topic)
 
       within("#comment_#{comment.id}_votes") do
@@ -1022,7 +1026,7 @@ describe "Commenting topics from budget investments" do
       end
     end
 
-    scenario "Update" do
+    scenario "Update", :js do
       visit community_topic_path(investment.community, topic)
 
       within("#comment_#{comment.id}_votes") do
@@ -1046,7 +1050,7 @@ describe "Commenting topics from budget investments" do
       end
     end
 
-    scenario "Trying to vote multiple times" do
+    scenario "Trying to vote multiple times", :js do
       visit community_topic_path(investment.community, topic)
 
       within("#comment_#{comment.id}_votes") do

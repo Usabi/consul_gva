@@ -4,14 +4,14 @@
   <%= render "shared/canonical", href: root_url %>
 <% end %>
 
-<%= render Shared::BannerComponent.new("homepage") %>
+<%= render "shared/banner" %>
 
 <% provide :social_media_meta_tags do %>
   <%= render "shared/social_media_meta_tags",
               social_url: root_url %>
 <% end %>
 
-<%= render "shared/header", header: @header %>
+<%= render "header", header: @header %>
 
 <main>
   <%= render "feeds" %>
@@ -19,9 +19,9 @@
   <div class="row">
     <% if @cards.any? %>
       <div class="small-12 column <%= "large-8" if feed_processes_enabled? %>">
-        <h2 class="title"><%= t("welcome.cards.title") %></h2>
+        <h3 class="title"><%= t("welcome.cards.title") %></h3>
 
-        <%= render "shared/cards", cards: @cards %>
+        <%= render "shared/cards" %>
       </div>
     <% end %>
 

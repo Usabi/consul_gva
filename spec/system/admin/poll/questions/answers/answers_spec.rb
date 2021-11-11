@@ -1,6 +1,11 @@
 require "rails_helper"
 
-describe "Answers", :admin do
+describe "Answers" do
+  before do
+    admin = create(:administrator)
+    login_as admin.user
+  end
+
   scenario "Create" do
     question = create(:poll_question)
 
@@ -8,7 +13,7 @@ describe "Answers", :admin do
     click_link "Add answer"
 
     fill_in "Answer", with: "The answer is always 42"
-    fill_in_ckeditor "Description", with: "The Hitchhiker's Guide To The Universe"
+    fill_in "Description", with: "The Hitchhiker's Guide To The Universe"
 
     click_button "Save"
 
@@ -24,7 +29,7 @@ describe "Answers", :admin do
     click_link "Add answer"
 
     fill_in "Answer", with: "Second"
-    fill_in_ckeditor "Description", with: "Description"
+    fill_in "Description", with: "Description"
 
     click_button "Save"
 
@@ -54,7 +59,7 @@ describe "Answers", :admin do
     expect("Another title").to appear_before("New title")
   end
 
-  scenario "Reorder" do
+  scenario "Reorder", :js do
     question = create(:poll_question)
     create(:poll_question_answer, question: question, title: "First", given_order: 1)
     create(:poll_question_answer, question: question, title: "Last", given_order: 2)

@@ -1,9 +1,22 @@
 require "rails_helper"
 
-describe "Admin collaborative legislation", :admin do
+describe "Admin collaborative legislation" do
+  before do
+    admin = create(:administrator)
+    login_as(admin.user)
+  end
+
   it_behaves_like "admin_milestoneable",
                   :legislation_process,
                   "admin_legislation_process_milestones_path"
+
+  context "Feature flag" do
+    scenario "Disabled with a feature flag" do
+      Setting["process.legislation"] = nil
+      expect { visit admin_legislation_processes_path }
+      .to raise_exception(FeatureFlags::FeatureDisabled)
+    end
+  end
 
   context "Index" do
     scenario "Displaying collaborative legislation" do
@@ -64,35 +77,25 @@ describe "Admin collaborative legislation", :admin do
       fill_in "Description", with: "Describing the process"
 
       base_date = Date.current
+      fill_in "legislation_process[start_date]", with: base_date.strftime("%d/%m/%Y")
+      fill_in "legislation_process[end_date]", with: (base_date + 5.days).strftime("%d/%m/%Y")
 
-      within_fieldset text: "Draft phase" do
-        check "Enabled"
-        fill_in "Start", with: base_date - 3.days
-        fill_in "End", with: base_date - 1.day
-      end
-
-      within_fieldset "Process" do
-        fill_in "Start", with: base_date
-        fill_in "End", with: base_date + 5.days
-      end
-
-      within_fieldset "Debate phase" do
-        check "Enabled"
-        fill_in "Start", with: base_date
-        fill_in "End", with: base_date + 2.days
-      end
-
-      within_fieldset "Comments phase" do
-        check "Enabled"
-        fill_in "Start", with: base_date + 3.days
-        fill_in "End", with: base_date + 5.days
-      end
-
-      check "legislation_process[draft_publication_enabled]"
-      fill_in "Draft publication date", with: base_date + 3.days
-
-      check "legislation_process[result_publication_enabled]"
-      fill_in "Final result publication date", with: base_date + 7.days
+      fill_in "legislation_process[debate_start_date]",
+               with: base_date.strftime("%d/%m/%Y")
+      fill_in "legislation_process[debate_end_date]",
+               with: (base_date + 2.days).strftime("%d/%m/%Y")
+      fill_in "legislation_process[draft_start_date]",
+               with: (base_date - 3.days).strftime("%d/%m/%Y")
+      fill_in "legislation_process[draft_end_date]",
+               with: (base_date - 1.day).strftime("%d/%m/%Y")
+      fill_in "legislation_process[draft_publication_date]",
+               with: (base_date + 3.days).strftime("%d/%m/%Y")
+      fill_in "legislation_process[allegations_start_date]",
+               with: (base_date + 3.days).strftime("%d/%m/%Y")
+      fill_in "legislation_process[allegations_end_date]",
+               with: (base_date + 5.days).strftime("%d/%m/%Y")
+      fill_in "legislation_process[result_publication_date]",
+               with: (base_date + 7.days).strftime("%d/%m/%Y")
 
       click_button "Create process"
 
@@ -104,11 +107,6 @@ describe "Admin collaborative legislation", :admin do
       expect(page).to have_content "An example legislation process"
       expect(page).not_to have_content "Summary of the process"
       expect(page).to have_content "Describing the process"
-
-      within(".legislation-process-list") do
-        expect(page).to have_link text: "Debate"
-        expect(page).to have_link text: "Comments"
-      end
 
       visit legislation_processes_path
 
@@ -133,17 +131,12 @@ describe "Admin collaborative legislation", :admin do
       fill_in "Description", with: "Describing the process"
 
       base_date = Date.current - 2.days
+      fill_in "legislation_process[start_date]", with: base_date.strftime("%d/%m/%Y")
+      fill_in "legislation_process[end_date]", with: (base_date + 5.days).strftime("%d/%m/%Y")
 
-      within_fieldset text: "Draft phase" do
-        check "Enabled"
-        fill_in "Start", with: base_date
-        fill_in "End", with: base_date + 3.days
-      end
-
-      within_fieldset "Process" do
-        fill_in "Start", with: base_date
-        fill_in "End", with: base_date + 5.days
-      end
+      fill_in "legislation_process[draft_start_date]", with: base_date.strftime("%d/%m/%Y")
+      fill_in "legislation_process[draft_end_date]", with: (base_date + 3.days).strftime("%d/%m/%Y")
+      check "legislation_process[draft_phase_enabled]"
 
       click_button "Create process"
 
@@ -163,18 +156,14 @@ describe "Admin collaborative legislation", :admin do
       expect(page).not_to have_content "Describing the process"
     end
 
-    scenario "Create a legislation process with an image" do
+    scenario "Create a legislation process with an image", :js do
       visit new_admin_legislation_process_path
       fill_in "Process Title", with: "An example legislation process"
       fill_in "Summary", with: "Summary of the process"
 
       base_date = Date.current
-
-      within_fieldset "Process" do
-        fill_in "Start", with: base_date
-        fill_in "End", with: base_date + 5.days
-      end
-
+      fill_in "legislation_process[start_date]", with: base_date
+      fill_in "legislation_process[end_date]", with: base_date + 5.days
       imageable_attach_new_file(create(:image), Rails.root.join("spec/fixtures/files/clippy.jpg"))
 
       click_button "Create process"
@@ -186,7 +175,7 @@ describe "Admin collaborative legislation", :admin do
 
       expect(page).to have_content "An example legislation process"
       expect(page).not_to have_content "Summary of the process"
-      expect(page).to have_css("img[alt='An example legislation process']")
+      expect(page).to have_css("img[alt='#{Legislation::Process.last.title}']")
     end
 
     scenario "Default colors are present" do
@@ -212,7 +201,7 @@ describe "Admin collaborative legislation", :admin do
         click_link "Collaborative Legislation"
       end
 
-      within("tr", text: "An example legislation process") { click_link "Edit" }
+      click_link "An example legislation process"
 
       expect(page).to have_selector("h2", text: "An example legislation process")
       expect(find("#legislation_process_debate_phase_enabled")).to be_checked
@@ -235,7 +224,7 @@ describe "Admin collaborative legislation", :admin do
         click_link "Collaborative Legislation"
       end
 
-      within("tr", text: "An example legislation process") { click_link "Edit" }
+      click_link "An example legislation process"
 
       expect(find("#legislation_process_draft_publication_enabled")).to be_checked
 
@@ -251,7 +240,7 @@ describe "Admin collaborative legislation", :admin do
       expect(page).not_to have_content "Draft publication"
     end
 
-    scenario "Enabling/disabling a phase enables/disables its date fields" do
+    scenario "Enabling/disabling a phase enables/disables its date fields", :js do
       process.update!(published: false)
 
       visit edit_admin_legislation_process_path(process)
@@ -273,7 +262,7 @@ describe "Admin collaborative legislation", :admin do
       expect(page).to have_field "end_date", disabled: false, with: "2008-08-08"
     end
 
-    scenario "Enabling/disabling a phase does not enable/disable another phase date fields" do
+    scenario "Enabling/disabling a phase does not enable/disable another phase date fields", :js do
       process.update!(draft_phase_enabled: false, draft_publication_enabled: false)
 
       visit edit_admin_legislation_process_path(process)
@@ -287,24 +276,6 @@ describe "Admin collaborative legislation", :admin do
       expect(page).to have_field "draft_start_date", disabled: false
       expect(page).to have_field "draft_end_date", disabled: false
       expect(page).to have_field "draft_publication_date", disabled: true
-    end
-
-    scenario "Enabling comments phase with blank dates" do
-      visit edit_admin_legislation_process_path(process)
-
-      within_fieldset "Comments phase" do
-        check "Enabled"
-        fill_in "Start", with: ""
-        fill_in "End", with: ""
-      end
-
-      click_button "Save changes"
-
-      expect(page).to have_content "errors prevented this process from being saved"
-
-      within_fieldset "Comments phase" do
-        expect(page).to have_content "can't be blank"
-      end
     end
 
     scenario "Change proposal categories" do
@@ -327,7 +298,7 @@ describe "Admin collaborative legislation", :admin do
       expect(page).to have_field("Categories", with: "bicycles, pollution, recycling")
     end
 
-    scenario "Edit milestones summary" do
+    scenario "Edit milestones summary", :js do
       visit admin_legislation_process_milestones_path(process)
 
       expect(page).not_to have_link "Remove language"
@@ -362,44 +333,6 @@ describe "Admin collaborative legislation", :admin do
 
       expect(page).not_to have_css "#add_language"
       expect(page).not_to have_link "Remove language"
-    end
-  end
-
-  context "SDG related list" do
-    before do
-      Setting["feature.sdg"] = true
-      Setting["sdg.process.legislation"] = true
-    end
-
-    scenario "create Collaborative Legislation with sdg related list" do
-      visit new_admin_legislation_process_path
-      fill_in "Process Title", with: "Legislation process with SDG related content"
-      within_fieldset "Process" do
-        fill_in "Start", with: 2.days.ago
-        fill_in "End", with: 1.day.from_now
-      end
-
-      click_sdg_goal(17)
-      click_button "Create process"
-      visit admin_legislation_processes_path
-
-      within("tr", text: "Legislation process with SDG related content") do
-        expect(page).to have_css "td", exact_text: "17"
-      end
-    end
-
-    scenario "edit Collaborative Legislation with sdg related list" do
-      process = create(:legislation_process, title: "Legislation process with SDG related content")
-      process.sdg_goals = [SDG::Goal[1], SDG::Goal[17]]
-      visit edit_admin_legislation_process_path(process)
-
-      remove_sdg_goal_or_target_tag(1)
-      click_button "Save changes"
-      visit admin_legislation_processes_path
-
-      within("tr", text: "Legislation process with SDG related content") do
-        expect(page).to have_css "td", exact_text: "17"
-      end
     end
   end
 end

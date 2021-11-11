@@ -51,9 +51,9 @@ class RemoteCensusApi
       path_value = Setting["remote_census.response.gender"]
 
       case extract_value(path_value)
-      when "Male", "Varón"
+      when "Varón"
         "male"
-      when "Female", "Mujer"
+      when "Mujer"
         "female"
       end
     end
@@ -73,11 +73,11 @@ class RemoteCensusApi
   private
 
     def get_response_body(document_type, document_number, date_of_birth, postal_code)
-      if end_point_defined?
+      if end_point_available?
         request = request(document_type, document_number, date_of_birth, postal_code)
         client.call(Setting["remote_census.request.method_name"].to_sym, message: request).body
       else
-        stubbed_invalid_response
+        stubbed_response(document_type, document_number)
       end
     end
 
@@ -118,11 +118,43 @@ class RemoteCensusApi
       to_set[final_key] = value
     end
 
-    def end_point_defined?
-      Setting["remote_census.general.endpoint"].present?
+    def end_point_available?
+      Rails.env.staging? || Rails.env.preproduction? || Rails.env.production?
+    end
+
+    def stubbed_response(document_type, document_number)
+      if (document_number == "12345678Z" || document_number == "12345678Y") && document_type == "1"
+        stubbed_valid_response
+      else
+        stubbed_invalid_response
+      end
+    end
+
+    def stubbed_valid_response
+      {
+        get_habita_datos_response: {
+          get_habita_datos_return: {
+            datos_habitante: {
+              item: {
+                fecha_nacimiento_string: "31-12-1980",
+                identificador_documento: "12345678Z",
+                descripcion_sexo: "Varón",
+                nombre: "José",
+                apellido1: "García"
+              }
+            },
+            datos_vivienda: {
+              item: {
+                codigo_postal: "28013",
+                codigo_distrito: "01"
+              }
+            }
+          }
+        }
+      }
     end
 
     def stubbed_invalid_response
-      {}
+      { get_habita_datos_response: { get_habita_datos_return: { datos_habitante: {}, datos_vivienda: {}}}}
     end
 end

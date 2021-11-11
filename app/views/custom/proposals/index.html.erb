@@ -49,7 +49,8 @@
   <div class="row">
     <div id="proposals" class="proposals-list small-12 medium-9 column">
 
-      <%= render Shared::BannerComponent.new("proposals") %>
+      <%= render "shared/banner" %>
+
       <% if show_featured_proposals? %>
         <div id="featured-proposals" class="row featured-proposals">
           <div class="small-12 column">
@@ -72,7 +73,8 @@
       <% end %>
 
       <% unless params[:retired].present? || params[:selected].present? %>
-        <%= render Shared::AdvancedSearchComponent.new %>
+        <%= render "shared/advanced_search",
+                   search_path: proposals_path(page: 1) %>
       <% end %>
 
       <% unless params[:selected].present? %>
@@ -128,7 +130,7 @@
 
         <% if params[:retired].blank? %>
           <%= render "categories" %>
-          <%= render "shared/tag_cloud", taggable: "Proposal" %>
+          <%= render "shared/tag_cloud", taggable: "proposal" %>
           <%= render "geozones" %>
         <% end %>
         <%= render "retired" %>

@@ -27,7 +27,6 @@ bg:
         assigned_to: "Възложено на %{valuator}"
         title: Инвестиционни проекти
         edit: Редактиране на досието
-        table_id: Идентификация
         table_title: Заглавие
         table_heading_name: Име на заглавието
         table_actions: Действия
@@ -43,7 +42,6 @@ bg:
         edit_dossier: Редактиране на досието
         price: Цена
         price_first_year: Разходи през първата година
-        currency: "€"
         feasibility: Изпълнимост
         feasible: Изпълним
         unfeasible: Неизпълним

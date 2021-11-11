@@ -1,8 +1,12 @@
 require "rails_helper"
 
-describe "Admin officials", :admin do
+describe "Admin officials" do
   let!(:citizen) { create(:user, username: "Citizen Kane") }
   let!(:official) { create(:user, official_position: "Mayor", official_level: 5) }
+
+  before do
+    login_as(create(:administrator).user)
+  end
 
   scenario "Index" do
     visit admin_officials_path
@@ -15,7 +19,7 @@ describe "Admin officials", :admin do
 
   scenario "Edit an official" do
     visit admin_officials_path
-    click_link "Edit official"
+    click_link official.name
 
     expect(page).to have_current_path(edit_admin_official_path(official))
 
@@ -38,7 +42,7 @@ describe "Admin officials", :admin do
 
   scenario "Create an official" do
     visit admin_officials_path
-    fill_in "search", with: citizen.email
+    fill_in "name_or_email", with: citizen.email
     click_button "Search"
 
     expect(page).to have_current_path(search_admin_officials_path, ignore_query: true)

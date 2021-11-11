@@ -51,7 +51,7 @@ describe "Legislation Draft Versions" do
       end
     end
 
-    it "switches to another version without js", :no_js do
+    it "switches to another version without js" do
       visit legislation_process_draft_version_path(process, original)
       expect(page).to have_content("Original version")
 
@@ -62,7 +62,7 @@ describe "Legislation Draft Versions" do
       expect(page).to have_content("Current version")
     end
 
-    it "switches to another version with js" do
+    it "switches to another version with js", :js do
       visit legislation_process_draft_version_path(process, original)
       expect(page).to have_content("Original version")
 
@@ -70,25 +70,6 @@ describe "Legislation Draft Versions" do
 
       expect(page).not_to have_content("Original version")
       expect(page).to have_content("Current version")
-    end
-
-    scenario "show more info button" do
-      process.update!(additional_info: "Text for additional info of the process")
-      visit legislation_process_draft_version_path(process, original)
-
-      expect(page).not_to have_content "Text for additional info of the process"
-
-      click_button "More information and context"
-
-      expect(page).to have_content "Text for additional info of the process"
-    end
-
-    scenario "show help gif" do
-      visit legislation_process_draft_version_path(process, original)
-
-      click_button text: "How can I comment this document?"
-
-      expect(page).to have_content "select the text you want to comment and press the button with the pencil"
     end
 
     context "for final versions" do
@@ -151,7 +132,7 @@ describe "Legislation Draft Versions" do
       end
     end
 
-    it "switches to another version without js", :no_js do
+    it "switches to another version without js" do
       visit legislation_process_draft_version_changes_path(process, original)
       expect(page).to have_content("Changes for first version")
 
@@ -162,7 +143,7 @@ describe "Legislation Draft Versions" do
       expect(page).to have_content("Changes for second version")
     end
 
-    it "switches to another version with js" do
+    it "switches to another version with js", :js do
       visit legislation_process_draft_version_changes_path(process, original)
       expect(page).to have_content("Changes for first version")
 
@@ -173,7 +154,7 @@ describe "Legislation Draft Versions" do
     end
   end
 
-  context "Annotations" do
+  context "Annotations", :js do
     let(:user) { create(:user) }
     let(:draft_version) { create(:legislation_draft_version, :published) }
 
@@ -258,7 +239,6 @@ describe "Legislation Draft Versions" do
     end
 
     scenario "When page is restored from browser cache do not duplicate annotation handlers" do
-      Setting["org_name"] = "CONSUL"
       create(:legislation_annotation, draft_version: draft_version, text: "my annotation")
 
       visit legislation_process_draft_version_path(draft_version.process, draft_version)
@@ -276,7 +256,6 @@ describe "Legislation Draft Versions" do
     end
 
     scenario "When page is restored from browser cache publish comment button keeps working" do
-      Setting["org_name"] = "CONSUL"
       create(:legislation_annotation, draft_version: draft_version, text: "my annotation")
 
       visit legislation_process_draft_version_path(draft_version.process, draft_version)
@@ -299,7 +278,7 @@ describe "Legislation Draft Versions" do
     end
   end
 
-  context "Merged annotations" do
+  context "Merged annotations", :js do
     let(:user) { create(:user) }
     let(:draft_version) { create(:legislation_draft_version, :published) }
 
@@ -353,7 +332,7 @@ describe "Legislation Draft Versions" do
                ranges: [{ "start" => "/p[1]", "startOffset" => 11, "end" => "/p[1]", "endOffset" => 30 }])
       end
 
-      scenario "without js", :no_js do
+      scenario "without js" do
         visit legislation_process_draft_version_annotations_path(process, original)
         expect(page).to have_content("quote for version 1")
 
@@ -364,7 +343,7 @@ describe "Legislation Draft Versions" do
         expect(page).to have_content("quote for version 2")
       end
 
-      scenario "with js" do
+      scenario "with js", :js do
         visit legislation_process_draft_version_annotations_path(process, original)
         expect(page).to have_content("quote for version 1")
 

@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Moderate comments" do
-  scenario "Hide" do
+  scenario "Hide", :js do
     citizen = create(:user)
     moderator = create(:moderator)
 
@@ -81,46 +81,34 @@ describe "Moderate comments" do
           within("#comment_#{comment.id}") do
             check "comment_#{comment.id}_check"
           end
+
+          expect(page).not_to have_css("comment_#{comment.id}")
         end
 
         scenario "Hide the comment" do
-          accept_confirm { click_button "Hide comments" }
-
-          expect(page).not_to have_css("#comment_#{comment.id}")
-
-          click_link "Block users"
-          fill_in "email or name of user", with: comment.user.email
-          click_button "Search"
-
-          within "tr", text: comment.user.name do
-            expect(page).to have_link "Block"
-          end
+          click_on "Hide comments"
+          expect(page).not_to have_css("comment_#{comment.id}")
+          expect(comment.reload).to be_hidden
+          expect(comment.user).not_to be_hidden
         end
 
         scenario "Block the user" do
-          accept_confirm { click_button "Block authors" }
-
-          expect(page).not_to have_css("#comment_#{comment.id}")
-
-          click_link "Block users"
-          fill_in "email or name of user", with: comment.user.email
-          click_button "Search"
-
-          within "tr", text: comment.user.name do
-            expect(page).to have_content "Blocked"
-          end
+          click_on "Block authors"
+          expect(page).not_to have_css("comment_#{comment.id}")
+          expect(comment.reload).to be_hidden
+          expect(comment.user).to be_hidden
         end
 
-        scenario "Ignore the comment", :no_js do
-          click_button "Mark as viewed"
-
+        scenario "Ignore the comment" do
+          click_on "Mark as viewed"
+          expect(page).not_to have_css("comment_#{comment.id}")
           expect(comment.reload).to be_ignored_flag
           expect(comment.reload).not_to be_hidden
           expect(comment.user).not_to be_hidden
         end
       end
 
-      scenario "select all/none" do
+      scenario "select all/none", :js do
         create_list(:comment, 2)
 
         visit moderation_comments_path
@@ -142,13 +130,13 @@ describe "Moderate comments" do
 
         visit moderation_comments_path(filter: "all", page: "2", order: "newest")
 
-        accept_confirm { click_button "Mark as viewed" }
+        click_on "Mark as viewed"
 
         expect(page).to have_selector(".js-order-selector[data-order='newest']")
 
-        expect(page).to have_current_path(/filter=all/)
-        expect(page).to have_current_path(/page=2/)
-        expect(page).to have_current_path(/order=newest/)
+        expect(current_url).to include("filter=all")
+        expect(current_url).to include("page=2")
+        expect(current_url).to include("order=newest")
       end
     end
 

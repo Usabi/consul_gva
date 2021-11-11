@@ -13,13 +13,7 @@
       <%= check_box_tag :show_menu, nil, false, role: "switch" %>
 
       <nav id="side_menu" class="admin-sidebar">
-        <% if namespace == "admin" %>
-          <%= render Admin::MenuComponent.new %>
-        <% elsif namespace == "sdg_management" %>
-          <%= render SDGManagement::MenuComponent.new %>
-        <% else %>
-          <%= render "/#{namespace}/menu" %>
-        <% end %>
+        <%= render "/#{namespace}/menu" %>
       </nav>
 
       <div class="admin-content">

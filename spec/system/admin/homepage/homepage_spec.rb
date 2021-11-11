@@ -1,11 +1,14 @@
 require "rails_helper"
 
-describe "Homepage", :admin do
+describe "Homepage" do
   before do
     Setting["homepage.widgets.feeds.proposals"] = false
     Setting["homepage.widgets.feeds.debates"] = false
     Setting["homepage.widgets.feeds.processes"] = false
     Setting["feature.user.recommendations"] = false
+
+    admin = create(:administrator).user
+    login_as(admin)
   end
 
   let!(:proposals_feed)    { create(:widget_feed, kind: "proposals") }
@@ -19,14 +22,14 @@ describe "Homepage", :admin do
     scenario "Admin menu links to homepage path" do
       visit new_admin_widget_card_path(header_card: true)
 
-      click_link "#{Setting["org_name"]} Administration"
+      click_link Setting["org_name"] + " Administration"
 
       expect(page).to have_current_path(admin_root_path)
     end
   end
 
   context "Feeds" do
-    scenario "Proposals" do
+    scenario "Proposals", :js do
       5.times { create(:proposal) }
 
       visit admin_homepage_path
@@ -46,7 +49,7 @@ describe "Homepage", :admin do
       expect(page).not_to have_css("#feed_proposals.medium-8")
     end
 
-    scenario "Debates" do
+    scenario "Debates", :js do
       5.times { create(:debate) }
 
       visit admin_homepage_path
@@ -65,7 +68,7 @@ describe "Homepage", :admin do
       expect(page).not_to have_css("#feed_debates.medium-4")
     end
 
-    scenario "Proposals and debates" do
+    scenario "Proposals and debates", :js do
       3.times { create(:proposal) }
       3.times { create(:debate) }
 
@@ -92,9 +95,12 @@ describe "Homepage", :admin do
         expect(page).to have_content "Most active debates"
         expect(page).to have_css(".debate", count: 3)
       end
+
+      expect(page).to have_css("#feed_proposals.medium-8")
+      expect(page).to have_css("#feed_debates.medium-4")
     end
 
-    scenario "Processes" do
+    scenario "Processes", :js do
       5.times { create(:legislation_process) }
 
       visit admin_homepage_path
@@ -106,7 +112,7 @@ describe "Homepage", :admin do
       visit root_path
 
       expect(page).to have_content "Open processes"
-      expect(page).to have_css(".legislation-process", count: 3)
+      expect(page).to have_css(".legislation_process", count: 3)
     end
 
     xscenario "Deactivate"
@@ -130,8 +136,8 @@ describe "Homepage", :admin do
     expect(page).to have_css(".card", count: 2)
 
     within("#widget_card_#{card1.id}") do
-      expect(page).to have_content("CARD1 LABEL")
-      expect(page).to have_content("CARD1 TEXT")
+      expect(page).to have_content("Card1 label")
+      expect(page).to have_content("Card1 text")
       expect(page).to have_content("Card1 description")
       expect(page).to have_content("Link1 text")
       expect(page).to have_link(href: "consul1.dev")
@@ -139,8 +145,8 @@ describe "Homepage", :admin do
     end
 
     within("#widget_card_#{card2.id}") do
-      expect(page).to have_content("CARD2 LABEL")
-      expect(page).to have_content("CARD2 TEXT")
+      expect(page).to have_content("Card2 label")
+      expect(page).to have_content("Card2 text")
       expect(page).to have_content("Card2 description")
       expect(page).to have_content("Link2 text")
       expect(page).to have_link(href: "consul2.dev")

@@ -4,11 +4,12 @@ describe "Admin users" do
   let(:admin) { create(:administrator) }
   let!(:user) { create(:user, username: "Jose Luis Balbin") }
 
-  before { login_as(admin.user) }
+  before do
+    login_as(admin.user)
+    visit admin_users_path
+  end
 
   scenario "Index" do
-    visit admin_users_path
-
     expect(page).to have_link user.name
     expect(page).to have_content user.email
     expect(page).to have_content admin.name
@@ -16,11 +17,9 @@ describe "Admin users" do
   end
 
   scenario "The username links to their public profile" do
-    visit admin_users_path
+    click_link user.name
 
-    within_window(window_opened_by { click_link user.name }) do
-      expect(page).to have_current_path(user_path(user))
-    end
+    expect(page).to have_current_path(user_path(user))
   end
 
   scenario "Show active or erased users using filters" do
@@ -46,8 +45,6 @@ describe "Admin users" do
   end
 
   scenario "Search" do
-    visit admin_users_path
-
     fill_in :search, with: "Luis"
     click_button "Search"
 

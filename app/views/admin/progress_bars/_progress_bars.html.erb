@@ -36,7 +36,14 @@
             <%= number_to_percentage(progress_bar.percentage, strip_insignificant_zeros: true) %>
           </td>
           <td>
-            <%= render Admin::TableActionsComponent.new(progress_bar) %>
+            <%= link_to t("admin.actions.edit"),
+                        admin_polymorphic_path(progress_bar, action: :edit),
+                        class: "button hollow" %>
+
+            <%= link_to t("admin.actions.delete"),
+                        admin_polymorphic_path(progress_bar),
+                        method: :delete,
+                        class: "button hollow alert" %>
           </td>
         </tr>
       <% end %>

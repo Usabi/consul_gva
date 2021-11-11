@@ -7,9 +7,9 @@ module VotesHelper
     return "0%" if debate.total_votes == 0
 
     if vote == "likes"
-      "#{debate_percentage_of_likes(debate)}%"
+      debate_percentage_of_likes(debate).to_s + "%"
     elsif vote == "dislikes"
-      "#{100 - debate_percentage_of_likes(debate)}%"
+      (100 - debate_percentage_of_likes(debate)).to_s + "%"
     end
   end
 

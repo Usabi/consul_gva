@@ -198,7 +198,7 @@ es:
       not_selected: Ver los proyectos no seleccionados en la fase de revisión interna
       unselected_title: Proyectos no seleccionados para la fase de evaluación
       unselected: Ver los proyectos no seleccionados para la fase de evaluación
-      see_results: Ver resultados votación
+      see_results: Ver resultados
     results:
       link: Resultados
       page_title: "%{budget} - Resultados"

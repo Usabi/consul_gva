@@ -4,12 +4,12 @@
 
       <div class="row">
         <div class="small-12 column">
-          <%= back_link_to budget_path(@budget) %>
+          <%= back_link_to budgets_path %>
 
           <% if can? :show, @ballot %>
             <%= link_to t("budgets.investments.header.check_ballot"),
                         budget_ballot_path(@budget),
-                        class: "check-ballot button" %>
+                        class: "button float-right" %>
           <% end %>
         </div>
       </div>
@@ -26,7 +26,7 @@
                 <h2>
                   <%= t("budgets.investments.index.by_heading", heading: @heading.name) %>
                 </h2>
-                <div id="progress_bar">
+                <div id="progress_bar" class="no-margin-top">
                   <%= render "budgets/ballot/progress_bar", ballot: @ballot, heading: @heading %>
                 </div>
               </div>

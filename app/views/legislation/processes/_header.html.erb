@@ -27,9 +27,9 @@
           <% end %>
         </div>
 
-        <button type="button" class="button" data-toggle="legislation_info">
+        <a class="button" data-toggle="legislation_info">
           <%= t("legislation.processes.header.more_info") %>
-        </button>
+        </a>
       <% else %>
         <%= render "legislation/processes/header_full", process: @process %>
       <% end %>
@@ -41,7 +41,8 @@
         title: @process.title,
         url: legislation_process_url(@process),
         description: @process.title,
-        mobile: @process.title %>
+        mobile: @process.title
+      %>
 
       <% if @process.image.present? %>
         <hr>

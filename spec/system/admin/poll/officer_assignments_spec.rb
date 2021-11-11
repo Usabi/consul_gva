@@ -1,6 +1,11 @@
 require "rails_helper"
 
-describe "Officer Assignments", :admin do
+describe "Officer Assignments" do
+  before do
+    admin = create(:administrator)
+    login_as(admin.user)
+  end
+
   scenario "Index" do
     poll = create(:poll)
 
@@ -19,7 +24,7 @@ describe "Officer Assignments", :admin do
     end
   end
 
-  scenario "Search" do
+  scenario "Search", :js do
     poll = create(:poll)
 
     create(:poll_officer, name: "John Snow", polls: [poll])

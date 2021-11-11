@@ -6,7 +6,7 @@ shared_examples "milestoneable" do |factory_name|
   describe "Show milestones" do
     let(:path) { polymorphic_path(milestoneable) }
 
-    scenario "Show milestones" do
+    scenario "Show milestones", :js do
       create(:milestone, milestoneable: milestoneable,
                          description_en: "Last milestone with a link to https://consul.dev",
                          description_es: "Último hito con el link https://consul.dev",
@@ -44,7 +44,7 @@ shared_examples "milestoneable" do |factory_name|
       end
     end
 
-    scenario "Show no_milestones text" do
+    scenario "Show no_milestones text", :js do
       login_as(create(:user))
 
       visit path

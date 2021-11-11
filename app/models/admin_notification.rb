@@ -42,7 +42,7 @@ class AdminNotification < ApplicationRecord
     def complete_link_url
       return unless link.present?
 
-      unless link =~ /\A(http:\/\/|https:\/\/|\/)/
+      unless self.link[/\Ahttp:\/\//] || self.link[/\Ahttps:\/\//]
         self.link = "http://#{self.link}"
       end
     end

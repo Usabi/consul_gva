@@ -2,7 +2,8 @@
 //
 
 .ui-datepicker-header {
-  @extend %brand-background;
+  background: $brand;
+  color: #fff;
   font-weight: bold;
 }
 
@@ -15,7 +16,8 @@
 
   .ui-state-hover,
   .ui-state-active {
-    @extend %brand-background;
+    background: $brand;
+    color: #fff;
   }
 
   thead {

@@ -1,7 +1,9 @@
 require "rails_helper"
 
 describe HasOrders do
-  controller(ActionController::Base) do
+  class FakeController < ActionController::Base; end
+
+  controller(FakeController) do
     include HasOrders
     has_orders ["created_at", "votes_count", "flags_count", "relevance"], only: :index
     has_orders ->(c) { ["votes_count", "flags_count"] }, only: :new

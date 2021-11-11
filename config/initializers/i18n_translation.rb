@@ -9,11 +9,9 @@ module ActionView
       def t(key, options = {})
         current_locale = options[:locale].presence || I18n.locale
 
-        @i18n_content_translations ||= {}
-        @i18n_content_translations[current_locale] ||= I18nContent.translations_hash(current_locale)
-
-        translation = @i18n_content_translations[current_locale][key]
-
+        i18_content = I18nContent.find_by(key: key)
+        translation = I18nContentTranslation.find_by(i18n_content_id: i18_content&.id,
+                                                     locale: current_locale)&.value
         if translation.present?
           translation % options
         else

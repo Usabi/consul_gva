@@ -6,7 +6,7 @@ class Widget::Card
   translates :link_url_2, touch: true
 
   def self.body
-    where(header: false, middle: false).order(:created_at)
+    where(header: false, middle: false, site_customization_page_id: nil).order(:created_at)
   end
 
   def self.middle

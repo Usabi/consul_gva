@@ -75,7 +75,7 @@ hr:
         form_errors: spriječena je verifikacija ovog dokumenta
     voters:
       new:
-        title: Ankete
+        title: Glasovanje
         table_poll: Glasanje
         table_status: Stanje glasovanja
         table_actions: Djelovanja

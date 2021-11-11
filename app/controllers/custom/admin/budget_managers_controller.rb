@@ -6,7 +6,7 @@ class Admin::BudgetManagersController < Admin::BaseController
   end
 
   def search
-    @users = User.search(params[:search])
+    @users = User.search(params[:name_or_email])
                  .includes(:budget_manager)
                  .page(params[:page])
                  .for_render

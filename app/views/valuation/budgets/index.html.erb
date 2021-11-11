@@ -16,7 +16,7 @@
           <%= @budget.name %>
         </td>
         <td>
-          <%= @budget.current_phase.name %>
+          <%= t("budgets.phase.#{@budget.phase}") %>
         </td>
         <td>
           <%= @investments.count %>

@@ -1,6 +1,12 @@
 require "rails_helper"
 
-describe "Admin dashboard actions", :admin do
+describe "Admin dashboard actions" do
+  let(:admin) { create :administrator }
+
+  before do
+    login_as(admin.user)
+  end
+
   it_behaves_like "nested documentable",
                   "administrator",
                   "dashboard_action",
@@ -21,7 +27,7 @@ describe "Admin dashboard actions", :admin do
         expect(page).to have_content("Email")
         expect(page).to have_content("Poster")
 
-        expect(page).to have_link "Edit", count: 3
+        expect(page).to have_selector("a", text: "Edit", count: 3)
       end
     end
 
@@ -47,8 +53,8 @@ describe "Admin dashboard actions", :admin do
     end
 
     scenario "Creates a new action" do
-      fill_in "Title", with: action.title
-      fill_in_ckeditor "Description", with: action.description
+      fill_in "dashboard_action_title", with: action.title
+      fill_in "dashboard_action_description", with: action.description
 
       click_button "Save"
 
@@ -93,7 +99,7 @@ describe "Admin dashboard actions", :admin do
       visit admin_dashboard_actions_path
     end
 
-    scenario "deletes the action" do
+    scenario "deletes the action", js: true do
       page.accept_confirm do
         click_link "Delete"
       end
@@ -101,7 +107,7 @@ describe "Admin dashboard actions", :admin do
       expect(page).not_to have_content(action.title)
     end
 
-    scenario "can not delete actions that have been executed" do
+    scenario "can not delete actions that have been executed", js: true do
       _executed_action = create(:dashboard_executed_action, action: action)
 
       page.accept_confirm do

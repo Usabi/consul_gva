@@ -26,17 +26,17 @@ describe "Legislation" do
       click_link "Question 1"
 
       expect(page).to have_content("Question 1")
-      expect(page).to have_content("NEXT QUESTION")
+      expect(page).to have_content("Next question")
 
       click_link "Next question"
 
       expect(page).to have_content("Question 2")
-      expect(page).to have_content("NEXT QUESTION")
+      expect(page).to have_content("Next question")
 
       click_link "Next question"
 
       expect(page).to have_content("Question 3")
-      expect(page).not_to have_content("NEXT QUESTION")
+      expect(page).not_to have_content("Next question")
     end
 
     scenario "shows question page" do
@@ -50,20 +50,20 @@ describe "Legislation" do
       visit legislation_process_question_path(process, process.questions.first)
 
       expect(page).to have_content("Question 1")
-      expect(page).to have_content("NEXT QUESTION")
+      expect(page).to have_content("Next question")
 
       click_link "Next question"
 
       expect(page).to have_content("Question 2")
-      expect(page).to have_content("NEXT QUESTION")
+      expect(page).to have_content("Next question")
 
       click_link "Next question"
 
       expect(page).to have_content("Question 3")
-      expect(page).not_to have_content("NEXT QUESTION")
+      expect(page).not_to have_content("Next question")
     end
 
-    scenario "answer question", :no_js do
+    scenario "answer question" do
       question = process.questions.first
       create(:legislation_question_option, question: question, value: "Yes")
       create(:legislation_question_option, question: question, value: "No")
@@ -93,7 +93,7 @@ describe "Legislation" do
       expect(option.reload.answers_count).to eq(1)
     end
 
-    scenario "cannot answer question when phase not open", :no_js do
+    scenario "cannot answer question when phase not open" do
       process.update!(debate_end_date: Date.current - 1.day)
       question = process.questions.first
       create(:legislation_question_option, question: question, value: "Yes")

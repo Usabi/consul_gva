@@ -41,7 +41,7 @@ describe "Legislation" do
       end
     end
 
-    scenario "Processes are sorted by descending start date" do
+    scenario "Processes are sorted by descending start date", :js do
       create(:legislation_process, title: "Process 1", start_date: 3.days.ago)
       create(:legislation_process, title: "Process 2", start_date: 2.days.ago)
       create(:legislation_process, title: "Process 3", start_date: Date.yesterday)
@@ -127,19 +127,6 @@ describe "Legislation" do
         expect(page).to have_content("past published")
       end
     end
-
-    scenario "Show SDG tags when feature is enabled" do
-      Setting["feature.sdg"] = true
-      Setting["sdg.process.legislation"] = true
-
-      create(:legislation_process, sdg_goals: [SDG::Goal[1]],
-                                   sdg_targets: [SDG::Target["1.1"]])
-
-      visit legislation_processes_path
-
-      expect(page).to have_selector "img[alt='1. No Poverty']"
-      expect(page).to have_content "target 1.1"
-    end
   end
 
   context "process page" do
@@ -169,10 +156,10 @@ describe "Legislation" do
         visit legislation_process_path(process)
 
         within("aside") do
-          expect(page).to have_content "DRAFT PUBLICATION"
-          expect(page).to have_content "10 Jan 2019"
-          expect(page).to have_content "FINAL RESULT PUBLICATION"
-          expect(page).to have_content "20 Jan 2019"
+          expect(page).to have_content("Draft publication")
+          expect(page).to have_content("10 Jan 2019")
+          expect(page).to have_content("Final result publication")
+          expect(page).to have_content("20 Jan 2019")
         end
       end
 
@@ -192,11 +179,8 @@ describe "Legislation" do
 
         visit legislation_process_path(process)
 
-        expect(page).not_to have_content "Text for additional info of the process"
-
-        click_button "Additional information"
-
-        expect(page).to have_content "Text for additional info of the process"
+        expect(page).to have_content("Additional information")
+        expect(page).to have_content("Text for additional info of the process")
       end
 
       scenario "do not show additional info button if it is empty" do
@@ -204,7 +188,7 @@ describe "Legislation" do
 
         visit legislation_process_path(process)
 
-        expect(page).not_to have_button "Additional information"
+        expect(page).not_to have_content("Additional information")
       end
 
       scenario "Shows another translation when the default locale isn't available" do
@@ -225,19 +209,6 @@ describe "Legislation" do
         click_link "Create a proposal"
 
         expect(page).to have_current_path new_legislation_process_proposal_path(process)
-      end
-
-      scenario "Show SDG tags when feature is enabled" do
-        Setting["feature.sdg"] = true
-        Setting["sdg.process.legislation"] = true
-
-        process = create(:legislation_process, sdg_goals: [SDG::Goal[1]],
-                                               sdg_targets: [SDG::Target["1.1"]])
-
-        visit legislation_process_path(process)
-
-        expect(page).to have_selector "img[alt='1. No Poverty']"
-        expect(page).to have_content "target 1.1"
       end
     end
 
@@ -385,6 +356,16 @@ describe "Legislation" do
         visit legislation_process_proposals_path(process)
 
         expect(page).to have_content("There are no proposals")
+      end
+
+      scenario "create proposal button redirects to register path if user is not logged in" do
+        process = create(:legislation_process, :in_proposals_phase)
+
+        visit legislation_process_proposals_path(process)
+        click_link "Create a proposal"
+
+        expect(page).to have_current_path new_user_session_path
+        expect(page).to have_content "You must sign in or register to continue"
       end
 
       include_examples "not published permissions", :legislation_process_proposals_path

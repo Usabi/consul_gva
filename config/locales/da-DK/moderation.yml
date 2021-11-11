@@ -111,6 +111,7 @@ da:
       index:
         hidden: Blokeret
         hide: Bloker
+        search: Søg
         search_placeholder: e-mail eller brugernavn
         title: Bloker brugere
       notice_hide: Bruger blokeret. Alle brugerens debatindlag og kommentarer er blevet skjult.

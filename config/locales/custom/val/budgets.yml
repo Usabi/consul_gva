@@ -149,7 +149,7 @@ val:
       not_selected: Veure propostes no seleccionades en la fase de revisió interna
       unselected_title: Propostes no seleccionades per a la votació final
       unselected: Veure les propostes no seleccionades per a la votació final
-      see_results: Veure resultats votació
+      see_results: Vore resultats
     results:
       link: Resultats
       page_title: "%{budget} - Resultats"

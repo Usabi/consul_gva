@@ -1,6 +1,11 @@
 require "rails_helper"
 
-describe "Admin collaborative legislation", :admin do
+describe "Admin collaborative legislation" do
+  before do
+    admin = create(:administrator)
+    login_as(admin.user)
+  end
+
   context "Index" do
     scenario "Displaying legislation proposals" do
       proposal = create(:legislation_proposal, cached_votes_score: 10)
@@ -15,7 +20,7 @@ describe "Admin collaborative legislation", :admin do
       end
     end
 
-    scenario "Selecting legislation proposals" do
+    scenario "Selecting legislation proposals", :js do
       proposal = create(:legislation_proposal, cached_votes_score: 10)
 
       visit admin_legislation_process_proposals_path(proposal.legislation_process_id)
@@ -26,7 +31,7 @@ describe "Admin collaborative legislation", :admin do
       end
     end
 
-    scenario "Sorting legislation proposals by title" do
+    scenario "Sorting legislation proposals by title", js: true do
       process = create(:legislation_process)
       create(:legislation_proposal, title: "bbbb", legislation_process_id: process.id)
       create(:legislation_proposal, title: "aaaa", legislation_process_id: process.id)
@@ -42,7 +47,7 @@ describe "Admin collaborative legislation", :admin do
       end
     end
 
-    scenario "Sorting legislation proposals by supports" do
+    scenario "Sorting legislation proposals by supports", js: true do
       process = create(:legislation_process)
       create(:legislation_proposal, cached_votes_score: 10, legislation_process_id: process.id)
       create(:legislation_proposal, cached_votes_score: 30, legislation_process_id: process.id)
@@ -58,7 +63,7 @@ describe "Admin collaborative legislation", :admin do
       end
     end
 
-    scenario "Sorting legislation proposals by Id" do
+    scenario "Sorting legislation proposals by Id", js: true do
       process = create(:legislation_process)
       proposal1 = create(:legislation_proposal, title: "bbbb", legislation_process_id: process.id)
       proposal2 = create(:legislation_proposal, title: "aaaa", legislation_process_id: process.id)

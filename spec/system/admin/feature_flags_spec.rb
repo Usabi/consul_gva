@@ -1,8 +1,9 @@
 require "rails_helper"
 
-describe "Admin feature flags", :admin do
+describe "Admin feature flags" do
   before do
     Setting["process.budgets"] = true
+    login_as(create(:administrator).user)
   end
 
   scenario "Enabled features are listed on menu" do
@@ -10,11 +11,11 @@ describe "Admin feature flags", :admin do
 
     within("#side_menu") do
       expect(page).to have_link "Participatory budgets"
-      expect(page).to have_link "Debates"
+      expect(page).to have_link "Hidden debates"
     end
   end
 
-  scenario "Disable a participatory process", :show_exceptions do
+  scenario "Disable a participatory process" do
     setting = Setting.find_by(key: "process.budgets")
     budget = create(:budget)
 
@@ -24,24 +25,17 @@ describe "Admin feature flags", :admin do
     within("#edit_setting_#{setting.id}") do
       expect(page).to have_button "Disable"
       expect(page).not_to have_button "Enable"
-
-      accept_confirm { click_button "Disable" }
+      click_button "Disable"
     end
 
-    expect(page).to have_content "Value updated"
+    visit admin_root_path
 
     within("#side_menu") do
       expect(page).not_to have_link "Participatory budgets"
     end
 
-    visit budget_path(budget)
-
-    expect(page).to have_content "Internal server error"
-
-    visit admin_budgets_path
-
-    expect(page).to have_current_path admin_budgets_path
-    expect(page).to have_content "Internal server error"
+    expect { visit budget_path(budget) }.to raise_exception(FeatureFlags::FeatureDisabled)
+    expect { visit admin_budgets_path }.to raise_exception(FeatureFlags::FeatureDisabled)
   end
 
   scenario "Enable a disabled participatory process" do
@@ -60,11 +54,10 @@ describe "Admin feature flags", :admin do
     within("#edit_setting_#{setting.id}") do
       expect(page).to have_button "Enable"
       expect(page).not_to have_button "Disable"
-
-      accept_confirm { click_button "Enable" }
+      click_button "Enable"
     end
 
-    expect(page).to have_content "Value updated"
+    visit admin_root_path
 
     within("#side_menu") do
       expect(page).to have_link "Participatory budgets"
@@ -75,13 +68,11 @@ describe "Admin feature flags", :admin do
     setting = Setting.find_by(key: "feature.twitter_login")
 
     visit admin_settings_path
-    click_link "Features"
 
     within("#edit_setting_#{setting.id}") do
       expect(page).to have_button "Disable"
       expect(page).not_to have_button "Enable"
-
-      accept_confirm { click_button "Disable" }
+      click_button "Disable"
     end
 
     expect(page).to have_content "Value updated"
@@ -96,13 +87,11 @@ describe "Admin feature flags", :admin do
     setting = Setting.find_by(key: "feature.map")
 
     visit admin_settings_path
-    click_link "Features"
 
     within("#edit_setting_#{setting.id}") do
       expect(page).to have_button "Enable"
       expect(page).not_to have_button "Disable"
-
-      accept_confirm { click_button "Enable" }
+      click_button "Enable"
     end
 
     expect(page).to have_content "Value updated"

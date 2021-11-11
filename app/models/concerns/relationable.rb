@@ -14,6 +14,5 @@ module Relationable
 
   def relationed_contents
     related_contents.not_hidden.map(&:child_relationable)
-                    .reject { |related| related.respond_to?(:retired?) && related.retired? }
   end
 end

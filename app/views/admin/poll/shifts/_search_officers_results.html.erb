@@ -10,7 +10,9 @@
       <tr>
         <th><%= t("admin.poll_shifts.new.table_name") %></th>
         <th><%= t("admin.poll_shifts.new.table_email") %></th>
-        <th><%= t("admin.poll_shifts.new.table_shift") %></th>
+        <th class="text-right">
+          <%= t("admin.poll_shifts.new.table_shift") %>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -22,12 +24,10 @@
         <td>
           <%= user.email %>
         </td>
-        <td>
-          <%= render Admin::TableActionsComponent.new(
-            actions: [:edit],
-            edit_text: t("admin.poll_shifts.new.edit_shifts"),
-            edit_path: new_admin_booth_shift_path(officer_id: user.poll_officer.id)
-          ) %>
+        <td class="text-right">
+          <%= link_to t("admin.poll_shifts.new.edit_shifts"),
+                      new_admin_booth_shift_path(officer_id: user.poll_officer.id),
+                      class: "button hollow" %>
         </td>
       </tr>
       <% end %>

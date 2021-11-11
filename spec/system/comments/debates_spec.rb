@@ -8,12 +8,12 @@ describe "Commenting debates" do
 
   scenario "Index" do
     3.times { create(:comment, commentable: debate) }
-    comment = Comment.includes(:user).last
 
     visit debate_path(debate)
 
     expect(page).to have_css(".comment", count: 3)
 
+    comment = Comment.last
     within first(".comment") do
       expect(page).to have_content comment.user.name
       expect(page).to have_content I18n.l(comment.created_at, format: :datetime)
@@ -55,7 +55,7 @@ describe "Commenting debates" do
     expect(page).to have_current_path(comment_path(comment))
   end
 
-  scenario "Collapsable comments" do
+  scenario "Collapsable comments", :js do
     parent_comment = create(:comment, body: "Main comment", commentable: debate)
     child_comment  = create(:comment, body: "First subcomment", commentable: debate, parent: parent_comment)
     grandchild_comment = create(:comment, body: "Last subcomment", commentable: debate, parent: child_comment)
@@ -92,7 +92,7 @@ describe "Commenting debates" do
     expect(page).not_to have_content grandchild_comment.body
   end
 
-  scenario "can collapse comments after adding a reply" do
+  scenario "can collapse comments after adding a reply", :js do
     create(:comment, body: "Main comment", commentable: debate)
 
     login_as(user)
@@ -213,7 +213,7 @@ describe "Commenting debates" do
     end
   end
 
-  scenario "Create" do
+  scenario "Create", :js do
     login_as(user)
     visit debate_path(debate)
 
@@ -226,7 +226,7 @@ describe "Commenting debates" do
     end
   end
 
-  scenario "Errors on create" do
+  scenario "Errors on create", :js do
     login_as(user)
     visit debate_path(debate)
 
@@ -235,59 +235,7 @@ describe "Commenting debates" do
     expect(page).to have_content "Can't be blank"
   end
 
-  describe "Hide" do
-    scenario "Without replies" do
-      create(:comment, commentable: debate, user: user, body: "This was a mistake")
-
-      login_as(user)
-      visit debate_path(debate)
-
-      accept_confirm("Are you sure? This action will delete this comment. You can't undo this action.") do
-        within(".comment-body", text: "This was a mistake") { click_link "Delete comment" }
-      end
-
-      expect(page).not_to have_content "This was a mistake"
-      expect(page).not_to have_link "Delete comment"
-
-      visit debate_path(debate)
-
-      expect(page).not_to have_content "This was a mistake"
-      expect(page).not_to have_link "Delete comment"
-
-      logout
-      login_as(create(:administrator).user)
-
-      visit admin_hidden_comments_path
-
-      expect(page).to have_content "This was a mistake"
-    end
-
-    scenario "With replies" do
-      comment = create(:comment, commentable: debate, user: user, body: "Wrong comment")
-      create(:comment, commentable: debate, parent: comment, body: "Right reply")
-
-      login_as(user)
-      visit debate_path(debate)
-
-      accept_confirm("Are you sure? This action will delete this comment. You can't undo this action.") do
-        within(".comment-body", text: "Wrong comment") { click_link "Delete comment" }
-      end
-
-      within "#comments > .comment-list > li", text: "Right reply" do
-        expect(page).to have_content "This comment has been deleted"
-        expect(page).not_to have_content "Wrong comment"
-      end
-
-      visit debate_path(debate)
-
-      within "#comments > .comment-list > li", text: "Right reply" do
-        expect(page).to have_content "This comment has been deleted"
-        expect(page).not_to have_content "Wrong comment"
-      end
-    end
-  end
-
-  scenario "Reply" do
+  scenario "Reply", :js do
     citizen = create(:user, username: "Ana")
     manuela = create(:user, username: "Manuela")
     comment = create(:comment, commentable: debate, user: citizen)
@@ -306,10 +254,10 @@ describe "Commenting debates" do
       expect(page).to have_content "It will be done next week."
     end
 
-    expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}")
+    expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}", visible: true)
   end
 
-  scenario "Reply to reply" do
+  scenario "Reply to reply", :js do
     create(:comment, commentable: debate, body: "Any estimates?")
 
     login_as(create(:user))
@@ -334,7 +282,7 @@ describe "Commenting debates" do
     end
   end
 
-  scenario "Reply update parent comment responses count" do
+  scenario "Reply update parent comment responses count", :js do
     comment = create(:comment, commentable: debate)
 
     login_as(create(:user))
@@ -349,7 +297,7 @@ describe "Commenting debates" do
     end
   end
 
-  scenario "Reply show parent comments responses when hidden" do
+  scenario "Reply show parent comments responses when hidden", :js do
     comment = create(:comment, commentable: debate)
     create(:comment, commentable: debate, parent: comment)
 
@@ -366,7 +314,7 @@ describe "Commenting debates" do
     end
   end
 
-  scenario "Errors on reply" do
+  scenario "Errors on reply", :js do
     comment = create(:comment, commentable: debate, user: user)
 
     login_as(user)
@@ -380,7 +328,7 @@ describe "Commenting debates" do
     end
   end
 
-  scenario "N replies" do
+  scenario "N replies", :js do
     parent = create(:comment, commentable: debate)
 
     7.times do
@@ -404,7 +352,7 @@ describe "Commenting debates" do
     end
   end
 
-  scenario "Submit button is disabled after clicking" do
+  scenario "Submit button is disabled after clicking", :js do
     debate = create(:debate)
     login_as(user)
     visit debate_path(debate)
@@ -418,7 +366,7 @@ describe "Commenting debates" do
   end
 
   describe "Moderators" do
-    scenario "can create comment as a moderator" do
+    scenario "can create comment as a moderator", :js do
       moderator = create(:moderator)
 
       login_as(moderator.user)
@@ -436,7 +384,7 @@ describe "Commenting debates" do
       end
     end
 
-    scenario "can create reply as a moderator" do
+    scenario "can create reply as a moderator", :js do
       citizen = create(:user, username: "Ana")
       manuela = create(:user, username: "Manuela")
       moderator = create(:moderator, user: manuela)
@@ -460,7 +408,7 @@ describe "Commenting debates" do
         expect(page).to have_css "img.moderator-avatar"
       end
 
-      expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}")
+      expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}", visible: true)
     end
 
     scenario "can not comment as an administrator" do
@@ -474,7 +422,7 @@ describe "Commenting debates" do
   end
 
   describe "Administrators" do
-    scenario "can create comment as an administrator" do
+    scenario "can create comment as an administrator", :js do
       admin = create(:administrator)
 
       login_as(admin.user)
@@ -492,7 +440,7 @@ describe "Commenting debates" do
       end
     end
 
-    scenario "can create reply as an administrator" do
+    scenario "can create reply as an administrator", :js do
       citizen = create(:user, username: "Ana")
       manuela = create(:user, username: "Manuela")
       admin   = create(:administrator, user: manuela)
@@ -516,10 +464,13 @@ describe "Commenting debates" do
         expect(page).to have_css "img.admin-avatar"
       end
 
-      expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}")
+      expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}", visible: true)
     end
 
-    scenario "can not comment as a moderator", :admin do
+    scenario "can not comment as a moderator" do
+      admin = create(:administrator)
+
+      login_as(admin.user)
       visit debate_path(debate)
 
       expect(page).not_to have_content "Comment as moderator"
@@ -555,7 +506,7 @@ describe "Commenting debates" do
       end
     end
 
-    scenario "Create" do
+    scenario "Create", :js do
       visit debate_path(debate)
 
       within("#comment_#{comment.id}_votes") do
@@ -573,7 +524,7 @@ describe "Commenting debates" do
       end
     end
 
-    scenario "Update" do
+    scenario "Update", :js do
       visit debate_path(debate)
 
       within("#comment_#{comment.id}_votes") do
@@ -597,7 +548,7 @@ describe "Commenting debates" do
       end
     end
 
-    scenario "Trying to vote multiple times" do
+    scenario "Trying to vote multiple times", :js do
       visit debate_path(debate)
 
       within("#comment_#{comment.id}_votes") do

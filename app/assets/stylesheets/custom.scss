@@ -1,4 +1,7 @@
-// Override and add customized styles in this file.
+// Overrides and adds customized styles in this file
+// Read more on documentation:
+// * English: https://github.com/consul/consul/blob/master/CUSTOMIZE_EN.md#css
+// * Spanish: https://github.com/consul/consul/blob/master/CUSTOMIZE_ES.md#css
 //
 
 // 0. Global
@@ -27,7 +30,3 @@
 
 // 9. Stats
 @import "custom/stats";
-
-// 10. Layout
-
-@import "custom/layout";

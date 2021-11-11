@@ -1,6 +1,11 @@
 require "rails_helper"
 
-describe "Admin shifts", :admin do
+describe "Admin shifts" do
+  before do
+    admin = create(:administrator)
+    login_as(admin.user)
+  end
+
   scenario "Show" do
     officer = create(:poll_officer)
 
@@ -25,7 +30,7 @@ describe "Admin shifts", :admin do
     expect(page).to have_content officer.email
   end
 
-  scenario "Create Vote Collection Shift and Recount & Scrutiny Shift on same date" do
+  scenario "Create Vote Collection Shift and Recount & Scrutiny Shift on same date", :js do
     create(:poll)
     poll = create(:poll, :current)
     booth = create(:poll_booth, polls: [poll, create(:poll, :expired)])
@@ -88,7 +93,7 @@ describe "Admin shifts", :admin do
     end
   end
 
-  scenario "Vote Collection Shift and Recount & Scrutiny Shift don't include already assigned dates to officer" do
+  scenario "Vote Collection Shift and Recount & Scrutiny Shift don't include already assigned dates to officer", :js do
     poll = create(:poll, :current)
     booth = create(:poll_booth, polls: [poll])
     officer = create(:poll_officer)
@@ -120,7 +125,7 @@ describe "Admin shifts", :admin do
     expect(page).to have_select("shift_date_recount_scrutiny_date", options: ["Select day", *recount_scrutiny_dates])
   end
 
-  scenario "Change option from Recount & Scrutinity to Collect Votes" do
+  scenario "Change option from Recount & Scrutinity to Collect Votes", :js do
     booth = create(:poll_booth)
     officer = create(:poll_officer)
 
@@ -138,7 +143,7 @@ describe "Admin shifts", :admin do
     expect(page).to have_select("shift_date_vote_collection_date", options: ["Voting days ended"])
   end
 
-  scenario "Error on create" do
+  scenario "Error on create", :js do
     poll = create(:poll, :current)
     booth = create(:poll_booth, polls: [poll])
     officer = create(:poll_officer)
@@ -174,7 +179,7 @@ describe "Admin shifts", :admin do
 
     expect(page).to have_css(".shift", count: 1)
     within("#shift_#{shift.id}") do
-      accept_confirm { click_link "Remove" }
+      click_link "Remove"
     end
 
     expect(page).to have_content "Shift removed"
@@ -198,7 +203,7 @@ describe "Admin shifts", :admin do
 
     expect(page).to have_css(".shift", count: 1)
     within("#shift_#{shift.id}") do
-      accept_confirm { click_link "Remove" }
+      click_link "Remove"
     end
 
     expect(page).not_to have_content "Shift removed"
@@ -225,7 +230,7 @@ describe "Admin shifts", :admin do
 
     expect(page).to have_css(".shift", count: 1)
     within("#shift_#{shift.id}") do
-      accept_confirm { click_link "Remove" }
+      click_link "Remove"
     end
 
     expect(page).not_to have_content "Shift removed"

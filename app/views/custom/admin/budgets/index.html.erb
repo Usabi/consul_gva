@@ -1,0 +1,74 @@
+<h2 class="inline-block"><%= t("admin.budgets.index.title") %></h2>
+
+<% if current_ability.can? :new, Budget %>
+  <%= link_to t("admin.budgets.index.new_link"),
+              new_admin_budget_path,
+              class: "button float-right" %>
+<% end %>
+
+<%= render "shared/filter_subnav", i18n_namespace: "admin.budgets.index" %>
+
+<% if @budgets.any? %>
+  <h3><%= page_entries_info @budgets %></h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th><%= t("admin.budgets.index.table_name") %></th>
+        <th><%= t("admin.budgets.index.table_phase") %></th>
+        <th><%= t("admin.budgets.index.table_investments") %></th>
+        <% if current_ability.can? :edit, Budget::Group %>
+          <th><%= t("admin.budgets.index.table_edit_groups") %></th>
+        <% end %>
+        <% if current_ability.can? :edit, Budget %>
+          <th><%= t("admin.budgets.index.table_edit_budget") %></th>
+        <% end %>
+        <% if current_ability.can? :create, Poll %>
+          <th><%= t("admin.budgets.index.table_admin_ballots") %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @budgets.each do |budget| %>
+        <tr id="<%= dom_id(budget) %>" class="budget">
+          <td>
+            <%= budget.name %>
+          </td>
+          <td class="small">
+            <%= t("budgets.phase.#{budget.phase}") %>
+          </td>
+          <td>
+            <%= link_to t("admin.budgets.index.budget_investments"),
+                           admin_budget_budget_investments_path(budget_id: budget.id),
+                           class: "button hollow medium" %>
+          </td>
+          <% if current_ability.can? :edit, Budget::Group %>
+            <td class="small">
+              <%= link_to t("admin.budgets.index.edit_groups"), admin_budget_groups_path(budget) %>
+            </td>
+          <% end %>
+          <% if current_ability.can? :edit, budget %>
+            <td class="small">
+              <%= link_to t("admin.budgets.index.edit_budget"), edit_admin_budget_path(budget) %>
+            </td>
+          <% end %>
+          <% if current_ability.can? :create, Poll %>
+            <td class="small">
+              <% if budget.poll.present? %>
+                <%= link_to t("admin.budgets.index.admin_ballots"), admin_poll_booth_assignments_path(budget.poll) %>
+              <% else %>
+                <%= link_to_create_budget_poll(budget) %>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @budgets %>
+<% else %>
+  <div class="callout primary">
+    <%= t("admin.budgets.index.no_budgets") %>
+  </div>
+<% end %>

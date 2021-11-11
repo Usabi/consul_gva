@@ -17,8 +17,6 @@ describe "Poll budget ballot sheets" do
 
     scenario "Budget polls are visible" do
       visit root_path
-
-      click_link "Menu"
       click_link "Polling officers"
 
       within("#side_menu") do
@@ -107,13 +105,11 @@ describe "Poll budget ballot sheets" do
       fill_in "data", with: "1234;5678"
       click_button "Save"
 
-      expect(page).to have_content(/Ballot sheet \d+/)
+      expect(Poll::BallotSheet.count).to be 1
+
+      expect(page).to have_content("Ballot sheet #{Poll::BallotSheet.last.id}")
       expect(page).to have_content(poll_officer.user.name)
       expect(page).to have_content("1234;5678")
-
-      visit officing_poll_ballot_sheets_path(poll)
-
-      expect(page).to have_css "tbody tr", count: 1
     end
 
     scenario "Ballot sheet is not saved" do
@@ -122,14 +118,12 @@ describe "Poll budget ballot sheets" do
       select "#{booth.name}", from: "officer_assignment_id"
       click_button "Save"
 
+      expect(Poll::BallotSheet.count).to be 0
+
       expect(page).to have_content("CSV data can't be blank")
-
-      visit officing_poll_ballot_sheets_path(poll)
-
-      expect(page).not_to have_css "tbody tr"
     end
 
-    scenario "Shift booth has to be selected" do
+    scenario "Shift booth has to be selected", :js do
       visit new_officing_poll_ballot_sheet_path(poll)
 
       fill_in "data", with: "1234;5678"
@@ -148,7 +142,7 @@ describe "Poll budget ballot sheets" do
       set_officing_booth(booth)
     end
 
-    scenario "Ballot sheet information is displayed" do
+    scenario "Ballot sheet information is displayed", :js do
       officer_assignment = create(:poll_officer_assignment, officer: poll_officer)
       ballot_sheet = create(:poll_ballot_sheet, poll: poll, officer_assignment: officer_assignment)
 

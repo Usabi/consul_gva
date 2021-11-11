@@ -23,7 +23,12 @@
             <%= status.description %>
           </td>
           <td>
-            <%= render Admin::TableActionsComponent.new(status) %>
+            <%= link_to t("admin.statuses.index.edit"),
+                        edit_admin_milestone_status_path(status),
+                        class: "button hollow" %>
+            <%= link_to t("admin.statuses.index.delete"),
+                        admin_milestone_status_path(status),
+                        method: :delete, class: "button hollow alert" %>
           </td>
         </tr>
       <% end %>

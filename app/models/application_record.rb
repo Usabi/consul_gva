@@ -3,9 +3,9 @@ class ApplicationRecord < ActiveRecord::Base
 
   def self.sample(count = 1)
     if count == 1
-      reorder(Arel.sql("RANDOM()")).first
+      reorder("RANDOM()").first
     else
-      reorder(Arel.sql("RANDOM()")).limit(count)
+      reorder("RANDOM()").limit(count)
     end
   end
 end

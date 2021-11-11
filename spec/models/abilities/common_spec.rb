@@ -65,6 +65,9 @@ describe Abilities::Common do
   it { should be_able_to(:show, user) }
   it { should be_able_to(:edit, user) }
 
+  it { should be_able_to(:create, Comment) }
+  it { should be_able_to(:vote, Comment)   }
+
   it { should     be_able_to(:index, Proposal) }
   it { should     be_able_to(:show, proposal) }
   it { should_not be_able_to(:vote, Proposal) }
@@ -94,14 +97,6 @@ describe Abilities::Common do
 
   it { should_not be_able_to(:manage, LocalCensusRecord) }
 
-  describe "Comment" do
-    it { should be_able_to(:create, Comment) }
-    it { should be_able_to(:vote, Comment) }
-
-    it { should be_able_to(:hide, own_comment) }
-    it { should_not be_able_to(:hide, comment) }
-  end
-
   describe "flagging content" do
     it { should be_able_to(:flag, debate)   }
     it { should be_able_to(:unflag, debate) }
@@ -122,16 +117,6 @@ describe Abilities::Common do
       it { should_not be_able_to(:flag, own_proposal)   }
       it { should_not be_able_to(:unflag, own_proposal) }
     end
-  end
-
-  describe "follows" do
-    let(:other_user) { create(:user) }
-
-    it { should be_able_to(:create, build(:follow, :followed_proposal, user: user)) }
-    it { should_not be_able_to(:create, build(:follow, :followed_proposal, user: other_user)) }
-
-    it { should be_able_to(:destroy, create(:follow, :followed_proposal, user: user)) }
-    it { should_not be_able_to(:destroy, create(:follow, :followed_proposal, user: other_user)) }
   end
 
   describe "other users" do
@@ -319,10 +304,4 @@ describe Abilities::Common do
     it { should be_able_to(:disable_recommendations, Debate) }
     it { should be_able_to(:disable_recommendations, Proposal) }
   end
-
-  it { should_not be_able_to(:read, SDG::Target) }
-
-  it { should_not be_able_to(:read, SDG::Manager) }
-  it { should_not be_able_to(:create, SDG::Manager) }
-  it { should_not be_able_to(:delete, SDG::Manager) }
 end

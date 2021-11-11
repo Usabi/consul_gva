@@ -106,7 +106,7 @@ FactoryBot.define do
     end
 
     trait :hidden do
-      hidden_at { Time.current }
+      hidden_at { Date.current }
     end
 
     trait :with_confirmed_hide do

@@ -3,16 +3,16 @@ require "rails_helper"
 describe "Polls" do
   let!(:proposal) { create(:proposal, :draft) }
 
-  before { login_as(proposal.author) }
+  before do
+    login_as(proposal.author)
+    visit proposal_dashboard_path(proposal)
+  end
 
   scenario "Has a link to polls feature" do
-    visit proposal_dashboard_path(proposal)
-
     expect(page).to have_link("Polls")
   end
 
-  scenario "Create a poll" do
-    visit proposal_dashboard_path(proposal)
+  scenario "Create a poll", :js do
     click_link "Polls"
     click_link "Create poll"
 
@@ -41,7 +41,7 @@ describe "Polls" do
     expect(page).to have_content I18n.l(start_date.to_date)
   end
 
-  describe "Datepicker" do
+  describe "Datepicker", :js do
     scenario "displays the expected format when changing the date field" do
       visit new_proposal_dashboard_poll_path(proposal)
 
@@ -79,8 +79,7 @@ describe "Polls" do
     end
   end
 
-  scenario "Create a poll redirects back to form when invalid data" do
-    visit proposal_dashboard_path(proposal)
+  scenario "Create a poll redirects back to form when invalid data", js: true do
     click_link "Polls"
     click_link "Create poll"
 
@@ -105,7 +104,7 @@ describe "Polls" do
     expect(page).to have_content "Poll updated successfully"
   end
 
-  scenario "Edit poll redirects back when invalid data" do
+  scenario "Edit poll redirects back when invalid data", js: true do
     poll = create(:poll, related: proposal, starts_at: 1.week.from_now)
 
     visit proposal_dashboard_polls_path(proposal)
@@ -143,7 +142,7 @@ describe "Polls" do
     end
   end
 
-  scenario "Edit poll should allow to remove questions" do
+  scenario "Edit poll should allow to remove questions", :js do
     poll = create(:poll, related: proposal, starts_at: 1.week.from_now)
     create(:poll_question, poll: poll)
     create(:poll_question, poll: poll)
@@ -166,7 +165,7 @@ describe "Polls" do
     expect(page).to have_css ".nested-fields", count: 1
   end
 
-  scenario "Edit poll allows users to remove answers" do
+  scenario "Edit poll should allow to remove answers", :js do
     poll = create(:poll, related: proposal, starts_at: 1.week.from_now)
     create(:poll_question, :yes_no, poll: poll)
     visit proposal_dashboard_polls_path(proposal)
@@ -183,9 +182,6 @@ describe "Polls" do
     end
 
     click_button "Update poll"
-
-    expect(page).to have_content "Poll updated successfully"
-
     visit edit_proposal_dashboard_poll_path(proposal, poll)
 
     within ".js-questions .js-answers" do
@@ -193,7 +189,7 @@ describe "Polls" do
     end
   end
 
-  scenario "Can destroy poll without responses" do
+  scenario "Can destroy poll without responses", :js do
     poll = create(:poll, related: proposal)
 
     visit proposal_dashboard_polls_path(proposal)
@@ -206,7 +202,7 @@ describe "Polls" do
     expect(page).not_to have_content(poll.name)
   end
 
-  scenario "Can't destroy poll with responses" do
+  scenario "Can't destroy poll with responses", :js do
     poll = create(:poll, related: proposal)
     create(:poll_question, poll: poll)
     create(:poll_voter, poll: poll)
@@ -251,17 +247,21 @@ describe "Polls" do
     end
   end
 
-  scenario "View results redirects to results in public zone" do
+  scenario "View results redirects to results in public zone", js: true do
     poll = create(:poll, :expired, related: proposal)
 
     visit proposal_dashboard_polls_path(proposal)
 
-    within_window(window_opened_by { click_link "View results" }) do
+    within "div#poll_#{poll.id}" do
+      click_link "View results"
+    end
+
+    page.driver.browser.switch_to.window page.driver.browser.window_handles.last do
       expect(page).to have_current_path(results_proposal_poll_path(proposal, poll))
     end
   end
 
-  scenario "Enable and disable results" do
+  scenario "Enable and disable results", :js do
     create(:poll, related: proposal)
 
     visit proposal_dashboard_polls_path(proposal)

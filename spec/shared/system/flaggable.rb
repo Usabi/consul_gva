@@ -21,77 +21,61 @@ shared_examples "flaggable" do |factory_name, admin: false|
     end
   end
 
-  scenario "Flagging as inappropriate" do
+  scenario "Flagging as inappropriate", :js do
     login_as(user)
     visit path
 
     within "##{dom_id(flaggable)} .flag-content" do
-      click_button "Flag as inappropriate"
+      find(".icon-flag").click
       click_link "Flag as inappropriate"
 
-      expect(page).to have_button "Unflag"
-      expect(page).to have_link "Unflag", visible: :hidden
-      expect(page).not_to have_link "Flag as inappropriate", visible: :all
+      expect(page).to have_css ".flag-active"
+      expect(page).to have_link "Unflag", visible: false
     end
 
-    visit path
-
-    within "##{dom_id(flaggable)} .flag-content" do
-      expect(page).to have_link "Unflag", visible: :hidden
-      expect(page).not_to have_link "Flag as inappropriate", visible: :all
-    end
+    expect(Flag.flagged?(user, flaggable)).to be
   end
 
-  scenario "Unflagging" do
+  scenario "Unflagging", :js do
     Flag.flag(user, flaggable)
 
     login_as(user)
     visit path
 
     within "##{dom_id(flaggable)} .flag-content" do
-      expect(page).to have_button "Unflag"
+      expect(page).to have_css ".flag-active"
 
-      click_button "Unflag"
+      find(".icon-flag").click
       click_link "Unflag"
 
-      expect(page).not_to have_button "Unflag"
-      expect(page).to have_link "Flag as inappropriate", visible: :hidden
-      expect(page).not_to have_link "Unflag", visible: :all
+      expect(page).not_to have_css ".flag-active"
+      expect(page).to have_link "Flag as inappropriate", visible: false
     end
 
-    visit path
-
-    within "##{dom_id(flaggable)} .flag-content" do
-      expect(page).to have_link "Flag as inappropriate", visible: :hidden
-      expect(page).not_to have_link "Unflag", visible: :all
-    end
+    expect(Flag.flagged?(user, flaggable)).not_to be
   end
 
-  scenario "Flagging and unflagging" do
+  scenario "Flagging and unflagging", :js do
     login_as(user)
     visit path
 
     within "##{dom_id(flaggable)} .flag-content" do
-      click_button "Flag as inappropriate"
+      find(".icon-flag").click
       click_link "Flag as inappropriate"
 
-      expect(page).to have_button "Unflag"
+      expect(page).to have_css ".flag-active"
+      expect(Flag.flagged?(user, flaggable)).to be
 
-      click_button "Unflag"
+      find(".icon-flag").click
       click_link "Unflag"
 
-      expect(page).not_to have_button "Unflag"
+      expect(page).not_to have_css ".flag-active"
     end
 
-    visit path
-
-    within "##{dom_id(flaggable)} .flag-content" do
-      expect(page).to have_link "Flag as inappropriate", visible: :hidden
-      expect(page).not_to have_link "Unflag", visible: :all
-    end
+    expect(Flag.flagged?(user, flaggable)).not_to be
   end
 
-  scenario "Flagging a comment with a child does not update its children" do
+  scenario "Flagging a comment with a child does not update its children", :js do
     skip "Only for comments" unless flaggable.is_a?(Comment)
 
     child_comment = create(:comment, commentable: flaggable.commentable, parent: flaggable)
@@ -100,14 +84,14 @@ shared_examples "flaggable" do |factory_name, admin: false|
     visit path
 
     within "##{dom_id(flaggable)} > .comment-body .flag-content" do
-      click_button "Flag as inappropriate"
+      find(".icon-flag").click
       click_link "Flag as inappropriate"
 
-      expect(page).to have_button "Unflag"
+      expect(page).to have_css ".flag-active"
     end
 
     within "##{dom_id(child_comment)} .flag-content" do
-      expect(page).not_to have_button "Unflag"
+      expect(page).not_to have_css ".flag-active"
     end
   end
 end

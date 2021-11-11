@@ -24,7 +24,7 @@ describe "Moderate users" do
     visit debate_path(debate1)
 
     within("#debate_#{debate1.id}") do
-      accept_confirm { click_link "Hide author" }
+      click_link "Hide author"
     end
 
     expect(page).to have_current_path(debates_path)
@@ -58,7 +58,7 @@ describe "Moderate users" do
     visit moderation_users_path
 
     expect(page).not_to have_content citizen.name
-    fill_in "search", with: "Wanda"
+    fill_in "name_or_email", with: "Wanda"
     click_button "Search"
 
     within("#moderation_users") do

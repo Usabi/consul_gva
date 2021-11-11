@@ -1,6 +1,12 @@
 require "rails_helper"
 
-describe "Admin administrator tasks", :admin do
+describe "Admin administrator tasks" do
+  let(:admin) { create :administrator }
+
+  before do
+    login_as(admin.user)
+  end
+
   context "when visiting index" do
     context "and no pending tasks" do
       before do

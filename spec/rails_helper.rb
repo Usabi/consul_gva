@@ -1,5 +1,5 @@
 ENV["RAILS_ENV"] ||= "test"
-if ENV["COVERALLS_REPO_TOKEN"]
+if ENV["TRAVIS"]
   require "coveralls"
   Coveralls.wear!("rails")
 end
@@ -11,11 +11,6 @@ require "spec_helper"
 require "capybara/rails"
 require "capybara/rspec"
 require "selenium/webdriver"
-require "view_component/test_helpers"
-
-RSpec.configure do |config|
-  config.include ViewComponent::TestHelpers, type: :component
-end
 
 Rails.application.load_tasks if Rake::Task.tasks.empty?
 
@@ -23,6 +18,18 @@ include Warden::Test::Helpers
 Warden.test_mode!
 
 ActiveRecord::Migration.maintain_test_schema!
+
+# Monkey patch from https://github.com/rails/rails/pull/32293
+# Remove when we upgrade to Rails 5.2
+require "action_dispatch/system_testing/test_helpers/setup_and_teardown"
+module ActionDispatch::SystemTesting::TestHelpers::SetupAndTeardown
+  def after_teardown
+    take_failed_screenshot
+    Capybara.reset_sessions!
+  ensure
+    super
+  end
+end
 
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
@@ -34,7 +41,7 @@ end
 Capybara.register_driver :headless_chrome do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
     "goog:chromeOptions" => {
-      args: %W[headless no-sandbox window-size=1200,800 proxy-server=#{Capybara.app_host}:#{Capybara::Webmock.port_number}]
+      args: %W[headless no-sandbox window-size=1200,600 proxy-server=127.0.0.1:#{Capybara::Webmock.port_number}]
     }
   )
 
@@ -46,8 +53,5 @@ Capybara.register_driver :headless_chrome do |app|
 end
 
 Capybara.exact = true
-Capybara.enable_aria_label = true
-Capybara.default_set_options = { clear: :backspace }
-Capybara.disable_animation = true
 
 OmniAuth.config.test_mode = true

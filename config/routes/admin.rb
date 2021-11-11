@@ -53,7 +53,6 @@ namespace :admin do
 
   resources :budgets do
     member do
-      patch :publish
       put :calculate_winners
     end
 
@@ -112,10 +111,6 @@ namespace :admin do
 
   resources :managers, only: [:index, :create, :destroy] do
     get :search, on: :collection
-  end
-
-  namespace :sdg do
-    resources :managers, only: [:index, :create, :destroy]
   end
 
   resources :administrators, only: [:index, :create, :destroy, :edit, :update] do
@@ -207,7 +202,6 @@ namespace :admin do
     get :proposal_notifications, on: :collection
     get :direct_messages, on: :collection
     get :polls, on: :collection
-    get :sdg, on: :collection
   end
 
   namespace :legislation do
@@ -231,7 +225,7 @@ namespace :admin do
 
   namespace :site_customization do
     resources :pages, except: [:show] do
-      resources :cards, except: [:show], as: :widget_cards
+      resources :cards, only: [:index]
     end
     resources :images, only: [:index, :update, :destroy]
     resources :content_blocks, except: [:show]
@@ -274,10 +268,6 @@ resolve "Audit" do |audit|
   [*resource_hierarchy_for(audit.associated || audit.auditable), audit]
 end
 
-resolve "Widget::Card" do |card, options|
-  [*resource_hierarchy_for(card.cardable), card]
-end
-
 resolve "Budget::Group" do |group, options|
   [group.budget, :group, options.merge(id: group)]
 end
@@ -286,20 +276,8 @@ resolve "Budget::Heading" do |heading, options|
   [heading.budget, :group, :heading, options.merge(group_id: heading.group, id: heading)]
 end
 
-resolve "Budget::Phase" do |phase, options|
-  [phase.budget, :phase, options.merge(id: phase)]
-end
-
 resolve "Poll::Booth" do |booth, options|
   [:booth, options.merge(id: booth)]
-end
-
-resolve "Poll::BoothAssignment" do |assignment, options|
-  [assignment.poll, :booth_assignment, options.merge(id: assignment)]
-end
-
-resolve "Poll::Shift" do |shift, options|
-  [:booth, :shift, options.merge(booth_id: shift.booth, id: shift)]
 end
 
 resolve "Poll::Officer" do |officer, options|

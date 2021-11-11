@@ -1,7 +1,12 @@
 require "rails_helper"
 
-describe "Documents", :admin do
-  scenario "Navigation" do
+describe "Documents" do
+  before do
+    admin = create(:administrator)
+    login_as(admin.user)
+  end
+
+  scenario "Navigation", :js do
     visit admin_root_path
 
     within("#side_menu") do
@@ -17,13 +22,12 @@ describe "Documents", :admin do
     3.times { create(:document, :admin) }
     1.times { create(:document) }
 
-    document = Document.first
-    attachment = document.attachment
-
     visit admin_site_customization_documents_path
 
     expect(page).to have_content "There are 3 documents"
-    expect(page).to have_link document.title, href: attachment.url
+
+    document = Document.first
+    expect(page).to have_link document.title, href: document.attachment.url
   end
 
   scenario "Index (empty)" do
@@ -54,7 +58,7 @@ describe "Documents", :admin do
   scenario "Create" do
     visit new_admin_site_customization_document_path
 
-    attach_file("document_attachment", "#{Rails.root}/spec/fixtures/files/logo.pdf")
+    attach_file("document_attachment", Rails.root + "spec/fixtures/files/logo.pdf")
     click_button "Upload"
 
     expect(page).to have_content "Document uploaded succesfully"
@@ -69,7 +73,7 @@ describe "Documents", :admin do
     expect(page).to have_content "Invalid document"
   end
 
-  scenario "Destroy" do
+  scenario "Destroy", :js do
     document = create(:document, :admin)
 
     visit admin_site_customization_documents_path

@@ -5,11 +5,9 @@ class Poll < ApplicationRecord
   acts_as_paranoid column: :hidden_at
   include ActsAsParanoidAliases
   include Notifiable
-  include Searchable
   include Sluggable
   include StatsVersionable
   include Reportable
-  include SDG::Relatable
 
   translates :name,        touch: true
   translates :summary,     touch: true
@@ -175,21 +173,5 @@ class Poll < ApplicationRecord
 
   def budget_poll?
     budget.present?
-  end
-
-  def searchable_translations_definitions
-    {
-      name        => "A",
-      summary     => "C",
-      description => "D"
-    }
-  end
-
-  def searchable_values
-    searchable_globalized_values
-  end
-
-  def self.search(terms)
-    pg_search(terms)
   end
 end

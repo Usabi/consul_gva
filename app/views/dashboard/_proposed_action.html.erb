@@ -33,10 +33,10 @@
                data-toggler=".hide">
             <%= proposed_action_description(proposed_action) %>
           </div>
-          <button type="button" data-toggle="proposed_action_description_<%= dom_id(proposed_action) %>
+          <a data-toggle="proposed_action_description_<%= dom_id(proposed_action) %>
                           truncated_description_<%= dom_id(proposed_action) %>">
             <small><%= t("dashboard.recommended_actions.show_description") %></small>
-          </button>
+          </a>
           <div id="proposed_action_description_<%= dom_id(proposed_action) %>" class="hide" data-toggler=".hide">
             <%= wysiwyg(proposed_action.description) %>
           </div>

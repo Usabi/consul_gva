@@ -1,5 +1,4 @@
 class Admin::Dashboard::ActionsController < Admin::Dashboard::BaseController
-  include DocumentAttributes
   helper_method :dashboard_action, :resource
 
   def index
@@ -59,7 +58,7 @@ class Admin::Dashboard::ActionsController < Admin::Dashboard::BaseController
         .permit(
           :title, :description, :short_description, :request_to_administrators, :day_offset,
           :required_supports, :order, :active, :action_type, :published_proposal,
-          documents_attributes: document_attributes,
+          documents_attributes: [:id, :title, :attachment, :cached_attachment, :user_id, :_destroy],
           links_attributes: [:id, :label, :url, :_destroy]
         )
     end

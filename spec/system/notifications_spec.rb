@@ -2,14 +2,17 @@ require "rails_helper"
 
 describe "Notifications" do
   let(:user) { create :user }
-  before { login_as(user) }
+
+  before do
+    login_as(user)
+    visit root_path
+  end
 
   scenario "View all" do
     read1 = create(:notification, :read, user: user)
     read2 = create(:notification, :read, user: user)
     unread = create(:notification, user: user)
 
-    visit root_path
     click_notifications_icon
     click_link "Read"
 
@@ -24,7 +27,6 @@ describe "Notifications" do
     unread2 = create(:notification, user: user)
     read = create(:notification, :read, user: user)
 
-    visit root_path
     click_notifications_icon
     click_link "Unread"
 
@@ -38,7 +40,6 @@ describe "Notifications" do
     proposal = create(:proposal)
     create(:notification, user: user, notifiable: proposal)
 
-    visit root_path
     click_notifications_icon
 
     first(".notification a").click
@@ -51,11 +52,10 @@ describe "Notifications" do
     expect(page).to have_css ".notification", count: 1
   end
 
-  scenario "Mark as read" do
+  scenario "Mark as read", :js do
     notification1 = create(:notification, user: user)
     notification2 = create(:notification, user: user)
 
-    visit root_path
     click_notifications_icon
 
     within("#notification_#{notification1.id}") do
@@ -70,7 +70,6 @@ describe "Notifications" do
   scenario "Mark all as read" do
     2.times { create(:notification, user: user) }
 
-    visit root_path
     click_notifications_icon
 
     expect(page).to have_css(".notification", count: 2)
@@ -79,11 +78,10 @@ describe "Notifications" do
     expect(page).to have_css(".notification", count: 0)
   end
 
-  scenario "Mark as unread" do
+  scenario "Mark as unread", :js do
     notification1 = create(:notification, :read, user: user)
     notification2 = create(:notification, user: user)
 
-    visit root_path
     click_notifications_icon
     click_link "Read"
 
@@ -105,19 +103,18 @@ describe "Notifications" do
     visit root_path
 
     within("#notifications") do
-      expect(page).to have_css(".unread-notifications")
+      expect(page).to have_css(".icon-circle")
     end
 
     click_notifications_icon
     first(".notification a").click
 
     within("#notifications") do
-      expect(page).not_to have_css(".unread-notifications")
+      expect(page).not_to have_css(".icon-circle")
     end
   end
 
   scenario "No notifications" do
-    visit root_path
     click_notifications_icon
     expect(page).to have_content "You don't have new notifications."
   end
@@ -132,7 +129,6 @@ describe "Notifications" do
   scenario "Notification's notifiable model no longer includes Notifiable module" do
     create(:notification, :for_poll_question, user: user)
 
-    visit root_path
     click_notifications_icon
     expect(page).to have_content("This resource is not available anymore.", count: 1)
   end
@@ -159,8 +155,7 @@ describe "Notifications" do
       expect(page).to have_content("Notification body")
 
       first("#notification_#{notification.id} a").click
-
-      expect(page).to have_current_path "https://www.external.link.dev/", url: true
+      expect(page.current_url).to eq("https://www.external.link.dev/")
     end
 
     scenario "With internal link" do
@@ -180,7 +175,7 @@ describe "Notifications" do
       visit notifications_path
       expect(page).to have_content("Notification title")
       expect(page).to have_content("Notification body")
-      expect(page).not_to have_link(notification_path(notification), visible: :all)
+      expect(page).not_to have_link(notification_path(notification), visible: false)
     end
   end
 
@@ -198,7 +193,6 @@ describe "Notifications" do
     end
 
     it "sends pending proposal notifications" do
-      Setting["org_name"] = "CONSUL"
       Delayed::Worker.delay_jobs = false
       Notification.send_pending
 

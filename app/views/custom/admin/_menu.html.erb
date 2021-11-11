@@ -3,5 +3,5 @@
 <% elsif current_user.budget_manager? %>
   <%= render 'admin/budget_manager_menu' %>
 <% else %>
-  <%= render Admin::MenuComponent.new %>
+  <%= render 'admin/admin_menu' %>
 <% end %>

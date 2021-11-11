@@ -5,17 +5,13 @@
   <div class="row">
     <div class="top-bar">
       <span data-responsive-toggle="responsive-menu" data-hide-for="medium" class="float-right">
-         <button type="button" class="menu-button" data-toggle>
-          <span class="menu-icon"></span>
-          <%= t("application.menu") %>
-        </button>
+        <span class="menu-icon dark" data-toggle></span>
       </span>
-
-      <h1 class="top-bar-title">
+      <div class="top-bar-title">
         <%= link_to root_path, accesskey: "0" do %>
           <%= image_tag(image_path_for("logo_header.png"), class: "float-left", alt: t("layouts.header.logo")) %>
         <% end %>
-      </h1>
+      </div>
       <div id="responsive-menu">
         <div class="top-bar-right">
           <ul class="menu" data-responsive-menu="medium-dropdown">

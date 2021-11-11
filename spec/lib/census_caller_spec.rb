@@ -13,16 +13,6 @@ describe CensusCaller do
       { get_habita_datos_response: { get_habita_datos_return: { datos_habitante: {}}}}
     end
 
-    it "returns invalid response when document_number or document_type are empty" do
-      response = api.call(1, "", nil, nil)
-
-      expect(response).not_to be_valid
-
-      response = api.call("", "12345678A", nil, nil)
-
-      expect(response).not_to be_valid
-    end
-
     it "returns local census response when census api response is invalid" do
       census_api_response = CensusApi::Response.new(invalid_body)
       allow_any_instance_of(CensusApi).to receive(:call).and_return(census_api_response)
@@ -44,9 +34,12 @@ describe CensusCaller do
       end
     end
 
-    describe "RemoteCensusApi", :remote_census do
-      let(:valid_body) { { response: { data: { document_number: "12345678" }}} }
-      let(:invalid_body) { { response: { data: {}}} }
+    describe "RemoteCensusApi" do
+      before do
+        Setting["feature.remote_census"] = true
+        access_user_data = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item"
+        Setting["remote_census.response.valid"] = access_user_data
+      end
 
       it "returns remote census api response when it's available and response is valid" do
         remote_census_api_response = RemoteCensusApi::Response.new(valid_body)

@@ -1,6 +1,11 @@
 require "rails_helper"
 
-describe "Admin milestone statuses", :admin do
+describe "Admin milestone statuses" do
+  before do
+    admin = create(:administrator)
+    login_as(admin.user)
+  end
+
   context "Index" do
     scenario "Displaying only not hidden statuses" do
       status1 = create(:milestone_status)
@@ -78,7 +83,7 @@ describe "Admin milestone statuses", :admin do
       visit admin_milestone_statuses_path
 
       within("#milestone_status_#{status.id}") do
-        accept_confirm { click_link "Delete" }
+        click_link "Delete"
       end
 
       expect(page).not_to have_content status.name

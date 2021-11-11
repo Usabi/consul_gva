@@ -25,7 +25,7 @@ describe MapLocation do
     expect(map_location.errors.size).to eq(3)
   end
 
-  describe "#available?" do
+  context "#available?" do
     it "returns true when latitude, longitude and zoom defined" do
       expect(map_location.available?).to be(true)
     end

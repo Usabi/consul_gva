@@ -9,7 +9,9 @@
       <div class="small-12 column">
         <%= translations_form.text_field :title,
               maxlength: Proposal.title_max_length,
-              data: suggest_data(@proposal) %>
+              data: { js_suggest_result: "js_suggest_result",
+                      js_suggest: ".js-suggest",
+                      js_url: suggest_proposals_path } %>
       </div>
       <div class="js-suggest" data-locale="<%= translations_form.locale %>"></div>
 
@@ -90,8 +92,6 @@
           hint: t("proposals.form.proposal_responsible_name_note") %>
       </div>
     <% end %>
-
-    <%= render SDG::RelatedListSelectorComponent.new(f) %>
 
     <div class="small-12 column">
       <% if @proposal.new_record? %>

@@ -1,5 +1,5 @@
 shared_examples "progressable" do |factory_name|
-  describe "Progress bars" do
+  describe "Progress bars", :js do
     let!(:progressable) { create(factory_name) }
     let(:path) { polymorphic_path(progressable) }
 

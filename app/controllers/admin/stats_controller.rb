@@ -1,6 +1,6 @@
 class Admin::StatsController < Admin::BaseController
   def show
-    @event_types = Ahoy::Event.distinct.order(:name).pluck(:name)
+    @event_types = Ahoy::Event.pluck(:name).uniq.sort
 
     @visits    = Visit.count
     @debates   = Debate.with_hidden.count
@@ -88,10 +88,6 @@ class Admin::StatsController < Admin::BaseController
   def polls
     @polls = ::Poll.current
     @participants = ::Poll::Voter.where(poll: @polls)
-  end
-
-  def sdg
-    @goals = SDG::Goal.order(:code)
   end
 
   private

@@ -177,29 +177,27 @@ describe "Emails" do
 
   context "Comment replies" do
     let(:user) { create(:user, email_on_comment_reply: true) }
-    let(:debate) { create(:debate) }
-    let!(:comment) { create(:comment, commentable: debate, user: user) }
 
-    scenario "Send email on comment reply" do
-      reply_to(comment)
+    scenario "Send email on comment reply", :js do
+      reply_to(user)
 
       email = open_last_email
       expect(email).to have_subject("Someone has responded to your comment")
       expect(email).to deliver_to(user)
-      expect(email).not_to have_body_text(debate_path(debate))
+      expect(email).not_to have_body_text(debate_path(Comment.first.commentable))
       expect(email).to have_body_text(comment_path(Comment.last))
       expect(email).to have_body_text("To stop receiving these emails change your settings in")
       expect(email).to have_body_text(account_path)
     end
 
-    scenario "Do not send email about own replies to own comments" do
-      reply_to(comment, replier: user)
+    scenario "Do not send email about own replies to own comments", :js do
+      reply_to(user, user)
       expect { open_last_email }.to raise_error("No email has been sent!")
     end
 
-    scenario "Do not send email about comment reply unless set in preferences" do
+    scenario "Do not send email about comment reply unless set in preferences", :js do
       user.update!(email_on_comment_reply: false)
-      reply_to(comment)
+      reply_to(user)
       expect { open_last_email }.to raise_error("No email has been sent!")
     end
   end
@@ -210,8 +208,6 @@ describe "Emails" do
     click_link "Registrarse"
     fill_in_signup_form
     click_button "Registrarse"
-
-    expect(page).to have_content "visita el enlace para activar tu cuenta."
 
     email = open_last_email
     expect(email).to deliver_to("manuela@consul.dev")
@@ -254,7 +250,6 @@ describe "Emails" do
 
   context "Proposal notification digest" do
     scenario "notifications for proposals that I'm following" do
-      Setting["org_name"] = "CONSUL"
       user = create(:user, email_digest: true)
 
       proposal1 = create(:proposal, followers: [user])
@@ -322,7 +317,6 @@ describe "Emails" do
 
   context "User invites" do
     scenario "Send an invitation" do
-      Setting["org_name"] = "CONSUL"
       login_as_manager
       visit new_management_user_invite_path
 
@@ -352,19 +346,20 @@ describe "Emails" do
 
       select  heading.name, from: "budget_investment_heading_id"
       fill_in "Title", with: "Build a hospital"
-      fill_in_ckeditor "Description", with: "We have lots of people that require medical attention"
+      fill_in "Description", with: "We have lots of people that require medical attention"
       check   "budget_investment_terms_of_service"
 
       click_button "Create Investment"
       expect(page).to have_content "Investment created successfully"
 
       email = open_last_email
+      investment = Budget::Investment.last
 
       expect(email).to have_subject("Thank you for creating an investment!")
-      expect(email).to deliver_to(author.email)
+      expect(email).to deliver_to(investment.author.email)
       expect(email).to have_body_text(author.name)
-      expect(email).to have_body_text("Build a hospital")
-      expect(email).to have_body_text(budget.name)
+      expect(email).to have_body_text(investment.title)
+      expect(email).to have_body_text(investment.budget.name)
       expect(email).to have_body_text(budget_path(budget))
     end
 
@@ -376,17 +371,18 @@ describe "Emails" do
       login_as(valuator.user)
       visit edit_valuation_budget_budget_investment_path(budget, investment)
 
-      within_fieldset("Feasibility") { choose "Unfeasible" }
-      fill_in "Feasibility explanation", with: "This is not legal as stated in Article 34.9"
-      accept_confirm { check "Valuation finished" }
+      choose "budget_investment_feasibility_unfeasible"
+      fill_in "budget_investment_unfeasibility_explanation", with: "This is not legal as stated in Article 34.9"
+      find_field("budget_investment[valuation_finished]").click
       click_button "Save changes"
 
       expect(page).to have_content "Dossier updated"
+      investment.reload
 
       email = open_last_email
       expect(email).to have_subject("Your investment project '#{investment.code}' has been marked as unfeasible")
       expect(email).to deliver_to(investment.author.email)
-      expect(email).to have_body_text "This is not legal as stated in Article 34.9"
+      expect(email).to have_body_text(investment.unfeasibility_explanation)
     end
 
     scenario "Selected investment" do
@@ -435,7 +431,7 @@ describe "Emails" do
   end
 
   context "Polls" do
-    scenario "Send email on poll comment reply" do
+    scenario "Send email on poll comment reply", :js do
       user1 = create(:user, email_on_comment_reply: true)
       user2 = create(:user)
       poll = create(:poll, author: create(:user))
@@ -465,12 +461,15 @@ describe "Emails" do
     end
   end
 
-  context "Newsletter", :admin do
+  context "Newsletter" do
     scenario "Send newsletter email to selected users" do
       user_with_newsletter_in_segment_1 = create(:user, :with_proposal, newsletter: true)
       user_with_newsletter_in_segment_2 = create(:user, :with_proposal, newsletter: true)
       user_with_newsletter_not_in_segment = create(:user, newsletter: true)
       user_without_newsletter_in_segment = create(:user, :with_proposal, newsletter: false)
+
+      admin = create(:administrator)
+      login_as(admin.user)
 
       visit new_admin_newsletter_path
       fill_in_newsletter_form(segment_recipient: "Proposal authors")
@@ -478,9 +477,7 @@ describe "Emails" do
 
       expect(page).to have_content "Newsletter created successfully"
 
-      accept_confirm { click_link "Send" }
-
-      expect(page).to have_content "Newsletter sent successfully"
+      click_link "Send"
 
       expect(unread_emails_for(user_with_newsletter_in_segment_1.email).count).to eq 1
       expect(unread_emails_for(user_with_newsletter_in_segment_2.email).count).to eq 1

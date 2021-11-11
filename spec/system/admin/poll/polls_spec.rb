@@ -1,7 +1,17 @@
 require "rails_helper"
 
-describe "Admin polls", :admin do
-  scenario "Index empty" do
+describe "Admin polls" do
+  before do
+    admin = create(:administrator)
+    login_as(admin.user)
+  end
+
+  scenario "Disabled with a feature flag" do
+    Setting["process.polls"] = nil
+    expect { visit admin_polls_path }.to raise_exception(FeatureFlags::FeatureDisabled)
+  end
+
+  scenario "Index empty", :js do
     visit admin_root_path
 
     click_link "Polls"
@@ -9,7 +19,7 @@ describe "Admin polls", :admin do
     expect(page).to have_content "There are no polls"
   end
 
-  scenario "Index show polls list order by starts at date" do
+  scenario "Index show polls list order by starts at date", :js do
     poll_1 = create(:poll, name: "Poll first",  starts_at: 15.days.ago)
     poll_2 = create(:poll, name: "Poll second", starts_at: 1.month.ago)
     poll_3 = create(:poll, name: "Poll third",  starts_at: 2.days.ago)
@@ -48,7 +58,7 @@ describe "Admin polls", :admin do
     poll = create(:poll)
 
     visit admin_polls_path
-    click_link "Configure"
+    click_link poll.name
 
     expect(page).to have_content poll.name
   end
@@ -57,12 +67,12 @@ describe "Admin polls", :admin do
     visit admin_polls_path
     click_link "Create poll"
 
-    start_date = 1.week.from_now.to_date
-    end_date = 2.weeks.from_now.to_date
+    start_date = 1.week.from_now
+    end_date = 2.weeks.from_now
 
     fill_in "Name", with: "Upcoming poll"
-    fill_in "poll_starts_at", with: start_date
-    fill_in "poll_ends_at", with: end_date
+    fill_in "poll_starts_at", with: start_date.strftime("%d/%m/%Y")
+    fill_in "poll_ends_at", with: end_date.strftime("%d/%m/%Y")
     fill_in "Summary", with: "Upcoming poll's summary. This poll..."
     fill_in "Description", with: "Upcomming poll's description. This poll..."
 
@@ -73,12 +83,9 @@ describe "Admin polls", :admin do
 
     expect(page).to have_content "Poll created successfully"
     expect(page).to have_content "Upcoming poll"
-    expect(page).to have_content I18n.l(start_date)
-    expect(page).to have_content I18n.l(end_date)
-
-    visit poll_path(id: "upcoming-poll")
-
-    expect(page).to have_content "Upcoming poll"
+    expect(page).to have_content I18n.l(start_date.to_date)
+    expect(page).to have_content I18n.l(end_date.to_date)
+    expect(Poll.last.slug).to eq "#{Poll.last.name.to_s.parameterize}"
   end
 
   scenario "Edit" do
@@ -87,12 +94,12 @@ describe "Admin polls", :admin do
     visit admin_poll_path(poll)
     click_link "Edit poll"
 
-    end_date = 1.year.from_now.to_date
+    end_date = 1.year.from_now
 
     expect(page).to have_css("img[alt='#{poll.image.title}']")
 
     fill_in "Name", with: "Next Poll"
-    fill_in "poll_ends_at", with: end_date
+    fill_in "poll_ends_at", with: end_date.strftime("%d/%m/%Y")
 
     click_button "Update poll"
 
@@ -113,7 +120,7 @@ describe "Admin polls", :admin do
   end
 
   context "Destroy" do
-    scenario "Can destroy poll without questions" do
+    scenario "Can destroy poll without questions", :js do
       poll = create(:poll)
 
       visit admin_polls_path
@@ -126,7 +133,7 @@ describe "Admin polls", :admin do
       expect(page).to have_content("There are no polls.")
     end
 
-    scenario "Can destroy poll with questions and answers" do
+    scenario "Can destroy poll with questions and answers", :js do
       poll = create(:poll, name: "Do you support CONSUL?")
       create(:poll_question, :yes_no, poll: poll)
 
@@ -143,7 +150,7 @@ describe "Admin polls", :admin do
       expect(Poll::Question::Answer.count).to eq(0)
     end
 
-    scenario "Can destroy polls with answers including videos" do
+    scenario "Can destroy polls with answers including videos", :js do
       poll = create(:poll, name: "Do you support CONSUL?")
       create(:poll_answer_video, poll: poll)
 
@@ -156,7 +163,7 @@ describe "Admin polls", :admin do
       expect(page).to have_content "Poll deleted successfully"
     end
 
-    scenario "Can't destroy poll with votes" do
+    scenario "Can't destroy poll with votes", :js do
       poll = create(:poll)
       create(:poll_question, poll: poll)
       create(:poll_voter, :from_booth, :valid_document, poll: poll)
@@ -204,7 +211,7 @@ describe "Admin polls", :admin do
 
   context "Officers" do
     context "Poll show" do
-      scenario "No officers" do
+      scenario "No officers", :js do
         poll = create(:poll)
         visit admin_poll_path(poll)
         click_link "Officers (0)"
@@ -212,7 +219,7 @@ describe "Admin polls", :admin do
         expect(page).to have_content "There are no officers assigned to this poll"
       end
 
-      scenario "Officer list" do
+      scenario "Officer list", :js do
         poll = create(:poll)
         booth = create(:poll_booth, polls: [poll])
 
@@ -240,7 +247,7 @@ describe "Admin polls", :admin do
 
   context "Questions" do
     context "Poll show" do
-      scenario "Question list" do
+      scenario "Question list", :js do
         poll = create(:poll)
         question = create(:poll_question, poll: poll)
         other_question = create(:poll_question)
@@ -257,7 +264,7 @@ describe "Admin polls", :admin do
 
   context "Recounting" do
     context "Poll show" do
-      scenario "No recounts" do
+      scenario "No recounts", :js do
         poll = create(:poll)
         visit admin_poll_path(poll)
         click_link "Recounting"
@@ -265,7 +272,7 @@ describe "Admin polls", :admin do
         expect(page).to have_content "There is nothing to be recounted"
       end
 
-      scenario "Recounts list" do
+      scenario "Recounts list", :js do
         poll = create(:poll)
         booth_assignment = create(:poll_booth_assignment, poll: poll)
         booth_assignment_recounted = create(:poll_booth_assignment, poll: poll)
@@ -345,7 +352,7 @@ describe "Admin polls", :admin do
 
   context "Results" do
     context "Poll show" do
-      scenario "No results" do
+      scenario "No results", :js do
         poll = create(:poll)
         visit admin_poll_path(poll)
         click_link "Results"
@@ -428,7 +435,7 @@ describe "Admin polls", :admin do
         expect(page).not_to have_content "Results by booth"
       end
 
-      scenario "Results by answer" do
+      scenario "Results by answer", :js do
         poll = create(:poll)
         booth_assignment_1 = create(:poll_booth_assignment, poll: poll)
         booth_assignment_2 = create(:poll_booth_assignment, poll: poll)
@@ -516,44 +523,6 @@ describe "Admin polls", :admin do
         expect(page).to have_content "Results"
         expect(page).to have_content "Yes"
         expect(page).to have_content "5"
-      end
-    end
-  end
-
-  context "SDG related list" do
-    before do
-      Setting["feature.sdg"] = true
-      Setting["sdg.process.polls"] = true
-    end
-
-    scenario "create poll with sdg related list" do
-      visit new_admin_poll_path
-      fill_in "Name", with: "Upcoming poll with SDG related content"
-      fill_in "Start Date", with: 1.week.from_now
-      fill_in "Closing Date", with: 2.weeks.from_now
-      fill_in "Summary", with: "Upcoming poll's summary. This poll..."
-      fill_in "Description", with: "Upcomming poll's description. This poll..."
-
-      click_sdg_goal(17)
-      click_button "Create poll"
-      visit admin_polls_path
-
-      within("tr", text: "Upcoming poll with SDG related content") do
-        expect(page).to have_css "td", exact_text: "17"
-      end
-    end
-
-    scenario "edit poll with sdg related list" do
-      poll = create(:poll, name: "Upcoming poll with SDG related content")
-      poll.sdg_goals = [SDG::Goal[1], SDG::Goal[17]]
-      visit edit_admin_poll_path(poll)
-
-      remove_sdg_goal_or_target_tag(1)
-      click_button "Update poll"
-      visit admin_polls_path
-
-      within("tr", text: "Upcoming poll with SDG related content") do
-        expect(page).to have_css "td", exact_text: "17"
       end
     end
   end

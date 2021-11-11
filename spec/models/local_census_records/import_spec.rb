@@ -43,7 +43,7 @@ describe LocalCensusRecords::Import do
     end
   end
 
-  describe "#save" do
+  context "#save" do
     it "Create valid local census records with provided values" do
       import.save!
       local_census_record = LocalCensusRecord.find_by(document_number: "X11556678")

@@ -11,8 +11,6 @@ describe Dashboard::Mailer do
 
   before do
     Setting["feature.dashboard.notification_emails"] = true
-    Setting["mailer_from_name"] = "CONSUL"
-    Setting["mailer_from_address"] = "noreply@consul.dev"
   end
 
   describe "#forward" do
@@ -167,7 +165,6 @@ describe Dashboard::Mailer do
     end
 
     it "sends emails if new actions detected when creating a proposal" do
-      Setting["org_name"] = "CONSUL"
       action.update!(published_proposal: false)
       resource.update!(published_proposal: false)
       proposal.save!

@@ -27,9 +27,6 @@ module Abilities
       can [:read], Legislation::Question
       can [:read, :map, :share], Legislation::Proposal
       can [:search, :comments, :read, :create, :new_comment], Legislation::Annotation
-
-      can [:read, :help], ::SDG::Goal
-      can :read, ::SDG::Phase
     end
   end
 end

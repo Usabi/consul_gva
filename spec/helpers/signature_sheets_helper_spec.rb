@@ -8,11 +8,12 @@ describe SignatureSheetsHelper do
     end
   end
 
-  describe "#required_fields_to_verify_text_help with remote_census active", :remote_census do
-    it "returns text help when date_of_birth and postal_code are not required" do
-      Setting["remote_census.request.date_of_birth"] = nil
-      Setting["remote_census.request.postal_code"] = nil
+  describe "#required_fields_to_verify_text_help with remote_census active" do
+    before do
+      Setting["feature.remote_census"] = true
+    end
 
+    it "returns text help when date_of_birth and postal_code are not required" do
       text_help_1 = "To verify a user, your application needs: Document number"
       text_help_2 = "Required fields for each user must be separated by commas and each user must be separated by semicolons."
       text_example = "Example: 12345678Z; 87654321Y"
@@ -23,7 +24,7 @@ describe SignatureSheetsHelper do
     end
 
     it "returns text help when date_of_birth is required" do
-      Setting["remote_census.request.postal_code"] = nil
+      Setting["remote_census.request.date_of_birth"] = "some.value"
 
       text_help_1 = "To verify a user, your application needs: Document number, Day of birth (dd/mm/yyyy)"
       text_help_2 = "Required fields for each user must be separated by commas and each user must be separated by semicolons."
@@ -32,10 +33,12 @@ describe SignatureSheetsHelper do
       expect(required_fields_to_verify_text_help).to include(text_help_1)
       expect(required_fields_to_verify_text_help).to include(text_help_2)
       expect(example_text_help).to include(text_example)
+
+      Setting["remote_census.request.date_of_birth"] = nil
     end
 
     it "returns text help when postal_code is required" do
-      Setting["remote_census.request.date_of_birth"] = nil
+      Setting["remote_census.request.postal_code"] = "some.value"
 
       text_help_1 = "To verify a user, your application needs: Document number and Postal Code"
       text_help_2 = "Required fields for each user must be separated by commas and each user must be separated by semicolons."
@@ -44,9 +47,14 @@ describe SignatureSheetsHelper do
       expect(required_fields_to_verify_text_help).to include(text_help_1)
       expect(required_fields_to_verify_text_help).to include(text_help_2)
       expect(example_text_help).to include(text_example)
+
+      Setting["remote_census.request.postal_code"] = nil
     end
 
     it "returns text help when date_of_birth and postal_code are required" do
+      Setting["remote_census.request.date_of_birth"] = "some.value"
+      Setting["remote_census.request.postal_code"] = "some.value"
+
       text_help_1 = "To verify a user, your application needs: Document number, Day of birth (dd/mm/yyyy) and Postal Code"
       text_help_2 = "Required fields for each user must be separated by commas and each user must be separated by semicolons."
       text_example = "Example: 12345678Z, 01/01/1980, 28001; 87654321Y, 01/02/1990, 28002"
@@ -54,6 +62,9 @@ describe SignatureSheetsHelper do
       expect(required_fields_to_verify_text_help).to include(text_help_1)
       expect(required_fields_to_verify_text_help).to include(text_help_2)
       expect(example_text_help).to include(text_example)
+
+      Setting["remote_census.request.postal_code"] = nil
+      Setting["remote_census.request.postal_code"] = nil
     end
   end
 end

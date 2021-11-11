@@ -1,8 +1,12 @@
 require "rails_helper"
 
-describe "Email campaigns", :admin do
+describe "Email campaigns" do
   let(:campaign1) { create(:campaign) }
   let(:campaign2) { create(:campaign) }
+
+  before do
+    login_as(create(:administrator).user)
+  end
 
   scenario "Track email templates" do
     3.times { visit root_path(track_id: campaign1.track_id) }

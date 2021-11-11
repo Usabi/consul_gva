@@ -40,17 +40,10 @@
 }
 
 .groups-and-headings {
-  $spacing: $line-height / 2;
   .heading {
     border-radius: 18px;
+    display: inline-flex;
 
-    @include breakpoint(medium) {
-      width: calc(100% / 2 - #{$spacing});
-    }
-
-    @include breakpoint(large) {
-      width: calc(100% / 4 - #{$spacing});
-    }
     a {
       width: 100%;
       border-radius: 18px;

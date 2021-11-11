@@ -1,6 +1,11 @@
 require "rails_helper"
 
-describe "Poll Questions", :admin do
+describe "Poll Questions" do
+  before do
+    admin = create(:administrator).user
+    login_as(admin)
+  end
+
   scenario "Do not display polls associated to a budget" do
     create(:poll, name: "Citizen Proposal Poll")
     create(:poll, :for_budget, name: "Participatory Budget Poll")

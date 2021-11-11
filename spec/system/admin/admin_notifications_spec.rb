@@ -1,7 +1,10 @@
 require "rails_helper"
 
-describe "Admin Notifications", :admin do
-  before { create(:budget) }
+describe "Admin Notifications" do
+  before do
+    create(:budget)
+    login_as(create(:administrator).user)
+  end
 
   context "Show" do
     scenario "Valid Admin Notification" do
@@ -118,7 +121,7 @@ describe "Admin Notifications", :admin do
 
       visit admin_admin_notifications_path
       within("#admin_notification_#{notification.id}") do
-        accept_confirm { click_link "Delete" }
+        click_link "Delete"
       end
 
       expect(page).to have_content "Notification deleted successfully"
@@ -180,8 +183,8 @@ describe "Admin Notifications", :admin do
     expect(page).to have_content error_message
   end
 
-  context "Send notification" do
-    scenario "A draft Admin notification can be sent" do
+  context "Send notification", :js do
+    scenario "A draft Admin notification can be sent", :js do
       2.times { create(:user) }
       notification = create(:admin_notification, segment_recipient: :all_users)
 
@@ -196,7 +199,7 @@ describe "Admin Notifications", :admin do
       end
     end
 
-    scenario "A sent Admin notification can not be sent" do
+    scenario "A sent Admin notification can not be sent", :js do
       notification = create(:admin_notification, :sent)
 
       visit admin_admin_notification_path(notification)
@@ -204,7 +207,7 @@ describe "Admin Notifications", :admin do
       expect(page).not_to have_link("Send")
     end
 
-    scenario "Admin notification with invalid segment recipient cannot be sent" do
+    scenario "Admin notification with invalid segment recipient cannot be sent", :js do
       invalid_notification = create(:admin_notification)
       invalid_notification.update_column(:segment_recipient, "invalid_segment")
       visit admin_admin_notification_path(invalid_notification)

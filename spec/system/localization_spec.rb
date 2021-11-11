@@ -30,7 +30,7 @@ describe "Localization" do
     expect(page).to have_select("locale-switcher", selected: "English")
   end
 
-  scenario "Changing the locale" do
+  scenario "Changing the locale", :js do
     visit "/"
     expect(page).to have_content("Language")
 
@@ -40,7 +40,7 @@ describe "Localization" do
     expect(page).to have_select("locale-switcher", selected: "Español")
   end
 
-  scenario "Keeps query parameters while using protected redirects" do
+  scenario "Keeps query parameters while using protected redirects", :js do
     visit "/debates?order=created_at&host=evil.dev"
 
     select("Español", from: "locale-switcher")

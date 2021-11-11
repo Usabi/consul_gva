@@ -90,7 +90,7 @@ shared_examples "admin_milestoneable" do |factory_name, path_name|
         visit path
         expect(page).to have_link document.title
 
-        within("tr", text: milestone.title) { click_link "Edit" }
+        click_link milestone.title
 
         expect(page).to have_css("img[alt='#{milestone.image.title}']")
 
@@ -108,7 +108,7 @@ shared_examples "admin_milestoneable" do |factory_name, path_name|
     end
 
     context "Delete" do
-      scenario "Remove milestone", :no_js do
+      scenario "Remove milestone" do
         create(:milestone, milestoneable: milestoneable, title: "Title will it remove")
 
         visit path

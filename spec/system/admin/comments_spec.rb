@@ -1,6 +1,11 @@
 require "rails_helper"
 
-describe "Admin comments", :admin do
+describe "Admin comments" do
+  before do
+    admin = create(:administrator)
+    login_as(admin.user)
+  end
+
   scenario "Index" do
     create(:comment, body: "Everything is awesome")
 

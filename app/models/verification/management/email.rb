@@ -1,7 +1,9 @@
 class Verification::Management::Email
   include ActiveModel::Model
 
-  attr_accessor :document_type, :document_number, :email
+  attr_accessor :document_type
+  attr_accessor :document_number
+  attr_accessor :email
 
   validates :document_type, :document_number, :email, presence: true
   validates :email, format: { with: Devise.email_regexp }, allow_blank: true

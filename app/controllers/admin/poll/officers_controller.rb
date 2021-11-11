@@ -6,7 +6,7 @@ class Admin::Poll::OfficersController < Admin::Poll::BaseController
   end
 
   def search
-    @user = User.find_by(email: params[:search])
+    @user = User.find_by(email: params[:email])
 
     respond_to do |format|
       if @user
