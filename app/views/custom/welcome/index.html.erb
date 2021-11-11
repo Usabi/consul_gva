@@ -8,13 +8,12 @@
 <% end %>
 <%= render "header", header: @header %>
 <main>
-  <%= render 'sections_icons' %>
   <%= render 'slider' %>
   <div class="row">
     <% if @cards.any? %>
       <div class="small-12 columns sections-cards">
         <h3 class="title"><%= t("welcome.cards.title") %></h3>
-        <%= render "shared/cards" %>
+        <%= render "shared/cards", cards: @cards %>
       </div>
     <% end %>
     <% if feed_processes_enabled? %>
@@ -23,6 +22,8 @@
       </div>
     <% end %>
   </div>
+  <%= render 'sections_icons' %>
+
   <%= render "feeds" %>
   <% if feature?("user.recommendations") && (@recommended_debates.present? || @recommended_proposals.present?) %>
     <%= render "recommended",
