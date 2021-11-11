@@ -8,9 +8,12 @@ class Budget
     # NOTE: This scope includes not_selected because is a filter used by default
     scope :not_unfeasible, -> { where.not(feasibility: ["unfeasible", "not_selected"]) }
 
+    scope :supported, -> { joins(:heading).where("budget_investments.cached_votes_up + budget_investments.physical_votes >= budget_headings.min_supports") }
+
     def self.apply_filters_and_search(_budget, params, current_filter = nil)
       investments = all
-      investments = investments.send(current_filter)             if current_filter.present?
+      investments = investments.send(current_filter)             if current_filter.present? && (!params[:search].present? || !params[:search].to_i.positive?)
+
       investments = investments.by_heading(params[:heading_id])  if params[:heading_id].present?
       if params[:search].present?
         if params[:search].to_i.positive?
@@ -23,7 +26,7 @@ class Budget
 
       if params[:advanced_search].present?
         investments = investments.search(params[:advanced_search][:tag]) if params[:advanced_search][:tag].present?
-        investments = investments.filter(params[:advanced_search].reject{|k,v| k == "tag"})
+        investments = investments.filter(params[:advanced_search].reject { |k, v| k == "tag" })
       end
       investments
     end
@@ -34,6 +37,7 @@ class Budget
       results = results.under_valuation    if params[:advanced_filters].include?("under_valuation")
       results = results.valuation_finished if params[:advanced_filters].include?("valuation_finished")
       results = results.winners            if params[:advanced_filters].include?("winners")
+      results = results.supported          if params[:advanced_filters].include?("supported")
 
       ids = []
       ids += results.valuation_finished_feasible.pluck(:id) if params[:advanced_filters].include?("feasible")
@@ -43,6 +47,10 @@ class Budget
       ids += results.not_selected.pluck(:id)                if params[:advanced_filters].include?("not_selected")
       results = results.where(id: ids) if ids.any?
       results
+    end
+
+    def is_supported?
+      total_votes >= heading.min_supports
     end
 
     def register_selection_vote_and_unvote(user, vote)

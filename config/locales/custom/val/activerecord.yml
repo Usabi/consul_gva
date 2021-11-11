@@ -208,6 +208,7 @@ val:
         latitude: "Latitud (opcional)"
         longitude: "Longitud (opcional)"
         name: "Nom de la partida"
+        min_supports: "Nombre mínim de suports"
         price: "Cost"
         population: "Població"
         max_ballot_lines: "Votos permitidos"

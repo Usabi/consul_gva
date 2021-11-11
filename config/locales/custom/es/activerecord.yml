@@ -208,6 +208,7 @@ es:
         latitude: "Latitud (opcional)"
         longitude: "Longitud (opcional)"
         name: "Nombre de la partida"
+        min_supports: "Número mínimo de apoyos"
         price: "Cantidad"
         population: "Población (opcional)"
         max_ballot_lines: "Votos permitidos"
