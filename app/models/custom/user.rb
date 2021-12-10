@@ -116,16 +116,14 @@ class User
 
   def self.first_or_initialize_for_gvlogin(data)
     gvlogin_email           = data.mail
-    gvlogin_username        = User.exists?(username: data.nombre) ? "#{data.nombre}_GVLogin" : data.nombre
-    gvlogin_user            = User.find_by(email: gvlogin_email) || User.find_by(document_number: data.dni)
+    gvlogin_username        = "#{data.nombre}-GVLogin"
+    gvlogin_user            = User.find_by(email: gvlogin_email)
     gvlogin_user || User.new(
       username: gvlogin_username,
       email: gvlogin_email,
       password: Devise.friendly_token[0, 20],
       terms_of_service: "1",
-      confirmed_at: DateTime.current,
-      document_number: data.dni,
-      document_type: "1"
+      confirmed_at: DateTime.current
     )
   end
 end
