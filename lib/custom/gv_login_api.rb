@@ -1,5 +1,4 @@
 class GVLoginApi
-  #tab_panel_id:tab_panel_login_user_pass_LDAPGva_id
   GVLOGIN_HOSTS = {
        gvaparticipa_dsa: "http://gvlogin-dsa.gva.es",
        gvaparticipa_pre: "http://gvlogin-pre.gva.es",
