@@ -42,11 +42,11 @@ class Users::GvLoginController < ApplicationController
       identity = Identity.first_or_create_from_oauth(auth)
       @user = identity.user || User.first_or_initialize_for_gvlogin(data)
       if save_user
-        role = data.roles&.dig(:role, :codigo)
+        role = data.roles.present? ? data.roles&.dig(:role, :codigo) : ""
         if role == "PARTICIPEM_ADMIN"
           @user.send("create_#{GVA_ROLES[role]}") unless @user.send("#{GVA_ROLES[role]}?")
         else
-          @user.send("#{GVA_ROLES[role]}")&.delete
+          @user.administrator.delete if @user.administrator?
         end
         identity.update!(user: @user)
         sign_in_and_redirect @user, event: :authentication
@@ -59,5 +59,4 @@ class Users::GvLoginController < ApplicationController
     def save_user
       @user.save || @user.save_requiring_finish_signup
     end
-
  end
