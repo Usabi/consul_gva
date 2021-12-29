@@ -113,4 +113,23 @@ class User
     vote_registers.find_each { |vote| return true if vote&.votable&.budget_id == budget_id }
     false
   end
+
+  def self.first_or_initialize_for_gvlogin(data)
+    gvlogin_email           = data.mail
+    last_name = User.where("username ILIKE ? ", "#{data.nombre}-GVLogin%").last&.name
+    if last_name
+      match = last_name.match(/GVLogin(\d+)/)
+      next_index = match[1].to_i if last_name && match[1]
+    end
+    next_index ||= 0
+    gvlogin_username        = "#{data.nombre}-GVLogin#{next_index + 1}"
+    gvlogin_user            = User.find_by(email: gvlogin_email.downcase)
+    gvlogin_user || User.new(
+      username: gvlogin_username,
+      email: gvlogin_email,
+      password: Devise.friendly_token[0, 20],
+      terms_of_service: "1",
+      confirmed_at: DateTime.current
+    )
+  end
 end
