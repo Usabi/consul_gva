@@ -115,21 +115,34 @@ class User
   end
 
   def self.first_or_initialize_for_gvlogin(data)
-    gvlogin_email           = data.mail
-    last_name = User.where("username ILIKE ? ", "#{data.nombre}-GVLogin%").last&.name
-    if last_name
-      match = last_name.match(/GVLogin(\d+)/)
-      next_index = match[1].to_i if last_name && match[1]
+    gvlogin_email = data.mail
+    gvlogin_user  = User.find_by(email: gvlogin_email.downcase) if gvlogin_email.present?
+    return gvlogin_user if gvlogin_user&.valid?
+
+    gvlogin_username = generate_username(data.nombre)
+    if gvlogin_user
+      # Fix username
+      gvlogin_user.username = gvlogin_username
+      return glogin_user
     end
-    next_index ||= 0
-    gvlogin_username        = "#{data.nombre}-GVLogin#{next_index + 1}"
-    gvlogin_user            = User.find_by(email: gvlogin_email.downcase)
-    gvlogin_user || User.new(
+
+    # Create new user
+    User.new(
       username: gvlogin_username,
       email: gvlogin_email,
       password: Devise.friendly_token[0, 20],
       terms_of_service: "1",
       confirmed_at: DateTime.current
     )
+  end
+
+  def self.generate_username(name)
+    last_name = User.where("username ILIKE ? ", "#{name}-GVLogin%").last&.name
+    if last_name
+      match = last_name.match(/GVLogin(\d+)/)
+      next_index = match[1].to_i if match && match[1]
+    end
+    next_index ||= 0
+    gvlogin_username = "#{name}-GVLogin#{next_index + 1}"
   end
 end
