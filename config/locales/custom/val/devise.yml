@@ -17,6 +17,7 @@ val:
       invalid: "%{authentication_keys} o contrasenya invàlids."
       locked: "El teu compte ha segut bloquejat."
       last_attempt: "Tens un últim intent abans que el teu compte siga bloquejat."
+      no_backend_roles: "El teu compte no té rols assignats."
       not_found_in_database: "%{authentication_keys} o contrasenya invàlids."
       timeout: "La teua sessió ha expirat, per favor inicia sessió novament per a continuar."
       unauthenticated: "Necessites iniciar sessió o registrar-te per a continuar."

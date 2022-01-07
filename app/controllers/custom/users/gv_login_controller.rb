@@ -20,6 +20,7 @@ class Users::GvLoginController < ApplicationController
         end
       rescue JSON::ParserError
         flash[:error] = "Ocurrio error en el servidor"
+        redirect_to gvlogin_api.web_gv_login
       end
     else
       redirect_to gvlogin_api.web_gv_login
@@ -27,36 +28,30 @@ class Users::GvLoginController < ApplicationController
   end
 
   def after_sign_in_path_for(resource)
-    if resource.registering_with_oauth
-      finish_signup_path
-    else
-      root_path
-    end
+    root_path
   end
 
   private
 
     def sign_in_gvlogin(data)
-      uid = data.info_ampliada["codper"].presence || data.dni
-      auth = OpenStruct.new(uid: uid, provider: :gvlogin)
-      identity = Identity.first_or_create_from_oauth(auth)
-      @user = identity.user || User.first_or_initialize_for_gvlogin(data)
-      if save_user
+      @user = User.first_or_initialize_for_gvlogin(data)
+      if @user.save
         role = data.roles.present? ? data.roles&.dig(:role, :codigo) : ""
         if role == "PARTICIPEM_ADMIN"
           @user.send("create_#{GVA_ROLES[role]}") unless @user.send("#{GVA_ROLES[role]}?")
+          # Only sign in if admin right now
+          # Move sign_in outside of if when other roles added
+          flash[:success] = I18n.t("devise.sessions.signed_in")
+          sign_in_and_redirect @user, event: :authentication
         else
           @user.administrator.delete if @user.administrator?
+          flash[:error] = I18n.t("devise.failure.no_backend_roles")
+          redirect_to new_user_session_path
         end
-        identity.update!(user: @user)
-        sign_in_and_redirect @user, event: :authentication
-        flash[:success] = I18n.t("devise.sessions.signed_in")
       else
-        redirect_to gvlogin_api.web_gv_login
+        errors = @user.errors
+        flash[:error] = errors.messages.map {|field, error| "#{field}: #{error.join(", ")} ('#{errors.details[field][0][:value]}')" }.join(", ")
+        redirect_to new_user_session_path
       end
-    end
-
-    def save_user
-      @user.save || @user.save_requiring_finish_signup
     end
  end
