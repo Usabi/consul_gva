@@ -46,13 +46,14 @@ class Users::GvLoginController < ApplicationController
         else
           @user.administrator.delete if @user.administrator?
           flash[:error] = I18n.t("devise.failure.no_backend_roles")
-          cookies.delete("gvlogin.login.GVLOGIN_COOKIE")
+          cookies.delete("gvlogin.login.GVLOGIN_COOKIE", domain: request.domain)
           redirect_to new_user_session_path
         end
       else
         errors = @user.errors
         flash[:error] = errors.messages.map {|field, error| "#{field}: #{error.join(", ")} ('#{errors.details[field][0][:value]}')" }.join(", ")
-        cookies.delete("gvlogin.login.GVLOGIN_COOKIE")
+        cookies.delete("gvlogin.login.GVLOGIN_COOKIE", domain: request.domain)
+
         redirect_to new_user_session_path
       end
     end
