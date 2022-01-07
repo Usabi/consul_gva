@@ -82,7 +82,7 @@ describe Users::GvLoginController do
       before do
         request.headers["X-FORWARDED-FOR"] = ip
         request.headers["HOST"] = host
-        request.cookies["gvlogin.login.GVLOGIN_COOKIE"] = cookie
+        cookies["gvlogin.login.GVLOGIN_COOKIE"] = cookie
       end
 
       it "request valid values" do
@@ -90,6 +90,7 @@ describe Users::GvLoginController do
         get :login_or_redirect_to_sso
         user_created = User.last
         expect(user_created.username).to eq("ConsulGVA-GVLogin1")
+        expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to eq(cookie)
         expect(flash[:success]).to eq(I18n.t("devise.sessions.signed_in"))
       end
 
@@ -98,6 +99,7 @@ describe Users::GvLoginController do
         get :login_or_redirect_to_sso
         user_created = User.last
         expect(user_created.username).to eq("ConsulGVA-GVLogin1")
+        expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
         expect(flash[:error]).to eq(I18n.t("devise.failure.no_backend_roles"))
       end
 
@@ -106,6 +108,7 @@ describe Users::GvLoginController do
         get :login_or_redirect_to_sso
         user_created = User.last
         expect(user_created).to be_nil
+        expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
         expect(flash[:error]).to eq("email: is invalid ('email')")
       end
       it "request without email" do
@@ -113,6 +116,7 @@ describe Users::GvLoginController do
         get :login_or_redirect_to_sso
         user_created = User.last
         expect(user_created).to be_nil
+        expect(response.cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
         expect(flash[:error]).to eq("email: can't be blank ('')")
       end
     end
@@ -126,7 +130,7 @@ describe Users::GvLoginController do
         u.save!(validate: false)
         request.headers["X-FORWARDED-FOR"] = ip
         request.headers["HOST"] = host
-        request.cookies["gvlogin.login.GVLOGIN_COOKIE"] = cookie
+        cookies["gvlogin.login.GVLOGIN_COOKIE"] = cookie
       end
 
       it "request valid values" do
@@ -134,6 +138,7 @@ describe Users::GvLoginController do
         get :login_or_redirect_to_sso
         user_updated = User.last
         expect(user_updated.username).to eq("ConsulGVA-GVLogin1")
+        expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to eq(cookie)
         expect(flash[:success]).to eq(I18n.t("devise.sessions.signed_in"))
       end
 
@@ -142,6 +147,7 @@ describe Users::GvLoginController do
         get :login_or_redirect_to_sso
         user_updated = User.last
         expect(user_updated.username).to eq("ConsulGVA-GVLogin1")
+        expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
         expect(flash[:error]).to eq(I18n.t("devise.failure.no_backend_roles"))
       end
     end
