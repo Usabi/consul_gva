@@ -70,7 +70,7 @@ class Users::GvLoginController < ApplicationController
     end
 
     def isEmailGVA?(email)
-      email.include? "gva.es"
+      email.present? ? (email.include? "gva.es") : false
     end
 
     def delete_cookies
