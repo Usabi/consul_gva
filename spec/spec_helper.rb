@@ -25,7 +25,7 @@ RSpec.configure do |config|
   end
 
   config.before do |example|
-    I18n.locale = :en
+    I18n.locale = :val
     Globalize.set_fallbacks_to_all_available_locales
     Setting["feature.user.skip_verification"] = nil
   end
