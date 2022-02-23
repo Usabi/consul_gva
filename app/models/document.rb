@@ -5,7 +5,7 @@ class Document < ApplicationRecord
                                  hash_data: ":class/:style/:custom_hash_data",
                                  use_timestamp: false,
                                  hash_secret: Rails.application.secrets.secret_key_base
-  attr_accessor :cached_attachment, :remove, :original_filename
+  attr_accessor :cached_attachment, :remove # , :original_filename (removed because not possible in custom)
 
   belongs_to :user
   belongs_to :documentable, polymorphic: true
