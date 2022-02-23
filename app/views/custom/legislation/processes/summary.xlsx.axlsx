@@ -1,4 +1,3 @@
-#TODO change this part
 xlsx_package.workbook.add_worksheet(name: "Summary") do |sheet|
 
 styles = xlsx_package.workbook.styles
