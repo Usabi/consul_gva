@@ -83,7 +83,6 @@
       data.progressBar = $(wrapper).find(".progress-bar-placeholder");
       data.errorContainer = $(wrapper).find(".attachment-errors");
       data.fileNameContainer = $(wrapper).find("p.file-name");
-      data.hiddenFileNameContainer = $(wrapper).find("input[type=hidden][name$='[original_filename]']");
       data.destroyAttachmentLinkContainer = $(wrapper).find(".action-remove");
       data.addAttachmentLabel = $(wrapper).find(".action-add label");
       data.cachedAttachmentField = $(wrapper).find("input[name$='[cached_attachment]']");
@@ -93,7 +92,6 @@
     },
     clearFilename: function(data) {
       $(data.fileNameContainer).text("");
-      $(data.hiddenFileNameContainer).val("");
       $(data.fileNameContainer).hide();
     },
     clearInputErrors: function(data) {
@@ -103,7 +101,6 @@
       $(data.progressBar).find(".loading-bar").removeClass("complete errors uploading").css("width", "0px");
     },
     setFilename: function(data, file_name) {
-      $(data.hiddenFileNameContainer).val(file_name);
       $(data.fileNameContainer).text(file_name);
       $(data.fileNameContainer).show();
     },
