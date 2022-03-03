@@ -347,7 +347,7 @@ val:
           debate_phase: Fase prèvia
           draft_phase: Fase de redacció
           draft_phase_description: Si aquesta fase està activa, el procés no es mostrarà en el llistat de processos. Permet una vista prèvia del procés i crea contingut abans que comence.
-          allegations_phase: Fase de comentaris
+          allegations_phase: Fase d'audiència ciutadana
           proposals_phase: Fase de propostes
           use_markdown: Usa Markdown per a formatejar el text
           title_placeholder: Escriu el títol del procés
