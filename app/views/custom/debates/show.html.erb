@@ -60,8 +60,12 @@
           share_title: t("debates.show.share"),
           title: @debate.title,
           url: debate_url(@debate),
-          description: @debate.title,
-          mobile: @debate.title %>
+          description: t("debates.share.message",
+                      title: @debate.title,
+                      handle: setting["org_name"]),
+          mobile: t("debates.share.message",
+                     title: @debate.title,
+                     handle: setting["twitter_handle"])
       </aside>
     </div>
   </div>
