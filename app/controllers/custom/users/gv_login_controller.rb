@@ -9,6 +9,8 @@ class Users::GvLoginController < ApplicationController
     remote_ip = request.x_forwarded_for
     cookie = cookies["gvlogin.login.GVLOGIN_COOKIE"]
     gvlogin_api = GVLoginApi.new(request.host)
+    Rails.logger.warn "columns #{VmcrcPersona.column_names.join(", ")}"
+    Rails.logger.warn "First user: #{VmcrcPersona.first.inspect}"
     if cookie
       begin
         check_context = gvlogin_api.context(remote_ip, cookie)
