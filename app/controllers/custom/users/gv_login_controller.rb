@@ -9,12 +9,12 @@ class Users::GvLoginController < ApplicationController
     remote_ip = request.x_forwarded_for
     cookie = cookies["gvlogin.login.GVLOGIN_COOKIE"]
     gvlogin_api = GVLoginApi.new(request.host)
-    Rails.logger.warn "columns #{VmcrcPersona.column_names.join(", ")}"
-    Rails.logger.warn "First user: #{VmcrcPersona.first.inspect}"
+
     if cookie
       begin
         check_context = gvlogin_api.context(remote_ip, cookie)
         if check_context.valid?
+          Rails.logger.warn "User: #{VmcrcPersona.find_by(dni: check_context.data.dni).inspect}"
           sign_in_gvlogin(check_context.data)
         else
           flash[:error] = check_context.errors
@@ -22,6 +22,9 @@ class Users::GvLoginController < ApplicationController
         end
       rescue JSON::ParserError
         flash[:error] = "Ocurrio error en el servidor"
+        redirect_to gvlogin_api.web_gv_login
+      rescue PG::UndefinedTable
+        flash[:error] = "Ocurrio error en la base de datos"
         redirect_to gvlogin_api.web_gv_login
       end
     else
@@ -40,14 +43,10 @@ class Users::GvLoginController < ApplicationController
         # Add guide connection codper
         auth = OpenStruct.new(uid: uid, provider: :gvlogin)
         identity = Identity.first_or_create_from_oauth(auth)
-        @user = get_or_create_user(data, identity)
-        identity.update!(user: @user)
-        save_user(data)
-        return
       else
         if isEmailGVA?(data.mail)
           vmcrc_user = VmcrcPersona.find_by(dni: data.dni)
-          if !vmcrc_user.present? || vmcrc_user.codper.blank?
+          unless vmcrc_user&.codper.present?
             error_user_data
             return
           end
@@ -55,8 +54,7 @@ class Users::GvLoginController < ApplicationController
           identity = Identity.first_or_create_from_oauth(auth)
         elsif (uid = data.info_ampliada["codper"].presence)
           vmcrc_user = VmcrcPersona.find_by(codper: uid)
-          # byebug
-          if !vmcrc_user.present? || vmcrc_user.dcorreo.blank?
+          unless vmcrc_user&.dcorreo.present?
             error_user_data
             return
           end
@@ -65,7 +63,7 @@ class Users::GvLoginController < ApplicationController
           data.mail = vmcrc_user.dcorreo
         else
           vmcrc_user = VmcrcPersona.find_by(dni: data.dni)
-          if !vmcrc_user.present? || vmcrc_user.dcorreo.blank? || vmcrc_user.codper.blank?
+          unless vmcrc_user&.dcorreo.present? && vmcrc_user&.codper.present?
             error_user_data
             return
           end
@@ -75,6 +73,7 @@ class Users::GvLoginController < ApplicationController
         end
       end
       @user = get_or_create_user(data, identity)
+
       identity.update!(user: @user)
       save_user(data)
     end
@@ -88,7 +87,9 @@ class Users::GvLoginController < ApplicationController
     end
 
     def get_or_create_user(data, identity)
-      identity.user.present? && identity.user.valid? ? identity.user : User.first_or_initialize_for_gvlogin(data)
+      user = identity.user&.valid? ? identity.user : User.first_or_initialize_for_gvlogin(data)
+      user.email = data.mail
+      user
     end
 
     def success_admin_login
