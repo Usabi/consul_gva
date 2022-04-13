@@ -54,22 +54,22 @@ class Users::GvLoginController < ApplicationController
           identity = Identity.first_or_create_from_oauth(auth)
         elsif (uid = data.info_ampliada["codper"].presence)
           vmcrc_user = VmcrcPersona.find_by(codper: uid)
-          unless vmcrc_user&.dcorreo.present?
+          unless vmcrc_user&.dcorreoint.present?
             error_user_data
             return
           end
           auth = OpenStruct.new(uid: uid, provider: :gvlogin)
           identity = Identity.first_or_create_from_oauth(auth)
-          data.mail = vmcrc_user.dcorreo
+          data.mail = vmcrc_user.dcorreoint
         else
           vmcrc_user = VmcrcPersona.find_by(dni: data.dni)
-          unless vmcrc_user&.dcorreo.present? && vmcrc_user&.codper.present?
+          unless vmcrc_user&.dcorreoint.present? && vmcrc_user&.codper.present?
             error_user_data
             return
           end
           auth = OpenStruct.new(uid: vmcrc_user.codper, provider: :gvlogin)
           identity = Identity.first_or_create_from_oauth(auth)
-          data.mail = vmcrc_user.dcorreo
+          data.mail = vmcrc_user.dcorreoint
         end
       end
       @user = get_or_create_user(data, identity)
