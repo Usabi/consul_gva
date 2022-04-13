@@ -13,8 +13,8 @@ describe Users::GvLoginController do
       dni: "12345678A"
     })
   end
-  let(:valid_vmcrc_user) { build(:vmcrc_persona, nomb: data.name, dni: data.dni, dcorreo: data.email, codper: data.codper) }
-  let(:invalid_vmcrc_user) { build(:vmcrc_persona, nomb: data.name, dni: data.dni, dcorreo: "", codper: "") }
+  let(:valid_vmcrc_user) { build(:vmcrc_persona, nomb: data.name, dni: data.dni, dcorreoint: data.email, codper: data.codper) }
+  let(:invalid_vmcrc_user) { build(:vmcrc_persona, nomb: data.name, dni: data.dni, dcorreoint: "", codper: "") }
   let(:valid_body) do
     GVLoginApi::Response.new({
       "resultado": true,

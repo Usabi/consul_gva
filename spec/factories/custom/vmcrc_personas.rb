@@ -5,7 +5,7 @@ FactoryBot.define do
     nomb { Faker::Name.first_name }
     ape1 { Faker::Name.last_name }
     ape2 { Faker::Name.last_name }
-    dni { "#{Faker::Number.number(8)}#{[*"A".."Z"].sample}"}
-    dcorreo { Faker::Internet.email }
+    dni { "#{Faker::Number.number(8)}#{[*"A".."Z"].sample}" }
+    dcorreoint { Faker::Internet.email }
   end
 end
