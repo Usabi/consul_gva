@@ -14,7 +14,6 @@ class Users::GvLoginController < ApplicationController
       begin
         check_context = gvlogin_api.context(remote_ip, cookie)
         if check_context.valid?
-          Rails.logger.warn "User: #{VmcrcPersona.find_by(dni: check_context.data.dni).inspect}"
           sign_in_gvlogin(check_context.data)
         else
           flash[:error] = check_context.errors
