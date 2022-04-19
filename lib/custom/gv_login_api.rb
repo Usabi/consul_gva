@@ -1,10 +1,9 @@
 class GVLoginApi
- #tab_panel_id:tab_panel_login_user_pass_LDAPGva_id
   GVLOGIN_HOSTS = {
-      gvaparticipa_dsa: "http://gvlogin-dsa.gva.es",
-      gvaparticipa_pre: "http://gvlogin-pre.gva.es",
-      gvaparticipa: "http://gvlogin.gva.es",
-      localhost: "http://gvlogin-dsa.gva.es"
+       gvaparticipa_dsa: "http://gvlogin-dsa.gva.es",
+       gvaparticipa_pre: "http://gvlogin-pre.gva.es",
+       gvaparticipa: "http://gvlogin.gva.es",
+       localhost: "http://gvlogin-dsa.gva.es"
   }.freeze
 
   def initialize(host)
@@ -18,9 +17,9 @@ class GVLoginApi
       Faraday.new(
         url: url,
         headers: {
-                    'Content-Type': "application/json",
-                    'Accept': "application/json"
-                  }
+          'Content-Type': "application/json",
+          'Accept': "application/json"
+        }
       )
     end
   end
@@ -123,4 +122,4 @@ class GVLoginApi
       host_name = host.underscore.split(".").first.to_sym
       GVLOGIN_HOSTS[host_name]
     end
-end
+ end

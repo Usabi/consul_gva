@@ -1,7 +1,5 @@
 <%= render "shared/globalize_locales", resource: @heading %>
-
 <%= translatable_form_for [:admin, @budget, @group, @heading], url: path do |f| %>
-
   <%= render "shared/errors", resource: @heading %>
 
   <div class="row">
@@ -15,13 +13,10 @@
   <div class="row">
     <div class="small-12 medium-6 column">
       <%= f.text_field :price, maxlength: 8 %>
-
       <% if @heading.budget.approval_voting? %>
         <%= f.number_field :max_ballot_lines,
                            hint: t("admin.budget_headings.form.max_ballot_lines_info") %>
-
       <% end %>
-
       <%= f.text_field :population,
                         maxlength: 8,
                         data: { toggle_focus: "population-info" },
