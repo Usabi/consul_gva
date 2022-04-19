@@ -8,7 +8,8 @@ module Consul
     config.i18n.default_locale = :val
     available_locales = [
       "val",
-      "es"]
+      "es",
+      "en"]
     config.i18n.available_locales = available_locales
   end
 end

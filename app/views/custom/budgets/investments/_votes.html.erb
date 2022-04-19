@@ -3,7 +3,6 @@
 <% user_voted_for = voted_for?(investment_votes, investment) %>
 
 <div class="supports js-participation">
-
   <span class="total-supports <%= "no-button" unless voting_allowed || user_voted_for %>">
     <%= render "budgets/investments/supports", investment: investment %>
   </span>
@@ -15,16 +14,11 @@
         <% if setting['twitter_handle'] %>
           <div class="share-supported">
             <%= render partial: 'shared/social_share', locals: {
-              title: investment.title.mb_chars.upcase,
+              title: investment.title,
               image_url: image_absolute_url(investment.image, :thumb),
               url: budget_investment_url(investment.budget, investment),
-              description: t("budgets.investments.share.message",
-                              title: investment.title.mb_chars.upcase,
-                              handle: setting["org_name"]),
-              mobile: t("budgets.investments.share.message",
-                              title: investment.title.mb_chars.upcase,
-                              handle: setting["twitter_handle"])
-            } %>
+              description: investment.title,
+              mobile: investment.title %>
           </div>
         <% end %>
       </div>
@@ -49,9 +43,11 @@
       <% else %>
         <%= link_to vote_url,
             class: "button button-support small expanded",
-            title: t('budgets.investments.investment.support_title'),
+            title: t("budgets.investments.investment.support_title"),
             method: "post",
-            remote: (current_user&.voted_in_group?(investment.group) ? true : false),
+            remote: (display_support_alert?(investment) ? false : true),
+            data:   (display_support_alert?(investment) ? {
+                    confirm: t("budgets.investments.investment.confirm_group", count: investment.group.max_votable_headings) } : nil),
             "aria-hidden" => css_for_aria_hidden(reason) do %>
           <%= t("budgets.investments.investment.give_support") %>
         <% end %>
@@ -68,6 +64,7 @@
                 verify_account: link_to_verify_account,
                 signin: link_to_signin,
                 signup: link_to_signup,
+                supported_headings: (current_user && current_user.headings_voted_within_group(investment.group).map(&:name).sort.to_sentence)
                )) %>
         </small>
       </p>

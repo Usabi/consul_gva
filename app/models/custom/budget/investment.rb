@@ -7,6 +7,7 @@ class Budget
     scope :not_selected, -> { where(feasibility: "not_selected") }
     # NOTE: This scope includes not_selected because is a filter used by default
     scope :not_unfeasible, -> { where.not(feasibility: ["unfeasible", "not_selected"]) }
+    scope :supported, -> { joins(:heading).where("budget_investments.cached_votes_up + budget_investments.physical_votes >= budget_headings.min_supports") }
 
     scope :supported, -> { joins(:heading).where("budget_investments.cached_votes_up + budget_investments.physical_votes >= budget_headings.min_supports") }
 

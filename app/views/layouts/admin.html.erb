@@ -13,9 +13,15 @@
       <%= check_box_tag :show_menu, nil, false, role: "switch" %>
 
       <nav id="side_menu" class="admin-sidebar">
-        <%= render "/#{namespace}/menu" %>
+        <% if namespace == "admin" %>
+          <%= render "/admin/menu" %>
+          <%#= render Admin::MenuComponent.new %>
+        <% elsif namespace == "sdg_management" %>
+          <%= render SDGManagement::MenuComponent.new %>
+        <% else %>
+          <%= render "/#{namespace}/menu" %>
+        <% end %>
       </nav>
-
       <div class="admin-content">
         <%= label_tag :show_menu, t("admin.menu.admin"),
                       "aria-hidden": true, class: "button hollow expanded" %>

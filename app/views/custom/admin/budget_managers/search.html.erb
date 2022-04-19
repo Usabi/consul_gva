@@ -8,8 +8,8 @@
 
     <table>
       <thead>
-        <th scope="col"><%= t("admin.budget_managers.index.name") %></th>
-        <th scope="col"><%= t("admin.budget_managers.index.email") %></th>
+        <th scope="col"><%= BudgetManager.human_attribute_name(:name) %></th>
+        <th scope="col"><%= BudgetManager.human_attribute_name(:email) %></th>
         <th scope="col" class="small-3"><%= t("admin.shared.actions") %></th>
       </thead>
       <tbody>
@@ -18,19 +18,7 @@
           <td><%= user.name %></td>
           <td><%= user.email %></td>
           <td>
-            <% if user.budget_manager? && user.budget_manager.persisted? %>
-              <%= link_to t("admin.budget_managers.budget_manager.delete"),
-                          admin_budget_manager_path(user.budget_manager),
-                          method: :delete,
-                          class: "button hollow alert expanded" %>
-            <% else %>
-              <%= link_to t("admin.budget_managers.budget_manager.add"),
-                          { controller: "admin/budget_managers",
-                            action: :create,
-                            user_id: user },
-                          method: :post,
-                          class: "button success expanded" %>
-            <% end %>
+            <%= render Admin::Roles::TableActionsComponent.new(user.budget_manager||user.build_budget_manager) %>
           </td>
         </tr>
       <% end %>
