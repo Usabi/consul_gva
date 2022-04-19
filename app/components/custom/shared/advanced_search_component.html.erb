@@ -13,14 +13,14 @@
         <%= text_field_tag "search", params[:search],
                            placeholder: t("shared.advanced_search.general_placeholder") %>
       </div>
-      <% if show? %>
-          <div class="filter">
-            <label for="advanced_search_tag"><%= t("shared.advanced_search.category_type") %></label>
-            <%= select_tag("advanced_search[tag]", categories_search_options,
-                        include_blank: t("shared.advanced_search.category_type_blank")) %>
-          </div>
+      <% if debates? %>
+        <div class="filter">
+          <label for="advanced_search_tag"><%= t("shared.advanced_search.category_type") %>
+          </label>
+          <%= select_tag("advanced_search[tag]", categories_search_options,
+                      include_blank: t("shared.advanced_search.category_type_blank")) %>
+        </div>
       <% end %>
-      
       <div class="date-filters">
         <div class="filter">
           <label for="js-advanced-search-date-min"><%= t("shared.advanced_search.date") %></label>
@@ -48,7 +48,6 @@
           </div>
         </div>
       </div>
-
       <% if sdg? %>
         <div class="filter">
           <label for="advanced_search_goal"><%= t("shared.advanced_search.goal") %></label>

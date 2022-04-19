@@ -4,12 +4,12 @@
 
 <div id="legislators">
   <% if @legislators.any? %>
-    <h3 class="margin"><%= page_entries_info @legislators %></h3>
+    <h3><%= page_entries_info @legislators %></h3>
 
     <table>
       <thead>
-        <th scope="col"><%= t("admin.legislators.index.name") %></th>
-        <th scope="col"><%= t("admin.legislators.index.email") %></th>
+        <th scope="col"><%= Legislator.human_attribute_name(:name) %></th>
+        <th scope="col"><%= Legislator.human_attribute_name(:email) %></th>
         <th scope="col" class="small-3"><%= t("admin.shared.actions") %></th>
       </thead>
       <tbody>
@@ -22,10 +22,7 @@
               <%= legislator.email %>
             </td>
             <td>
-              <%= link_to t("admin.legislators.legislator.delete"),
-                admin_legislator_path(legislator),
-                method: :delete,
-                class: "button hollow alert expanded" %>
+              <%= render Admin::Roles::TableActionsComponent.new(legislator) %>
             </td>
           </tr>
         <% end %>
@@ -34,7 +31,7 @@
 
     <%= paginate @legislators %>
   <% else %>
-    <div class="callout primary">
+    <div class="callout primary margin">
       <%= t("admin.legislators.index.no_legislators") %>
     </div>
   <% end %>

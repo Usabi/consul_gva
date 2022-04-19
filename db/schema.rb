@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220224173405) do
+
+ActiveRecord::Schema.define(version: 2022_02_24_173405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -1649,6 +1650,16 @@ ActiveRecord::Schema.define(version: 20220224173405) do
     t.datetime "started_at"
     t.index ["started_at"], name: "index_visits_on_started_at"
     t.index ["user_id"], name: "index_visits_on_user_id"
+  end
+
+  create_table "vmcrc_personas", id: :serial, force: :cascade do |t|
+    t.text "codper", null: false
+    t.text "codmap", null: false
+    t.text "nomb", null: false
+    t.text "ape1", null: false
+    t.text "ape2", null: false
+    t.text "dni", null: false
+    t.text "dcorreo", null: false
   end
 
   create_table "votes", id: :serial, force: :cascade do |t|

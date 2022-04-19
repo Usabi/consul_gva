@@ -9,7 +9,6 @@ class Admin::BudgetManagersController < Admin::BaseController
     @users = User.search(params[:search])
                  .includes(:budget_manager)
                  .page(params[:page])
-                 .for_render
   end
 
   def create
