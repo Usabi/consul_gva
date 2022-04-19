@@ -5,27 +5,36 @@ describe Users::GvLoginController do
   let(:ip) { "127.0.0.1" }
   let(:cookie) { "f7aec2ad-4bd0-4520-9f03-c24995c276ae" }
   let(:api) { GVLoginApi.new(host) }
-
+  let(:data) do
+    OpenStruct.new({
+      name: "Consul",
+      email: "consulgva@gva.es",
+      codper: "12345678",
+      dni: "12345678A"
+    })
+  end
+  let(:valid_vmcrc_user) { build(:vmcrc_persona, nomb: data.name, dni: data.dni, dcorreoint: data.email, codper: data.codper) }
+  let(:invalid_vmcrc_user) { build(:vmcrc_persona, nomb: data.name, dni: data.dni, dcorreoint: "", codper: "") }
   let(:valid_body) do
     GVLoginApi::Response.new({
       "resultado": true,
       "datos": {
-          "mail": "consulgva@gva.es",
+          "mail": data.email,
           "roles": {
             "role": {
               "codigo": "PARTICIPEM_ADMIN"
             }
           },
-          "nombre": "ConsulGVA",
+          "nombre": data.name,
           "infoAmpliada": {
             "parametro": [
                 {
-                  "valorParametro": "12345678",
+                  "valorParametro": data.codper,
                   "nombreParametro": "codper"
                 }
             ]
           },
-          "dni": "12345678A"
+          "dni": data.dni
         }
       }.to_json)
   end
@@ -34,18 +43,18 @@ describe Users::GvLoginController do
     GVLoginApi::Response.new({
       "resultado": true,
       "datos": {
-          "mail": "consulgva@gva.es",
+          "mail": data.email,
           "roles": "",
-          "nombre": "ConsulGVA",
+          "nombre": data.name,
           "infoAmpliada": {
             "parametro": [
                 {
-                  "valorParametro": "12345678",
+                  "valorParametro": data.codper,
                   "nombreParametro": "codper"
                 }
             ]
           },
-          "dni": "12345678A"
+          "dni": data.dni
         }
       }.to_json)
   end
@@ -60,16 +69,40 @@ describe Users::GvLoginController do
               "codigo": "PARTICIPEM_ADMIN"
             }
           },
-          "nombre": "ConsulGVA",
+          "nombre": data.name,
           "infoAmpliada": {
             "parametro": [
               {
-                "valorParametro": "12345678",
+                "valorParametro": data.codper,
                 "nombreParametro": "codper"
               }
           ]
           },
-          "dni": "12345678A"
+          "dni": data.dni
+        }
+      }.to_json)
+  end
+
+  let(:body_not_gva_email) do
+    GVLoginApi::Response.new({
+      "resultado": true,
+      "datos": {
+          "mail": "test@test.com",
+          "roles": {
+            "role": {
+              "codigo": "PARTICIPEM_ADMIN"
+            }
+          },
+          "nombre": data.name,
+          "infoAmpliada": {
+            "parametro": [
+              {
+                "valorParametro": data.codper,
+                "nombreParametro": "codper"
+              }
+          ]
+          },
+          "dni": data.dni
         }
       }.to_json)
   end
@@ -83,16 +116,16 @@ describe Users::GvLoginController do
               "codigo": "PARTICIPEM_ADMIN"
             }
           },
-          "nombre": "ConsulGVA",
+          "nombre": data.name,
           "infoAmpliada": {
             "parametro": [
                 {
-                  "valorParametro": "12345678",
+                  "valorParametro": data.codper,
                   "nombreParametro": "codper"
                 }
             ]
           },
-          "dni": "12345678A"
+          "dni": data.dni
         }
       }.to_json)
   end
@@ -107,16 +140,16 @@ describe Users::GvLoginController do
               "codigo": "PARTICIPEM_ADMIN"
             }
           },
-          "nombre": "ConsulGVA",
+          "nombre": data.name,
           "infoAmpliada": {
             "parametro": [
                 {
-                  "valorParametro": "12345678",
+                  "valorParametro": data.codper,
                   "nombreParametro": "codper"
                 }
             ]
           },
-          "dni": "12345678A"
+          "dni": data.dni
         }
       }.to_json)
   end
@@ -125,18 +158,17 @@ describe Users::GvLoginController do
     GVLoginApi::Response.new({
       "resultado": true,
       "datos": {
-          "mail": "consulgva@gva.es",
+          "mail": data.email,
           "roles": {
             "role": {
               "codigo": "PARTICIPEM_ADMIN"
             }
           },
-          "nombre": "ConsulGVA",
+          "nombre": data.name,
           "infoAmpliada": {
-            "parametro": [
-            ]
+            "parametro": []
           },
-          "dni": "12345678A"
+          "dni": data.dni
         }
       }.to_json)
   end
@@ -145,13 +177,13 @@ describe Users::GvLoginController do
     GVLoginApi::Response.new({
       "resultado": true,
       "datos": {
-          "mail": "consulgva@gva.es",
+          "mail": data.email,
           "roles": {
             "role": {
               "codigo": "PARTICIPEM_ADMIN"
             }
           },
-          "nombre": "ConsulGVA",
+          "nombre": data.name,
           "infoAmpliada": {
             "parametro": [
                 {
@@ -160,7 +192,7 @@ describe Users::GvLoginController do
                 }
             ]
           },
-          "dni": "12345678A"
+          "dni": data.dni
         }
       }.to_json)
   end
@@ -169,13 +201,13 @@ describe Users::GvLoginController do
     GVLoginApi::Response.new({
       "resultado": true,
       "datos": {
-          "mail": "consulgva@gmail.com",
+          "mail": "test@test.com",
           "roles": {
             "role": {
               "codigo": "PARTICIPEM_ADMIN"
             }
           },
-          "nombre": "ConsulGVA",
+          "nombre": data.name,
           "infoAmpliada": {
             "parametro": [
                 {
@@ -184,7 +216,7 @@ describe Users::GvLoginController do
                 }
             ]
           },
-          "dni": "12345678A"
+          "dni": data.dni
         }
       }.to_json)
   end
@@ -197,104 +229,246 @@ describe Users::GvLoginController do
         cookies["gvlogin.login.GVLOGIN_COOKIE"] = cookie
       end
 
-      it "request valid values" do
-        expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(valid_body)
-        get :login_or_redirect_to_sso
-        user_created = User.last
-        identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"]).user
-        expect(user_created.username).to eq("ConsulGVA-GVLogin1")
-        expect(identity_user.username).to eq("ConsulGVA-GVLogin1")
-        expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to eq(cookie)
-        expect(flash[:success]).to eq(I18n.t("devise.sessions.signed_in"))
+      context "valid vmcrc_user" do
+        before do
+          valid_vmcrc_user.save
+        end
+        it "request valid values" do
+          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(valid_body)
+          get :login_or_redirect_to_sso
+          user_created = User.last
+          identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"]).user
+
+          expect(user_created.name).to eq("#{data.name}-GVLogin1")
+          expect(identity_user.name).to eq("#{data.name}-GVLogin1")
+
+          expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to eq(cookie)
+          expect(flash[:success]).to eq(I18n.t("devise.sessions.signed_in"))
+        end
+
+        it "request without roles" do
+          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_without_roles)
+          get :login_or_redirect_to_sso
+          user_created = User.last
+          identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"]).user
+
+          expect(user_created.name).to eq("#{data.name}-GVLogin1")
+          expect(identity_user.name).to eq("#{data.name}-GVLogin1")
+
+          expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
+          expect(flash[:error]).to eq(I18n.t("devise.failure.no_backend_roles"))
+        end
+
+        it "request invalid email" do
+          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_invalid_email)
+          get :login_or_redirect_to_sso
+          user_created = User.last
+          identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"]).user
+
+          expect(user_created.name).to eq("#{data.name}-GVLogin1")
+          expect(identity_user.name).to eq("#{data.name}-GVLogin1")
+          expect(user_created.email).to eq(data.email)
+          expect(identity_user.email).to eq(data.email)
+
+          expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to eq(cookie)
+          expect(flash[:success]).to eq(I18n.t("devise.sessions.signed_in"))
+        end
+
+        it "request not gva email" do
+          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_not_gva_email)
+          get :login_or_redirect_to_sso
+          user_created = User.last
+          identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"]).user
+
+          expect(user_created.name).to eq("#{data.name}-GVLogin1")
+          expect(identity_user.name).to eq("#{data.name}-GVLogin1")
+
+          expect(user_created.email).to eq(data.email)
+          expect(identity_user.email).to eq(data.email)
+
+          expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to eq(cookie)
+          expect(flash[:success]).to eq(I18n.t("devise.sessions.signed_in"))
+        end
+
+        it "request without email" do
+          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_without_email)
+          get :login_or_redirect_to_sso
+          user_created = User.last
+          identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"]).user
+
+          expect(user_created.name).to eq("#{data.name}-GVLogin1")
+          expect(identity_user.name).to eq("#{data.name}-GVLogin1")
+
+          expect(user_created.email).to eq(data.email)
+          expect(identity_user.email).to eq(data.email)
+
+          expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to eq(cookie)
+          expect(flash[:success]).to eq(I18n.t("devise.sessions.signed_in"))
+        end
+
+        it "request blank email" do
+          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_blank_email)
+          get :login_or_redirect_to_sso
+          user_created = User.last
+          identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"]).user
+
+          expect(user_created.name).to eq("#{data.name}-GVLogin1")
+          expect(identity_user.name).to eq("#{data.name}-GVLogin1")
+
+          expect(user_created.email).to eq(data.email)
+          expect(identity_user.email).to eq(data.email)
+
+          expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to eq(cookie)
+          expect(flash[:success]).to eq(I18n.t("devise.sessions.signed_in"))
+        end
+
+        it "request invalid codper" do
+          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_invalid_codper)
+          get :login_or_redirect_to_sso
+          user_created = User.last
+          identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"]).user
+
+          expect(user_created.name).to eq("#{data.name}-GVLogin1")
+          expect(identity_user.name).to eq("#{data.name}-GVLogin1")
+
+          expect(user_created.email).to eq(data.email)
+          expect(identity_user.email).to eq(data.email)
+
+          expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to eq(cookie)
+          expect(flash[:success]).to eq(I18n.t("devise.sessions.signed_in"))
+        end
+
+        it "request without codper" do
+          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_without_codper)
+          get :login_or_redirect_to_sso
+          user_created = User.last
+          identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"]).user
+
+          expect(user_created.name).to eq("#{data.name}-GVLogin1")
+          expect(identity_user.name).to eq("#{data.name}-GVLogin1")
+
+          expect(user_created.email).to eq(data.email)
+          expect(identity_user.email).to eq(data.email)
+
+          expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to eq(cookie)
+          expect(flash[:success]).to eq(I18n.t("devise.sessions.signed_in"))
+        end
+
+        it "request invalid codper and email" do
+          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_invalid_email_codper)
+          get :login_or_redirect_to_sso
+          user_created = User.last
+          identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"]).user
+
+          expect(user_created.name).to eq("#{data.name}-GVLogin1")
+          expect(identity_user.name).to eq("#{data.name}-GVLogin1")
+
+          expect(user_created.email).to eq(data.email)
+          expect(identity_user.email).to eq(data.email)
+
+          expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to eq(cookie)
+          expect(flash[:success]).to eq(I18n.t("devise.sessions.signed_in"))
+        end
+
       end
 
-      it "request without roles" do
-        expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_without_roles)
-        get :login_or_redirect_to_sso
-        user_created = User.last
-        identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"]).user
-        expect(user_created.username).to eq("ConsulGVA-GVLogin1")
-        expect(identity_user.username).to eq("ConsulGVA-GVLogin1")
-        expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
-        expect(flash[:error]).to eq(I18n.t("devise.failure.no_backend_roles"))
+      context "invalid vmcrc_user" do
+        before do
+          invalid_vmcrc_user.save
+        end
+
+        it "request invalid email" do
+          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_invalid_email)
+          get :login_or_redirect_to_sso
+          user_created = User.last
+          identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"])
+
+          expect(user_created).to be_nil
+          expect(identity_user).to be_nil
+
+          expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
+          expect(flash[:error]).to eq(I18n.t("devise.failure.no_codeper_email"))
+        end
+
+        it "request not gva email" do
+          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_not_gva_email)
+          get :login_or_redirect_to_sso
+          user_created = User.last
+          identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"])
+
+          expect(user_created).to be_nil
+          expect(identity_user).to be_nil
+
+          expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
+          expect(flash[:error]).to eq(I18n.t("devise.failure.no_codeper_email"))
+        end
+
+        it "request without email" do
+          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_without_email)
+          get :login_or_redirect_to_sso
+          user_created = User.last
+          identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"])
+
+          expect(user_created).to be_nil
+          expect(identity_user).to be_nil
+
+          expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
+          expect(flash[:error]).to eq(I18n.t("devise.failure.no_codeper_email"))
+        end
+
+        it "request blank email" do
+          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_blank_email)
+          get :login_or_redirect_to_sso
+          user_created = User.last
+          identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"])
+
+          expect(user_created).to be_nil
+          expect(identity_user).to be_nil
+
+          expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
+          expect(flash[:error]).to eq(I18n.t("devise.failure.no_codeper_email"))
+        end
+
+        it "request invalid codper" do
+          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_invalid_codper)
+          get :login_or_redirect_to_sso
+          user_created = User.last
+          identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"])
+
+          expect(user_created).to be_nil
+          expect(identity_user).to be_nil
+
+          expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
+          expect(flash[:error]).to eq(I18n.t("devise.failure.no_codeper_email"))
+        end
+
+        it "request without codper" do
+          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_without_codper)
+          get :login_or_redirect_to_sso
+          user_created = User.last
+          identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"])
+
+          expect(user_created).to be_nil
+          expect(identity_user).to be_nil
+
+          expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
+          expect(flash[:error]).to eq(I18n.t("devise.failure.no_codeper_email"))
+        end
+
+        it "request invalid codper and email" do
+          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_invalid_email_codper)
+          get :login_or_redirect_to_sso
+          user_created = User.last
+          identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"])
+
+          expect(user_created).to be_nil
+          expect(identity_user).to be_nil
+
+          expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
+          expect(flash[:error]).to eq(I18n.t("devise.failure.no_codeper_email"))
+        end
       end
 
-      it "request invalid email" do
-        expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_invalid_email)
-        get :login_or_redirect_to_sso
-        user_created = User.last
-        identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"])
-
-        expect(user_created).to be_nil
-        expect(identity_user).to be_nil
-        expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
-        expect(flash[:error]).to eq(I18n.t("devise.failure.no_codeper_email"))
-      end
-
-      it "request without email" do
-        expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_without_email)
-        get :login_or_redirect_to_sso
-        user_created = User.last
-        identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"])
-
-        expect(user_created).to be_nil
-        expect(identity_user).to be_nil
-
-        expect(response.cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
-        expect(flash[:error]).to eq(I18n.t("devise.failure.no_codeper_email"))
-      end
-
-      it "request blank email" do
-        expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_blank_email)
-        get :login_or_redirect_to_sso
-        user_created = User.last
-        identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"])
-
-        expect(user_created).to be_nil
-        expect(identity_user).to be_nil
-
-        expect(response.cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
-        expect(flash[:error]).to eq(I18n.t("devise.failure.no_codeper_email"))
-      end
-
-      it "request invalid codper" do
-        expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_invalid_codper)
-        get :login_or_redirect_to_sso
-        user_created = User.last
-        identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"])
-
-        expect(user_created).to be_nil
-        expect(identity_user).to be_nil
-
-        expect(response.cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
-        expect(flash[:error]).to eq(I18n.t("devise.failure.no_codeper_email"))
-      end
-
-      it "request without codper" do
-        expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_without_codper)
-        get :login_or_redirect_to_sso
-        user_created = User.last
-        identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"])
-
-        expect(user_created).to be_nil
-        expect(identity_user).to be_nil
-
-        expect(response.cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
-        expect(flash[:error]).to eq(I18n.t("devise.failure.no_codeper_email"))
-      end
-
-      it "request invalid codper and email" do
-        expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_invalid_email_codper)
-        get :login_or_redirect_to_sso
-        user_created = User.last
-        identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"])
-
-        expect(user_created).to be_nil
-        expect(identity_user).to be_nil
-
-        expect(response.cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
-        expect(flash[:error]).to eq(I18n.t("devise.failure.no_codeper_email"))
-      end
     end
 
     context "update user" do
@@ -318,8 +492,8 @@ describe Users::GvLoginController do
         user_updated = User.last
         identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"]).user
 
-        expect(user_updated.username).to eq("ConsulGVA-GVLogin1")
-        expect(identity_user.username).to eq("ConsulGVA-GVLogin1")
+        expect(user_updated.name).to eq("#{data.name}-GVLogin1")
+        expect(identity_user.name).to eq("#{data.name}-GVLogin1")
         expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to eq(cookie)
         expect(flash[:success]).to eq(I18n.t("devise.sessions.signed_in"))
       end
@@ -330,8 +504,8 @@ describe Users::GvLoginController do
         user_updated = User.last
         identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"]).user
 
-        expect(user_updated.username).to eq("ConsulGVA-GVLogin1")
-        expect(identity_user.username).to eq("ConsulGVA-GVLogin1")
+        expect(user_updated.name).to eq("#{data.name}-GVLogin1")
+        expect(identity_user.name).to eq("#{data.name}-GVLogin1")
         expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
         expect(flash[:error]).to eq(I18n.t("devise.failure.no_backend_roles"))
       end

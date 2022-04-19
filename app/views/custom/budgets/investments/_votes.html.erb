@@ -3,7 +3,6 @@
 <% user_voted_for = voted_for?(investment_votes, investment) %>
 
 <div class="supports js-participation">
-
   <span class="total-supports <%= "no-button" unless voting_allowed || user_voted_for %>">
     <%= render "budgets/investments/supports", investment: investment %>
   </span>

@@ -48,8 +48,21 @@ class Verification::Residence
 
     errors.add(:date_of_birth, I18n.t("verification.residence.new.error_not_allowed_age"))
   end
+
   def residence_in_valencia
     return if errors.any? # return to form with validation messages
+
+    unless residency_valid?
+      if @census_data.respond_to?(:error) && @census_data.error =~ /^Servicio no disponible/
+        errors.add(:base, I18n.t("verification.residence.new.error_service_not_available"))
+        return
+      end
+
+      errors.add(:postal_code, I18n.t("verification.residence.new.invalid_postal_code")) unless postal_code_valid?
+
+      errors.add(:date_of_birth, I18n.t("verification.residence.new.invalid_date_of_birth")) unless date_of_birth_valid?
+
+      errors.add(:residence_in_valencia, false)
       store_failed_attempt
       Lock.increase_tries(user)
     end

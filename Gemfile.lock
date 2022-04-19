@@ -768,7 +768,6 @@ DEPENDENCIES
   spring (~> 2.1.1)
   spring-commands-rspec (~> 1.0.4)
   sprockets (~> 3.7.2)
-  timecop
   translator-text (~> 0.1.0)
   turbolinks (~> 5.2.1)
   turnout (~> 2.5.0)
@@ -781,4 +780,4 @@ DEPENDENCIES
   wkhtmltopdf-binary (~> 0.12.4)
 
 BUNDLED WITH
-   1.17.2
+   1.17.3

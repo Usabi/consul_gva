@@ -3,8 +3,7 @@ class Budget
     PHASE_KINDS = %w[informing accepting reviewing selecting valuating publishing_prices balloting
                 reviewing_ballots finished].freeze
     PUBLISHED_PRICES_PHASES = %w[publishing_prices balloting reviewing_ballots finished].freeze
-    # TODO: Revisar pasar custom
-    # SUMMARY_MAX_LENGTH = 5000 # TODO: Do in a custom model (doing it there doesn't overwrite this one)
+    SUMMARY_MAX_LENGTH = 5000 # TODO: Do in a custom model (doing it there doesn't overwrite this one)
     DESCRIPTION_MAX_LENGTH = 5000 # TODO: Do in a custom model (doing it there doesn't overwrite this one)
 
     translates :name, touch: true
