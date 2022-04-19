@@ -1,5 +1,6 @@
 <div class="supports text-center">
   <%= render "proposals/supports", proposal: proposal %>
+
   <div class="in-favor">
     <% if voted_for?(@proposal_votes, proposal) %>
       <div class="supported callout success">
@@ -17,13 +18,14 @@
       </div>
     <% end %>
   </div>
+
   <% if user_signed_in? && current_user.organization? %>
     <div class="participation-not-allowed" style="display:none" aria-hidden="false">
       <p>
         <%= t("votes.organizations") %>
       </p>
     </div>
-  <% elsif user_signed_in? &&!proposal.votable_by?(current_user) %>
+  <% elsif user_signed_in? && !proposal.votable_by?(current_user) %>
     <div tabindex="0">
       <div class="participation-not-allowed" style="display:none" aria-hidden="false">
         <p>
@@ -36,6 +38,7 @@
       <%= render "shared/login_to_vote" %>
     </div>
   <% end %>
+
   <% if voted_for?(@proposal_votes, proposal) && setting["twitter_handle"] %>
     <div class="share-supported">
       <%= render "proposals/social_share", proposal: proposal, share_title: false %>

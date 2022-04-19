@@ -14,14 +14,14 @@
 
       <nav id="side_menu" class="admin-sidebar">
         <% if namespace == "admin" %>
-          <%= render Admin::MenuComponent.new %>
+          <%= render "/admin/menu" %>
+          <%#= render Admin::MenuComponent.new %>
         <% elsif namespace == "sdg_management" %>
           <%= render SDGManagement::MenuComponent.new %>
         <% else %>
           <%= render "/#{namespace}/menu" %>
         <% end %>
       </nav>
-
       <div class="admin-content">
         <%= label_tag :show_menu, t("admin.menu.admin"),
                       "aria-hidden": true, class: "button hollow expanded" %>

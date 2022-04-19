@@ -39,9 +39,9 @@ set :whenever_roles, -> { :app }
 namespace :deploy do
   Rake::Task["delayed_job:default"].clear_actions
   # Rake::Task["puma:smart_restart"].clear_actions
-
-  after :updating, "rvm1:install:rvm"
-  after :updating, "rvm1:install:ruby"
+  # after :updating, "rvm1:install:rvm"
+  # after :updating, "rvm1:install:ruby"
+  # after :updating, "install_ruby"
   after :updating, "install_bundler_gem"
 
   after "deploy:migrate", "add_new_settings"
@@ -54,7 +54,7 @@ namespace :deploy do
   # before "deploy:restart", "puma:start"
 
   after :finished, "refresh_sitemap"
-  after :publishing, 'restart_tmp'
+  after :publishing, "restart_tmp"
 
   desc "Deploys and runs the tasks needed to upgrade to a new release"
   task :upgrade do

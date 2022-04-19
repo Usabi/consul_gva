@@ -55,6 +55,8 @@ es:
       share: "Comparte tu proyecto"
     budget_investment_unfeasible:
       hi: "Estimado/a usuario/a"
+      new: "Por todo ello, te invitamos a que elabores un <strong>nuevo proyecto de gasto</strong> que se ajuste a las condiciones de este proceso. Esto lo puedes hacer en este enlace: %{url}."
+      new_href: "nuevo proyecto de gasto"
       pre_explanation: "Finalizada la fase de evaluación de propuestas de los presupuestos participativos, le informamos que su proyecto no ha superado dicha fase, por los siguientes motivos:"
       sincerely: "Atentamente"
       sorry: "No obstante, agradecemos su contribución y le invitamos a seguir participando en el Portal GVA Participa mediante los recursos que este le ofrece, tales como debates e iniciativas."

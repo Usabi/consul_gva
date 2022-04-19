@@ -9,7 +9,6 @@ class Admin::LegislatorsController < Admin::BaseController
     @users = User.search(params[:search])
                  .includes(:legislator)
                  .page(params[:page])
-                 .for_render
   end
 
   def create
