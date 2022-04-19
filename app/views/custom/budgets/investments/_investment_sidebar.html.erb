@@ -122,14 +122,14 @@
 <div class="hide sidebar-item">
   <%= render partial: 'shared/social_share', locals: {
     share_title: t("budgets.investments.show.share"),
-    title: investment.title.mb_chars.upcase,
+    title: investment.title.upcase,
     image_url: image_absolute_url(investment.image, :thumb),
     url: budget_investment_url(investment.budget, investment),
     description: t("budgets.investments.share.message",
-                    title: investment.title.mb_chars.upcase,
+                    title: investment.title.upcase,
                     handle: setting["org_name"]),
     mobile: t("budgets.investments.share.message",
-                title: investment.title.mb_chars.upcase,
+                title: investment.title.upcase,
                 handle: setting["twitter_handle"])
   } %>
 </div>

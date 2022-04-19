@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_23_100638) do
+ActiveRecord::Schema.define(version: 2022_02_24_173405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -1651,6 +1651,16 @@ ActiveRecord::Schema.define(version: 2021_01_23_100638) do
     t.index ["user_id"], name: "index_visits_on_user_id"
   end
 
+  create_table "vmcrc_personas", id: :serial, force: :cascade do |t|
+    t.text "codper", null: false
+    t.text "codmap", null: false
+    t.text "nomb", null: false
+    t.text "ape1", null: false
+    t.text "ape2", null: false
+    t.text "dni", null: false
+    t.text "dcorreo", null: false
+  end
+
   create_table "votes", id: :serial, force: :cascade do |t|
     t.string "votable_type"
     t.integer "votable_id"
@@ -1695,6 +1705,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_100638) do
     t.datetime "updated_at", null: false
     t.integer "cardable_id"
     t.integer "columns", default: 4
+    t.boolean "middle", default: false
     t.string "cardable_type", default: "SiteCustomization::Page"
     t.index ["cardable_id"], name: "index_widget_cards_on_cardable_id"
   end

@@ -6,12 +6,13 @@
       </div>
     <% elsif !budget_phase_selecting? %>
       <%= link_to vote_featured_proposal_path(proposal, value: "yes"),
-        class: "button button-support small expanded",
-        title: t("proposals.proposal.support_title"), method: "post", remote: true do %>
+          class: "button button-support small expanded",
+          title: t("proposals.proposal.support_title"), method: "post", remote: true do %>
         <%= t("proposals.proposal.support") %>
       <% end %>
     <% end %>
   </div>
+
   <% if user_signed_in? && current_user.organization? %>
     <div class="participation-not-allowed" style="display:none" aria-hidden="false">
       <p>
@@ -27,10 +28,15 @@
   <% elsif !user_signed_in? %>
     <%= render "shared/login_to_vote" %>
   <% end %>
+
   <% if voted_for?(@featured_proposals_votes, proposal) %>
     <% if setting["twitter_handle"] %>
       <div class="share-supported">
-        <%= render "proposals/social_share", proposal: proposal, share_title: false %>
+        <%= render "shared/social_share",
+          title: proposal.title,
+          url: proposal_url(proposal),
+          description: proposal.summary,
+          mobile: proposal.title %>
       </div>
     <% end %>
   <% end %>

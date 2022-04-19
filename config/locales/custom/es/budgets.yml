@@ -68,6 +68,9 @@ es:
         help: Ayuda sobre presupuestos participativos
         all_phases: Ver todas las fases
       all_phases: Fases de los presupuestos participativos
+      next_phase: Fase siguiente
+      prev_phase: Fase anterior
+      current_phase: Fase actual
       map: Proyectos localizables geográficamente
       investment_proyects: Ver lista completa de proyectos de gasto
       unfeasible_investment_proyects: Ver el listado de proyectos de gasto inviables
@@ -133,6 +136,13 @@ es:
             other: "<strong>Has apoyado %{count} propuestas, puedes seguir apoyando propuestas hasta llegar al máximo de %{max_supported_count}. Puedes cambiar tus apoyos en cualquier momento hasta el %{phase_end_date}.</strong>"
           all_supports_html: "<strong>Ya no puedes apoyar más propuestas de inversión. Puedes cambiar tus apoyos en cualquier momento hasta el %{phase_end_date}</strong>"
           zero_supports: Aún no has apoyado ninguna propuesta de inversión en este presupuesto
+        filter: "Filtrando proyectos"
+        filters:
+          not_unfeasible: "No inviables"
+          selected: "Seleccionados"
+          unfeasible: "Inviables"
+          unselected: "No seleccionados"
+          winners: "Ganadores"
         orders:
           random: Aleatorios
           confidence_score: Mejor valorados
@@ -155,11 +165,11 @@ es:
         milestones_tab: Seguimiento
         author: Autor
         project_unfeasible: "Este proyecto de gasto <strong>ha sido marcado como inviable</strong> y no pasará a la fase siguiente."
-        project_not_selected: "Este proyecto de gasto <strong>ha sido marcado como no seleccionado</strong> en la fase de revisión interna y no pasará a la fase siguiente."
         project_selected: "Este proyecto de gasto <strong>ha sido seleccionado</strong> para la fase de votación."
         project_winner: "Proyecto de gasto ganador"
-        project_unselected: "Este proyecto de gasto <strong>no ha sido seleccionado</strong> para la fase de evaluación."
+        project_not_selected: "Este proyecto de gasto <strong>ha sido marcado como no seleccionado</strong> en la fase de revisión interna y no pasará a la fase siguiente."
         see_price_explanation: Ver informe de viabilidad
+        project_unselected: "Este proyecto de gasto <strong>no ha sido seleccionado</strong> para la fase de evaluación."
       wrong_price_format: Solo puede incluir caracteres numéricos
       investment:
         add: Votar
@@ -190,6 +200,7 @@ es:
         one: "Has seleccionado <strong>1</strong> proyecto de <strong>%{limit}</strong>"
         other: "Has seleccionado <strong>%{count}</strong> proyectos de <strong>%{limit}</strong>"
     show:
+      see_results: Ver resultados votación
       group: Grupo
       phase: Fase actual
       unfeasible_title: Proyectos de gasto inviables
@@ -198,7 +209,6 @@ es:
       not_selected: Ver los proyectos no seleccionados en la fase de revisión interna
       unselected_title: Proyectos no seleccionados para la fase de evaluación
       unselected: Ver los proyectos no seleccionados para la fase de evaluación
-      see_results: Ver resultados votación
     results:
       link: Resultados
       page_title: "%{budget} - Resultados"

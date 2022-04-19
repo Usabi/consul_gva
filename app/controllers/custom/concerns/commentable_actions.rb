@@ -16,14 +16,13 @@ module CommentableActions
       end
     end
 
-    @resources = @advanced_search_terms.present? ? @resources.filter(@advanced_search_terms) : @resources
+    @resources = @advanced_search_terms.present? ? @resources.filter_by(@advanced_search_terms) : @resources
 
     @resources = @resources.page(params[:page]).send("sort_by_#{@current_order}")
 
     index_customization
 
     @tag_cloud = tag_cloud
-    @banners = Banner.in_section(section(resource_model.name)).with_active
 
     set_resource_votes(@resources)
 

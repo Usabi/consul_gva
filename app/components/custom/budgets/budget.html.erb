@@ -1,10 +1,4 @@
-<%= render "shared/banner" %>
-<% provide :title do %><%= t("budgets.index.title") %><% end %>
-<% content_for :canonical do %>
-  <%= render "shared/canonical", href: budgets_url %>
-<% end %>
-<% if current_budget.present? %>
-  <div id="budget_heading" class="expanded budget">
+<div id="budget_heading" class="expanded budget">
     <div class="row" data-equalizer data-equalizer-on="medium">
       <div class="small-12 medium-9 column padding" data-equalizer-watch>
         <h1><%= current_budget.name %></h1>
@@ -123,26 +117,7 @@
         </div>
       </div>
     </div>
-    <% if @finished_budgets.present? %>
-      <%= render "finished", budgets: @finished_budgets %>
-    <% end %>
-  </div>
-<% else %>
-  <div class="expanded budget no-margin-top margin-bottom">
-    <div class="row">
-      <div class="small-12 medium-9 column padding">
-        <h1><%= t("budgets.index.title") %></h1>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="small-12 column">
-      <div class="callout primary">
-        <%= t("budgets.index.empty_budgets") %>
-      </div>
-    </div>
-  </div>
-<% end %>
+
 <div class="row">
   <div class="small-12 column">
     <div id="section_help" class="margin" data-magellan-target="section_help">

@@ -1,7 +1,8 @@
 <div id="<%= dom_id(card) %>"
-     class="card small-12 medium-4 columns margin-bottom">
+     class="card small-12 medium-<%= card.columns %> column margin-bottom end">
   <%= link_to card.link_url do %>
-    <figure >
+    <figure class="figure-card">
+      <div class="gradient"></div>
       <% if card.image.present? %>
         <%= image_tag(card.image_url(:large), alt: card.image.title) %>
       <% end %>

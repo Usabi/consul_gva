@@ -61,6 +61,7 @@
     <h2 class="sidebar-title">
       <%= t("budgets.investments.index.sidebar.my_ballot") %>
     </h2>
+
     <% if @ballot.investments.by_heading(@heading.id).count > 0 %>
       <p>
         <em><%= sanitize(@ballot.voted_info(@heading)) %></em>
@@ -82,11 +83,10 @@
     <% end %>
     <ul class="ballot-list">
       <% if @heading %>
-        <% @ballot.investments.by_heading(@heading.id).each do |investment| %>
-          <%= render "budgets/ballot/investment_for_sidebar",
-                      investment: investment,
-                      investment_ids: @investment_ids %>
-        <% end %>
+        <%= render Budgets::Ballot::InvestmentForSidebarComponent.with_collection(
+          @ballot.investments.by_heading(@heading.id),
+          investment_ids: @investment_ids
+        ) %>
       <% end %>
     </ul>
     <%= link_to t("budgets.investments.header.check_ballot"),
