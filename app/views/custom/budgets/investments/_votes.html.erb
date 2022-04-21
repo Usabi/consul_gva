@@ -13,7 +13,7 @@
         <%= t("budgets.investments.investment.already_supported") %>
         <% if setting['twitter_handle'] %>
           <div class="share-supported">
-            <%= render partial: 'shared/social_share', locals: {
+            <%= render partial: 'shared/social_share',
               title: investment.title,
               image_url: image_absolute_url(investment.image, :thumb),
               url: budget_investment_url(investment.budget, investment),
