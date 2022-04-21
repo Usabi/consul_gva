@@ -40,10 +40,10 @@ public/assets/
 public/machine_learning/data/
 public/system/
 /public/ckeditor_assets/
+storage/
 
 # VSCode workspace settings
 /.vscode
 
 # PHP files
 lib/custom/connection_census
-storage/

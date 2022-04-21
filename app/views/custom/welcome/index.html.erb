@@ -1,13 +1,18 @@
 <% content_for :body_class, "home-page" %>
+
 <% content_for :canonical do %>
   <%= render "shared/canonical", href: root_url %>
 <% end %>
+
 <%= render Shared::BannerComponent.new("homepage") %>
+
 <% provide :social_media_meta_tags do %>
   <%= render "shared/social_media_meta_tags",
               social_url: root_url %>
 <% end %>
+
 <%= render "shared/header", header: @header %>
+
 <main>
   <%= render 'slider' %>
   <div class="row">
