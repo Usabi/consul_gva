@@ -38,15 +38,20 @@ set :whenever_roles, -> { :app }
 
 namespace :deploy do
   Rake::Task["delayed_job:default"].clear_actions
-  # Rake::Task["puma:smart_restart"].clear_actions
+  Rake::Task["puma:smart_restart"].clear_actions
+
+  after :updating, "install_ruby"
 
   after "deploy:migrate", "add_new_settings"
 
+  after :publishing, "setup_puma"
+
   after :published, "deploy:restart"
+  before "deploy:restart", "puma:restart"
   before "deploy:restart", "delayed_job:restart"
+  before "deploy:restart", "puma:start"
 
   after :finished, "refresh_sitemap"
-  after :publishing, "restart_tmp"
 
   desc "Deploys and runs the tasks needed to upgrade to a new release"
   task :upgrade do
@@ -105,10 +110,12 @@ task :execute_release_tasks do
   end
 end
 
-
-desc "Restart application"
-task :restart_tmp do
+desc "Create pid and socket folders needed by puma"
+task :setup_puma do
   on roles(:app) do
-  execute "touch #{ File.join(current_path, 'tmp', 'restart.txt') }"
+    with rails_env: fetch(:rails_env) do
+      execute "mkdir -p #{shared_path}/tmp/sockets; true"
+      execute "mkdir -p #{shared_path}/tmp/pids; true"
+    end
   end
 end
