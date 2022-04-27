@@ -3,6 +3,7 @@
 <% user_voted_for = voted_for?(investment_votes, investment) %>
 
 <div class="supports js-participation">
+
   <span class="total-supports <%= "no-button" unless voting_allowed || user_voted_for %>">
     <%= render "budgets/investments/supports", investment: investment %>
   </span>
@@ -11,16 +12,6 @@
     <% if user_voted_for %>
       <div class="supported callout success">
         <%= t("budgets.investments.investment.already_supported") %>
-        <% if setting['twitter_handle'] %>
-          <div class="share-supported">
-            <%= render partial: 'shared/social_share', locals: {
-              title: investment.title,
-              image_url: image_absolute_url(investment.image, :thumb),
-              url: budget_investment_url(investment.budget, investment),
-              description: investment.title,
-              mobile: investment.title %>
-          </div>
-        <% end %>
       </div>
       <%= link_to namespaced_budget_investment_unvote_path(investment),
         class: "button button-support small expanded",
@@ -68,6 +59,17 @@
                )) %>
         </small>
       </p>
+    </div>
+  <% end %>
+
+  <% if user_voted_for && setting["twitter_handle"] %>
+    <div class="share-supported">
+      <%= render "shared/social_share",
+        title: investment.title,
+        image_url: image_absolute_url(investment.image, :thumb),
+        url: budget_investment_url(investment.budget, investment),
+        description: investment.title,
+        mobile: investment.title %>
     </div>
   <% end %>
 </div>
