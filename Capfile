@@ -12,7 +12,7 @@ require "capistrano/delayed_job"
 require "whenever/capistrano"
 require "rvm1/capistrano3"
 # for deploys inside same machine
-require "capistrano/locally"
+# require "capistrano/locally"
 # patch for sshkit with capistrano-whenever
 require_relative 'lib/gem_extensions/sshkit'
 
