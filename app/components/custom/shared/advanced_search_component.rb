@@ -4,7 +4,7 @@ require_dependency Rails.root.join("app", "components", "shared", "advanced_sear
 
 class Shared::AdvancedSearchComponent
   def debates?
-    controller_path == "debates"
+    controller_path == "proposals"
   end
 
   def categories_search_options
