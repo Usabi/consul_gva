@@ -671,7 +671,7 @@ val:
     disagree: No estic d'acord
     organizations: Les organitzacions no poden votar
     supports: Avals
-    verified_only: Les propostes d'inversió només poden ser votades per usuaris verificats, %{verify_account}.
+    verified_only: Les iniciatives d'inversió només poden ser votades per usuaris verificats, %{verify_account}.
     budget_investments:
       not_logged_in: Necessites %{signin} o %{signup}.
       not_verified: El projectes d'inversió només poden ser avalades per usuaris verificats, %{verify_account}.
