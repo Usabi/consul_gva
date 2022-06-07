@@ -71,16 +71,21 @@
 }
 
 .subnavigation {
+
   border-top: 1px solid $red-gva;
-  @include breakpoint(medium){
+
+  @include breakpoint(medium) {
+
     ul {
       display: flex;
       justify-content: space-between;
     }
   }
+
   a {
     color: $link;
-    &:hover{
+
+    &:hover {
       text-decoration: none;
       color: $red-gva;
     }
