@@ -181,6 +181,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - **Maintenance-Gems:** Remove devise-async dependency [\#4661](https://github.com/consul/consul/pull/4661)
 - **UX:** Remove official level filter from advanced search [\#4668](https://github.com/consul/consul/pull/4668)
 
+## [1.3.1]() CONSUL_GVA UPDATE
+
+Move ruby version to 2.6.7
+
+# Commands to update configuration and database
+
+```
+RAILS_ENV=production bin/rake usabi:execute_update_tasks
+
+```
+
+
 ## [1.3.1](https://github.com/consul/consul/tree/1.3.1) (2021-06-03)
 
 [Full Changelog](https://github.com/consul/consul/compare/1.3.0...1.3.1)

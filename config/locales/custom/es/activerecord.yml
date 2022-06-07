@@ -74,8 +74,8 @@ es:
         one: Papeleta de votación
         other: Papeletas de votación
       proposal:
-        one: "Propuesta ciudadana"
-        other: "Propuestas ciudadanas"
+        one: "Iniciativa ciudadana"
+        other: "Iniciativas ciudadanas"
       sdg/goal:
         one: "objetivo"
         other: "objetivos"
@@ -131,11 +131,11 @@ es:
         one: "Votación"
         other: "Votaciones"
       proposal_notification:
-        one: "Notificación de propuesta"
-        other: "Notificaciones de propuestas"
+        one: "Notificación de iniciativa"
+        other: "Notificaciones de iniciativas"
       dashboard/action:
-        one: Acción del panel de control de propuestas
-        other: Acciones del panel de control de propuestas
+        one: Acción del panel de control de iniciativas
+        other: Acciones del panel de control de iniciativas
       dashboard/administrator_task:
         one: Tarea
         other: Tareas
@@ -261,9 +261,9 @@ es:
         terms_of_service: "Términos de servicio"
         video_url: "Enlace a vídeo externo"
       proposal/translation:
-        title: "Título de la propuesta"
-        description: "Texto desarrollado de la propuesta"
-        summary: "Resumen de la propuesta"
+        title: "Título de la iniciativa"
+        description: "Texto desarrollado de la iniciativa"
+        summary: "Resumen de la iniciativa"
         retired_explanation: "Explicación"
       user:
         login: "Email o nombre de usuario"
@@ -272,8 +272,8 @@ es:
         password_confirmation: "Confirmación de contraseña"
         password: "Contraseña"
         current_password: "Contraseña actual"
-        email_digest: "Recibir resumen de notificaciones sobre propuestas"
-        email_on_comment: "Recibir un email cuando alguien comenta en mis propuestas o debates"
+        email_digest: "Recibir resumen de notificaciones sobre iniciativas"
+        email_on_comment: "Recibir un email cuando alguien comenta en mis iniciativas o debates"
         email_on_comment_reply: "Recibir un email cuando alguien contesta a mis comentarios"
         email_on_direct_message: "Recibir emails con mensajes privados"
         newsletter: "Recibir emails con información interesante sobre la web"
@@ -284,7 +284,7 @@ es:
         public_activity: "Mostrar públicamente mi lista de actividades"
         public_interests: "Mostrar públicamente las etiquetas de los elementos que sigo"
         recommended_debates: "Mostrar recomendaciones en el listado de debates"
-        recommended_proposals: "Mostrar recomendaciones en el listado de propuestas"
+        recommended_proposals: "Mostrar recomendaciones en el listado de iniciativas"
         redeemable_code: "Código de verificación por carta (opcional)"
       direct_message:
         title: "Título"
@@ -498,7 +498,7 @@ es:
         action_type: Tipo
         action_type_proposed_action: "Acción propuesta"
         action_type_resource: "Recurso"
-        published_proposal: "¿Para propuestas publicadas?"
+        published_proposal: "¿Para iniciativas publicadas?"
       dashboard/administrator_task:
         source: Fuente
         user: Ejecutado por

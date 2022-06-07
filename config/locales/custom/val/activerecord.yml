@@ -118,8 +118,8 @@ val:
         one: "Notificacio de proposta"
         other: "Notificacions de propostes"
       dashboard/action:
-        one: Acción del panel de control de propuestas
-        other: Acciones del panel de control de propuestas
+        one: Acción del panel de control de iniciatives
+        other: Acciones del panel de control de iniciatives
       dashboard/administrator_task:
         one: Tarea
         other: Tareas
@@ -244,9 +244,9 @@ val:
         terms_of_service: "Termes de servei"
         video_url: "Enllaç a vídeo extern"
       proposal/translation:
-        title: "Títol de la proposta"
-        description: "Text desenvolupat de la proposta"
-        summary: "Resum de la proposta"
+        title: "Títol de la iniciative"
+        description: "Text desenvolupat de la iniciative"
+        summary: "Resum de la iniciative"
         retired_explanation: "Explicación"
       user:
         login: "Email o nom de la persona usuària"
@@ -462,7 +462,7 @@ val:
         action_type: Tipo
         action_type_proposed_action: "Acción propuesta"
         action_type_resource: "Recurso"
-        published_proposal: "¿Para propuestas publicadas?"
+        published_proposal: "¿Para iniciatives publicadas?"
       dashboard/administrator_task:
         source: Fuente
         user: Ejecutado por
