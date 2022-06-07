@@ -4,6 +4,11 @@ $grid-column-gutter: (
   medium: 0,
 );
 
+.admin .header {
+  padding-right: 0.9375rem;
+  padding-left: 0.9375rem;
+}
+
 body > header,
 .wrapper > header {
   @include grid-column-gutter;
