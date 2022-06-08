@@ -6,7 +6,7 @@
       <% if card.image.present? %>
         <%= image_tag(card.image_url(:large), alt: card.image.title) %>
       <% end %>
-       <figcaption>
+      <figcaption>
         <% if card.label.present? %>
           <span><%= card.label %></span>
         <% end %>

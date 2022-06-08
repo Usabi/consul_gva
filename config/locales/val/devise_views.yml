@@ -2,11 +2,10 @@ val:
   devise_views:
     confirmations:
       new:
-        email_label: Correu electrònic
         submit: Reenviar instruccions
         title: Reenviar instruccions de confirmació
       show:
-        instructions: Vamos a proceder a confirmar la cuenta con el email <b>%{email}</b>
+        instructions: Confirmar el compte amb l'email %{email}
         new_password_confirmation_label: Torna a introduïr la clau de nou
         new_password_label: Nova clau d'acces
         please_set_password: Si us plau introdueix una nova clau d'acces per al teu compte (et permetrà iniciar sessió amb el correu electrònic de més amunt)
@@ -39,21 +38,16 @@ val:
     organizations:
       registrations:
         new:
-          email_label: Correu electrònic
-          organization_name_label: Nom de l'organització
           password_confirmation_label: Repeteix la contrasenya anterior
-          password_label: Contrasenya
-          phone_number_label: Telèfon
-          responsible_name_label: Nom i cognoms de la persona responsable del colectiu
           responsible_name_note: Sera la persona representant de l'associació/col·lectiu en el nom del qual es presenten les propostes
           submit: Registrar-se
           title: Registrar-se com organització / col·lectiu
         success:
           back_to_index: Entés, tornar a la pàgina principal
-          instructions_1: "En breve <b>nos pondremos en contacto contigo</b> para verificar que realmente representas a este colectivo."
-          instructions_2: Mientras <b>revisa tu correo electrónico</b>, te hemos enviado un <b>enlace para confirmar tu cuenta</b>.
-          instructions_3: Una vez confirmado, podrás empezar a participar como colectivo no verificado.
-          thank_you: Gracias por registrar tu colectivo en la web. Ahora está <b>pendiente de verificación</b>.
+          instructions_1: "<strong>Contactarem amb tu en breu</strong> per comprovar que tens la capacitat de representar a aquest colectiu."
+          instructions_2: Mentres que el teu <strong>email es revisat</strong>, t'hem enviat un <strong>enllaç per a confirmar el teu compte</strong>.
+          instructions_3: Una vegada confirmat, podràs començar a participar com a col·lectiu no verificat.
+          thank_you: Gracies per registrar el teu col·lectiu en la web. Ara està <strong>pendent de verificació</strong>.
           title: Registre d'organització / col·lectiu
     passwords:
       edit:
@@ -62,13 +56,10 @@ val:
         password_label: Nova contrasenya
         title: Canvia la teua contrasenya
       new:
-        email_label: Correu electrònic
         send_submit: Enviar instruccions
         title: Has oblidat la teua contrasenya?
     sessions:
       new:
-        login_label: Email o nom d'usuari
-        password_label: Contrasenya
         remember_me: Recordam
         submit: Entrar
         title: Iniciar sessió
@@ -106,24 +97,16 @@ val:
           waiting_for: "Esperant confirmació de:"
         new:
           cancel: Cancelar login
-          email_label: Correu electrònic
           organization_signup: Representes a una organització / col·lectiu? %{signup_link}
           organization_signup_link: Regístra't ací
           password_confirmation_label: Repeteix la contrasenya anterior
-          password_label: Contrasenya
-          redeemable_code: Codi de verificació per correu electronic (opcional)
-          submit: Registrar-se
-          terms: En registrar-te accepte els %{terms}
-          terms_link: termes i condicions d'ús
-          terms_title: Al registrar-te acceptes les condicions d'ús
-          title: Registrar-se
+          submit: Registrarse
+          terms: Al registrarte acceptes les %{terms}
+          terms_link: termes i condicions d'us
+          terms_title: Al registrar-te acceptes les condicions d'us
+          title: Registrarse
           username_is_available: Nom d'usuari disponible
           username_is_not_available: Nom d'usuari ya existeix
-          username_label: Nom d'usuari
-          username_note: Nom públic que apareixerà en les teues publicacions
+          username_note: Nom public que apareixerà en les teues publicacions
         success:
           back_to_index: Entes, tornar a la pàgina principal
-          instructions_1: Por favor <b>revisa tu correo electrónico</b> - te hemos enviado un <b>enlace para confirmar tu cuenta</b>.
-          instructions_2: Una vez confirmado, podrás empezar a participar.
-          thank_you: Gracias por registrarte en la web. Ahora debes <b>confirmar tu correo</b>.
-          title: Confirma la teua direcció d'email
