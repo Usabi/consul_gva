@@ -21,3 +21,20 @@ body > header,
     text-decoration: underline;
   }
 }
+
+
+body {
+  &.public {
+    @include breakpoint($global-width) {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+  }
+
+  .custom-welcome {
+    @include breakpoint($global-width) {
+      margin-left: $body-margin;
+      margin-right: $body-margin;
+    }
+  }
+}
