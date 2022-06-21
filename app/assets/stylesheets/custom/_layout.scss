@@ -24,17 +24,25 @@ body > header,
 
 
 body {
+
   &.public {
     @include breakpoint($global-width) {
-      margin-left: 0 !important;
-      margin-right: 0 !important;
+      margin-left: 0;
+      margin-right: 0;
     }
-  }
 
-  .custom-welcome {
-    @include breakpoint($global-width) {
-      margin-left: $body-margin;
-      margin-right: $body-margin;
+    .wrapper {
+      @include breakpoint($global-width) {
+        margin-left: $body-margin;
+        margin-right: $body-margin;
+      }
+    }
+
+    .custom-welcome {
+      @include breakpoint($global-width) {
+        margin-left: $body-margin;
+        margin-right: $body-margin;
+      }
     }
   }
 }
