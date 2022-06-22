@@ -26,10 +26,9 @@ body > header,
 body {
 
   &.public {
-    @include breakpoint($global-width) {
-      margin-left: 0;
-      margin-right: 0;
-    }
+
+    margin-left: 0;
+    margin-right: 0;
 
     .wrapper {
       @include breakpoint($global-width) {
@@ -38,11 +37,5 @@ body {
       }
     }
 
-    .custom-welcome {
-      @include breakpoint($global-width) {
-        margin-left: $body-margin;
-        margin-right: $body-margin;
-      }
-    }
   }
 }
