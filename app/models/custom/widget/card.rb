@@ -4,6 +4,7 @@ class Widget::Card
   translates :link_url, touch: true
   translates :link_text_2, touch: true
   translates :link_url_2, touch: true
+  validates_translation :link_url, presence: true
 
   def self.body
     where(header: false, middle: false, cardable_id: nil).order(:created_at)
