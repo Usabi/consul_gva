@@ -2,7 +2,7 @@
 <% card_right = Widget::Card.find_by(label: "middle_right_#{I18n.locale}") %>
 
 <% if card_left && card_right %>
-  <div class="jumbo slider-gva">
+  <div class="header-card jumbo slider-gva">
     <div class="row">
       <% [:left, :right].each do |position| %>
         <% card = eval("card_#{position}") %>
