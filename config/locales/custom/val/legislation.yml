@@ -46,7 +46,7 @@ val:
       header:
         additional_info: Informació adicional
         description: Descripció
-        more_info: Més informació y contexte
+        more_info: Més informació i context
       proposals:
         empty_proposals: No hi ha propostes
         filters:
