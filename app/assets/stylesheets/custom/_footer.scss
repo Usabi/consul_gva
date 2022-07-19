@@ -20,4 +20,9 @@ footer {
 .footer {
   background: $black-gva;
   font-size: 0.875rem;
+
+  .public & {
+    @include full-width-background($adjust-margin: false, $adjust-padding: false);
+  }
+
 }

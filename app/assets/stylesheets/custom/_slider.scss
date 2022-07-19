@@ -44,11 +44,40 @@ $padding: 30px;
   }
 }
 
-@media print, screen and (max-width: 640px){
-  .slider-gva {
-    .content-left, .content-right {
-      height: 25em;
-      padding: 2em 5em;
-    }
+// @media print, screen and (max-width: 640px){
+//   .slider-gva {
+//     .content-left, .content-right {
+//       height: 25em;
+//       padding: 2em 5em;
+//     }
+//   }
+// }
+
+@media (max-width: 640px) {
+
+  .slider-gva .content-left, .slider-gva .content-right {
+    height: auto;
+    padding: 0;
+  }
+
+  a#js-advanced-search-title {
+    width: 100%;
+  }
+
+  ul.submenu.menu.vertical {
+    text-align: right;
+  }
+
+  .top-bar span.float-right {
+    margin-top: 9px;
+  }
+
+  .top-bar span.float-right .menu-button {
+    padding-right: 45px;
+    margin-right: 5px;
+  }
+
+  .top-bar span.float-right .menu-button .menu-icon {
+    right: 20px;
   }
 }
