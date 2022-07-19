@@ -1,14 +1,17 @@
 .wrapper > header {
   background: $white-gva;
 }
+
 .top-bar {
   background: $white-gva !important;
-  color: $red-gva;
-  ul{
+  color: $red-gva !important;
+
+  ul {
     padding-top: 0.9375rem;
     padding-bottom: 0.5rem;
     float: right;
   }
+
   .menu .menu-text {
     padding: 0;
   }
@@ -17,7 +20,8 @@
 
     a {
       color: $red-gva;
-      &:hover:not(.button){
+
+      &:hover:not(.button) {
         font-weight: bold;
         text-decoration: none;
       }
@@ -29,7 +33,8 @@
         color: $red-gva;
         margin-right: 0;
       }
-      &:hover{
+
+      &:hover {
         background-color: $red-gva;
         color: $white;
       }
@@ -71,16 +76,21 @@
 }
 
 .subnavigation {
+
   border-top: 1px solid $red-gva;
-  @include breakpoint(medium){
+
+  @include breakpoint(medium) {
+
     ul {
       display: flex;
       justify-content: space-between;
     }
   }
+
   a {
     color: $link;
-    &:hover{
+
+    &:hover {
       text-decoration: none;
       color: $red-gva;
     }
@@ -95,7 +105,6 @@
     }
   }
 }
-
 
 .dropdown.menu > li {
 
@@ -122,12 +131,13 @@
   margin: 0;
   color: $red-gva;
   cursor: pointer;
-  &:hover{
+
+  &:hover {
     font-weight: bold;
   }
 }
 
-.slogan{
+.slogan {
   text-align: right;
   margin: 0 15px 15px 0;
   font-size: 14px;
@@ -150,34 +160,37 @@
 }
 
 .jumbo.highlight {
-    background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    background-size: cover;
-    background-position: center;
-    margin-top: -1.5em;
-    border-bottom: 1px solid $red-gva;
-    min-height: 500px;
-    padding: 0;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position: center;
+  margin-top: -1.5em;
+  border-bottom: 1px solid $red-gva;
+  min-height: 500px;
+  padding: 0;
 
-    h1{
-      color: $white-gva;
-      margin: 1rem 0 1.5rem;
-    }
-    .lead {
-      color: $dark-blue-gva;
-      font-size: 1em;
-      margin: 1.5rem 0;
-    }
-    .title-background{
-      background-color: rgba(5, 152, 155, 0.85)
-    }
+  h1 {
+    color: $white-gva;
+    margin: 1rem 0 1.5rem;
+  }
+
+  .lead {
+    color: $dark-blue-gva;
+    font-size: 1em;
+    margin: 1.5rem 0;
+  }
+
+  .title-background {
+    background-color: rgba(5, 152, 155, 0.85);
+  }
 }
 
 @media print, screen and (max-width: 1200px){
-  .subnavigation{
+  .subnavigation {
     ul li {
       margin: 0.9375rem;
     }
+
     a {
       line-height: inherit;
     }
@@ -185,8 +198,10 @@
 }
 
 @media print, screen and (max-width: 39.99875em){
-  .jumbo.highlight{
+
+  .jumbo.highlight {
     background-position: right;
+
     .lead {
       color: white;
       text-shadow: 1px 1px black;
@@ -198,25 +213,39 @@
   .top-bar {
     display: inline-block;
     width: 100%;
-    ul.menu {
+
+    .menu {
       padding-top: 2.9375rem;
       padding-right: 0;
     }
   }
-  .top-bar .menu-icon { right: 8px; position :absolute; top: 20px;}
-  .top-bar .top-bar-title { margin-left: auto; margin-right: 32px; }
-  .top-bar .button{
-    border: none;
-        margin-right: 0;
+
+  .top-bar .menu-icon {
+    right: 8px;
+    position: absolute;
+    top: 20px;
+  }
+
+  .top-bar .top-bar-title {
+    margin-left: auto;
+    margin-right: 32px;
+  }
+
+  .top-bar .button {
+    border: 0;
+    margin-right: 0;
     float: right;
   }
-  .top-bar ul{
+
+  .top-bar ul {
     float: unset;
+
     li a {
       text-align: right;
     }
   }
-  .subnavigation ul li{
-        margin: 0.3em;
+
+  .subnavigation.row {
+    margin: 0;
   }
 }

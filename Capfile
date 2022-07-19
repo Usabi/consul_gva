@@ -18,6 +18,7 @@ require_relative 'lib/gem_extensions/sshkit'
 
 require "capistrano/puma"
 install_plugin Capistrano::Puma, load_hooks: false
+install_plugin Capistrano::Puma::Daemon
 
 #SCM: Git
 require "capistrano/scm/git"

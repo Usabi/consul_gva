@@ -1,6 +1,41 @@
+
+$grid-column-gutter: (
+  small: 0,
+  medium: 0,
+);
+
+.admin .header {
+  padding-right: 0.9375rem;
+  padding-left: 0.9375rem;
+}
+
+body > header,
+.wrapper > header {
+  @include grid-column-gutter;
+}
+
+
 .top-bar-right {
   .is-active {
     font-weight: bold;
     text-decoration: underline;
+  }
+}
+
+
+body {
+
+  &.public {
+
+    margin-left: 0;
+    margin-right: 0;
+
+    .wrapper {
+      @include breakpoint($global-width) {
+        margin-left: $body-margin;
+        margin-right: $body-margin;
+      }
+    }
+
   }
 }

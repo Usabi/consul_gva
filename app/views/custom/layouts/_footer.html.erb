@@ -1,7 +1,7 @@
 <footer>
   <div class="row">
     <%# TODO Columna Logos %>
-    <div class="column small-12 large-2 logos">
+    <div class="column small-12 large-4 logos">
       <%= image_tag("logos/logo-gva.png") %>
       <%= image_tag("logos/logo-participa.png") %>
     </div>
@@ -70,9 +70,6 @@
         <li><%= t("layouts.footer.contact_us_short") %> <%= mail_to Setting['mailer_from_address'] %></li>
       </ul>
     </div>
-    <%# TODO columna social %>
-    <div class="column small-12 large-2 footer__social">
-      <%= render 'layouts/social_footer' %>
-    </div>
+    <%= render Layout::SocialComponent.new %>
   </div>
-  <footer>
+<footer>

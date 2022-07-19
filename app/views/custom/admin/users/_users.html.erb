@@ -1,7 +1,7 @@
 <%= render "shared/filter_subnav", i18n_namespace: "admin.users.index" %>
 
 <% if @users.any? %>
-  <h3 class="margin"><%= page_entries_info @users %></h3>
+  <h3><%= page_entries_info @users %></h3>
 
   <%= form_tag request_verification_admin_verifications_path(request.query_parameters), method: :put do %>
     <% if @current_filter == 'residence_requested' %>

@@ -20,9 +20,9 @@
 <div id="middle">
   <h3 class="inline-block"><%= t("admin.homepage.middle_title") %></h3>
 
-  <div class="float-right">
-    <%= link_to t("admin.homepage.create_middle"), new_admin_widget_card_path(middle_card: true), class: "button" %>
-  </div>
+  <%# <div class="float-right"> %>
+    <%#= link_to t("admin.homepage.create_middle"), new_admin_widget_card_path(middle_card: true), class: "button" %>
+  <%# </div> %>
 
    <%= render Admin::Widget::Cards::TableComponent.new(
     @middle,
@@ -53,7 +53,7 @@
 
 <div class="small-12 medium-6 large-4 column end">
   <div class="callout">
-    <h3 class="inline-block"><%= t("settings.#{@recommendations.key}") %></h3>
+    <h3 id="<%= dom_id(@recommendations, :title) %>" class="inline-block"><%= t("settings.#{@recommendations.key}") %></h3>
     <%= render "setting", setting: @recommendations %>
   </div>
 </div>

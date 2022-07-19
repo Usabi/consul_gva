@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<%= I18n.locale %>">
+<html <%= "dir=rtl" if rtl? %> lang="<%= I18n.locale %>">
 
   <head>
     <%= render "layouts/common_head", default_title: "Admin" %>
@@ -14,14 +14,14 @@
 
       <nav id="side_menu" class="admin-sidebar">
         <% if namespace == "admin" %>
-          <%= render "/admin/menu" %>
-          <%#= render Admin::MenuComponent.new %>
+          <%= render Admin::MenuComponent.new %>
         <% elsif namespace == "sdg_management" %>
           <%= render SDGManagement::MenuComponent.new %>
         <% else %>
           <%= render "/#{namespace}/menu" %>
         <% end %>
       </nav>
+
       <div class="admin-content">
         <%= label_tag :show_menu, t("admin.menu.admin"),
                       "aria-hidden": true, class: "button hollow expanded" %>
