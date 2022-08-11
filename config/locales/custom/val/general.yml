@@ -780,3 +780,10 @@ val:
     title: ⚠ Segur que vols publicar la teua proposta ací? ⚠
     description: Fins al 30 de maig pots presentar la teua proposta directament als Pressupostos Participatius!
     url_text: Pressupostos Participatius
+  legislations:
+    processes:
+      index:
+        search_form:
+          button: Cercar
+          placeholder: Cercar processos...
+          title: Cercar

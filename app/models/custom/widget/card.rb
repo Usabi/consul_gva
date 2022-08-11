@@ -4,6 +4,8 @@ class Widget::Card
   translates :link_url, touch: true
   translates :link_text_2, touch: true
   translates :link_url_2, touch: true
+
+  validates :link_url, presence: false
   validates_translation :link_url, presence: true
 
   def self.body
