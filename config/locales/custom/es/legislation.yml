@@ -60,8 +60,14 @@ es:
         filters:
           open: Abiertos
           past: Finalizados
+          preview_phase: Consulta previa
+          public_phase: Información pública
+          relevance: Más relevantes
         no_open_processes: No hay procesos activos
         no_past_processes: No hay procesos terminados
+        no_preview_phase_processes: No hay procesos
+        no_public_phase_processes: No hay procesos
+        no_relevance_processes: No hay procesos
         section_header:
           icon_alt: Icono de Elaboración normativa
           title: Elaboración normativa
