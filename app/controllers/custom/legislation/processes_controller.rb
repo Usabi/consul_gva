@@ -5,12 +5,12 @@ class Legislation::ProcessesController
 
   before_action :load_categories, only: :index
   before_action :set_search_filter, only: :index
-  has_filters %w[preview_phase public_phase past relevance], only: :index
-
+  skip_before_action :set_search_order
+  has_filters Legislation::Process.processes_filters, only: :index
   # Overwrite index of CommentableActions
   def index
     @current_filter ||= "preview_phase"
-    @processes = @search_terms.present? || @advanced_search_terms.present? ? resource_model.all.published.not_in_draft : resource_model.send(@current_filter).published.not_in_draft
+    @processes = @search_terms.present? || advance_search_term_present? ? resource_model.all.published.not_in_draft : resource_model.send(@current_filter).published.not_in_draft
 
     if @search_terms.present?
       if @search_terms.to_i.positive?
@@ -21,7 +21,7 @@ class Legislation::ProcessesController
       end
     end
 
-    @processes = @advanced_search_terms.present? ? @processes.filter_by(@advanced_search_terms) : @processes
+    @processes = advance_search_term_present? ? @processes.filter_by(@advanced_search_terms) : @processes
     @processes = @processes.page(params[:page]).order(start_date: :desc)
     @tag_cloud = tag_cloud
   end
@@ -42,8 +42,12 @@ class Legislation::ProcessesController
       Legislation::Process
     end
 
+    def advance_search_term_present?
+      @advanced_search_terms.present? && @advanced_search_terms.keys.map { |key| @advanced_search_terms[key].present? }.uniq.include?(true)
+    end
+
     def set_search_filter
-      if params[:search].present? || params[:advanced_search].present?
+      if (params[:search].present? || advance_search_present?) && params[:filter].blank?
         params[:filter] = "relevance"
       end
     end
