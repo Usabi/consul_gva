@@ -60,8 +60,14 @@ val:
         filters:
           open: Oberts
           past: Finalitzats
+          preview_phase: Consulta prèvia
+          public_phase: Informació Pública
+          relevance: Més rellevants
         no_open_processes: No hi ha processos actius
         no_past_processes: No hi ha processos finalitzats
+        no_preview_phase_processes: No hi ha processos
+        no_public_phase_processes: No hi ha processos
+        no_relevance_processes: No hi ha processos
         section_header:
           icon_alt: Icona de Elaboració normativa
           title: Elaboració normativa

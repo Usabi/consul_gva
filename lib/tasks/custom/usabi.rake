@@ -3,6 +3,7 @@ namespace :usabi do
   task execute_update_tasks: [
                               "settings:add_new_settings",
                               "consul:execute_release_tasks",
-                              "sitemap:refresh:no_ping"
+                              "sitemap:refresh:no_ping",
+                              "budget_investments:set_winners"
                             ]
 end
