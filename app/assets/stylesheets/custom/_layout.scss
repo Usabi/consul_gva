@@ -39,3 +39,15 @@ body {
 
   }
 }
+
+.auth-page {
+  .wrapper {
+    position: relative;
+
+    .login-gva {
+      position: absolute;
+      bottom: 7px;
+      right: 15px;
+    }
+  }
+}

@@ -9,7 +9,7 @@ class GVLoginApi
   def initialize(host)
     @host = host.freeze
     @webservice_login = webservice(host).freeze
-    @web_gv_login = "#{@webservice_login}/gvlogin/login.xhtml?app=participem_gv&url=https://#{host == "localhost" ? "gvaparticipa-dsa.gva.es" : host}/login_token".freeze
+    @web_gv_login = "#{@webservice_login}/gvlogin/login.xhtml?app=participem_gv&url=https://#{host == "localhost" ? "gvaparticipa-dsa.gva.es" : host}/participem_gv_login".freeze
   end
 
   class ConnectionGVLogin
