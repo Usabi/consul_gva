@@ -22,6 +22,7 @@
         <th class="text-center"><%= t("admin.legislation.processes.process.comments") %></th>
         <% if current_user.administrator? %>
           <th class="text-center"><%= t("activerecord.models.user.one") %></th>
+          <th class="text-center">Email</th>
         <% end %>
         <% if feature?(:sdg) %>
           <th class="text-center"><%= SDG::Goal.model_name.human(count: :other).upcase_first %></th>
@@ -43,6 +44,7 @@
           <td class="text-center"><%= process.total_comments %></td>
           <% if current_user.administrator? %>
             <td class="text-center"><%= process.user&.username %></td>
+            <td class="text-center"><%= process.user&.email %></td>
           <% end %>
           <% if feature?(:sdg) %>
             <td class="text-center"><%= process.sdg_goal_list %></td>

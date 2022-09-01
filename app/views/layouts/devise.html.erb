@@ -27,6 +27,14 @@
             </div>
           </div>
         </div>
+        <% if Rails.application.secrets.environment != 'production' %>
+          <div class="login-gva">
+            <%= link_to "GVLogin", participem_gv_login_path,
+                      title: "Entrar con GVLogin",
+                      class: "float-right"
+                      %>
+          </div>
+        <% end %>
       </div>
     </div>
 
