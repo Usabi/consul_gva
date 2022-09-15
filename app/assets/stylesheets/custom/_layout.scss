@@ -41,13 +41,14 @@ body {
 }
 
 .auth-page {
-  .wrapper {
+  .auth-image {
     position: relative;
 
     .login-gva {
+      width: 100px;
       position: absolute;
-      bottom: 7px;
-      right: 15px;
+      bottom: -17px;
+      right: 12px;
     }
   }
 }
