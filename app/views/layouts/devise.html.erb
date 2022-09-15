@@ -15,6 +15,13 @@
             <%= image_tag(image_path_for("logo_header.png"), class: "float-left", alt: setting["org_name"]) %>
           <% end %>
         </h1>
+        <h1 class="logo margin login-gva">
+          <% if Rails.application.secrets.environment != 'production' %>
+              <%= link_to participem_gv_login_path do %>
+                <%= image_tag(image_path_for("consulgva/gvlogingvparticipa.png"), alt: "Entrar con GVLogin") %>
+              <% end %>
+          <% end%>
+        <h1>
       </div>
 
       <div class="small-12 medium-9 column">
@@ -27,14 +34,6 @@
             </div>
           </div>
         </div>
-        <% if Rails.application.secrets.environment != 'production' %>
-          <div class="login-gva">
-            <%= link_to "GVLogin", participem_gv_login_path,
-                      title: "Entrar con GVLogin",
-                      class: "float-right"
-                      %>
-          </div>
-        <% end %>
       </div>
     </div>
 

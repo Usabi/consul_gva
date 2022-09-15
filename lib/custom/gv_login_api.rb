@@ -27,6 +27,7 @@ class GVLoginApi
   class Response
     def initialize(body)
       @body = JSON.parse(body).with_indifferent_access
+      Rails.logger.warn @body[:datos]
     end
 
     def valid?

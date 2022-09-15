@@ -2,7 +2,15 @@ class Users::GvLoginController < ApplicationController
   skip_authorization_check :login_or_redirect_to_sso
 
   GVA_ROLES = {
-    "PARTICIPEM_ADMIN" => :administrator
+    "R_ADMIN" => :administrator,
+    "R_ASOCI" => :organization,
+    "R_CARGO" => :official,
+    "R_MODERA" => :moderator,
+    "R_EVALUA" => :valuator,
+    "R_GESTOR" => :manager,
+    "R_ODS" => :sdg_manager,
+    "R_LEGISLA" => :legislator,
+    "R_PRESUPUESTO" => :budget_manager
   }.freeze
 
   def login_or_redirect_to_sso
@@ -91,14 +99,14 @@ class Users::GvLoginController < ApplicationController
       user
     end
 
-    def success_admin_login
+    def success_login
       flash[:success] = I18n.t("devise.sessions.signed_in")
 
       sign_in_and_redirect @user, event: :authentication
     end
 
-    def error_admin_login
-      @user.administrator.delete if @user.administrator?
+    def error_login
+      @user.send("#{GVA_ROLES[role]}").delete if @user.send("#{GVA_ROLES[role]}?")
       flash[:error] = I18n.t("devise.failure.no_backend_roles")
       delete_cookies
 
@@ -123,13 +131,13 @@ class Users::GvLoginController < ApplicationController
     def save_user(data)
       if @user.save
         role = data.roles.present? ? data.roles&.dig(:role, :codigo) : ""
-        if role == "PARTICIPEM_ADMIN"
+        if GVA_ROLES.include?(role)
           @user.send("create_#{GVA_ROLES[role]}") unless @user.send("#{GVA_ROLES[role]}?")
           # Only sign in if admin right now
           # Move sign_in outside of if when other roles added
-          success_admin_login
+          success_login
         else
-          error_admin_login
+          error_login
         end
       else
         error_save_user
