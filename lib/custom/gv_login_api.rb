@@ -27,7 +27,6 @@ class GVLoginApi
   class Response
     def initialize(body)
       @body = JSON.parse(body).with_indifferent_access
-      Rails.logger.warn @body[:datos]
     end
 
     def valid?
@@ -55,7 +54,11 @@ class GVLoginApi
       def to_struct(json_object)
         new_object = json_object.keys.reduce({}) do |hash, key|
           unless key.to_s == "infoAmpliada"
-            hash[key.to_s.underscore] = json_object[key]
+            unless key.to_s == "roles"
+              hash[key.to_s.underscore] = json_object[key]
+            else
+              hash[key.to_s.underscore] = json_object[key]["role"]["parametros"] ["parametro"]["valorParametro"]
+            end
           else
             if key.to_s == "infoAmpliada"
               hash[key.to_s.underscore] = json_object[key][:parametro].reduce({}) do |parameter_hash, parameter|
