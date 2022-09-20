@@ -130,9 +130,15 @@ class Users::GvLoginController < ApplicationController
 
     def save_user(data)
       if @user.save
-        role = data.roles.present? ? data.roles&.dig(:role, :codigo) : ""
+        role = data.roles.presence || ""
         if GVA_ROLES.include?(role)
-          @user.send("create_#{GVA_ROLES[role]}") unless @user.send("#{GVA_ROLES[role]}?")
+          GVA_ROLES.map do |key, value|
+            if key == role
+              @user.send("create_#{GVA_ROLES[role]}") unless @user.send("#{GVA_ROLES[role]}?")
+            else
+              @user.send(GVA_ROLES[key].to_s).delete if @user.send("#{GVA_ROLES[key]}?")
+            end
+          end
           # Only sign in if admin right now
           # Move sign_in outside of if when other roles added
           success_login
