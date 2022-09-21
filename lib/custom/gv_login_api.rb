@@ -57,7 +57,12 @@ class GVLoginApi
             unless key.to_s == "roles"
               hash[key.to_s.underscore] = json_object[key]
             else
-              hash[key.to_s.underscore] = json_object[key]["role"]["parametros"] ["parametro"]["valorParametro"]
+              role = json_object[key]["role"]
+              if role.is_a?(Array)
+                hash[key.to_s.underscore] = role.map { |json_role| json_role["parametros"] ["parametro"]["valorParametro"] }
+              else
+                hash[key.to_s.underscore] = role["parametros"] ["parametro"]["valorParametro"]
+              end
             end
           else
             if key.to_s == "infoAmpliada"

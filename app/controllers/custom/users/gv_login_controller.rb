@@ -13,6 +13,8 @@ class Users::GvLoginController < ApplicationController
     "R_PRESUPUESTO" => :budget_manager
   }.freeze
 
+  ROLES = GVA_ROLES.map { |role, value| role }.freeze
+
   def login_or_redirect_to_sso
     remote_ip = request.x_forwarded_for
     cookie = cookies["gvlogin.login.GVLOGIN_COOKIE"]
@@ -106,7 +108,7 @@ class Users::GvLoginController < ApplicationController
     end
 
     def error_login
-      @user.send("#{GVA_ROLES[role]}").delete if @user.send("#{GVA_ROLES[role]}?")
+      # @user.send("#{GVA_ROLES[role]}").delete if @user.send("#{GVA_ROLES[role]}?")
       flash[:error] = I18n.t("devise.failure.no_backend_roles")
       delete_cookies
 
@@ -128,22 +130,41 @@ class Users::GvLoginController < ApplicationController
       redirect_to new_user_session_path
     end
 
+    def set_roles(role)
+      GVA_ROLES.map do |key, value|
+        if key == role
+          add_role(role)
+        else
+          remove_role(key)
+        end
+      end
+    end
+
+    def add_role(role)
+      @user.send("create_#{GVA_ROLES[role]}") unless @user.send("#{GVA_ROLES[role]}?")
+    end
+
+    def remove_role(role)
+      @user.send(GVA_ROLES[role].to_s).delete if @user.send("#{GVA_ROLES[role]}?")
+    end
+
     def save_user(data)
       if @user.save
-        role = data.roles.presence || ""
-        if GVA_ROLES.include?(role)
-          GVA_ROLES.map do |key, value|
-            if key == role
-              @user.send("create_#{GVA_ROLES[role]}") unless @user.send("#{GVA_ROLES[role]}?")
-            else
-              @user.send(GVA_ROLES[key].to_s).delete if @user.send("#{GVA_ROLES[key]}?")
-            end
+        user_roles = data.roles.presence || ""
+        remove_roles = ROLES - user_roles
+        if !(ROLES & user_roles).any?
+          error_login
+        end
+        if user_roles.is_a?(Array)
+          user_roles.each do |role|
+            add_role(role)
           end
-          # Only sign in if admin right now
-          # Move sign_in outside of if when other roles added
+          remove_roles.each do |role|
+            remove_role(role)
+          end
           success_login
         else
-          error_login
+          set_roles(roles)
         end
       else
         error_save_user
