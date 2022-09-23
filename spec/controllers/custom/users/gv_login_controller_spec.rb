@@ -15,208 +15,257 @@ describe Users::GvLoginController do
   end
   let(:valid_vmcrc_user) { build(:vmcrc_persona, nomb: data.name, dni: data.dni, dcorreoint: data.email, codper: data.codper) }
   let(:invalid_vmcrc_user) { build(:vmcrc_persona, nomb: data.name, dni: data.dni, dcorreoint: "", codper: "") }
+
   let(:valid_body) do
     GVLoginApi::Response.new({
-      "resultado": true,
-      "datos": {
-          "mail": data.email,
-          "roles": {
-            "role": {
-              "codigo": "PARTICIPEM_ADMIN"
+      resultado: true,
+      datos: {
+          mail: data.email,
+          roles: {
+            role: {
+              codigo: "PARTICIPEM_CON",
+              parametros: {
+                parametro: {
+                  valorParametro: "R_MODERA",
+                  nombreParametro: "ROL"
+                }
+              }
             }
           },
-          "nombre": data.name,
-          "infoAmpliada": {
-            "parametro": [
-                {
-                  "valorParametro": data.codper,
-                  "nombreParametro": "codper"
-                }
+          nombre: data.name,
+          infoAmpliada: {
+            parametro: [
+              {
+                valorParametro: data.codper,
+                nombreParametro: "codper"
+              }
             ]
           },
-          "dni": data.dni
+          dni: data.dni
         }
       }.to_json)
   end
 
   let(:body_without_roles) do
     GVLoginApi::Response.new({
-      "resultado": true,
-      "datos": {
-          "mail": data.email,
-          "roles": "",
-          "nombre": data.name,
-          "infoAmpliada": {
-            "parametro": [
-                {
-                  "valorParametro": data.codper,
-                  "nombreParametro": "codper"
-                }
+      resultado: true,
+      datos: {
+          mail: data.email,
+          roles: "",
+          nombre: data.name,
+          infoAmpliada: {
+            parametro: [
+              {
+                valorParametro: data.codper,
+                nombreParametro: "codper"
+              }
             ]
           },
-          "dni": data.dni
+          dni: data.dni
         }
       }.to_json)
   end
 
   let(:body_invalid_email) do
     GVLoginApi::Response.new({
-      "resultado": true,
-      "datos": {
-          "mail": "Email",
-          "roles": {
-            "role": {
-              "codigo": "PARTICIPEM_ADMIN"
+      resultado: true,
+      datos: {
+          mail: "Email",
+          roles: {
+            role: {
+              codigo: "PARTICIPEM_CON",
+              parametros: {
+                parametro: {
+                  valorParametro: "R_MODERA",
+                  nombreParametro: "ROL"
+                }
+              }
             }
           },
-          "nombre": data.name,
-          "infoAmpliada": {
-            "parametro": [
+          nombre: data.name,
+          infoAmpliada: {
+            parametro: [
               {
-                "valorParametro": data.codper,
-                "nombreParametro": "codper"
+                valorParametro: data.codper,
+                nombreParametro: "codper"
               }
           ]
           },
-          "dni": data.dni
+          dni: data.dni
         }
       }.to_json)
   end
 
   let(:body_not_gva_email) do
     GVLoginApi::Response.new({
-      "resultado": true,
-      "datos": {
-          "mail": "test@test.com",
-          "roles": {
-            "role": {
-              "codigo": "PARTICIPEM_ADMIN"
+      resultado: true,
+      datos: {
+          mail: "test@test.com",
+          roles: {
+            role: {
+              codigo: "PARTICIPEM_CON",
+              parametros: {
+                parametro: {
+                  valorParametro: "R_MODERA",
+                  nombreParametro: "ROL"
+                }
+              }
             }
           },
-          "nombre": data.name,
-          "infoAmpliada": {
-            "parametro": [
+          nombre: data.name,
+          infoAmpliada: {
+            parametro: [
               {
-                "valorParametro": data.codper,
-                "nombreParametro": "codper"
+                valorParametro: data.codper,
+                nombreParametro: "codper"
               }
           ]
           },
-          "dni": data.dni
+          dni: data.dni
         }
       }.to_json)
   end
 
   let(:body_without_email) do
     GVLoginApi::Response.new({
-      "resultado": true,
-      "datos": {
-          "roles": {
-            "role": {
-              "codigo": "PARTICIPEM_ADMIN"
+      resultado: true,
+      datos: {
+          roles: {
+            role: {
+              codigo: "PARTICIPEM_CON",
+              parametros: {
+                parametro: {
+                  valorParametro: "R_MODERA",
+                  nombreParametro: "ROL"
+                }
+              }
             }
           },
-          "nombre": data.name,
-          "infoAmpliada": {
-            "parametro": [
+          nombre: data.name,
+          infoAmpliada: {
+            parametro: [
                 {
-                  "valorParametro": data.codper,
-                  "nombreParametro": "codper"
+                  valorParametro: data.codper,
+                  nombreParametro: "codper"
                 }
             ]
           },
-          "dni": data.dni
+          dni: data.dni
         }
       }.to_json)
   end
 
   let(:body_blank_email) do
     GVLoginApi::Response.new({
-      "resultado": true,
-      "datos": {
-          "mail": "",
-          "roles": {
-            "role": {
-              "codigo": "PARTICIPEM_ADMIN"
+      resultado: true,
+      datos: {
+          mail: "",
+          roles: {
+            role: {
+              codigo: "PARTICIPEM_CON",
+              parametros: {
+                parametro: {
+                  valorParametro: "R_MODERA",
+                  nombreParametro: "ROL"
+                }
+              }
             }
           },
-          "nombre": data.name,
-          "infoAmpliada": {
-            "parametro": [
+          nombre: data.name,
+          infoAmpliada: {
+            parametro: [
                 {
-                  "valorParametro": data.codper,
-                  "nombreParametro": "codper"
+                  valorParametro: data.codper,
+                  nombreParametro: "codper"
                 }
             ]
           },
-          "dni": data.dni
+          dni: data.dni
         }
       }.to_json)
   end
 
   let(:body_without_codper) do
     GVLoginApi::Response.new({
-      "resultado": true,
-      "datos": {
-          "mail": data.email,
-          "roles": {
-            "role": {
-              "codigo": "PARTICIPEM_ADMIN"
+      resultado: true,
+      datos: {
+          mail: data.email,
+          roles: {
+            role: {
+              codigo: "PARTICIPEM_CON",
+              parametros: {
+                parametro: {
+                  valorParametro: "R_MODERA",
+                  nombreParametro: "ROL"
+                }
+              }
             }
           },
-          "nombre": data.name,
-          "infoAmpliada": {
-            "parametro": []
+          nombre: data.name,
+          infoAmpliada: {
+            parametro: []
           },
-          "dni": data.dni
+          dni: data.dni
         }
       }.to_json)
   end
 
   let(:body_invalid_codper) do
     GVLoginApi::Response.new({
-      "resultado": true,
-      "datos": {
-          "mail": data.email,
-          "roles": {
-            "role": {
-              "codigo": "PARTICIPEM_ADMIN"
+      resultado: true,
+      datos: {
+          mail: data.email,
+          roles: {
+            role: {
+              codigo: "PARTICIPEM_CON",
+              parametros: {
+                parametro: {
+                  valorParametro: "R_MODERA",
+                  nombreParametro: "ROL"
+                }
+              }
             }
           },
-          "nombre": data.name,
-          "infoAmpliada": {
-            "parametro": [
-                {
-                  "valorParametro": "",
-                  "nombreParametro": "codper"
-                }
+          nombre: data.name,
+          infoAmpliada: {
+            parametro: [
+              {
+                valorParametro: "",
+                nombreParametro: "codper"
+              }
             ]
           },
-          "dni": data.dni
+          dni: data.dni
         }
       }.to_json)
   end
 
   let(:body_invalid_email_codper) do
     GVLoginApi::Response.new({
-      "resultado": true,
-      "datos": {
-          "mail": "test@test.com",
-          "roles": {
-            "role": {
-              "codigo": "PARTICIPEM_ADMIN"
+      resultado: true,
+      datos: {
+          mail: "test@test.com",
+          roles: {
+            role: {
+              codigo: "PARTICIPEM_CON",
+              parametros: {
+                parametro: {
+                  valorParametro: "R_MODERA",
+                  nombreParametro: "ROL"
+                }
+              }
             }
           },
-          "nombre": data.name,
-          "infoAmpliada": {
-            "parametro": [
-                {
-                  "valorParametro": "",
-                  "nombreParametro": "codper"
-                }
+          nombre: data.name,
+          infoAmpliada: {
+            parametro: [
+              {
+                valorParametro: "",
+                nombreParametro: "codper"
+              }
             ]
           },
-          "dni": data.dni
+          dni: data.dni
         }
       }.to_json)
   end
@@ -369,7 +418,6 @@ describe Users::GvLoginController do
           expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to eq(cookie)
           expect(flash[:success]).to eq(I18n.t("devise.sessions.signed_in"))
         end
-
       end
 
       context "invalid vmcrc_user" do
@@ -468,7 +516,6 @@ describe Users::GvLoginController do
           expect(flash[:error]).to eq(I18n.t("devise.failure.no_codeper_email"))
         end
       end
-
     end
 
     context "update user" do

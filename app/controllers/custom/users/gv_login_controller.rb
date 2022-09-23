@@ -19,7 +19,6 @@ class Users::GvLoginController < ApplicationController
     remote_ip = request.x_forwarded_for
     cookie = cookies["gvlogin.login.GVLOGIN_COOKIE"]
     gvlogin_api = GVLoginApi.new(request.host)
-
     if cookie
       begin
         check_context = gvlogin_api.context(remote_ip, cookie)
@@ -111,7 +110,6 @@ class Users::GvLoginController < ApplicationController
       # @user.send("#{GVA_ROLES[role]}").delete if @user.send("#{GVA_ROLES[role]}?")
       flash[:error] = I18n.t("devise.failure.no_backend_roles")
       delete_cookies
-
       redirect_to new_user_session_path
     end
 
@@ -119,14 +117,12 @@ class Users::GvLoginController < ApplicationController
       errors = @user.errors
       flash[:error] = errors.messages.map { |field, error| "#{field}: #{error.join(", ")} ('#{errors.details[field][0][:value]}')" }.join(", ")
       delete_cookies
-
       redirect_to new_user_session_path
     end
 
     def error_user_data
       flash[:error] = I18n.t("devise.failure.no_codeper_email")
       delete_cookies
-
       redirect_to new_user_session_path
     end
 
@@ -148,14 +144,19 @@ class Users::GvLoginController < ApplicationController
       @user.send(GVA_ROLES[role].to_s).delete if @user.send("#{GVA_ROLES[role]}?")
     end
 
+    def valid_roles?(roles)
+      n_roles = roles.is_a?(Array) ? roles : [roles]
+      !(ROLES & n_roles).any?
+    end
+
     def save_user(data)
       if @user.save
         user_roles = data.roles.presence || ""
-        remove_roles = ROLES - user_roles
-        if !(ROLES & user_roles).any?
+        if valid_roles?(user_roles)
           error_login
         end
         if user_roles.is_a?(Array)
+          remove_roles = ROLES - user_roles
           user_roles.each do |role|
             add_role(role)
           end
@@ -164,7 +165,7 @@ class Users::GvLoginController < ApplicationController
           end
           success_login
         else
-          set_roles(roles)
+          set_roles(user_roles)
         end
       else
         error_save_user
