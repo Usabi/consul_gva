@@ -145,15 +145,18 @@ class Users::GvLoginController < ApplicationController
     end
 
     def valid_roles?(roles)
+      return false if roles.blank?
+
       n_roles = roles.is_a?(Array) ? roles : [roles]
-      !(ROLES & n_roles).any?
+      (ROLES & n_roles).any?
     end
 
     def save_user(data)
       if @user.save
-        user_roles = data.roles.presence || ""
-        if valid_roles?(user_roles)
+        user_roles = data.roles.presence
+        if !valid_roles?(user_roles)
           error_login
+          return
         end
         if user_roles.is_a?(Array)
           remove_roles = ROLES - user_roles
@@ -163,10 +166,10 @@ class Users::GvLoginController < ApplicationController
           remove_roles.each do |role|
             remove_role(role)
           end
-          success_login
         else
           set_roles(user_roles)
         end
+        success_login
       else
         error_save_user
       end
