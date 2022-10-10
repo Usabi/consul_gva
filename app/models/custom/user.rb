@@ -123,7 +123,7 @@ class User
     if gvlogin_user
       # Fix username
       gvlogin_user.username = gvlogin_username
-      return glogin_user
+      return gvlogin_user
     end
 
     # Create new user

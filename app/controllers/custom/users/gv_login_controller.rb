@@ -3,7 +3,6 @@ class Users::GvLoginController < ApplicationController
 
   GVA_ROLES = {
     "R_ADMIN" => :administrator,
-    "R_ASOCI" => :organization,
     "R_CARGO" => :official,
     "R_MODERA" => :moderator,
     "R_EVALUA" => :valuator,
@@ -107,7 +106,6 @@ class Users::GvLoginController < ApplicationController
     end
 
     def error_login
-      # @user.send("#{GVA_ROLES[role]}").delete if @user.send("#{GVA_ROLES[role]}?")
       flash[:error] = I18n.t("devise.failure.no_backend_roles")
       delete_cookies
       redirect_to new_user_session_path
@@ -161,10 +159,10 @@ class Users::GvLoginController < ApplicationController
         if user_roles.is_a?(Array)
           remove_roles = ROLES - user_roles
           user_roles.each do |role|
-            add_role(role)
+            add_role(role) if ROLES.include? role
           end
           remove_roles.each do |role|
-            remove_role(role)
+            remove_role(role) if ROLES.include? role
           end
         else
           set_roles(user_roles)
