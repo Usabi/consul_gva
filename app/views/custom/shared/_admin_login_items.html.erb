@@ -10,13 +10,13 @@
 
       <% if current_user.legislator? %>
         <li>
-          <%= link_to t("layouts.header.administration"), admin_legislation_processes_path %>
+          <%= link_to t("layouts.header.collaborative_legislation"), admin_legislation_processes_path %>
         </li>
       <% end %>
 
       <% if current_user.budget_manager? %>
         <li>
-          <%= link_to t("layouts.header.administration"), admin_budgets_path %>
+          <%= link_to t("layouts.header.budgets"), admin_budgets_path %>
         </li>
       <% end %>
 
