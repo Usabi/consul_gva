@@ -30,21 +30,36 @@
               <% if comment.legislator_id.present? %>
                 <%= t("comments.comment.legislator") %>
                 <% if valuation %>
-                  <%= Legislator.find(comment.legislator_id).description_or_name %>
+                  <% legislator = Legislator.find_by(id: comment.legislator_id) %>
+                  <% if legislator.present? %>
+                    <%= legislator.description_or_name %>
+                  <% else %>
+                    <%= t("comments.comment.legislator_deleted")%>
+                  <% end %>
                 <% else %>
                   #<%= comment.legislator_id %>
                 <% end %>
               <% elsif comment.budget_manager_id.present? %>
                 <%= t("comments.comment.budget_manager") %>
                 <% if valuation %>
-                  <%= BudgetManager.find(comment.budget_manager_id).description_or_name %>
+                  <% budget_manager = BudgetManager.find_by(id: comment.budget_manager_id) %>
+                  <% if budget_manager.present? %>
+                    <%= budget_manager.description_or_name %>
+                  <% else %>
+                    <%= t("comments.comment.budget_manager_deleted")%>
+                  <% end %>
                 <% else %>
                   #<%= comment.budget_manager_id %>
                 <% end %>
               <% else %>
                 <%= t("comments.comment.admin") %>
                 <% if valuation %>
-                  <%= Administrator.find(comment.administrator_id).description_or_name %>
+                  <% administrator = Administrator.find_by(id: comment.administrator_id) %>
+                  <% if administrator.present? %>
+                    <%= administrator.description_or_name %>
+                  <% else %>
+                    <%= t("comments.comment.budget_manager_deleted")%>
+                  <% end %>
                 <% else %>
                   #<%= comment.administrator_id %>
                 <% end %>
