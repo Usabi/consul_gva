@@ -34,7 +34,7 @@
                   <% if legislator.present? %>
                     <%= legislator.description_or_name %>
                   <% else %>
-                    <%= t("comments.comment.legislator_deleted")%>
+                    #<%= t("comments.comment.legislator_deleted")%>
                   <% end %>
                 <% else %>
                   #<%= comment.legislator_id %>
@@ -46,7 +46,7 @@
                   <% if budget_manager.present? %>
                     <%= budget_manager.description_or_name %>
                   <% else %>
-                    <%= t("comments.comment.budget_manager_deleted")%>
+                    #<%= t("comments.comment.budget_manager_deleted")%>
                   <% end %>
                 <% else %>
                   #<%= comment.budget_manager_id %>
@@ -58,7 +58,7 @@
                   <% if administrator.present? %>
                     <%= administrator.description_or_name %>
                   <% else %>
-                    <%= t("comments.comment.budget_manager_deleted")%>
+                    #<%= t("comments.comment.budget_manager_deleted")%>
                   <% end %>
                 <% else %>
                   #<%= comment.administrator_id %>
