@@ -16,9 +16,11 @@
           <% end %>
         </h1>
         <h1 class="logo margin login-gva">
-          <%= link_to participem_gv_login_path do %>
-            <%= image_tag(image_path_for("consulgva/gvlogingvparticipa.png"), alt: "Entrar con GVLogin") %>
-          <% end %>
+          <% if Rails.application.secrets.environment != 'production' %>
+              <%= link_to participem_gv_login_path do %>
+                <%= image_tag(image_path_for("consulgva/gvlogingvparticipa.png"), alt: "Entrar con GVLogin") %>
+              <% end %>
+          <% end%>
         <h1>
       </div>
 
