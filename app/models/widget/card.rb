@@ -8,8 +8,9 @@ class Widget::Card < ApplicationRecord
   translates :link_text,   touch: true
   include Globalizable
 
-  validates_translation :title, presence: true
-  validates :link_url, presence: true, if: -> { !header? || link_text.present? }
+  #TODO: ask consul project
+  # validates_translation :title, presence: true
+  # validates :link_url, presence: true, if: -> { !header? || link_text.present? }
 
   def self.header
     where(header: true)
