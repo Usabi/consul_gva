@@ -24,14 +24,19 @@ class Users::GvLoginController < ApplicationController
         if check_context.valid?
           sign_in_gvlogin(check_context.data)
         else
-          flash[:error] = check_context.errors
+          flash[:error] = I18n.t("devise.failure.default")
+          logger.error check_context.errors
           redirect_to gvlogin_api.web_gv_login
         end
       rescue JSON::ParserError
-        flash[:error] = "Ocurrio error en el servidor"
+        flash[:error] = I18n.t("devise.failure.server")
+        logger.error "Ocurrio error en el servidor"
+
         redirect_to gvlogin_api.web_gv_login
       rescue PG::UndefinedTable
-        flash[:error] = "Ocurrio error en la base de datos"
+        flash[:error] = I18n.t("devise.failure.database")
+        logger.error "Ocurrio error en la base de datos"
+
         redirect_to gvlogin_api.web_gv_login
       end
     else
@@ -44,6 +49,10 @@ class Users::GvLoginController < ApplicationController
   end
 
   private
+
+    def logger
+      @logger ||= ApplicationLogger.new
+    end
 
     def sign_in_gvlogin(data)
       if (uid = data.info_ampliada["codper"].presence) && isEmailGVA?(data.mail)
@@ -106,20 +115,23 @@ class Users::GvLoginController < ApplicationController
     end
 
     def error_login
-      flash[:error] = I18n.t("devise.failure.no_backend_roles")
+      flash[:error] = I18n.t("devise.failure.default")
+      logger.error I18n.t("devise.failure.no_backend_roles")
       delete_cookies
       redirect_to new_user_session_path
     end
 
     def error_save_user
       errors = @user.errors
-      flash[:error] = errors.messages.map { |field, error| "#{field}: #{error.join(", ")} ('#{errors.details[field][0][:value]}')" }.join(", ")
+      flash[:error] = I18n.t("devise.failure.default")
+      logger.error errors.messages.map { |field, error| "#{field}: #{error.join(", ")} ('#{errors.details[field][0][:value]}')" }.join(", ")
       delete_cookies
       redirect_to new_user_session_path
     end
 
     def error_user_data
-      flash[:error] = I18n.t("devise.failure.no_codeper_email")
+      flash[:error] = I18n.t("devise.failure.default")
+      logger.error I18n.t("devise.failure.no_codeper_email")
       delete_cookies
       redirect_to new_user_session_path
     end
