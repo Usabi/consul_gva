@@ -17,6 +17,9 @@ es:
       invalid: "%{authentication_keys} o contraseña inválidos."
       locked: "Tu cuenta ha sido bloqueada."
       last_attempt: "Tienes un último intento antes de que tu cuenta sea bloqueada."
+      default: "Error al intentar iniciar sesión"
+      database: "Ocurrió error en la base de datos"
+      server: "Ocurrió error en el servidor"
       no_backend_roles: "Tu cuenta no tiene roles asignados."
       no_codeper_email: "Tu cuenta no es correo GVA o no tiene codper asignado."
       not_found_in_database: "%{authentication_keys} o contraseña inválidos."
@@ -55,6 +58,10 @@ es:
       send_instructions: "Recibirás un correo electrónico en unos minutos con instrucciones sobre cómo desbloquear tu cuenta."
       send_paranoid_instructions: "Si tu cuenta existe, recibirás un correo electrónico en unos minutos con instrucciones sobre cómo desbloquear tu cuenta."
       unlocked: "Tu cuenta ha sido desbloqueada. Por favor inicia sesión para continuar."
+    recaptcha:
+      errors:
+        verification_failed: Error en la verificación de reCAPTCHA, inténtelo de nuevo.
+        recaptcha_unreachable: Vaya, no hemos validado su respuesta reCAPTCHA. Inténtalo de nuevo.
   errors:
     messages:
       already_confirmed: "ya has sido confirmado, por favor intenta iniciar sesión."

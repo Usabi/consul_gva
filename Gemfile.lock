@@ -510,6 +510,8 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rbtree3 (0.6.0)
+    recaptcha (5.12.3)
+      json
     recipient_interceptor (0.3.0)
       mail
     redcarpet (3.5.1)
@@ -763,6 +765,7 @@ DEPENDENCIES
   rails (= 5.2.6)
   rails-assets-leaflet!
   rails-assets-markdown-it (~> 9.0.1)!
+  recaptcha
   recipient_interceptor (~> 0.3.0)
   redcarpet (~> 3.5.1)
   responders (~> 3.0.1)
