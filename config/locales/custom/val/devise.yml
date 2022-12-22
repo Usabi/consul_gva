@@ -17,6 +17,9 @@ val:
       invalid: "%{authentication_keys} o contrasenya invàlids."
       locked: "El teu compte ha segut bloquejat."
       last_attempt: "Tens un últim intent abans que el teu compte siga bloquejat."
+      default: "Error en intentar iniciar sessió"
+      database: "Va ocórrer error en la base de dades"
+      server: "Va ocórrer error en el servidor"
       no_backend_roles: "El teu compte no té rols assignats."
       no_codeper_email: "El teu compte no és correu GVA o no tens codper assignat."
       not_found_in_database: "%{authentication_keys} o contrasenya invàlids."
@@ -55,6 +58,10 @@ val:
       send_instructions: "Rebràs un correu electrònic en uns minuts amb instruccions sobre com desbloquejar el teu compte."
       send_paranoid_instructions: "Si el teu compte existeix, rebràs un correu electrònic en uns minuts amb instruccions sobre com desbloquejar el teu compte."
       unlocked: "El teu compte ha sigut desbloquejat. Per favor inicia sessió per a continuar."
+    recaptcha:
+      errors:
+        verification_failed: Error en la verificación de reCAPTCHA, inténtelo de nuevo.
+        recaptcha_unreachable: Vaya, no hemos validado su respuesta reCAPTCHA. Inténtalo de nuevo.
   errors:
     messages:
       already_confirmed: "Ya has segut confirmat, si us plau intenta iniciar sessió."

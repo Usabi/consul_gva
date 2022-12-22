@@ -50,7 +50,9 @@
                                 title: t("shared.target_blank"),
                                 target: "_blank")
                 ) %>
-
+      <% if Rails.application.secrets.site_key.present? %>
+        <%= recaptcha_tags %>
+      <% end %>
       <div class="small-12 medium-6 small-centered">
         <%= f.submit t("devise_views.users.registrations.new.submit"), class: "button expanded" %>
       </div>
