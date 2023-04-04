@@ -1,3 +1,3 @@
 class VmcrcPersona < ApplicationRecord
-  self.table_name = "vmcrc_personas"
+  self.table_name = "vmcrc_siac_personas"
 end
