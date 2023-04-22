@@ -27,6 +27,8 @@ class GVLoginApi
   class Response
     def initialize(body)
       @body = JSON.parse(body).with_indifferent_access
+      logger.warn @body
+      @body
     end
 
     def valid?
@@ -50,6 +52,10 @@ class GVLoginApi
     end
 
     private
+
+      def logger
+        @logger ||= ApplicationLogger.new
+      end
 
       def to_struct(json_object)
         new_object = json_object.keys.reduce({}) do |hash, key|
