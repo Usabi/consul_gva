@@ -23,7 +23,6 @@ module CommentableActions
     index_customization
 
     @tag_cloud = tag_cloud
-    set_resource_votes(@resources)
 
     set_resources_instance
     @remote_translations = detect_remote_translations(@resources, featured_proposals)

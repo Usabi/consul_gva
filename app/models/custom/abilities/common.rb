@@ -109,6 +109,8 @@ module Abilities
         can :update, Budget::Investment,               budget: { phase: "accepting" }, author_id: user.id
         can :suggest, Budget::Investment,              budget: { phase: "accepting" }
         can :destroy, Budget::Investment,              budget: { phase: ["accepting", "reviewing"] }, author_id: user.id
+        can :vote, Budget::Investment,                 budget: { phase: "selecting" }
+        can :unvote, Budget::Investment,               budget: { phase: "selecting" }
         can [:create, :destroy], ActsAsVotable::Vote,
           voter_id: user.id,
           votable_type: "Budget::Investment",
