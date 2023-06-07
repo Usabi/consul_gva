@@ -1,9 +1,7 @@
 require_dependency Rails.root.join("app", "models", "document").to_s
 
 class Document
-  after_update :fix_attachment_path, if: :saved_change_to_title?
-
-  # NOTE: Fix filename broken when document title changed
+  # NOTE: Fix filename broken when document title changed. Used to be called after_update, might not be necessary after the migration to ActiveStorage
   def fix_attachment_path
     return if File.exist?(attachment.path)
 
