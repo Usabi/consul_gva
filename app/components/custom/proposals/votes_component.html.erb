@@ -1,0 +1,32 @@
+<div class="supports text-center">
+  <%= render "proposals/supports", proposal: proposal %>
+
+  <div class="in-favor">
+    <% if voted? %>
+      <div class="supported callout success">
+        <%= t("proposals.proposal.already_supported") %>
+      </div>
+    <% elsif user_signed_in? && !budget_phase_selecting? && can_vote? %>
+      <%= button_to vote_url,
+          class: "button button-support small expanded",
+          title: t("proposals.proposal.support_title"),
+          method: "post",
+          remote: true,
+          "aria-label": support_aria_label do %>
+        <%= t("proposals.proposal.support") %>
+      <% end %>
+    <% elsif user_signed_in? && !budget_phase_selecting? %>
+      <div class="button button-support small expanded">
+        <%= t("proposals.proposal.support") %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= render Shared::ParticipationNotAllowedComponent.new(proposal, cannot_vote_text: cannot_vote_text) %>
+
+  <% if voted? && setting["twitter_handle"] %>
+    <div class="share-supported">
+      <%= render "proposals/social_share", proposal: proposal, share_title: false %>
+    </div>
+  <% end %>
+</div>
