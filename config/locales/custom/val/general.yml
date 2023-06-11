@@ -212,8 +212,8 @@ val:
       administration_menu: Admin
       administration: Administració
       available_locales: Idiomes disponibles
-      legislation: Elaboració normativa
-      collaborative_legislation: Elaboració normativa
+      legislation: Legislació col·laborativa
+      collaborative_legislation: Legislació col·laborativa
       debates: Debats
       locale: "Idioma:"
       logo: Logo de CONSUL
@@ -695,7 +695,7 @@ val:
         title: Votar
         description: Ara el teu vot és important per a la presa de decisió de les polítiques públiques. Vota les opcions que consideres més rellevants.
       normativa:
-        title: Elaboració normativa
+        title: Legislació col·laborativa
         description: Participa de manera activa en l’elaboració de legislació, plans i programes.
       presupuesto:
         title: Pressupostos participatius

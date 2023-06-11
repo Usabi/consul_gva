@@ -344,8 +344,8 @@ val:
         form:
           enabled: Activa
           process: Procés
-          debate_phase: Fase prèvia
-          draft_phase: Fase de redacció
+          debate_phase: Consulta prèvia
+          draft_phase: Fase de elaboració interna
           draft_phase_description: Si aquesta fase està activa, el procés no es mostrarà en el llistat de processos. Permet una vista prèvia del procés i crea contingut abans que comence.
           allegations_phase: Fase d'audiència ciutadana
           proposals_phase: Fase de propostes
@@ -375,7 +375,7 @@ val:
             supports: Avals
         process:
           title: Procés
-          comments: Comentaris
+          comments: Aportacions a l'esborrany
           start_date: Data d'obertura
           end_date: Data de tancament
           status: Estat
