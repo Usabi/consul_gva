@@ -1,0 +1,44 @@
+<%= render "shared/section_header", i18n_namespace: "budgets.index.section_header", image: "budgets" %>
+
+<% if budget.image.present? %>
+  <div class="budget-header with-background-image"
+       style="background-image: url(<%= asset_url budget.image.attachment.url(:large) %>);">
+<% else %>
+  <div class="budget-header">
+<% end %>
+  <div class="row">
+    <div class="small-12 column text-center">
+      <h1><%= budget.name %></h1>
+
+      <% if budget.main_link_text.present? && budget.main_link_url.present? %>
+        <%= link_to budget.main_link_text, budget.main_link_url, class: "main-link" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render Budgets::SubheaderComponent.new(budget) %>
+<%= render Budgets::PhasesComponent.new(budget) %>
+
+<div id="budget_info" class="budget-info">
+  <div class="row margin-top">
+    <div class="small-12 column">
+      <% if budget.single_heading? %>
+        <%= render Budgets::SingleHeadingComponent.new(budget) %>
+      <% else %>
+        <%= render Budgets::GroupsAndHeadingsComponent.new(budget) %>
+      <% end %>
+
+      <%= render Budgets::SupportsInfoComponent.new(budget) %>
+
+      <% unless budget.informing? %>
+        <div class="map inline">
+          <h2><%= t("budgets.index.map") %></h2>
+          <%= render_map(nil, "budgets", false, nil, coordinates) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render Budgets::InvestmentsListComponent.new(budget) %>
