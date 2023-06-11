@@ -148,3 +148,12 @@ ul.votes-group-sidebar {
     padding-top: 1.5rem;
   }
 }
+
+.admin {
+  .admin-content {
+    .audits-container {
+      max-height: 29em;
+      overflow-y: scroll;
+    }
+  }
+}
