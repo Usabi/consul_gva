@@ -140,13 +140,13 @@
                       if current_user.residence_requested_foreign? && current_user.residence_requested_age?
                         age_link = link_to t('account.show.residence_request_procedure'), age_url
                         foreign_link = link_to t('account.show.residence_request_procedure'), foreign_url
-                        message = t('account.show.required_age_foreign_residence_verification_request', age_link: age_link, foreign_link: foreign_link)
+                        message = t('account.show.required_age_foreign_residence_verification_request', age_link: age_link, foreign_link: foreign_link, required_age: User.minimum_required_age)
                       elsif current_user.residence_requested_foreign?
                         link = link_to t('account.show.residence_request_procedure'), foreign_url
-                        message = t('account.show.foreign_residence_verification_request', link: link)
+                        message = t('account.show.foreign_residence_verification_request', link: link, required_age: User.minimum_required_age)
                       elsif current_user.residence_requested_age?
                         link = link_to t('account.show.residence_request_procedure'), age_url
-                        message = t('account.show.required_age_verification_request', link: link)
+                        message = t('account.show.required_age_verification_request', link: link, required_age: User.minimum_required_age)
                       end
                       raw message
                     %>

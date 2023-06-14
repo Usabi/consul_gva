@@ -23,7 +23,7 @@ class Verification::ResidenceController
           notice = t("verification.residence.create.flash.foreign_residence_request_form", link: link)
         elsif current_user.residence_requested_age?
           link = helpers.link_to t('verification.residence.create.flash.procedure'), age_url
-          notice = t("verification.residence.create.flash.required_age_request_form", link: link)
+          notice = t("verification.residence.create.flash.required_age_request_form", link: link, required_age: User.minimum_required_age)
         end
 
         redirect_to account_path, notice: notice

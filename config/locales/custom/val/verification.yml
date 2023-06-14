@@ -45,10 +45,10 @@ val:
         flash:
           success: Residència verificada
           procedure: procediment
-          required_age_request_form: S'han guardat les teues dades per a verificar la teua residència, però com eres menor de 16 anys has de seguir aquest %{link}
+          required_age_request_form: S'han guardat les teues dades per a verificar la teua residència, però com eres menor de %{required_age} anys has de seguir aquest %{link}
           foreign_residence_request_form: El Padró no ha pogut verificar la teua informació. Per favor, confirma que les teues dades d'empadronament siguen correctes informant-te en el teu municipi d'empadronament. Si eres valencià, però eres resident a l'estranger o fora de la Comunitat, i no estàs empadronat, has de seguir aquest %{link}
           required_age_foreign_residence_request_form: "El Padró no ha pogut verificar la teua informació. Per favor, confirma que les teues dades d'empadronament siguen correctes informant-te en el teu municipi d'empadronament. Si eres valencià, però eres resident a l'estranger o fora de la Comunitat, i no estàs empadronat, has de seguir aquest %{foreign_link}.
-          D'altra banda, com eres menor de 16 anys, també has de seguir aquest %{age_link} per a completar la verificació."
+          D'altra banda, com eres menor de %{required_age} anys, també has de seguir aquest %{age_link} per a completar la verificació."
       new:
         accept_terms_text: Declare que la informació transmesa és exacta i que accepte els %{terms_url}
         accept_terms_text_title: Accepte els termes i condicions d'accéss al Padró
