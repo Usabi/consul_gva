@@ -45,10 +45,10 @@ es:
         flash:
           success: Residencia verificada
           procedure: procedimiento
-          required_age_request_form: Se han guardado tus datos para verificar tu residencia, pero al ser menor de 16 años debes seguir este %{link}
+          required_age_request_form: Se han guardado tus datos para verificar tu residencia, pero al ser menor de %{required_age} años debes seguir este %{link}
           foreign_residence_request_form: El Padrón no pudo verificar tu información. Por favor, confirma que tus datos de empadronamiento sean correctos informándote en tu municipio de empadronamiento. Si eres valenciano, pero eres residente en el extranjero o fuera de la Comunitat Valenciana, y no estás empadronado, debes seguir este %{link}.
           required_age_foreign_residence_request_form: "El Padrón no pudo verificar tu información. Por favor, confirma que tus datos de empadronamiento sean correctos informándote en tu municipio de empadronamiento. Si eres valenciano, pero eres residente en el extranjero o fuera de la Comunitat, y no estás empadronado, debes seguir este %{foreign_link}.
-          Por otro lado, como eres menor de 16 años, debes también seguir este %{age_link} para completar la verificación."
+          Por otro lado, como eres menor de %{required_age} años, debes también seguir este %{age_link} para completar la verificación."
       new:
         accept_terms_text: Declaro que la información transmitida es exacta y que acepto %{terms_url}
         accept_terms_text_title: Acepto los términos de acceso al Padrón

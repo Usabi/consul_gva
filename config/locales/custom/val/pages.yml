@@ -13,7 +13,7 @@ val:
         budgets: "Pressupostos participatius"
         polls: "Votacions"
         other: "Altra informació d'interés"
-        processes: "Elaboració normativa"
+        processes: "Legislació col·laborativa"
       debates:
         title: "Debats"
         description: "En la secció de %{link} pots compartir la teua opinió amb altres persones sobre temes que et preocupen relacionats amb la Comunitat Valenciana. És un lloc per a generar coneixement i intel·ligència col·lectiva que conduïsquen a accions concretes per part del Consell.<br/><br/>
@@ -28,7 +28,7 @@ val:
         title: "Propostes"
         description: "En la secció %{link} hi ha dues maneres de participar:<br/><br/>
         1) pots presentar les teues propostes perquè la resta expressen el seu suport;<br/><br/>
-        2) pots donar suport a les propostes que et semblen adequades. Les propostes que aconseguisquen 5.000 suports en el termini de quatre mesos des de la seua publicació es traslladaran a la Conselleria o entitat competent per a la seua consideració, que haurà d'emetre un informe sobre la decisió adoptada sobre la iniciativa, que es publicarà en GVA Participa. Únicament podran presentar-se propostes que siguen competència de la Generalitat. 
+        2) pots donar suport a les propostes que et semblen adequades. Les propostes que aconseguisquen 5.000 suports en el termini de quatre mesos des de la seua publicació es traslladaran a la Conselleria o entitat competent per a la seua consideració, que haurà d'emetre un informe sobre la decisió adoptada sobre la iniciativa, que es publicarà en GVA Participa. Únicament podran presentar-se propostes que siguen competència de la Generalitat.
 <br/><br/>
         <strong>Com funciona?</strong><br/><br/>
         Abans de res et recomanem revisar les propostes que ja existeixen. D’aquesta manera, en el cas que alguna persona ja l’haja plantejada, evitaràs dividir els suports de la proposta que t’interessa, ja que aquests seran imprescindibles perquè la proposta esmentada seguisca avant. A més, així podràs veure la resta de propostes i donar el teu suport a les que et convencen o simplement comentar-les. Per a explorar no cal registrar-se, però per a comentar o donar suport sí.<br/><br/>
@@ -59,13 +59,13 @@ Has de tindre en compte que obtindre els suports necessaris no garanteix que la 
         feature_1: "Per a participar en les votacions has de %{link} i verificar el teu compte."
         feature_1_link: "registrar-te en %{org_name}"
       processes:
-        title: "Elaboració normativa"
+        title: "Legislació col·laborativa"
         description: "En la secció d'%{link} pots col·laborar en la redacció i modificació de normativa, plans i programes de la Generalitat Valenciana. Les aportacions de la ciutadania seran analitzades i tingudes en compte en la redacció definitiva de les normes o en la planificació de les actuacions.<br/><br/>
         <strong>Com funciona?</strong><br/><br/>
         Quan accedisques a aquesta àrea podràs veure els processos “actius” i els “acabats”. Si selecciones un dels processos, podràs accedir a informació sobre la norma o el pla que s’està elaborant i revisar les aportacions que s’han fet al document.<br/><br/>
         També pots fer les teues aportacions, sempre que t'hages registrat. En primer lloc, pots accedir a l’àrea de “debat previ”, on trobaràs preguntes a les quals podràs respondre i sobre les quals podràs debatre. En l’apartat de “propostes” podràs veure les que altres persones han fet o realitzar les teues pròpies. I, finalment, en “comentaris” podràs comentar els documents, seleccionant el text que vols comentar."
-        link: "elaboració normativa"
-        feature: "Per a participar en la elaboració normativa has de registrar-te en %{link} i verificar el teu compte."
+        link: "legislació col·laborativa"
+        feature: "Per a participar en la legislació col·laborativa has de registrar-te en %{link} i verificar el teu compte."
         feature_link: "registrar-te en %{org_name}"
       faq:
         title: "Problemes tècnics?"

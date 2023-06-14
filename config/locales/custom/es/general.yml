@@ -13,10 +13,10 @@ es:
       public_interests_user_title_list: Etiquetas de los elementos que sigue este usuario
       save_changes_submit: Guardar cambios
       recommendations: Recomendaciones
-      required_age_verification_request: Tus datos de verificación están guardados, pero al ser menor de 16 años debes seguir este %{link} para completar la verificación.
+      required_age_verification_request: Tus datos de verificación están guardados, pero al ser menor de %{required_age} años debes seguir este %{link} para completar la verificación.
       foreign_residence_verification_request: Tus datos de verificación están guardados, pero el Padrón no pudo verificar tu información. Por favor, confirma que tus datos de empadronamiento sean correctos informándote en tu municipio de empadronamiento. Si eres valenciano, pero eres residente en el extranjero o fuera de la Comunitat, y no estás empadronado, debes seguir este %{link}.
       required_age_foreign_residence_verification_request: "Tus datos de verificación están guardados, pero el Padrón no pudo verificar tu información. Por favor, confirma que tus datos de empadronamiento sean correctos informándote en tu municipio de empadronamiento. Si eres valenciano, pero eres residente en el extranjero o fuera de la Comunitat, y no estás empadronado, debes seguir este %{foreign_link}.
-      Por otro lado, como eres menor de 16 años, debes también seguir este %{age_link} para completar la verificación."
+      Por otro lado, como eres menor de %{required_age} años, debes también seguir este %{age_link} para completar la verificación."
       residence_request_procedure: procedimiento
       title: Mi cuenta
       user_permission_debates: Participar en debates
@@ -249,7 +249,7 @@ es:
       administration_menu: Menú
       administration: Administración
       available_locales: Idiomas disponibles
-      collaborative_legislation: Elaboración normativa
+      collaborative_legislation: Legislación colaborativa
       debates: Debates
       locale: "Idioma:"
       logo: Logo de CONSUL
@@ -910,7 +910,7 @@ es:
         title: Votar
         description: Ahora tu voto es importante para la toma de decisión de las políticas públicas. Vota las opciones que consideres más relevantes
       normativa:
-        title: Elaboración normativa
+        title: Legislación colaborativa
         description: Participa de manera activa en la elaboración de legislación, planes y programas.
       presupuesto:
         title: Presupuestos participativos

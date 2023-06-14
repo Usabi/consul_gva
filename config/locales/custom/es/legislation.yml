@@ -61,7 +61,7 @@ es:
           open: Abiertos
           past: Finalizados
           preview_phase: Consulta previa
-          public_phase: Información pública
+          public_phase: Audiencia ciudadana
           relevance: Más relevantes
         no_open_processes: No hay procesos activos
         no_past_processes: No hay procesos terminados
@@ -69,11 +69,11 @@ es:
         no_public_phase_processes: No hay procesos
         no_relevance_processes: No hay procesos
         section_header:
-          icon_alt: Icono de Elaboración normativa
-          title: Elaboración normativa
-          help: Ayuda sobre Elaboración normativa
+          icon_alt: Icono de Legislación colaborativa
+          title: Legislación colaborativa
+          help: Ayuda sobre Legislación colaborativa
         section_footer:
-          title: Ayuda sobre Elaboración normativa
+          title: Ayuda sobre Legislación colaborativa
           description: Participa en los debates y procesos previos a la aprobación de nuevas normas o planes. Tu opinión será tenida en cuenta.
       phase_not_open:
         not_open: Esta fase del proceso todavía no está abierta
@@ -87,7 +87,7 @@ es:
         homepage: Inicio
         debate_dates: Debate previo
         draft_publication_date: Publicación borrador
-        allegations_dates: Comentarios
+        allegations_dates: Aportaciones al borrador
         result_publication_date: Publicación resultados
         milestones_date: Seguimiento
         proposals_dates: Propuestas
@@ -100,16 +100,16 @@ es:
           leave_comment: Deja tu respuesta
       question:
         comments:
-          zero: Sin comentarios
-          one: "%{count} comentario"
-          other: "%{count} comentarios"
+          zero: Sin aportaciones
+          one: "%{count} aportación"
+          other: "%{count} aportaciones"
         debate: Debate
       show:
         answer_question: Enviar respuesta
         next_question: Siguiente pregunta
         first_question: Primera pregunta
         share: Compartir
-        title: Proceso de Elaboración normativa
+        title: Proceso de Legislación colaborativa
       participation:
         phase_not_open: Esta fase no está abierta
         organizations: Las organizaciones no pueden participar en el debate
@@ -123,7 +123,7 @@ es:
       form:
         tags_label: "Categorías"
       not_verified: "Para votar propuestas %{verify_account}."
-      process_title: Proceso de Elaboración normativa
+      process_title: Proceso de Legislación colaborativa
     summary:
       title: "Resumen"
       votes:
@@ -132,7 +132,7 @@ es:
         other: "%{count} votos"
       debate_phase: "Fase de debate"
       proposals_phase: "Fase de propuestas"
-      allegations_phase: "Fase de comentarios"
+      allegations_phase: "Fase de aportaciones al comentario"
       debates:
         zero: "No hay debates"
         one: "%{count} debate"
@@ -142,14 +142,14 @@ es:
         one: "%{count} propuesta"
         other: "%{count} propuestas"
       comments:
-        zero: "No hay comentarios"
-        one: "%{count} comentario"
-        other: "%{count} comentarios"
+        zero: "No hay aportaciones"
+        one: "%{count} aportación"
+        other: "%{count} aportación"
       download: "Descargar resumen"
       top_comments:
-        zero: "No hay comentarios"
-        one: "%{count} comentario"
+        zero: "No hay aportaciones"
+        one: "%{count} aportación"
         other: "Los más votados"
-      most_voted_comments: "Comentarios más votados"
-      no_allegation: "No hay comentarios"
+      most_voted_comments: "Aportaciones más votados"
+      no_allegation: "No hay aportaciones"
       process_empty: "Este proceso no ha tenido fases de participación"
