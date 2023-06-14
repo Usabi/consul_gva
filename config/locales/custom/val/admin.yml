@@ -1154,7 +1154,7 @@ val:
         residence_requested_reason: Pdt. per
         residence_requested_reasons:
           foreign_residence: Resideix fora de C.V.
-          older_than_soft_minimum_required_age: Menor de 16 anys
+          older_than_soft_minimum_required_age: Menor de %{required_age} anys
       index:
         title: Usuari
         no_users: No hi ha usuaris.

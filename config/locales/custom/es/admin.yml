@@ -1515,7 +1515,7 @@ es:
         residence_requested_reason: Pdte. por
         residence_requested_reasons:
           foreign_residence: Reside fuera de C.V.
-          older_than_soft_minimum_required_age: Menor de 16 años
+          older_than_soft_minimum_required_age: Menor de %{required_age} años
       index:
         title: Usuarios
         no_users: No hay usuarios.
