@@ -1014,6 +1014,17 @@ val:
     shared:
       true_value: "Si"
       false_value: "No"
+      search:
+        label:
+          booths: "Cercar urna per nom"
+          debates: "Busca debats per títol o descripció"
+          organizations: "Nom, email o telèfon"
+          poll_officers: "Cercar presidents de taula"
+          poll_questions: "Cercar preguntes"
+          processes: "Cercar processos de legislació col·laborativa pero títol o descripció"
+          proposals: "Cercar propostes per títol, codi, descripció o pregunta"
+          users: "Cercar usuari per nom o correu electrònic"
+        search: "Cercar"
       booths_search:
         button: Cercar
         placeholder: Cercar urna per nom
