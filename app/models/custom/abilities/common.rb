@@ -68,10 +68,6 @@ module Abilities
       can [:flag, :unflag], Legislation::Proposal
       cannot [:flag, :unflag], Legislation::Proposal, author_id: user.id
 
-      can :vote, Legislation::Proposal
-      can :vote_featured, Legislation::Proposal
-      can :create, Legislation::Answer
-
       can [:flag, :unflag], Budget::Investment
       cannot [:flag, :unflag], Budget::Investment, author_id: user.id
 
@@ -103,6 +99,10 @@ module Abilities
           can :vote, Proposal, &:published?
           can :vote_featured, Proposal
         end
+
+        can :vote, Legislation::Proposal
+        can :vote_featured, Legislation::Proposal
+        can :create, Legislation::Answer
 
         can :create, Budget::Investment,               budget: { phase: "accepting" }
         can :edit, Budget::Investment,                 budget: { phase: "accepting" }, author_id: user.id
