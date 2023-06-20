@@ -577,8 +577,8 @@ es:
         form:
           enabled: Activa
           process: Proceso
-          debate_phase: Fase previa
-          draft_phase: Fase de redacción
+          debate_phase: Consulta previa
+          draft_phase: Fase de elaboración interna
           draft_phase_description: Si esta fase está activa, el proceso no aparecerá en la página de procesos. Permite previsualizar el proceso y crear contenido antes del inicio.
           allegations_phase: Fase de audiencia ciudadana
           proposals_phase: Fase de propuestas
@@ -602,7 +602,7 @@ es:
             supports: "Ordenar por apoyos totales"
         process:
           title: Proceso
-          comments: Comentarios
+          comments: Aportaciones al borrador
           status: Estado
           start_date: Fecha de apertura
           end_date: Fecha de cierre
@@ -1363,6 +1363,7 @@ es:
           poll_officers: "Buscar presidentes de mesa"
           poll_questions: "Buscar preguntas"
           polls: "Buscar votaciones por nombre o descripción"
+          processes: "Buscar procesos legislativos por nombre o descripción"
           proposals: "Buscar propuestas por título, código, descripción o pregunta"
           users: "Buscar usuario por nombre o email"
         search: "Buscar"
@@ -1540,7 +1541,7 @@ es:
         residence_requested_reason: Pdte. por
         residence_requested_reasons:
           foreign_residence: Reside fuera de C.V.
-          older_than_soft_minimum_required_age: Menor de 16 años
+          older_than_soft_minimum_required_age: Menor de %{required_age} años
       index:
         title: Usuarios
         no_users: No hay usuarios.

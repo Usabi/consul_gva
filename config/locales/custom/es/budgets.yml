@@ -239,6 +239,10 @@ es:
         milestone_tag:
           label: "Etiquetas de Seguimiento"
           all: "Todos (%{count})"
+      search_form:
+        button: Buscar
+        placeholder: Buscar proyectos de gasto...
+        title: Buscar
     phases:
       errors:
         dates_range_invalid: "La fecha de comienzo no puede ser igual o superior a la de finalización"

@@ -1,8 +1,19 @@
 require_dependency Rails.root.join("app", "controllers", "admin", "legislation", "processes_controller").to_s
 
 class Admin::Legislation::ProcessesController
+  include Search
+
   def index
-    @processes = ::Legislation::Process.send(@current_filter).order(start_date: :desc).accessible_by(current_ability)
+    @processes = ::Legislation::Process.send(@current_filter)
+    if @search_terms.present?
+      if @search_terms.to_i.positive?
+        @processes = @processes.where(id: @search_terms)
+      else
+        @processes = @processes.search(@search_terms)
+      end
+    end
+
+    @processes = @processes.order(start_date: :desc).accessible_by(current_ability)
                  .page(params[:page])
   end
 

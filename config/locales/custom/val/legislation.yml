@@ -60,7 +60,7 @@ val:
           open: Oberts
           past: Finalitzats
           preview_phase: Consulta prèvia
-          public_phase: Informació Pública
+          public_phase: Audiència ciutadana
           relevance: Més rellevants
         no_open_processes: No hi ha processos actius
         no_past_processes: No hi ha processos finalitzats
@@ -68,11 +68,11 @@ val:
         no_public_phase_processes: No hi ha processos
         no_relevance_processes: No hi ha processos
         section_header:
-          icon_alt: Icona de Elaboració normativa
-          title: Elaboració normativa
-          help: Ajuda sobre elaboració normativa
+          icon_alt: Icona de Legislació col·laborativa
+          title: Legislació col·laborativa
+          help: Ajuda sobre legislació col·laborativa
         section_footer:
-          title: Ajuda sobre elaboració normativa
+          title: Ajuda sobre legislació col·laborativa
           description: Participa en els debats y processos previs a la aprovació d'una norma o d'una actuació municipal. La teua opinió serà tinguda en compte per l'Ajuntament.
       phase_not_open:
         not_open: Esta fase del procés encara no esta oberta
@@ -86,7 +86,7 @@ val:
         homepage: Pàgina principal
         debate_dates: Debat
         draft_publication_date: Data de publicació de l'esborrany
-        allegations_dates: Comentaris
+        allegations_dates: Aportacions a l'esborrany
         result_publication_date: Publicació de resultats
         milestones_date: Seguint
         proposals_dates: Propostes
@@ -99,9 +99,9 @@ val:
           leave_comment: Deixa la teua resposta
       question:
         comments:
-          zero: Sense comentaris
-          one: "%{count} comentari"
-          other: "%{count} Comentaris"
+          zero: Sense aportacions
+          one: "%{count} aportació"
+          other: "%{count} Aportacions"
         debate: Debat
       show:
         answer_question: Publicar resposta
@@ -122,3 +122,16 @@ val:
       form:
         tags_label: "Categoríes"
       not_verified: "Per a votar propostes %{verify_account}."
+    summary:
+      title: "Resumen"
+      votes:
+        zero: "%{count} vots"
+      debate_phase: "Fase prèvia"
+      proposals_phase: "Fase de propostes"
+      allegations_phase: "Fase de aportacions a l'esborrany"
+      comments:
+        zero: "Sense aportacions"
+        one: "%{count} aportació"
+        other: "%{count} Aportacions"
+      top_comments:
+        zero: "Sense aportaciones"

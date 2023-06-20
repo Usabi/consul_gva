@@ -342,8 +342,8 @@ val:
         form:
           enabled: Activa
           process: Procés
-          debate_phase: Fase prèvia
-          draft_phase: Fase de redacció
+          debate_phase: Consulta prèvia
+          draft_phase: Fase de elaboració interna
           draft_phase_description: Si aquesta fase està activa, el procés no es mostrarà en el llistat de processos. Permet una vista prèvia del procés i crea contingut abans que comence.
           allegations_phase: Fase d'audiència ciutadana
           proposals_phase: Fase de propostes
@@ -373,7 +373,7 @@ val:
             supports: Avals
         process:
           title: Procés
-          comments: Comentaris
+          comments: Aportacions a l'esborrany
           start_date: Data d'obertura
           end_date: Data de tancament
           status: Estat
@@ -1012,6 +1012,17 @@ val:
     shared:
       true_value: "Si"
       false_value: "No"
+      search:
+        label:
+          booths: "Cercar urna per nom"
+          debates: "Busca debats per títol o descripció"
+          organizations: "Nom, email o telèfon"
+          poll_officers: "Cercar presidents de taula"
+          poll_questions: "Cercar preguntes"
+          processes: "Cercar processos de legislació col·laborativa pero títol o descripció"
+          proposals: "Cercar propostes per títol, codi, descripció o pregunta"
+          users: "Cercar usuari per nom o correu electrònic"
+        search: "Cercar"
       booths_search:
         button: Cercar
         placeholder: Cercar urna per nom
@@ -1152,7 +1163,7 @@ val:
         residence_requested_reason: Pdt. per
         residence_requested_reasons:
           foreign_residence: Resideix fora de C.V.
-          older_than_soft_minimum_required_age: Menor de 16 anys
+          older_than_soft_minimum_required_age: Menor de %{required_age} anys
       index:
         title: Usuari
         no_users: No hi ha usuaris.

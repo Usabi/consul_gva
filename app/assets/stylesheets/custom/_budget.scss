@@ -125,3 +125,35 @@ ul.votes-group-sidebar {
     }
   }
 }
+
+.filters-and-search {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.phase-dates {
+  margin-top: 0.5em;
+}
+
+.budget-header {
+  padding: 0;
+  min-height: auto;
+
+  &.with-background-image {
+    padding: 1.5rem 0;
+  }
+
+  h1 {
+    padding-top: 1.5rem;
+  }
+}
+
+.admin {
+  .admin-content {
+    .audits-container {
+      max-height: 29em;
+      overflow-y: scroll;
+    }
+  }
+}

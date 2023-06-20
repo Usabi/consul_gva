@@ -10,11 +10,14 @@
 <%= render "shared/filter_subnav", i18n_namespace: "admin.legislation.processes.index" %>
 
 <% if @processes.any? %>
+  <%= render Admin::SearchComponent.new(label: t("admin.shared.search.label.processes")) %>
+
   <h3><%= page_entries_info @processes %></h3>
 
   <table class="stack">
     <thead>
       <tr>
+        <th class="text-center"><%= t("admin.legislation.processes.process.id") %></th>
         <th><%= t("admin.legislation.processes.process.title") %></th>
         <th><%= t("admin.legislation.processes.process.status") %></th>
         <th class="text-center"><%= t("admin.legislation.processes.process.start_date") %></th>
@@ -35,6 +38,9 @@
     <tbody>
       <% @processes.each do |process| %>
         <tr id="<%= dom_id(process) %>">
+          <td class="text-center">
+            <%= process.id %>
+          </td>
           <td class="small-12 medium-6 large-4">
             <%= link_to process.title, edit_admin_legislation_process_path(process) %>
           </td>
