@@ -5,5 +5,5 @@
 //
 //
 
-//= require welcome_counter
-//= require select_local
+//= require custom/welcome_counter
+//= require custom/select_local

@@ -404,6 +404,7 @@ ActiveRecord::Schema.define(version: 2022_02_24_173405) do
     t.text "description_informing"
     t.string "voting_style", default: "knapsack"
     t.boolean "published"
+    t.boolean "hide_money", default: false
   end
 
   create_table "campaigns", id: :serial, force: :cascade do |t|
@@ -1651,6 +1652,7 @@ ActiveRecord::Schema.define(version: 2022_02_24_173405) do
     t.jsonb "services_results"
     t.datetime "residence_requested_at"
     t.boolean "foreign_residence"
+    t.string "subscriptions_token"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["date_of_birth"], name: "index_users_on_date_of_birth"
     t.index ["email"], name: "index_users_on_email", unique: true
