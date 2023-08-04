@@ -29,6 +29,13 @@ val:
   application:
     close: Tancar
     menu: Menú
+    slogan_text:
+      header: Presidència de la Generalitat
+      footer: "%{copyright}<br/>
+              Portal de Participació<br/><br/>
+              Presidència de la<br/>
+              Generalitat
+              "
   comments:
     comments_closed: Els comentaris estan tancats
     verified_only: Per a participar %{verify_account}

@@ -33,7 +33,14 @@ es:
   application:
     close: Cerrar
     menu: Menú
-    slogan_text: "Conselleria de Participació, Transparència, <br> Cooperació i Qualitat Democràtica"
+    slogan_text:
+      header: Presidencia de la Generalitat
+      footer: "%{copyright}<br/>
+              Portal de Participación<br/><br/>
+              Presidencia de la<br/>
+              Generalitat
+              "
+
   comments:
     actions:
       confirm_delete: "¿Estás seguro/a? Esta acción borrará este comentario. No puedes deshacer esta acción."
@@ -958,6 +965,7 @@ es:
       user_permission_info: Con tu cuenta ya puedes...
       user_permission_verify: "Para poder realizar las siguientes acciones, verifica tu cuenta."
       user_permission_verify_my_account: Verificar mi cuenta
+
   invisible_captcha:
     sentence_for_humans: "Si eres humano, por favor ignora este campo"
     timestamp_error_message: "Eso ha sido demasiado rápido. Por favor, reenvía el formulario."

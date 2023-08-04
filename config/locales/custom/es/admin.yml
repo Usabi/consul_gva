@@ -771,6 +771,7 @@ es:
           mailers: "Correos"
           management: "Gestión"
           welcome: "Bienvenido/a"
+          application: "Aplicación"
         buttons:
           save: "Guardar cambios"
           content_block:
