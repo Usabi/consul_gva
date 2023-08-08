@@ -1,0 +1,26 @@
+<fieldset class="documents-list">
+  <legend><%= @consult_document ? t("documents.form.title_consult") : t("documents.form.title")%></legend>
+
+  <p class="help-text"><%= note %></p>
+
+  <div id="nested-documents<%=@consult_document ? "-consult-document" : "" %>" data-max-documents-allowed="<%= max_documents_allowed %>">
+    <% documents = f.object.documents.where(consult_document: @consult_document) %>
+    <%= f.fields_for :documents, documents do |documents_builder| %>
+      <%= render Documents::FieldsComponent.new(documents_builder, @consult_document) %>
+    <% end %>
+  </div>
+  <%= link_to_add_association t("documents.form.add_new_document"), f, :documents,
+                              partial: "documents/document_fields",
+                              render_options: { locals: {consult_document: @consult_document}},
+                              id: "new_document_link",
+                              class: "button upload-document
+                                      #{"hide" if max_documents_allowed?}",
+                              data: {
+                                association_insertion_node: "#nested-documents"+ (@consult_document ? '-consult-document': ''),
+                                association_insertion_method: "append"
+                              } %>
+
+  <div id="max-documents-notice" class="max-documents-notice callout primary text-center <%= "hide" unless max_documents_allowed? %>">
+    <%= sanitize(t("documents.max_documents_allowed_reached")) %>
+  </div>
+</fieldset>
