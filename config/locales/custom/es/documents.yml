@@ -3,8 +3,10 @@ es:
     title: Documentos
     max_documents_allowed_reached: '¡Has alcanzado el número máximo de documentos permitidos! <strong>Tienes que eliminar uno antes de poder subir otro.</strong>'
     additional: Documentación adicional
+    consult: Resultados de la consulta
     form:
       title: Documentos
+      title_consult: Resultados de la consulta
       title_placeholder: Añade un título descriptivo para el documento
       delete_button: Eliminar documento
       cancel_button: Cancelar

@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2022_02_24_173405) do
+ActiveRecord::Schema.define(version: 2023_08_04_112519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -595,6 +594,7 @@ ActiveRecord::Schema.define(version: 2022_02_24_173405) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
+    t.boolean "consult_document", default: false
     t.index ["documentable_type", "documentable_id"], name: "index_documents_on_documentable_type_and_documentable_id"
     t.index ["user_id", "documentable_type", "documentable_id"], name: "access_documents"
     t.index ["user_id"], name: "index_documents_on_user_id"
@@ -1721,7 +1721,7 @@ ActiveRecord::Schema.define(version: 2022_02_24_173405) do
     t.index ["user_id"], name: "index_visits_on_user_id"
   end
 
-  create_table "vmcrc_personas", id: :serial, force: :cascade do |t|
+  create_table "vmcrc_siac_personas", id: :serial, force: :cascade do |t|
     t.text "codper", null: false
     t.text "codmap", null: false
     t.text "nomb", null: false

@@ -23,3 +23,7 @@
 ###### Other gems ######
 #
 # Add your custom gem dependencies here
+group :test do
+  gem 'pry'
+  gem 'pry-rails'
+end

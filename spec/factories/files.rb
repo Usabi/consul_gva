@@ -13,10 +13,12 @@ FactoryBot.define do
     end
   end
 
+  # TODO: añadir nuevo atributo
   factory :document do
     sequence(:title) { |n| "Document title #{n}" }
     association :user, factory: :user
     attachment { Rack::Test::UploadedFile.new("spec/fixtures/files/empty.pdf") }
+    consult_document {false}
 
     trait :proposal_document do
       association :documentable, factory: :proposal
@@ -32,6 +34,10 @@ FactoryBot.define do
 
     trait :admin do
       admin { true }
+    end
+
+    trait :is_consult_document do
+      consult_document {true}
     end
   end
 
