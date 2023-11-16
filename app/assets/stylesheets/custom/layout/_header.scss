@@ -6,6 +6,16 @@
   background: $white-gva !important;
   color: $red-gva !important;
 
+  @include breakpoint(small only) {
+    .responsive-menu {
+      width: 100%;
+
+      a {
+        display: block;
+      }
+    }
+  }
+
   ul {
     padding-top: 0.9375rem;
     padding-bottom: 0.5rem;
@@ -17,7 +27,6 @@
   }
 
   .menu > li {
-
     a {
       color: $red-gva;
 
@@ -48,7 +57,6 @@
   }
 
   .menu {
-
     .is-submenu-item {
       a {
         color: $red-gva;
@@ -76,14 +84,12 @@
 }
 
 .subnavigation {
-
   border-top: 1px solid $red-gva;
 
   @include breakpoint(medium) {
-
     ul {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-evenly;
     }
   }
 
@@ -107,7 +113,6 @@
 }
 
 .dropdown.menu > li {
-
   &.is-active > a {
     color: $red-gva;
   }
@@ -121,19 +126,19 @@
   text-align: right;
   margin-bottom: 15px;
   margin-right: 15px;
-}
 
-.radio-toolbar input {
-  display: none;
-}
+  input {
+    display: none;
+  }
 
-.radio-toolbar label {
-  margin: 0;
-  color: $red-gva;
-  cursor: pointer;
+  label {
+    margin: 0;
+    color: $red-gva;
+    cursor: pointer;
 
-  &:hover {
-    font-weight: bold;
+    &:hover {
+      font-weight: bold;
+    }
   }
 }
 
@@ -185,7 +190,7 @@
   }
 }
 
-@media print, screen and (max-width: 1200px){
+@media print, screen and (max-width: 1200px) {
   .subnavigation {
     ul li {
       margin: 0.9375rem;
@@ -197,8 +202,7 @@
   }
 }
 
-@media print, screen and (max-width: 39.99875em){
-
+@media print, screen and (max-width: 39.99875em) {
   .jumbo.highlight {
     background-position: right;
 
@@ -209,39 +213,39 @@
   }
 }
 
-@media print, screen and (max-width: 640px){
+@media print, screen and (max-width: 640px) {
   .top-bar {
     display: inline-block;
     width: 100%;
 
-    .menu {
+    .menu-button {
+      right: 8px;
+      position: absolute;
+      top: 20px;
+    }
+
+    .account-menu.menu {
       padding-top: 2.9375rem;
       padding-right: 0;
     }
-  }
 
-  .top-bar .menu-icon {
-    right: 8px;
-    position: absolute;
-    top: 20px;
-  }
+    .top-bar-title {
+      margin-left: auto;
+      margin-right: 32px;
+    }
 
-  .top-bar .top-bar-title {
-    margin-left: auto;
-    margin-right: 32px;
-  }
+    .button {
+      border: 0;
+      margin-right: 0;
+      float: right;
+    }
 
-  .top-bar .button {
-    border: 0;
-    margin-right: 0;
-    float: right;
-  }
+    ul {
+      float: unset;
 
-  .top-bar ul {
-    float: unset;
-
-    li a {
-      text-align: right;
+      li a {
+        text-align: right;
+      }
     }
   }
 

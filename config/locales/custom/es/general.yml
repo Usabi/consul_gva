@@ -1029,10 +1029,10 @@ es:
     description: ¡Hasta el 30 de mayo puedes presentar tu propuesta directamente en los Presupuestos Participativos!
     url_text: Presupuestos Participativos
 
-    legislations:
-      processes:
-        index:
-          search_form:
-            button: Buscar
-            placeholder: Buscar procesos...
-            title: Buscar
+  legislations:
+    processes:
+      index:
+        search_form:
+          button: Buscar
+          placeholder: Buscar procesos...
+          title: Buscar

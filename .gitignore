@@ -44,3 +44,6 @@ tmp/
 
 # PHP files
 lib/custom/connection_census
+
+# ASDF configuration file
+.tool-versions

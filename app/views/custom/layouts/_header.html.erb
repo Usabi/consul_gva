@@ -1,52 +1,37 @@
 <header>
-  <% if display_remote_translation_info?(@remote_translations, I18n.locale) %>
-    <%= render "shared/remote_translations_button", remote_translations: @remote_translations %>
-  <% end %>
-  <div class="row">
-    <div class="top-bar">
-      <span data-responsive-toggle="responsive-menu" data-hide-for="medium" class="float-right">
-         <button type="button" class="menu-button" data-toggle>
-          <span class="menu-icon"></span>
-          <%= t("application.menu") %>
-        </button>
-      </span>
+  <%= render Layout::RemoteTranslationsButtonComponent.new(@remote_translations) %>
 
-      <h1 class="top-bar-title">
-        <%= link_to root_path, accesskey: "0" do %>
-          <%= image_tag(image_path_for("logo_header.png"), class: "float-left", alt: t("layouts.header.logo")) %>
-        <% end %>
-      </h1>
-      <div id="responsive-menu">
-        <div class="top-bar-right">
-          <ul class="menu" data-responsive-menu="medium-dropdown">
-            <%= render "shared/admin_login_items" %>
-            <%= render "layouts/notification_item" %>
-            <%= render "devise/menu/login_items" %>
-          </ul>
-          <div class="slogan">
-            <%= sanitize(t("application.slogan_text.header"))%>
-          </div>
-          <%= render "shared/locale_switcher" %>
-          <div class="social-header">
-            <%= render "layouts/social_footer" %>
-          </div>
-          <div class="show-for-small-only">
-            <div class="subnavigation row">
-              <%= render "shared/subnavigation" %>
-              <div class="small-12 column">
-                <%= render "shared/top_links" %>
-              </div>
-            </div>
+  <div class="top-bar">
+
+    <h1 class="top-bar-title">
+      <%= link_to root_path, accesskey: "0" do %>
+        <%= image_tag(image_path_for("logo_header.png"), class: "float-left", alt: t("layouts.header.logo")) %>
+      <% end %>
+    </h1>
+    <%= render Layout::ResponsiveMenuComponent.new do %>
+      <%= render Layout::AccountMenuComponent.new(current_user) %>
+
+        <div class="slogan">
+          <%= sanitize(t("application.slogan_text.header"))%>
+        </div>
+        <%= render Layout::LocaleSwitcherComponent.new %>
+        <div class="social-header">
+          <%= render "layouts/social_footer" %>
+        </div>
+        <div class="show-for-small-only">
+          <div class="subnavigation subnavigation-with-top-links">
+            <%= render Layout::SubnavigationComponent.new %>
+            <%= render Layout::TopLinksComponent.new %>
           </div>
         </div>
-      </div>
-    </div>
+    <% end %>
   </div>
-  <div id="navigation_bar" class="subnavigation expanded">
-    <div class="row">
-      <div class="hide-for-small-only">
-        <%= render "shared/subnavigation" %>
-      </div>
+
+  <div id="navigation_bar" class="subnavigation">
+    <div class="hide-for-small-only">
+      <%= render Layout::SubnavigationComponent.new %>
     </div>
+
+    <%#= yield :header_addon %>
   </div>
 </header>

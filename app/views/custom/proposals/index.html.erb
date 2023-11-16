@@ -4,6 +4,7 @@
              search_path: proposals_path(page: 1),
              i18n_namespace: "proposals.index.search_form" %>
 <% end %>
+
 <% content_for :canonical do %>
   <%= render "shared/canonical", href: proposals_url %>
 <% end %>
@@ -120,7 +121,7 @@
         <% if params[:retired].blank? %>
           <%= render "categories" %>
           <%= render "shared/tag_cloud", taggable: "Proposal" %>
-          <%= render "geozones" %>
+          <%= render Proposals::GeozonesComponent.new %>
         <% end %>
         <%= render "retired" %>
         <%= render "proposals_lists" %>

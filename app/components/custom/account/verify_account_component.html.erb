@@ -1,0 +1,39 @@
+<div class="verify-account">
+  <% if account.level_three_verified? %>
+    <p class="already-verified">
+      <%= t("account.show.verified_account") %>
+    </p>
+  <% else %>
+    <p>
+      <%= t("account.show.user_permission_verify") %>
+    </p>
+
+    <% if account.residence_requested? %>
+      <p class="verification-requested">
+        <span class="icon-info-circle"></span>
+        <%=
+          link_locale = I18n.locale == :val ? 'va' : I18n.locale
+          age_url = Verification::Residence.procedure_url(:age, link_locale)
+          foreign_url = Verification::Residence.procedure_url(:foreign, link_locale)
+
+          if account.residence_requested_foreign? && account.residence_requested_age?
+            age_link = link_to t('account.show.residence_request_procedure'), age_url
+            foreign_link = link_to t('account.show.residence_request_procedure'), foreign_url
+            message = t('account.show.required_age_foreign_residence_verification_request', age_link: age_link, foreign_link: foreign_link, required_age: User.minimum_required_age)
+          elsif account.residence_requested_foreign?
+            link = link_to t('account.show.residence_request_procedure'), foreign_url
+            message = t('account.show.foreign_residence_verification_request', link: link, required_age: User.minimum_required_age)
+          elsif account.residence_requested_age?
+            link = link_to t('account.show.residence_request_procedure'), age_url
+            message = t('account.show.required_age_verification_request', link: link, required_age: User.minimum_required_age)
+          end
+          raw message
+        %>
+      </p>
+    <% elsif account.level_two_verified? %>
+      <%= link_to t("account.show.finish_verification"), verification_path, class: "button success" %>
+    <% else %>
+      <%= link_to t("account.show.verify_my_account"), verification_path, class: "button success" %>
+    <% end %>
+  <% end %>
+</div>
