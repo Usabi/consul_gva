@@ -9,8 +9,7 @@
               id="local-<%= name_for_locale(loc) %>"
               name="select-local"
               value="<%= current_path_with_query_params(locale: loc) %>"
-              <%= "checked" if loc == I18n.locale %>
-            >
+              <%= "checked" if loc == I18n.locale %>>
             <label for="local-<%= name_for_locale(loc) %>">
               <%= name_for_locale(loc) %>
             </label>

@@ -10,6 +10,10 @@
              i18n_namespace: "legislations.processes.index.search_form" %>
 <% end %>
 
+<% content_for :canonical do %>
+  <%= render "shared/canonical", href: legislation_processes_url %>
+<% end %>
+
 <main>
   <% if [
           @search_terms,

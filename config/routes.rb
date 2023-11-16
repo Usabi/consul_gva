@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get "/welcome", to: "welcome#welcome"
   get "/consul.json", to: "installation#details"
   get "/participem_gv_login", to: "users/gv_login#login_or_redirect_to_sso"
+  get "robots.txt", to: "robots#index"
 
   resources :stats, only: [:index]
   resources :images, only: [:destroy]
