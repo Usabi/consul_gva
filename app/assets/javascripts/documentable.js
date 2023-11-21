@@ -17,6 +17,19 @@
           App.Documentable.lockUploads();
         }
       });
+
+      $("#nested-documents-consult-document").on("cocoon:after-remove", function() {
+        App.Documentable.lockUploadsConsulDocument();
+      });
+      $("#nested-documents-consult-document").on("cocoon:after-insert", function(e, nested_document) {
+        var input;
+        input = $(nested_document).find(".js-document-attachment");
+        input.lockUploadConsulDocument = $(nested_document).closest("#nested-documents-consult-document").find(".document:visible").length >= $("#nested-documents-consult-document").data("max-documents-allowed");
+        App.Documentable.initializeDirectUploadInput(input);
+        if (input.lockUploadConsulDocument) {
+          App.Documentable.lockUploadsConsulDocument();
+        }
+      });
       App.Documentable.initializeRemoveCachedDocumentLinks();
     },
     initializeDirectUploadInput: function(input) {
@@ -57,6 +70,9 @@
           $(data.destroyAttachmentLinkContainer).html(destroyAttachmentLink);
           if (input.lockUpload) {
             App.Documentable.showNotice();
+          }
+          if (input.lockUploadConsulDocument) {
+            App.Documentable.showNoticeConsulDocument();
           }
         },
         progress: function(e, data) {
@@ -107,17 +123,34 @@
     lockUploads: function() {
       $("#new_document_link").addClass("hide");
     },
+    lockUploadsConsulDocument: function() {
+      $("#new_document_link-consult-document").addClass("hide");
+    },
     unlockUploads: function() {
       $("#max-documents-notice").addClass("hide");
       $("#new_document_link").removeClass("hide");
     },
+    unlockUploadsConsulDocument: function() {
+      $("#max-documents-notice-consult-document").removeClass("hide");
+      $("#new_document_link--consult-document").removeClass("hide");
+
+    },
     showNotice: function() {
       $("#max-documents-notice").removeClass("hide");
+    },
+    showNoticeConsulDocument: function() {
+      $("#max-documents-notice-consult-document").removeClass("hide");
     },
     initializeRemoveCachedDocumentLinks: function() {
       $("#nested-documents").on("click", "a.remove-cached-attachment", function(event) {
         event.preventDefault();
         App.Documentable.unlockUploads();
+        $(this).closest(".direct-upload").remove();
+      });
+
+      $("#nested-documents-consult-document").on("click", "a.remove-cached-attachment", function(event) {
+        event.preventDefault();
+        App.Documentable.unlockUploadsConsulDocument();
         $(this).closest(".direct-upload").remove();
       });
     },
