@@ -20,7 +20,7 @@
                                 association_insertion_method: "append"
                               } %>
 
-  <div id="max-documents-notice<%=@consult_document ? "-consult-document" : "" %>" class="max-documents-notice callout primary text-center <%= "hide" unless max_documents_allowed? %>">
+  <div id="max-documents-notice<%= @consult_document ? "-consult-document" : "" %>" class="max-documents-notice callout primary text-center <%= "hide" unless max_documents_allowed? %>">
     <%= sanitize(t("documents.max_documents_allowed_reached")) %>
   </div>
 </fieldset>
