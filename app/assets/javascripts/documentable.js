@@ -132,8 +132,7 @@
     },
     unlockUploadsConsulDocument: function() {
       $("#max-documents-notice-consult-document").removeClass("hide");
-      $("#new_document_link--consult-document").removeClass("hide");
-
+      $("#new_document_link-consult-document").removeClass("hide");
     },
     showNotice: function() {
       $("#max-documents-notice").removeClass("hide");
