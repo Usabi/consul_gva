@@ -12,7 +12,7 @@
   <%= link_to_add_association t("documents.form.add_new_document"), f, :documents,
                               partial: "documents/document_fields",
                               render_options: { locals: {consult_document: @consult_document}},
-                              id: "new_document_link",
+                              id: "new_document_link" + (@consult_document ? "-consult-document" : ""),
                               class: "button upload-document
                                       #{"hide" if max_documents_allowed?}",
                               data: {
@@ -20,7 +20,7 @@
                                 association_insertion_method: "append"
                               } %>
 
-  <div id="max-documents-notice" class="max-documents-notice callout primary text-center <%= "hide" unless max_documents_allowed? %>">
+  <div id="max-documents-notice<%= @consult_document ? "-consult-document" : "" %>" class="max-documents-notice callout primary text-center <%= "hide" unless max_documents_allowed? %>">
     <%= sanitize(t("documents.max_documents_allowed_reached")) %>
   </div>
 </fieldset>
