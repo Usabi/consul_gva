@@ -387,6 +387,7 @@ val:
           questions: Debat
           proposals: Propostes
           milestones: Seguiment
+          legislators: Legisladors
       homepage:
         edit:
           title: Configura la teua pàgina principal
@@ -477,6 +478,12 @@ val:
       milestones:
         index:
           title: Seguint
+      legislators:
+        edit:
+          legislators:
+            zero: "Seleccionar legisladors"
+            one: "1 legislador seleccionat"
+            other: "%{count} legisladors seleccionats"
     managers:
       index:
         title: Gestors

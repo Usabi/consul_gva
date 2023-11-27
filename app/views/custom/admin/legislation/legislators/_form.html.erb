@@ -1,0 +1,19 @@
+<%= form_for [:admin, @process] do |f| %>
+
+  <%= render "shared/errors", resource: @process %>
+
+  <% %w[legislators].each do |staff| %>
+      <div class="small-12 medium-6 large-3 column end">
+        <%= link_to t("admin.legislation.legislators.edit.#{staff}", count: @process.send(staff).count),
+          "#",
+          class: "button expanded hollow js-legislation-process-show-#{staff}-list js-legislation-process-show-users-list",
+          data: { toggle: "#{staff}_list", texts: t("admin.legislation.legislators.edit.#{staff}") } %>
+      </div>
+    <% end %>
+  <%= render "/admin/legislation/legislators/association", assignable_type: "legislators", assignables: legislators, form: f %>
+
+
+  <div class="small-12 medium-3 column clear end">
+    <%= f.submit(class: "button expanded", value: t("admin.legislation.processes.#{admin_submit_action(@process)}.submit_button")) %>
+  </div>
+<% end %>
