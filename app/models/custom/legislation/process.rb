@@ -5,6 +5,9 @@ class Legislation::Process
 
   belongs_to :user, optional: true, inverse_of: :legislation_processes
 
+  has_many :process_legislators, dependent: :destroy, foreign_key: "legislation_process_id"
+  has_many :legislators, through: :process_legislators
+
   def self.processes_filters
     %w[preview_phase public_phase past relevance]
   end

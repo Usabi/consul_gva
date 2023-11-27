@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_04_112519) do
+ActiveRecord::Schema.define(version: 2023_11_23_082325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -751,6 +751,15 @@ ActiveRecord::Schema.define(version: 2023_08_04_112519) do
     t.index ["hidden_at"], name: "index_legislation_draft_versions_on_hidden_at"
     t.index ["legislation_process_id"], name: "index_legislation_draft_versions_on_legislation_process_id"
     t.index ["status"], name: "index_legislation_draft_versions_on_status"
+  end
+
+  create_table "legislation_process_legislators", force: :cascade do |t|
+    t.bigint "legislation_process_id"
+    t.bigint "legislator_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["legislation_process_id"], name: "index_legislation_process_legislators_on_legislation_process_id"
+    t.index ["legislator_id"], name: "index_legislation_process_legislators_on_legislator_id"
   end
 
   create_table "legislation_process_translations", id: :serial, force: :cascade do |t|
@@ -1808,6 +1817,8 @@ ActiveRecord::Schema.define(version: 2023_08_04_112519) do
   add_foreign_key "identities", "users"
   add_foreign_key "images", "users"
   add_foreign_key "legislation_draft_versions", "legislation_processes"
+  add_foreign_key "legislation_process_legislators", "legislation_processes"
+  add_foreign_key "legislation_process_legislators", "legislators"
   add_foreign_key "legislation_processes", "users"
   add_foreign_key "legislation_proposals", "legislation_processes"
   add_foreign_key "legislators", "users"

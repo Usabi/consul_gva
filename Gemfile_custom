@@ -23,7 +23,13 @@
 ###### Other gems ######
 #
 # Add your custom gem dependencies here
+
+group :development do
+  gem "solargraph"
+  gem "rufo"
+end
+
 group :test do
-  gem 'pry'
-  gem 'pry-rails'
+  gem "pry"
+  gem "pry-rails"
 end
