@@ -10,24 +10,52 @@ class CensusApi
   end
 
   class Response
+    def datos_vivienda?
+      data[:datos_vivienda]["resultado"]
+    end
+
+    def datos_vivienda_error
+      unless datos_vivienda?
+        unless data[:datos_vivienda]["error"]
+          return :error_0233 if data[:datos_vivienda]["estado"] =~ /^0233/ #"Titular no Identificado o Ámbito Territorial de Residencia Incorrecto"
+          return :error_4 if data[:datos_vivienda]["estado"] =~ /^4/ #"Ámbito Territorial Residencia Incorrecto"
+        else
+          return :error_0231 if data[:datos_vivienda]["error"] =~ /^0231/ #Se ha recibido una petición en la que la validación del NIFTitular es incorrecta
+        end
+      end
+    end
+
+    def datos_habitante?
+      data[:datos_habitante]["resultado"]
+    end
+
+    def datos_habitante_error
+      unless datos_habitante?
+        unless data[:datos_habitante]["error"]
+          return :error if data[:datos_habitante]["estado"]
+        else
+          return :error_0231 if data[:datos_habitante]["error"] =~ /^0231/ #Se ha recibido una petición en la que la validación del NIFTitular es incorrecta
+        end
+      end
+    end
+
     def valid?
       return false if data =~ /^ERROR/
 
-      data[:datos_vivienda]["resultado"] == true &&
-      data[:datos_habitante]["resultado"] == true
+      datos_vivienda? && datos_habitante?
     end
 
     def error
       return data if data =~ /^ERROR/
 
-      error = !data[:datos_vivienda]["resultado"] && data[:datos_vivienda]["error"] ||
-      !data[:datos_habitante]["resultado"] && data[:datos_habitante]["error"]
+      error = !datos_vivienda? && data[:datos_vivienda]["error"] ||
+      !datos_habitante? && data[:datos_habitante]["error"]
 
       data[:datos_vivienda]["estado"] =~ /^0233/ ? "No residente" : error
     end
 
     def date_of_birth
-      str = data[:datos_habitante]['fecha_nacimiento']
+      str = data[:datos_habitante]["fecha_nacimiento"]
       return nil if str.blank?
 
       year, month, day = str.match(/(\d\d\d\d)(\d\d)(\d\d)/)[1..3]
@@ -105,7 +133,7 @@ class CensusApi
       #    document_number = '10000322Z'
       #    province_code = '17'
       #  else
-          province_code = @postal_code[0..1]
+      province_code = @postal_code[0..1]
       #  end
       logger.warn "province_code: #{province_code}"
       logger.warn "php -f #{validator} -- -i #{identifier} -n #{document_number} -p #{province_code} --esp #{document_type == '4' ? 'n' : 's'}"
@@ -181,7 +209,7 @@ class CensusApi
         }
       }
     end
-
+    # Invalid
     def stubbed_invalid_response
       {
         datos_habitante: {
@@ -192,13 +220,70 @@ class CensusApi
         },
         datos_vivienda: {
           "resultado" => false,
-          "error" => "0231 Documento incorrecto",
+          "error" => "0231 Documento incorrecto"
         },
         datos_originales: {
           postal_code: "46001",
           name: "NAME",
           first_surname: "FIRST SURNAME",
-          last_surname: "LAST SURNAME"
+          last_surname: "LAST SURNAME",
+          date_of_birth: 25.years.ago.to_date
+        }
+      }
+    end
+
+    def stubbed_invalid_postal_code_response
+      {
+        datos_habitante: {
+          "resultado" => true,
+          "error" => false,
+          "cod_estado" => "00",
+          "literal_error" => "INFORMACION CORRECTA",
+          "nacionalidad" => "ESPA\u00d1A-ESP",
+          "sexo" => "F",
+          "fecha_nacimiento" => "20030518"
+        },
+        datos_vivienda: {
+          "resultado" => false,
+          "error" => "0231 Documento incorrecto"
+          # "error" => false,
+          # "estado" => "4",
+          # "estado" => "0233",
+          # "literal" => "Ãmbito Territorial de Residencia Incorrecto"
+        },
+        datos_originales: {
+          postal_code: "46001",
+          name: "NAME",
+          first_surname: "FIRST SURNAME",
+          last_surname: "LAST SURNAME",
+          date_of_birth: 25.years.ago.to_date
+        }
+      }
+    end
+
+    def stubbed_invalid_postal_code_and_document_number_response
+      {
+        datos_habitante: {
+          "resultado" => true,
+          "error" => " Documento incorrecto",
+          # "error" => false,
+          # "estado" => "0233",
+          "literal" => "Titular no Identificado o \u00c1mbito Territorial de Residencia Incorrecto"
+        },
+        datos_vivienda: {
+          "resultado" => true,
+          # "error" => "0231 Documento incorrecto"
+          "error" => false,
+          # "estado" => "4",
+          # "estado" => "0233",
+          # "literal" => "Ãmbito Territorial de Residencia Incorrecto"
+        },
+        datos_originales: {
+          postal_code: "46001",
+          name: "NAME",
+          first_surname: "FIRST SURNAME",
+          last_surname: "LAST SURNAME",
+          date_of_birth: 25.years.ago.to_date
         }
       }
     end

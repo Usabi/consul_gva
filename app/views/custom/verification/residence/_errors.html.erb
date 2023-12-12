@@ -4,7 +4,9 @@
     <button class="close-button" aria-label="<%= t("application.close") %>" type="button" data-close>
       <span aria-hidden="true">&times;</span>
     </button>
-    <%= t("verification.residence.new.error_verifying_census") %>
+    <%= t("verification.residence.new.error_verifying_census_1") %>
+    <br>
+    <%= t("verification.residence.new.error_verifying_census_2") %>
   </div>
 
 <% elsif @residence.errors[:base].present? %>

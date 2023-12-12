@@ -4,6 +4,19 @@ class Verification::Residence
   validates :gender, :name, :first_surname, presence: true
   validates :last_surname, presence: true, if: -> { document_type == 1 }
 
+  validates :document_number,
+    presence: true,
+    length: { is: 9 },
+    if: -> { document_type == "1" }
+
+  validates :document_number,
+    presence: true,
+    length: { is: 8 },
+    if: -> { document_type == "4" }
+
+  validate :local_postal_code
+  validate :local_residence
+
   GENDERS = %i[male female other].freeze
   PROCEDURE_IDS = {
     age: 21470,
@@ -44,18 +57,26 @@ class Verification::Residence
 
   def local_residence
     return if errors.any? # return to form with validation messages
-
     unless residency_valid?
       if census_data.respond_to?(:error) && census_data.error =~ /^Servicio no disponible/
         errors.add(:base, I18n.t("verification.residence.new.error_service_not_available"))
         return
       end
 
-      errors.add(:postal_code, I18n.t("verification.residence.new.invalid_postal_code")) unless postal_code_valid?
+      unless census_data.datos_vivienda?
+        if census_data.datos_vivienda_error == :error_0231
+          errors.add(:postal_code, I18n.t("verification.residence.new.invalid_postal_code"))
+        end
+        errors.add(:local_residence, false)
+      end
 
-      errors.add(:date_of_birth, I18n.t("verification.residence.new.invalid_date_of_birth")) unless date_of_birth_valid?
+      unless census_data.datos_habitante?
+        if census_data.datos_habitante_error == :error_0231
+          errors.add(:document_number, I18n.t("verification.residence.new.invalid_document_number"))
+        end
+        errors.add(:local_residence, false)
+      end
 
-      errors.add(:local_residence, false)
       store_failed_attempt
       Lock.increase_tries(user)
     end
@@ -86,13 +107,11 @@ class Verification::Residence
     def residency_valid?
       # If age service returns ok, foreign residence is checked and residence service returns no residence error, we return true
       return true if !census_data.valid? &&
-                     date_of_birth_valid? &&
                      foreign_residence? &&
                      census_data.respond_to?(:error) &&
                      census_data.error == "No residente"
 
-      census_data.valid? &&
-        postal_code_valid? && date_of_birth_valid?
+      census_data.valid?
     end
 
     def postal_code_valid?
@@ -116,6 +135,6 @@ class Verification::Residence
     end
 
     def foreign_residence?
-      foreign_residence == '1'
+      foreign_residence == "1"
     end
 end
