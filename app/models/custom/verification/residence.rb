@@ -9,11 +9,6 @@ class Verification::Residence
     length: { is: 9 },
     if: -> { document_type == "1" }
 
-  validates :document_number,
-    presence: true,
-    length: { is: 8 },
-    if: -> { document_type == "4" }
-
   validate :local_postal_code
   validate :local_residence
 
