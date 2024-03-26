@@ -1,10 +1,12 @@
-<% if @residence.errors[:residence_in_valencia].present? %>
+<% if @residence.errors[:local_residence].present? %>
 
   <div id="error_explanation" data-alert class="callout alert" data-closable>
     <button class="close-button" aria-label="<%= t("application.close") %>" type="button" data-close>
       <span aria-hidden="true">&times;</span>
     </button>
-    <%= t("verification.residence.new.error_verifying_census") %>
+    <%= t("verification.residence.new.error_verifying_census_1") %>
+    <br>
+    <%= t("verification.residence.new.error_verifying_census_2") %>
   </div>
 
 <% elsif @residence.errors[:base].present? %>

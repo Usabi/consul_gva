@@ -17,7 +17,7 @@
               <% end %>
             </div>
           <% elsif card.image.present? %>
-            <%= image_tag(card.image_url(:original), alt: 'welcome.slider.title') %>
+            <%= image_tag(card.image.variant(:large), alt: 'welcome.slider.title') %>
           <% end %>
           <div class="buttons">
             <%= link_to card.link_text, card.link_url, class: "button" if card.link_text.present? && card.link_url.present? %>

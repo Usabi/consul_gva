@@ -4,11 +4,11 @@ require_dependency Rails.root.join("app", "controllers", "concerns", "admin", "w
 module Admin::Widget::CardsActions
   private
 
-    def card_params
-      params.require(:widget_card).permit(
+    def allowed_params
+      [
         :link_url, :button_text, :button_url, :alignment, :header, :columns, :middle,
         translation_params(Widget::Card),
         image_attributes: image_attributes
-      )
+      ]
     end
 end

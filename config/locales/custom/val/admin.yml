@@ -4,16 +4,14 @@ val:
       title: Administració
     actions:
       actions: Accions
-      confirm: Estàs segur?
       confirm_hide: Confirmar
+      delete: "Eliminar"
       hide: Amagar
-      hide_author: Bloquejar a l'autor
       restore: Restaurar
       mark_featured: Destacar
       unmark_featured: Llevar destacat
       edit: Editar
       configure: Configurar
-      delete: Eliminar
     banners:
       index:
         title: Banners
@@ -389,6 +387,7 @@ val:
           questions: Debat
           proposals: Propostes
           milestones: Seguiment
+          legislators: Legisladors
       homepage:
         edit:
           title: Configura la teua pàgina principal
@@ -479,6 +478,12 @@ val:
       milestones:
         index:
           title: Seguint
+      legislators:
+        edit:
+          legislators:
+            zero: "Seleccionar legisladors"
+            one: "1 legislador seleccionat"
+            other: "%{count} legisladors seleccionats"
     managers:
       index:
         title: Gestors
@@ -538,6 +543,7 @@ val:
           mailers: "Correus electrònics"
           management: "Gestió"
           welcome: "Benvingut/da"
+          application: "Aplicació"
         buttons:
           save: "Guardar"
           content_block:

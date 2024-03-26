@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :image do
-    attachment { File.new("spec/fixtures/files/clippy.jpg") }
+    attachment { Rack::Test::UploadedFile.new("spec/fixtures/files/clippy.jpg") }
     title { "Lorem ipsum dolor sit amet" }
     association :user, factory: :user
 
@@ -13,10 +13,12 @@ FactoryBot.define do
     end
   end
 
+  # TODO: añadir nuevo atributo
   factory :document do
     sequence(:title) { |n| "Document title #{n}" }
     association :user, factory: :user
-    attachment { File.new("spec/fixtures/files/empty.pdf") }
+    attachment { Rack::Test::UploadedFile.new("spec/fixtures/files/empty.pdf") }
+    consult_document {false}
 
     trait :proposal_document do
       association :documentable, factory: :proposal
@@ -33,6 +35,10 @@ FactoryBot.define do
     trait :admin do
       admin { true }
     end
+
+    trait :is_consult_document do
+      consult_document {true}
+    end
   end
 
   factory :direct_upload do
@@ -47,11 +53,11 @@ FactoryBot.define do
 
     trait :documents do
       resource_relation { "documents" }
-      attachment { File.new("spec/fixtures/files/empty.pdf") }
+      attachment { Rack::Test::UploadedFile.new("spec/fixtures/files/empty.pdf") }
     end
     trait :image do
       resource_relation { "image" }
-      attachment { File.new("spec/fixtures/files/clippy.jpg") }
+      attachment { Rack::Test::UploadedFile.new("spec/fixtures/files/clippy.jpg") }
     end
     initialize_with { new(attributes) }
   end

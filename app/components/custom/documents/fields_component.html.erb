@@ -1,0 +1,7 @@
+<%= render Attachable::DocumentFieldsComponent.new(
+  f,
+  consult_document: @consult_document,
+  resource_type: document.documentable_type,
+  resource_id: document.documentable_id,
+  relation_name: "documents"
+) %>

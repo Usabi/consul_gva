@@ -8,7 +8,7 @@
     <%# TODO columna Texto año y quien lo hace %>
     <div class="column small-12 large-3 gobierno">
       <p class="info">
-        <%= sanitize(t("layouts.footer.government",
+        <%= sanitize(t("application.slogan_text.footer",
           copyright: t("layouts.footer.copyright"))) %>
       </p>
     </div>
@@ -70,6 +70,7 @@
         <li><%= t("layouts.footer.contact_us_short") %> <%= mail_to Setting['mailer_from_address'] %></li>
       </ul>
     </div>
+
     <%= render Layout::SocialComponent.new %>
   </div>
-<footer>
+</footer>

@@ -35,10 +35,12 @@ class Valuation::BudgetInvestmentsController < Valuation::BaseController
       raise ActionController::RoutingError.new("Not Found")
     end
 
-    def valuation_params
-      params.require(:budget_investment).permit(:price, :price_first_year, :price_explanation,
-                                                :feasibility, :unfeasibility_explanation,
-                                                :not_selected_explanation,
-                                                :duration, :valuation_finished)
+    def allowed_params
+      [
+        :price, :price_first_year, :price_explanation,
+        :feasibility, :unfeasibility_explanation,
+        :not_selected_explanation,
+        :duration, :valuation_finished
+      ]
     end
 end

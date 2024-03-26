@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2022_02_24_173405) do
+ActiveRecord::Schema.define(version: 2023_11_23_082325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -404,6 +403,7 @@ ActiveRecord::Schema.define(version: 2022_02_24_173405) do
     t.text "description_informing"
     t.string "voting_style", default: "knapsack"
     t.boolean "published"
+    t.boolean "hide_money", default: false
   end
 
   create_table "campaigns", id: :serial, force: :cascade do |t|
@@ -594,6 +594,7 @@ ActiveRecord::Schema.define(version: 2022_02_24_173405) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
+    t.boolean "consult_document", default: false
     t.index ["documentable_type", "documentable_id"], name: "index_documents_on_documentable_type_and_documentable_id"
     t.index ["user_id", "documentable_type", "documentable_id"], name: "access_documents"
     t.index ["user_id"], name: "index_documents_on_user_id"
@@ -750,6 +751,15 @@ ActiveRecord::Schema.define(version: 2022_02_24_173405) do
     t.index ["hidden_at"], name: "index_legislation_draft_versions_on_hidden_at"
     t.index ["legislation_process_id"], name: "index_legislation_draft_versions_on_legislation_process_id"
     t.index ["status"], name: "index_legislation_draft_versions_on_status"
+  end
+
+  create_table "legislation_process_legislators", force: :cascade do |t|
+    t.bigint "legislation_process_id"
+    t.bigint "legislator_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["legislation_process_id"], name: "index_legislation_process_legislators_on_legislation_process_id"
+    t.index ["legislator_id"], name: "index_legislation_process_legislators_on_legislator_id"
   end
 
   create_table "legislation_process_translations", id: :serial, force: :cascade do |t|
@@ -1651,6 +1661,7 @@ ActiveRecord::Schema.define(version: 2022_02_24_173405) do
     t.jsonb "services_results"
     t.datetime "residence_requested_at"
     t.boolean "foreign_residence"
+    t.string "subscriptions_token"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["date_of_birth"], name: "index_users_on_date_of_birth"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -1719,7 +1730,7 @@ ActiveRecord::Schema.define(version: 2022_02_24_173405) do
     t.index ["user_id"], name: "index_visits_on_user_id"
   end
 
-  create_table "vmcrc_personas", id: :serial, force: :cascade do |t|
+  create_table "vmcrc_siac_personas", id: :serial, force: :cascade do |t|
     t.text "codper", null: false
     t.text "codmap", null: false
     t.text "nomb", null: false
@@ -1806,6 +1817,8 @@ ActiveRecord::Schema.define(version: 2022_02_24_173405) do
   add_foreign_key "identities", "users"
   add_foreign_key "images", "users"
   add_foreign_key "legislation_draft_versions", "legislation_processes"
+  add_foreign_key "legislation_process_legislators", "legislation_processes"
+  add_foreign_key "legislation_process_legislators", "legislators"
   add_foreign_key "legislation_processes", "users"
   add_foreign_key "legislation_proposals", "legislation_processes"
   add_foreign_key "legislators", "users"

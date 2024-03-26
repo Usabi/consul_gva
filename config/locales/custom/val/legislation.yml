@@ -54,7 +54,6 @@ val:
           winners: Seleccionades
       debate:
         empty_questions: No hi ha preguntes
-        participate: Realitza les teues aportacions al debat previ participant en els seguents temes
       index:
         filter: Filtre
         filters:
@@ -83,9 +82,9 @@ val:
         see_latest_comments: Vore les últimes aportacions
         see_latest_comments_title: Aportar a aquest procés
       shared:
-        key_dates: Dates clau
+        key_dates: Fases de participació
         homepage: Pàgina principal
-        debate_dates: Debat
+        debate_dates: Debat previ
         draft_publication_date: Data de publicació de l'esborrany
         allegations_dates: Aportacions a l'esborrany
         result_publication_date: Publicació de resultats
