@@ -21,6 +21,8 @@ FactoryBot.define do
     result_publication_enabled { true }
     published { true }
 
+    user { create(:legislator).user} # CUSTOM
+
     trait :past do
       start_date { Date.current - 12.days }
       end_date { Date.current - 2.days }
