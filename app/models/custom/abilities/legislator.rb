@@ -19,8 +19,13 @@ module Abilities
 
       can [:read, :debate, :draft_publication, :allegations, :result_publication,
           :milestones], Legislation::Process, user_id: user.id
+      can [:read, :debate, :draft_publication, :allegations, :result_publication,
+      :milestones], Legislation::Process, legislators: user&.legislator&.id
+
       can [:create], Legislation::Process
-      can [:update, :destroy], Legislation::Process, user_id: user.id
+      can [:update, :destroy], Legislation::Process do |process|
+        process.user_id == user.id || process.legislator_ids.include?(user&.legislator&.id)
+      end
       can [:manage], ::Legislation::DraftVersion
       can [:manage], ::Legislation::Question
       can [:manage], ::Legislation::Proposal

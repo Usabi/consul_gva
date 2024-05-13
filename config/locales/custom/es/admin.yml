@@ -616,6 +616,7 @@ es:
           questions: Debate
           proposals: Propuestas
           milestones: Seguimiento
+          legislators: Legisladores
       homepage:
         edit:
           title: Configura la homepage del proceso
@@ -705,6 +706,13 @@ es:
       milestones:
         index:
           title: Seguimiento
+      legislators:
+        edit:
+          legislators:
+            zero: "Seleccionar legisladores"
+            one: "1 legislador seleccionado"
+            other: "%{count} legisladores seleccionados"
+
     managers:
       index:
         title: Gestores

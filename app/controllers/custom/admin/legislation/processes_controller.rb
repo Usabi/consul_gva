@@ -28,4 +28,38 @@ class Admin::Legislation::ProcessesController
       render :new
     end
   end
+
+  private
+
+    def allowed_params
+      [
+        :start_date,
+        :end_date,
+        :debate_start_date,
+        :debate_end_date,
+        :draft_start_date,
+        :draft_end_date,
+        :draft_publication_date,
+        :allegations_start_date,
+        :allegations_end_date,
+        :proposals_phase_start_date,
+        :proposals_phase_end_date,
+        :result_publication_date,
+        :debate_phase_enabled,
+        :draft_phase_enabled,
+        :allegations_phase_enabled,
+        :proposals_phase_enabled,
+        :draft_publication_enabled,
+        :result_publication_enabled,
+        :published,
+        :custom_list,
+        :background_color,
+        :font_color,
+        :related_sdg_list,
+        translation_params(::Legislation::Process),
+        documents_attributes: document_attributes,
+        image_attributes: image_attributes,
+        legislator_ids: []
+      ]
+    end
 end

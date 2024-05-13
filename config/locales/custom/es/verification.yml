@@ -64,6 +64,7 @@ es:
         date_of_birth: Fecha de nacimiento
         invalid_date_of_birth: La fecha de nacimiento no coincide
         invalid_postal_code: El código postal no coincide
+        invalid_document_number: El número de documento es incorrecto
         gender_label: Género
         not_verified: No verificada
         postal_code: Código postal
@@ -72,7 +73,8 @@ es:
         last_surname: Apellido 2º
         error_not_allowed_age: No tienes la edad mínima para participar
         error_not_allowed_postal_code: Para verificarte debes estar empadronado/a.
-        error_verifying_census: El Padrón no pudo verificar tu información. Por favor, confirma que tus datos de empadronamiento sean correctos llamando al Ayuntamiento o visitando una Oficina de Atención al Ciudadano.
+        error_verifying_census_1: El Padrón no pudo verificar su información. Revise que los datos del formulario estén correctos y no tengan un mensaje de error.
+        error_verifying_census_2: Si el problema persiste, póngase en contacto con el Ayuntamiento o visitando una Oficina de Atención al Ciudadano.
         error_service_not_available: No se pudo conectar con el servicio de verificación. Por favor, inténtalo más tarde.
         foreign_residence: Resido fuera de la Comunitat Valenciana, pero soy valenciano
         form_errors: evitaron verificar tu residencia

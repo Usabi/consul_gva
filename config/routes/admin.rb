@@ -240,6 +240,7 @@ namespace :admin do
       resources :milestones
       resources :progress_bars, except: :show
       resource :homepage, only: [:edit, :update]
+      resource :legislators, only: [:edit, :update]#Custom
     end
   end
 

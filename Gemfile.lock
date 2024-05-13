@@ -558,7 +558,7 @@ GEM
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
-    rufo (0.16.2)
+    rufo (0.16.3)
     rugged (1.0.1)
     rvm1-capistrano3 (1.4.0)
       capistrano (~> 3.0)
