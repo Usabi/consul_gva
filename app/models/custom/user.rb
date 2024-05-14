@@ -10,6 +10,11 @@ class User
   scope :budget_managers, -> { joins(:budget_manager) }
   scope :other, -> { where(gender: "other") }
 
+  # Antes estaba en el inicializer de vote_extensión y lo eliminaron porque no se utilizaba
+  def for_budget_investments(budget_investments = Budget::Investment.all)
+    votes.where(votable_type: "Budget::Investment", votable_id: budget_investments)
+  end
+
   def legislator?
     legislator.present?
   end
