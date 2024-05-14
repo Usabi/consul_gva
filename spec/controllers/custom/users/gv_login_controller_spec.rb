@@ -305,7 +305,7 @@ describe Users::GvLoginController do
           expect(identity_user.name).to eq("#{data.name}-GVLogin1")
 
           expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
-          expect(flash[:error]).to eq(I18n.t("devise.failure.no_backend_roles"))
+          expect(flash[:error]).to eq(I18n.t("devise.failure.default"))
         end
 
         it "request invalid email" do
@@ -435,7 +435,7 @@ describe Users::GvLoginController do
           expect(identity_user).to be_nil
 
           expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
-          expect(flash[:error]).to eq(I18n.t("devise.failure.no_codeper_email"))
+          expect(flash[:error]).to eq(I18n.t("devise.failure.default"))
         end
 
         it "request not gva email" do
@@ -448,7 +448,7 @@ describe Users::GvLoginController do
           expect(identity_user).to be_nil
 
           expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
-          expect(flash[:error]).to eq(I18n.t("devise.failure.no_codeper_email"))
+          expect(flash[:error]).to eq(I18n.t("devise.failure.default"))
         end
 
         it "request without email" do
@@ -461,7 +461,7 @@ describe Users::GvLoginController do
           expect(identity_user).to be_nil
 
           expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
-          expect(flash[:error]).to eq(I18n.t("devise.failure.no_codeper_email"))
+          expect(flash[:error]).to eq(I18n.t("devise.failure.default"))
         end
 
         it "request blank email" do
@@ -474,7 +474,7 @@ describe Users::GvLoginController do
           expect(identity_user).to be_nil
 
           expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
-          expect(flash[:error]).to eq(I18n.t("devise.failure.no_codeper_email"))
+          expect(flash[:error]).to eq(I18n.t("devise.failure.default"))
         end
 
         it "request invalid codper" do
@@ -487,7 +487,7 @@ describe Users::GvLoginController do
           expect(identity_user).to be_nil
 
           expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
-          expect(flash[:error]).to eq(I18n.t("devise.failure.no_codeper_email"))
+          expect(flash[:error]).to eq(I18n.t("devise.failure.default"))
         end
 
         it "request without codper" do
@@ -500,7 +500,7 @@ describe Users::GvLoginController do
           expect(identity_user).to be_nil
 
           expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
-          expect(flash[:error]).to eq(I18n.t("devise.failure.no_codeper_email"))
+          expect(flash[:error]).to eq(I18n.t("devise.failure.default"))
         end
 
         it "request invalid codper and email" do
@@ -513,7 +513,7 @@ describe Users::GvLoginController do
           expect(identity_user).to be_nil
 
           expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
-          expect(flash[:error]).to eq(I18n.t("devise.failure.no_codeper_email"))
+          expect(flash[:error]).to eq(I18n.t("devise.failure.default"))
         end
       end
     end
@@ -554,7 +554,7 @@ describe Users::GvLoginController do
         expect(user_updated.name).to eq("#{data.name}-GVLogin1")
         expect(identity_user.name).to eq("#{data.name}-GVLogin1")
         expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be_nil
-        expect(flash[:error]).to eq(I18n.t("devise.failure.no_backend_roles"))
+        expect(flash[:error]).to eq(I18n.t("devise.failure.default"))
       end
     end
   end

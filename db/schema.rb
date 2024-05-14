@@ -1764,7 +1764,7 @@ ActiveRecord::Schema.define(version: 2023_11_23_082325) do
     t.text "ape1", null: false
     t.text "ape2", null: false
     t.text "dni", null: false
-    t.text "dcorreo", null: false
+    t.text "dcorreoint", null: false
   end
 
   create_table "votes", id: :serial, force: :cascade do |t|
