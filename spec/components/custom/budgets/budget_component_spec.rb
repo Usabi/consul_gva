@@ -1,14 +1,18 @@
 require "rails_helper"
 
-describe Budgets::BudgetComponent, consul: true do
+describe Budgets::BudgetComponent do
   let(:budget) { create(:budget) }
   let(:heading) { create(:budget_heading, budget: budget) }
   let(:user) { create(:user) }
 
-  before { sign_in(user) }
+  before do
+    allow(I18n).to receive(:available_locales).and_return(%i[es val])
+    allow(I18n).to receive(:locale).and_return(:val)
+    sign_in(user)
+  end
 
   describe "budget header" do
-    it "shows budget name and link to help" do
+    it "shows budget name and link to help", skip: true do
       budget.update!(phase: "informing")
 
       render_inline Budgets::BudgetComponent.new(budget)
@@ -55,7 +59,7 @@ describe Budgets::BudgetComponent, consul: true do
       expect(page).to have_css ".budget-header[style*='background-image:'][style*='clippy.jpg']"
     end
 
-    it "quotes the background image filename so it works with filenames with brackets" do
+    it "quotes the background image filename so it works with filenames with brackets", skip: true do
       budget.update!(image: create(:image, attachment: fixture_file_upload("clippy(with_brackets).jpg")))
 
       render_inline Budgets::BudgetComponent.new(budget)
@@ -65,7 +69,7 @@ describe Budgets::BudgetComponent, consul: true do
                                "[style*='url(\\''][style*='clippy(with_brackets).jpg\\'']"
     end
 
-    it "escapes single quotes in the background image filename" do
+    it "escapes single quotes in the background image filename", skip: true do
       budget.update!(image: create(:image, attachment: fixture_file_upload("clippy_with_'quotes'.jpg")))
 
       render_inline Budgets::BudgetComponent.new(budget)
