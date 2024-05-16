@@ -49,7 +49,7 @@ describe "System Emails" do
     end
 
     context "System emails with info" do
-      scenario "have information about how to edit the email templates" do
+      scenario "have information about how to edit the email templates", consul: true do
         visit admin_system_emails_path
 
         system_emails_with_info = system_emails - system_emails_with_preview
