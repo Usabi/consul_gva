@@ -135,7 +135,7 @@ describe "Admin legislation questions", :admin do
       expect(page).to have_field fields_for(:en).last[:id], with: "No"
     end
 
-    context "Special translation behaviour" do
+    context "Special translation behaviour", consul: true do
       before do
         question.update!(title_en: "Title in English", title_es: "Título en Español")
       end
