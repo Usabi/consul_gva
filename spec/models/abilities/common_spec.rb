@@ -232,7 +232,7 @@ describe Abilities::Common do
       it { should_not be_able_to(:answer, expired_poll_question_from_all_geozones)  }
       it { should_not be_able_to(:answer, expired_poll_question_from_other_geozone) }
 
-      context "Poll::Answer" do
+      context "Poll::Answer", consul: true do
         let(:own_answer) { create(:poll_answer, author: user) }
         let(:other_user_answer) { create(:poll_answer) }
         let(:expired_poll) { create(:poll, :expired) }
