@@ -112,7 +112,7 @@ describe "Public area translatable records" do
       expect_to_have_language_selected "English"
     end
 
-    scenario "Highlight new locale added" do
+    scenario "Highlight new locale added", consul: true do
       visit new_proposal_path
 
       select "Español", from: "Language:"
@@ -144,7 +144,7 @@ describe "Public area translatable records" do
         expect(page).to have_content "1 language in use"
       end
 
-      scenario "Increase description count after add new language" do
+      scenario "Increase description count after add new language", consul: true do
         visit new_proposal_path
 
         select "Español", from: :add_language
@@ -187,7 +187,7 @@ describe "Public area translatable records" do
       end
     end
 
-    context "Update a translation" do
+    context "Update a translation", consul: true do
       context "With valid data" do
         let(:translatable) { create(:debate) }
         let(:path) { edit_debate_path(translatable) }
@@ -216,7 +216,7 @@ describe "Public area translatable records" do
       context "Update a translation with invalid data" do
         let(:translatable) { create(:proposal) }
 
-        scenario "Show validation errors" do
+        scenario "Show validation errors", consul: true do
           visit edit_proposal_path(translatable)
           select "Español", from: :select_language
 
