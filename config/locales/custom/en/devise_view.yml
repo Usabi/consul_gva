@@ -1,0 +1,7 @@
+en:
+  devise_views:
+    users:
+      registrations:
+        new:
+          terms: I have read the data protection policy and accept the terms of use %{use_terms}
+          use_terms_link: terms and conditions of use
