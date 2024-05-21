@@ -177,7 +177,7 @@ describe "Admin poll questions", :admin do
     expect(page).to have_current_path admin_poll_path(poll)
   end
 
-  context "Poll select box" do
+  context "Poll select box", consul: true do
     scenario "translates the poll name in options" do
       poll = create(:poll, :future, name_en: "Name in English", name_es: "Nombre en Español")
       proposal = create(:proposal)
