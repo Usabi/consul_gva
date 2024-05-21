@@ -17,6 +17,7 @@ module CommonActions
   include Translations
   include Users
   include Verifications
+  include Helpers
 
   def app_host
     "#{Capybara.app_host}:#{app_port}"
