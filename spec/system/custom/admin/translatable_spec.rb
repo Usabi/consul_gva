@@ -19,7 +19,7 @@ describe "Admin edit translatable records", :admin do
       let(:translatable) { create(:budget_heading) }
       let(:path) { admin_polymorphic_path(translatable, action: :edit) }
 
-      scenario "Maintains existing translations", consul: true do
+      scenario "Maintains existing translations" do
         visit path
 
         select "Français", from: :add_language
@@ -30,7 +30,7 @@ describe "Admin edit translatable records", :admin do
 
         expect(page).to have_field "Heading name", with: "Heading name in English"
 
-        select "Español", from: :select_language
+        select "Cast", from: :select_language
 
         expect(page).to have_field "Heading name", with: "Nombre de la partida en español"
 
@@ -44,7 +44,7 @@ describe "Admin edit translatable records", :admin do
       let(:translatable) { create(:site_customization_page) }
       let(:path) { edit_admin_site_customization_page_path(translatable) }
 
-      scenario "Maintains existing translations", consul: true do
+      scenario "Maintains existing translations" do
         visit path
 
         select "Français", from: :add_language
@@ -57,7 +57,7 @@ describe "Admin edit translatable records", :admin do
 
         expect(page).to have_ckeditor "Content", with: "Content in English"
 
-        select "Español", from: :select_language
+        select "Cast", from: :select_language
 
         expect(page).to have_ckeditor "Content", with: "Contenido en español"
 
@@ -71,7 +71,7 @@ describe "Admin edit translatable records", :admin do
       let(:translatable) { create(:legislation_draft_version) }
       let(:path) { edit_admin_legislation_process_draft_version_path(translatable.process, translatable) }
 
-      scenario "Maintains existing translations", consul: true do
+      scenario "Maintains existing translations" do
         visit path
 
         select "Français", from: :add_language
@@ -87,7 +87,7 @@ describe "Admin edit translatable records", :admin do
         expect(page).to have_field "Text", with: "Text in English"
 
         click_link class: "fullscreen-toggle"
-        select "Español", from: :select_language
+        select "Cast", from: :select_language
         click_link class: "fullscreen-toggle"
 
         expect(page).to have_field "Text", with: "Texto en español"
@@ -112,7 +112,7 @@ describe "Admin edit translatable records", :admin do
         click_button "Save changes"
 
         visit path
-        select "Português brasileiro", from: "Language:"
+        select_language("Português brasileiro")
 
         expect(page).to have_field "Questão", with: "Português"
       end
@@ -190,7 +190,7 @@ describe "Admin edit translatable records", :admin do
       scenario "Changes the existing translation", consul: true do
         visit path
 
-        select "Español", from: :select_language
+        select "Cast", from: :select_language
 
         within(".translatable-fields") do
           fill_in "Title", with: "Título corregido"
@@ -205,7 +205,7 @@ describe "Admin edit translatable records", :admin do
 
         expect(page).to have_field "Title", with: "Title in English"
 
-        select "Español", from: "Language:"
+        select_language("Cast")
 
         expect(page).to have_field "Título", with: "Título corregido"
         expect(page).to have_field "Descripción", with: "Descripción corregida"
@@ -214,14 +214,14 @@ describe "Admin edit translatable records", :admin do
       end
     end
 
-    context "CKEditor fields", consul: true do
+    context "CKEditor fields" do
       let(:translatable) { create(:poll_question_answer, poll: create(:poll, :future)) }
       let(:path) { edit_admin_question_answer_path(translatable.question, translatable) }
 
       scenario "Changes the existing translation" do
         visit path
 
-        select "Español", from: :select_language
+        select "Cast", from: :select_language
 
         within(".translatable-fields") do
           fill_in "Answer", with: "Respuesta corregida"
@@ -234,7 +234,7 @@ describe "Admin edit translatable records", :admin do
 
         expect(page).to have_field "Answer", with: "Answer in English"
 
-        select "Español", from: "Language:"
+        select_language("Cast")
 
         expect(page).to have_field "Respuesta", with: "Respuesta corregida"
         expect(page).to have_ckeditor "Descripción", with: "Descripción corregida"
@@ -260,13 +260,13 @@ describe "Admin edit translatable records", :admin do
     end
   end
 
-  context "Update a translation with invalid data", consul: true do
+  context "Update a translation with invalid data" do
     context "Input fields" do
       let(:translatable) { create(:banner) }
 
       scenario "Show validation errors" do
         visit edit_admin_banner_path(translatable)
-        select "Español", from: :select_language
+        select "Cast", from: :select_language
 
         expect(page).to have_field "Title", with: "Title en español"
 
@@ -275,7 +275,7 @@ describe "Admin edit translatable records", :admin do
 
         expect(page).to have_css "#error_explanation"
 
-        select "Español", from: :select_language
+        select "Cast", from: :select_language
 
         expect(page).to have_field "Title", with: "", class: "is-invalid-input"
       end
@@ -287,7 +287,7 @@ describe "Admin edit translatable records", :admin do
       scenario "Shows validation errors" do
         visit edit_admin_legislation_process_draft_version_path(translatable.process, translatable)
 
-        select "Español", from: :select_language
+        select "Cast", from: :select_language
         click_link class: "fullscreen-toggle"
 
         expect(page).to have_field "Text", with: "Texto en español"
@@ -298,7 +298,7 @@ describe "Admin edit translatable records", :admin do
 
         expect(page).to have_css "#error_explanation"
 
-        select "Español", from: :select_language
+        select "Cast", from: :select_language
         click_link class: "fullscreen-toggle"
 
         expect(page).to have_field "Text", with: ""
@@ -331,23 +331,23 @@ describe "Admin edit translatable records", :admin do
     end
   end
 
-  context "Remove a translation", consul: true do
+  context "Remove a translation" do
     let(:translatable) { create(:budget_group) }
     let(:path) { edit_admin_budget_group_path(translatable.budget, translatable) }
 
     scenario "Keeps the other languages" do
       visit path
 
-      select "Español", from: :select_language
+      select "Cast", from: :select_language
       click_link "Remove language"
 
-      expect(page).not_to have_select :select_language, with_options: ["Español"]
+      expect(page).not_to have_select :select_language, with_options: ["Cast"]
 
       click_button "Save group"
 
       visit path
 
-      expect(page).not_to have_select :select_language, with_options: ["Español"]
+      expect(page).not_to have_select :select_language, with_options: ["Cast"]
       expect(page).to have_select :select_language, with_options: ["English"]
     end
   end
@@ -382,14 +382,14 @@ describe "Admin edit translatable records", :admin do
     end
   end
 
-  context "Remove a translation with invalid data", consul: true do
+  context "Remove a translation with invalid data" do
     let(:translatable) { create(:poll_question, poll: create(:poll, :future)) }
     let(:path) { edit_admin_question_path(translatable) }
 
     scenario "Doesn't remove the translation" do
       visit path
 
-      select "Español", from: :select_language
+      select "Cast", from: :select_language
       click_link "Remove language"
 
       select "English", from: :select_language
@@ -399,16 +399,16 @@ describe "Admin edit translatable records", :admin do
       expect(page).to have_css "#error_explanation"
       expect(page).to have_field "Question", with: "", class: "is-invalid-input"
       expect_to_have_language_selected "English"
-      expect_not_to_have_language "Español"
+      expect_not_to_have_language "Cast"
 
       visit path
-      select "Español", from: :select_language
+      select "Cast", from: :select_language
 
       expect(page).to have_field "Question", with: "Pregunta en español"
     end
   end
 
-  context "Current locale translation does not exist", consul: true do
+  context "Current locale translation does not exist" do
     context "For all translatable except ActivePoll and Budget::Phase" do
       let(:translatable) { create(:admin_notification, segment_recipient: "all_users") }
 
@@ -419,7 +419,7 @@ describe "Admin edit translatable records", :admin do
 
         select "English", from: :select_language
         click_link "Remove language"
-        select "Español", from: :select_language
+        select "Cast", from: :select_language
         click_link "Remove language"
 
         click_button "Update notification"
@@ -431,14 +431,14 @@ describe "Admin edit translatable records", :admin do
     context "For Budget::Phase" do
       let(:translatable) { create(:budget).phases.last }
 
-      scenario "Shows first available fallback" do
+      scenario "Shows first available fallback", consul: true do
         translatable.update!({ name_fr: "Name en Français", description_fr: "Phase en Français" })
 
         visit edit_admin_budget_budget_phase_path(translatable.budget, translatable)
 
         select "English", from: :select_language
         click_link "Remove language"
-        select "Español", from: :select_language
+        select "Cast", from: :select_language
         click_link "Remove language"
 
         click_button "Save changes"
@@ -460,7 +460,7 @@ describe "Admin edit translatable records", :admin do
 
         select "English", from: :select_language
         click_link "Remove language"
-        select "Español", from: :select_language
+        select "Cast", from: :select_language
         click_link "Remove language"
         click_button "Save"
 
@@ -476,29 +476,28 @@ describe "Admin edit translatable records", :admin do
     let(:content) { translatable }
     let(:path) { admin_site_customization_information_texts_path }
 
-    scenario "Select current locale when its translation exists", consul: true do
+    scenario "Select current locale when its translation exists" do
       visit path
 
       expect_to_have_language_selected "English"
+      select_language("Cast")
 
-      select "Español", from: "Language:"
-
-      expect_to_have_language_selected "Español"
+      expect_to_have_language_selected "Cast"
     end
 
-    scenario "Select first locale of existing translations when current locale translation does not exists", consul: true do
+    scenario "Select first locale of existing translations when current locale translation does not exists" do
       content.translations.where(locale: :en).destroy_all
       visit path
 
-      expect_to_have_language_selected "Español"
+      expect_to_have_language_selected "Cast"
     end
 
-    scenario "Show selected locale form", consul: true do
+    scenario "Show selected locale form" do
       visit path
 
       expect(page).to have_field "contents_content_#{content.key}values_value_en", with: "Value in English"
 
-      select "Español", from: :select_language
+      select "Cast", from: :select_language
 
       expect(page).to have_field "contents_content_#{content.key}values_value_es", with: "Value en español"
     end
