@@ -178,7 +178,7 @@ describe "Budgets" do
     end
   end
 
-  scenario "Index shows only published phases" do
+  scenario "Index shows only published phases", consul: true do
     budget.update!(phase: :finished)
     phases = budget.phases
 
