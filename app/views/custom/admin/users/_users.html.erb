@@ -28,6 +28,7 @@
             <th scope="col"><%= t("admin.users.columns.document_number") %></th>
             <th scope="col"><%= t("admin.users.columns.roles") %></th>
             <th scope="col"><%= t("admin.users.columns.verification_level") %></th>
+            <th scope="col"><%= t("admin.users.columns.activation_status") %></th>
             <th scope="col"><%= t("admin.users.columns.postal_code") %></th>
             <% if @current_filter == "residence_requested" %>
               <th scope="col"><%= t("admin.users.columns.residence_requested_reason") %></th>
@@ -63,6 +64,7 @@
                   <%= user.user_type %>
                 <% end %>
               </td>
+              <td><%= user.confirmed_at? ? t("admin.users.account.active_status") : t("admin.users.account.inactive_status") %></td>
               <td><%= user.postal_code %></td>
               <% if @current_filter == 'residence_requested' %>
                 <td><%= special_verification_reason(user) %></td>
