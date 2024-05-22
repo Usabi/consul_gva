@@ -8,16 +8,19 @@ module Verifications
   end
 
   def verify_residence
+    fill_in "residence_name", with: Faker::Name.first_name
+    fill_in "residence_first_surname", with: Faker::Name.last_name
+    fill_in "residence_last_surname", with: Faker::Name.last_name
     select "DNI", from: "residence_document_type"
     fill_in "residence_document_number", with: "12345678Z"
     select_date "31-#{I18n.l(Date.current.at_end_of_year, format: "%B")}-1980",
                 from: "residence_date_of_birth"
-
-    fill_in "residence_postal_code", with: "28013"
+    fill_in "residence_postal_code", with: "46001"
+    select "Male", from: "residence_gender"
     check "residence_terms_of_service"
 
-    click_button "new_residence_submit"
-    expect(page).to have_content I18n.t("verification.residence.create.flash.success")
+    click_button "Verify residence"
+    expect(page).to have_content "Your account is already verified"
   end
 
   def officing_verify_residence
