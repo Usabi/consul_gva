@@ -4,7 +4,7 @@ describe "Subscriptions" do
   let(:user) { create(:user, subscriptions_token: SecureRandom.base58(32)) }
 
   context "Edit page" do
-    scenario "Render content in the user's preferred locale" do
+    scenario "Render content in the user's preferred locale", consul: true do
       user.update!(locale: "es")
       visit edit_subscriptions_path(token: user.subscriptions_token)
 
