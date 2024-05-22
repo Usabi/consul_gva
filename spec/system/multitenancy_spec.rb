@@ -118,7 +118,7 @@ describe "Multitenancy", :seed_tenants do
     end
   end
 
-  scenario "Sign up into subdomain" do
+  scenario "Sign up into subdomain", consul: true do
     with_subdomain("mars") do
       visit "/"
       click_link "Register"
