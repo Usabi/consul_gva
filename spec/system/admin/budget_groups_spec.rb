@@ -139,7 +139,7 @@ describe "Admin budget groups", :admin do
       end
     end
 
-    scenario "Changing name for current locale will update the slug if budget is in draft phase" do
+    scenario "Changing name for current locale will update the slug if budget is in draft phase", consul: true do
       group = create(:budget_group, budget: budget, name: "Old English Name")
 
       visit edit_admin_budget_group_path(budget, group)
