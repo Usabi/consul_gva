@@ -6,7 +6,7 @@ describe "Images" do
   describe "Metadata" do
     let(:image) { create(:image, attachment: fixture_file_upload("logo_header_with_metadata.jpg")) }
 
-    scenario "download original images without metadata" do
+    scenario "download original images without metadata", consul: true do
       visit polymorphic_path(image.variant(nil))
 
       file = MiniMagick::Image.open(page.find("img")["src"])
@@ -14,7 +14,7 @@ describe "Images" do
       expect(file.exif).to be_empty
     end
 
-    scenario "download transformed images without metadata" do
+    scenario "download transformed images without metadata", consul: true do
       visit polymorphic_path(image.variant(:large))
 
       file = MiniMagick::Image.open(page.find("img")["src"])
