@@ -16,7 +16,7 @@ describe "Admin Budgets", :admin do
       expect(page).to have_content("#{balloting_phase.ends_at.to_date - 1.day} 23:59")
     end
 
-    scenario "Create poll in current locale if the budget does not have a poll associated" do
+    scenario "Create poll in current locale if the budget does not have a poll associated", consul: true do
       budget = create(:budget,
                       name_en: "Budget for climate change",
                       name_es: "Presupuesto por el cambio climático")
