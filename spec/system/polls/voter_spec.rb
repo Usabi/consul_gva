@@ -33,7 +33,7 @@ describe "Voter" do
       expect(page).to have_content("If you vote again it will be overwritten")
     end
 
-    scenario "Remove vote via web - Standard" do
+    scenario "Remove vote via web - Standard", consul: true do
       user = create(:user, :level_two)
       create(:poll_answer, question: question, author: user, answer: "Yes")
       create(:poll_voter, poll: poll, user: user)
@@ -72,7 +72,7 @@ describe "Voter" do
       expect(page).not_to have_content("You have already participated in this poll. If you vote again it will be overwritten")
     end
 
-    scenario "Voting in booth" do
+    scenario "Voting in booth", consul: true do
       login_through_form_as_officer(officer.user)
 
       visit new_officing_residence_path
@@ -106,7 +106,7 @@ describe "Voter" do
     context "The person has decided not to vote at this time" do
       before { create(:user, :in_census) }
 
-      scenario "Show not to vote at this time button" do
+      scenario "Show not to vote at this time button", consul: true do
         login_through_form_as_officer(officer.user)
 
         visit new_officing_residence_path
@@ -118,7 +118,7 @@ describe "Voter" do
         expect(page).to have_link "The person has decided not to vote at this time"
       end
 
-      scenario "Hides not to vote at this time button if already voted" do
+      scenario "Hides not to vote at this time button if already voted", consul: true do
         login_through_form_as_officer(officer.user)
 
         visit new_officing_residence_path
@@ -142,7 +142,7 @@ describe "Voter" do
     context "Trying to vote the same poll in booth and web" do
       let!(:user) { create(:user, :in_census) }
 
-      scenario "Trying to vote in web and then in booth" do
+      scenario "Trying to vote in web and then in booth", consul: true do
         login_as user
         vote_for_poll_via_web(poll, question, "Yes")
         expect(Poll::Voter.count).to eq(1)
@@ -159,7 +159,7 @@ describe "Voter" do
         expect(page).to have_content "Has already participated in this poll"
       end
 
-      scenario "Trying to vote in booth and then in web" do
+      scenario "Trying to vote in booth and then in web", consul: true do
         login_through_form_as_officer(officer.user)
 
         vote_for_poll_via_booth
@@ -191,7 +191,7 @@ describe "Voter" do
       end
     end
 
-    scenario "Voting in poll and then verifiying account" do
+    scenario "Voting in poll and then verifiying account", consul: true do
       user = create(:user)
 
       login_through_form_as_officer(officer.user)
@@ -231,7 +231,7 @@ describe "Voter" do
     end
 
     context "Side menu" do
-      scenario "'Validate document' menu item with votable polls" do
+      scenario "'Validate document' menu item with votable polls", consul: true do
         login_through_form_as_officer(officer.user)
 
         visit new_officing_residence_path
@@ -253,7 +253,7 @@ describe "Voter" do
         end
       end
 
-      scenario "'Validate document' menu item without votable polls" do
+      scenario "'Validate document' menu item without votable polls", consul: true do
         create(:poll_voter, poll: poll, user: create(:user, :in_census))
 
         login_through_form_as_officer(officer.user)

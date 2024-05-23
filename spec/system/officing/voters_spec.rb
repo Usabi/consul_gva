@@ -13,7 +13,7 @@ describe "Voters" do
     set_officing_booth(booth)
   end
 
-  scenario "Can vote" do
+  scenario "Can vote", consul: true do
     create(:poll_officer_assignment, officer: officer)
 
     visit new_officing_residence_path
@@ -34,7 +34,7 @@ describe "Voters" do
     expect(Poll::Voter.last.officer_id).to eq(officer.id)
   end
 
-  scenario "Cannot vote" do
+  scenario "Cannot vote", consul: true do
     unvotable_poll = create(:poll, geozone_restricted: true, geozones: [create(:geozone, census_code: "02")])
     create(:poll_officer_assignment, officer: officer, poll: unvotable_poll, booth: booth)
 
@@ -67,7 +67,7 @@ describe "Voters" do
     end
   end
 
-  scenario "Had already verified his residence, but is not level 2 yet" do
+  scenario "Had already verified his residence, but is not level 2 yet", consul: true do
     user = create(:user, residence_verified_at: Time.current, document_type: "1", document_number: "12345678Z")
     expect(user).not_to be_level_two_verified
 
@@ -83,7 +83,7 @@ describe "Voters" do
   end
 
   context "Polls displayed to officers" do
-    scenario "Display current polls assigned to a booth" do
+    scenario "Display current polls assigned to a booth", consul: true do
       poll = create(:poll)
       create(:poll_officer_assignment, officer: officer, poll: poll, booth: booth)
 
@@ -95,7 +95,7 @@ describe "Voters" do
       expect(page).to have_content poll.name
     end
 
-    scenario "Display polls that the user can vote" do
+    scenario "Display polls that the user can vote", consul: true do
       votable_poll = create(:poll, geozone_restricted: true, geozones: [Geozone.first])
       create(:poll_officer_assignment, officer: officer, poll: votable_poll, booth: booth)
 
@@ -107,7 +107,7 @@ describe "Voters" do
       expect(page).to have_content votable_poll.name
     end
 
-    scenario "Display polls that the user cannot vote" do
+    scenario "Display polls that the user cannot vote", consul: true do
       unvotable_poll = create(:poll, geozone_restricted: true, geozones: [create(:geozone, census_code: "02")])
       create(:poll_officer_assignment, officer: officer, poll: unvotable_poll, booth: booth)
 
@@ -119,7 +119,7 @@ describe "Voters" do
       expect(page).to have_content unvotable_poll.name
     end
 
-    scenario "Do not display expired polls" do
+    scenario "Do not display expired polls", consul: true do
       expired_poll = create(:poll, :expired)
       create(:poll_officer_assignment, officer: officer, poll: expired_poll, booth: booth)
 
@@ -131,7 +131,7 @@ describe "Voters" do
       expect(page).not_to have_content expired_poll.name
     end
 
-    scenario "Do not display polls from other booths" do
+    scenario "Do not display polls from other booths", consul: true do
       poll1 = create(:poll)
       poll2 = create(:poll)
 
@@ -159,7 +159,7 @@ describe "Voters" do
     end
   end
 
-  scenario "Store officer and booth information" do
+  scenario "Store officer and booth information", consul: true do
     create(:user, :in_census)
     poll1 = create(:poll, name: "¿Quieres que XYZ sea aprobado?")
     poll2 = create(:poll, name: "Pregunta de votación de prueba")

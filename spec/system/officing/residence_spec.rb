@@ -26,7 +26,7 @@ describe "Residence", :with_frozen_time do
       visit officing_root_path
     end
 
-    scenario "Verify voter" do
+    scenario "Verify voter", consul: true do
       within("#side_menu") do
         click_link "Validate document"
       end
@@ -40,7 +40,7 @@ describe "Residence", :with_frozen_time do
       expect(page).to have_content "Document verified with Census"
     end
 
-    scenario "Error on verify" do
+    scenario "Error on verify", consul: true do
       within("#side_menu") do
         click_link "Validate document"
       end
@@ -52,7 +52,7 @@ describe "Residence", :with_frozen_time do
       expect(page).to have_content(/\d errors? prevented the verification of this document/)
     end
 
-    scenario "Error on Census (document number)" do
+    scenario "Error on Census (document number)", consul: true do
       initial_failed_census_calls_count = officer.failed_census_calls_count
       within("#side_menu") do
         click_link "Validate document"
@@ -74,7 +74,7 @@ describe "Residence", :with_frozen_time do
       expect(officer.failed_census_calls_count).to eq(initial_failed_census_calls_count + 1)
     end
 
-    scenario "Error on Census (year of birth)" do
+    scenario "Error on Census (year of birth)", consul: true do
       within("#side_menu") do
         click_link "Validate document"
       end
@@ -89,7 +89,7 @@ describe "Residence", :with_frozen_time do
     end
   end
 
-  scenario "Verify booth" do
+  scenario "Verify booth", consul: true do
     booth = create(:poll_booth)
     poll = create(:poll)
 
@@ -150,7 +150,7 @@ describe "Residence", :with_frozen_time do
       end
     end
 
-    scenario "can verify voter with date_of_birth and postal_code fields" do
+    scenario "can verify voter with date_of_birth and postal_code fields", consul: true do
       mock_valid_remote_census_response
 
       login_through_form_as_officer(officer.user)

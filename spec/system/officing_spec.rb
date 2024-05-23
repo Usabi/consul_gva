@@ -100,7 +100,7 @@ describe "Poll Officing" do
     expect(page).not_to have_content "You do not have permission to access this page"
   end
 
-  scenario "Officing dashboard available for multiple sessions", :with_frozen_time do
+  scenario "Officing dashboard available for multiple sessions", :with_frozen_time, consul: true do
     poll = create(:poll)
     booth = create(:poll_booth)
     booth_assignment = create(:poll_booth_assignment, poll: poll, booth: booth)

@@ -15,7 +15,7 @@ describe "BudgetPolls", :with_frozen_time do
   end
 
   context "Offline" do
-    scenario "A citizen can cast a paper vote" do
+    scenario "A citizen can cast a paper vote", consul: true do
       login_through_form_as_officer(officer.user)
 
       visit new_officing_residence_path
@@ -46,7 +46,7 @@ describe "BudgetPolls", :with_frozen_time do
       end
     end
 
-    scenario "A citizen cannot vote offline again" do
+    scenario "A citizen cannot vote offline again", consul: true do
       login_through_form_as_officer(officer.user)
 
       visit new_officing_residence_path
@@ -66,7 +66,7 @@ describe "BudgetPolls", :with_frozen_time do
       end
     end
 
-    scenario "A citizen cannot vote online after voting offline" do
+    scenario "A citizen cannot vote online after voting offline", consul: true do
       login_through_form_as_officer(officer.user)
 
       visit new_officing_residence_path
@@ -101,8 +101,8 @@ describe "BudgetPolls", :with_frozen_time do
         expect(page).to have_content "Remove"
       end
     end
-
-    scenario "A citizen cannot vote online again" do
+    # TODO: revisar custom
+    scenario "A citizen cannot vote online again", consul: true do
       login_as(user)
       visit budget_investment_path(budget, investment)
 
@@ -118,7 +118,7 @@ describe "BudgetPolls", :with_frozen_time do
       end
     end
 
-    scenario "A citizen cannot vote offline after voting online" do
+    scenario "A citizen cannot vote offline after voting online", consul: true do
       login_as(user)
       visit budget_investment_path(budget, investment)
 

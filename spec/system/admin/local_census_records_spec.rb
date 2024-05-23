@@ -111,7 +111,7 @@ describe "Admin local census records", :admin do
       expect(page).to have_content "can't be blank", count: 1
     end
 
-    scenario "Should show successful notice after valid update" do
+    scenario "Should show successful notice after valid update", consul: true do
       visit edit_admin_local_census_record_path(local_census_record)
 
       select "Passport", from: :local_census_record_document_type
