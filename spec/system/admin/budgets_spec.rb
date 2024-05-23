@@ -308,7 +308,7 @@ describe "Admin budgets", :admin do
       expect(page).to have_link("Participate now", href: "https://consuldemocracy.org")
     end
 
-    scenario "Changing name for current locale will update the slug if budget is in draft phase" do
+    scenario "Changing name for current locale will update the slug if budget is in draft phase", consul: true do
       budget.update!(published: false, name: "Old English Name")
 
       visit edit_admin_budget_path(budget)
