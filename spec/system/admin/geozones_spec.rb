@@ -108,7 +108,7 @@ describe "Admin geozones", :admin do
     end
   end
 
-  scenario "Show polygons when a heading is associated with a geozone" do
+  scenario "Show polygons when a heading is associated with a geozone", consul: true do
     Setting["feature.map"] = true
 
     geojson = '{ "geometry": { "type": "Polygon", "coordinates": [[-0.1,51.5],[-0.2,51.4],[-0.3,51.6]] } }'
