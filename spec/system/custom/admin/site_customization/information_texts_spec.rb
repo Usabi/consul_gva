@@ -4,7 +4,7 @@ describe "Admin custom information texts", :admin do
 
   context "Globalization" do
 
-    scenario "Remove a translation", consul: true do
+    scenario "Remove a translation" do
       featured = create(:i18n_content, key: "debates.index.featured_debates",
                                        value_en: "Custom featured",
                                        value_es: "Destacar personalizado")

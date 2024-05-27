@@ -156,7 +156,7 @@ shared_examples "nested documentable" do |login_as_name, documentable_factory_na
     end
 
     scenario "Should show document errors after documentable submit with
-              empty document fields" do
+              empty document fields", consul: true do
       do_login_for user_to_login, management: management
       visit send(path, arguments)
 
