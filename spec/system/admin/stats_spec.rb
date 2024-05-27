@@ -73,7 +73,7 @@ describe "Stats", :admin do
       expect(page).to have_content "TOTAL USERS\n1"
     end
 
-    scenario "Level 2 user Graph" do
+    scenario "Level 2 user Graph", consul: true do
       create(:geozone)
       visit account_path
       click_link "Verify my account"
