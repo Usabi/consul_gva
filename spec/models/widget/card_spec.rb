@@ -27,7 +27,7 @@ describe Widget::Card do
     end
 
     context "header cards" do
-      it "is valid with no link_url and no link_text" do
+      it "is valid with no link_url and no link_text", consul: true do
         header = build(:widget_card, :header, link_text: nil, link_url: nil)
 
         expect(header).to be_valid
