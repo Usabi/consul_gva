@@ -12,7 +12,7 @@ describe "Public area translatable records" do
     scenario "Highlight new locale added" do
       visit new_proposal_path
 
-      select "Cast", from: "Language:"
+      select_language("Cast")
 
       expect_to_have_language_selected "Cast"
     end
