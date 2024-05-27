@@ -171,7 +171,7 @@ describe "Homepage", :admin do
     end
   end
 
-  scenario "Cards" do
+  scenario "Cards", consul: true do
     card1 = create(:widget_card, label: "Card1 label",
                                  title: "Card1 text",
                                  description: "Card1 description",
