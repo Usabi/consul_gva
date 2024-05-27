@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Cards", :admin do
-  scenario "Create" do
+  scenario "Create", consul: true do
     visit admin_homepage_path
     click_link "Create card"
 
@@ -67,7 +67,7 @@ describe "Cards", :admin do
     expect(page).to have_css("#widget_card_#{card_3.id}.medium-2")
   end
 
-  scenario "Edit" do
+  scenario "Edit", consul: true do
     card = create(:widget_card)
 
     visit admin_homepage_path
@@ -119,7 +119,7 @@ describe "Cards", :admin do
   end
 
   context "Header Card" do
-    scenario "Create" do
+    scenario "Create", consul: true do
       visit admin_homepage_path
       click_link "Create header"
 
@@ -158,7 +158,7 @@ describe "Cards", :admin do
     context "Page card" do
       let!(:custom_page) { create(:site_customization_page, :published) }
 
-      scenario "Create" do
+      scenario "Create", consul: true do
         visit admin_site_customization_pages_path
 
         within "#site_customization_page_#{custom_page.id}" do
@@ -192,7 +192,7 @@ describe "Cards", :admin do
         expect(page).to have_css("#widget_card_#{card_3.id}.medium-2")
       end
 
-      scenario "Show label only if it is present" do
+      scenario "Show label only if it is present", consul: true do
         card_1 = create(:widget_card, cardable: custom_page, title: "Card one", label: "My label")
         card_2 = create(:widget_card, cardable: custom_page, title: "Card two")
 
@@ -207,7 +207,7 @@ describe "Cards", :admin do
         end
       end
 
-      scenario "Show image if it is present" do
+      scenario "Show image if it is present", consul: true do
         card_1 = create(:widget_card, cardable: custom_page, title: "Card one")
         card_2 = create(:widget_card, cardable: custom_page, title: "Card two")
 
