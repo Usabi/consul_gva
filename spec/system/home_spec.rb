@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "Home" do
   context "For not logged users" do
-    scenario "Welcome message" do
+    scenario "Welcome message", consul: true do
       visit root_path
 
       expect(page).to have_content "CONSUL"
@@ -106,7 +106,7 @@ describe "Home" do
   end
 
   describe "IE alert", :no_js do
-    scenario "IE visitors are presented with an alert until they close it", :page_driver do
+    scenario "IE visitors are presented with an alert until they close it", :page_driver, consul: true do
       # Selenium API does not include page request/response inspection methods
       # so we must use Capybara::RackTest driver to set the browser's headers
       Capybara.current_session.driver.header(
@@ -184,7 +184,7 @@ describe "Home" do
       expect(page).to have_link "Link text", href: "consul.dev"
     end
 
-    scenario "if there is header card without link, the link content is not rendered" do
+    scenario "if there is header card without link, the link content is not rendered", consul: true do
       create(:widget_card, :header, link_text: nil, link_url: nil)
 
       visit root_path
@@ -192,7 +192,7 @@ describe "Home" do
       within(".header-card") { expect(page).not_to have_link }
     end
 
-    scenario "if there is header card without link and with text, the link content is not rendered" do
+    scenario "if there is header card without link and with text, the link content is not rendered", consul: true do
       create(:widget_card, :header, link_text: "", link_url: "", link_text_es: "Link ES", title_es: "ES")
 
       visit root_path(locale: :es)
