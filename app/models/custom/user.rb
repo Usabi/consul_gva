@@ -29,7 +29,7 @@ class User
   end
 
   def self.soft_minimum_required_age
-    (Setting["soft_min_age_to_participate"] || 12).to_i
+    (Setting["min_age_to_participate"] || 12).to_i
   end
 
   def residence_requested?
