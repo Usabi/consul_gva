@@ -302,7 +302,7 @@ describe "Budget Investments" do
         end
       end
 
-      scenario "unselected" do
+      scenario "unselected", consul: true do
         investment1 = create(:budget_investment, :unselected, heading: heading)
         investment2 = create(:budget_investment, :selected, heading: heading)
 
@@ -337,7 +337,7 @@ describe "Budget Investments" do
       expect(order).to eq(new_order)
     end
 
-    scenario "Random order after another order" do
+    scenario "Random order after another order", consul: true do
       (per_page + 2).times { create(:budget_investment, heading: heading) }
 
       visit budget_investments_path(budget, heading_id: heading.id)
@@ -358,7 +358,7 @@ describe "Budget Investments" do
       expect(order).to eq(new_order)
     end
 
-    scenario "Random order maintained with pagination" do
+    scenario "Random order maintained with pagination", consul: true do
       (per_page + 2).times { create(:budget_investment, heading: heading) }
 
       visit budget_investments_path(budget, heading_id: heading.id)
@@ -435,7 +435,7 @@ describe "Budget Investments" do
       expect(page).to have_current_path(/page=1/)
     end
 
-    scenario "Each user has a different and consistent random budget investment order" do
+    scenario "Each user has a different and consistent random budget investment order", consul: true do
       (per_page * 1.3).to_i.times { create(:budget_investment, heading: heading) }
       first_user_investments_order = nil
       second_user_investments_order = nil
@@ -842,7 +842,7 @@ describe "Budget Investments" do
     end
   end
 
-  scenario "Show" do
+  scenario "Show", consul: true do
     investment = create(:budget_investment, heading: heading)
 
     user = create(:user)
@@ -1049,7 +1049,7 @@ describe "Budget Investments" do
     end
   end
 
-  scenario "Show (not selected budget investment)" do
+  scenario "Show (not selected budget investment)", consul: true do
     budget.update!(phase: "balloting")
 
     investment = create(:budget_investment,
@@ -1066,7 +1066,7 @@ describe "Budget Investments" do
     expect(page).to have_content("This investment project has not been selected for balloting phase")
   end
 
-  scenario "Show title (no message)" do
+  scenario "Show title (no message)", consul: true do
     investment = create(:budget_investment,
                         :feasible,
                         :finished,
@@ -1239,7 +1239,7 @@ describe "Budget Investments" do
       end
     end
 
-    scenario "Sidebar in show should display support text" do
+    scenario "Sidebar in show should display support text", consul: true do
       investment = create(:budget_investment, budget: budget)
       visit budget_investment_path(budget, investment)
 
@@ -1248,7 +1248,7 @@ describe "Budget Investments" do
       end
     end
 
-    scenario "Remove a support from show view" do
+    scenario "Remove a support from show view", consul: true do
       Setting["feature.remove_investments_supports"] = true
       investment = create(:budget_investment, budget: budget)
 
@@ -1298,7 +1298,7 @@ describe "Budget Investments" do
       budget.update(phase: "valuating")
     end
 
-    scenario "Sidebar in show should display support text and count" do
+    scenario "Sidebar in show should display support text and count", consul: true do
       investment = create(:budget_investment, :selected, budget: budget, voters: [create(:user)])
 
       visit budget_investment_path(budget, investment)
@@ -1431,7 +1431,7 @@ describe "Budget Investments" do
                                     visible: :hidden)
     end
 
-    scenario "Sidebar in show should display vote text" do
+    scenario "Sidebar in show should display vote text", consul: true do
       investment = create(:budget_investment, :selected, budget: budget)
       visit budget_investment_path(budget, investment)
 
@@ -1738,7 +1738,7 @@ describe "Budget Investments" do
     end
 
     context "Author actions section" do
-      scenario "Is not shown if investment is not editable or does not have an image" do
+      scenario "Is not shown if investment is not editable or does not have an image", consul: true do
         budget.update!(phase: "reviewing")
         investment = create(:budget_investment, heading: heading, author: author)
 
@@ -1752,7 +1752,7 @@ describe "Budget Investments" do
         end
       end
 
-      scenario "Contains edit button in the accepting phase" do
+      scenario "Contains edit button in the accepting phase", consul: true do
         investment = create(:budget_investment, heading: heading, author: author)
 
         login_as(author)
@@ -1765,7 +1765,7 @@ describe "Budget Investments" do
         end
       end
 
-      scenario "Contains remove image button in phases different from accepting" do
+      scenario "Contains remove image button in phases different from accepting", consul: true do
         budget.update!(phase: "reviewing")
         investment = create(:budget_investment, :with_image, heading: heading, author: author)
 
