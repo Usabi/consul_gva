@@ -87,7 +87,7 @@ describe "Custom Pages" do
         expect(page).to have_content("Subtitle for custom page")
       end
 
-      scenario "Show widget cards for that page" do
+      scenario "Show widget cards for that page", consul: true do
         custom_page = create(:site_customization_page, :published)
         create(:widget_card, cardable: custom_page, title: "Card Highlights")
 
