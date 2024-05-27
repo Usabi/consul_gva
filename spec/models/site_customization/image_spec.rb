@@ -10,7 +10,7 @@ describe SiteCustomization::Image do
   end
 
   describe "logo" do
-    it "is valid with a 260x80 image" do
+    it "is valid with a 260x80 image", consul: true do
       image = build(:site_customization_image,
                     name: "logo_header",
                     image: fixture_file_upload("logo_header-260x80.png"))
@@ -18,7 +18,7 @@ describe SiteCustomization::Image do
       expect(image).to be_valid
     end
 
-    it "is valid with a 223x80 image" do
+    it "is valid with a 223x80 image", consul: true do
       image = build(:site_customization_image,
                     name: "logo_header",
                     image: fixture_file_upload("logo_header.png"))
@@ -45,7 +45,7 @@ describe SiteCustomization::Image do
     end
   end
 
-  it "dynamically validates the valid mime types" do
+  it "dynamically validates the valid mime types", consul: true do
     stub_const("#{SiteCustomization::Image}::VALID_MIME_TYPES", ["image/gif"])
 
     gif = build(:site_customization_image,
