@@ -13,6 +13,7 @@ module Custom::VerificationHelper
   end
 
   def soft_minimum_required_age
-    (Setting["soft_min_age_to_participate"] || 12).to_i
+    # ANTES soft_min_age_to_participate
+    (Setting["min_age_to_participate"] || 12).to_i
   end
 end
