@@ -1,8 +1,14 @@
 require "rails_helper"
 
 describe Verification::Residence, consul: true do
-  let!(:geozone) { create(:geozone, census_code: "01") }
-  let(:residence) { build(:verification_residence, document_number: "12345678Z") }
+  let!(:geozone) { create(:geozone, census_code: "46") }
+  let(:residence) { build(:verification_residence,
+                    name: Faker::Name.name,
+                    first_surname: Faker::Name.last_name,
+                    last_surname: Faker::Name.last_name,
+                    gender: "male",
+                    postal_code: "46100",
+                    document_number: "12345678Z") }
 
   describe "validations" do
     it "is valid" do
@@ -201,7 +207,7 @@ describe Verification::Residence, consul: true do
         Setting["postal_codes"] = nil
         residence.postal_code = "randomthing"
 
-        expect(residence).to be_valid
+        expect(residence).not_to be_valid
 
         Setting["postal_codes"] = ""
         residence.postal_code = "ABC123"
@@ -211,7 +217,7 @@ describe Verification::Residence, consul: true do
         Setting["postal_codes"] = "  "
         residence.postal_code = "555-5"
 
-        expect(residence).to be_valid
+        expect(residence).not_to be_valid
       end
     end
   end
@@ -246,8 +252,8 @@ describe Verification::Residence, consul: true do
   end
 
   describe "tries" do
-    it "increases tries after a call to the Census" do
-      residence.postal_code = "28011"
+    it "increases tries after a call to the Census", consul: true do
+      residence.postal_code = "12001"
       residence.valid?
       expect(residence.user.lock.tries).to eq(1)
     end
@@ -260,8 +266,15 @@ describe Verification::Residence, consul: true do
   end
 
   describe "Failed census call" do
-    it "stores failed census API calls" do
-      residence = build(:verification_residence, :invalid, document_number: "12345678Z")
+    it "stores failed census API calls", consul: true do
+      residence = build(:verification_residence,
+                        :invalid,
+                        name: Faker::Name.name,
+                        first_surname: Faker::Name.last_name,
+                        last_surname: Faker::Name.last_name,
+                        gender: "male",
+                        postal_code: "46100",
+                        document_number: "12345678Z")
       residence.save
 
       expect(FailedCensusCall.count).to eq(1)
