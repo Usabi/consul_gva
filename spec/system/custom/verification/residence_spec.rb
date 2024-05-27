@@ -77,7 +77,7 @@ describe "Residence" do
     expect(page).to have_content "Account verified"
   end
 
-  scenario "Verify resident above 12 years" do
+  scenario "Verify resident above 12 years", consul: true do
     user = create(:user)
     login_as(user)
 
@@ -133,7 +133,7 @@ describe "Residence" do
   context 'foreign residence' do
     before { expect_any_instance_of(CensusApi).to receive(:get_response_body).with('1', '12345678Z', other_data).and_return(invalid_residence_body) }
 
-    scenario "Verify foreign resident" do
+    scenario "Verify foreign resident", consul: true do
 
       user = create(:user)
       login_as(user)
@@ -161,7 +161,7 @@ describe "Residence" do
     end
   end
 
-  scenario "Verify foreign resident above 12 years" do
+  scenario "Verify foreign resident above 12 years", consul: true do
     user = create(:user)
     login_as(user)
     Setting["min_age_to_participate"] = 12
@@ -190,7 +190,7 @@ describe "Residence" do
     expect(page).to have_content "Required Age Foreign Residence Verification Request"
   end
 
-  scenario "Error on residence" do
+  scenario "Error on residence", consul: true do
     user = create(:user)
     login_as(user)
 
@@ -215,7 +215,7 @@ describe "Residence" do
     expect(page).to have_content("In order to be verified, you must be registered")
   end
 
-  scenario "Error on foreign residence" do
+  scenario "Error on foreign residence", consul: true do
     user = create(:user)
     login_as(user)
 
