@@ -830,7 +830,7 @@ describe "Admin budget investments", :admin do
         end
       end
 
-      scenario "Sort by supports" do
+      scenario "Sort by supports", consul: true do
         visit admin_budget_budget_investments_path(budget, sort_by: "supports", direction: "asc")
 
         expect("C Third Investment").to appear_before("A Second Investment")
@@ -862,7 +862,7 @@ describe "Admin budget investments", :admin do
         end
       end
 
-      scenario "Sort by supports" do
+      scenario "Sort by supports", consul: true do
         visit admin_budget_budget_investments_path(budget, sort_by: "supports", direction: "desc")
 
         expect("B First Investment").to appear_before("A Second Investment")
@@ -894,7 +894,7 @@ describe "Admin budget investments", :admin do
         end
       end
 
-      scenario "Sort by supports" do
+      scenario "Sort by supports", consul: true do
         visit admin_budget_budget_investments_path(budget, sort_by: "supports")
 
         expect("C Third Investment").to appear_before("A Second Investment")
@@ -1783,7 +1783,7 @@ describe "Admin budget investments", :admin do
       expect(page).to have_content(investment.title)
     end
 
-    scenario "Set cookie with default columns value if undefined" do
+    scenario "Set cookie with default columns value if undefined", consul: true do
       visit admin_budget_budget_investments_path(budget)
 
       cookies = page.driver.browser.manage.all_cookies
@@ -1824,7 +1824,7 @@ describe "Admin budget investments", :admin do
       end
     end
 
-    scenario "Cookie will be updated after change columns selection" do
+    scenario "Cookie will be updated after change columns selection", consul: true do
       visit admin_budget_budget_investments_path(budget)
 
       click_button "Columns"
@@ -1868,7 +1868,7 @@ describe "Admin budget investments", :admin do
       end
     end
 
-    scenario "When restoring the page from browser history renders columns selectors only once" do
+    scenario "When restoring the page from browser history renders columns selectors only once", consul: true do
       visit admin_budget_budget_investments_path(budget)
 
       click_link "Proposals"
