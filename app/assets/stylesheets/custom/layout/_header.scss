@@ -84,7 +84,7 @@
 }
 
 .subnavigation {
-  border-top: 1px solid $red-gva;
+  @include full-width-border(top, 1px solid $red-gva);
 
   @include breakpoint(medium) {
     ul {
@@ -165,13 +165,19 @@
 }
 
 .jumbo.highlight {
-  background-repeat: no-repeat;
-  -webkit-background-size: cover;
-  background-size: cover;
-  background-position: center;
-  margin-top: -1.5em;
-  border-bottom: 1px solid $red-gva;
-  min-height: 500px;
+  @extend %brand-background;
+  @include full-width-background;
+  @include full-width-border(bottom, 1px solid $red-gva);
+
+  &.with-background-image {
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    z-index: 0;
+  }
+
+  min-height: auto;
   padding: 0;
 
   h1 {
@@ -186,7 +192,8 @@
   }
 
   .title-background {
-    background-color: rgba(5, 152, 155, 0.85);
+    @include full-width-background;
+    background-color: rgba(5, 153, 155, 0.95);
   }
 }
 
