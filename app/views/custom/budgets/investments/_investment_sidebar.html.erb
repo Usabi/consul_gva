@@ -82,15 +82,15 @@
       <p><strong><%= t("budgets.investments.index.sidebar.zero") %></strong></p>
     <% end %>
     <ul class="ballot-list">
-      <% @ballot.investments.by_heading(investment.heading_id).each do |investment| %>
-        <%= render 'budgets/ballot/investment_for_sidebar',
-                    investment: investment,
-                    investment_ids: @investment_ids %>
-      <% end %>
+      <%= render Budgets::Ballot::InvestmentForSidebarComponent.with_collection(
+        @ballot.investments.by_heading(investment.heading_id),
+        investment_ids: @investment_ids
+      ) %>
     </ul>
+
   </div>
 <% end %>
-<% if @budget.phase == 'selecting' && current_user %>
+<% if @budget.phase == 'selecting' && (respond_to?(:manager_logged_in) ? manager_logged_in == current_user : current_user.present? ) %>
   <div class="sidebar-item">
     <div class="sidebar-divider"></div>
     <h2 class="sidebar-title">
