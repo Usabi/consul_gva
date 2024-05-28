@@ -5,7 +5,7 @@
     <fieldset>
       <legend><%= t("admin.legislation.legislators.edit.#{assignable_type}", count: 0) %></legend>
       <% field = "#{assignable_type.chomp("s")}_ids" %>
-      <%= form.collection_check_boxes field, assignables, :id, :name do |box| %>
+      <%= form.collection_check_boxes field, assignables, :id, :description_or_name_and_email do |box| %>
         <%= box.label { box.check_box + box.text } %>
       <% end %>
     </fieldset>

@@ -10,7 +10,7 @@
           data: { toggle: "#{staff}_list", texts: t("admin.legislation.legislators.edit.#{staff}") } %>
       </div>
     <% end %>
-  <%= render "/admin/legislation/legislators/association", assignable_type: "legislators", assignables: legislators, form: f %>
+  <%= render "/admin/legislation/legislators/association", assignable_type: "legislators", assignables: legislators(@process), form: f %>
 
 
   <div class="small-12 medium-3 column clear end">
