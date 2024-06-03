@@ -170,7 +170,7 @@ describe "Advanced search" do
       end
     end
 
-    scenario "Search by custom invalid date range" do
+    scenario "Search by custom invalid date range", consul: true do
       proposal1 = create(:proposal, created_at: 2.days.ago)
       proposal2 = create(:proposal, created_at: 3.days.ago)
       proposal3 = create(:proposal, created_at: 9.days.ago)
@@ -237,7 +237,7 @@ describe "Advanced search" do
       end
     end
 
-    scenario "Maintain custom date search criteria" do
+    scenario "Maintain custom date search criteria", consul: true do
       visit proposals_path
       click_button "Advanced search"
 
