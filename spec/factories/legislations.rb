@@ -136,7 +136,7 @@ FactoryBot.define do
         |----|---------|-----|--------|
         | 1  | Roberta | 39  | M      |
         | 2  | Oliver  | 25  | F      |
-        BODY_MARKDOWN
+      BODY_MARKDOWN
     end
   end
 
