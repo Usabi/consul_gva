@@ -5,7 +5,7 @@ require_dependency Rails.root.join("app", "components", "documents", "nested_com
 class Documents::NestedComponent
   attr_reader :f, :consult_document
 
-  def initialize(f, consult_document)
+  def initialize(f, consult_document = false)
     @f = f
     @consult_document = consult_document
   end
