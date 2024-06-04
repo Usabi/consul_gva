@@ -508,7 +508,7 @@ describe "Commenting legislation questions" do
       end
     end
 
-    scenario "Create" do
+    scenario "Create", consul: true do
       visit polymorphic_path(annotation)
 
       within("#comment_#{comment.id}_votes") do
@@ -526,7 +526,7 @@ describe "Commenting legislation questions" do
       end
     end
 
-    scenario "Update" do
+    scenario "Update", consul: true do
       visit polymorphic_path(annotation)
 
       within("#comment_#{comment.id}_votes") do
@@ -550,7 +550,7 @@ describe "Commenting legislation questions" do
       end
     end
 
-    scenario "Allow undoing votes" do
+    scenario "Allow undoing votes", consul: true do
       visit polymorphic_path(annotation)
 
       within("#comment_#{comment.id}_votes") do
