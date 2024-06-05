@@ -76,7 +76,7 @@ shared_examples "mappable" do |mappable_factory_name, mappable_association_name,
       expect(page).not_to have_css(".map-location")
     end
 
-    describe "When restoring the page from browser history" do
+    describe "When restoring the page from browser history", consul: true do
       before { Setting["org_name"] = "CONSUL" }
 
       scenario "map should not be duplicated" do

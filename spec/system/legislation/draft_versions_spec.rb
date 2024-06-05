@@ -270,7 +270,7 @@ describe "Legislation Draft Versions" do
       expect(page).to have_content "Comment can't be blank"
     end
 
-    scenario "When page is restored from browser cache do not duplicate annotation handlers" do
+    scenario "When page is restored from browser cache do not duplicate annotation handlers", consul: true do
       Setting["org_name"] = "CONSUL"
       create(:legislation_annotation, draft_version: draft_version, text: "my annotation")
 
@@ -288,7 +288,7 @@ describe "Legislation Draft Versions" do
       expect(page).to have_css(".annotator-hl", count: 1)
     end
 
-    scenario "When page is restored from browser cache publish comment button keeps working" do
+    scenario "When page is restored from browser cache publish comment button keeps working", consul: true do
       Setting["org_name"] = "CONSUL"
       create(:legislation_annotation, draft_version: draft_version, text: "my annotation")
 

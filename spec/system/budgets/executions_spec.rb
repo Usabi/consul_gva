@@ -76,7 +76,7 @@ describe "Executions" do
     expect(page).to have_content("No winner investments in this state")
   end
 
-  scenario "Back link redirects to budget page" do
+  scenario "Back link redirects to budget page", consul: true do
     visit budget_executions_path(budget)
 
     expect(page).to have_link("Go back", href: budget_path(budget))
