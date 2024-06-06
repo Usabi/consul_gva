@@ -5,6 +5,7 @@ require "capistrano/setup"
 require "capistrano/deploy"
 
 require "capistrano/bundler"
+require "capistrano/npm"
 require "capistrano/rails/assets"
 require "capistrano/rails/migrations"
 #require "capistrano/passenger"
@@ -18,7 +19,7 @@ require_relative 'lib/gem_extensions/sshkit'
 
 require "capistrano/puma"
 install_plugin Capistrano::Puma, load_hooks: false
-install_plugin Capistrano::Puma::Daemon
+install_plugin Capistrano::Puma::Systemd
 
 #SCM: Git
 require "capistrano/scm/git"
