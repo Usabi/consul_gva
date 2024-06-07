@@ -79,6 +79,7 @@ es:
       phase_empty:
         empty: No hay nada publicado todavía
       process:
+        title: Proceso
         see_latest_comments: Ver últimas aportaciones
         see_latest_comments_title: Aportar a este proceso
       shared:
@@ -123,6 +124,8 @@ es:
         tags_label: "Categorías"
       not_verified: "Para votar propuestas %{verify_account}."
       process_title: Proceso de Elaboración normativa
+      index:
+        start_proposal: Crear una propuesta
     summary:
       title: "Resumen"
       votes:

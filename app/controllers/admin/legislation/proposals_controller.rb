@@ -12,4 +12,11 @@ class Admin::Legislation::ProposalsController < Admin::Legislation::BaseControll
     @proposal.toggle :selected
     @proposal.save!
   end
+
+  def summary
+    @proposals = @process.proposals.selected
+    respond_to do |format|
+      format.xlsx { render xlsx: "summary", filename: "proposals-summary-#{Date.current}.xlsx" }
+    end
+  end
 end

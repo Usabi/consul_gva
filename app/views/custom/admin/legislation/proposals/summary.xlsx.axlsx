@@ -1,0 +1,39 @@
+xlsx_package.workbook.add_worksheet(name: "Summary") do |sheet|
+  styles = xlsx_package.workbook.styles
+  title = styles.add_style(b: true)
+  link = styles.add_style(fg_color: "0000FF", u: true)
+
+  sheet.add_row(
+      [
+        t("legislation.processes.process.title")
+      ],
+      style: title
+    )
+  sheet.add_row [@process.title]
+  sheet.add_hyperlink(
+    location: legislation_process_url(@process),
+    ref: sheet.rows.last.cells.first
+  )
+  sheet.rows.last.cells.first.style = link
+
+  sheet.add_row ["", ""]
+
+  if @process.proposals_phase.enabled? && @proposals.any?
+    sheet.add_row(
+      [
+        t("legislation.summary.proposals_phase"),
+        t("legislation.summary.proposals", count: @proposals.count)
+      ],
+      style: title
+    )
+    @proposals.sort_by_supports.each do |proposal|
+      sheet.add_row [proposal.title, t("legislation.summary.votes", count: proposal.votes_score)]
+      sheet.add_hyperlink(
+        location: legislation_process_proposal_url(proposal.legislation_process_id, proposal),
+        ref: sheet.rows.last.cells.first
+      )
+      sheet.rows.last.cells.first.style = link
+    end
+    sheet.add_row ["", ""]
+  end
+end

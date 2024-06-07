@@ -79,6 +79,7 @@ val:
       phase_empty:
         empty: No hi ha res publicat encara
       process:
+        title: Proces
         see_latest_comments: Vore les últimes aportacions
         see_latest_comments_title: Aportar a aquest procés
       shared:

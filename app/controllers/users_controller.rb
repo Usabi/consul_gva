@@ -10,9 +10,11 @@ class UsersController < ApplicationController
   private
 
     def check_slug
-      slug = params[:id].split("-", 2)[1]
+      if params[:id]
+          slug = params[:id].split("-", 2)[1]
 
-      raise ActiveRecord::RecordNotFound unless @user.slug == slug.to_s
+          raise ActiveRecord::RecordNotFound unless @user.slug == slug.to_s
+      end
     end
 
     def valid_interests_access?(user)

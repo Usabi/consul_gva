@@ -13,6 +13,10 @@ class Moderation::Legislation::ProposalsController < Moderation::BaseController
 
   private
 
+    def resource_name
+      "legislation_proposal"
+    end
+
     def resource_model
       Legislation::Proposal
     end
