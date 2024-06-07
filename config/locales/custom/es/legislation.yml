@@ -68,11 +68,11 @@ es:
         no_public_phase_processes: No hay procesos
         no_relevance_processes: No hay procesos
         section_header:
-          icon_alt: Icono de Legislación colaborativa
-          title: Legislación colaborativa
-          help: Ayuda sobre Legislación colaborativa
+          icon_alt: Icono de Elaboración normativa
+          title: Elaboración normativa
+          help: Ayuda sobre Elaboración normativa
         section_footer:
-          title: Ayuda sobre Legislación colaborativa
+          title: Ayuda sobre Elaboración normativa
           description: Participa en los debates y procesos previos a la aprobación de nuevas normas o planes. Tu opinión será tenida en cuenta.
       phase_not_open:
         not_open: Esta fase del proceso todavía no está abierta
@@ -108,7 +108,7 @@ es:
         next_question: Siguiente pregunta
         first_question: Primera pregunta
         share: Compartir
-        title: Proceso de Legislación colaborativa
+        title: Proceso de Elaboración normativa
       participation:
         phase_not_open: Esta fase no está abierta
         organizations: Las organizaciones no pueden participar en el debate
@@ -122,7 +122,7 @@ es:
       form:
         tags_label: "Categorías"
       not_verified: "Para votar propuestas %{verify_account}."
-      process_title: Proceso de Legislación colaborativa
+      process_title: Proceso de Elaboración normativa
     summary:
       title: "Resumen"
       votes:

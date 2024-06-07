@@ -587,13 +587,13 @@ es:
           banner_title: Colores del encabezado
         index:
           create: Nuevo proceso
-          title: Procesos de legislación colaborativa
+          title: Procesos de elaboración normativa
           filters:
             active: Activos
             all: Todos
         new:
           back: Volver
-          title: Crear nuevo proceso de legislación colaborativa
+          title: Crear nuevo proceso de elaboración normativa
           submit_button: Crear proceso
         proposals:
           orders:
@@ -789,7 +789,7 @@ es:
       title_settings: Configuración
       title_site_customization: Contenido del sitio
       title_booths: Urnas de votación
-      legislation: Legislación colaborativa
+      legislation: Elaboración normativa
       users: Usuarios
       dashboard: Panel de progreso de propuestas
       administrator_tasks: Recursos solicitados
