@@ -214,6 +214,7 @@ val:
       legislation: Legislació col·laborativa
       collaborative_legislation: Legislació col·laborativa
       debates: Debats
+      external_resources: Recursos
       locale: "Idioma:"
       logo: Logo de CONSUL
       management: Gestió
@@ -690,7 +691,7 @@ val:
         title: Votar
         description: Ara el teu vot és important per a la presa de decisió de les polítiques públiques. Vota les opcions que consideres més rellevants.
       normativa:
-        title: Legislació col·laborativa
+        title: Elaboració normativa
         description: Participa de manera activa en l’elaboració de legislació, plans i programes.
       presupuesto:
         title: Pressupostos participatius
