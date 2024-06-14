@@ -238,12 +238,12 @@ ActiveRecord::Schema.define(version: 2023_11_23_082325) do
     t.boolean "allow_custom_content", default: false
     t.text "latitude"
     t.text "longitude"
-    t.integer "geozone_id"
     t.integer "max_ballot_lines", default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["geozone_id"], name: "index_budget_headings_on_geozone_id"
     t.integer "min_supports"
+    t.integer "geozone_id"
+    t.index ["geozone_id"], name: "index_budget_headings_on_geozone_id"
     t.index ["group_id"], name: "index_budget_headings_on_group_id"
   end
 
@@ -459,9 +459,9 @@ ActiveRecord::Schema.define(version: 2023_11_23_082325) do
     t.string "ancestry"
     t.integer "confidence_score", default: 0, null: false
     t.boolean "valuation", default: false
-    t.tsvector "tsv"
     t.integer "budget_manager_id"
     t.integer "legislator_id"
+    t.tsvector "tsv"
     t.index ["ancestry"], name: "index_comments_on_ancestry"
     t.index ["cached_votes_down"], name: "index_comments_on_cached_votes_down"
     t.index ["cached_votes_total"], name: "index_comments_on_cached_votes_total"
@@ -1748,15 +1748,6 @@ ActiveRecord::Schema.define(version: 2023_11_23_082325) do
     t.index ["user_id"], name: "index_visits_on_user_id"
   end
 
-  create_table "votation_types", force: :cascade do |t|
-    t.integer "questionable_id"
-    t.string "questionable_type"
-    t.integer "vote_type"
-    t.integer "max_votes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "vmcrc_siac_personas", id: :serial, force: :cascade do |t|
     t.text "codper", null: false
     t.text "codmap", null: false
@@ -1765,6 +1756,15 @@ ActiveRecord::Schema.define(version: 2023_11_23_082325) do
     t.text "ape2", null: false
     t.text "dni", null: false
     t.text "dcorreoint", null: false
+  end
+
+  create_table "votation_types", force: :cascade do |t|
+    t.integer "questionable_id"
+    t.string "questionable_type"
+    t.integer "vote_type"
+    t.integer "max_votes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "votes", id: :serial, force: :cascade do |t|
