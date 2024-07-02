@@ -6,7 +6,10 @@ module SearchCache
   end
 
   def calculate_tsvector
-    self.class.with_hidden.where(id: id).update_all("tsv = (#{searchable_values_sql})")
+    searchable = "(#{searchable_values_sql})"
+    return if searchable == "()"
+
+    self.class.with_hidden.where(id: id).update_all("tsv = #{searchable}")
   end
 
   private
