@@ -16,7 +16,7 @@ end
 
 set :rails_env, fetch(:stage)
 set :rvm1_map_bins, -> { fetch(:rvm_map_bins).to_a.concat(%w[rake gem bundle ruby]).uniq }
-set :rvm_ruby_version, "2.7.6"
+set :rvm_ruby_version, "3.0.4"
 
 set :application, deploysecret(:app_name, default: "consul")
 set :deploy_to, deploysecret(:deploy_to)
@@ -37,7 +37,7 @@ set :keep_releases, 5
 
 set :local_user, ENV["USER"]
 
-set :puma_conf, "#{release_path}/config/puma/#{fetch(:rails_env)}.rb"
+# set :puma_conf, "#{release_path}/config/puma/#{fetch(:rails_env)}.rb"
 
 set :delayed_job_workers, 2
 set :delayed_job_roles, :background
@@ -46,21 +46,21 @@ set :delayed_job_monitor, true
 set :whenever_roles, -> { :app }
 
 namespace :deploy do
-  Rake::Task["delayed_job:default"].clear_actions
-  Rake::Task["puma:smart_restart"].clear_actions
+  # Rake::Task["delayed_job:default"].clear_actions
+  # Rake::Task["puma:smart_restart"].clear_actions
 
-  after :updating, "install_ruby"
+  # after :updating, "install_ruby"
 
   after "deploy:migrate", "add_new_settings"
 
-  after :publishing, "setup_puma"
+  # after :publishing, "setup_puma"
 
   after :published, "deploy:restart"
-  before "deploy:restart", "puma:restart"
-  before "deploy:restart", "delayed_job:restart"
-  before "deploy:restart", "puma:start"
+  # before "deploy:restart", "puma:restart"
+  # before "deploy:restart", "delayed_job:restart"
+  # before "deploy:restart", "puma:start"
 
-  after :finished, "refresh_sitemap"
+  # after :finished, "refresh_sitemap"
 
   desc "Deploys and runs the tasks needed to upgrade to a new release"
   task :upgrade do
