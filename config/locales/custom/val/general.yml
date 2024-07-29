@@ -257,7 +257,9 @@ val:
   map:
     title: "Províncies"
     proposal_for_district: "Crea una proposta per al teu província"
+    debate_for_district: "Crea un debat per a la teua província"
     start_proposal: Crea una proposta
+    start_debate: Crea un debat
   omniauth:
     facebook:
       sign_in: Entrar amb Facebook

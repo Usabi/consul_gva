@@ -302,7 +302,9 @@ es:
   map:
     title: "Provincias"
     proposal_for_district: "Crea una propuesta para tu provincia"
+    debate_for_district: "Crea un debate para tu provincia"
     start_proposal: Crea una propuesta
+    start_debate: Crea un debate
   omniauth:
     facebook:
       sign_in: Entra con Facebook
