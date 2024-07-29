@@ -730,6 +730,8 @@ es:
       target_blank: "Elige una meta"
       title: "Búsqueda avanzada"
       to: "Hasta"
+      geozone: "Ámbito de actuación"
+      geozone_blank: "Elige un ámbito de actuación"
     author_info:
       author_deleted: Usuario eliminado
       email_deleted: Email eliminado
