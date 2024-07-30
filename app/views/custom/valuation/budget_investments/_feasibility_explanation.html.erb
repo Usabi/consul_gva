@@ -1,0 +1,8 @@
+<%# Unfeasible %>
+<%= explanation_field investment.unfeasibility_explanation if investment.feasibility == "unfeasible" %>
+<%# Not selected %>
+<%= explanation_field investment.not_selected_explanation if investment.feasibility == "notselected" %>
+<%# Takecharge %>
+<%= explanation_field investment.takecharge_explanation if investment.feasibility == "takecharge" %>
+<%# Next year budget %>
+<%= explanation_field investment.next_year_budget_explanation if investment.feasibility == "nextyearbudget" %>

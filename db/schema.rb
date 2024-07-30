@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_23_082325) do
+ActiveRecord::Schema.define(version: 2024_07_30_112312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -308,6 +308,10 @@ ActiveRecord::Schema.define(version: 2023_11_23_082325) do
     t.integer "original_heading_id"
     t.text "not_selected_explanation"
     t.datetime "not_selected_email_sent_at"
+    t.text "next_year_budget_explanation"
+    t.datetime "next_year_budget_email_sent_at"
+    t.text "takecharge_explanation"
+    t.datetime "takecharge_email_sent_at"
     t.index ["administrator_id"], name: "index_budget_investments_on_administrator_id"
     t.index ["author_id"], name: "index_budget_investments_on_author_id"
     t.index ["budget_id"], name: "index_budget_investments_on_budget_id"

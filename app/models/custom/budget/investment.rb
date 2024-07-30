@@ -6,9 +6,10 @@ class Budget
 
     scope :not_selected, -> { where(feasibility: "not_selected") }
     # NOTE: This scope includes not_selected because is a filter used by default
-    scope :not_unfeasible, -> { where.not(feasibility: ["unfeasible", "not_selected"]) }
+    scope :not_unfeasible, -> { where.not(feasibility: ["unfeasible", "not_selected", "takecharge", "next_year_budget"]) }
     scope :supported, -> { joins(:heading).where("budget_investments.cached_votes_up + budget_investments.physical_votes >= budget_headings.min_supports") }
-
+    scope :takecharged, -> { where(feasibility: "takecharge") }
+    scope :included_next_year_budget, -> { where(feasibility: "nextyearbudget") }
 
     def self.apply_filters_and_search(_budget, params, current_filter = nil)
       investments = all
@@ -39,11 +40,13 @@ class Budget
       results = results.supported          if params[:advanced_filters].include?("supported")
 
       ids = []
-      ids += results.valuation_finished_feasible.pluck(:id) if params[:advanced_filters].include?("feasible")
-      ids += results.where(selected: true).pluck(:id)       if params[:advanced_filters].include?("selected")
-      ids += results.undecided.pluck(:id)                   if params[:advanced_filters].include?("undecided")
-      ids += results.unfeasible.pluck(:id)                  if params[:advanced_filters].include?("unfeasible")
-      ids += results.not_selected.pluck(:id)                if params[:advanced_filters].include?("not_selected")
+      ids += results.valuation_finished_feasible.ids if params[:advanced_filters].include?("feasible")
+      ids += results.where(selected: true).ids       if params[:advanced_filters].include?("selected")
+      ids += results.undecided.ids                   if params[:advanced_filters].include?("undecided")
+      ids += results.unfeasible.ids                  if params[:advanced_filters].include?("unfeasible")
+      ids += results.not_selected.ids                if params[:advanced_filters].include?("not_selected")
+      ids += results.takecharged.ids                 if params[:advanced_filters].include?("takecharged")
+      ids += results.included_next_year_budget.ids   if params[:advanced_filters].include?("included_next_year_budget")
       results = results.where(id: ids) if ids.any?
       results
     end
@@ -112,6 +115,32 @@ class Budget
     def send_not_selected_email
       Mailer.budget_investment_not_selected(self).deliver_later
       update!(not_selected_email_sent_at: Time.current)
+    end
+
+    def takecharge_email_pending?
+      takecharge_email_sent_at.blank? && takecharge? && valuation_finished?
+    end
+
+    def takecharge?
+      feasibility == "takecharge"
+    end
+
+    def send_takecharge_email
+      Mailer.budget_investment_takecharge(self).deliver_later
+      update(takecharge_email_sent_at: Time.current)
+    end
+
+    def next_year_budget_email_pending?
+      next_year_budget_email_sent_at.blank? && next_year_budget? && valuation_finished?
+    end
+
+    def next_year_budget?
+      feasibility == "nextyearbudget"
+    end
+
+    def send_next_year_budget_email
+      Mailer.budget_investment_next_year_budget(self).deliver_later
+      update(next_year_budget_email_sent_at: Time.current)
     end
 
     def should_show_aside?

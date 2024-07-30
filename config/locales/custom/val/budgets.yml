@@ -21,6 +21,10 @@ val:
         not_selected: Veure les propostes no seleccionades en la fase de revisió interna
         unselected_title: Propostes no seleccionades per a la votació final
         unselected: Veure les propostes no seleccionades per a la votació final
+        takecharged_title: Projectes assumits
+        takecharged: Veure els projectes assumits
+        included_next_year_budget_title: Veure els projectes previstos per a la seua inclusió en pressupostos del pròxim any
+        included_next_year_budget: Projectes previstos per a la seua inclusió en el pressupost del pròxim any
     phase:
       drafting: Fase d'sborrany (No visible per al públic)
       informing: Fase d'Informació i debats
@@ -68,6 +72,11 @@ val:
         unfeasible: Propostes d'inversió no viables
         not_selected: Propostes d'inversió no seleccionades a la fase de revisió interna
         unfeasible_text: "Les propostes presentades han de complir una sèrie de criteris (legalitat, concreció, no superar el límit del pressupost) per a ser declarades viables i arribar fins la fase de votació final. Totes les propostes que no compleixen aquests criteris són marcades com a inviables i publicades en la següent llista, juntament amb el seu informe d'inviabilitat."
+        takecharged: Propostes d'inversió assumides.
+        takecharged_text: Les propostes que ja s'hagen realitzat, s'estiguen realitzant en eixe moment o estiga prevista la seua realització, de manera fefaent, en l'exercici actual.
+        included_next_year_budget: Propuestas de inversión previstas para su inclusión en presupuestos del próximo año
+        included_next_year_budget_text: Les propostes que els servicis tenen previstes en les seues accions a desenrotllar durant l'any vinent.
+
         by_heading: "Propostes d'inversió amb àmbit: %{heading}"
         search_form:
           button: Cercar
@@ -91,6 +100,15 @@ val:
             other: "<strong>Has avalat %{count} propostes, pots continuar avalant propostes fins a arribar al màxim de %{max_supported_count}. Pots canviar els teus avals en qualsevol moment fins al %{phase_end_date}.</strong>"
           all_supports_html: "<strong>Ja no pots avalar més propostes d’inversió. Pots canviar els teus avals fins al %{phase_end_date}.</strong>"
           zero_supports: Encara no has avalat cap proposta d'inversió en este pressupost
+        filter: "Filtrant projectes"
+        filters:
+          not_unfeasible: "No inviables"
+          selected: "Seleccionats"
+          unfeasible: "Inviables"
+          unselected: "No seleccionats"
+          winners: "Guanyadors"
+          takecharged: "Assumits"
+          included_next_year_budget: "Prev. inclusió en presup. del próx. any"
         orders:
           random: aleatòries
           confidence_score: millor valorats
@@ -167,6 +185,8 @@ val:
       unfeasible_investment_proyects: Llista de projectes d'inversió no viables
       not_selected_investment_proyects: Llista de projectes d'inversió no seleccionats en la fase de revisió interna
       unselected_investment_proyects: Llista de tots els projectes d'inversió no seleccionats per a votació
+      takecharged_investment_proyects: Veure llista de projectes de gasto assumits
+      included_next_year_budget_investment_proyects: Veure llista de projectes de gasto previstos per a la seua inclusió en el pressupost del pròxim any
     executions:
       link: "Seguiments"
       page_title: "%{budget} - Fites"

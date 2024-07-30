@@ -1,6 +1,6 @@
 require_dependency Rails.root.join("app", "controllers", "valuation", "budget_investments_controller").to_s
 
-class Valuation::BudgetInvestmentsController < Valuation::BaseController
+class Valuation::BudgetInvestmentsController
   def valuate
     if valid_price_params? && @investment.update(valuation_params)
       if @investment.unfeasible_email_pending?
@@ -9,6 +9,14 @@ class Valuation::BudgetInvestmentsController < Valuation::BaseController
 
       if @investment.not_selected_email_pending?
         @investment.send_not_selected_email
+      end
+
+      if @investment.takecharge_email_pending?
+        @investment.send_takecharge_email
+      end
+
+      if @investment.next_year_budget_email_pending?
+        @investment.send_next_year_budget_email
       end
 
       Activity.log(current_user, :valuate, @investment)
@@ -40,6 +48,8 @@ class Valuation::BudgetInvestmentsController < Valuation::BaseController
         :price, :price_first_year, :price_explanation,
         :feasibility, :unfeasibility_explanation,
         :not_selected_explanation,
+        :takecharge_explanation,
+        :next_year_budget_explanation,
         :duration, :valuation_finished
       ]
     end

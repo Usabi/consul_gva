@@ -67,6 +67,12 @@
       <%= link_to budget_investments_path(@budget, heading_id: @heading, filter: "unfeasible") do %>
         <small><%= t("budgets.results.unfeasible_investment_proyects") %></small>
       <% end %><br>
+      <%= link_to budget_investments_path(@budget, heading_id: @heading, filter: "takecharged") do %>
+        <small><%= t("budgets.results.takecharged_investment_proyects") %></small>
+      <% end %><br>
+      <%= link_to budget_investments_path(@budget, heading_id: @heading, filter: "nextyearbudget") do %>
+        <small><%= t("budgets.results.included_next_year_budget_investment_proyects") %></small>
+      <% end %><br>
       <%= link_to budget_investments_path(@budget, heading_id: @heading, filter: "not_selected") do %>
         <small><%= t("budgets.results.not_selected_investment_proyects") %></small>
       <% end %><br>

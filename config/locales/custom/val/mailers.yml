@@ -71,6 +71,18 @@ val:
       hi: "Estimat/da usuari/a,"
       thanks: "Gràcies de nou per la teua participació."
       sincerely: "Atentament"
+    budget_investment_takecharge:
+      hi: "Estimat/da usuari/a"
+      explanation: 'El seu projecte no passa a la següent fase de suports perquè ha sigut assumit pel Generalitat.'
+      sincerely: "Atentament"
+      sorry: "Gràcies de nou per la teua participació."
+      subject: "Tu proyecto de gasto '%{code}' ha sigut assumit pel generalitat"
+    budget_investment_next_year_budget:
+      hi: "Estimat/da usuari/a"
+      explanation: 'El seu projecte no passa a la següent fase de suports perquè està prevista la seua inclusió en els pressupostos del pròxim any.'
+      sincerely: "Atentament"
+      sorry: "Gràcies de nou per la teua participació."
+      subject: "Tu proyecto de gasto '%{code}' està previst per a inclusió l'any vinent"
     evaluation_comment:
       subject: "Nou comentari d’avaluació"
       title: Nou comentari d’avaluació per a %{investment}

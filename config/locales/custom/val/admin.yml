@@ -167,6 +167,8 @@ val:
           undecided: Sense decidir
           unfeasible: Inviable
           not_selected: No seleccionades
+          takecharged: Assumit
+          included_next_year_budget: "Prev. inclusió en presup. del próx. any"
           min_total_supports: Avals mínims
           winners: Guanyadores
         buttons:
@@ -673,6 +675,12 @@ val:
         title: "Resum de Notificacions de Propostes"
         description: "Reuneix totes les notificacions de propostes en un únic missatge, per a evitar massa emails."
         preview_detail: "Els usuaris sols rebran les notificacions d'aquelles propostes que segueixquen"
+      budget_investment_takecharge:
+        title: "Projecte de gasto assumit"
+        description: "Enviat a l'autor d'un projecte de pressupostos participatius que ha sigut marcat com assumit."
+      budget_investment_next_year_budget:
+        title: "Projecte de gasto previst per a inclusió en pressupost del pròxim any"
+        description: "Enviat a l'autor d'un projecte de pressupostos participatius que ha sigut marcat com a previst per a inclusió en pressupost del pròxim any."
     emails_download:
       index:
         title: Descàrrega de emails

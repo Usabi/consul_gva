@@ -48,6 +48,10 @@ es:
         not_selected: Ver proyectos no seleccionados en la fase de revisión interna
         unselected_title: Proyectos no seleccionados para la fase de evaluación
         unselected: Ver los proyectos no seleccionados para la fase de evaluación
+        takecharged_title: Proyectos asumidos
+        takecharged: Ver los proyectos asumidos
+        included_next_year_budget_title: Ver los proyectos previstos para su inclusión en presupuestos del próximo año
+        included_next_year_budget: Proyectos previstos para su inclusión en el presupuesto del próximo año
     phase:
       drafting: Fase de borrador (No visible para el público)
       informing: Fase de información y debates
@@ -99,6 +103,10 @@ es:
         unfeasible: Proyectos de gasto no viables
         not_selected: Proyectos de gasto no seleccionados en la fase de revisión interna
         unfeasible_text: "Los proyectos presentados deben cumplir una serie de criterios (legalidad, concreción, no superar el tope del presupuesto) para ser declarados viables y llegar hasta la fase de votación final. Todos los proyectos que no cumplen estos criterios son marcados como inviables y publicados en la siguiente lista, junto con su informe de inviabilidad."
+        takecharged: Propuestas de inversión asumidas.
+        takecharged_text: Las propuestas que ya se hayan realizado, se estén realizando en ese momento o esté prevista su realización, de forma fehaciente, en el ejercicio actual.
+        included_next_year_budget: Propuestas de inversión previstas para su inclusión en presupuestos del próximo año
+        included_next_year_budget_text: Las propuestas que los servicios tienen previstas en sus acciones a desarrollar durante el próximo año.
         by_heading: "Proyectos de gasto con ámbito: %{heading}"
         search_form:
           button: Buscar
@@ -141,6 +149,8 @@ es:
           unfeasible: "Inviables"
           unselected: "No seleccionados"
           winners: "Ganadores"
+          takecharged: "Asumidos"
+          included_next_year_budget: "Prev. inclusión en presup. del próx. año"
         orders:
           random: Aleatorios
           confidence_score: Mejor valorados
@@ -226,6 +236,8 @@ es:
       unfeasible_investment_proyects: Ver lista de proyectos de gasto inviables
       not_selected_investment_proyects: Ver el listado de propuestas no seleccionados en la fase de revisión interna
       unselected_investment_proyects: Ver lista de proyectos de gasto no seleccionados para la fase de evaluación
+      takecharged_investment_proyects: Ver lista de proyectos de gasto asumidos
+      included_next_year_budget_investment_proyects: Ver lista de proyectos de gasto previstos para su inclusión en el presupuesto del próximo año
     executions:
       link: "Seguimiento"
       page_title: "%{budget} - Seguimiento de proyectos"

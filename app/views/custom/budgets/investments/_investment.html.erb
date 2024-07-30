@@ -29,7 +29,7 @@
         </div>
       </div>
 
-      <% unless investment.unfeasible? || investment.not_selected? %> <%# Custom part%>
+      <% unless investment.unfeasible? || investment.not_selected? || investment.takecharge? || investment.next_year_budget?%> <%# Custom part%>
 
         <% if investment.should_show_votes? %>
           <div id="<%= dom_id(investment) %>_votes"
