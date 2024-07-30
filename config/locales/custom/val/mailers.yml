@@ -144,3 +144,6 @@ val:
       text_9: "També trobaràs aquesta nova acció de difusió recomanada…"
       text_10: "Segur que tens més recursos pendents d'usar!"
       dashboard_button: "Avant, descobreix-los!"
+    budget_change_active_phases:
+      success: "%{budget_name} ha cambiado de la fase '%{previous_phase}' a '%{next_phase}'"
+      error: Error al cambiar de fase
