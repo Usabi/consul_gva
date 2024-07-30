@@ -186,6 +186,16 @@ val:
         dates_range_invalid: "La data d'inici no ha de ser igual o posterior a la data de fi"
         prev_phase_dates_invalid: "La data d'inici ha de ser posterior a la data d'inici de la fase anterior (%{phase_name})"
         next_phase_dates_invalid: "La data de fi ha de ser posterior a la data de fi de la seguent fase (%{phase_name})"
+    milestone:
+      statuses:
+        drafting: Redacció
+        drafting_description: "L’àrea municipal responsable de l’execució del projecte està fent l’estudi dedetall o el projecte tècnic corresponent."
+        processing: Tramitació
+        processing_description: El projecte tècnic es troba en fase de gestió administrativa. Si és un contracte menor ho tramita la unitat que executa el projecte, sinó es troba en el Servici de Contratació.
+        execution: Execució
+        execution_description: "El projecte es troba en fase d’execució."
+        executed: Executat
+        executed_description: "El projecte ha sigut executat i s’ha finalitzat."
   votes:
     budget_investments:
       max_votes_per_budget_per_user_limit_reached: "Has avalat el màxim de propostes permés."

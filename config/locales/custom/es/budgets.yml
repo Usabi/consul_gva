@@ -248,6 +248,17 @@ es:
         dates_range_invalid: "La fecha de comienzo no puede ser igual o superior a la de finalización"
         prev_phase_dates_invalid: "La fecha de inicio debe ser posterior a la fecha de inicio de la anterior fase habilitada (%{phase_name})"
         next_phase_dates_invalid: "La fecha de fin debe ser anterior a la fecha de fin de la siguiente fase habilitada (%{phase_name})"
+    milestone:
+      statuses:
+        drafting: Redacción
+        drafting_description: El área municipal responsable de la ejecución del proyecto está realizando el estudio de detalle o realizando el proyecto técnico correspondiente.
+        processing: Tramitación
+        processing_description: El proyecto técnico se encuentra en fase de gestión administrativa. Si es un contrato menor lo tramita la unidad que ejecuta el proyecto, sino se encuentra en el servicio transversal de contratación
+        execution: Ejecución
+        execution_description: El proyecto se encuentra en fase de ejecución.
+        executed: Ejecutado
+        executed_description: El proyecto ha sido ejecutado y se ha finalizado.
+
   votes:
     budget_investments:
       max_votes_per_budget_per_user_limit_reached: "Has apoyado el máximo de propuestas permitido."
