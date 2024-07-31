@@ -276,6 +276,10 @@ es:
         select: Seleccionar
         winner: Ganador
         win: Ganar
+        visible_to_valuators_bulk: Marcar evaluadores como visible
+        selected_bulk: Marcar como seleccionadas
+        winner_bulk: Marcar como ganadoras
+        select_all: Seleccionar todos
         list:
           id: ID
           title: Título
