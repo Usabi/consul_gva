@@ -107,6 +107,42 @@
 </td>
 
 <% if params[:advanced_filters]&.include?("selected") %>
+  <td id="winner" class="small text-center" data-field="winner">
+    <% if investment.selected? && investment.winner? %>
+        <%= link_to_if can?(:toggle_winner, investment),
+                      t("admin.budget_investments.index.winner"),
+                      toggle_winner_admin_budget_budget_investment_path(
+                        @budget,
+                        investment,
+                        filter: params[:filter],
+                        sort_by: params[:sort_by],
+                        min_total_supports: params[:min_total_supports],
+                        max_total_supports: params[:max_total_supports],
+                        advanced_filters: params[:advanced_filters],
+                        page: params[:page]
+                      ),
+                      method: :patch,
+                      remote: true,
+                      class: "button small expanded" %>
+    <% elsif investment.selected? %>
+      <% if can?(:toggle_winner, investment) %>
+        <%= link_to t("admin.budget_investments.index.win"),
+                    toggle_winner_admin_budget_budget_investment_path(
+                      @budget,
+                      investment,
+                      filter: params[:filter],
+                      sort_by: params[:sort_by],
+                      min_total_supports: params[:min_total_supports],
+                      max_total_supports: params[:max_total_supports],
+                      advanced_filters: params[:advanced_filters],
+                      page: params[:page]
+                    ),
+                    method: :patch,
+                    remote: true,
+                    class: "button small hollow expanded" %>
+      <% end %>
+    <% end %>
+  </td>
   <td class="small text-center" data-field="incompatible">
     <%= investment.incompatible? ? t("shared.yes") : t("shared.no") %>
   </td>

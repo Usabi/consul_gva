@@ -4,6 +4,7 @@ require_dependency Rails.root.join('app', 'models', 'budget', 'investment').to_s
 class Budget
   class Investment
 
+    before_save :set_visible_to_valuators
     scope :not_selected, -> { where(feasibility: "not_selected") }
     # NOTE: This scope includes not_selected because is a filter used by default
     scope :not_unfeasible, -> { where.not(feasibility: ["unfeasible", "not_selected", "takecharge", "next_year_budget"]) }
@@ -152,5 +153,15 @@ class Budget
     def should_show_not_selected_explanation?
       not_selected? && valuation_finished? && not_selected_explanation.present?
     end
+
+    private
+
+      def set_visible_to_valuators
+        self.visible_to_valuators = valuators.any? unless changed.include?("visible_to_valuators")
+
+        if valuation_finished && feasibility == "feasible" && !changed.include?("selected")
+          self.selected = true
+        end
+      end
   end
 end

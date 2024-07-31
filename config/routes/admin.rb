@@ -62,7 +62,10 @@ namespace :admin do
     end
 
     resources :budget_investments, only: [:index, :show, :edit, :update] do
-      member { patch :toggle_selection }
+      member do
+        patch :toggle_selection
+        patch :toggle_winner
+      end
 
       resources :audits, only: :show, controller: "budget_investment_audits"
       resources :milestones, controller: "budget_investment_milestones"

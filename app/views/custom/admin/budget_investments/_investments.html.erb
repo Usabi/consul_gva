@@ -9,7 +9,7 @@
 <% if @investments.any? %>
   <h3 class="inline-block"><%= page_entries_info @investments %></h3>
   <%= render "admin/shared/columns_selector",
-        cookie: "investments-columns", default: %w[id title supports min_supports admin valuator geozone feasibility price valuation_finished visible_to_valuators selected incompatible] %>
+        cookie: "investments-columns", default: %w[id title supports min_supports admin valuator geozone feasibility price valuation_finished visible_to_valuators selected winner incompatible] %>
   <br>
 
   <%= render "filters_description", i18n_namespace: "admin.budget_investments.index" %>
@@ -42,6 +42,7 @@
         </th>
         <th data-field="selected"><%= t("admin.budget_investments.index.list.selected") %></th>
         <% if params[:advanced_filters]&.include?("selected") %>
+          <th data-field="winner"><%= t("admin.budget_investments.index.list.winner") %></th>
           <th data-field="incompatible"><%= t("admin.budget_investments.index.list.incompatible") %></th>
         <% end %>
       </tr>

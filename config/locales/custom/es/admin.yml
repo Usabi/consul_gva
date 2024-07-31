@@ -272,8 +272,10 @@ es:
           not_selected: "No seleccionada"
           takecharge: "Asumido"
           nextyearbudget: "Previsto inclusión en presup. del próx. año"
-        selected: "Seleccionado"
-        select: "Seleccionar"
+        selected: Seleccionado
+        select: Seleccionar
+        winner: Ganador
+        win: Ganar
         list:
           id: ID
           title: Título
@@ -286,6 +288,7 @@ es:
           feasibility: Viabilidad
           valuation_finished: Ev. Fin.
           selected: Seleccionado
+          winner: Ganador
           visible_to_valuators: Mostrar a evaluadores
           author_username: Usuario autor
           incompatible: Incompatible
