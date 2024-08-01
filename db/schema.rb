@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_07_30_112312) do
+ActiveRecord::Schema.define(version: 2024_08_01_082637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -982,12 +982,24 @@ ActiveRecord::Schema.define(version: 2024_07_30_112312) do
     t.index ["proposal_id"], name: "index_map_locations_on_proposal_id"
   end
 
+  create_table "milestone_status_translations", force: :cascade do |t|
+    t.integer "milestone_status_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.text "description"
+    t.index ["locale"], name: "index_milestone_status_translations_on_locale"
+    t.index ["milestone_status_id"], name: "index_milestone_status_translations_on_milestone_status_id"
+  end
+
   create_table "milestone_statuses", id: :serial, force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.datetime "hidden_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "kind"
     t.index ["hidden_at"], name: "index_milestone_statuses_on_hidden_at"
   end
 
