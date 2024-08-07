@@ -11,11 +11,18 @@ class Budget
     scope :supported, -> { joins(:heading).where("budget_investments.cached_votes_up + budget_investments.physical_votes >= budget_headings.min_supports") }
     scope :takecharged, -> { where(feasibility: "takecharge") }
     scope :included_next_year_budget, -> { where(feasibility: "nextyearbudget") }
+    scope :by_milestones_statuses, ->(status) { joins(milestones: :status).where("milestone_statuses.kind = '#{status}'") }
+    scope :milestone_drafting, -> { by_milestones_statuses("drafting") }
+    scope :milestone_processing, -> { by_milestones_statuses("processing") }
+    scope :milestone_execution, -> { by_milestones_statuses("execution") }
+    scope :milestone_executed, -> { by_milestones_statuses("executed") }
 
     def self.apply_filters_and_search(_budget, params, current_filter = nil)
       investments = all
-      investments = investments.send(current_filter)             if current_filter.present? && (!params[:search].present? || !params[:search].to_i.positive?)
-      investments = investments.by_heading(params[:heading_id])  if params[:heading_id].present?
+      if current_filter.present? && (!params[:search].present? || !params[:search].to_i.positive?)
+        investments = investments.send(current_filter)
+      end
+      investments = investments.by_heading(params[:heading_id]) if params[:heading_id].present?
       if params[:search].present?
         if params[:search].to_i.positive?
           params[:advanced_search] ||= {}
@@ -26,8 +33,10 @@ class Budget
       end
 
       if params[:advanced_search].present?
-        investments = investments.filter_by(params[:advanced_search][:tag]) if params[:advanced_search][:tag].present?
-        investments = investments.filter_by(params[:advanced_search].reject { |k, v| k == "tag" })
+        if params[:advanced_search][:tag].present?
+          investments = investments.filter_by(params[:advanced_search][:tag])
+        end
+        investments = investments.filter_by(params[:advanced_search].except("tag"))
       end
       investments
     end
@@ -152,6 +161,10 @@ class Budget
 
     def should_show_not_selected_explanation?
       not_selected? && valuation_finished? && not_selected_explanation.present?
+    end
+
+    def milestone_status
+      Milestone::Status.with_deleted.find(milestone_status_id) if milestone_status_id
     end
 
     private

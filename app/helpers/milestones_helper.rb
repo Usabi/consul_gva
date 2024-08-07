@@ -13,4 +13,14 @@ module MilestonesHelper
         tag.p(text, class: "progress-meter-text")
     end
   end
+
+  def milestone_status_percentage(status_kind)
+    percentage = {
+      drafting: 25,
+      processing: 50,
+      execution: 75,
+      executed: 100
+    }
+    percentage[status_kind.to_sym]
+  end
 end

@@ -201,6 +201,28 @@ val:
         button: Cercar
         placeholder: Cercar propostes d'inversió...
         title: Cercar
+    status_executions:
+      link: "Estat d'execució"
+      page_title: "%{budget} - Estat d'execució"
+      heading: "Estat d'execució de pressupostos participatiu"
+      heading_selection_title: "Àmbit d'actuació"
+      no_winner_investments: "No hi ha propostes en aquest estat"
+      filters:
+        status:
+          label: "Estat actual del projecte"
+          all: "Tots (%{count})"
+      search_form:
+        button: Cercar
+        placeholder: Cercar propostes d'inversió...
+        title: Cercar
+      table:
+        id: Número de proposta
+        heading_name: Partida
+        title: Títol
+        price: Pressupost
+        milestone_status:
+          name: Fase d'execució
+          kind: Percentatge desenrotlle
     phases:
       errors:
         dates_range_invalid: "La data d'inici no ha de ser igual o posterior a la data de fi"
