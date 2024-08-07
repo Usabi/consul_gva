@@ -81,6 +81,7 @@
         <%= yield :header_addon %><%# Custom %>
         <%= link_to t("debates.index.start_debate"), new_debate_path, class: "button expanded" %>
         <%= render "shared/tag_cloud", taggable: "Debate" %>
+        <%= render Debates::GeozonesComponent.new %>
       </aside>
     </div>
 

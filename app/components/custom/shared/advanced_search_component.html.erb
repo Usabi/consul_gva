@@ -11,7 +11,7 @@
       <%= text_field_tag "search", params[:search],
                           placeholder: t("shared.advanced_search.general_placeholder") %>
     </div>
-    <% if debates? %>
+    <% if proposals? %>
       <div class="filter">
         <label for="advanced_search_tag"><%= t("shared.advanced_search.category_type") %>
         </label>
@@ -46,6 +46,14 @@
         </div>
       </div>
     </div>
+
+    <% if proposals? || debates? %>
+      <div class="filter">
+        <label for="advanced_search_geozone"><%= t("shared.advanced_search.geozone") %></label>
+        <%= select_tag("advanced_search[geozone]", geozones_search_options,
+                      include_blank: t("shared.advanced_search.geozone_blank")) %>
+      </div>
+    <% end %>
 
     <% if sdg? %>
       <div class="filter">

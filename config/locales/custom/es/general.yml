@@ -303,7 +303,9 @@ es:
   map:
     title: "Provincias"
     proposal_for_district: "Crea una propuesta para tu provincia"
+    debate_for_district: "Crea un debate para tu provincia"
     start_proposal: Crea una propuesta
+    start_debate: Crea un debate
   omniauth:
     facebook:
       sign_in: Entra con Facebook
@@ -731,6 +733,8 @@ es:
       target_blank: "Elige una meta"
       title: "Búsqueda avanzada"
       to: "Hasta"
+      geozone: "Ámbito de actuación"
+      geozone_blank: "Elige un ámbito de actuación"
     author_info:
       author_deleted: Usuario eliminado
       email_deleted: Email eliminado
