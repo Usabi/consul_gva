@@ -357,13 +357,13 @@ val:
         index:
           create: Nou procés
           delete: Eliminar
-          title: Processos de legislació col·laborativa
+          title: Processos de elaboració normativa
           filters:
             active: Actius
             all: Tots
         new:
           back: Tornar
-          title: Crear procés de legislació col·laborativa
+          title: Crear procés de elaboració normativa
           submit_button: Crear procés
         proposals:
           select_order: Ordenar per
@@ -553,7 +553,7 @@ val:
       title_settings: Configuració
       title_site_customization: Personalitzar lloc
       title_booths: Cabines de vot
-      legislation: Legislació col·laborativa
+      legislation: Elaboració normativa
       users: Usuaris
     administrators:
       index:
@@ -1027,7 +1027,7 @@ val:
           organizations: "Nom, email o telèfon"
           poll_officers: "Cercar presidents de taula"
           poll_questions: "Cercar preguntes"
-          processes: "Cercar processos de legislació col·laborativa pero títol o descripció"
+          processes: "Cercar processos de elaboració normativa pero títol o descripció"
           proposals: "Cercar propostes per títol, codi, descripció o pregunta"
           users: "Cercar usuari per nom o correu electrònic"
         search: "Cercar"

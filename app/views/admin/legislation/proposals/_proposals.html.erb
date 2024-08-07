@@ -1,5 +1,14 @@
 <% if proposals.any? %>
-  <h3><%= page_entries_info proposals %></h3>
+  <div>
+    <div class="small-12 medium-8 column clear end">
+      <h3><%= page_entries_info proposals %></h3>
+      </div>
+    <div class="small-12 medium-3 column clear end">
+      <%= link_to t("legislation.summary.download"),
+                  summary_admin_legislation_process_proposals_path(@process, format: :xlsx),
+                  class: "button download-button" %>
+    </div>
+  </div>
 
   <%= render "shared/order_links", i18n_namespace: "admin.legislation.processes.proposals" %>
 
@@ -24,6 +33,7 @@
       <% end %>
     </tbody>
   </table>
+
 
   <%= paginate proposals %>
 <% end %>

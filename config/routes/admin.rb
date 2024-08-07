@@ -235,6 +235,7 @@ namespace :admin do
       resources :questions
       resources :proposals do
         member { patch :toggle_selection }
+        get :summary, on: :collection# Custom
       end
       resources :draft_versions
       resources :milestones
