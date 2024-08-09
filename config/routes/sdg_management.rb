@@ -1,8 +1,12 @@
 namespace :sdg_management do
   root to: "goals#index"
 
-  resources :goals, only: [:index]
-  resources :targets, only: [:index]
+  resources :goals, only: [:index, :edit] do
+    post :update, on: :collection
+  end
+  resources :targets, only: [:index, :edit] do
+    post :update, on: :collection
+  end
   resources :local_targets, except: [:show]
   resource :homepage, controller: :homepage, only: [:show] do
     resource :header, controller: :header, only: [:new, :create, :edit, :update, :destroy]
@@ -27,4 +31,12 @@ end
 
 resolve "SDG::LocalTarget" do |target, options|
   [:local_target, options.merge(id: target)]
+end
+
+resolve "SDG::Goal" do |goal, options|
+  [:goal, options.merge(id: goal)]
+end
+
+resolve "SDG::Target" do |target, options|
+  [:target, options.merge(id: target)]
 end

@@ -1,0 +1,27 @@
+<%= header %>
+
+<%= render SDGManagement::SubnavigationComponent.new(current: :goals) do %>
+  <table>
+    <thead>
+      <tr>
+        <th id="goal-code" scope="col"><%= attribute_name(:code) %></th>
+        <th id="goal-title" scope="col"><%= attribute_name(:title) %></th>
+        <th id="goal-description" scope="col"><%= attribute_name(:description) %></th>
+        <th id="goal-actions" scope="col"><%= t("admin.actions.actions") %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% goals.each do |goal| %>
+        <tr id="<%= dom_id(goal) %>" class="goal">
+          <td><%= goal.code %></td>
+          <td><%= goal.title %></td>
+          <td><%= goal.description %></td>
+          <td>
+            <%= actions(goal) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
