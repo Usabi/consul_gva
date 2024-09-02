@@ -56,7 +56,7 @@ class Tenant < ApplicationRecord
   end
 
   def self.excluded_subdomains
-    %w[mail owconsul shared_extensions www]
+    %w[mail public shared_extensions www]
   end
 
   def self.default_url_options
@@ -84,7 +84,7 @@ class Tenant < ApplicationRecord
   end
 
   def self.host_for(schema)
-    if schema == "owconsul"
+    if schema == "public"
       default_host
     elsif find_by_domain(schema)
       schema
@@ -124,7 +124,7 @@ class Tenant < ApplicationRecord
   end
 
   def self.default?
-    current_schema == "owconsul"
+    current_schema == "public"
   end
 
   def self.current_schema
@@ -140,7 +140,7 @@ class Tenant < ApplicationRecord
   end
 
   def self.run_on_each(&block)
-    ["owconsul"].union(Apartment.tenant_names).each do |schema|
+    ["public"].union(Apartment.tenant_names).each do |schema|
       switch(schema, &block)
     end
   end
