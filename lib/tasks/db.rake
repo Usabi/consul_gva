@@ -31,7 +31,7 @@ namespace :db do
 
     adapter_indices.reverse_each do |index|
       unless lines[index + 1]&.match?("schema_search_path")
-        lines.insert(index + 1, "  schema_search_path: \"owconsul,shared_extensions\"\n")
+        lines.insert(index + 1, "  schema_search_path: \"owconsul, unaccent, pgtrgm, owcrc, shared_extensions\"\n")
         changes_done = true
       end
     end

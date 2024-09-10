@@ -8,6 +8,6 @@ namespace :consul do
   task "execute_release_2.0.0_tasks": [
     "db:calculate_tsv",
     "polls:set_ends_at_to_end_of_day",
-    "db:add_schema_search_path"
   ]
+  # "db:add_schema_search_path"
 end

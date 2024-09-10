@@ -8,7 +8,6 @@ module SearchCache
   def calculate_tsvector
     searchable = "(#{searchable_values_sql})"
     return if searchable == "()"
-
     self.class.with_hidden.where(id: id).update_all("tsv = #{searchable}")
   end
 
@@ -23,7 +22,7 @@ module SearchCache
 
     def set_tsvector(value, weight)
       dict = quote(SearchDictionarySelector.call)
-      "setweight(to_tsvector(#{dict}, unaccent(coalesce(#{quote(strip_html(value))}, ''))), #{quote(weight)})"
+      "setweight(to_tsvector(#{dict}, unaccent.unaccent(coalesce(#{quote(strip_html(value))}, ''))), #{quote(weight)})"
     end
 
     def quote(value)
