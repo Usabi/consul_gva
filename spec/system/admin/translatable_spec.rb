@@ -2,16 +2,16 @@ require "rails_helper"
 
 describe "Admin edit translatable records", :admin do
   before do
-    translatable.main_link_url = "https://consulproject.org" if translatable.is_a?(Budget::Phase)
+    translatable.main_link_url = "https://consuldemocracy.org" if translatable.is_a?(Budget::Phase)
     translatable.update!(attributes)
   end
 
   let(:fields) { translatable.translated_attribute_names }
 
   let(:attributes) do
-    fields.product(%i[en es]).map do |field, locale|
+    fields.product(%i[en es]).to_h do |field, locale|
       [:"#{field}_#{locale}", text_for(field, locale)]
-    end.to_h
+    end
   end
 
   context "Add a translation" do
@@ -19,7 +19,7 @@ describe "Admin edit translatable records", :admin do
       let(:translatable) { create(:budget_heading) }
       let(:path) { admin_polymorphic_path(translatable, action: :edit) }
 
-      scenario "Maintains existing translations" do
+      scenario "Maintains existing translations", consul: true do
         visit path
 
         select "Français", from: :add_language
@@ -44,7 +44,7 @@ describe "Admin edit translatable records", :admin do
       let(:translatable) { create(:site_customization_page) }
       let(:path) { edit_admin_site_customization_page_path(translatable) }
 
-      scenario "Maintains existing translations" do
+      scenario "Maintains existing translations", consul: true do
         visit path
 
         select "Français", from: :add_language
@@ -71,7 +71,7 @@ describe "Admin edit translatable records", :admin do
       let(:translatable) { create(:legislation_draft_version) }
       let(:path) { edit_admin_legislation_process_draft_version_path(translatable.process, translatable) }
 
-      scenario "Maintains existing translations" do
+      scenario "Maintains existing translations", consul: true do
         visit path
 
         select "Français", from: :add_language
@@ -104,7 +104,7 @@ describe "Admin edit translatable records", :admin do
       let(:translatable) { create(:legislation_question) }
       let(:path) { edit_admin_legislation_process_question_path(translatable.process, translatable) }
 
-      scenario "Adds a translation for that locale" do
+      scenario "Adds a translation for that locale", consul: true do
         visit path
 
         select "Português brasileiro", from: :add_language
@@ -123,7 +123,7 @@ describe "Admin edit translatable records", :admin do
     let(:translatable) { create(:budget_investment) }
 
     context "Input field" do
-      let(:translatable) { create(:budget, main_link_url: "https://consulproject.org") }
+      let(:translatable) { create(:budget, main_link_url: "https://consuldemocracy.org") }
 
       scenario "Shows validation erros" do
         visit edit_admin_budget_path(translatable)
@@ -187,7 +187,7 @@ describe "Admin edit translatable records", :admin do
       let(:translatable) { create(:widget_card) }
       let(:path) { edit_admin_widget_card_path(translatable) }
 
-      scenario "Changes the existing translation" do
+      scenario "Changes the existing translation", consul: true do
         visit path
 
         select "Español", from: :select_language
@@ -214,9 +214,9 @@ describe "Admin edit translatable records", :admin do
       end
     end
 
-    context "CKEditor fields" do
-      let(:translatable) { create(:poll_question_answer) }
-      let(:path) { edit_admin_answer_path(translatable) }
+    context "CKEditor fields", consul: true do
+      let(:translatable) { create(:poll_question_answer, poll: create(:poll, :future)) }
+      let(:path) { edit_admin_question_answer_path(translatable.question, translatable) }
 
       scenario "Changes the existing translation" do
         visit path
@@ -242,7 +242,7 @@ describe "Admin edit translatable records", :admin do
     end
 
     context "Change value of a translated field to blank" do
-      let(:translatable) { create(:poll) }
+      let(:translatable) { create(:poll, :future) }
       let(:path) { edit_admin_poll_path(translatable) }
 
       scenario "Updates the field to a blank value" do
@@ -260,7 +260,7 @@ describe "Admin edit translatable records", :admin do
     end
   end
 
-  context "Update a translation with invalid data" do
+  context "Update a translation with invalid data", consul: true do
     context "Input fields" do
       let(:translatable) { create(:banner) }
 
@@ -331,7 +331,7 @@ describe "Admin edit translatable records", :admin do
     end
   end
 
-  context "Remove a translation" do
+  context "Remove a translation", consul: true do
     let(:translatable) { create(:budget_group) }
     let(:path) { edit_admin_budget_group_path(translatable.budget, translatable) }
 
@@ -382,8 +382,8 @@ describe "Admin edit translatable records", :admin do
     end
   end
 
-  context "Remove a translation with invalid data" do
-    let(:translatable) { create(:poll_question) }
+  context "Remove a translation with invalid data", consul: true do
+    let(:translatable) { create(:poll_question, poll: create(:poll, :future)) }
     let(:path) { edit_admin_question_path(translatable) }
 
     scenario "Doesn't remove the translation" do
@@ -408,7 +408,7 @@ describe "Admin edit translatable records", :admin do
     end
   end
 
-  context "Current locale translation does not exist" do
+  context "Current locale translation does not exist", consul: true do
     context "For all translatable except ActivePoll and Budget::Phase" do
       let(:translatable) { create(:admin_notification, segment_recipient: "all_users") }
 
@@ -476,7 +476,7 @@ describe "Admin edit translatable records", :admin do
     let(:content) { translatable }
     let(:path) { admin_site_customization_information_texts_path }
 
-    scenario "Select current locale when its translation exists" do
+    scenario "Select current locale when its translation exists", consul: true do
       visit path
 
       expect_to_have_language_selected "English"
@@ -486,14 +486,14 @@ describe "Admin edit translatable records", :admin do
       expect_to_have_language_selected "Español"
     end
 
-    scenario "Select first locale of existing translations when current locale translation does not exists" do
+    scenario "Select first locale of existing translations when current locale translation does not exists", consul: true do
       content.translations.where(locale: :en).destroy_all
       visit path
 
       expect_to_have_language_selected "Español"
     end
 
-    scenario "Show selected locale form" do
+    scenario "Show selected locale form", consul: true do
       visit path
 
       expect(page).to have_field "contents_content_#{content.key}values_value_en", with: "Value in English"

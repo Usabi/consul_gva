@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Signature do
+describe Signature, consul: true do
   let(:signature) { build(:signature) }
 
   describe "validations" do

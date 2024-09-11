@@ -17,9 +17,14 @@ module CommonActions
   include Translations
   include Users
   include Verifications
+  include Helpers
 
   def app_host
-    "#{Capybara.app_host}:#{Capybara::Server.ports.values.last}"
+    "#{Capybara.app_host}:#{app_port}"
+  end
+
+  def app_port
+    Capybara::Server.ports.values.last
   end
 
   def fill_in_signup_form(email = "manuela@consul.dev", password = "judgementday")

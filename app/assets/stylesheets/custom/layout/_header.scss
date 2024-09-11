@@ -1,0 +1,262 @@
+.wrapper > header {
+  background: $white-gva;
+}
+
+.top-bar {
+  background: $white-gva !important;
+  color: $red-gva !important;
+
+  @include breakpoint(small only) {
+    .responsive-menu {
+      width: 100%;
+
+      a {
+        display: block;
+      }
+    }
+  }
+
+  ul {
+    padding-top: 0.9375rem;
+    padding-bottom: 0.5rem;
+    float: right;
+  }
+
+  .menu .menu-text {
+    padding: 0;
+  }
+
+  .menu > li {
+    a {
+      color: $red-gva;
+
+      &:hover:not(.button) {
+        font-weight: bold;
+        text-decoration: none;
+      }
+    }
+
+    .button {
+      @include breakpoint(medium) {
+        border-radius: 10px;
+        color: $red-gva;
+        margin-right: 0;
+      }
+
+      &:hover {
+        background-color: $red-gva;
+        color: $white;
+      }
+    }
+  }
+
+  .has-submenu {
+    &.is-active a {
+      color: $red-gva;
+    }
+  }
+
+  .menu {
+    .is-submenu-item {
+      a {
+        color: $red-gva;
+      }
+    }
+  }
+
+  .menu-icon {
+    &.dark {
+      &:hover::after,
+      &::after {
+        background: $red-gva;
+        box-shadow: 0 7px 0 $red-gva, 0 14px 0$red-gva;
+      }
+    }
+  }
+}
+
+.help-header h1 {
+  color: $link;
+}
+
+.submenu a {
+  color: $link;
+}
+
+.subnavigation {
+  @include full-width-border(top, 1px solid $red-gva);
+
+  @include breakpoint(medium) {
+    ul {
+      display: flex;
+      justify-content: space-evenly;
+    }
+  }
+
+  a {
+    color: $link;
+
+    &:hover {
+      text-decoration: none;
+      color: $red-gva;
+    }
+
+    &.is-active {
+      color: $red-gva;
+
+      @include breakpoint(medium) {
+        border-bottom: 2px solid $red-gva;
+        color: $red-gva;
+      }
+    }
+  }
+}
+
+.dropdown.menu > li {
+  &.is-active > a {
+    color: $red-gva;
+  }
+
+  &.is-dropdown-submenu-parent > a::after {
+    border-color: $red-gva transparent transparent;
+  }
+}
+
+.radio-toolbar {
+  text-align: right;
+  margin-bottom: 15px;
+  margin-right: 15px;
+
+  input {
+    display: none;
+  }
+
+  label {
+    margin: 0;
+    color: $red-gva;
+    cursor: pointer;
+
+    &:hover {
+      font-weight: bold;
+    }
+  }
+}
+
+.slogan {
+  text-align: right;
+  margin: 0 15px 15px 0;
+  font-size: 14px;
+  line-height: normal;
+  font-weight: 500;
+  clear: both;
+}
+
+.social-header .social-icons-list {
+  text-align: right;
+  margin-right: 15px;
+
+  ul {
+    padding: 0;
+
+    li a {
+      color: $red-gva;
+    }
+  }
+}
+
+.jumbo.highlight {
+  @extend %brand-background;
+  @include full-width-background;
+  @include full-width-border(bottom, 1px solid $red-gva);
+
+  &.with-background-image {
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    z-index: 0;
+  }
+
+  min-height: auto;
+  padding: 0;
+
+  h1 {
+    color: $white-gva;
+    margin: 1rem 0 1.5rem;
+  }
+
+  .lead {
+    color: $dark-blue-gva;
+    font-size: 1em;
+    margin: 1.5rem 0;
+  }
+
+  .title-background {
+    @include full-width-background;
+    background-color: rgba(5, 153, 155, 0.95);
+  }
+}
+
+@media print, screen and (max-width: 1200px) {
+  .subnavigation {
+    ul li {
+      margin: 0.9375rem;
+    }
+
+    a {
+      line-height: inherit;
+    }
+  }
+}
+
+@media print, screen and (max-width: 39.99875em) {
+  .jumbo.highlight {
+    background-position: right;
+
+    .lead {
+      color: white;
+      text-shadow: 1px 1px black;
+    }
+  }
+}
+
+@media print, screen and (max-width: 640px) {
+  .top-bar {
+    display: inline-block;
+    width: 100%;
+
+    .menu-button {
+      right: 8px;
+      position: absolute;
+      top: 20px;
+    }
+
+    .account-menu.menu {
+      padding-top: 2.9375rem;
+      padding-right: 0;
+    }
+
+    .top-bar-title {
+      margin-left: auto;
+      margin-right: 32px;
+    }
+
+    .button {
+      border: 0;
+      margin-right: 0;
+      float: right;
+    }
+
+    ul {
+      float: unset;
+
+      li a {
+        text-align: right;
+      }
+    }
+  }
+
+  .subnavigation.row {
+    margin: 0;
+  }
+}

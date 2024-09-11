@@ -176,7 +176,7 @@ describe "Admin budget headings", :admin do
       expect(find_field("Allow content block")).not_to be_checked
     end
 
-    scenario "Changing name for current locale will update the slug if budget is in draft phase" do
+    scenario "Changing name for current locale will update the slug if budget is in draft phase", consul: true do
       heading = create(:budget_heading, group: group, name: "Old English Name")
 
       visit edit_admin_budget_group_heading_path(budget, group, heading)

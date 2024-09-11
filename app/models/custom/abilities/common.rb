@@ -74,10 +74,12 @@ module Abilities
       can [:create, :destroy], Follow, user_id: user.id
 
       can [:destroy], Document do |document|
-        document.documentable&.author_id == user.id
+        document.documentable&.author_id == user.id if document.documentable.respond_to? :author_id
       end
 
-      can [:destroy], Image, imageable: { author_id: user.id }
+      can [:destroy], Image do |image|
+        image.imageable.author_id == user.id if image.imageable.respond_to? :author_id
+      end
 
       can [:create, :destroy], DirectUpload
 

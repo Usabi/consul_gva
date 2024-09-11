@@ -373,7 +373,7 @@ describe "Debates" do
   end
 
   describe "Debate index order filters" do
-    scenario "Default order is hot_score" do
+    scenario "Debates are ordered by hot_score" do
       best_debate = create(:debate, title: "Best")
       best_debate.update_column(:hot_score, 10)
       worst_debate = create(:debate, title: "Worst")
@@ -382,9 +382,16 @@ describe "Debates" do
       medium_debate.update_column(:hot_score, 5)
 
       visit debates_path
+      click_link "most active"
 
-      expect(best_debate.title).to appear_before(medium_debate.title)
-      expect(medium_debate.title).to appear_before(worst_debate.title)
+      expect(page).to have_selector("a.is-active", text: "most active")
+
+      within "#debates" do
+        expect(best_debate.title).to appear_before(medium_debate.title)
+        expect(medium_debate.title).to appear_before(worst_debate.title)
+      end
+      expect(page).to have_current_path(/order=hot_score/)
+      expect(page).to have_current_path(/page=1/)
     end
 
     scenario "Debates are ordered by confidence_score" do
@@ -411,8 +418,8 @@ describe "Debates" do
 
     scenario "Debates are ordered by newest" do
       best_debate = create(:debate, title: "Best", created_at: Time.current)
-      medium_debate = create(:debate, title: "Medium", created_at: Time.current - 1.hour)
-      worst_debate = create(:debate, title: "Worst", created_at: Time.current - 1.day)
+      medium_debate = create(:debate, title: "Medium", created_at: 1.hour.ago)
+      worst_debate = create(:debate, title: "Worst", created_at: 1.day.ago)
 
       visit debates_path
       click_link "newest"

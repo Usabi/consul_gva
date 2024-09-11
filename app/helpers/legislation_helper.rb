@@ -16,14 +16,14 @@ module LegislationHelper
       "draft_versions" => admin_legislation_process_draft_versions_path(process),
       "milestones"     => admin_legislation_process_milestones_path(process)
     }
-    if current_user&.administrator?
+    if current_user&.administrator? || (current_user&.legislator? && current_user == process.user)
       tabs = tabs.merge({ "legislators" => edit_admin_legislation_process_legislators_path(process) })
     end
     tabs
   end
 
-  def legislators
-    @legislators ||= Legislator.includes(:user)
+  def legislators(process)
+    @legislators ||= Legislator.includes(:user).reject { |legislator| legislator.user == process.user }
   end
 
   def banner_color?

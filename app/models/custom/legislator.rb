@@ -11,6 +11,6 @@ class Legislator < ApplicationRecord
   end
 
   def description_or_name_and_email
-    "#{description_or_name} (#{email})"
+    "#{description_or_name} - #{email}"
   end
 end

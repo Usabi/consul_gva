@@ -1,6 +1,6 @@
 <ul id="legislation_menu" data-accordion-menu data-multi-open="true">
   <% if feature?(:legislation) %>
-    <li class="section-title <%= "is-active" if controller.class.parent == Admin::Legislation %>">
+    <li class="section-title <%= "is-active" if controller.class.module_parent == Admin::Legislation %>">
       <%= link_to admin_legislation_processes_path do %>
         <span class="icon-file-text"></span>
         <strong><%= t("admin.menu.legislation") %></strong>

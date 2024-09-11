@@ -1,0 +1,7 @@
+en:
+  verification:
+    residence:
+      new:
+        invalid_postal_code: Postal code does not match
+        error_verifying_census_1: The Census was unable to verify your information
+        error_verifying_census_2: Please confirm that your census details are correct by calling to City Council or visit one Citizen Support Office.

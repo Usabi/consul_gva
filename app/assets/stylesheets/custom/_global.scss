@@ -11,21 +11,6 @@
   color: $link;
 }
 
-@mixin custom-button {
-  color: $red-gva;
-  background: $white-gva;
-  font-size: $base-font-size;
-  border: solid 2px $red-gva;
-  margin-right: 2rem;
-  padding: 15px 45px;
-
-  &:hover,
-  &:focus {
-    background-color: $red-gva;
-    color: #fefefe;
-  }
-}
-
 .button {
   @include custom-button;
 }
@@ -41,7 +26,7 @@
 
 .button.button-gvlogin {
   background: #fff;
-  color: $text;
+  color: inherit;
   font-weight: bold;
   height: $line-height * 2;
   line-height: $line-height * 2;
@@ -124,12 +109,6 @@
 }
 .input-group > :first-child, .input-group > :first-child.input-group-button > *{
   width: 100%;
-}
-.jumbo {
-  .title-background{
-    background-color: rgba(5, 152, 155, 0.77)
-  }
-  padding: 0;
 }
 
 .privacy-registration {

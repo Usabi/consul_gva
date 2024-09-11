@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Officing::Residence do
+describe Officing::Residence, consul: true do
   let!(:geozone)  { create(:geozone, census_code: "01") }
   let(:residence) { build(:officing_residence, document_number: "12345678Z") }
 

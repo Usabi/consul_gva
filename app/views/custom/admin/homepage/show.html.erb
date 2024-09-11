@@ -20,10 +20,6 @@
 <div id="middle">
   <h3 class="inline-block"><%= t("admin.homepage.middle_title") %></h3>
 
-  <%# <div class="float-right"> %>
-    <%#= link_to t("admin.homepage.create_middle"), new_admin_widget_card_path(middle_card: true), class: "button" %>
-  <%# </div> %>
-
    <%= render Admin::Widget::Cards::TableComponent.new(
     @middle,
     no_cards_message: t("admin.homepage.no_cards")

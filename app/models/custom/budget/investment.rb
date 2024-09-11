@@ -9,7 +9,6 @@ class Budget
     scope :not_unfeasible, -> { where.not(feasibility: ["unfeasible", "not_selected"]) }
     scope :supported, -> { joins(:heading).where("budget_investments.cached_votes_up + budget_investments.physical_votes >= budget_headings.min_supports") }
 
-    scope :supported, -> { joins(:heading).where("budget_investments.cached_votes_up + budget_investments.physical_votes >= budget_headings.min_supports") }
 
     def self.apply_filters_and_search(_budget, params, current_filter = nil)
       investments = all
@@ -78,7 +77,7 @@ class Budget
     end
 
     def groups_voted_by_user(user)
-      user.votes.for_budget_investments(budget.investments).votables.map(&:group_id).uniq
+      user.for_budget_investments(budget.investments).votables.map(&:group_id).uniq
     end
 
     def can_vote_in_another_group?(user)
@@ -92,7 +91,7 @@ class Budget
     def has_votes_for_all_region?(user)
        all_city_group = budget.groups.first # NOTE: First group is all region
       if all_city_group&.headings&.size == 1
-        user.votes.for_budget_investments(all_city_group.headings.first.investments).count > 0
+        user.for_budget_investments(all_city_group.headings.first.investments).count > 0
       else
         false
       end

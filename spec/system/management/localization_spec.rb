@@ -9,7 +9,7 @@ describe "Localization" do
     expect(page).to have_text("Gestión")
   end
 
-  scenario "Changing the locale" do
+  scenario "Changing the locale", consul: true do
     login_as_manager
     select "Español", from: "Language:"
 

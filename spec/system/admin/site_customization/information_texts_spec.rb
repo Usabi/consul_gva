@@ -27,6 +27,14 @@ describe "Admin custom information texts", :admin do
 
     expect(page).to have_content "Results"
 
+    within("#information-texts-tabs") { click_link "Collaborative legislation" }
+
+    expect(page).to have_content "Help with collaborative legislation"
+
+    within("#information-texts-tabs") { click_link "Budgets" }
+
+    expect(page).to have_content "You have not voted any investment project."
+
     click_link "Layouts"
     expect(page).to have_content "Accessibility"
 
@@ -90,7 +98,7 @@ describe "Admin custom information texts", :admin do
       expect(page).not_to have_content "Partager la proposition"
     end
 
-    scenario "Remove a translation" do
+    scenario "Remove a translation", consul: true do
       featured = create(:i18n_content, key: "debates.index.featured_debates",
                                        value_en: "Custom featured",
                                        value_es: "Destacar personalizado")

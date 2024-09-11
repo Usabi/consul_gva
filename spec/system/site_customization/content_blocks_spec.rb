@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Custom content blocks" do
-  scenario "top links" do
+  scenario "top links", consul: true do
     create(:site_customization_content_block, name: "top_links", locale: "en",
                                               body: "content for top links")
     create(:site_customization_content_block, name: "top_links", locale: "es",

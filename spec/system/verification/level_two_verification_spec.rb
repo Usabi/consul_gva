@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Level two verification" do
-  scenario "Verification with residency and sms" do
+  scenario "Verification with residency and sms", consul: true do
     create(:geozone)
     user = create(:user)
     login_as(user)
@@ -23,7 +23,7 @@ describe "Level two verification" do
     expect(page).to have_content "Code correct"
   end
 
-  context "In Spanish, with no fallbacks" do
+  context "In Spanish, with no fallbacks", consul: true do
     before { allow(I18n.fallbacks).to receive(:[]).and_return([:es]) }
 
     scenario "Works normally" do

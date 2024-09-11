@@ -33,7 +33,7 @@ describe "SDG Goals" do
       expect(page).to have_current_path sdg_goal_path(7)
     end
 
-    scenario "has cards for phases" do
+    scenario "has cards for phases", consul: true do
       create(:widget_card, cardable: SDG::Phase["planning"], title: "Planning card")
 
       visit sdg_goals_path
@@ -78,7 +78,7 @@ describe "SDG Goals" do
       end
     end
 
-    scenario "has links to debates and proposals filtered by goal" do
+    scenario "has links to debates and proposals filtered by goal", consul: true do
       visit sdg_goal_path(15)
 
       click_link "See all debates"

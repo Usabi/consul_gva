@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Admin custom images", :admin do
-  scenario "Upload valid png image" do
+  scenario "Upload valid png image", consul: true do
     visit admin_root_path
 
     within("#side_menu") do
@@ -31,6 +31,7 @@ describe "Admin custom images", :admin do
   end
 
   scenario "Image is replaced on front views" do
+    create(:geozone)
     budget = create(:budget)
     group = create(:budget_group, budget: budget)
 

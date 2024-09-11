@@ -4,8 +4,8 @@ namespace :deploy do
     on roles(:app) do
       # Hay que hacerlo hacia nuestro equipo, para poder hacer uso de la vpn
       SSHKit::Backend::Local.run_locally do
-        execute "/usr/bin/rsync -a -v --copy-links --delete --exclude='log/' --exclude='tmp/' --exclude='config/database.yml' --exclude='config/secrets.yml' --exclude='.svn/' --exclude='bin/*.PHP' --exclude='bin/*.php' --exclude='bin/*.txt' --exclude='bin/include' --exclude='public/system' #{deploysecret(:user)}@#{deploysecret(:server)}:#{fetch(:deploy_to)}/current/ #{fetch(:gva_svn_path)}"
-        puts "/usr/bin/rsync -a -v --copy-links --delete --exclude='log/' --exclude='tmp/' --exclude='config/database.yml' --exclude='config/secrets.yml' --exclude='.svn/' --exclude='bin/*.PHP' --exclude='bin/*.php' --exclude='bin/*.txt' --exclude='bin/include' --exclude='public/system' #{deploysecret(:user)}@#{deploysecret(:server)}:#{fetch(:deploy_to)}/current/ #{fetch(:gva_svn_path)}"
+        execute "/usr/bin/rsync -a -v --copy-links --delete --exclude='log/' --exclude='tmp/' --exclude='vendor/' --exclude='config/database.yml' --exclude='config/secrets.yml' --exclude='.svn/' --exclude='bin/*.PHP' --exclude='bin/*.php' --exclude='bin/*.txt' --exclude='bin/include' --exclude='public/system' #{deploysecret(:user)}@#{deploysecret(:server)}:#{fetch(:deploy_to)}/current/ #{fetch(:gva_svn_path)}"
+        puts "/usr/bin/rsync -a -v --copy-links --delete --exclude='log/' --exclude='tmp/' --exclude='vendor/' --exclude='config/database.yml' --exclude='config/secrets.yml' --exclude='.svn/' --exclude='bin/*.PHP' --exclude='bin/*.php' --exclude='bin/*.txt' --exclude='bin/include' --exclude='public/system' #{deploysecret(:user)}@#{deploysecret(:server)}:#{fetch(:deploy_to)}/current/ #{fetch(:gva_svn_path)}"
       end
     end
   end

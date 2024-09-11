@@ -21,6 +21,8 @@ FactoryBot.define do
     result_publication_enabled { true }
     published { true }
 
+    user { create(:legislator).user} # CUSTOM
+
     trait :past do
       start_date { Date.current - 12.days }
       end_date { Date.current - 2.days }
@@ -126,6 +128,15 @@ FactoryBot.define do
 
     trait :final_version do
       final_version { true }
+    end
+
+    trait :with_table do
+      body { <<~BODY_MARKDOWN }
+        | id | name    | age | gender |
+        |----|---------|-----|--------|
+        | 1  | Roberta | 39  | M      |
+        | 2  | Oliver  | 25  | F      |
+        BODY_MARKDOWN
     end
   end
 

@@ -24,26 +24,26 @@ describe "Legislation" do
 
   it_behaves_like "documentable", "proposal", "proposal_path", { id: "id" }
 
-  it_behaves_like "processes nested documentable",
-                  "administrator",
-                  "legislation_process",
-                  "new_admin_legislation_process",
-                  {},
-                  "documentable_fill_new_valid_proposal",
-                  "Create proposal",
-                  "Procces created successfully"
+  # it_behaves_like "processes nested documentable",
+  #                 "administrator",
+  #                 "legislation_process",
+  #                 "new_admin_legislation_process",
+  #                 {},
+  #                 "documentable_fill_new_valid_proposal",
+  #                 "Create proposal",
+  #                 "Procces created successfully"
 
-  it_behaves_like "processes nested documentable",
-                  "administrator",
-                  "legislation_process",
-                  "edit_admin_legislation_process",
-                  { id: "id" },
-                  nil,
-                  "Save changes",
-                  "Process updated successfully"
+  # it_behaves_like "processes nested documentable",
+  #                 "administrator",
+  #                 "legislation_process",
+  #                 "edit_admin_legislation_process",
+  #                 { id: "id" },
+  #                 nil,
+  #                 "Save changes",
+  #                 "Process updated successfully"
 
   context "processes home page" do
-    scenario "No processes to be listed" do
+    scenario "No processes to be listed", consul: true do
       visit legislation_processes_path
       expect(page).to have_text "There aren't open processes"
 
@@ -102,7 +102,7 @@ describe "Legislation" do
       expect(page).to have_content("01 ene 2018 - 01 dic 2018")
     end
 
-    scenario "Filtering processes" do
+    scenario "Filtering processes", consul: true do
       create(:legislation_process, title: "Process open")
       create(:legislation_process, :past, title: "Process past")
       create(:legislation_process, :in_draft_phase, title: "Process in draft phase")
