@@ -15,6 +15,8 @@ module Abilities
       cannot [:admin_update, :toggle_selection, :valuate, :comment_valuation],
         Budget::Investment, budget: { phase: "finished" }
 
+      can :read_admin_stats, Budget, &:balloting_or_later?
+
       can :create, Budget::ValuatorAssignment
     end
   end

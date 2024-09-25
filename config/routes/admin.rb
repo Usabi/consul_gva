@@ -224,6 +224,7 @@ namespace :admin do
     get :budgets, on: :collection
     get :budget_supporting, on: :member
     get :budget_balloting, on: :member
+    get :budget_stats, on: :member
     get :proposal_notifications, on: :collection
     get :direct_messages, on: :collection
     get :polls, on: :collection
