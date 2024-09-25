@@ -26,7 +26,7 @@ module ActionDispatch::Routing::UrlFor
   def namespaced_polymorphic_path(namespace, resource, options = {})
     if %w[Budget::Group Budget::Heading Poll::Booth Poll::BoothAssignment Poll::Officer
           Poll::Question Poll::Question::Answer Poll::Question::Answer::Video Poll::Shift
-          SDG::LocalTarget].include?(resource.class.name)
+          SDG::LocalTarget SDG::Goal SDG::Target].include?(resource.class.name)
       resolve = resolve_for(resource)
       resolve_options = resolve.pop
 

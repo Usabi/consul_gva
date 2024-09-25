@@ -14,10 +14,14 @@ module ActionView
 
         translation = @i18n_content_translations[current_locale][key]
 
-        if translation.present?
-          translation % options
-        else
-          translate(key, **options)
+        begin
+          if translation.present?
+            translation % options
+          else
+            translate(key, **options)
+          end
+        rescue Exception => e
+          translation
         end
       end
     end
