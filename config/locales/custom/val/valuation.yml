@@ -49,6 +49,8 @@ val:
         unfeasible: Inviable
         not_selected: No seleccionada
         undefined: Sense definir
+        takecharge: Assumit
+        nextyearbudget: Prevista inclusió en pressupostos del pròxim any
         valuation_finished: Avaluació finalitzada
         duration: Plaç d'execució
         responsibles: Responsables
@@ -57,7 +59,11 @@ val:
       edit:
         dossier: Informe
         feasibility: Viabilitat
+        takecharge: "Assumit"
+        nextyearbudget: "Prevista inclusió en pressupostos del pròxim any"
         valuation_finished_alert: "Segur que vols marcar este informe com a finalitzat? Si ho fas, no podràs modificarlo més."
+        feasible_explanation_html_takecharge: Informe d'assumit <small>(en cas que el projecte siga ASSUMIT es mostrarà esta informació, dada pública)</small>
+        feasible_explanation_html_next_year_budget: Informe de selecció per a l'any vinent <small>(en cas que el projecte siga SELECCIONAT PER A L'any vinent es mostrarà esta informació, dada pública)</small>
         not_feasible_alert: "Un correu electrònic s'ha enviat a l'autor del projecte amb l'informe d'inviabilitat."
         not_selected_alert: "Un correu electrònic s'ha enviat a l'autor del projecte amb l'informe de no selecció."
         save: Guardar canvis

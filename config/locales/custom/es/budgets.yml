@@ -48,6 +48,10 @@ es:
         not_selected: Ver proyectos no seleccionados en la fase de revisión interna
         unselected_title: Proyectos no seleccionados para la fase de evaluación
         unselected: Ver los proyectos no seleccionados para la fase de evaluación
+        takecharged_title: Proyectos asumidos
+        takecharged: Ver los proyectos asumidos
+        included_next_year_budget_title: Ver los proyectos previstos para su inclusión en presupuestos del próximo año
+        included_next_year_budget: Proyectos previstos para su inclusión en el presupuesto del próximo año
     phase:
       drafting: Fase de borrador (No visible para el público)
       informing: Fase de información y debates
@@ -99,6 +103,10 @@ es:
         unfeasible: Proyectos de gasto no viables
         not_selected: Proyectos de gasto no seleccionados en la fase de revisión interna
         unfeasible_text: "Los proyectos presentados deben cumplir una serie de criterios (legalidad, concreción, no superar el tope del presupuesto) para ser declarados viables y llegar hasta la fase de votación final. Todos los proyectos que no cumplen estos criterios son marcados como inviables y publicados en la siguiente lista, junto con su informe de inviabilidad."
+        takecharged: Propuestas de inversión asumidas.
+        takecharged_text: Las propuestas que ya se hayan realizado, se estén realizando en ese momento o esté prevista su realización, de forma fehaciente, en el ejercicio actual.
+        included_next_year_budget: Propuestas de inversión previstas para su inclusión en presupuestos del próximo año
+        included_next_year_budget_text: Las propuestas que los servicios tienen previstas en sus acciones a desarrollar durante el próximo año.
         by_heading: "Proyectos de gasto con ámbito: %{heading}"
         search_form:
           button: Buscar
@@ -141,6 +149,8 @@ es:
           unfeasible: "Inviables"
           unselected: "No seleccionados"
           winners: "Ganadores"
+          takecharged: "Asumidos"
+          included_next_year_budget: "Prev. inclusión en presup. del próx. año"
         orders:
           random: Aleatorios
           confidence_score: Mejor valorados
@@ -226,6 +236,8 @@ es:
       unfeasible_investment_proyects: Ver lista de proyectos de gasto inviables
       not_selected_investment_proyects: Ver el listado de propuestas no seleccionados en la fase de revisión interna
       unselected_investment_proyects: Ver lista de proyectos de gasto no seleccionados para la fase de evaluación
+      takecharged_investment_proyects: Ver lista de proyectos de gasto asumidos
+      included_next_year_budget_investment_proyects: Ver lista de proyectos de gasto previstos para su inclusión en el presupuesto del próximo año
     executions:
       link: "Seguimiento"
       page_title: "%{budget} - Seguimiento de proyectos"
@@ -243,11 +255,47 @@ es:
         button: Buscar
         placeholder: Buscar proyectos de gasto...
         title: Buscar
+    status_executions:
+      link: "Estado de ejecución"
+      page_title: "%{budget} - Estado de ejecución de proyectos"
+      heading: "Estado de ejecución de proyectos"
+      heading_selection_title: "Ámbito de actuación"
+      no_winner_investments: "No hay proyectos de gasto ganadores en este estado"
+      filters:
+        status:
+          label: "Estado actual del proyecto"
+          all: "Todos (%{count})"
+        milestone_tag:
+          label: "Etiquetas de estado de ejecución"
+          all: "Todos (%{count})"
+      search_form:
+        button: Buscar
+        placeholder: Buscar proyectos de gasto...
+        title: Buscar
+      table:
+        id: Número de propuesta
+        heading_name: Partida
+        title: Título
+        price: Presupuesto
+        milestone_status:
+          name: Fase de ejecución
+          kind: Porcentaje desarrollo
     phases:
       errors:
         dates_range_invalid: "La fecha de comienzo no puede ser igual o superior a la de finalización"
         prev_phase_dates_invalid: "La fecha de inicio debe ser posterior a la fecha de inicio de la anterior fase habilitada (%{phase_name})"
         next_phase_dates_invalid: "La fecha de fin debe ser anterior a la fecha de fin de la siguiente fase habilitada (%{phase_name})"
+    milestone:
+      statuses:
+        drafting: Redacción
+        drafting_description: El área municipal responsable de la ejecución del proyecto está realizando el estudio de detalle o realizando el proyecto técnico correspondiente.
+        processing: Tramitación
+        processing_description: El proyecto técnico se encuentra en fase de gestión administrativa. Si es un contrato menor lo tramita la unidad que ejecuta el proyecto, sino se encuentra en el servicio transversal de contratación
+        execution: Ejecución
+        execution_description: El proyecto se encuentra en fase de ejecución.
+        executed: Ejecutado
+        executed_description: El proyecto ha sido ejecutado y se ha finalizado.
+
   votes:
     budget_investments:
       max_votes_per_budget_per_user_limit_reached: "Has apoyado el máximo de propuestas permitido."

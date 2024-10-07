@@ -12,8 +12,7 @@ class Budgets::ExecutionsController
         base = base.with_milestone_status_id(params[:status])
         base.uniq.group_by(&:heading)
       else
-        base.uniq.group_by(&:heading)
+        base.distinct.group_by(&:heading)
       end
     end
 end
-

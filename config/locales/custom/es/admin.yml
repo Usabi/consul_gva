@@ -249,6 +249,8 @@ es:
           undecided: Sin decidir
           unfeasible: Inviables
           not_selected: No seleccionadas
+          takecharged: "Asumido"
+          included_next_year_budget: "Prev. inclusión en presup. del próx. año"
           min_total_supports: Apoyos mínimos
           max_total_supports: Apoyos máximos
           winners: Ganadores
@@ -268,8 +270,16 @@ es:
           unfeasible: "Inviable"
           undecided: "Sin decidir"
           not_selected: "No seleccionada"
-        selected: "Seleccionado"
-        select: "Seleccionar"
+          takecharge: "Asumido"
+          nextyearbudget: "Previsto inclusión en presup. del próx. año"
+        selected: Seleccionado
+        select: Seleccionar
+        winner: Ganador
+        win: Ganar
+        visible_to_valuators_bulk: Marcar evaluadores como visible
+        selected_bulk: Marcar como seleccionadas
+        winner_bulk: Marcar como ganadoras
+        select_all: Seleccionar todos
         list:
           id: ID
           title: Título
@@ -282,6 +292,7 @@ es:
           feasibility: Viabilidad
           valuation_finished: Ev. Fin.
           selected: Seleccionado
+          winner: Ganador
           visible_to_valuators: Mostrar a evaluadores
           author_username: Usuario autor
           incompatible: Incompatible
@@ -927,6 +938,12 @@ es:
       budget_investment_unselected:
         title: "Proyecto de gasto no seleccionado"
         description: "Enviado al autor de un proyecto de presupuestos participativos que no ha sido seleccionado para la fase de votación."
+      budget_investment_takecharge:
+        title: "Proyecto de gasto asumido"
+        description: "Enviado al autor de un proyecto de presupuestos participativos que ha sido marcado como asumido."
+      budget_investment_next_year_budget:
+        title: "Proyecto de gasto previsto para inclusión en presupuesto del próximo año"
+        description: "Enviado al autor de un proyecto de presupuestos participativos que ha sido marcado como previsto para inclusión en presupuesto del próximo año."
       comment:
         title: "Comentario"
         description: "Enviado al autor cuando recibe un comentario."

@@ -62,8 +62,11 @@ namespace :admin do
     end
 
     resources :budget_investments, only: [:index, :show, :edit, :update] do
-      member { patch :toggle_selection }
-
+      member do
+        patch :toggle_selection
+        patch :toggle_winner
+      end
+      patch :bulk_actions, on: :collection
       resources :audits, only: :show, controller: "budget_investment_audits"
       resources :milestones, controller: "budget_investment_milestones"
       resources :progress_bars, except: :show, controller: "budget_investment_progress_bars"
