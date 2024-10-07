@@ -20,7 +20,8 @@ module Abilities
       can [:read, :debate, :draft_publication, :allegations, :result_publication,
           :milestones], Legislation::Process, user_id: user.id
       can [:read, :debate, :draft_publication, :allegations, :result_publication,
-      :milestones], Legislation::Process, legislators: user&.legislator&.id
+      :milestones], Legislation::Process, legislators: { id: user&.legislator&.id }
+
 
       can [:create], Legislation::Process
       can [:update, :destroy], Legislation::Process do |process|
