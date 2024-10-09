@@ -78,6 +78,7 @@ Apartment.configure do |config|
   # Any schemas added here will be available along with your selected Tenant.
   #
   config.persistent_schemas = ["shared_extensions"]
+  config.default_tenant = "owconsul"
 
   # <== PostgreSQL only options
   #
