@@ -71,7 +71,7 @@ val:
         other: Papeletas de votación
       proposal:
         one: "Proposta ciutadana"
-        other: "Propostes ciutadanes"
+        other: "Iniciatives ciutadanes"
       site_customization/page:
         one: Pàgina
         other: Pàgines personalitzades
@@ -115,8 +115,8 @@ val:
         one: "Votació"
         other: "Votacions"
       proposal_notification:
-        one: "Notificacio de proposta"
-        other: "Notificacions de propostes"
+        one: "Notificacio de iniciativa"
+        other: "Notificacions de iniciatives"
       dashboard/action:
         one: Acción del panel de control de iniciatives
         other: Acciones del panel de control de iniciatives
@@ -255,8 +255,8 @@ val:
         password_confirmation: "Confirmació de contrasenya"
         password: "Contrasenya"
         current_password: "Contrasenya actual"
-        email_digest: "Rebre resum de notificacions sobre propostes"
-        email_on_comment: "Rebre un email quan algú comenta en les meues propostes o debats"
+        email_digest: "Rebre resum de notificacions sobre iniciatives"
+        email_on_comment: "Rebre un email quan algú comenta en les meues iniciatives o debats"
         email_on_comment_reply: "Rebre un email quan algú contesta als meus comentaris"
         email_on_direct_message: "Rebre emails amb missatges privats"
         newsletter: "Rebre emails amb informació interessant sobre la web"

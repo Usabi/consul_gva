@@ -43,8 +43,8 @@ val:
       flagged_comments: Comentaris
       flagged_debates: Debats
       flagged_investments: Projectes de pressupostos participatius
-      proposals: Propostes
-      proposal_notifications: Notificacions de propostes
+      proposals: Iniciatives
+      proposal_notifications: Notificacions de iniciatives
       legislation_proposals: Propostes legislatives
       users: Bloquejar usuaris
     proposals:
@@ -58,12 +58,12 @@ val:
         headers:
           moderate: Moderar
           proposal: Proposta
-        hide: Ocultar propostes
+        hide: Ocultar iniciatives
         ignore_flags: Marcar com revisats
         orders:
           created_at: Més recents
           flags: Més denunciats
-        title: Propostes
+        title: Iniciatives
     budget_investments:
       index:
         block_authors: Bloquejar autors

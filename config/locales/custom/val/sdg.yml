@@ -612,7 +612,7 @@ val:
             short_title: "Promoció d'indicadors que vagen més enllà del PIB"
       help:
         title: "Ajuda Objectius de Desenvolupament Sostenible"
-        description: "Pots alinear les teues aportacions a la comunitat (debats, propostes ciutadanes i projectes d'inversió) amb els Objectius de Desenvolupament Sostenible de l'Agenda 2030, això ens permetrà tindre una visió general de la nostra aportació en cadascun dels objectius de desenvolupament sostenible. A continuació pots informar-te de tots els objectius, les seues metes i les metes localitzades."
+        description: "Pots alinear les teues aportacions a la comunitat (debats, iniciatives ciutadanes i projectes d'inversió) amb els Objectius de Desenvolupament Sostenible de l'Agenda 2030, això ens permetrà tindre una visió general de la nostra aportació en cadascun dels objectius de desenvolupament sostenible. A continuació pots informar-te de tots els objectius, les seues metes i les metes localitzades."
       show:
         read_more: "Llegir més sobre %{goal}"
         read_less: "Llegir menys sobre %{goal}"
