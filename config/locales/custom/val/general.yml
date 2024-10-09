@@ -225,7 +225,7 @@ val:
       my_account_link: El meu compte
       my_activity_link: La meua activitat
       open_gov: Govern obert
-      proposals: Propostes
+      proposals: Iniciatives
       poll_questions: Votacions
       budgets: Pressupostos participatius
       notification_item:
@@ -333,18 +333,18 @@ val:
         archival_date: arxivada
         recommendations: recomanacions
       recommendations:
-        without_results: No existeixen propostes relacionades amb els teus interessos
-        without_interests: "Segueix propostes perquè puguem donar-te recomanacions"
-        disable: "Les recomanacions sobre propostes deixaran de mostrar-se si les descartes. Pots tornar-les a activar a la pàgina \"El meu compte\""
+        without_results: No existeixen iniciatives relacionades amb els teus interessos
+        without_interests: "Segueix iniciatives perquè puguem donar-te recomanacions"
+        disable: "Les recomanacions sobre iniciatives deixaran de mostrar-se si les descartes. Pots tornar-les a activar a la pàgina \"El meu compte\""
         actions:
-          success: "Les recomanacions per a propostes estan desabilitades per a aquest compte"
-          error: "S'ha produït un error. Aneu a la pàgina \"El meu compte\" per desactivar manualment les recomanacions per a propostes"
-      retired_proposals: Propostes retirades
-      retired_proposals_link: "Propostes retirades pels seus autors/es"
-      selected_proposals: Propostes seleccionades
-      selected_proposals_link: Veure propostes seleccionades
-      archived_proposals: Propostes arxivades
-      proposals_lists: Llistes de propostes
+          success: "Les recomanacions per a iniciatives estan desabilitades per a aquest compte"
+          error: "S'ha produït un error. Aneu a la pàgina \"El meu compte\" per desactivar manualment les recomanacions per a iniciatives"
+      retired_proposals: Iniciatives retirades
+      retired_proposals_link: "Iniciatives retirades pels seus autors/es"
+      selected_proposals: Iniciatives seleccionades
+      selected_proposals_link: Veure iniciatives seleccionades
+      archived_proposals: Iniciatives arxivades
+      proposals_lists: Llistes de iniciatives
       retired_links:
         all: Totes
         duplicated: Duplicada
@@ -354,47 +354,47 @@ val:
         other: Altra
       search_form:
         button: Cercar
-        placeholder: Cercar propostes...
+        placeholder: Cercar iniciatives...
         title: Cercar
       search_results:
         one: " que continguen <strong>'%{search_term}'</strong>"
         other: " que continguen <strong>'%{search_term}'</strong>"
       select_order: Ordenar per
-      select_order_long: "Estas veient les propostes en funció de:"
+      select_order_long: "Estas veient les iniciatives en funció de:"
       start_proposal: Crear una proposta
-      title: Propostes
-      top_link_proposals: Propostes més avalades per categoria
+      title: Iniciatives
+      top_link_proposals: Iniciatives més avalades per categoria
       section_header:
-        icon_alt: Icona de Propostes
-        title: Propostes
-        help: Ajuda sobre les propostes
+        icon_alt: Icona de Iniciatives
+        title: Iniciatives
+        help: Ajuda sobre les iniciatives
       section_footer:
-        title: Ajuda sobre les propostes
-        description: Les propostes ciutadanes son una oportunitat per a que els veins i col·lectius decideixen directament com volen que siga la seua Comunitat, després d'aconseguir els avals suficients i de sotmetres a votació ciutadana.
+        title: Ajuda sobre les iniciatives
+        description: Les iniciatives ciutadanes son una oportunitat per a que els veins i col·lectius decideixen directament com volen que siga la seua Comunitat, després d'aconseguir els avals suficients i de sotmetres a votació ciutadana.
     new:
       form:
-        submit_button: Crear proposta
+        submit_button: Crear iniciatives
       more_info: Com funcionen les propostes ciutadanes?
-      recommendation_one: No escrigues el títol de la proposta o frases senceres en majuscules. En internet això es considera cridar. I a ningú li agrada que li criden.
+      recommendation_one: No escrigues el títol de la iniciatives o frases senceres en majuscules. En internet això es considera cridar. I a ningú li agrada que li criden.
       recommendation_three: Gaudeix d'aquest espai, de les veus que l'omplin, també es el teu.
-      recommendation_two: Quansevol proposta o comentari que implique una acció ilegal serà eliminat, també els que tinguen l'intenció de sabotejar els espais de debat, tota la resta està permés.
-      recommendations_title: Recomanacions per a crear una proposta
-      start_new: Crear nova proposta
+      recommendation_two: Quansevol iniciatives o comentari que implique una acció ilegal serà eliminat, també els que tinguen l'intenció de sabotejar els espais de debat, tota la resta està permés.
+      recommendations_title: Recomanacions per a crear una iniciatives
+      start_new: Crear nova iniciatives
     notice:
-      retired: Proposta retirada
+      retired: Iniciativa retirada
     proposal:
-      created: "Has creat una proposta!"
+      created: "Has creat una Iniciativa!"
       share:
         guide: "Comparteix-la per a que la gent comence a avalarla."
         edit: "Abans de publicar-se podràs modificar el text al teu gust."
-        view_proposal: Ara no, anar a la meua proposta
-      already_supported: Ja has avalat aquesta proposta. Comparteixla!
+        view_proposal: Ara no, anar a la meua iniciativa
+      already_supported: Ja has avalat aquesta iniciativa. Comparteixla!
       comments:
         zero: Sense comentaris
         one: 1 Comentari
         other: "%{count} Comentaris"
       support: Avalar
-      support_title: Avalar aquesta proposta
+      support_title: Avalar aquesta iniciativa
       supports:
         zero: Sense avals
         one: 1 aval
@@ -405,24 +405,24 @@ val:
         other: "%{count} vots"
       supports_necessary: "%{number} avals necessaris"
       total_percent: 100%
-      archived: "Aquesta proposta ha sigut arxivada i ja no pot recollir avals."
-      successful: "Aquesta proposta ha asolit els avals necesaris."
+      archived: "Aquesta iniciativa ha sigut arxivada i ja no pot recollir avals."
+      successful: "Aquesta iniciativa ha asolit els avals necesaris."
     show:
       author_deleted: Usuari eliminat
-      code: "Codi de la proposta:"
+      code: "Codi de la iniciativa:"
       comments:
         zero: Sense comentaris
         one: 1 Comentari
         other: "%{count} Comentaris"
       comments_tab: Comentaris
-      flag: Esta proposta ha sigut marcada com inapropiada per diversos usuaris.
+      flag: Esta iniciativa ha sigut marcada com inapropiada per diversos usuaris.
       notifications_tab: Notificacions
       milestones_tab: Seguiments
-      retired_warning: "L'autor/a d'esta proposta considera que ja no ha de seguir recollint avals."
+      retired_warning: "L'autor/a d'esta iniciativa considera que ja no ha de seguir recollint avals."
       retired_warning_link_to_explanation: Revisa la seua explicació abans d'avalar-la.
-      retired: Proposta retirada per l'autor/a
+      retired: Iniciativa retirada per l'autor/a
       share: Compartir
-      no_notifications: "Aquesta proposta no te notificacions."
+      no_notifications: "Aquesta Iniciativa no te notificacions."
       embed_video_title: "Vídeo en %{proposal}"
       title_video_url: "Video extern"
       author: Autor/a
