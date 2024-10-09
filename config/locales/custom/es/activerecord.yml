@@ -3,6 +3,7 @@ es:
     geozone_id: "Ámbito de actuación"
     results_enabled: "Mostrar resultados"
     stats_enabled: "Mostrar estadísticas"
+    status_executions_enabled: "Mostrar estado de ejecución"
     advanced_stats_enabled: "Mostrar estadísticas avanzadas"
     name: Nombre
     email: Email

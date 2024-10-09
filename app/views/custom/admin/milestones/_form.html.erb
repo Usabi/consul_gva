@@ -29,10 +29,9 @@
     <div class="column">
       <%= f.date_field :publication_date %>
 
-      <%= render "images/nested_image", f: f %>
-
+      <%= render Images::NestedComponent.new(f) %>
       <div class="documents">
-        <%= render "documents/nested_documents", f: f %>
+        <%= render Documents::NestedComponent.new(f) %>
       </div>
 
       <%= f.submit nil, class: "button success" %>

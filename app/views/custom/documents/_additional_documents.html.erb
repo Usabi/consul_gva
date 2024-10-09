@@ -9,14 +9,18 @@
             <p>
               <strong><%= t("documents.additional") %></strong>
             </p>
-            <%= render partial: "documents/additional_document", collection: documents_collections, as: :document %>
+            <% documents_collections.each do |document| %>
+              <%= render Documents::DocumentComponent.new(document) %>
+            <% end %>
           <% end %>
           <% if consult_documents_collections.any? %>
             <p>
               <strong><%= t("documents.consult")%></strong>
             </p>
-            <%= render partial: "documents/additional_document", collection: consult_documents_collections, as: :document %>
+            <% consult_documents_collections.each do |document| %>
+              <%= render Documents::DocumentComponent.new(document) %>
             <% end %>
+          <% end %>
         </div>
       </div>
     </div>

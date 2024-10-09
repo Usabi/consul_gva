@@ -1,0 +1,10 @@
+<%= render Pages::Help::SectionComponent.new("budgets") do %>
+  <p>
+    <%= sanitize(t("pages.help.budgets.description",
+                   link: link_to(t("pages.help.budgets.link"), budgets_path),
+                   link2: link_to(t("pages.help.budgets.link2"), "https://participem.gva.es/documents/164666869/173576922/210514_manual_CAST.pdf/58ea7017-da5c-4d31-a3c1-5c7cd84e7711?version=1.0"),
+                   link3: link_to(t("pages.help.budgets.link3"), "http://participem.gva.es/documents/164666869/173576922/Listado+ejemplos+propuestas.pdf/058a19b3-d175-4018-8efa-409a121094b3?version=1.0"),
+                   link4: link_to(t("pages.help.budgets.link4"), "http://participem.gva.es/documents/164666869/173576922/2021.05.06+Gu%C3%ADa+explicativa+PP.PP+castellano.pdf/d1ecfaaf-62a3-40d5-9a0a-5f1948f28ce6?version=1.0"),
+                   )) %>
+  </p>
+<% end %>

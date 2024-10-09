@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_23_082325) do
+ActiveRecord::Schema.define(version: 2024_08_07_095311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -245,12 +245,12 @@ ActiveRecord::Schema.define(version: 2023_11_23_082325) do
     t.boolean "allow_custom_content", default: false
     t.text "latitude"
     t.text "longitude"
-    t.integer "geozone_id"
     t.integer "max_ballot_lines", default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["geozone_id"], name: "index_budget_headings_on_geozone_id"
     t.integer "min_supports"
+    t.integer "geozone_id"
+    t.index ["geozone_id"], name: "index_budget_headings_on_geozone_id"
     t.index ["group_id"], name: "index_budget_headings_on_group_id"
   end
 
@@ -308,6 +308,10 @@ ActiveRecord::Schema.define(version: 2023_11_23_082325) do
     t.integer "original_heading_id"
     t.text "not_selected_explanation"
     t.datetime "not_selected_email_sent_at"
+    t.text "next_year_budget_explanation"
+    t.datetime "next_year_budget_email_sent_at"
+    t.text "takecharge_explanation"
+    t.datetime "takecharge_email_sent_at"
     t.index ["administrator_id"], name: "index_budget_investments_on_administrator_id"
     t.index ["author_id"], name: "index_budget_investments_on_author_id"
     t.index ["budget_id"], name: "index_budget_investments_on_budget_id"
@@ -466,9 +470,9 @@ ActiveRecord::Schema.define(version: 2023_11_23_082325) do
     t.string "ancestry"
     t.integer "confidence_score", default: 0, null: false
     t.boolean "valuation", default: false
-    t.tsvector "tsv"
     t.integer "budget_manager_id"
     t.integer "legislator_id"
+    t.tsvector "tsv"
     t.index ["ancestry"], name: "index_comments_on_ancestry"
     t.index ["cached_votes_down"], name: "index_comments_on_cached_votes_down"
     t.index ["cached_votes_total"], name: "index_comments_on_cached_votes_total"
@@ -978,12 +982,24 @@ ActiveRecord::Schema.define(version: 2023_11_23_082325) do
     t.index ["proposal_id"], name: "index_map_locations_on_proposal_id"
   end
 
+  create_table "milestone_status_translations", force: :cascade do |t|
+    t.integer "milestone_status_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.text "description"
+    t.index ["locale"], name: "index_milestone_status_translations_on_locale"
+    t.index ["milestone_status_id"], name: "index_milestone_status_translations_on_milestone_status_id"
+  end
+
   create_table "milestone_statuses", id: :serial, force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.datetime "hidden_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "kind"
     t.index ["hidden_at"], name: "index_milestone_statuses_on_hidden_at"
   end
 
@@ -1403,6 +1419,7 @@ ActiveRecord::Schema.define(version: 2023_11_23_082325) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "advanced_stats"
+    t.boolean "status_executions"
     t.index ["process_type", "process_id"], name: "index_reports_on_process_type_and_process_id"
   end
 
@@ -1751,15 +1768,6 @@ ActiveRecord::Schema.define(version: 2023_11_23_082325) do
     t.index ["user_id"], name: "index_visits_on_user_id"
   end
 
-  create_table "votation_types", force: :cascade do |t|
-    t.integer "questionable_id"
-    t.string "questionable_type"
-    t.integer "vote_type"
-    t.integer "max_votes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "vmcrc_siac_personas", id: :serial, force: :cascade do |t|
     t.text "codper", null: false
     t.text "codmap", null: false
@@ -1768,6 +1776,15 @@ ActiveRecord::Schema.define(version: 2023_11_23_082325) do
     t.text "ape2", null: false
     t.text "dni", null: false
     t.text "dcorreoint", null: false
+  end
+
+  create_table "votation_types", force: :cascade do |t|
+    t.integer "questionable_id"
+    t.string "questionable_type"
+    t.integer "vote_type"
+    t.integer "max_votes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "votes", id: :serial, force: :cascade do |t|

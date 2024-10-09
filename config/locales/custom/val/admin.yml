@@ -28,7 +28,7 @@ val:
         sections:
           homepage: Pàgina principal
           debates: Debats
-          proposals: Propostes
+          proposals: Iniciatives
           budgets: Pressupostos participatius
           help_page: Pàgina d'ajuda
       edit:
@@ -51,7 +51,7 @@ val:
           all: Totes
           on_comments: Comentaris
           on_debates: Debats
-          on_proposals: Propostes
+          on_proposals: Iniciatives
           on_users: Usuaris
           on_system_emails: Correus electònics del sistema
         title: Activitat de moderadors
@@ -65,10 +65,10 @@ val:
         filters:
           open: Oberts
           finished: Finalitzades
-        budget_investments: Vore propostes d'inversió
+        budget_investments: Vore iniciatives d'inversió
         table_name: Nom
         table_phase: Fase
-        table_investments: Propostes d'inversió
+        table_investments: Iniciatives d'inversió
         table_edit_groups: Grups de partides
         table_edit_budget: Editar
         edit_groups: Edita grups de partides
@@ -90,13 +90,13 @@ val:
         blank_dates: Les dates estan en blanc
       destroy:
         success_notice: Pressupost eliminat correctament
-        unable_notice: No pots eliminar un Pressupost amb propostes
+        unable_notice: No pots eliminar un Pressupost amb iniciatives
       new:
         title: Nou pressupost ciutadà
       winners:
-        calculate: Calcular propostes guanyadores
+        calculate: Calcular iniciatives guanyadores
         calculated: Calculant guanyadores, pot tardar algún minut.
-        recalculate: Recalcular propostes guanyadores
+        recalculate: Recalcular iniciatives guanyadores
     budget_groups:
       name: "Nom"
       headings_name: "Partides pressupostàries"
@@ -167,6 +167,8 @@ val:
           undecided: Sense decidir
           unfeasible: Inviable
           not_selected: No seleccionades
+          takecharged: Assumit
+          included_next_year_budget: "Prev. inclusió en presup. del próx. any"
           min_total_supports: Avals mínims
           winners: Guanyadores
         buttons:
@@ -357,13 +359,13 @@ val:
         index:
           create: Nou procés
           delete: Eliminar
-          title: Processos de legislació col·laborativa
+          title: Processos de elaboració normativa
           filters:
             active: Actius
             all: Tots
         new:
           back: Tornar
-          title: Crear procés de legislació col·laborativa
+          title: Crear procés de elaboració normativa
           submit_button: Crear procés
         proposals:
           select_order: Ordenar per
@@ -499,15 +501,15 @@ val:
       activity: Activitat dels Moderadors
       admin: Menú d'administració
       banner: Gestionar banners
-      proposals: Propostes
-      proposals_topics: Temes de propostes
+      proposals: Iniciatives
+      proposals_topics: Temes de iniciatives
       budgets: Pressupostos participatius
       geozones: Gestionar districtes
       hidden_comments: Comentaris ocults
       hidden_debates: Debats ocults
-      hidden_proposals: Propostes ocultes
-      hidden_budget_investments: Propostes d'inversió ocultes
-      hidden_proposal_notifications: Notificacions de propostes ocultes
+      hidden_proposals: Iniciatives ocultes
+      hidden_budget_investments: Iniciatives d'inversió ocultes
+      hidden_proposal_notifications: Notificacions de iniciatives ocultes
       hidden_users: Usuaris bloquejats
       administrators: Administradors
       managers: Gestors
@@ -537,7 +539,7 @@ val:
         information_texts_menu:
           debates: "Debats"
           community: "Comunitat"
-          proposals: "Propostes"
+          proposals: "Iniciatives"
           polls: "Votacions"
           layouts: "Disenys"
           mailers: "Correus electrònics"
@@ -553,7 +555,7 @@ val:
       title_settings: Configuració
       title_site_customization: Personalitzar lloc
       title_booths: Cabines de vot
-      legislation: Legislació col·laborativa
+      legislation: Elaboració normativa
       users: Usuaris
     administrators:
       index:
@@ -670,9 +672,15 @@ val:
         send_pending: Enviar pendents
         send_pending_notification: Notificacions pendents enviades correctament
       proposal_notification_digest:
-        title: "Resum de Notificacions de Propostes"
-        description: "Reuneix totes les notificacions de propostes en un únic missatge, per a evitar massa emails."
-        preview_detail: "Els usuaris sols rebran les notificacions d'aquelles propostes que segueixquen"
+        title: "Resum de Notificacions de Iniciatives"
+        description: "Reuneix totes les notificacions de iniciatives en un únic missatge, per a evitar massa emails."
+        preview_detail: "Els usuaris sols rebran les notificacions d'aquelles iniciatives que segueixquen"
+      budget_investment_takecharge:
+        title: "Projecte de gasto assumit"
+        description: "Enviat a l'autor d'un projecte de pressupostos participatius que ha sigut marcat com assumit."
+      budget_investment_next_year_budget:
+        title: "Projecte de gasto previst per a inclusió en pressupost del pròxim any"
+        description: "Enviat a l'autor d'un projecte de pressupostos participatius que ha sigut marcat com a previst per a inclusió en pressupost del pròxim any."
     emails_download:
       index:
         title: Descàrrega de emails
@@ -1027,7 +1035,7 @@ val:
           organizations: "Nom, email o telèfon"
           poll_officers: "Cercar presidents de taula"
           poll_questions: "Cercar preguntes"
-          processes: "Cercar processos de legislació col·laborativa pero títol o descripció"
+          processes: "Cercar processos de elaboració normativa pero títol o descripció"
           proposals: "Cercar propostes per títol, codi, descripció o pregunta"
           users: "Cercar usuari per nom o correu electrònic"
         search: "Cercar"

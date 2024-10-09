@@ -1,0 +1,22 @@
+<td style="padding-bottom: 20px; padding-left: 10px;">
+
+  <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px;">
+    <%= t("mailers.budget_investment_takecharge.hi") %>
+  </p>
+
+  <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px;">
+    <%= t("mailers.budget_investment_takecharge.explanation") %>
+  </p>
+
+  <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px; padding-left: 12px; border-left: 2px solid #ccc;">
+    <%= @investment.takecharge_explanation.presence || '-' %>
+  </p>
+
+  <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px;">
+    <%= t("mailers.budget_investment_takecharge.sorry") %>
+  </p>
+
+  <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px;">
+    <%= t("mailers.budget_investment_takecharge.sincerely") %>
+  </p>
+</td>

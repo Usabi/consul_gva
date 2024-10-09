@@ -1,0 +1,62 @@
+<% provide :title, t("budgets.executions.page_title", budget: @budget.name) %>
+<% content_for :meta_description do %><%= @budget.description_for_phase("finished") %><% end %>
+<% provide :social_media_meta_tags do %>
+<%= render "shared/social_media_meta_tags",
+           social_url: budget_executions_url(@budget),
+           social_title: @budget.name,
+           social_description: @budget.description_for_phase("finished") %>
+<% end %>
+
+<% content_for :canonical do %>
+  <%= render "shared/canonical", href: budget_executions_url(@budget) %>
+<% end %>
+
+<div class="budgets-stats">
+  <div class="expanded no-margin-top padding header">
+    <div class="row">
+      <div class="small-12 column">
+        <%= back_link_to budget_path(@budget) %>
+        <h2 class="margin-top">
+          <%= t("budgets.status_executions.heading") %><br>
+          <span><%= @budget.name %></span>
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render "budgets/subnav", budget: @budget %>
+
+ <% if @investments.any? %>
+  <div id="advanced_statistics" class="participation-stats">
+    <h3 class="section-title"><%=t("budgets.status_executions.link")%></h3>
+    <div id="total_investments" class="stats-group">
+      <%= number_with_info_tags(
+        @investments.count,
+        t("stats.budgets.total_investments"),
+        html_class: "total-investments"
+      ) %>
+
+      <%= number_with_info_tags(@budget.investments.milestone_drafting.count,
+                                t("budgets.milestone.statuses.drafting")) %>
+      <%= number_with_info_tags(@budget.investments.milestone_processing.count,
+                                t("budgets.milestone.statuses.processing")) %>
+      <%= number_with_info_tags(@budget.investments.milestone_execution.count,
+                                t("budgets.milestone.statuses.execution")) %>
+      <%= number_with_info_tags(@budget.investments.milestone_executed.count,
+                                t("budgets.milestone.statuses.executed")) %>
+    </div>
+  </div>
+  <% end %>
+<div class="row">
+
+  <div class="small-12 medium-9 large-10 column">
+    <% if @investments.any? %>
+      <%= render "budgets/status_executions/investments" %>
+    <% else %>
+      <div class="callout primary clear">
+        <%= t("budgets.status_executions.no_winner_investments") %>
+      </div>
+    <% end %>
+  </div>
+</div>

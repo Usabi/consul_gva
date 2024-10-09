@@ -1,0 +1,21 @@
+<% manual = I18n.locale.to_s == 'val' ? "Manual d'accés a través de GVLogin i Legislació col·laborativa (1).pdf" : "Manual de acceso a través de GVLogin y Legislación colaborativa.pdf" %>
+
+<% document = Document.find_by(title: manual)%>
+<%= render Pages::Help::SectionComponent.new("processes") do %>
+  <p>
+    <% link = link_to(t("pages.help.processes.link"), legislation_processes_path) %>
+    <%= sanitize(t("pages.help.processes.description",
+        link: link,
+        link2: link_to(t("pages.help.processes.link2"), document ? document.attachment : ""),
+        link3: link_to(t("pages.help.processes.link3"), "https://videos.gva.es/index.php/extwidget/preview/partner_id/192/uiconf_id/23448437/entry_id/0_u4a73go1/embed/dynamic"),
+        link4: link_to(t("pages.help.processes.link4"), "https://videos.gva.es/index.php/extwidget/preview/partner_id/192/uiconf_id/23448437/entry_id/0_eu38uiqd/embed/dynamic")
+    )) %>
+  </p>
+  <ul class="features">
+    <li>
+      <%= sanitize(t("pages.help.processes.feature",
+                     link: link_to(t("pages.help.processes.feature_link", org_name: setting["org_name"]),
+                                   new_user_registration_path))) %>
+    </li>
+  </ul>
+<% end %>

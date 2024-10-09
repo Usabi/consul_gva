@@ -68,17 +68,18 @@ val:
         no_public_phase_processes: No hi ha processos
         no_relevance_processes: No hi ha processos
         section_header:
-          icon_alt: Icona de Legislació col·laborativa
-          title: Legislació col·laborativa
-          help: Ajuda sobre legislació col·laborativa
+          icon_alt: Icona de Elaboració normativa
+          title: Elaboració normativa
+          help: Ajuda sobre elaboració normativa
         section_footer:
-          title: Ajuda sobre legislació col·laborativa
+          title: Ajuda sobre elaboració normativa
           description: Participa en els debats y processos previs a la aprovació d'una norma o d'una actuació municipal. La teua opinió serà tinguda en compte per l'Ajuntament.
       phase_not_open:
         not_open: Esta fase del procés encara no esta oberta
       phase_empty:
         empty: No hi ha res publicat encara
       process:
+        title: Proces
         see_latest_comments: Vore les últimes aportacions
         see_latest_comments_title: Aportar a aquest procés
       shared:
@@ -108,7 +109,7 @@ val:
         next_question: Següent pregunta
         first_question: Primera pregunta
         share: Compartir
-        title: Proces de legislació col·laborativa
+        title: Proces de elaboració normativa
       participation:
         phase_not_open: Esta fase del procés no esta oberta
         organizations: Les organitzacions no poden participar en el debat

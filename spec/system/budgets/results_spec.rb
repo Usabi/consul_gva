@@ -28,7 +28,7 @@ describe "Results" do
     Budget::Result.new(budget, heading).calculate_winners
   end
 
-  scenario "Back link redirects to budget page" do
+  scenario "Back link redirects to budget page", consul: true do
     visit budget_results_path(budget)
 
     expect(page).to have_link("Go back", href: budget_path(budget))

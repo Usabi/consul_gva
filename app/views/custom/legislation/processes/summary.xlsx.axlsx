@@ -3,6 +3,17 @@ xlsx_package.workbook.add_worksheet(name: "Summary") do |sheet|
   title = styles.add_style(b: true)
   link = styles.add_style(fg_color: "0000FF", u: true)
 
+  sheet.add_row(
+      [t("legislation.processes.process.title")],
+      style: title
+    )
+  sheet.add_row [@process.title]
+  sheet.add_hyperlink(
+    location: legislation_process_url(@process),
+    ref: sheet.rows.last.cells.first
+  )
+  sheet.rows.last.cells.first.style = link
+
   if @process.debate_phase.enabled? && @process.questions.any?
     sheet.add_row [t("legislation.summary.debate_phase"), t("legislation.summary.debates", count: @process.questions.count)], style: title
     @process.questions.each do |question|

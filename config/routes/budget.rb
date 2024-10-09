@@ -18,6 +18,7 @@ resources :budgets, only: [:show, :index] do
   resource :results, only: :show, controller: "budgets/results"
   resource :stats, only: :show, controller: "budgets/stats"
   resource :executions, only: :show, controller: "budgets/executions"
+  resource :status_executions, only: :show, controller: "budgets/status_executions"
 end
 
 resolve "Budget::Investment" do |investment, options|

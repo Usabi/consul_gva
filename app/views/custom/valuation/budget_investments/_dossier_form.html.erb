@@ -5,25 +5,37 @@
     <div class="small-12 column">
       <fieldset class="fieldset">
         <legend><%= t("valuation.budget_investments.edit.feasibility") %></legend>
-        <div class="small-3 column">
+        <div class="small-4 column">
             <span class="radio">
               <%= f.radio_button :feasibility, "undecided" %>
             </span>
         </div>
 
-        <div class="small-3 column">
+        <div class="small-4 column">
             <span class="radio">
               <%= f.radio_button :feasibility, "feasible" %>
             </span>
         </div>
 
-        <div class="small-3 column">
+        <div class="small-4 column">
             <span class="radio">
               <%= f.radio_button :feasibility, "unfeasible" %>
             </span>
         </div>
 
-        <div class="small-3 column">
+        <div class="small-4 column">
+            <span class="radio">
+              <%= f.radio_button :feasibility, "takecharge", label: t("valuation.budget_investments.edit.takecharge") %>
+            </span>
+        </div>
+
+        <div class="small-8 column">
+            <span class="radio">
+              <%= f.radio_button :feasibility, "nextyearbudget", label: t("valuation.budget_investments.edit.nextyearbudget") %>
+            </span>
+        </div>
+
+        <div class="small-12 column">
             <span class="radio">
               <%= f.radio_button :feasibility, "not_selected" %>
             </span>
@@ -51,6 +63,27 @@
     </div>
 
   </div>
+
+   <div id="takecharge_fields">
+
+    <div class="row">
+      <div class="small-12 column">
+        <%= f.text_area :takecharge_explanation, rows: 3, label: t("valuation.budget_investments.edit.feasible_explanation_html_takecharge") %>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="next_year_budget_fields">
+
+    <div class="row">
+      <div class="small-12 column">
+        <%= f.text_area :next_year_budget_explanation, rows: 3, label: t("valuation.budget_investments.edit.feasible_explanation_html_next_year_budget") %>
+      </div>
+    </div>
+
+  </div>
+
 
   <div id="feasible_fields">
 
@@ -92,7 +125,9 @@
           id: "js-investment-report-alert",
           "data-alert": t("valuation.budget_investments.edit.valuation_finished_alert"),
           "data-not-feasible-alert": t("valuation.budget_investments.edit.not_feasible_alert"),
-          "data-not-selected-alert": t("valuation.budget_investments.edit.not_selected_alert") %>
+          "data-not-selected-alert": t("valuation.budget_investments.edit.not_selected_alert"),
+          "data-takecharge-alert": t("valuation.budget_investments.edit.takecharge_alert"),
+          "data-next-year-budget-alert": t("valuation.budget_investments.edit.next_year_budget_alert") %>
     </div>
   </div>
 

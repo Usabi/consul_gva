@@ -62,8 +62,11 @@ namespace :admin do
     end
 
     resources :budget_investments, only: [:index, :show, :edit, :update] do
-      member { patch :toggle_selection }
-
+      member do
+        patch :toggle_selection
+        patch :toggle_winner
+      end
+      patch :bulk_actions, on: :collection
       resources :audits, only: :show, controller: "budget_investment_audits"
       resources :milestones, controller: "budget_investment_milestones"
       resources :progress_bars, except: :show, controller: "budget_investment_progress_bars"
@@ -224,6 +227,7 @@ namespace :admin do
     get :budgets, on: :collection
     get :budget_supporting, on: :member
     get :budget_balloting, on: :member
+    get :budget_stats, on: :member
     get :proposal_notifications, on: :collection
     get :direct_messages, on: :collection
     get :polls, on: :collection
@@ -235,6 +239,7 @@ namespace :admin do
       resources :questions
       resources :proposals do
         member { patch :toggle_selection }
+        get :summary, on: :collection# Custom
       end
       resources :draft_versions
       resources :milestones

@@ -1,0 +1,19 @@
+<%= render "shared/globalize_locales", resource: @status %>
+
+<%= translatable_form_for [:admin, @status] do |f| %>
+  <%= render "shared/errors", resource: @status %>
+
+  <div class="row">
+    <%= f.translatable_fields do |translations_form| %>
+      <div class="column">
+        <%= translations_form.text_field :name %>
+        <%= translations_form.text_area :description %>
+      </div>
+    <% end %>
+  </div>
+
+
+  <div class="margin-top">
+    <%= f.submit class: "button success" %>
+  </div>
+<% end %>

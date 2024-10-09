@@ -183,12 +183,12 @@ es:
       debates: "Debates"
       debates_description: "El espacio de debates ciudadanos está dirigido a que cualquier persona pueda exponer temas que le preocupan y sobre los que quiera compartir puntos de vista con otras personas"
       proposals: "Propuestas"
-      proposals_description: "Las propuestas ciudadanas son una oportunidad para que los vecinos y colectivos decidan directamente cómo quieren que sea su sociedad, después de conseguir los apoyos suficientes y de someterse a votación ciudadana"
+      proposals_description: "Las iniciativas ciudadanas son una oportunidad para que los vecinos y colectivos decidan directamente cómo quieren que sea su sociedad, después de conseguir los apoyos suficientes y de someterse a votación ciudadana"
       polls: "Votaciones"
       polls_description: "Las votaciones ciudadanas son un mecanismo de participación por el que la ciudadanía con derecho a voto puede tomar decisiones de forma directa"
       budgets: "Presupuestos participativos"
       budgets_description: "Con los presupuestos participativos la ciudadanía decide a qué proyectos presentados por los vecinos y vecinas va destinada una parte del presupuesto"
-      legislation: "Legislación colaborativa"
+      legislation: "Elaboración normativa"
       legislation_description: "En los procesos participativos se ofrece a la ciudadanía la oportunidad de participar en la elaboración y modificación de normativa que afecta a la sociedad y de dar su opinión sobre ciertas actuaciones que se tiene previsto llevar a cabo"
     html:
       per_page_code_head: "Código a incluir en cada página (<head>)"
@@ -227,5 +227,5 @@ es:
         polls_description: Permitir alineamiento de los Objetivos de Desarrollo Sostenible en votaciones
         budgets: Alineamiento ODS en presupuestos participativos
         budgets_description: Permitir alineamiento de los Objetivos de Desarrollo Sostenible en presupuestos participativos
-        legislation: Alineamiento ODS en legislación colaborativa
-        legislation_description: Permitir alineamiento de los Objetivos de Desarrollo Sostenible en legislación colaborativa
+        legislation: Alineamiento ODS en elaboración normativa
+        legislation_description: Permitir alineamiento de los Objetivos de Desarrollo Sostenible en elaboración normativa

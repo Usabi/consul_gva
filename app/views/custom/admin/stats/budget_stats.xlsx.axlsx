@@ -1,0 +1,190 @@
+xlsx_package.workbook.add_worksheet(name: "BudgetStats") do |sheet|
+  styles = xlsx_package.workbook.styles
+  title = styles.add_style(b: true)
+  link = styles.add_style(fg_color: "0000FF", u: true)
+
+  # Alineación del título a la izquierda
+  sheet.add_row(
+    [
+      t("stats.title")
+    ],
+    style: title
+  )
+
+  sheet.add_row ["", ""]
+
+  # Alineación de los números a la derecha
+  sheet.add_row [t("stats.total_participants"), @stats.total_participants],
+                style: [styles.add_style(alignment: { horizontal: :left }),
+                        styles.add_style(alignment: { horizontal: :right })]
+
+  sheet.add_row ["", ""]
+
+  # Define los estilos con bordes visibles y alineación correspondiente
+  header_style = styles.add_style(
+    bg_color: "CCCCCC",
+    b: true,
+    alignment: { horizontal: :left, vertical: :center }, # Alineación de encabezados a la izquierda
+    border: { style: :thin, color: "000000" }
+  )
+  data_style_left = styles.add_style(
+    alignment: { horizontal: :left }, # Alineación de texto a la izquierda
+    border: { style: :thin, color: "000000" }
+  )
+  data_style_right = styles.add_style(
+    alignment: { horizontal: :right }, # Alineación de números a la derecha
+    border: { style: :thin, color: "000000" }
+  )
+  bold_data_style_right = styles.add_style(
+    b: true,
+    alignment: { horizontal: :right }, # Alineación de números en negrita a la derecha
+    border: { style: :thin, color: "000000" }
+  )
+
+  # Gender
+  sheet.add_row(
+    [
+      t("stats.by_gender")
+    ],
+    style: title
+  )
+
+  sheet.add_row ["", ""]
+
+  # Alineación de encabezados y datos por género
+  sheet.add_row ["Género", t("stats.total"), "Porcentaje"], style: header_style
+  sheet.add_row [t("stats.men"), @stats.total_male_participants, number_to_stats_percentage(@stats.male_percentage)],
+                style: [data_style_left, bold_data_style_right, bold_data_style_right]
+  sheet.add_row [t("stats.women"), @stats.total_female_participants, number_to_stats_percentage(@stats.female_percentage)],
+                style: [data_style_left, bold_data_style_right, bold_data_style_right]
+  sheet.add_row [t("stats.other"), @stats.total_other_participants, number_to_stats_percentage(@stats.other_percentage)],
+                style: [data_style_left, bold_data_style_right, bold_data_style_right]
+
+  sheet.add_row ["", ""]
+
+  # Age
+  sheet.add_row(
+    [
+      t("stats.by_age")
+    ],
+    style: title
+  )
+
+  sheet.add_row [t("stats.age"), t("stats.total")], style: header_style
+
+  @stats.participants_by_age.values.each do |group|
+    row_data = [
+      group[:range], # Texto alineado a la izquierda
+      "#{group[:count]} (#{number_to_stats_percentage(group[:percentage])})" # Números alineados a la derecha
+    ]
+    sheet.add_row row_data, style: [data_style_left, bold_data_style_right]
+  end
+
+  sheet.add_row ["", ""]
+
+  # Geozone
+  sheet.add_row(
+    [
+      t("stats.by_geozone")
+    ],
+    style: title
+  )
+
+  sheet.add_row [t("stats.geozone"), t("stats.total")], style: header_style
+
+  @stats.participants_by_geozone.each do |geozone, participants|
+    row_data = [
+      geozone, # Texto alineado a la izquierda
+      "#{participants[:count]} (#{number_to_stats_percentage(participants[:percentage])})" # Números alineados a la derecha
+    ]
+    sheet.add_row row_data, style: [data_style_left, bold_data_style_right]
+  end
+
+  sheet.add_row ["", ""]
+
+  # Section for advanced stats
+  sheet.add_row(
+      [
+        t("stats.advanced")
+      ],
+      style: title
+    )
+
+  sheet.add_row ["", ""]
+
+  # Investments
+  sheet.add_row(
+      [
+        t("stats.budgets.total_investments")
+      ],
+      style: title
+    )
+  sheet.add_row [t("stats.budgets.total_investments"), @stats.total_budget_investments],
+                style: [data_style_left, data_style_right]
+  sheet.add_row [t("stats.budgets.total_unfeasible_investments"), @stats.total_unfeasible_investments],
+                style: [data_style_left, data_style_right]
+  sheet.add_row [t("stats.budgets.total_selected_investments"), @stats.total_selected_investments],
+                style: [data_style_left, data_style_right]
+
+  sheet.add_row ["", ""]
+
+  # By phase
+  sheet.add_row(
+      [
+        t("stats.budgets.by_phase")
+      ],
+      style: title
+    )
+  @stats.phases.each do |phase|
+    sheet.add_row [t("stats.budgets.participants_#{phase}_phase"), @stats.send("total_participants_#{phase}_phase")],
+                  style: [data_style_left, data_style_right]
+  end
+
+  sheet.add_row ["", ""]
+
+  # Heading for the phases table
+  first_row = [
+    t("stats.budgets.heading"),
+    sanitize(t("stats.budgets.investments_sent").gsub("<br>", " "))
+  ]
+
+  @stats.all_phases.each do |phase|
+    first_row += [
+      "",
+      t("stats.budgets.participants_#{phase}_phase"),
+      ""
+    ]
+  end
+
+  sheet.add_row first_row, style: header_style
+
+  second_row = ["", ""]
+
+  @stats.all_phases.each do
+    second_row += [
+      t("stats.budgets.total"),
+      t("stats.budgets.percent_total_participants"),
+      t("stats.budgets.percent_heading_census")
+    ]
+  end
+
+  sheet.add_row second_row, style: header_style
+
+  # Data rows for phases
+  @headings.each do |heading|
+    row_data = [
+      heading.name,
+      @stats.headings[heading.id][:total_investments_count]
+    ]
+
+    @stats.all_phases.each do |phase|
+      row_data += [
+        @stats.headings[heading.id]["total_participants_#{phase}_phase".to_sym],
+        number_to_stats_percentage(@stats.headings[heading.id]["percentage_participants_#{phase}_phase".to_sym]),
+        number_to_stats_percentage(@stats.headings[heading.id]["percentage_district_population_#{phase}_phase".to_sym])
+      ]
+    end
+
+    sheet.add_row row_data, style: [data_style_left, data_style_right]
+  end
+end

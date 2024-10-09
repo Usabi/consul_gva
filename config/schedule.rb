@@ -39,6 +39,10 @@ every 1.day, at: "3:00 am", roles: [:cron] do
   rake "votes:reset_hot_score"
 end
 
+every 1.day, at: "00:00", roles: [:cron] do
+  runner "Budget.change_phase"
+end
+
 every :reboot do
   # Number of workers must be kept in sync with capistrano's delayed_job_workers
   command "cd #{@path} && RAILS_ENV=#{@environment} bin/delayed_job -m -n 2 restart"

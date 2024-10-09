@@ -210,7 +210,7 @@ describe "Proposals" do
       end
     end
 
-    scenario "After using the browser's back button, social buttons will have one screen reader" do
+    scenario "After using the browser's back button, social buttons will have one screen reader", consul: true do
       Setting["org_name"] = "CONSUL"
       proposal = create(:proposal)
       visit proposal_path(proposal)

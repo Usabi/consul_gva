@@ -1,0 +1,44 @@
+<table id="status_executions">
+  <thead>
+    <tr>
+      <th><% t("budget.status_executions.table.id")%></th>
+      <th><% t("budget.status_executions.table.heading_name")%></th>
+      <th><% t("budget.status_executions.table.title")%></th>
+      <th><% t("budget.status_executions.table.price")%></th>
+      <th><% t("budget.status_executions.table.milestone_status.name")%></th>
+      <th><% t("budget.status_executions.table.milestone_status.kind")%></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @investments.each do |investment| %>
+      <tr id="<%= dom_id(investment) %>" class="investment">
+        <td>
+          <%= investment.id %>
+        </td>
+        <td>
+          <%= investment.heading.name %>
+        </td>
+        <td>
+          <%= link_to investment.title,
+                      budget_investment_path(@budget, investment, anchor: "tab-milestones") %>
+        </td>
+        <td>
+          <%= investment.formatted_price %>
+        </td>
+        <td>
+          <%= investment.milestone_status.name %>
+        </td>
+        <td>
+          <% if investment.milestone_status.kind %>
+            <strong>
+              <%= number_to_stats_percentage(milestone_status_percentage(investment.milestone_status.kind)) %>
+            </strong>
+            <div class="progress" tabindex="0">
+              <span class="progress-meter" style="width: <%= milestone_status_percentage(investment.milestone_status.kind) %>%"></span>
+            </div>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

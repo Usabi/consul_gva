@@ -13,11 +13,11 @@ val:
         budgets: "Pressupostos participatius"
         polls: "Votacions"
         other: "Altra informació d'interés"
-        processes: "Legislació col·laborativa"
+        processes: "Elaboració normativa"
       debates:
         title: "Debats"
         description: "En la secció de %{link} pots compartir la teua opinió amb altres persones sobre temes que et preocupen relacionats amb la Comunitat Valenciana. És un lloc per a generar coneixement i intel·ligència col·lectiva que conduïsquen a accions concretes per part del Consell.<br/><br/>
-        Pots obrir debats, comentar-los i donar-los suport amb els botons “Estic d’acord” o “No estic d’acord”.<br/><br/><strong>Com funciona?</strong><br/><br/>Abans de res et recomanem revisar els debats oberts per altres persones. D’aquesta  forma podràs opinar sobre els que t’interessen i, a més, evitar plantejar un debat que ja està en curs.<br/><br/>
+        Pots obrir debats, comentar-los i donar-los suport amb els botons “Estic d’acord” o “No estic d’acord”.<br/><br/><strong>Com funciona?</strong><br/><br/>Abans de res et recomanem revisar els debats oberts per altres persones. D’aquesta forma podràs opinar sobre els que t’interessen i, a més, evitar plantejar un debat que ja està en curs.<br/><br/>
         Per a revisar-los pots acudir a les pestanyes de “més actius”, “millor valorats” i “nous” que trobaràs en la part superior. També disposes d’una opció de “cerca avançada” per a buscar per paraules clau, autor i data. Tingues en compte que poden haver-hi diverses pàgines de debats."
         feature: "Per a navegar i consultar els debats oberts no necessites registrar-te. Si vols obrir un fil de debat, donar el teu suport a un ja obert, o fer comentaris, sí que hauràs de fer-ho."
         link: "debats ciutadans"
@@ -25,28 +25,42 @@ val:
         image_alt: "Botons per a valorar els debats"
         figcaption: 'Botons "Estic d''acord" i "No estic d''acord" per a valorar els debats.'
       proposals:
-        title: "Propostes"
+        title: "Iniciatives"
         description: "En la secció %{link} hi ha dues maneres de participar:<br/><br/>
-        1) pots presentar les teues propostes perquè la resta expressen el seu suport;<br/><br/>
-        2) pots donar suport a les propostes que et semblen adequades. Les propostes que aconseguisquen 5.000 suports en el termini de quatre mesos des de la seua publicació es traslladaran a la Conselleria o entitat competent per a la seua consideració, que haurà d'emetre un informe sobre la decisió adoptada sobre la iniciativa, que es publicarà en GVA Participa. Únicament podran presentar-se propostes que siguen competència de la Generalitat.
+        1) pots presentar les teues iniciatives perquè la resta expressen el seu suport;<br/><br/>
+        2) pots donar suport a les iniciatives que et semblen adequades. Les iniciatives que aconseguisquen 5.000 suports en el termini de quatre mesos des de la seua publicació es traslladaran a la Conselleria o entitat competent per a la seua consideració, que haurà d'emetre un informe sobre la decisió adoptada sobre la iniciativa, que es publicarà en GVA Participa. Únicament podran presentar-se iniciatives que siguen competència de la Generalitat.
 <br/><br/>
         <strong>Com funciona?</strong><br/><br/>
-        Abans de res et recomanem revisar les propostes que ja existeixen. D’aquesta manera, en el cas que alguna persona ja l’haja plantejada, evitaràs dividir els suports de la proposta que t’interessa, ja que aquests seran imprescindibles perquè la proposta esmentada seguisca avant. A més, així podràs veure la resta de propostes i donar el teu suport a les que et convencen o simplement comentar-les. Per a explorar no cal registrar-se, però per a comentar o donar suport sí.<br/><br/>
-        Al començament de la pàgina, visualitzaràs les propostes que vagen al capdavant en nombre de suports, però també podràs accedir a la resta i navegar entre aquestes amb les pestanyes “més actives”, “amb més suport”, “noves” i “cerca avançada”.<br/><br/>
-        Si no trobes una proposta similar a la que tenies al cap, serà el moment de plantejar-la mitjançant el botó “crea una proposta”, per a la qual cosa hauràs de registrar-te. <br/><br/>
-Has de tindre en compte que obtindre els suports necessaris no garanteix que la proposta siga votada favorablement amb posterioritat."
-        link: "propostes ciutadanes"
-        image_alt: "Botó per a avalar una proposta"
-        figcaption: 'Botó per "Avalar" una proposta.'
+        Abans de res et recomanem revisar les iniciatives que ja existeixen. D’aquesta manera, en el cas que alguna persona ja l’haja plantejada, evitaràs dividir els suports de la iniciativa que t’interessa, ja que aquests seran imprescindibles perquè la iniciativa esmentada seguisca avant. A més, així podràs veure la resta de iniciatives i donar el teu suport a les que et convencen o simplement comentar-les. Per a explorar no cal registrar-se, però per a comentar o donar suport sí.<br/><br/>
+        Al començament de la pàgina, visualitzaràs les iniciatives que vagen al capdavant en nombre de suports, però també podràs accedir a la resta i navegar entre aquestes amb les pestanyes “més actives”, “amb més suport”, “noves” i “cerca avançada”.<br/><br/>
+        Si no trobes una iniciativa similar a la que tenies al cap, serà el moment de plantejar-la mitjançant el botó “crea una iniciativa”, per a la qual cosa hauràs de registrar-te. <br/><br/>
+        Has de tindre en compte que obtindre els suports necessaris no garanteix que la iniciativa siga votada favorablement amb posterioritat."
+        link: "iniciatives"
+        image_alt: "Botó per a avalar una iniciativa"
+        figcaption: 'Botó per "Avalar" una iniciativa.'
       budgets:
         title: "Pressupostos Participatius"
-        description: "A la secció de %{link} pots decidir a quins projectes anirà destinada una part del pressupost de la Generalitat Valenciana.<br/><br/>
-        En primer lloc, podràs presentar els projectes que consideres que s’han de desenvolupar, que hauran d’obtindre un mínim de suports. Aquells projectes que hagen rebut aquest mínim de suports seran estudiats per l’Administració per tal de comprovar la seua viabilitat. Després d’això sabrem els projectes que passaran a la votació final.<br/><br/>
+        description: "A la secció de %{link} pots decidir a quins projectes aniran destinats 125 milions d'euros del pressupost de la Generalitat Valenciana per a l'exercici 2022. Quan accedisques a aquesta pestanya, veuràs indicada la fase en la qual es troba el procés dels pressupostos participatius.<br/><br/>
         <strong>Com funciona?</strong><br/><br/>
-        Quan accedisques a aquesta pestanya, veuràs indicada la fase en la qual es troba el procés dels pressupostos participatius.<br/><br/>
-        Podràs crear noves propostes o donar suport a les ja creades. Les propostes podran afectar tota la Comunitat Valenciana, o una de les seues províncies. Pots accedir a aquestes des de diferents classificacions: per província, per matèria…<br/><br/>
-        També disposaràs d’un mapa en el qual podràs localitzar els projectes proposats."
+        En primer lloc, en aquest espai del portal podràs presentar els projectes que consideres que han de desenvolupar-se (
+        %{link2}). Podran afectar a tota la Comunitat Valenciana, o a una o diverses de les set àrees comarcals en les quals s'ha dividit el territori a l'efecte d'aquest procés participatiu.<br/>
+        1) Comarques Costaneres del Nord <br/>
+        2) Comarques d'Interior del Nord <br/>
+        3) Comarques d'Interior <br/>
+        4) Comarques de l'Horta <br/>
+        5) Comarques del Xúquer-Túria <br/>
+        6) Comarques Centrals <br/>
+        7) Comarques del Sud <br/>
+        %{link3} <br/><br/>
+        Totes elles seran revisades segons els requisits establits i es dividiran entre admeses i no admeses. Les admeses passaran a la fase de suports. En aquesta fase podràs donar suport fins a 10 propostes que tries tu, independentment de la comarca en la qual residisques.<br/><br/>
+        Perquè puguen passar de fase, les propostes hauran d'arribar a un nombre mínim de suports. Aquelles que hagen rebut aquest mínim de suports s'estudiaran més en profunditat per l'Administració per a comprovar la seua viabilitat. Els projectes viables seran valorats econòmicament i es publicaran els preus de cada projecte.<br/><br/>
+        Per a votar disposaràs de dos escenaris de votació: autonòmic i d'una àrea comarcal. Tindràs un crèdit individual disponible en tots dos escenaris i podràs distribuir-lo entre els projectes que vulgues votar (no és necessari esgotar-lo).<br/><br/>
+        Després de la votació, s'ordenaran els projectes per nombre de vots fins a esgotar el crèdit. Aquests projectes s'incorporaran a la Llei de Pressupostos de la Generalitat Valenciana i podràs fer un seguiment en temps real del seu estat d'execució en GVA Participa.<br/><br/>
+        Pots trobar més informació en la %{link4}."
         link: "pressupostos participatius"
+        link2: "Ací pots consultar el Manual de presentació de propostes"
+        link3: "Ací pots consultar un llistat d'exemples de propostes."
+        link4: "Guia de Pressupostos Participatius"
         image_alt: "Diferents fases d'un pressupost participatiu"
         figcaption: 'Fase d’"Avals" i fase de "Votacions" dels pressupostos participatius'
       polls:
@@ -59,13 +73,23 @@ Has de tindre en compte que obtindre els suports necessaris no garanteix que la 
         feature_1: "Per a participar en les votacions has de %{link} i verificar el teu compte."
         feature_1_link: "registrar-te en %{org_name}"
       processes:
-        title: "Legislació col·laborativa"
+        title: "Elaboració normativa"
         description: "En la secció d'%{link} pots col·laborar en la redacció i modificació de normativa, plans i programes de la Generalitat Valenciana. Les aportacions de la ciutadania seran analitzades i tingudes en compte en la redacció definitiva de les normes o en la planificació de les actuacions.<br/><br/>
         <strong>Com funciona?</strong><br/><br/>
         Quan accedisques a aquesta àrea podràs veure els processos “actius” i els “acabats”. Si selecciones un dels processos, podràs accedir a informació sobre la norma o el pla que s’està elaborant i revisar les aportacions que s’han fet al document.<br/><br/>
-        També pots fer les teues aportacions, sempre que t'hages registrat. En primer lloc, pots accedir a l’àrea de “debat previ”, on trobaràs preguntes a les quals podràs respondre i sobre les quals podràs debatre. En l’apartat de “propostes” podràs veure les que altres persones han fet o realitzar les teues pròpies. I, finalment, en “comentaris” podràs comentar els documents, seleccionant el text que vols comentar."
-        link: "legislació col·laborativa"
-        feature: "Per a participar en la legislació col·laborativa has de registrar-te en %{link} i verificar el teu compte."
+        També pots fer les teues aportacions, sempre que t'hages registrat. En primer lloc, pots accedir a l’àrea de “debat previ”, on trobaràs preguntes a les quals podràs respondre i sobre les quals podràs debatre. En l’apartat de “propostes” podràs veure les que altres persones han fet o realitzar les teues pròpies. I, finalment, en “comentaris” podràs comentar els documents, seleccionant el text que vols comentar.<br/><br/>
+        %{link2} d'ajuda per a la gestió de legislació col·laborativa<br/>
+        Accedix a les pildores formatives sobre la gestió de legislació col·laborativa<br/>
+         <ul>
+          <li>%{link3}</li>
+          <li>%{link4}</li>
+        </ul>
+        "
+        link: "Elaboració normativa"
+        link2: "Manual"
+        link3: "Sol·licitud de perfils i accés"
+        link4: "Gestió dels processos de legislació col·laborativa"
+        feature: "Per a participar en la elaboració normativa has de registrar-te en %{link} i verificar el teu compte."
         feature_link: "registrar-te en %{org_name}"
       faq:
         title: "Problemes tècnics?"
