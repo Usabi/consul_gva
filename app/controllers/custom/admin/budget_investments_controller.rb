@@ -34,7 +34,7 @@ class Admin::BudgetInvestmentsController
       if ids.present?
         investments = Budget::Investment.where(id: ids)
         investments.each do |investment|
-          investment.toggle :visible_to_valuators
+          investment.visible_to_valuators = true
           investment.save!
         end
       end
@@ -49,7 +49,7 @@ class Admin::BudgetInvestmentsController
           next unless investment.feasible? && investment.valuation_finished
 
           authorize! :toggle_selection, investment
-          investment.toggle :selected
+          investment.selected = true
           investment.save!
         end
       end
@@ -64,7 +64,7 @@ class Admin::BudgetInvestmentsController
           next unless investment.selected?
 
           authorize! :toggle_winner, investment
-          investment.toggle :winner
+          investment.winner = true
           investment.save!
         end
       end
