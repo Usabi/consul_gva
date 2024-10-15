@@ -34,8 +34,7 @@ class Admin::BudgetInvestmentsController
       if ids.present?
         investments = Budget::Investment.where(id: ids)
         investments.each do |investment|
-          investment.visible_to_valuators = true
-          investment.save!
+          investment.update(visible_to_valuators: true) unless investment.visible_to_valuators
         end
       end
       redirect_to request.referer.presence || root_path
@@ -49,8 +48,7 @@ class Admin::BudgetInvestmentsController
           next unless investment.feasible? && investment.valuation_finished
 
           authorize! :toggle_selection, investment
-          investment.selected = true
-          investment.save!
+          investment.update(selected: true) unless investment.selected
         end
       end
       redirect_to request.referer.presence || root_path
@@ -64,8 +62,7 @@ class Admin::BudgetInvestmentsController
           next unless investment.selected?
 
           authorize! :toggle_winner, investment
-          investment.winner = true
-          investment.save!
+          investment.update(winner: true) unless investment.winner
         end
       end
       redirect_to request.referer.presence || root_path
