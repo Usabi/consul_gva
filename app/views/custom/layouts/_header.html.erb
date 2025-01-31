@@ -4,15 +4,17 @@
   <div class="top-bar">
 
     <h1 class="top-bar-title">
-      <%= link_to root_path, accesskey: "0" do %>
-        <%= image_tag(image_path_for("logo_header.png"), class: "float-left", alt: t("layouts.header.logo")) %>
+      <%= link_to root_path, accesskey: "0", class: "logo-container" do %>
+        <%= image_tag(image_path_for("logo_header.png"), class: "logo", alt: t("layouts.header.logo")) %>
+        <%= image_tag(image_path_for("logo_header2.png"), class: "logo", alt: t("layouts.header.logo")) if SiteCustomization::Image.image_for("logo_header2.png")%>
       <% end %>
     </h1>
+
     <%= render Layout::ResponsiveMenuComponent.new do %>
       <%= render Layout::AccountMenuComponent.new(current_user) %>
 
         <div class="slogan">
-          <%= sanitize(t("application.slogan_text.header"))%>
+          <%= sanitize(t("application.slogan_text.header")) %>
         </div>
         <%= render Layout::LocaleSwitcherComponent.new %>
         <div class="social-header">
