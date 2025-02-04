@@ -6,6 +6,14 @@
   background: $white-gva !important;
   color: $red-gva !important;
 
+  .top-bar-title {
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+
   @include breakpoint(small only) {
     .responsive-menu {
       width: 100%;
@@ -207,6 +215,17 @@
       line-height: inherit;
     }
   }
+
+  .top-bar-title {
+    .logo-container {
+      margin-left: 15px;
+    }
+
+    .logo {
+      height: auto;
+      max-height: 50px;
+    }
+  }
 }
 
 @media print, screen and (max-width: 39.99875em) {
@@ -239,6 +258,15 @@
     .top-bar-title {
       margin-left: auto;
       margin-right: 32px;
+
+      .logo-container {
+        gap: 0.5rem;
+      }
+
+      .logo {
+        max-height: 35px;
+        margin: 10px 0;
+      }
     }
 
     .button {
@@ -258,5 +286,16 @@
 
   .subnavigation.row {
     margin: 0;
+  }
+}
+
+@media print, screen and (max-width: 400px) {
+  .top-bar {
+    .top-bar-title {
+      .logo {
+        max-height: 25px;
+        margin: 15px 0;
+      }
+    }
   }
 }
