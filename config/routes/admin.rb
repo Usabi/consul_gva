@@ -29,7 +29,9 @@ namespace :admin do
     end
   end
 
-  resources :debates, only: [:index, :show]
+  resources :debates, only: [:index, :show] do
+    get :help_page, on: :collection # Custom
+  end
 
   resources :proposals, only: [:index, :show, :update] do
     member { patch :toggle_selection }
