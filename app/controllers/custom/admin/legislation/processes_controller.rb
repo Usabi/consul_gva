@@ -2,19 +2,27 @@ require_dependency Rails.root.join("app", "controllers", "admin", "legislation",
 
 class Admin::Legislation::ProcessesController
   include Search
+  include Admin::HelpPagesActions
+  
+  has_filters %w[active all help_page], only: :index
 
   def index
-    @processes = ::Legislation::Process.send(@current_filter)
-    if @search_terms.present?
-      if @search_terms.to_i.positive?
-        @processes = @processes.where(id: @search_terms)
-      else
-        @processes = @processes.search(@search_terms)
+    if @current_filter == 'help_page'
+      @help_text_content = help_text(controller_name)
+      render :help_page
+    else
+      @processes = ::Legislation::Process.send(@current_filter)
+      if @search_terms.present?
+        if @search_terms.to_i.positive?
+          @processes = @processes.where(id: @search_terms)
+        else
+          @processes = @processes.search(@search_terms)
+        end
       end
+  
+      @processes = @processes.accessible_by(current_ability)
+                   .page(params[:page])
     end
-
-    @processes = @processes.order(start_date: :desc).accessible_by(current_ability)
-                 .page(params[:page])
   end
 
   def create

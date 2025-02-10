@@ -1,0 +1,38 @@
+<%= header %>
+
+<% if help_texts.any? %>
+  <h3><%= page_entries_info help_texts %></h3>
+
+  <table class="cms-page-list">
+    <thead>
+      <tr>
+        <th><%= t("admin.site_customization.help_texts.help_text.title") %></th>
+        <th><%= t("admin.site_customization.help_texts.help_text.section") %></th>
+        <th><%= t("admin.site_customization.help_texts.help_text.updated_at") %></th>
+        <th><%= t("admin.actions.actions") %></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% help_texts.each do |help_text| %>
+      <tr id="<%= dom_id(help_text) %>">
+        <td><%= help_text.title %></td>
+        <td><%= help_text.section %></td>
+        <td><%= I18n.l help_text.updated_at, format: :long %></td>
+        <td>
+          <%= render Admin::TableActionsComponent.new(help_text) do |actions| %>
+            <%= actions.action(:show,
+                               text: t("admin.site_customization.help_texts.index.see_help_text"),
+                               path: admin_site_customization_help_text_path(help_text)) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate help_texts %>
+<% else %>
+  <div class="callout primary">
+    <%= page_entries_info help_texts %>
+  </div>
+<% end %>

@@ -110,6 +110,7 @@ module Abilities
       end
 
       can :manage, SiteCustomization::Page
+      can :manage, SiteCustomization::HelpText
       can :manage, SiteCustomization::Image
       can :manage, SiteCustomization::ContentBlock
       can :manage, Widget::Card
@@ -118,7 +119,7 @@ module Abilities
       can :manage, Ckeditor::Picture
 
       can [:read, :debate, :draft_publication, :allegations, :result_publication,
-           :milestones], Legislation::Process
+           :milestones, :help_pages, :help_page], Legislation::Process
       can [:create, :update, :destroy], Legislation::Process
       can [:manage], ::Legislation::DraftVersion
       can [:manage], ::Legislation::Question

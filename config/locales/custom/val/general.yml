@@ -179,6 +179,7 @@ val:
     document: Document
     topic: Tema
     image: Imatge
+    site_customization/help_text: el text d'ajuda
   geozones:
     none: Tota la Comunitat
   layouts:

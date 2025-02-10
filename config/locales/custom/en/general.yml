@@ -173,6 +173,7 @@ en:
     local_census_records/import: Local Census Records Import
     site_customization/content_block: content block
     site_customization/page: page
+    site_customization/help_text: help text
     sdg/local_target: local target
   geozones:
     none: All city

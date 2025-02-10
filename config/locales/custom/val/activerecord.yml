@@ -75,6 +75,9 @@ val:
       site_customization/page:
         one: Pàgina
         other: Pàgines personalitzades
+      site_customization/help_text:
+        one: Text d'ajuda
+        other: Textos d'ajuda
       site_customization/image:
         one: Imatge
         other: Personalitzar imatges
@@ -330,6 +333,16 @@ val:
         title: Títol
         subtitle: Subtítol
         content: Contingut
+      site_customization/help_text:
+        content: Contingut
+        created_at: Creado
+        section: Secció
+        title: Títol
+        updated_at: Actualitzado el
+        locale: Idioma
+      site_customization/help_text/translation:
+        title: Títol
+        content: Contingut
       site_customization/image:
         name: Nom
         image: Imatge
@@ -553,6 +566,10 @@ val:
           attributes:
             slug:
               slug_format: "ha de ser lletres, números, _ i -"
+        site_customization/help_text:
+          attributes:
+            section:
+              section_format: "haver de ser lletres, números, _ i -"
         site_customization/image:
           attributes:
             image:

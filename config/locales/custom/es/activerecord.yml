@@ -92,6 +92,9 @@ es:
       site_customization/page:
         one: Página
         other: Páginas
+      site_customization/help_text:
+        one: Texto de ayuda
+        other: Textos de ayuda
       site_customization/image:
         one: Imagen
         other: Imágenes
@@ -372,6 +375,16 @@ es:
         title: Título
         subtitle: Subtítulo
         content: Contenido
+      site_customization/help_text:
+        content: Contenido
+        created_at: Creado
+        section: Sección
+        title: Título
+        updated_at: Última actualización
+        locale: Idioma
+      site_customization/help_text/translation:
+        title: Título
+        content: Contenido
       site_customization/image:
         name: Nombre
         image: Imagen
@@ -591,6 +604,10 @@ es:
           attributes:
             slug:
               slug_format: "deber ser letras, números, _ y -"
+        site_customization/help_text:
+          attributes:
+            section:
+              section_format: "deber ser letras, números, _ y -"
         site_customization/image:
           attributes:
             image:

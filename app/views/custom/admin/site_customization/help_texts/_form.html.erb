@@ -1,0 +1,37 @@
+<%= render "shared/globalize_locales", resource: @help_text %>
+
+<%= translatable_form_for [:admin, @help_text], html: { class: "edit_help_text" } do |f| %>
+  <%= render "shared/errors", resource: @help_text %>
+
+  <div class="row">
+    <div class="small-12 column">
+      <hr>
+    </div>
+
+    <div class="small-12 medium-6 column">
+      <%= f.text_field :section, size: 80,
+                              maxlength: 80,
+                              hint: sanitize(t("admin.site_customization.help_texts.new.section_help")) %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 column">
+      <hr>
+      <%= f.translatable_fields do |translations_form| %>
+        <div class="small-12 column end">
+          <%= translations_form.text_field :title %>
+        </div>
+        <div class="column">
+          <%= translations_form.text_area :content, class: "html-area admin" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 medium-6 large-3 margin-top column">
+      <%= f.submit class: "button success expanded" %>
+    </div>
+  </div>
+<% end %>
