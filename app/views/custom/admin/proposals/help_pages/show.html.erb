@@ -1,0 +1,9 @@
+<% provide(:title) do %>
+  <%= t("admin.header.title") %> - <%= t("admin.proposals.index.title") %>
+<% end %>
+
+<h2><%= t("admin.proposals.index.title") %></h2>
+
+<%= render "admin/proposals/subnav", i18n_namespace: "admin.proposals.index", active: t('activerecord.models.site_customization/help_text.one') %>
+
+<%= render "admin/shared/help_page"%>

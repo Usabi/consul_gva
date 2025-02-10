@@ -1,0 +1,13 @@
+<ul class="menu simple clear">
+  <% proposals_tabs().each do |tab_name, path| %>
+    <% if active == tab_name %>
+      <li class="is-active">
+        <h2><%= t("admin.proposals.subnav.#{tab_name}") %></h2>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to t("admin.proposals.subnav.#{tab_name}"), path %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
