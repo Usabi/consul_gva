@@ -166,6 +166,7 @@ namespace :admin do
 
       resources :recounts, only: :index
       resources :results, only: :index
+      get :help_page, on: :collection # Custom
     end
 
     resources :officers, only: [:index, :new, :create, :destroy] do
