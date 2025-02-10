@@ -35,6 +35,7 @@ namespace :admin do
     member { patch :toggle_selection }
     resources :milestones, controller: "proposal_milestones"
     resources :progress_bars, except: :show, controller: "proposal_progress_bars"
+    get :help_page, on: :collection # Custom
   end
 
   resources :hidden_proposals, only: :index do
