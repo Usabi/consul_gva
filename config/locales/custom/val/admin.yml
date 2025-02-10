@@ -63,8 +63,10 @@ val:
         new_link: Crear nou pressupost
         filter: Filtre
         filters:
+          all: Tots
           open: Oberts
           finished: Finalitzades
+          help_page: Text d'ajuda
         budget_investments: Vore iniciatives d'inversió
         table_name: Nom
         table_phase: Fase
@@ -304,6 +306,9 @@ val:
     debates:
       index:
         title: Debats ocults
+      subnav:
+        debates: Debats
+        help_text: Text d'ajuda
     hidden_users:
       index:
         filter: Filtre
@@ -363,6 +368,12 @@ val:
           filters:
             active: Actius
             all: Tots
+            help_page: Text d'ajuda
+        help_page:
+          filters:
+            active: Actius
+            all: Tots
+            help_page: Text d'ajuda
         new:
           back: Tornar
           title: Crear procés de elaboració normativa
@@ -390,6 +401,7 @@ val:
           proposals: Propostes
           milestones: Seguiment
           legislators: Legisladors
+          help_text: Text d'ajuda
       homepage:
         edit:
           title: Configura la teua pàgina principal
@@ -533,6 +545,7 @@ val:
       site_customization:
         homepage: Pàgina principal
         pages: Pàgines
+        help_texts: Text d'ajuda
         images: Imatges
         content_blocks: Blocs
         information_texts: Personalitzar texts
@@ -816,6 +829,9 @@ val:
         start_date: "Data d'apertura"
         closing_date: "Data de tancament"
         geozone_restricted: "Restringida als districtes"
+      subnav:
+        polls: Votacions
+        help_text: Text d'ajuda
       new:
         title: "Nova votació"
         submit_button: "Crear votació"
@@ -986,11 +1002,14 @@ val:
         no_results: No s'han trobat organitzacions.
     proposals:
       index:
-        title: Propostes
+        title: Iniciatives
         id: ID
         author: Autor
         milestones: Seguiments
         no_proposals: No hi han propostes.
+      subnav:
+        proposals: Iniciatives
+        help_text: Text d'ajuda
     hidden_proposals:
       index:
         filter: Filtre
@@ -1273,6 +1292,32 @@ val:
           description: Descripció
           link_text: Text de l'enllaç
           link_url: URL de l'enllaç
+      help_texts:
+        create:
+          notice: Text d'ajuda creat correctament
+          error: No s'ha pogut crear el text d'ajuda
+        update:
+          notice: Text d'ajuda actualitzat correctament
+          error: No s'ha pogut actualitzar el text d'ajuda
+        destroy:
+          notice: Text d'ajuda eliminat correctament
+        edit:
+          title: Edita %{help_text_title}
+        show:
+          title: Vore %{help_text_title}
+        index:
+          create: Crear nou text d'ajuda
+          delete: Esborrar text d'ajuda
+          title: Textos d'ajuda
+          see_help_text: Vore text d'ajuda
+        new:
+          title: Text d'ajuda nou
+          section_help: Text que relaciona este text d'ajuda amb una secció
+        help_text:
+          created_at: Creat
+          updated_at: Actualitzado el
+          title: Títol
+          section: Secció
     homepage:
       title: Pàgina principal
       description: Els moduls actius apareixeran en la pàgina principal en el mateix ordre que ací.

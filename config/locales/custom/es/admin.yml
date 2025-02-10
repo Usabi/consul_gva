@@ -89,6 +89,7 @@ es:
           all: Todos
           open: Abiertos
           finished: Terminados
+          help_page: Texto de ayuda
         budget_investments: Proyectos de gasto
         table_budget_type: "Tipo"
         table_completed: Completado
@@ -523,6 +524,9 @@ es:
         author: Autor
         title: Debates
         no_debates: No hay debates.
+      subnav:
+        debates: Debates
+        help_text: Texto de ayuda
     hidden_debates:
       index:
         filter: Filtro
@@ -602,6 +606,12 @@ es:
           filters:
             active: Activos
             all: Todos
+            help_page: Texto de ayuda
+        help_page:
+          filters:
+            active: Activos
+            all: Todos
+            help_page: Texto de ayuda
         new:
           back: Volver
           title: Crear nuevo proceso de elaboración normativa
@@ -628,6 +638,7 @@ es:
           proposals: Propuestas
           milestones: Seguimiento
           legislators: Legisladores
+          help_text: Texto de ayuda
       homepage:
         edit:
           title: Configura la homepage del proceso
@@ -776,6 +787,7 @@ es:
         documents: Documentos
         homepage: Homepage
         pages: Personalizar páginas
+        help_texts: Personalizar textos de ayuda
         images: Personalizar imágenes
         content_blocks: Personalizar bloques
         information_texts: Personalizar textos
@@ -1119,6 +1131,9 @@ es:
         start_date: "Fecha de apertura"
         closing_date: "Fecha de cierre"
         geozone_restricted: "Restringida a los distritos"
+      subnav:
+        polls: Presupuestos
+        help_text: Texto de ayuda
       new:
         title: "Nueva votación"
         submit_button: "Crear votación"
@@ -1314,6 +1329,9 @@ es:
         update: Actualizar propuesta ciudadana
       update:
         notice: Propuesta actualizada correctamente
+      subnav:
+        proposals: Propuestas
+        help_text: Texto de ayuda
     hidden_proposals:
       index:
         filter: Filtro
@@ -1671,6 +1689,32 @@ es:
             notice: "Tarjeta actualizada con éxito"
           destroy:
             notice: "Tarjeta eliminada con éxito"
+      help_texts:
+        create:
+          notice: Texto de ayuda creado correctamente
+          error: No se ha podido crear el texto de ayuda
+        update:
+          notice: Texto de ayuda actualizado correctamente
+          error: No se ha podido actualizar el texto de ayuda
+        destroy:
+          notice: Texto de ayuda eliminado correctamente
+        edit:
+          title: Editar %{help_text_title}
+        show:
+          title: Ver %{help_text_title}
+        index:
+          create: Crear nuevo texto de ayuda
+          delete: Borrar texto de ayuda
+          title: Textos de ayuda
+          see_help_text: Ver
+        new:
+          title: Texto de ayuda nuevo
+          section_help: Texto que relaciona este texto de ayuda con una sección
+        help_text:
+          created_at: Creado
+          updated_at: Última actualización
+          title: Título
+          section: Sección
     homepage:
       title: Homepage
       description: Los módulos activos aparecerán en la homepage en el mismo orden que aquí.

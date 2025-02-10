@@ -1,0 +1,14 @@
+<% provide :title do %>
+  <%= t("admin.header.title") %> - <%= t("admin.menu.site_customization.help_texts") %> - <%= @help_text.title %>
+<% end %>
+
+<%= back_link_to admin_site_customization_help_texts_path %>
+<div class="row">
+  <div class="small-12 column">
+    <h2 class="inline-block"><%= t("admin.site_customization.help_texts.show.title", help_text_title: @help_text.title) %></h2>
+
+    <%= link_to t("admin.site_customization.help_texts.index.delete"), admin_site_customization_help_text_path(@help_text), method: :delete, class: "delete float-right" %>
+  </div>
+</div>
+
+<%= sanitize(@help_text.content, tags: %w(p br strong em a ul ol li img), attributes: %w(href title height width src)) %>

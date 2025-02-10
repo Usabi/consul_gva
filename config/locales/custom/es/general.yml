@@ -206,6 +206,7 @@ es:
     local_census_records/import: la importación de registros del censo local
     site_customization/content_block: el bloque
     site_customization/page: la página
+    site_customization/help_text: el texto de ayuda
   geozones:
     none: Toda la Comunitat
   layouts:

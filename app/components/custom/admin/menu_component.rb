@@ -4,6 +4,10 @@ require_dependency Rails.root.join("app", "components", "admin", "menu_component
 class Admin::MenuComponent
   private
 
+    def help_texts?
+      controller_name == "help_texts" && params[:help_text_id].present?
+    end
+
     def legislations_link
       [
         t("admin.menu.legislators"),
@@ -18,6 +22,30 @@ class Admin::MenuComponent
         admin_budget_managers_path,
         controller_name == "budget_managers"
       ]
+    end
+
+    def help_texts_link
+      [
+        t("admin.menu.site_customization.help_texts"),
+        admin_site_customization_help_texts_path,
+        help_texts? || controller_name == "help_texts"
+      ]
+    end
+
+    def site_customization_links
+      link_to(t("admin.menu.title_site_customization"), "#", class: "site-customization-link") +
+        link_list(
+          homepage_link,
+          pages_link,
+          help_texts_link,
+          banners_link,
+          information_texts_link,
+          documents_link,
+          images_link,
+          content_blocks_link,
+          class: ("is-active" if customization? &&
+                                 controller.class.module_parent != Admin::Poll::Questions::Answers)
+        )
     end
 
     def profiles_links

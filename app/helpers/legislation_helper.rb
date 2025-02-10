@@ -18,6 +18,7 @@ module LegislationHelper
     }
     if current_user&.administrator? || (current_user&.legislator? && current_user == process.user)
       tabs = tabs.merge({ "legislators" => edit_admin_legislation_process_legislators_path(process) })
+      tabs = tabs.merge({ 'help_text' => admin_legislation_process_help_pages_path(process) })
     end
     tabs
   end

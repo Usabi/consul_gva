@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_08_07_095311) do
+ActiveRecord::Schema.define(version: 2025_02_03_133000) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "pg_trgm"
   enable_extension "plpgsql"
   enable_extension "unaccent"
 
@@ -1532,6 +1531,24 @@ ActiveRecord::Schema.define(version: 2024_08_07_095311) do
     t.index ["name", "locale"], name: "index_site_customization_content_blocks_on_name_and_locale", unique: true
   end
 
+  create_table "site_customization_help_text_translations", id: :serial, force: :cascade do |t|
+    t.integer "site_customization_help_text_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.text "content"
+    t.index ["site_customization_help_text_id", "locale"], name: "index_help_text_translations_on_help_text_and_locale", unique: true
+    t.index ["site_customization_help_text_id"], name: "idx_help_text_translations"
+  end
+
+  create_table "site_customization_help_texts", id: :serial, force: :cascade do |t|
+    t.string "section", null: false
+    t.string "locale"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "site_customization_images", id: :serial, force: :cascade do |t|
     t.string "name", null: false
     t.string "image_file_name"
@@ -1897,6 +1914,7 @@ ActiveRecord::Schema.define(version: 2024_08_07_095311) do
   add_foreign_key "related_content_scores", "related_contents"
   add_foreign_key "related_content_scores", "users"
   add_foreign_key "sdg_managers", "users"
+  add_foreign_key "site_customization_help_text_translations", "site_customization_help_texts"
   add_foreign_key "users", "geozones"
   add_foreign_key "valuators", "users"
 end

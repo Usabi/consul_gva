@@ -246,6 +246,7 @@ namespace :admin do
       resources :progress_bars, except: :show
       resource :homepage, only: [:edit, :update]
       resource :legislators, only: [:edit, :update]#Custom
+      resource :help_pages, only: [:show] # Custom
     end
   end
 
@@ -259,6 +260,7 @@ namespace :admin do
     resources :pages, except: [:show] do
       resources :cards, except: [:show], as: :widget_cards
     end
+    resources :help_texts # Custom
     resources :images, only: [:index, :update, :destroy]
     resources :content_blocks, except: [:show]
     delete "/heading_content_blocks/:id", to: "content_blocks#delete_heading_content_block",
