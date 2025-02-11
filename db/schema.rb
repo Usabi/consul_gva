@@ -1547,6 +1547,7 @@ ActiveRecord::Schema.define(version: 2025_02_03_133000) do
     t.string "locale"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["section"], name: "index_site_customization_help_texts_on_section", unique: true
   end
 
   create_table "site_customization_images", id: :serial, force: :cascade do |t|

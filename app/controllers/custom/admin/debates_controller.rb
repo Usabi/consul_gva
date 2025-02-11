@@ -2,7 +2,7 @@ require_dependency Rails.root.join("app", "controllers", "admin", "debates_contr
 
 class Admin::DebatesController
   include Admin::HelpPagesActions
-  
+
   def help_page
     @help_text_content = help_text(controller_name)
     render "admin/debates/help_pages/show"

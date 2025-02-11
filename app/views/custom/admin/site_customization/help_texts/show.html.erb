@@ -11,4 +11,4 @@
   </div>
 </div>
 
-<%= sanitize(@help_text.content, tags: %w(p br strong em a ul ol li img), attributes: %w(href title height width src)) %>
+<%= sanitize(@help_text.content, tags: %w[p br strong em a ul ol li img], attributes: %w[href title height width src]) %>

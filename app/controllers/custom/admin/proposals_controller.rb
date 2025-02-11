@@ -7,7 +7,7 @@ class Admin::ProposalsController
 
   def index
     @proposals = ::Proposal.all.accessible_by(current_ability)
-                               .page(params[:page])
+                           .page(params[:page])
   end
 
   def help_page
