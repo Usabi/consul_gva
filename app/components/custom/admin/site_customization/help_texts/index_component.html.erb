@@ -19,7 +19,7 @@
         <td><%= help_text.section %></td>
         <td><%= I18n.l help_text.updated_at, format: :long %></td>
         <td>
-          <%= render Admin::TableActionsComponent.new(help_text) do |actions| %>
+          <%= render Admin::TableActionsComponent.new(help_text, actions: [:edit]) do |actions| %>
             <%= actions.action(:show,
                                text: t("admin.site_customization.help_texts.index.see_help_text"),
                                path: admin_site_customization_help_text_path(help_text)) %>
