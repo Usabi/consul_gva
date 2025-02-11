@@ -8,10 +8,11 @@
       <hr>
     </div>
 
-    <div class="small-12 medium-6 column">
+    <div class="small-12 column">
       <%= f.text_field :section, size: 80,
                                  maxlength: 80,
-                                 hint: sanitize(t("admin.site_customization.help_texts.new.section_help")) %>
+                                 hint: sanitize(t("admin.site_customization.help_texts.new.section_help")),
+                                 disabled: true %>
     </div>
   </div>
 
@@ -20,10 +21,10 @@
       <hr>
       <%= f.translatable_fields do |translations_form| %>
         <div class="small-12 column end">
-          <%= translations_form.text_field :title %>
+          <%= translations_form.text_field :title, disabled: true %>
         </div>
         <div class="column">
-          <%= translations_form.text_area :content, class: "html-area admin" %>
+          <%= translations_form.text_area :content, class: "html-area custom" %>
         </div>
       <% end %>
     </div>
