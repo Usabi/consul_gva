@@ -5,10 +5,10 @@ module Custom::ProposalsHelper
 
   def proposals_tabs()
     tabs = {
-      "proposals" => admin_proposals_path,
-      }
+      "proposals" => admin_proposals_path
+    }
     if current_user&.administrator? || (current_user&.legislator? && current_user == process.user)
-      tabs = tabs.merge({ 'help_text' => help_page_admin_proposals_path })
+      tabs = tabs.merge({ "help_text" => help_page_admin_proposals_path })
     end
     tabs
   end

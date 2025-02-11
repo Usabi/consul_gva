@@ -6,7 +6,7 @@ class Admin::BudgetsController
   has_filters %w[all open finished help_page], only: :index
 
   def index
-    if @current_filter == 'help_page'
+    if @current_filter == "help_page"
       @help_text_content = help_text(controller_name)
       render :help_page
     else

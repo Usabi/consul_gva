@@ -3,11 +3,11 @@ require_dependency Rails.root.join("app", "controllers", "admin", "legislation",
 class Admin::Legislation::ProcessesController
   include Search
   include Admin::HelpPagesActions
-  
+
   has_filters %w[active all help_page], only: :index
 
   def index
-    if @current_filter == 'help_page'
+    if @current_filter == "help_page"
       @help_text_content = help_text(controller_name)
       render :help_page
     else
@@ -19,9 +19,9 @@ class Admin::Legislation::ProcessesController
           @processes = @processes.search(@search_terms)
         end
       end
-  
+
       @processes = @processes.accessible_by(current_ability)
-                   .page(params[:page])
+                             .page(params[:page])
     end
   end
 

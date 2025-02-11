@@ -5,8 +5,8 @@ class SiteCustomization::HelpText < ApplicationRecord
 
   validates_translation :title, presence: true
   validates :section, presence: true,
-                   uniqueness: { case_sensitive: false },
-                   format: { with: /\A[0-9a-zA-Z_\/-]*\Z/, message: :section_format }
+                      uniqueness: { case_sensitive: false },
+                      format: { with: /\A[0-9a-zA-Z_\/-]*\Z/, message: :section_format }
 
   scope :sort_asc, -> { order("id ASC") }
   scope :sort_desc, -> { order("id DESC") }

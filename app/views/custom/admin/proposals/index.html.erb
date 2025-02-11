@@ -4,7 +4,7 @@
 
 <h2><%= t("admin.proposals.index.title") %></h2>
 
-<%= render "admin/proposals/subnav", i18n_namespace: "admin.proposals.index", active: 'proposals' %>
+<%= render "admin/proposals/subnav", i18n_namespace: "admin.proposals.index", active: "proposals" %>
 
 <% if @proposals.any? %>
   <%= render Admin::SearchComponent.new(label: t("admin.shared.search.label.proposals")) %>

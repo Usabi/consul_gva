@@ -6,19 +6,20 @@ module LegislationHelper
   def new_legislation_proposal_link_text(process)
     t("legislation.proposals.index.start_proposal")
   end
+
   # Custom
   def legislation_process_tabs(process)
     tabs = {
-      "info"           => edit_admin_legislation_process_path(process),
-      "homepage"       => edit_admin_legislation_process_homepage_path(process),
-      "questions"      => admin_legislation_process_questions_path(process),
-      "proposals"      => admin_legislation_process_proposals_path(process),
+      "info" => edit_admin_legislation_process_path(process),
+      "homepage" => edit_admin_legislation_process_homepage_path(process),
+      "questions" => admin_legislation_process_questions_path(process),
+      "proposals" => admin_legislation_process_proposals_path(process),
       "draft_versions" => admin_legislation_process_draft_versions_path(process),
-      "milestones"     => admin_legislation_process_milestones_path(process)
+      "milestones" => admin_legislation_process_milestones_path(process)
     }
     if current_user&.administrator? || (current_user&.legislator? && current_user == process.user)
       tabs = tabs.merge({ "legislators" => edit_admin_legislation_process_legislators_path(process) })
-      tabs = tabs.merge({ 'help_text' => admin_legislation_process_help_pages_path(process) })
+      tabs = tabs.merge({ "help_text" => admin_legislation_process_help_pages_path(process) })
     end
     tabs
   end
