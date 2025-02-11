@@ -3,7 +3,7 @@ class Admin::SiteCustomization::HelpTextsController < Admin::SiteCustomization::
   load_and_authorize_resource :help_text, class: "SiteCustomization::HelpText"
 
   def index
-    @help_texts = SiteCustomization::HelpText.order("section").page(params[:page])
+    @help_texts = SiteCustomization::HelpText.order(id: :asc).page(params[:page])
   end
 
   def show
