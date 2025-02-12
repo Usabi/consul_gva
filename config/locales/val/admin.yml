@@ -616,6 +616,11 @@ val:
     segment_recipient:
       all_users: Tots els usuaris
       administrators: Administradors
+      legislators: Legisladors
+      all_organizations: Totes les organitzacions
+      pending_organizations: Organitzacions pendents
+      verified_organizations: Organitzacions verificades
+      rejected_organizations: Organitzacions rebutjades
       proposal_authors: Autors de propostes
       investment_authors: Usuaris autors de propostes en els actuals pressupostos
       feasible_and_undecided_investment_authors: "Usuaris autors d'algun projecte en els actuals pressupostos que no cumplisca: [evaluació finalitzada inviable]"

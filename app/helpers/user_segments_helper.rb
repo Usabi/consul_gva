@@ -6,6 +6,10 @@ module UserSegmentsHelper
   end
 
   def segment_name(user_segment)
-    UserSegments.segment_name(user_segment) || I18n.t("admin.segment_recipient.invalid_recipients_segment")
+    # Custom
+
+    segments = Array(user_segment)
+    names = segments.map { |segment| UserSegments.segment_name(segment) }.compact
+    names.any? ? names.join(", ") : I18n.t("admin.segment_recipient.invalid_recipients_segment")
   end
 end
