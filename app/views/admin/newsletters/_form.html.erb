@@ -1,8 +1,10 @@
 <%= form_for [:admin, @newsletter] do |f| %>
   <%= render "shared/errors", resource: @newsletter %>
 
-  <%= f.select :segment_recipient, options_for_select(user_segments_options,
-                                                      @newsletter[:segment_recipient]) %>
+  <%= f.select :segment_recipient,
+               options_for_select(user_segments_options, @newsletter[:segment_recipient]), 
+               {}, 
+               { multiple: true, style: "height: 350px;" } %>
   <%= f.text_field :subject %>
   <%= f.text_field :from %>
   <%= f.text_area :body, class: "html-area" %>

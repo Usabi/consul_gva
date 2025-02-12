@@ -823,6 +823,11 @@ es:
     segment_recipient:
       all_users: Todos los usuarios
       administrators: Administradores
+      legislators: Legisladores
+      all_organizations: Todas las organizaciones
+      pending_organizations: Organizaciones pendientes
+      verified_organizations: Organizaciones verificadas
+      rejected_organizations: Organizaciones rechazadas
       all_proposal_authors: Usuarios autores de propuestas (incluyendo archivadas y retiradas)
       proposal_authors: Usuarios autores de propuestas
       investment_authors: Usuarios autores de proyectos de gasto en los actuales presupuestos
