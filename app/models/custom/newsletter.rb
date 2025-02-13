@@ -10,7 +10,7 @@ class Newsletter
   def valid_segment_recipient?
     segment_recipient.all? { |segment| UserSegments.valid_segment?(segment) }
   end
-  
+
   private
 
     def sanitize_segment_recipient
