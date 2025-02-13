@@ -1,5 +1,5 @@
 module Custom::PollsHelper
-  def polls_tabs()
+  def polls_tabs
     tabs = {
       "polls" => admin_polls_path
     }

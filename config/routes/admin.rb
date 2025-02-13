@@ -81,6 +81,7 @@ namespace :admin do
         patch :disable
       end
     end
+    get :help_page, on: :collection # Custom
   end
 
   namespace :budgets_wizard do
@@ -243,14 +244,15 @@ namespace :admin do
       resources :questions
       resources :proposals do
         member { patch :toggle_selection }
-        get :summary, on: :collection# Custom
+        get :summary, on: :collection # Custom
       end
       resources :draft_versions
       resources :milestones
       resources :progress_bars, except: :show
       resource :homepage, only: [:edit, :update]
-      resource :legislators, only: [:edit, :update]#Custom
+      resource :legislators, only: [:edit, :update] # Custom
       resource :help_pages, only: [:show] # Custom
+      get :help_page, on: :collection # Custom
     end
   end
 

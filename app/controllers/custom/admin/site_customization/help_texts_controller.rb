@@ -14,20 +14,22 @@ class Admin::SiteCustomization::HelpTextsController < Admin::SiteCustomization::
     if @help_text.save
       notice = t("admin.site_customization.help_texts.create.notice")
       redirect_to admin_site_customization_help_texts_path, notice: notice
-    else
-      flash.now[:error] = t("admin.site_customization.help_texts.create.error")
-      render :new
+      return
     end
+
+    flash.now[:error] = t("admin.site_customization.help_texts.create.error")
+    render :new
   end
 
   def update
     if @help_text.update(help_text_params)
       notice = t("admin.site_customization.help_texts.update.notice")
       redirect_to admin_site_customization_help_texts_path, notice: notice
-    else
-      flash.now[:error] = t("admin.site_customization.help_texts.update.error")
-      render :edit
+      return
     end
+
+    flash.now[:error] = t("admin.site_customization.help_texts.update.error")
+    render :edit
   end
 
   def destroy

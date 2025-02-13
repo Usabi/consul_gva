@@ -2,6 +2,5 @@
 
 <%= render Admin::Budgets::HeadingModeComponent.new %>
 <%= render Admin::Budgets::HelpComponent.new("budgets") %>
-<%= render "shared/filter_subnav", i18n_namespace: "admin.budgets.index" %>
-
-<%= sanitize(@help_text_content, tags: %w[p br strong em a ul ol li img], attributes: %w[href title height width src]) %>
+<%= render "admin/budgets/subnav", i18n_namespace: "admin.budgets.index", active: "help_text" %>
+<%= render "admin/shared/help_page" %>

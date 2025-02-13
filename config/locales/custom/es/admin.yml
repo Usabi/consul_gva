@@ -89,7 +89,6 @@ es:
           all: Todos
           open: Abiertos
           finished: Terminados
-          help_page: Texto de ayuda
         budget_investments: Proyectos de gasto
         table_budget_type: "Tipo"
         table_completed: Completado
@@ -167,6 +166,9 @@ es:
         calculate: Calcular proyectos ganadores
         calculated: Calculando ganadores, puede tardar un minuto.
         recalculate: Recalcular proyectos ganadores
+      subnav:
+        budgets: Presupuestos
+        help_text: Texto de ayuda
     budget_groups:
       name: "Nombre"
       headings_name: "Partidas"
@@ -606,12 +608,9 @@ es:
           filters:
             active: Activos
             all: Todos
-            help_page: Texto de ayuda
-        help_page:
-          filters:
-            active: Activos
-            all: Todos
-            help_page: Texto de ayuda
+        help_subnav:
+          processes: Procesos
+          help_text: Texto de ayuda
         new:
           back: Volver
           title: Crear nuevo proceso de elaboración normativa
@@ -1132,7 +1131,7 @@ es:
         closing_date: "Fecha de cierre"
         geozone_restricted: "Restringida a los distritos"
       subnav:
-        polls: Presupuestos
+        polls: Votaciones
         help_text: Texto de ayuda
       new:
         title: "Nueva votación"

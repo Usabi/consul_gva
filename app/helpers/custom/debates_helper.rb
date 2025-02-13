@@ -1,5 +1,5 @@
 module Custom::DebatesHelper
-  def debates_tabs()
+  def debates_tabs
     tabs = {
       "debates" => admin_debates_path
     }

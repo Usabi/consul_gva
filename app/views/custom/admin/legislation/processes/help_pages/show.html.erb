@@ -7,6 +7,6 @@
 <%= link_to t("admin.legislation.processes.index.create"), new_admin_legislation_process_path,
             class: "button float-right" %>
 
-<%= render "shared/filter_subnav", i18n_namespace: "admin.legislation.processes.index" %>
+<%= render "admin/legislation/processes/help_subnav", i18n_namespace: "admin.legislation.processes.index", active: "help_text" %>
 
-<%= sanitize(@help_text_content, tags: %w[p br strong em a ul ol li img], attributes: %w[href title height width src]) %>
+<%= render "admin/shared/help_page" %>
