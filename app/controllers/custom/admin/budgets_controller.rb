@@ -3,14 +3,10 @@ require_dependency Rails.root.join("app", "controllers", "admin", "budgets_contr
 class Admin::BudgetsController
   include Admin::HelpPagesActions
 
-  has_filters %w[all open finished help_page], only: :index
+  before_action :load_budget, except: %w[index help_page]
 
-  def index
-    if @current_filter == "help_page"
-      @help_text_content = help_text(controller_name)
-      render :help_page
-    else
-      @budgets = Budget.send(@current_filter).order(created_at: :desc).page(params[:page])
-    end
+  def help_page
+    @help_text_content = help_text(controller_name)
+    render "admin/budgets/help_pages/show"
   end
 end

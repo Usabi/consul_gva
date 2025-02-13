@@ -4,6 +4,8 @@
 
 <%= render Admin::Budgets::HeadingModeComponent.new %>
 <%= render Admin::Budgets::HelpComponent.new("budgets") %>
+
+<%= render "admin/budgets/subnav", i18n_namespace: "admin.budgets.index", active: "budgets" %>
 <%= render "shared/filter_subnav", i18n_namespace: "admin.budgets.index" %>
 
 <% if budgets.any? %>

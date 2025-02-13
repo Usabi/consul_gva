@@ -1,5 +1,5 @@
 <ul class="menu simple clear">
-  <% polls_tabs().each do |tab_name, path| %>
+  <% polls_tabs.each do |tab_name, path| %>
     <% if active == tab_name %>
       <li class="is-active">
         <h2><%= t("admin.polls.subnav.#{tab_name}") %></h2>

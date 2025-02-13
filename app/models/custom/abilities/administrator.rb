@@ -62,7 +62,7 @@ module Abilities
 
       can :manage, Dashboard::Action
 
-      can [:index, :read, :create, :update, :destroy], Budget
+      can [:index, :read, :create, :update, :destroy, :help_page], Budget
       can :publish, Budget, id: Budget.drafting.ids
       can :calculate_winners, Budget, &:reviewing_ballots?
       can :read_results, Budget do |budget|

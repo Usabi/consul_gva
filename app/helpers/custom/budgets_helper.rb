@@ -6,4 +6,14 @@ module Custom::BudgetsHelper
       concat(tag.span(budget.formatted_heading_price(heading)))
     end
   end
+
+  def budgets_tabs
+    tabs = {
+      "budgets" => admin_budgets_path
+    }
+    if current_user&.administrator? || (current_user&.legislator? && current_user == process.user)
+      tabs = tabs.merge({ "help_text" => help_page_admin_budgets_path })
+    end
+    tabs
+  end
 end

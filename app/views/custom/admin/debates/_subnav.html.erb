@@ -1,5 +1,5 @@
 <ul class="menu simple clear">
-  <% debates_tabs().each do |tab_name, path| %>
+  <% debates_tabs.each do |tab_name, path| %>
     <% if active == tab_name %>
       <li class="is-active">
         <h2><%= t("admin.debates.subnav.#{tab_name}") %></h2>

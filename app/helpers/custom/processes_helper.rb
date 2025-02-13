@@ -1,4 +1,3 @@
-
 module Custom::ProcessesHelper
   def xls_comments(sheet, link, comments)
     nested_comments(sheet, link, comments)
@@ -12,5 +11,15 @@ module Custom::ProcessesHelper
       sheet.rows.last.cells.first.style = link
       nested_comments(sheet, link, comment.children, local_indexes) if comment.children?
     end
+  end
+
+  def legislation_processes_tabs
+    tabs = {
+      "processes" => admin_legislation_processes_path
+    }
+    if current_user&.administrator? || (current_user&.legislator? && current_user == process.user)
+      tabs = tabs.merge({ "help_text" => help_page_admin_legislation_processes_path })
+    end
+    tabs
   end
 end

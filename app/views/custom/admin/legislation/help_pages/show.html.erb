@@ -7,7 +7,7 @@
 
   <h2><%= @process.title %></h2>
 
-  <%= render "admin/legislation/processes/subnav", process: @process, active: t("activerecord.models.site_customization/help_text.one") %>
+  <%= render "admin/legislation/processes/subnav", process: @process, active: 'help_text' %>
 
-  <%= sanitize(@help_text_content, tags: %w[p br strong em a ul ol li img], attributes: %w[href title height width src]) %>
+  <%= render "admin/shared/help_page" %>
 </div>

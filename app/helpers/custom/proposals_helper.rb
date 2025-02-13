@@ -3,7 +3,7 @@ module Custom::ProposalsHelper
     Budget.find_by(phase: "selecting").present?
   end
 
-  def proposals_tabs()
+  def proposals_tabs
     tabs = {
       "proposals" => admin_proposals_path
     }

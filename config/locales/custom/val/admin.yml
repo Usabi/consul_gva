@@ -66,7 +66,6 @@ val:
           all: Tots
           open: Oberts
           finished: Finalitzades
-          help_page: Text d'ajuda
         budget_investments: Vore iniciatives d'inversió
         table_name: Nom
         table_phase: Fase
@@ -99,6 +98,9 @@ val:
         calculate: Calcular iniciatives guanyadores
         calculated: Calculant guanyadores, pot tardar algún minut.
         recalculate: Recalcular iniciatives guanyadores
+      subnav:
+        budgets: Pressupostos
+        help_text: Text d'ajuda
     budget_groups:
       name: "Nom"
       headings_name: "Partides pressupostàries"
@@ -368,12 +370,9 @@ val:
           filters:
             active: Actius
             all: Tots
-            help_page: Text d'ajuda
-        help_page:
-          filters:
-            active: Actius
-            all: Tots
-            help_page: Text d'ajuda
+        help_subnav:
+          processes: Processos
+          help_text: Text d'ajuda
         new:
           back: Tornar
           title: Crear procés de elaboració normativa
