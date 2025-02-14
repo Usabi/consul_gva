@@ -7,3 +7,34 @@
     }
   }
 }
+
+.admin {
+  .menu.simple {
+    text-transform: uppercase;
+
+    .is-active {
+      padding: 10px 25px;
+      background-color: #daedf675;
+    }
+
+    h2 {
+      margin-bottom: 0;
+    }
+  }
+
+  ul#filter-subnav {
+    margin-left: 1rem;
+    margin-top: 1.5rem;
+    text-transform: unset;
+
+    li {
+      padding: 0;
+      background-color: transparent;
+      border-width: thin;
+    }
+
+    h2 {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
