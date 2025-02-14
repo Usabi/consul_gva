@@ -1,4 +1,6 @@
-<%= header %>
+<%= header do %>
+  <button data-open="heading_mode"><%= t("admin.budgets.index.new_link") %></button>
+<% end %>
 
 <%= render Admin::Budgets::HeadingModeComponent.new %>
 <%= render Admin::Budgets::HelpComponent.new("budgets") %>
