@@ -1,0 +1,5 @@
+header {
+  button[data-open] {
+    @include custom-button;
+  }
+}
