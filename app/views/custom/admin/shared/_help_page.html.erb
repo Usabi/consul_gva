@@ -1,1 +1,3 @@
-<%= sanitize(@help_text_content, tags: %w[p br strong em a ul ol li img], attributes: %w[href title height width src]) %>
+<%= sanitize(@help_text_content,
+             tags: %w[h1 h2 h3 p span br strong big small tt code del cite ins q em a ul ol li img samp var kbd table thead tbody th tr td hr br sub sup u s],
+             attributes: %w[href title height width src class style dir align border cellpadding cellspacing scope]) %>
