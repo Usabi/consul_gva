@@ -397,7 +397,7 @@ val:
           homepage: Pàgina principal
           draft_versions: Redacció
           questions: Debat
-          proposals: Propostes
+          proposals: Iniciatives
           milestones: Seguiment
           legislators: Legisladors
           help_text: Text d'ajuda
@@ -412,7 +412,7 @@ val:
           supports: Avals
         form:
           custom_categories: Categories
-          custom_categories_description: Categories que la persona usuària pot seleccionar al crear la proposta.
+          custom_categories_description: Categories que la persona usuària pot seleccionar al crear la iniciativa.
           custom_categories_placeholder: Escriu les etiquetes que desitges separades per comes (',') i entre cometes ("")
       draft_versions:
         create:
@@ -596,7 +596,7 @@ val:
     segment_recipient:
       all_users: Tots els usuaris
       administrators: Administradors
-      proposal_authors: Autors de propostes
+      proposal_authors: Autors de iniciatives
       investment_authors: Usuaris autors de propostes en els actuals pressupostos
       feasible_and_undecided_investment_authors: "Usuaris autors d'algun projecte en els actuals pressupostos que no cumplisca: [evaluació finalitzada inviable]"
       selected_investment_authors: Autors de projectes seleccionades en els actuals pressupostos
@@ -857,9 +857,9 @@ val:
         filter_poll: Filtrar per votació
         select_poll: Seleccionar votació
         questions_tab: "Preguntes"
-        successful_proposals_tab: "Propostes que han superat el umbral"
+        successful_proposals_tab: "Iniciatives que han superat el umbral"
         create_question: "Crear pregunta"
-        table_proposal: "Proposta"
+        table_proposal: "Iniciativa"
         table_question: "Pregunta"
         table_poll: "Votació"
         poll_not_assigned: "Votació sense asignar"
@@ -870,7 +870,7 @@ val:
           add_image: "Afegir imatge"
           save_image: "Guardar imatge"
       show:
-        proposal: Proposta ciutadana original
+        proposal: Iniciativa ciutadana original
         author: Autor
         question: Pregunta
         edit_question: Editar pregunta
@@ -1005,7 +1005,7 @@ val:
         id: ID
         author: Autor
         milestones: Seguiments
-        no_proposals: No hi han propostes.
+        no_proposals: No hi han iniciatives.
       subnav:
         proposals: Iniciatives
         help_text: Text d'ajuda
@@ -1016,8 +1016,8 @@ val:
           all: Totes
           with_confirmed_hide: Confirmats
           without_confirmed_hide: Pendents
-        title: Propostes ocultes
-        no_hidden_proposals: No hi ha propostes ocultes.
+        title: Iniciatives ocultes
+        no_hidden_proposals: No hi ha iniciatives ocultes.
     settings:
       flash:
         updated: Valor actualitzat
@@ -1054,7 +1054,7 @@ val:
           poll_officers: "Cercar presidents de taula"
           poll_questions: "Cercar preguntes"
           processes: "Cercar processos de elaboració normativa pero títol o descripció"
-          proposals: "Cercar propostes per títol, codi, descripció o pregunta"
+          proposals: "Cercar iniciatives per títol, codi, descripció o pregunta"
           users: "Cercar usuari per nom o correu electrònic"
         search: "Cercar"
       booths_search:
@@ -1068,7 +1068,7 @@ val:
         placeholder: Cercar preguntes
       proposal_search:
         button: Cercar
-        placeholder: Cercar propostes per títol, codi, descripció o pregunta
+        placeholder: Cercar iniciatives per títol, codi, descripció o pregunta
       user_search:
         button: Cercar
         placeholder: Cercar usuari per nom o correu electrònic
@@ -1082,7 +1082,7 @@ val:
       color_help: Format hexadecimal
       moderated_content: "Revisa el contigut moderat pels moderadors, i confirma si la moderació s'ha realitzat correctament."
       view: Veure
-      proposal: Proposta
+      proposal: Iniciativa
       author: Autor
       content: Contingut
       created_at: Creada el
@@ -1140,8 +1140,8 @@ val:
           comments: Comentaris
           debate_votes: Vots en debats
           debates: Debats
-          proposal_votes: Vots en propostes
-          proposals: Propostes
+          proposal_votes: Vots en iniciatives
+          proposals: Iniciatives
           budgets: Pressupostos oberts
           budget_investments: Propostes d'inversió
           unverified_users: Usuaris sense verificar
@@ -1149,12 +1149,12 @@ val:
           user_level_two: Usuaris de nivell dos
           users: Usuaris
           verified_users: Usuaris verificats
-          verified_users_who_didnt_vote_proposals: Usuaris verificats que no han votat propostes
+          verified_users_who_didnt_vote_proposals: Usuaris verificats que no han votat iniciatives
           visits: Visites
           votes: Vots
         budgets_title: Pressupostos participatius
         direct_messages: Missatges directes
-        proposal_notifications: Notificacions de propostes
+        proposal_notifications: Notificacions de iniciatives
         incomplete_verifications: Verificacions incompletes
         polls: Votacions
       direct_messages:
@@ -1162,10 +1162,10 @@ val:
         total: Total
         users_who_have_sent_message: Usuaris que han enviat un missatge privat
       proposal_notifications:
-        title: Notificacions de propostes
+        title: Notificacions de iniciatives
         total: Total
-        proposals_with_notifications: Propostes amb notificacions
-        not_available: "Proposta no disponible"
+        proposals_with_notifications: Iniciatives amb notificacions
+        not_available: "Iniciativa no disponible"
       polls:
         title: Estadístiques de votacions
         all: Votacions
@@ -1334,7 +1334,7 @@ val:
         link_text: Text de l'enllaç
         link_url: URL de l'enllaç
       feeds:
-        proposals: Propostes
+        proposals: Iniciatives
         debates: Debats
         processes: Processos
       new:
