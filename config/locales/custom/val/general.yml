@@ -282,7 +282,7 @@ val:
   proposals:
     create:
       form:
-        submit_button: Crear proposta
+        submit_button: Crear iniciativa
     created:
       title: "Enhorabona! Has fet el primer pas!"
       motivation: "Es importante preparar la campaña de lanzamiento de tu propuesta para que tenga éxito. Los primeros días son decisivos."
@@ -295,16 +295,16 @@ val:
       dashboard: Ver mas información
       message: "Compartisc aquesta iniciativa %{title} de %{handle}, accedeix al portal, informa't i participa!"
     edit:
-      editing: Editar proposta
+      editing: Editar iniciativa
       form:
         submit_button: Guardar canvis
-      show_link: Vore proposta
+      show_link: Vore iniciativa
     retire_form:
-      title: Retirar proposta
-      warning: "Si segueixes avant la teua proposta podrà seguir rebent avals, però deixarà de ser llistada en la lista principal, i apareixerà un missatge per a tots els usuaris avisant-los de que l'autor/a considera que esta proposta no ha de seguir rebent avals"
+      title: Retirar iniciativa
+      warning: "Si segueixes avant la teua iniciativa podrà seguir rebent avals, però deixarà de ser llistada en la lista principal, i apareixerà un missatge per a tots els usuaris avisant-los de que l'autor/a considera que esta iniciativa no ha de seguir rebent avals"
       retired_reason_blank: Selecciona una opció
-      retired_explanation_placeholder: Explica breument per qué consideres que esta proposta no ha de recollir més avals
-      submit_button: Retirar proposta
+      retired_explanation_placeholder: Explica breument per qué consideres que esta iniciativa no ha de recollir més avals
+      submit_button: Retirar iniciativa
     retire_options:
       duplicated: Duplicades
       started: En execució
@@ -316,13 +316,13 @@ val:
       proposal_summary_note: "(Màxim 200 caràcters)"
       proposal_video_url_note: Pots afegir un enllaç a YouTube o Vimeo
       tag_category_label: "Categories"
-      tags_instructions: "Etiqueta aquesta proposta. Pots triar entre les categories proposades o introduir les que desitges"
+      tags_instructions: "Etiqueta aquesta iniciativa. Pots triar entre les categories proposades o introduir les que desitges"
       tags_label: Etiquetes
       tags_placeholder: "Escriu les etiquetes que desitges separades per coma (',')"
       map_location: "Ubicació en el mapa"
       map_location_instructions: "Navega pel mapa fins la ubicació i deixa el marcador."
       map_remove_marker: "Eliminar el marcador"
-      map_skip_checkbox: "Aquesta proposta no té una ubicació concreta o no la coneixem."
+      map_skip_checkbox: "Aquesta iniciativa no té una ubicació concreta o no la coneixem."
     index:
       featured_proposals: Destacar
       orders:
@@ -611,9 +611,9 @@ val:
     index:
       visits: Visites
       debates: Debats
-      proposals: Propostes
+      proposals: Iniciatives
       comments: Comentaris
-      proposal_votes: Vots en propostes
+      proposal_votes: Vots en Iniciatives
       debate_votes: Vots en debats
       comment_votes: Vots en comentaris
       votes: Vots totals
@@ -637,7 +637,7 @@ val:
       deleted_debate: Este debat ha segut eliminat
       deleted_proposal: Esta proposta ha segut eliminada
       deleted_budget_investment: Esta proposta d'inversió ha segut eliminada
-      proposals: Propostes
+      proposals: Iniciatives
       debates: Debats
       budget_investments: Propostes
       comments: Comentaris
@@ -650,8 +650,8 @@ val:
           one: 1 Debat
           other: "%{count} Debats"
         proposals:
-          one: 1 Proposta
-          other: "%{count} Propostes"
+          one: 1 Iniciativa
+          other: "%{count} Iniciatives"
         budget_investments:
           one: 1 Projecte de pressupostos participatius
           other: "%{count} Projectes de pressupostos participatius"
@@ -662,10 +662,10 @@ val:
       no_private_messages: "Este usuari no accepta missatges privats."
       private_activity: Este usuari ha decidit mantindre en privat la seua llista d'activitats.
       send_private_message: "Enviar un missatge privat"
-      delete_alert: "Segur que desitges eliminar aquesta proposta? Aquesta acció no es pot desfer"
+      delete_alert: "Segur que desitges eliminar aquesta iniciativa? Aquesta acció no es pot desfer"
     proposals:
-      retired: "Proposta retirada"
-      see: "Vore proposta"
+      retired: "Iniciativa retirada"
+      see: "Vore iniciativa"
   votes:
     agree: Estic d'acord
     anonymous: Massa vots anònims, per a poder votar %{verify_account}.
@@ -702,17 +702,17 @@ val:
     slider:
       title:
         month: 18M
-        budget_gva: "<span>Propostes ciutadanes</span>"
-      txt: "Consideres que la Generalitat Valenciana hauria d’actuar en alguna àrea o projecte concret? Presenta la teua proposta d’iniciativa o dona suport a aquelles que et semblen més adequades. Les propostes que obtinguen 5.000 suports es traslladaran a l’entitat competent per a la seua consideració."
+        budget_gva: "<span>Iniciatives ciutadanes</span>"
+      txt: "Consideres que la Generalitat Valenciana hauria d’actuar en alguna àrea o projecte concret? Presenta la teua proposta d’iniciativa o dona suport a aquelles que et semblen més adequades. Les iniciatives que obtinguen 5.000 suports es traslladaran a l’entitat competent per a la seua consideració."
       button_debates: "Participa en els debats"
       button_proposal: "Presenta la teua proposta!"
     feed:
       most_active:
         debates: "Debats més actius"
-        proposals: "Propostes més actives"
+        proposals: "Iniciatives més actives"
         processes: "Processos actius"
       see_all_debates: Veure tots els debats
-      see_all_proposals: Veure totes les propostes
+      see_all_proposals: Veure totes les iniciatives
       see_all_processes: Veure tots els processos
       process_label: Proces
       see_process: Veure procés
@@ -725,13 +725,13 @@ val:
         title: Debats recomanats
         btn_text_link: Tots els debats recomanats
       proposals:
-        title: Propostes recomanades
-        btn_text_link: Totes les propostes recomanades
+        title: Iniciatives recomanades
+        btn_text_link: Totes les iniciatives recomanades
       budget_investments:
         title: Pressupostos recomanats
       slide: "Veure %{title}"
     welcome:
-      go_to_index: Vore propostes i debats
+      go_to_index: Vore Iniciativei i debats
       title: Participa
       more_resources: Més recursos
       user_permission_info: Amb el teu compte ja pots...

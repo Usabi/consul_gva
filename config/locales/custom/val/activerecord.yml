@@ -247,9 +247,9 @@ val:
         terms_of_service: "Termes de servei"
         video_url: "Enllaç a vídeo extern"
       proposal/translation:
-        title: "Títol de la iniciative"
-        description: "Text desenvolupat de la iniciative"
-        summary: "Resum de la iniciative"
+        title: "Títol de la iniciativa"
+        description: "Text desenvolupat de la iniciativa"
+        summary: "Resum de la iniciativa"
         retired_explanation: "Explicación"
       user:
         login: "Email o nom de la persona usuària"
