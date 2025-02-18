@@ -1319,9 +1319,23 @@ es:
         id: ID
         author: Autor
         milestones: Hitos
+        supports: Apoyos totales
+        created_at: Fecha creación
+        tags: Etiquetas
         select: Seleccionar
         selected: Seleccionada
         no_proposals: No hay iniciativas.
+        list:
+            id: ID
+            title: Título
+            author_username: Autor
+            milestones: Hitos
+            supports: Apoyos totales
+            created_at: Fecha creación
+            sdg: ODS
+            tags: Etiquetas
+            selected: Seleccionada
+
       show:
         create_question: Añadir esta iniciativa a una votación para ser votada
       form:
