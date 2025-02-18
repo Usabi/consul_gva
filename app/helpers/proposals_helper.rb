@@ -110,31 +110,4 @@ module ProposalsHelper
   def show_recommended_proposals?
     params[:selected].blank? && feature?("user.recommendations") && @recommended_proposals.present?
   end
-
-  # CUSTOM
-  def link_to_proposals_sorted_by(column)
-    direction = set_direction(params[:direction])
-    icon = set_sorting_icon(direction, column)
-
-    translation = t("admin.proposals.index.list.#{column}")
-
-    link_to(
-      safe_join([translation, tag.span(class: "icon-sortable #{icon}")]),
-      admin_proposals_path(sort_by: column, direction: direction)
-    )
-  end
-
-  def set_sorting_icon(direction, sort_by)
-    if sort_by.to_s == params[:sort_by]
-      if direction == "desc"
-        "desc"
-      else
-        "asc"
-      end
-    else
-      ""
-    end
-  end
-
-  # END CUSTOM
 end
