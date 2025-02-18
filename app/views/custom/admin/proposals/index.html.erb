@@ -4,14 +4,14 @@
 
 <h2><%= t("admin.proposals.index.title") %></h2>
 
+<%= render "search_form" %>
+
 <%= render "admin/proposals/subnav", i18n_namespace: "admin.proposals.index", active: "proposals" %>
 
 <% if @proposals.any? %>
   <%= link_to t("admin.budget_investments.index.download_current_selection"),
             admin_proposals_path(csv_params),
             class: "float-right small clear" %>
-  <%= render Admin::SearchComponent.new(label: t("admin.shared.search.label.proposals")) %>
-
   <h3><%= page_entries_info @proposals %></h3>
 
   <table>
@@ -24,6 +24,7 @@
         <th data-field="supports" ><%= link_to_proposals_sorted_by :supports %></th>
         <th data-field="created_at" ><%= link_to_proposals_sorted_by :created_at %></th>
         <th><%= t("admin.proposals.index.sdg") %></th>
+        <th><%= t("admin.proposals.index.target") %></th>
         <th><%= t("admin.proposals.index.tags") %></th>
         <th><%= t("admin.proposals.index.selected") %></th>
       </tr>
@@ -38,7 +39,8 @@
           <td><%= proposal.milestones.count %></td>
           <td><%= proposal.cached_votes_up %></td>
           <td><%= proposal.created_at.strftime("%d/%m/%Y") %></td>
-          <td><%= proposal.related_sdg_list %></td>
+          <td><%= proposal.sdg_goal_list %></td>
+          <td><%= proposal.sdg_target_list %></td>
           <td><%= proposal.tags_list.join(", ") %></td>
           <td class="js-select"><%= render "select_proposal", proposal: proposal %></td>
         </tr>

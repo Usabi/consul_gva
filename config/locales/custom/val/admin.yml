@@ -1005,7 +1005,25 @@ val:
         id: ID
         author: Autor
         milestones: Seguiments
+        supports: Suports totals
+        created_at: Data creació
+        tags: Etiquetes
+        sdg: Objectiu
+        target: Meta
+        select: Seleccionar
+        selected: Seleccionada
         no_proposals: No hi han iniciatives.
+        list:
+            id: ID
+            title: Iniciatives
+            author_username: Autor
+            milestones: Seguiments
+            supports: Suports totals
+            created_at: Data creació
+            sdg: Objectiu
+            target: Meta
+            tags: Etiquetes
+            selected: Seleccionada
       subnav:
         proposals: Iniciatives
         help_text: Text d'ajuda

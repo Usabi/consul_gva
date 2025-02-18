@@ -1322,17 +1322,20 @@ es:
         supports: Apoyos totales
         created_at: Fecha creación
         tags: Etiquetas
+        sdg: Objetivo
+        target: Meta
         select: Seleccionar
         selected: Seleccionada
         no_proposals: No hay iniciativas.
         list:
             id: ID
-            title: Título
+            title: Iniciativas
             author_username: Autor
             milestones: Hitos
             supports: Apoyos totales
             created_at: Fecha creación
-            sdg: ODS
+            sdg: Objetivo
+            target: Meta
             tags: Etiquetas
             selected: Seleccionada
 

@@ -13,8 +13,8 @@ module Filterable
   class_methods do
     def allowed_filter?(filter, value)
       return if value.blank?
-
-      ["official_level", "date_range", "tag", "geozone", "id"].include?(filter)
+      
+      ["official_level", "date_range", "tag", "geozone", "id", "goal", "target"].include?(filter)
     end
   end
 end
