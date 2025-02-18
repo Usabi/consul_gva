@@ -7,6 +7,9 @@
 <%= render "admin/proposals/subnav", i18n_namespace: "admin.proposals.index", active: "proposals" %>
 
 <% if @proposals.any? %>
+  <%= link_to t("admin.budget_investments.index.download_current_selection"),
+            admin_proposals_path(csv_params),
+            class: "float-right small clear" %>
   <%= render Admin::SearchComponent.new(label: t("admin.shared.search.label.proposals")) %>
 
   <h3><%= page_entries_info @proposals %></h3>

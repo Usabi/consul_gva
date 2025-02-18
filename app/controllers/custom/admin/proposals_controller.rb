@@ -8,7 +8,14 @@ class Admin::ProposalsController
   def index
     @proposals = ::Proposal.order_filter(params)
     @proposals = Kaminari.paginate_array(@proposals) if @proposals.is_a?(Array)
-    @proposals = @proposals.page(params[:page])
+    @proposals = @proposals.page(params[:page]) unless request.format.csv?
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data Proposal::Exporter.new(@proposals).to_csv,
+                  filename: "proposals.csv"
+      end
+    end
   end
 
   def help_page
