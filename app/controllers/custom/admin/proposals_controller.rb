@@ -6,8 +6,9 @@ class Admin::ProposalsController
   before_action :load_proposal, except: %i[index help_page]
 
   def index
-    @proposals = ::Proposal.all.accessible_by(current_ability)
-                           .page(params[:page])
+    @proposals = ::Proposal.order_filter(params)
+    @proposals = Kaminari.paginate_array(@proposals) if @proposals.is_a?(Array)
+    @proposals = @proposals.page(params[:page])
   end
 
   def help_page
