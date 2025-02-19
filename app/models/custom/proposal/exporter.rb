@@ -28,6 +28,7 @@ class Proposal::Exporter
         I18n.t("admin.proposals.index.list.supports"),
         I18n.t("admin.proposals.index.list.created_at"),
         I18n.t("admin.proposals.index.list.sdg"),
+        I18n.t("admin.proposals.index.list.target"),
         I18n.t("admin.proposals.index.list.tags"),
         I18n.t("admin.proposals.index.list.selected")
       ]
@@ -41,7 +42,8 @@ class Proposal::Exporter
         proposal.milestones.count,
         proposal.total_votes.to_s,
         proposal.created_at.strftime("%d/%m/%Y"),
-        proposal.related_sdg_list.split(",").join(";").presence || "-",
+        proposal.sdg_goal_list.split(",").join(";").presence || "-",
+        proposal.sdg_target_list.split(",").join(";").presence || "-",
         proposal.tags_list.join(";").presence || "-",
         proposal.selected? ? I18n.t("shared.yes") : I18n.t("shared.no")
       ]
