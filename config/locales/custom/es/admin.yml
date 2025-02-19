@@ -525,7 +525,21 @@ es:
         id: ID
         author: Autor
         title: Debates
+        supports: Apoyos totales
+        created_at: Fecha creación
+        sdg: Objetivo
+        target: Meta
+        tags: Etiquetas
         no_debates: No hay debates.
+        list:
+            id: ID
+            title: Debates
+            author_username: Autor
+            supports: Apoyos totales
+            created_at: Fecha creación
+            sdg: Objetivo
+            target: Meta
+            tags: Etiquetas
       subnav:
         debates: Debates
         help_text: Texto de ayuda
