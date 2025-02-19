@@ -45,8 +45,9 @@ class Proposal
   end
 
   def self.scoped_filter(params, current_filter)
-    results = Proposal.all
+    results = ::Proposal
 
+    results = results.filter_by(@advanced_search_terms) if @advanced_search_terms.present?
     if params[:min_total_supports].present?
       results = results.where("cached_votes_up >= ?", params[:min_total_supports])
     end

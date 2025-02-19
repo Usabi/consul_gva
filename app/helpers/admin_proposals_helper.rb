@@ -13,11 +13,7 @@ module AdminProposalsHelper
 
   def set_sorting_icon(direction, sort_by)
     if sort_by.to_s == params[:sort_by]
-      if direction == "desc"
-        "desc"
-      else
-        "asc"
-      end
+      direction == "desc" ? "desc" : "asc"
     else
       ""
     end
