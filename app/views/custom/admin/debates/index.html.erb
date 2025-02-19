@@ -7,15 +7,25 @@
 <%= render "admin/debates/subnav", i18n_namespace: "admin.debates.index", active: "debates" %>
 
 <% if @debates.any? %>
-  <%= render Admin::SearchComponent.new(label: t("admin.shared.search.label.debates")) %>
+  <%= render "search_form" %>
 
-  <h3 class="inline-block"><%= page_entries_info @debates %></h3>
+  <%= link_to t("admin.budget_investments.index.download_current_selection"),
+            admin_debates_path(csv_params),
+            class: "float-right small clear" %>
+
+
+  <h3><%= page_entries_info @debates %></h3>
 
   <table>
     <thead>
-      <th class="text-center"><%= t("admin.debates.index.id") %></th>
-      <th><%= Debate.human_attribute_name(:title) %></th>
+      <th class="text-center"><%= link_to_sorted_admin_resource "debates", :id %></th>
+      <th><%= link_to_sorted_admin_resource "debates", :title %></th>
       <th><%= t("admin.debates.index.author") %></th>
+      <th data-field="supports" ><%= link_to_sorted_admin_resource "debates", :supports %></th>
+      <th data-field="created_at" ><%= link_to_sorted_admin_resource "debates", :created_at %></th>
+      <th><%= t("admin.proposals.index.sdg") %></th>
+      <th><%= t("admin.proposals.index.target") %></th>
+      <th><%= t("admin.proposals.index.tags") %></th>
     </thead>
     <tbody>
       <% @debates.each do |debate| %>
@@ -23,6 +33,11 @@
           <td class="text-center"><%= debate.id %></td>
           <td><%= link_to debate.title, admin_debate_path(debate) %></td>
           <td><%= debate.author.username %></td>
+          <td><%= debate.cached_votes_up %></td>
+          <td><%= debate.created_at.strftime("%d/%m/%Y") %></td>
+          <td><%= debate.sdg_goal_list %></td>
+          <td><%= debate.sdg_target_list %></td>
+          <td><%= debate.tags_list.join(", ") %></td>
         </tr>
       <% end %>
     </tbody>
