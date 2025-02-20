@@ -1,6 +1,6 @@
 require "json"
 
-load Rails.root.join("lib", "census_api.rb")
+load Rails.root.join("app", "lib", "census_api.rb")
 
 class CensusApi
   def call(document_type, document_number, other_data = {})

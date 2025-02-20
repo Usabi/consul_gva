@@ -1,4 +1,4 @@
-load Rails.root.join("lib", "application_logger.rb")
+load Rails.root.join("app", "lib", "application_logger.rb")
 
 class ApplicationLogger
   def warn(message)

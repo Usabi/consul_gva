@@ -1,4 +1,4 @@
-load Rails.root.join("lib", "user_segments.rb")
+load Rails.root.join("app", "lib", "user_segments.rb")
 
 class UserSegments
   def self.segments
