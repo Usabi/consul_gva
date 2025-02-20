@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   mount Ckeditor::Engine => "/ckeditor"
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
+  draw :custom
+
   draw :account
   draw :admin
   draw :budget
@@ -34,7 +36,6 @@ Rails.application.routes.draw do
   get "/participem_gv_login", to: "users/gv_login#login_or_redirect_to_sso"
   get "robots.txt", to: "robots#index"
 
-  resources :stats, only: [:index]
   resources :images, only: [:destroy]
   resources :documents, only: [:destroy]
   resources :follows, only: [:create, :destroy]
