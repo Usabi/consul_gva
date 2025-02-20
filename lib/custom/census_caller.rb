@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("lib", "census_caller").to_s
+load Rails.root.join("lib", "census_caller.rb")
 
 class CensusCaller
   def call(document_type, document_number, other_data = {})

@@ -1,5 +1,5 @@
 
-require_dependency Rails.root.join("app", "controllers", "concerns", "admin", "budget_headings_actions").to_s
+load Rails.root.join("app", "controllers", "concerns", "admin", "budget_headings_actions.rb")
 
 module Admin::BudgetHeadingsActions
   private

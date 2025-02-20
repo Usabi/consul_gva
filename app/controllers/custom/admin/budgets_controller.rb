@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "controllers", "admin", "budgets_controller").to_s
+load Rails.root.join("app", "controllers", "admin", "budgets_controller.rb")
 
 class Admin::BudgetsController
   include Admin::HelpPagesActions

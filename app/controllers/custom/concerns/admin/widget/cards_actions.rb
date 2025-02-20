@@ -1,5 +1,5 @@
 
-require_dependency Rails.root.join("app", "controllers", "concerns", "admin", "widget", "cards_actions").to_s
+load Rails.root.join("app", "controllers", "concerns", "admin", "widget", "cards_actions.rb")
 
 module Admin::Widget::CardsActions
   private

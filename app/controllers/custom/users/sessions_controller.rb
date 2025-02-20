@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "controllers", "users", "sessions_controller").to_s
+load Rails.root.join("app", "controllers", "users", "sessions_controller.rb")
 
 class Users::SessionsController
   if Rails.application.secrets.site_key.present?

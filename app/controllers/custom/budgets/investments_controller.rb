@@ -1,4 +1,4 @@
-require_dependency Rails.root.join('app', 'controllers', 'budgets', 'investments_controller').to_s
+load Rails.root.join('app', 'controllers', 'budgets', 'investments_controller.rb')
 class Budgets::InvestmentsController
   # Rails.application.load_tasks # NOTE: En Valencia lo tienen pero no sé si es necesario (igual hace falta si pasa algo con tareas)
 

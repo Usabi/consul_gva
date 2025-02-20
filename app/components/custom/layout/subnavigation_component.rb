@@ -1,7 +1,7 @@
 
 class Layout::SubnavigationComponent < ApplicationComponent; end
 
-require_dependency Rails.root.join("app", "components", "layout", "subnavigation_component")
+load Rails.root.join("app", "components", "layout", "subnavigation_component.rb")
 
 class Layout::SubnavigationComponent
   def locale

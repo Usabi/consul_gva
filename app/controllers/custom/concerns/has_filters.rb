@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "controllers", "concerns", "has_filters").to_s
+load Rails.root.join("app", "controllers", "concerns", "has_filters.rb")
 
 module HasFilters
 

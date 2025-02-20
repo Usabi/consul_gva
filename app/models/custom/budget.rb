@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "models", "budget").to_s
+load Rails.root.join("app", "models", "budget.rb")
 
 class Budget
   def self.change_phase

@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "controllers", "concerns", "commentable_actions").to_s
+load Rails.root.join("app", "controllers", "concerns", "commentable_actions.rb")
 
 module CommentableActions
 

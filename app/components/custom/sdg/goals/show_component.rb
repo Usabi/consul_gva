@@ -1,6 +1,6 @@
 class SDG::Goals::ShowComponent < ApplicationComponent; end
 
-require_dependency Rails.root.join("app", "components", "sdg", "goals", "show_component")
+load Rails.root.join("app", "components", "sdg", "goals", "show_component.rb")
 
 class SDG::Goals::ShowComponent
   attr_reader :goal

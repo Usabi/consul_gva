@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "controllers", "admin", "budget_investments_controller").to_s
+load Rails.root.join("app", "controllers", "admin", "budget_investments_controller.rb")
 
 class Admin::BudgetInvestmentsController
   before_action :load_investment, only: [:show, :edit, :update, :toggle_selection, :toggle_winner]

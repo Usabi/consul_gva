@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "models", "concerns", "statisticable").to_s
+load Rails.root.join("app", "models", "concerns", "statisticable.rb")
 
 module Statisticable
   class_methods do

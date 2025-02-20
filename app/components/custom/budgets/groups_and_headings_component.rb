@@ -1,6 +1,6 @@
 class Budgets::GroupsAndHeadingsComponent < ApplicationComponent; end
 
-require_dependency Rails.root.join("app", "components", "budgets", "groups_and_headings_component")
+load Rails.root.join("app", "components", "budgets", "groups_and_headings_component.rb")
 
 class Budgets::GroupsAndHeadingsComponent
 

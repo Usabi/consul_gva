@@ -1,6 +1,6 @@
 
 class Documents::NestedComponent < ApplicationComponent; end
-require_dependency Rails.root.join("app", "components", "documents", "nested_component")
+load Rails.root.join("app", "components", "documents", "nested_component.rb")
 
 class Documents::NestedComponent
   attr_reader :f, :consult_document

@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "models", "concerns", "filterable").to_s
+load Rails.root.join("app", "models", "concerns", "filterable.rb")
 
 module Filterable
   def self.included(base)

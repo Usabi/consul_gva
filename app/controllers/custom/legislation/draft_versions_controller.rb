@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "controllers", "legislation", "draft_versions_controller").to_s
+load Rails.root.join("app", "controllers", "legislation", "draft_versions_controller.rb")
 
 class Legislation::DraftVersionsController
   private

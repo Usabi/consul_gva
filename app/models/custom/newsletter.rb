@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "models", "newsletter").to_s
+load Rails.root.join("app", "models", "newsletter.rb")
 
 class Newsletter
   serialize :segment_recipient, Array

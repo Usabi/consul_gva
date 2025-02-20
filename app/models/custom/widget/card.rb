@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "models", "widget", "card").to_s
+load Rails.root.join("app", "models", "widget", "card.rb")
 
 class Widget::Card
   translates :link_url, touch: true

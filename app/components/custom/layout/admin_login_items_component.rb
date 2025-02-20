@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "components", "layout", "admin_login_items_component")
+load Rails.root.join("app", "components", "layout", "admin_login_items_component.rb")
 
 class Layout::AdminLoginItemsComponent
   def render?

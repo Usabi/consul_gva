@@ -1,6 +1,6 @@
 class Shared::AdvancedSearchComponent < ApplicationComponent; end
 
-require_dependency Rails.root.join("app", "components", "shared", "advanced_search_component").to_s
+load Rails.root.join("app", "components", "shared", "advanced_search_component.rb")
 
 class Shared::AdvancedSearchComponent
   def debates?

@@ -1,6 +1,6 @@
 class Layout::LocaleSwitcherComponent < ApplicationComponent; end
 
-require_dependency Rails.root.join("app", "components", "layout", "locale_switcher_component")
+load Rails.root.join("app", "components", "layout", "locale_switcher_component.rb")
 
 class Layout::LocaleSwitcherComponent
 

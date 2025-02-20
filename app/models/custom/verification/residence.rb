@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "models", "verification", "residence").to_s
+load Rails.root.join("app", "models", "verification", "residence.rb")
 
 class Verification::Residence
   validates :gender, :name, :first_surname, presence: true

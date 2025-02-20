@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("lib", "application_logger").to_s
+load Rails.root.join("lib", "application_logger.rb")
 
 class ApplicationLogger
   def warn(message)

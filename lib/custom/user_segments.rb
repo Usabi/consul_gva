@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("lib", "user_segments").to_s
+load Rails.root.join("lib", "user_segments.rb")
 
 class UserSegments
   def self.segments

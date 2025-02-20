@@ -1,4 +1,4 @@
-require_dependency Rails.root.join('app', 'mailers', 'mailer').to_s
+load Rails.root.join("app", "mailers", "mailer.rb")
 
 class Mailer
   def budget_investment_not_selected(investment)

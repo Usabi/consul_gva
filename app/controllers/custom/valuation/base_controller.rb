@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "controllers", "valuation", "base_controller").to_s
+load Rails.root.join("app", "controllers", "valuation", "base_controller.rb")
 
 class Valuation::BaseController < ApplicationController
   private

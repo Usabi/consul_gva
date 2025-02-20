@@ -1,4 +1,4 @@
-require_dependency Rails.root.join('app', 'controllers', 'admin', 'verifications_controller').to_s
+load Rails.root.join('app', 'controllers', 'admin', 'verifications_controller.rb')
 
 class Admin::VerificationsController
   def request_verification

@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "controllers", "admin", "debates_controller").to_s
+load Rails.root.join("app", "controllers", "admin", "debates_controller.rb")
 
 class Admin::DebatesController
   include Admin::HelpPagesActions

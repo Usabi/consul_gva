@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "models", "legislation", "proposal").to_s
+load Rails.root.join("app", "models", "legislation", "proposal.rb")
 
 class Legislation::Proposal
   def all_comments

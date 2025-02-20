@@ -1,7 +1,7 @@
 
 class Layout::AdminHeaderComponent < ApplicationComponent; end
 
-require_dependency Rails.root.join("app", "components", "layout", "admin_header_component")
+load Rails.root.join("app", "components", "layout", "admin_header_component.rb")
 
 class Layout::AdminHeaderComponent
   private

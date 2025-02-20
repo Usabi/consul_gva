@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "models", "comment").to_s
+load Rails.root.join("app", "models", "comment.rb")
 
 class Comment
   scope :not_as_admin_or_moderator, -> do

@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "controllers", "sdg_management", "goals_controller").to_s
+load Rails.root.join("app", "controllers", "sdg_management", "goals_controller.rb")
 
 class SDGManagement::GoalsController
   load_and_authorize_resource class: "SDG::Goal"

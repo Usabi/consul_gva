@@ -1,7 +1,7 @@
 
 class Layout::ResponsiveMenuComponent < ApplicationComponent; end
 
-require_dependency Rails.root.join("app", "components", "layout", "responsive_menu_component")
+load Rails.root.join("app", "components", "layout", "responsive_menu_component.rb")
 
 class Layout::ResponsiveMenuComponent
 end

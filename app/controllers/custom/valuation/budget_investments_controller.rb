@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "controllers", "valuation", "budget_investments_controller").to_s
+load Rails.root.join("app", "controllers", "valuation", "budget_investments_controller.rb")
 
 class Valuation::BudgetInvestmentsController
   def valuate

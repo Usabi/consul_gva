@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "models", "milestone", "status").to_s
+load Rails.root.join("app", "models", "milestone", "status.rb")
 
 class Milestone::Status
   translates :name, touch: true

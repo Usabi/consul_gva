@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "controllers", "admin", "milestone_statuses_controller").to_s
+load Rails.root.join("app", "controllers", "admin", "milestone_statuses_controller.rb")
 
 class Admin::MilestoneStatusesController
   include Translatable

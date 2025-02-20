@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "controllers", "admin", "poll", "polls_controller").to_s
+load Rails.root.join("app", "controllers", "admin", "poll", "polls_controller.rb")
 
 class Admin::Poll::PollsController
   include Admin::HelpPagesActions

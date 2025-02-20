@@ -1,6 +1,6 @@
 class SDGManagement::Targets::IndexComponent < ApplicationComponent; end
 
-require_dependency Rails.root.join("app", "components", "sdg_management", "targets", "index_component")
+load Rails.root.join("app", "components", "sdg_management", "targets", "index_component.rb")
 
 class SDGManagement::Targets::IndexComponent
   include Header

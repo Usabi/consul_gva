@@ -1,6 +1,6 @@
 class Documents::FieldsComponent < ApplicationComponent; end
 
-require_dependency Rails.root.join("app", "components", "documents", "fields_component")
+load Rails.root.join("app", "components", "documents", "fields_component.rb")
 
 class Documents::FieldsComponent
   attr_reader :f, :consult_document

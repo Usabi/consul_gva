@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "models", "sdg", "target").to_s
+load Rails.root.join("app", "models", "sdg", "target.rb")
 
 class SDG::Target
   include ActionView::Helpers::TranslationHelper

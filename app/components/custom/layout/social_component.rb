@@ -1,6 +1,6 @@
 class Layout::SocialComponent < ApplicationComponent; end
 
-require_dependency Rails.root.join("app", "components", "layout", "social_component")
+load Rails.root.join("app", "components", "layout", "social_component.rb")
 
 class Layout::SocialComponent
 

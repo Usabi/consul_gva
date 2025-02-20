@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "controllers", "concerns", "document_attributes").to_s
+load Rails.root.join("app", "controllers", "concerns", "document_attributes.rb")
 
 
 module DocumentAttributes

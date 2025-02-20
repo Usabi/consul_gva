@@ -1,6 +1,6 @@
 class Budgets::PhasesComponent < ApplicationComponent; end
 
-require_dependency Rails.root.join("app", "components", "budgets", "phases_component").to_s
+load Rails.root.join("app", "components", "budgets", "phases_component.rb")
 
 class Budgets::PhasesComponent < ApplicationComponent
 end

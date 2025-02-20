@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "models", "image").to_s
+load Rails.root.join("app", "models", "image.rb")
 
 class Image
   def variant(style)
