@@ -17,7 +17,7 @@ module Custom::ProcessesHelper
     tabs = {
       "processes" => admin_legislation_processes_path
     }
-    if current_user&.administrator? || (current_user&.legislator? && current_user == process.user)
+    if current_user&.administrator? || current_user&.legislator?
       tabs = tabs.merge({ "help_text" => help_page_admin_legislation_processes_path })
     end
     tabs
