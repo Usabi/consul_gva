@@ -23,7 +23,7 @@ module Abilities
       :milestones], Legislation::Process, legislators: { id: user&.legislator&.id }
 
 
-      can [:create], Legislation::Process
+      can [:create, :help_page], Legislation::Process
       can [:update, :destroy], Legislation::Process do |process|
         process.user_id == user.id || process.legislator_ids.include?(user&.legislator&.id)
       end
