@@ -1,5 +1,7 @@
 <% init_advanced_menu %>
 <%= form_tag(admin_proposals_path, method: :get, enforce_utf8: false) do %>
+  <button type="button" aria-expanded="true" id="js-advanced-search-title" class="advanced-search small" hidden>
+  </button>
   <div class="small-12 column">
     <%= link_to "#advanced_filters_content",
                 data: { toggle: "advanced_filters" },
@@ -32,8 +34,8 @@
   </div>
 
   <div class="small-12 medium-3 column">
+   <div class="date-filters">
       <div class="filter">
-
         <%= select_tag("advanced_search[date_min]", date_range_options,
                        include_blank: t("shared.advanced_search.date_range_blank"),
                        id: "js-advanced-search-date-min") %>
@@ -45,7 +47,7 @@
             <%= t("shared.advanced_search.from") %> (<%= t("shared.advanced_search.date_placeholder") %>)
           </label>
           <%= text_field_tag "advanced_search[date_min]",
-                             params[:date_min],
+                             advanced_search[:date_min],
                              class: "js-calendar" %>
         </div>
         <div class="filter">
@@ -53,10 +55,11 @@
             <%= t("shared.advanced_search.to") %> (<%= t("shared.advanced_search.date_placeholder") %>)
           </label>
           <%= text_field_tag "advanced_search[date_max]",
-                             params[:date_max],
+                             advanced_search[:date_max],
                              class: "js-calendar" %>
         </div>
       </div>
+    </div>
     </div>
 
   <div class="small-12 medium-3 column">

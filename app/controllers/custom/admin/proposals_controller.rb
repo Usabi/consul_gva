@@ -7,7 +7,7 @@ class Admin::ProposalsController
   has_filters %w[all], only: :index
 
   def index
-    @proposals = ::Proposal.scoped_filter(params, @current_filter).order_filter(params)
+    @proposals = ::Proposal.scoped_filter(params, @current_filter, @advanced_search_terms).order_filter(params)
     @proposals = Kaminari.paginate_array(@proposals) if @proposals.is_a?(Array)
     @proposals = @proposals.page(params[:page]) unless request.format.csv?
     respond_to do |format|

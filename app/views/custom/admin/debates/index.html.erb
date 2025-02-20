@@ -4,10 +4,14 @@
 
 <h2><%= t("admin.debates.index.title") %></h2>
 
+
 <%= render "admin/debates/subnav", i18n_namespace: "admin.debates.index", active: "debates" %>
 
+<%= render "search_form" %>
+
+<div></div>
+
 <% if @debates.any? %>
-  <%= render "search_form" %>
 
   <%= link_to t("admin.budget_investments.index.download_current_selection"),
             admin_debates_path(csv_params),
@@ -45,7 +49,7 @@
 
   <%= paginate @debates %>
 <% else %>
-  <div class="callout primary margin">
+  <div class="callout primary margin column">
     <%= t("admin.debates.index.no_debates") %>
   </div>
 <% end %>

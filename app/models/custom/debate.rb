@@ -34,9 +34,9 @@ class Debate
     orders
   end
 
-  def self.scoped_filter(params, current_filter)
+  def self.scoped_filter(params, current_filter, advanced_search_terms)
     results = Debate
-    results = results.filter_by(@advanced_search_terms) if @advanced_search_terms.present?
+    results = results.filter_by(advanced_search_terms) if advanced_search_terms.present?
     if params[:min_total_supports].present?
       results = results.where("cached_votes_up >= ?", params[:min_total_supports])
     end
