@@ -6,8 +6,9 @@
 
 <%= render "admin/proposals/subnav", i18n_namespace: "admin.proposals.index", active: "proposals" %>
 
+<%= render "search_form" %>
+
 <% if @proposals.any? %>
-  <%= render "search_form" %>
 
   <%= link_to t("admin.budget_investments.index.download_current_selection"),
             admin_proposals_path(csv_params),
@@ -50,7 +51,7 @@
 
   <%= paginate @proposals %>
 <% else %>
-  <div class="callout primary">
+  <div class="callout primary column">
     <%= t("admin.proposals.index.no_proposals") %>
   </div>
 <% end %>
