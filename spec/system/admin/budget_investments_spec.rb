@@ -1326,7 +1326,7 @@ describe "Admin budget investments", :admin do
     end
   end
 
-  context "Selecting" do
+  context "Selecting", consul: true do
     let!(:unfeasible_bi) do
       create(:budget_investment, :unfeasible, budget: budget, title: "Unfeasible project")
     end
@@ -1422,7 +1422,7 @@ describe "Admin budget investments", :admin do
       expect(page).not_to have_content(feasible_vf_bi.title)
     end
 
-    scenario "Showing the selection buttons" do
+    scenario "Showing the selection buttons", consul: true do
       visit admin_budget_budget_investments_path(budget)
 
       within("#budget_investment_#{unfeasible_bi.id}") do
@@ -1539,7 +1539,7 @@ describe "Admin budget investments", :admin do
     end
   end
 
-  context "Mark as visible to valuators" do
+  context "Mark as visible to valuators", consul: true do
     let(:valuator) { create(:valuator) }
     let(:admin) { create(:administrator) }
 
@@ -1594,7 +1594,7 @@ describe "Admin budget investments", :admin do
       expect(page).not_to have_content investment2.title
     end
 
-    scenario "Unmark as visible to valuator" do
+    scenario "Unmark as visible to valuator", consul: true do
       budget.update!(phase: "valuating")
 
       investment1.valuators << valuator
@@ -1666,7 +1666,7 @@ describe "Admin budget investments", :admin do
 
       within("#budget_investment_#{investment2.id}") do
         valuating_checkbox = find("#budget_investment_visible_to_valuators")
-        expect(valuating_checkbox).not_to be_checked
+        expect(valuating_checkbox).to be_checked
       end
     end
 
@@ -1687,7 +1687,7 @@ describe "Admin budget investments", :admin do
     end
   end
 
-  context "Selecting csv", :no_js do
+  context "Selecting csv", :no_js, consul: true do
     scenario "Downloading CSV file" do
       admin = create(:administrator, user: create(:user, username: "Admin"))
       valuator = create(:valuator, user: create(:user, username: "Valuator"))
