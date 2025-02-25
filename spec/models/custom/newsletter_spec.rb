@@ -3,43 +3,15 @@ require "rails_helper"
 describe Newsletter do
   let(:newsletter) { build(:newsletter) }
 
-  it "is valid" do
-    expect(newsletter).to be_valid
-  end
 
-  it "is not valid without a subject" do
-    newsletter.subject = nil
+  it "is not valid with an inexistent user segment for segment_recipient" do
+    newsletter.segment_recipient = ["invalid_user_segment_name"]
     expect(newsletter).not_to be_valid
   end
 
-  it "is not valid without a segment_recipient" do
-    newsletter.segment_recipient = nil
-    expect(newsletter).not_to be_valid
-  end
-
-  it "is not valid with an inexistent user segment for segment_recipient", consul: true do
-    newsletter.segment_recipient = "invalid_user_segment_name"
-    expect(newsletter).not_to be_valid
-  end
-
-  it "is not valid without a from" do
-    newsletter.from = nil
-    expect(newsletter).not_to be_valid
-  end
-
-  it "is not valid without a body" do
-    newsletter.body = nil
-    expect(newsletter).not_to be_valid
-  end
-
-  it "validates from attribute email format" do
-    newsletter.from = "this_is_not_an_email"
-    expect(newsletter).not_to be_valid
-  end
-
-  describe "#valid_segment_recipient?", consul: true do
+  describe "#valid_segment_recipient?" do
     it "is false when segment_recipient value is invalid" do
-      newsletter.segment_recipient = "invalid_segment_name"
+      newsletter.segment_recipient = ["invalid_segment_name"]
       error = "The user recipients segment is invalid"
 
       expect(newsletter).not_to be_valid
@@ -47,13 +19,13 @@ describe Newsletter do
     end
   end
 
-  describe "#list_of_recipient_emails", consul: true do
+  describe "#list_of_recipient_emails" do
     before do
       create(:user, newsletter: true, email: "newsletter_user@consul.dev")
       create(:user, newsletter: true, email: "newsletter_unconfirmed_user@consul.dev", confirmed_at: nil)
       create(:user, newsletter: false, email: "no_news_user@consul.dev")
       create(:user, email: "erased_user@consul.dev").erase
-      newsletter.update!(segment_recipient: "all_users")
+      newsletter.update!(segment_recipient: ["all_users"])
     end
 
     it "returns list of recipients excluding users with disabled newsletter" do
@@ -61,11 +33,11 @@ describe Newsletter do
     end
   end
 
-  describe "#deliver", :delay_jobs, consul: true do
+  describe "#deliver", :delay_jobs do
     let!(:proposals) { Array.new(3) { create(:proposal) } }
 
     let!(:recipients) { proposals.map(&:author).map(&:email) }
-    let!(:newsletter) { create(:newsletter, segment_recipient: "proposal_authors") }
+    let!(:newsletter) { create(:newsletter, segment_recipient: ["proposal_authors"]) }
 
     before do
       create(:debate)

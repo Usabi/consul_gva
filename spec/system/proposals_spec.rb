@@ -237,7 +237,7 @@ describe "Proposals" do
     end
   end
 
-  describe "Show sticky support button on small screens", :small_window do
+  describe "Show sticky support button on small screens", :small_window, consul: true do
     scenario "On a first visit" do
       proposal = create(:proposal)
       visit proposal_path(proposal)
