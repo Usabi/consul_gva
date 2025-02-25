@@ -44,7 +44,7 @@ class Admin::MenuComponent
           images_link,
           content_blocks_link,
           class: ("is-active" if customization? &&
-                                 controller.class.module_parent != Admin::Poll::Questions::Answers)
+                                 controller.class.module_parent != Admin::Poll::Questions::Options)
         )
     end
 

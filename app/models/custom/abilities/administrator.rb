@@ -97,16 +97,16 @@ module Abilities
       can [:update, :destroy], Poll::Question do |question|
         !question.poll.started?
       end
-      can [:read, :order_answers], Poll::Question::Answer
-      can [:create, :update, :destroy], Poll::Question::Answer do |answer|
+      can [:read, :order_answers], Poll::Question::Option
+      can [:create, :update, :destroy], Poll::Question::Option do |answer|
         can?(:update, answer.question)
       end
-      can :read, Poll::Question::Answer::Video
-      can [:create, :update, :destroy], Poll::Question::Answer::Video do |video|
+      can :read, Poll::Question::Option::Video
+      can [:create, :update, :destroy], Poll::Question::Option::Video do |video|
         can?(:update, video.answer)
       end
       can [:destroy], Image do |image|
-        image.imageable_type == "Poll::Question::Answer" && can?(:update, image.imageable)
+        image.imageable_type == "Poll::Question::Option" && can?(:update, image.imageable)
       end
 
       can :manage, SiteCustomization::Page
