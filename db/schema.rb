@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2025_02_03_133000) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -307,11 +306,11 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_03_133000) do
     t.integer "flags_count", default: 0
     t.integer "original_heading_id"
     t.text "not_selected_explanation"
-    t.datetime "not_selected_email_sent_at"
+    t.datetime "not_selected_email_sent_at", precision: nil
     t.text "next_year_budget_explanation"
-    t.datetime "next_year_budget_email_sent_at"
+    t.datetime "next_year_budget_email_sent_at", precision: nil
     t.text "takecharge_explanation"
-    t.datetime "takecharge_email_sent_at"
+    t.datetime "takecharge_email_sent_at", precision: nil
     t.index ["administrator_id"], name: "index_budget_investments_on_administrator_id"
     t.index ["author_id"], name: "index_budget_investments_on_author_id"
     t.index ["budget_id"], name: "index_budget_investments_on_budget_id"
@@ -765,8 +764,8 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_03_133000) do
   create_table "legislation_process_legislators", force: :cascade do |t|
     t.bigint "legislation_process_id"
     t.bigint "legislator_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["legislation_process_id"], name: "index_legislation_process_legislators_on_legislation_process_id"
     t.index ["legislator_id"], name: "index_legislation_process_legislators_on_legislator_id"
   end
@@ -1536,8 +1535,8 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_03_133000) do
   create_table "site_customization_help_text_translations", id: :serial, force: :cascade do |t|
     t.integer "site_customization_help_text_id", null: false
     t.string "locale", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "title"
     t.text "content"
     t.index ["site_customization_help_text_id", "locale"], name: "index_help_text_translations_on_help_text_and_locale", unique: true
@@ -1547,8 +1546,8 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_03_133000) do
   create_table "site_customization_help_texts", id: :serial, force: :cascade do |t|
     t.string "section", null: false
     t.string "locale"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["section"], name: "index_site_customization_help_texts_on_section", unique: true
   end
 
@@ -1705,7 +1704,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_03_133000) do
     t.boolean "recommended_proposals", default: true
     t.string "postal_code"
     t.jsonb "services_results"
-    t.datetime "residence_requested_at"
+    t.datetime "residence_requested_at", precision: nil
     t.boolean "foreign_residence"
     t.string "subscriptions_token"
     t.integer "failed_attempts", default: 0, null: false
@@ -1839,7 +1838,6 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_03_133000) do
   end
 
   create_table "widget_cards", id: :serial, force: :cascade do |t|
-    t.string "link_url"
     t.boolean "header", default: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
