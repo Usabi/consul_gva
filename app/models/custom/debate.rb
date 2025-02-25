@@ -1,7 +1,6 @@
 require_dependency Rails.root.join("app", "models", "debate").to_s
 
 class Debate
-  include Communitable
 
   SORTING_OPTIONS = { id: "id", supports: "cached_votes_up", created_at: "created_at" }.freeze
 
