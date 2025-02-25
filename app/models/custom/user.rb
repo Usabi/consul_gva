@@ -3,7 +3,7 @@ load Rails.root.join("app", "models", "user.rb")
 class User
   has_one :legislator
   has_one :budget_manager
-  has_many :legislation_processes, inverse_of: :user
+  has_many :legislation_processes, inverse_of: :user, class_name: "Legislation::Process"
 
   scope :residence_requested, -> { where.not(residence_requested_at: nil).where(residence_verified_at: nil) }
   scope :legislators, -> { joins(:legislator) }
