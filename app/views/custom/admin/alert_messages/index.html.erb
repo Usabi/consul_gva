@@ -1,0 +1,39 @@
+<%= link_to t("admin.alert_messages.index.create"),
+            new_admin_alert_message_path,
+            class: "button float-right" %>
+
+<h2 class="inline-block"><%= t("admin.alert_messages.index.title") %></h2>
+
+<%= render "shared/filter_subnav", i18n_namespace: "admin.alert_messages.index" %>
+
+<h3><%= page_entries_info @alert_messages %></h3>
+
+<table>
+  <thead>
+    <tr>
+      <th scope="col"><%= AlertMessage.human_attribute_name(:title) %></th>
+      <th scope="col"><%= AlertMessage.human_attribute_name(:description) %></th>
+      <th scope="col"><%= AlertMessage.human_attribute_name(:active) %></th>
+      <th scope="col"><%= AlertMessage.human_attribute_name(:flash_key) %></th>
+      <th scope="col"><%= t("admin.actions.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @alert_messages.each do |alert_message| %>
+      <tr>
+        <td><%= alert_message.title %></td>
+        <td><%= alert_message.description %></td>
+        <td>
+          <%= form_for([:admin, alert_message], html: { class: "toggle-switch" }) do |f| %>
+            <%= f.hidden_field :active, id: alert_message.id, value: (alert_message.enabled? ? "" : "active") %>
+            <%= f.button alert_message.enabled? ? t("shared.yes") : t("shared.no") %>
+          <% end %>
+        </td>
+        <td><div class="callout <%= alert_message.flash_key %>"><%= alert_message.flash_key %></div></td>
+        <td><%= render Admin::TableActionsComponent.new(alert_message) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @alert_messages %>

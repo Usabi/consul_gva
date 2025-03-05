@@ -207,6 +207,7 @@ es:
     site_customization/content_block: el bloque
     site_customization/page: la página
     site_customization/help_text: el texto de ayuda
+    alert_message: el mensaje de alerta
   geozones:
     none: Toda la Comunitat
   layouts:

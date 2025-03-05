@@ -132,6 +132,9 @@ val:
       local_census_record:
         one: Registro del censo local
         other: Registros del censo local
+      alert_message:
+        one: Missatge d'alerta
+        other: Missatges d'alerta
     attributes:
       administrator:
         description: Descripción

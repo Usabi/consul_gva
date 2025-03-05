@@ -8,6 +8,10 @@ class Admin::MenuComponent
       controller_name == "help_texts" && params[:help_text_id].present?
     end
 
+    def alert_messages?
+      controller_name == "alert_messages" && params[:alert_message_id].present?
+    end
+
     def legislations_link
       [
         t("admin.menu.legislators"),
@@ -32,6 +36,14 @@ class Admin::MenuComponent
       ]
     end
 
+    def alert_messages_link
+      [
+        t("admin.menu.site_customization.alert_messages"),
+        admin_alert_messages_path,
+        alert_messages? || controller_name == "alert_messages"
+      ]
+    end
+
     def site_customization_links
       link_to(t("admin.menu.title_site_customization"), "#", class: "site-customization-link") +
         link_list(
@@ -39,6 +51,7 @@ class Admin::MenuComponent
           pages_link,
           help_texts_link,
           banners_link,
+          alert_messages_link,
           information_texts_link,
           documents_link,
           images_link,

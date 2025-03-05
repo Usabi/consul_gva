@@ -37,6 +37,38 @@ val:
           submit_button: Guardar canvis
       new:
         creating: Crear un banner
+    alert_messages:
+      index:
+        title: Missatges d'alerta
+        create: Crear un missatge d'alerta
+        filters:
+          all: Tots
+          with_active: Actius
+          with_inactive: Inactius
+      alert_message:
+        sections_label: Seccions en les quals apareix
+        sections:
+          homepage: Homepage
+          debates: Debats
+          proposals: Iniciatives
+          budgets: Pressupostos participatius
+          help_page: Pàgina d'ajuda
+          sdg: ODS
+          legislation/processes: Elaboració normativa
+          polls: Votacions
+        flash_key_example: Exemple d'estils
+      create:
+        notice: "Missatge d'alerta creat correctament"
+      destroy:
+        notice: "Missatge d'alerta eliminat correctament"
+      edit:
+        editing: Editar el missatge d'alerta
+        form:
+          submit_button: Guardar canvis
+      new:
+        creating: Crear missatge d'alerta
+      update:
+        notice: "Missatge d'alerta actualitzat correctament"
     activity:
       show:
         action: Acció
@@ -545,6 +577,7 @@ val:
         homepage: Pàgina principal
         pages: Pàgines
         help_texts: Text d'ajuda
+        alert_messages: Personalitzar missatges d'alerta
         images: Imatges
         content_blocks: Blocs
         information_texts: Personalitzar texts
