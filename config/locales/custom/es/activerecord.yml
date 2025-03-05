@@ -408,7 +408,7 @@ es:
         target_url: "Enlace"
       banner/translation:
         title: "Título"
-        descriptionn: "Descripción"
+        description: "Descripción"
       alert_message:
         flash_key: Estilo
         flash_keys:
