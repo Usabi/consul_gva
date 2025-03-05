@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_02_03_133000) do
+ActiveRecord::Schema.define(version: 2025_02_25_164500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,36 @@ ActiveRecord::Schema.define(version: 2025_02_03_133000) do
     t.index ["time"], name: "index_ahoy_events_on_time"
     t.index ["user_id"], name: "index_ahoy_events_on_user_id"
     t.index ["visit_id"], name: "index_ahoy_events_on_visit_id"
+  end
+
+  create_table "alert_message_sections", id: :serial, force: :cascade do |t|
+    t.integer "alert_message_id"
+    t.integer "web_section_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "alert_message_translations", id: :serial, force: :cascade do |t|
+    t.integer "alert_message_id", null: false
+    t.string "locale", null: false
+    t.string "title", limit: 80
+    t.string "description", limit: 150
+    t.datetime "hidden_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["alert_message_id"], name: "index_alert_message_translations_on_alert_message_id"
+    t.index ["hidden_at"], name: "index_alert_message_translations_on_hidden_at"
+    t.index ["locale"], name: "index_alert_message_translations_on_locale"
+  end
+
+  create_table "alert_messages", id: :serial, force: :cascade do |t|
+    t.string "target_url"
+    t.string "flash_key"
+    t.boolean "active"
+    t.datetime "hidden_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hidden_at"], name: "index_alert_messages_on_hidden_at"
   end
 
   create_table "audits", id: :serial, force: :cascade do |t|

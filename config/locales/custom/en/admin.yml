@@ -1,0 +1,37 @@
+en:
+  admin:
+    alert_messages:
+      index:
+        title: Alert message
+        create: Create alert message
+        filters:
+          all: All
+          with_active: Active
+          with_inactive: Inactive
+      alert_message:
+        sections_label: Sections where it will appear
+        sections:
+          homepage: Homepage
+          debates: Debates
+          proposals: Proposals
+          budgets: Busgets
+          help_page: Help page
+          sdg: SDG
+          legislation/processes: Legislation processes
+          polls: Polls
+        flash_key_example: Example of styles
+      create:
+        notice: "Alert message created successfully"
+      destroy:
+        notice: "Alert message deleted successfully"
+      edit:
+        editing: Edit alert message
+        form:
+          submit_button: Save changes
+      new:
+        creating: Create alert message
+      update:
+        notice: "Alert message updated successfully"
+    menu:
+      site_customization:
+        alert_messages: Manage alert messages

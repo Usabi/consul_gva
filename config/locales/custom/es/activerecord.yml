@@ -149,6 +149,9 @@ es:
       local_census_record:
         one: Registro del censo local
         other: Registros del censo local
+      alert_message:
+        one: Mensaje de alerta
+        other: Mensajes de alerta
     attributes:
       administrator:
         description: Descripción
@@ -405,7 +408,21 @@ es:
         target_url: "Enlace"
       banner/translation:
         title: "Título"
-        description: "Descripción"
+        descriptionn: "Descripción"
+      alert_message:
+        flash_key: Estilo
+        flash_keys:
+          notice: Noticia
+          primary: Información
+          warning: Aviso
+          alert: Error
+        active: Activo
+        target_url: Enlace
+        title: Título
+        description: Descripción
+      alert_message/translation:
+        title: Título
+        description: Descripción
       legislation/process:
         title: Título del proceso
         summary: Resumen

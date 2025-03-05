@@ -48,6 +48,38 @@ es:
         creating: Crear banner
       update:
         notice: "Banner actualizado correctamente"
+    alert_messages:
+      index:
+        title: Mensajes de alerta
+        create: Crear un mensaje de alerta
+        filters:
+          all: Todos
+          with_active: Activos
+          with_inactive: Inactivos
+      alert_message:
+        sections_label: Secciones en las que aparece
+        sections:
+          homepage: Homepage
+          debates: Debates
+          proposals: Iniciativas
+          budgets: Presupuestos participativos
+          help_page: Página de ayuda
+          sdg: ODS
+          legislation/processes: Elaboración normativa
+          polls: Votaciones
+        flash_key_example: Ejemplo de estilos
+      create:
+        notice: "Mensaje de alerta creado correctamente"
+      destroy:
+        notice: "Mensaje de alerta eliminado correctamente"
+      edit:
+        editing: Editar el mensaje de alerta
+        form:
+          submit_button: Guardar cambios
+      new:
+        creating: Crear mensaje de alerta
+      update:
+        notice: "Mensaje de alerta actualizado correctamente"
     activity:
       show:
         action: Acción
@@ -801,6 +833,7 @@ es:
         homepage: Homepage
         pages: Personalizar páginas
         help_texts: Personalizar textos de ayuda
+        alert_messages: Personalizar mensajes de alerta
         images: Personalizar imágenes
         content_blocks: Personalizar bloques
         information_texts: Personalizar textos

@@ -83,6 +83,8 @@ module Abilities
 
       can [:search, :update, :create, :index, :destroy], Banner
 
+      can [:search, :update, :create, :index, :destroy], AlertMessage
+
       can [:index, :create, :update, :destroy], Geozone
 
       can [:read, :create, :update, :destroy, :booth_assignments, :help_page], Poll

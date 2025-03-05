@@ -1,0 +1,17 @@
+en:
+  activerecord:
+    attributes:
+      alert_message:
+        flash_key: Style
+        flash_keys:
+          notice: Notice
+          primary: Info
+          warning: Warning
+          alert: Error
+        active: Active
+        target_url: Link
+        title: Title
+        description: Description
+      alert_message/translation:
+        title: Title
+        description: Description
