@@ -8,7 +8,7 @@ class ApplicationController
     def set_flash_alerts
       return if request.xhr?
 
-      current_section = params[:controller]
+      current_section = params[:controller] == 'welcome' ? 'homepage' : params[:controller]
       active_alerts = AlertMessage.in_section(current_section).with_active.uniq
 
       active_alerts.each do |alert|
