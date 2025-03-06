@@ -3,27 +3,32 @@ require "rails_helper"
 describe "Admin alert messages magement", :admin do
   context "Index" do
     before do
-      create(:alert_message, title: "Alert message number one",
-                             description: "This is the text of alert_message number one and is not active yet",
-                             target_url: "http://www.url.com",
-                             active: false)
+      create(:alert_message,
+             title: "Alert message number one",
+             description: "This is the text of alert_message number one and is not active yet",
+             target_url: "http://www.url.com",
+             active: false)
 
-      create(:alert_message, title: "Alert message number two",
-                             description: "This is the text of alert_message number two and is not longer active",
-                             target_url: "http://www.url.com",
-                             active: false)
+      create(:alert_message,
+             title: "Alert message number two",
+             description: "This is the text of alert_message number two and is not longer active",
+             target_url: "http://www.url.com",
+             active: false)
 
-      create(:alert_message, title: "Alert message number three",
-                             description: "This is the text of alert_message number three",
-                             target_url: "http://www.url.com")
+      create(:alert_message,
+             title: "Alert message number three",
+             description: "This is the text of alert_message number three",
+             target_url: "http://www.url.com")
 
-      create(:alert_message, title: "Alert message number four",
-                             description: "This is the text of alert_message number four",
-                             target_url: "http://www.url.com")
+      create(:alert_message,
+             title: "Alert message number four",
+             description: "This is the text of alert_message number four",
+             target_url: "http://www.url.com")
 
-      create(:alert_message, title: "Alert message number five",
-                             description: "This is the text of alert_message number five",
-                             target_url: "http://www.url.com")
+      create(:alert_message,
+             title: "Alert message number five",
+             description: "This is the text of alert_message number five",
+             target_url: "http://www.url.com")
     end
 
     scenario "Index show active alert messages" do

@@ -2,7 +2,7 @@ class AlertMessage < ApplicationRecord
   acts_as_paranoid column: :hidden_at
   include ActsAsParanoidAliases
 
-  has_many :sections
+  has_many :sections, dependent: :destroy
   has_many :web_sections, through: :sections
 
   FLASH_KEYS = %w[notice primary warning alert].freeze
