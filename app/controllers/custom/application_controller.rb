@@ -5,12 +5,22 @@ class ApplicationController
 
   private
 
+    def set_current_section
+      case params[:controller]
+      when "welcome"
+        @current_section = "homepage"
+      when "pages"
+        @current_section = "help_page"
+      else
+        @current_section = params[:controller]
+      end
+    end
+
     def set_flash_alerts
-      return if request.xhr?
+      return if request.xhr? || params[:controller].start_with?("admin/")
 
-      current_section = params[:controller] == 'welcome' ? 'homepage' : params[:controller]
-      active_alerts = AlertMessage.in_section(current_section).with_active.uniq
-
+      set_current_section
+      active_alerts = AlertMessage.in_section(@current_section).with_active.uniq
       active_alerts.each do |alert|
         flash.now[alert.flash_key] = Shared::AlertMessageComponent.new(alert).render_in(view_context)
       end
