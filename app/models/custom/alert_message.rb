@@ -30,6 +30,14 @@ class AlertMessage < ApplicationRecord
     active.present?
   end
 
+  def text
+    if enabled?
+      I18n.t("shared.yes")
+    else
+      I18n.t("shared.no")
+    end
+  end
+
   private
 
     def set_defaults
