@@ -24,12 +24,9 @@
         <td><%= alert_message.title %></td>
         <td><%= alert_message.description %></td>
         <td>
-          <%= form_for([:admin, alert_message], html: { class: "toggle-switch" }) do |f| %>
-            <%= f.hidden_field :active, id: alert_message.id, value: (alert_message.enabled? ? "" : "active") %>
-            <%= f.button alert_message.enabled? ? t("shared.yes") : t("shared.no") %>
-          <% end %>
+          <%= alert_message.text %>
         </td>
-        <td><div class="callout <%= alert_message.flash_key %>"><%= alert_message.flash_key %></div></td>
+        <td><div class="callout <%= alert_message.flash_key %>"><%= t("activerecord.attributes.alert_message.flash_keys.#{alert_message.flash_key}") %></div></td>
         <td><%= render Admin::TableActionsComponent.new(alert_message) %></td>
       </tr>
     <% end %>
