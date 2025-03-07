@@ -81,6 +81,8 @@ module Abilities
 
       can :read_admin_stats, Budget, &:balloting_or_later?
 
+      can :index, KeySystem
+
       can [:search, :update, :create, :index, :destroy], Banner
 
       can [:search, :update, :create, :index, :destroy], AlertMessage
