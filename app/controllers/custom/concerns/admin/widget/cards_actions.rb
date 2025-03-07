@@ -6,7 +6,7 @@ module Admin::Widget::CardsActions
 
     def allowed_params
       [
-        :link_url, :button_text, :button_url, :alignment, :header, :columns, :middle,
+        :link_url, :button_text, :button_url, :alignment, :header, :columns, :middle, :order,
         translation_params(Widget::Card),
         image_attributes: image_attributes
       ]
