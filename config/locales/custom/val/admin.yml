@@ -572,6 +572,7 @@ val:
       organizations: Associacions
       settings: Configuració global
       stats: Estadístiques
+      key_systems: Monitorar sistemes clau
       signature_sheets: Fulls de signatures
       site_customization:
         homepage: Pàgina principal
@@ -1228,6 +1229,36 @@ val:
           question_name: Pregunta
           origin_web: Participants en la Web
           origin_total: Participants Totals
+    key_systems:
+      index:
+        title: Sistemes clau
+        mail_system:
+          title: Estat de l'enviament de correus electrònics
+          operational: El sistema de correu està funcionant correctament.
+          down: El sistema de correu està desactivat.
+          error: "Error en comprovar l'estat del correu: %{error}"
+        background_job_system:
+          title: Processos en Segon Pla
+          operational: Delayed Job està funcionant correctament i pot rebre jobs.
+          down: Delayed Job no pot rebre jobs.
+          error: "Error en comprovar l'estat de Delayed Job: %{error}"
+          jobs_pending: Treballs pendents
+          jobs_failed: Treballs fallits
+          failed: Fallit
+          in_process: En procés
+          pending: Pendent
+          priority: Prioritat
+          attempts: Intents
+          handler: Objecte
+          run_at: Data d'execució
+          queue: Cua
+          created_at: Data de creació
+          status: Estat
+          recent_errors: Errors recents
+          no_recent_errors: No hi ha errors recents
+          view_log: Veure log
+          log_file_not_found: Arxiu de log no trobat.
+          fetch_log_error: "Error en recuperar logs: %{error}"
     tags:
       create: Crea un tema
       destroy: Eliminar tema

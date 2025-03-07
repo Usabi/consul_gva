@@ -1,0 +1,2 @@
+class KeySystem < ApplicationRecord
+end

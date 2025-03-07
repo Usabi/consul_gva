@@ -111,6 +111,8 @@ namespace :admin do
     collection { get :search }
   end
 
+  resources :key_systems, only: [:index] # Custom
+
   resources :hidden_comments, only: :index do
     member do
       put :restore
