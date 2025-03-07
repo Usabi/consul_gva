@@ -42,8 +42,8 @@ class UserSegments
     segments = Array(segment)
 
     matching_users = segments.flat_map do |seg|
-      if geozones[seg]
-        all_users.where(geozone: geozones[seg])
+      if geozones[seg.to_s]
+        all_users.where(geozone: geozones[seg.to_s])
       else
         send(seg)
       end
