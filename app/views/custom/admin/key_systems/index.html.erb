@@ -1,0 +1,106 @@
+<% provide(:title) do %>
+  <%= t("admin.header.title") %> - <%= t("admin.key_systems.index.title") %>
+<% end %>
+
+<h2><%= t("admin.key_systems.index.title") %></h2>
+
+<h3><%= t("admin.key_systems.index.mail_system.title") %>:</h3>
+
+<div class="card key-system-status <%= @mail_status[:status] %>" style="width: 300px;">
+  <div class="card-divider">
+    <span class="<%= @mail_status[:icon] %>"></span>&nbsp;
+  </div>
+  <div class="card-section">
+    <p><%= @mail_status[:message] %></p>
+  </div>
+</div>
+
+<h3><%= t("admin.key_systems.index.background_job_system.title") %> (<%= @background_job_stats[:all_delayed_jobs] %>)</h3>
+
+<div class="card key-system-status <%= @delayed_job_status[:status] %>" style="width: 300px;">
+  <div class="card-divider">
+    <span class="<%= @delayed_job_status[:icon] %>"></span>&nbsp;
+  </div>
+  <div class="card-section">
+    <p><%= @delayed_job_status[:message] %></p>
+  </div>
+</div>
+
+<p><%= t("admin.key_systems.index.background_job_system.jobs_pending") %>: <%= @background_job_stats[:pending_jobs] %></p>
+<p><%= t("admin.key_systems.index.background_job_system.jobs_failed") %>: <%= @background_job_stats[:failed_jobs] %></p>
+
+<% if @background_jobs.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th><%= t("admin.key_systems.index.background_job_system.priority") %></th>
+        <th><%= t("admin.key_systems.index.background_job_system.attempts") %></th>
+        <th><%= t("admin.key_systems.index.background_job_system.handler") %></th>
+        <th><%= t("admin.key_systems.index.background_job_system.run_at") %></th>
+        <th><%= t("admin.key_systems.index.background_job_system.queue") %></th>
+        <th><%= t("admin.key_systems.index.background_job_system.created_at") %></th>
+        <th><%= t("admin.key_systems.index.background_job_system.status") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @background_jobs.each do |job| %>
+        <tr>
+          <td><%= job.id %></td>
+          <td><%= job.priority %></td>
+          <td><%= job.attempts %></td>
+          <td><%= job.handler %></td>
+          <td><%= job.run_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+          <td><%= job.queue %></td>
+          <td><%= job.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+          <td>
+            <% if job.failed_at %>
+              <span style="color: red;">
+                <%= t("admin.key_systems.index.background_job_system.failed") %>
+              </span>
+            <% elsif job.locked_at %>
+              <span style="color: orange;">
+                <%= t("admin.key_systems.index.background_job_system.in_process") %>
+              </span>
+            <% else %>
+              <span style="color: green;">
+                <%= t("admin.key_systems.index.background_job_system.pending") %>
+              </span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<h4 class="inline-block"><%= t("admin.key_systems.index.background_job_system.recent_errors") %></h4>
+<button class="button" data-open="delayed_job_log_modal">
+  <span class="icon-file-text"> <%= t("admin.key_systems.index.background_job_system.view_log") %></span>
+</button>
+
+<pre>
+  <code>
+    <% if @recent_errors.any? %>
+      <% @recent_errors.each do |error| %>
+        <%= error %>
+      <% end %>
+    <% else %>
+      <%= t("admin.key_systems.index.background_job_system.no_recent_errors") %>
+    <% end %>
+  </code>
+</pre>
+
+<div class="large reveal" id="delayed_job_log_modal" data-reveal>
+  <h2>delayed_job.log</h2>
+  <pre>
+    <code>
+      <% @delayed_job_logs.each do |log_line| %>
+        <%= log_line %>
+      <% end %>
+    </code>
+  </pre>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>

@@ -4,10 +4,19 @@ class Admin::ProposalsController
   include Admin::HelpPagesActions
 
   before_action :load_proposal, except: %i[index help_page]
+  has_filters %w[all], only: :index
 
   def index
-    @proposals = ::Proposal.all.accessible_by(current_ability)
-                           .page(params[:page])
+    @proposals = ::Proposal.scoped_filter(params, @current_filter, @advanced_search_terms).order_filter(params)
+    @proposals = Kaminari.paginate_array(@proposals) if @proposals.is_a?(Array)
+    @proposals = @proposals.page(params[:page]) unless request.format.csv?
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data Proposal::Exporter.new(@proposals).to_csv,
+                  filename: "proposals.csv"
+      end
+    end
   end
 
   def help_page

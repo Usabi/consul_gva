@@ -18,9 +18,9 @@ module LegislationHelper
       "milestones"     => admin_legislation_process_milestones_path(process)
     }
     if current_user&.administrator? || (current_user&.legislator? && current_user == process.user)
-      tabs = tabs.merge({ "legislators" => edit_admin_legislation_process_legislators_path(process) },
-                        { "help_text" => admin_legislation_process_help_pages_path(process) })
+      tabs = tabs.merge({ "legislators" => edit_admin_legislation_process_legislators_path(process) })
     end
+    tabs = tabs.merge({ "help_text" => admin_legislation_process_help_pages_path(process) })
     tabs
   end
 

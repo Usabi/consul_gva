@@ -1,0 +1,67 @@
+<%= render "shared/globalize_locales", resource: @alert_message %>
+
+<%= translatable_form_for [:admin, @alert_message] do |f| %>
+
+  <%= render "shared/errors", resource: @alert_message %>
+
+  <br>
+
+  <div class="row">
+    <%= f.translatable_fields do |translations_form| %>
+      <div class="small-12 medium-6 column">
+        <%= translations_form.text_field :title %>
+      </div>
+
+      <div class="small-12 column">
+        <%= translations_form.text_area :description %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="small-12 medium-6 column">
+      <%= f.text_field :target_url %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 medium-3 column">
+      <%= f.check_box :active, id: "active" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <fieldset class="column small-12 medium-6 large-6">
+      <legend><%= t("admin.alert_messages.alert_message.sections_label") %></legend>
+      <%= f.collection_check_boxes(:web_section_ids, @alert_message_sections, :id, :name) do |b| %>
+        <%= b.label do %>
+          <%= b.check_box + t("admin.alert_messages.alert_message.sections.#{b.text}") %>
+        <% end %>
+      <% end %>
+    </fieldset>
+  </div>
+
+  <div class="row">
+    <div class="small-12 medium-4 column">
+      <%= f.select :flash_key, AlertMessage::FLASH_KEYS.map { |key| [t("activerecord.attributes.alert_message.flash_keys.#{key}"), key] } %>
+    </div>
+    <div class="small-12 medium-8 column">
+      <%= f.label t("admin.alert_messages.alert_message.flash_key_example"), nil, for: "flash_key_example" %>
+      <div id="flash_key_example" class="row">
+        <% AlertMessage::FLASH_KEYS.each do |fk| %>
+          <span class="small-6 medium-2 inline-block callout <%= fk %>">
+            <%= t("activerecord.attributes.alert_message.flash_keys.#{fk}") %>
+          </span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="actions small-12 medium-3 column">
+      <%= f.submit(class: "button expanded", value: t("admin.alert_messages.edit.form.submit_button")) %>
+    </div>
+  </div>
+
+  <% flash.now[@alert_message.flash_key] = render Shared::AlertMessageComponent.new(@alert_message) if @alert_message.persisted? && @alert_message.valid? %>
+<% end %>

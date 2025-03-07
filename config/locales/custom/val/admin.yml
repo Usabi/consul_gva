@@ -37,6 +37,38 @@ val:
           submit_button: Guardar canvis
       new:
         creating: Crear un banner
+    alert_messages:
+      index:
+        title: Missatges d'alerta
+        create: Crear un missatge d'alerta
+        filters:
+          all: Tots
+          with_active: Actius
+          with_inactive: Inactius
+      alert_message:
+        sections_label: Seccions en les quals apareix
+        sections:
+          homepage: Homepage
+          debates: Debats
+          proposals: Iniciatives
+          budgets: Pressupostos participatius
+          help_page: Pàgina d'ajuda
+          sdg: ODS
+          legislation/processes: Elaboració normativa
+          polls: Votacions
+        flash_key_example: Exemple d'estils
+      create:
+        notice: "Missatge d'alerta creat correctament"
+      destroy:
+        notice: "Missatge d'alerta eliminat correctament"
+      edit:
+        editing: Editar el missatge d'alerta
+        form:
+          submit_button: Guardar canvis
+      new:
+        creating: Crear missatge d'alerta
+      update:
+        notice: "Missatge d'alerta actualitzat correctament"
     activity:
       show:
         action: Acció
@@ -412,7 +444,7 @@ val:
           supports: Avals
         form:
           custom_categories: Categories
-          custom_categories_description: Categories que la persona usuària pot seleccionar al crear la proposta.
+          custom_categories_description: Categories que la persona usuària pot seleccionar al crear la iniciativa.
           custom_categories_placeholder: Escriu les etiquetes que desitges separades per comes (',') i entre cometes ("")
       draft_versions:
         create:
@@ -540,11 +572,13 @@ val:
       organizations: Associacions
       settings: Configuració global
       stats: Estadístiques
+      key_systems: Monitorar sistemes clau
       signature_sheets: Fulls de signatures
       site_customization:
         homepage: Pàgina principal
         pages: Pàgines
         help_texts: Text d'ajuda
+        alert_messages: Personalitzar missatges d'alerta
         images: Imatges
         content_blocks: Blocs
         information_texts: Personalitzar texts
@@ -596,7 +630,7 @@ val:
     segment_recipient:
       all_users: Tots els usuaris
       administrators: Administradors
-      proposal_authors: Autors de propostes
+      proposal_authors: Autors de iniciatives
       investment_authors: Usuaris autors de propostes en els actuals pressupostos
       feasible_and_undecided_investment_authors: "Usuaris autors d'algun projecte en els actuals pressupostos que no cumplisca: [evaluació finalitzada inviable]"
       selected_investment_authors: Autors de projectes seleccionades en els actuals pressupostos
@@ -857,9 +891,9 @@ val:
         filter_poll: Filtrar per votació
         select_poll: Seleccionar votació
         questions_tab: "Preguntes"
-        successful_proposals_tab: "Propostes que han superat el umbral"
+        successful_proposals_tab: "Iniciatives que han superat el umbral"
         create_question: "Crear pregunta"
-        table_proposal: "Proposta"
+        table_proposal: "Iniciativa"
         table_question: "Pregunta"
         table_poll: "Votació"
         poll_not_assigned: "Votació sense asignar"
@@ -870,7 +904,7 @@ val:
           add_image: "Afegir imatge"
           save_image: "Guardar imatge"
       show:
-        proposal: Proposta ciutadana original
+        proposal: Iniciativa ciutadana original
         author: Autor
         question: Pregunta
         edit_question: Editar pregunta
@@ -1005,7 +1039,25 @@ val:
         id: ID
         author: Autor
         milestones: Seguiments
-        no_proposals: No hi han propostes.
+        supports: Suports totals
+        created_at: Data creació
+        tags: Etiquetes
+        sdg: Objectiu
+        target: Meta
+        select: Seleccionar
+        selected: Seleccionada
+        no_proposals: No hi han iniciatives.
+        list:
+            id: ID
+            title: Iniciatives
+            author_username: Autor
+            milestones: Seguiments
+            supports: Suports totals
+            created_at: Data creació
+            sdg: Objectiu
+            target: Meta
+            tags: Etiquetes
+            selected: Seleccionada
       subnav:
         proposals: Iniciatives
         help_text: Text d'ajuda
@@ -1016,8 +1068,8 @@ val:
           all: Totes
           with_confirmed_hide: Confirmats
           without_confirmed_hide: Pendents
-        title: Propostes ocultes
-        no_hidden_proposals: No hi ha propostes ocultes.
+        title: Iniciatives ocultes
+        no_hidden_proposals: No hi ha iniciatives ocultes.
     settings:
       flash:
         updated: Valor actualitzat
@@ -1054,7 +1106,7 @@ val:
           poll_officers: "Cercar presidents de taula"
           poll_questions: "Cercar preguntes"
           processes: "Cercar processos de elaboració normativa pero títol o descripció"
-          proposals: "Cercar propostes per títol, codi, descripció o pregunta"
+          proposals: "Cercar iniciatives per títol, codi, descripció o pregunta"
           users: "Cercar usuari per nom o correu electrònic"
         search: "Cercar"
       booths_search:
@@ -1068,7 +1120,7 @@ val:
         placeholder: Cercar preguntes
       proposal_search:
         button: Cercar
-        placeholder: Cercar propostes per títol, codi, descripció o pregunta
+        placeholder: Cercar iniciatives per títol, codi, descripció o pregunta
       user_search:
         button: Cercar
         placeholder: Cercar usuari per nom o correu electrònic
@@ -1082,7 +1134,7 @@ val:
       color_help: Format hexadecimal
       moderated_content: "Revisa el contigut moderat pels moderadors, i confirma si la moderació s'ha realitzat correctament."
       view: Veure
-      proposal: Proposta
+      proposal: Iniciativa
       author: Autor
       content: Contingut
       created_at: Creada el
@@ -1140,8 +1192,8 @@ val:
           comments: Comentaris
           debate_votes: Vots en debats
           debates: Debats
-          proposal_votes: Vots en propostes
-          proposals: Propostes
+          proposal_votes: Vots en iniciatives
+          proposals: Iniciatives
           budgets: Pressupostos oberts
           budget_investments: Propostes d'inversió
           unverified_users: Usuaris sense verificar
@@ -1149,12 +1201,12 @@ val:
           user_level_two: Usuaris de nivell dos
           users: Usuaris
           verified_users: Usuaris verificats
-          verified_users_who_didnt_vote_proposals: Usuaris verificats que no han votat propostes
+          verified_users_who_didnt_vote_proposals: Usuaris verificats que no han votat iniciatives
           visits: Visites
           votes: Vots
         budgets_title: Pressupostos participatius
         direct_messages: Missatges directes
-        proposal_notifications: Notificacions de propostes
+        proposal_notifications: Notificacions de iniciatives
         incomplete_verifications: Verificacions incompletes
         polls: Votacions
       direct_messages:
@@ -1162,10 +1214,10 @@ val:
         total: Total
         users_who_have_sent_message: Usuaris que han enviat un missatge privat
       proposal_notifications:
-        title: Notificacions de propostes
+        title: Notificacions de iniciatives
         total: Total
-        proposals_with_notifications: Propostes amb notificacions
-        not_available: "Proposta no disponible"
+        proposals_with_notifications: Iniciatives amb notificacions
+        not_available: "Iniciativa no disponible"
       polls:
         title: Estadístiques de votacions
         all: Votacions
@@ -1177,6 +1229,36 @@ val:
           question_name: Pregunta
           origin_web: Participants en la Web
           origin_total: Participants Totals
+    key_systems:
+      index:
+        title: Sistemes clau
+        mail_system:
+          title: Estat de l'enviament de correus electrònics
+          operational: El sistema de correu està funcionant correctament.
+          down: El sistema de correu està desactivat.
+          error: "Error en comprovar l'estat del correu: %{error}"
+        background_job_system:
+          title: Processos en Segon Pla
+          operational: Delayed Job està funcionant correctament i pot rebre jobs.
+          down: Delayed Job no pot rebre jobs.
+          error: "Error en comprovar l'estat de Delayed Job: %{error}"
+          jobs_pending: Treballs pendents
+          jobs_failed: Treballs fallits
+          failed: Fallit
+          in_process: En procés
+          pending: Pendent
+          priority: Prioritat
+          attempts: Intents
+          handler: Objecte
+          run_at: Data d'execució
+          queue: Cua
+          created_at: Data de creació
+          status: Estat
+          recent_errors: Errors recents
+          no_recent_errors: No hi ha errors recents
+          view_log: Veure log
+          log_file_not_found: Arxiu de log no trobat.
+          fetch_log_error: "Error en recuperar logs: %{error}"
     tags:
       create: Crea un tema
       destroy: Eliminar tema
@@ -1334,7 +1416,7 @@ val:
         link_text: Text de l'enllaç
         link_url: URL de l'enllaç
       feeds:
-        proposals: Propostes
+        proposals: Iniciatives
         debates: Debats
         processes: Processos
       new:

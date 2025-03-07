@@ -2,10 +2,45 @@
 load Rails.root.join("app", "components", "admin", "menu_component.rb")
 
 class Admin::MenuComponent
+  def links
+    [
+      (proposals_link if feature?(:proposals)),
+      (debates_link if feature?(:debates)),
+      comments_link,
+      (polls_link if feature?(:polls)),
+      (legislation_link if feature?(:legislation)),
+      (budgets_link if feature?(:budgets)),
+      booths_links,
+      (signature_sheets_link if feature?(:signature_sheets)),
+      messages_links,
+      site_customization_links,
+      moderated_content_links,
+      profiles_links,
+      stats_link,
+      key_systems_link,
+      settings_links,
+      dashboard_links,
+      (machine_learning_link if ::MachineLearning.enabled?)
+    ]
+  end
+
   private
 
     def help_texts?
       controller_name == "help_texts" && params[:help_text_id].present?
+    end
+
+    def alert_messages?
+      controller_name == "alert_messages" && params[:alert_message_id].present?
+    end
+
+    def key_systems_link
+      [
+        t("admin.menu.key_systems"),
+        admin_key_systems_path,
+        controller_name == "key_systems",
+        class: "key-systems-link"
+      ]
     end
 
     def legislations_link
@@ -32,6 +67,14 @@ class Admin::MenuComponent
       ]
     end
 
+    def alert_messages_link
+      [
+        t("admin.menu.site_customization.alert_messages"),
+        admin_alert_messages_path,
+        alert_messages? || controller_name == "alert_messages"
+      ]
+    end
+
     def site_customization_links
       link_to(t("admin.menu.title_site_customization"), "#", class: "site-customization-link") +
         link_list(
@@ -39,6 +82,7 @@ class Admin::MenuComponent
           pages_link,
           help_texts_link,
           banners_link,
+          alert_messages_link,
           information_texts_link,
           documents_link,
           images_link,

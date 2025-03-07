@@ -32,7 +32,7 @@ es:
         sections:
           homepage: Homepage
           debates: Debates
-          proposals: Propuestas
+          proposals: Iniciativas
           budgets: Presupuestos participativos
           help_page: Página de ayuda
           sdg: ODS
@@ -48,6 +48,38 @@ es:
         creating: Crear banner
       update:
         notice: "Banner actualizado correctamente"
+    alert_messages:
+      index:
+        title: Mensajes de alerta
+        create: Crear un mensaje de alerta
+        filters:
+          all: Todos
+          with_active: Activos
+          with_inactive: Inactivos
+      alert_message:
+        sections_label: Secciones en las que aparece
+        sections:
+          homepage: Homepage
+          debates: Debates
+          proposals: Iniciativas
+          budgets: Presupuestos participativos
+          help_page: Página de ayuda
+          sdg: ODS
+          legislation/processes: Elaboración normativa
+          polls: Votaciones
+        flash_key_example: Ejemplo de estilos
+      create:
+        notice: "Mensaje de alerta creado correctamente"
+      destroy:
+        notice: "Mensaje de alerta eliminado correctamente"
+      edit:
+        editing: Editar el mensaje de alerta
+        form:
+          submit_button: Guardar cambios
+      new:
+        creating: Crear mensaje de alerta
+      update:
+        notice: "Mensaje de alerta actualizado correctamente"
     activity:
       show:
         action: Acción
@@ -62,7 +94,7 @@ es:
           all: Todos
           on_comments: Comentarios
           on_debates: Debates
-          on_proposals: Propuestas
+          on_proposals: Iniciativas
           on_users: Usuarios
           on_system_emails: Emails del sistema
         title: Actividad de moderadores
@@ -525,7 +557,21 @@ es:
         id: ID
         author: Autor
         title: Debates
+        supports: Apoyos totales
+        created_at: Fecha creación
+        sdg: Objetivo
+        target: Meta
+        tags: Etiquetas
         no_debates: No hay debates.
+        list:
+            id: ID
+            title: Debates
+            author_username: Autor
+            supports: Apoyos totales
+            created_at: Fecha creación
+            sdg: Objetivo
+            target: Meta
+            tags: Etiquetas
       subnav:
         debates: Debates
         help_text: Texto de ayuda
@@ -634,7 +680,7 @@ es:
           homepage: Página principal
           draft_versions: Redacción
           questions: Debate
-          proposals: Propuestas
+          proposals: Iniciativas
           milestones: Seguimiento
           legislators: Legisladores
           help_text: Texto de ayuda
@@ -752,13 +798,13 @@ es:
       activity: Actividad de moderadores
       admin: Menú de administración
       banner: Gestionar banners
-      proposals: Propuestas
-      proposals_topics: Temas de propuestas
+      proposals: Iniciativas
+      proposals_topics: Temas de iniciativas
       budgets: Presupuestos participativos
       geozones: Gestionar zonas
       hidden_comments: Comentarios ocultos
       hidden_debates: Debates ocultos
-      hidden_proposals: Propuestas ocultas
+      hidden_proposals: Iniciativas ocultas
       hidden_budget_investments: Proyectos de gasto ocultos
       hidden_proposal_notifications: Notificationes de propuesta ocultas
       hidden_users: Usuarios bloqueados
@@ -781,12 +827,14 @@ es:
       organizations: Organizaciones
       settings: Configuración global
       stats: Estadísticas
+      key_systems: Monitorizar sistemas clave
       signature_sheets: Hojas de firmas
       site_customization:
         documents: Documentos
         homepage: Homepage
         pages: Personalizar páginas
         help_texts: Personalizar textos de ayuda
+        alert_messages: Personalizar mensajes de alerta
         images: Personalizar imágenes
         content_blocks: Personalizar bloques
         information_texts: Personalizar textos
@@ -794,7 +842,7 @@ es:
           basic: "Personalización básica"
           debates: "Debates"
           community: "Comunidad"
-          proposals: "Propuestas"
+          proposals: "Iniciativas"
           polls: "Votaciones"
           layouts: "Plantillas"
           machine_learning: "IA / Machine Learning"
@@ -813,7 +861,7 @@ es:
       title_booths: Urnas de votación
       legislation: Elaboración normativa
       users: Usuarios
-      dashboard: Panel de progreso de propuestas
+      dashboard: Panel de progreso de iniciativas
       administrator_tasks: Recursos solicitados
       dashboard_actions: Recursos y acciones
       debates: "Debates"
@@ -844,8 +892,8 @@ es:
     segment_recipient:
       all_users: Todos los usuarios
       administrators: Administradores
-      all_proposal_authors: Usuarios autores de propuestas (incluyendo archivadas y retiradas)
-      proposal_authors: Usuarios autores de propuestas
+      all_proposal_authors: Usuarios autores de iniciativas (incluyendo archivadas y retiradas)
+      proposal_authors: Usuarios autores de iniciativas
       investment_authors: Usuarios autores de proyectos de gasto en los actuales presupuestos
       feasible_and_undecided_investment_authors: "Usuarios autores de algún proyecto de gasto en los actuales presupuestos que no cumpla: [evaluación finalizada inviable]"
       selected_investment_authors: Usuarios autores de proyectos de gasto seleccionadas en los actuales presupuestos
@@ -1315,21 +1363,38 @@ es:
         no_results: No se han encontrado organizaciones.
     proposals:
       index:
-        title: Propuestas
+        title: Iniciativas
         id: ID
         author: Autor
         milestones: Hitos
+        supports: Apoyos totales
+        created_at: Fecha creación
+        tags: Etiquetas
+        sdg: Objetivo
+        target: Meta
         select: Seleccionar
         selected: Seleccionada
-        no_proposals: No hay propuestas.
+        no_proposals: No hay iniciativas.
+        list:
+            id: ID
+            title: Iniciativas
+            author_username: Autor
+            milestones: Hitos
+            supports: Apoyos totales
+            created_at: Fecha creación
+            sdg: Objetivo
+            target: Meta
+            tags: Etiquetas
+            selected: Seleccionada
+
       show:
-        create_question: Añadir esta propuesta a una votación para ser votada
+        create_question: Añadir esta iniciativa a una votación para ser votada
       form:
-        update: Actualizar propuesta ciudadana
+        update: Actualizar iniciativa ciudadana
       update:
-        notice: Propuesta actualizada correctamente
+        notice: Iniciativa actualizada correctamente
       subnav:
-        proposals: Propuestas
+        proposals: Iniciativas
         help_text: Texto de ayuda
     hidden_proposals:
       index:
@@ -1338,8 +1403,8 @@ es:
           all: Todas
           with_confirmed_hide: Confirmadas
           without_confirmed_hide: Pendientes
-        title: Propuestas ocultas
-        no_hidden_proposals: No hay propuestas ocultas.
+        title: Iniciativas ocultas
+        no_hidden_proposals: No hay iniciativas ocultas.
     hidden_proposal_notifications:
       index:
         filter: Filtro
@@ -1407,7 +1472,7 @@ es:
           poll_questions: "Buscar preguntas"
           polls: "Buscar votaciones por nombre o descripción"
           processes: "Buscar procesos legislativos por nombre o descripción"
-          proposals: "Buscar propuestas por título, código, descripción o pregunta"
+          proposals: "Buscar iniciativas por título, código, descripción o pregunta"
           users: "Buscar usuario por nombre o email"
         search: "Buscar"
       search_results: "Resultados de la búsqueda"
@@ -1493,8 +1558,8 @@ es:
           comments: Comentarios
           debate_votes: Votos en debates
           debates: Debates
-          proposal_votes: Votos en propuestas
-          proposals: Propuestas
+          proposal_votes: Votos en iniciativas
+          proposals: Iniciativas
           budgets: Presupuestos abiertos
           budget_investments: Proyectos de gasto
           unverified_users: Usuarios sin verificar
@@ -1502,13 +1567,13 @@ es:
           user_level_two: Usuarios de nivel dos
           users: Usuarios
           verified_users: Usuarios verificados
-          verified_users_who_didnt_vote_proposals: Usuarios verificados que no han votado propuestas
+          verified_users_who_didnt_vote_proposals: Usuarios verificados que no han votado iniciativas
           visits: Visitas
           votes: Votos
         budgets_title: Presupuestos participativos
         participatory_budgets: Presupuestos Participativos
         direct_messages: Mensajes directos
-        proposal_notifications: Notificaciones de propuestas
+        proposal_notifications: Notificaciones de iniciativas
         incomplete_verifications: Verificaciones incompletas
         polls: Votaciones
         sdg: ODS
@@ -1539,9 +1604,9 @@ es:
         total: Total
         users_who_have_sent_message: Usuarios que han enviado un mensaje privado
       proposal_notifications:
-        title: Notificaciones de propuestas
+        title: Notificaciones de iniciativas
         total: Total
-        proposals_with_notifications: Propuestas con notificaciones
+        proposals_with_notifications: Iniciativas con notificaciones
         not_available: "Esta propuesta ya no está disponible"
       polls:
         title: Estadísticas de votaciones
@@ -1561,8 +1626,38 @@ es:
           sent: "Proyectos de inversión enviados"
         debates: "Debates"
         polls: "Votaciones"
-        proposals: "Propuestas"
+        proposals: "Iniciativas"
         title: "Objetivos de Desarrollo Sostenible - Estadísticas"
+    key_systems:
+      index:
+        title: Sistemas clave
+        mail_system:
+          title: Estado del envío de correos electrónicos
+          operational: El sistema de correo está funcionando correctamente.
+          down: El sistema de correo está desactivado.
+          error: "Error al comprobar el estado del correo: %{error}"
+        background_job_system:
+          title: Procesos en Segundo Plano
+          operational: Delayed Job está funcionando correctamente y puede recibir jobs.
+          down: Delayed Job no puede recibir jobs.
+          error: "Error al comprobar el estado de Delayed Job: %{error}"
+          jobs_pending: Trabajos pendientes
+          jobs_failed: Trabajos fallidos
+          failed: Fallido
+          in_process: En proceso
+          pending: Pendiente
+          priority: Prioridad
+          attempts: Intentos
+          handler: Objeto
+          run_at: Fecha de ejecución
+          queue: Cola
+          created_at: Fecha de creación
+          status: Estado
+          recent_errors: Errores recientes
+          no_recent_errors: No hay errores recientes
+          view_log: Ver log
+          log_file_not_found: Archivo de log no encontrado.
+          fetch_log_error: "Error al recuperar logs: %{error}"
     tags:
       create: Crear tema
       index:
@@ -1726,7 +1821,7 @@ es:
       middle_title: Sección central
       no_header: No hay sección central.
       feeds:
-        proposals: Propuestas
+        proposals: Iniciativas
         debates: Debates
         processes: Procesos
       new:
