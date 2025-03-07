@@ -4,7 +4,7 @@ describe Users::GvLoginController do
   let(:host) { "localhost" }
   let(:ip) { "127.0.0.1" }
   let(:cookie) { "f7aec2ad-4bd0-4520-9f03-c24995c276ae" }
-  let(:api) { GVLoginApi.new(host) }
+  let(:api) { GvLoginApi.new(host) }
   let(:data) do
     OpenStruct.new({
       name: "Consul",
@@ -17,7 +17,7 @@ describe Users::GvLoginController do
   let(:invalid_vmcrc_user) { build(:vmcrc_persona, nomb: data.name, dni: data.dni, dcorreoint: "", codper: "") }
 
   let(:valid_body) do
-    GVLoginApi::Response.new({
+    GvLoginApi::Response.new({
       resultado: true,
       datos: {
           mail: data.email,
@@ -47,7 +47,7 @@ describe Users::GvLoginController do
   end
 
   let(:body_without_roles) do
-    GVLoginApi::Response.new({
+    GvLoginApi::Response.new({
       resultado: true,
       datos: {
           mail: data.email,
@@ -67,7 +67,7 @@ describe Users::GvLoginController do
   end
 
   let(:body_invalid_email) do
-    GVLoginApi::Response.new({
+    GvLoginApi::Response.new({
       resultado: true,
       datos: {
           mail: "Email",
@@ -97,7 +97,7 @@ describe Users::GvLoginController do
   end
 
   let(:body_not_gva_email) do
-    GVLoginApi::Response.new({
+    GvLoginApi::Response.new({
       resultado: true,
       datos: {
           mail: "test@test.com",
@@ -127,7 +127,7 @@ describe Users::GvLoginController do
   end
 
   let(:body_without_email) do
-    GVLoginApi::Response.new({
+    GvLoginApi::Response.new({
       resultado: true,
       datos: {
           roles: {
@@ -156,7 +156,7 @@ describe Users::GvLoginController do
   end
 
   let(:body_blank_email) do
-    GVLoginApi::Response.new({
+    GvLoginApi::Response.new({
       resultado: true,
       datos: {
           mail: "",
@@ -186,7 +186,7 @@ describe Users::GvLoginController do
   end
 
   let(:body_without_codper) do
-    GVLoginApi::Response.new({
+    GvLoginApi::Response.new({
       resultado: true,
       datos: {
           mail: data.email,
@@ -211,7 +211,7 @@ describe Users::GvLoginController do
   end
 
   let(:body_invalid_codper) do
-    GVLoginApi::Response.new({
+    GvLoginApi::Response.new({
       resultado: true,
       datos: {
           mail: data.email,
@@ -241,7 +241,7 @@ describe Users::GvLoginController do
   end
 
   let(:body_invalid_email_codper) do
-    GVLoginApi::Response.new({
+    GvLoginApi::Response.new({
       resultado: true,
       datos: {
           mail: "test@test.com",
@@ -283,7 +283,7 @@ describe Users::GvLoginController do
           valid_vmcrc_user.save
         end
         it "request valid values" do
-          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(valid_body)
+          expect_any_instance_of(GvLoginApi).to receive(:context).with(ip, cookie).and_return(valid_body)
           get :login_or_redirect_to_sso
           user_created = User.last
           identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"]).user
@@ -296,7 +296,7 @@ describe Users::GvLoginController do
         end
 
         it "request without roles" do
-          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_without_roles)
+          expect_any_instance_of(GvLoginApi).to receive(:context).with(ip, cookie).and_return(body_without_roles)
           get :login_or_redirect_to_sso
           user_created = User.last
           identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"]).user
@@ -309,7 +309,7 @@ describe Users::GvLoginController do
         end
 
         it "request invalid email" do
-          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_invalid_email)
+          expect_any_instance_of(GvLoginApi).to receive(:context).with(ip, cookie).and_return(body_invalid_email)
           get :login_or_redirect_to_sso
           user_created = User.last
           identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"]).user
@@ -324,7 +324,7 @@ describe Users::GvLoginController do
         end
 
         it "request not gva email" do
-          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_not_gva_email)
+          expect_any_instance_of(GvLoginApi).to receive(:context).with(ip, cookie).and_return(body_not_gva_email)
           get :login_or_redirect_to_sso
           user_created = User.last
           identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"]).user
@@ -340,7 +340,7 @@ describe Users::GvLoginController do
         end
 
         it "request without email" do
-          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_without_email)
+          expect_any_instance_of(GvLoginApi).to receive(:context).with(ip, cookie).and_return(body_without_email)
           get :login_or_redirect_to_sso
           user_created = User.last
           identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"]).user
@@ -356,7 +356,7 @@ describe Users::GvLoginController do
         end
 
         it "request blank email" do
-          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_blank_email)
+          expect_any_instance_of(GvLoginApi).to receive(:context).with(ip, cookie).and_return(body_blank_email)
           get :login_or_redirect_to_sso
           user_created = User.last
           identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"]).user
@@ -372,7 +372,7 @@ describe Users::GvLoginController do
         end
 
         it "request invalid codper" do
-          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_invalid_codper)
+          expect_any_instance_of(GvLoginApi).to receive(:context).with(ip, cookie).and_return(body_invalid_codper)
           get :login_or_redirect_to_sso
           user_created = User.last
           identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"]).user
@@ -388,7 +388,7 @@ describe Users::GvLoginController do
         end
 
         it "request without codper" do
-          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_without_codper)
+          expect_any_instance_of(GvLoginApi).to receive(:context).with(ip, cookie).and_return(body_without_codper)
           get :login_or_redirect_to_sso
           user_created = User.last
           identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"]).user
@@ -404,7 +404,7 @@ describe Users::GvLoginController do
         end
 
         it "request invalid codper and email" do
-          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_invalid_email_codper)
+          expect_any_instance_of(GvLoginApi).to receive(:context).with(ip, cookie).and_return(body_invalid_email_codper)
           get :login_or_redirect_to_sso
           user_created = User.last
           identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"]).user
@@ -426,7 +426,7 @@ describe Users::GvLoginController do
         end
 
         it "request invalid email" do
-          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_invalid_email)
+          expect_any_instance_of(GvLoginApi).to receive(:context).with(ip, cookie).and_return(body_invalid_email)
           get :login_or_redirect_to_sso
           user_created = User.last
           identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"])
@@ -439,7 +439,7 @@ describe Users::GvLoginController do
         end
 
         it "request not gva email" do
-          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_not_gva_email)
+          expect_any_instance_of(GvLoginApi).to receive(:context).with(ip, cookie).and_return(body_not_gva_email)
           get :login_or_redirect_to_sso
           user_created = User.last
           identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"])
@@ -452,7 +452,7 @@ describe Users::GvLoginController do
         end
 
         it "request without email" do
-          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_without_email)
+          expect_any_instance_of(GvLoginApi).to receive(:context).with(ip, cookie).and_return(body_without_email)
           get :login_or_redirect_to_sso
           user_created = User.last
           identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"])
@@ -465,7 +465,7 @@ describe Users::GvLoginController do
         end
 
         it "request blank email" do
-          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_blank_email)
+          expect_any_instance_of(GvLoginApi).to receive(:context).with(ip, cookie).and_return(body_blank_email)
           get :login_or_redirect_to_sso
           user_created = User.last
           identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"])
@@ -478,7 +478,7 @@ describe Users::GvLoginController do
         end
 
         it "request invalid codper" do
-          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_invalid_codper)
+          expect_any_instance_of(GvLoginApi).to receive(:context).with(ip, cookie).and_return(body_invalid_codper)
           get :login_or_redirect_to_sso
           user_created = User.last
           identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"])
@@ -491,7 +491,7 @@ describe Users::GvLoginController do
         end
 
         it "request without codper" do
-          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_without_codper)
+          expect_any_instance_of(GvLoginApi).to receive(:context).with(ip, cookie).and_return(body_without_codper)
           get :login_or_redirect_to_sso
           user_created = User.last
           identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"])
@@ -504,7 +504,7 @@ describe Users::GvLoginController do
         end
 
         it "request invalid codper and email" do
-          expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_invalid_email_codper)
+          expect_any_instance_of(GvLoginApi).to receive(:context).with(ip, cookie).and_return(body_invalid_email_codper)
           get :login_or_redirect_to_sso
           user_created = User.last
           identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"])
@@ -534,7 +534,7 @@ describe Users::GvLoginController do
       end
 
       it "request valid values" do
-        expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(valid_body)
+        expect_any_instance_of(GvLoginApi).to receive(:context).with(ip, cookie).and_return(valid_body)
         get :login_or_redirect_to_sso
         user_updated = User.last
         identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"]).user
@@ -546,7 +546,7 @@ describe Users::GvLoginController do
       end
 
       it "request without roles" do
-        expect_any_instance_of(GVLoginApi).to receive(:context).with(ip, cookie).and_return(body_without_roles)
+        expect_any_instance_of(GvLoginApi).to receive(:context).with(ip, cookie).and_return(body_without_roles)
         get :login_or_redirect_to_sso
         user_updated = User.last
         identity_user = Identity.find_by(uid: valid_body.data.info_ampliada["codper"]).user

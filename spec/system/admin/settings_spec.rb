@@ -349,7 +349,7 @@ describe "Admin settings", :admin do
     end
   end
 
-  describe "Machine learning settings" do
+  describe "Machine learning settings", consul: true do
     scenario "show the machine learning feature but not its settings" do
       Setting["feature.machine_learning"] = true
 

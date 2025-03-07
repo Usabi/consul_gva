@@ -392,7 +392,7 @@ describe "Emails" do
       expect(email).to have_body_text "This is not legal as stated in Article 34.9"
     end
 
-    scenario "Selected investment" do
+    scenario "Selected investment", consul: true do
       author1 = create(:user)
       author2 = create(:user)
       author3 = create(:user)

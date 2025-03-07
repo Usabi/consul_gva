@@ -28,7 +28,7 @@ shared_examples "mappable" do |mappable_factory_name, mappable_association_name,
       end
     end
 
-    scenario "Should show marker on create #{mappable_factory_name} when click on map" do
+    scenario "Should show marker on create #{mappable_factory_name} when click on map", consul: true do
       do_login_for user, management: management
       visit send(mappable_new_path, arguments)
 
@@ -40,7 +40,7 @@ shared_examples "mappable" do |mappable_factory_name, mappable_association_name,
       end
     end
 
-    scenario "Should create #{mappable_factory_name} with map" do
+    scenario "Should create #{mappable_factory_name} with map", consul: true do
       do_login_for user, management: management
       visit send(mappable_new_path, arguments)
 
@@ -192,7 +192,7 @@ shared_examples "mappable" do |mappable_factory_name, mappable_association_name,
                                                                                                with: "0.0"
     end
 
-    scenario "Should edit default values from map on #{mappable_factory_name} edit page" do
+    scenario "Should edit default values from map on #{mappable_factory_name} edit page", consul: true do
       do_login_for mappable.author, management: management
 
       visit send(mappable_edit_path, id: mappable.id)
@@ -218,7 +218,7 @@ shared_examples "mappable" do |mappable_factory_name, mappable_association_name,
       expect(page).to have_css ".map-location[data-marker-latitude='#{mappable.map_location.latitude}']"
     end
 
-    scenario "Can not display map on #{mappable_factory_name} edit when remove map marker" do
+    scenario "Can not display map on #{mappable_factory_name} edit when remove map marker", consul: true do
       do_login_for mappable.author, management: management
 
       visit send(mappable_edit_path, id: mappable.id)
@@ -255,7 +255,7 @@ shared_examples "mappable" do |mappable_factory_name, mappable_association_name,
       set_arguments(arguments, mappable, mappable_path_arguments)
     end
 
-    scenario "Should display map and marker on #{mappable_factory_name} show page" do
+    scenario "Should display map and marker on #{mappable_factory_name} show page", consul: true do
       arguments[:id] = mappable.id
 
       do_login_for user, management: management if management

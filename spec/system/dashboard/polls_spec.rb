@@ -143,7 +143,7 @@ describe "Polls" do
     end
   end
 
-  scenario "Edit poll should allow to remove questions" do
+  scenario "Edit poll should allow to remove questions", consul: true do
     poll = create(:poll, related: proposal, starts_at: 1.week.from_now)
     create(:poll_question, poll: poll)
     create(:poll_question, poll: poll)

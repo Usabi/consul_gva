@@ -18,10 +18,9 @@ describe "Admin custom content blocks", :admin do
     expect(page).to have_content(heading_block.body)
   end
 
-  context "Create" do
-    scenario "Valid custom block" do
+  context "Create", consul: true do
+    scenario "Valid custom block"  do
       visit admin_root_path
-
       within("#side_menu") do
         click_button "Site content"
         click_link "Custom content blocks"
@@ -68,7 +67,7 @@ describe "Admin custom content blocks", :admin do
     end
   end
 
-  context "Update" do
+  context "Update", consul: true do
     scenario "Valid custom block" do
       create(:site_customization_content_block)
 

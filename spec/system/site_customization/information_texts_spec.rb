@@ -28,7 +28,7 @@ describe "Custom information texts", :admin do
     end
   end
 
-  scenario "Show custom text with options" do
+  scenario "Show custom text with options", consul: true do
     user = create(:user, username: "Rachel")
     create(:budget_investment, author_id: user.id)
 

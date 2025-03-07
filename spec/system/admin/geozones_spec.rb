@@ -143,7 +143,7 @@ describe "Admin geozones", :admin do
     end
   end
 
-  scenario "Show polygons on geozone admin view" do
+  scenario "Show polygons on geozone admin view", consul: true do
     Setting["feature.map"] = true
     geojson = '{ "geometry": { "type": "Polygon", "coordinates": [[-0.1,51.5],[-0.2,51.4],[-0.3,51.6]] } }'
     geozone = create(:geozone, name: "Polygon me!", geojson: geojson)

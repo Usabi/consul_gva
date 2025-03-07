@@ -66,7 +66,7 @@ describe "Advanced search" do
 
   context "Search by date" do
     context "Predefined date ranges" do
-      scenario "Last day" do
+      scenario "Last day", consul: true do
         bdgt_invest1 = create(:budget_investment, heading: heading, created_at: 1.minute.ago)
         bdgt_invest2 = create(:budget_investment, heading: heading, created_at: 1.hour.ago)
         bdgt_invest3 = create(:budget_investment, heading: heading, created_at: 2.days.ago)
@@ -126,7 +126,7 @@ describe "Advanced search" do
         end
       end
 
-      scenario "Last year" do
+      scenario "Last year", consul: true do
         bdgt_invest1 = create(:budget_investment, heading: heading, created_at: 300.days.ago)
         bdgt_invest2 = create(:budget_investment, heading: heading, created_at: 350.days.ago)
         bdgt_invest3 = create(:budget_investment, heading: heading, created_at: 370.days.ago)
@@ -193,7 +193,7 @@ describe "Advanced search" do
       end
     end
 
-    scenario "Search by multiple filters" do
+    scenario "Search by multiple filters", consul: true do
       Setting["feature.sdg"] = true
       Setting["sdg.process.budgets"] = true
 

@@ -44,7 +44,7 @@ describe "Admin edit translatable records", :admin do
       let(:translatable) { create(:site_customization_page) }
       let(:path) { edit_admin_site_customization_page_path(translatable) }
 
-      scenario "Maintains existing translations" do
+      scenario "Maintains existing translations", consul: true do
         visit path
 
         select "Français", from: :add_language
@@ -215,8 +215,8 @@ describe "Admin edit translatable records", :admin do
     end
 
     context "CKEditor fields" do
-      let(:translatable) { create(:poll_question_answer, poll: create(:poll, :future)) }
-      let(:path) { edit_admin_question_answer_path(translatable.question, translatable) }
+      let(:translatable) { create(:poll_question_option, poll: create(:poll, :future)) }
+      let(:path) { edit_admin_question_option_path(translatable.question, translatable) }
 
       scenario "Changes the existing translation" do
         visit path

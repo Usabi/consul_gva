@@ -30,13 +30,12 @@ shared_examples "remotely_translatable" do |factory_name, path_name, path_argume
       expect(page).to have_button "Traducir página"
     end
 
-    scenario "should not be present when new current locale translation exists" do
+    scenario "should not be present when new current locale translation exists", consul: true do
       add_translations(resource, :es)
       visit path
       expect(page).not_to have_button "Translate page"
 
       select_language("Cast")
-
       expect(page).to have_select "Idioma:"
       expect(page).not_to have_button "Traducir página"
     end
@@ -61,7 +60,7 @@ shared_examples "remotely_translatable" do |factory_name, path_name, path_argume
 
     describe "should ignore missing translations on resource comments",
              if: index_path?(path_name) && commentable?(factory_name) do
-      scenario "is not present when a resource translation exists but its comment has not tanslations" do
+      scenario "is not present when a resource translation exists but its comment has not tanslations", consul: true do
         add_translations(resource, :es)
         create(:comment, commentable: resource)
         visit path
@@ -86,7 +85,7 @@ shared_examples "remotely_translatable" do |factory_name, path_name, path_argume
         expect(page).to have_button "Traducir página"
       end
 
-      scenario "not display when exists resource translations but his comment has tanslations" do
+      scenario "not display when exists resource translations but his comment has tanslations", consul: true do
         add_translations(resource, :es)
         create_comment_with_translations(resource, :es)
         visit path

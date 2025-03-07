@@ -217,7 +217,7 @@ describe "Legislation" do
         expect(page).to have_content("Français")
       end
 
-      scenario "Shows Create a Proposal button when process is in draft phase" do
+      scenario "Shows Create a Proposal button when process is in draft phase", consul: true do
         process = create(:legislation_process,
                          :in_draft_phase,
                          proposals_phase_start_date: Date.tomorrow)

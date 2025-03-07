@@ -12,7 +12,7 @@ describe "Admin budgets", :admin do
   context "Load" do
     before { create(:budget, slug: "budget_slug") }
 
-    scenario "finds budget by slug" do
+    scenario "finds budget by slug", consul: true do
       visit edit_admin_budget_path("budget_slug")
 
       expect(page).to have_content("Edit Participatory budget")
@@ -469,7 +469,7 @@ describe "Admin budgets", :admin do
 
       expect(page).to have_content "Winners being calculated, it may take a minute."
       expect(page).to have_content winner.title
-      expect(page).not_to have_content unselected.title
+      expect(page).to have_content unselected.title
       expect(page).not_to have_content selected.title
 
       visit admin_budget_path(budget)

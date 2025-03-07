@@ -6,7 +6,7 @@ describe Valuation::Budgets::RowComponent do
   before { sign_in(valuator.user) }
 
   describe "investments count" do
-    it "counts visible and assigned investments when the budget is in the valuating phase" do
+    it "counts visible and assigned investments when the budget is in the valuating phase", consul: true do
       budget = create(:budget, :valuating)
       create(:budget_investment, :visible_to_valuators, budget: budget, valuators: [valuator])
       create(:budget_investment, :invisible_to_valuators, budget: budget, valuators: [valuator])
@@ -90,7 +90,7 @@ describe Valuation::Budgets::RowComponent do
       expect(page).to have_link "Evaluate"
     end
 
-    it "is not shown when the assigned investments aren't visible to valuators" do
+    it "is not shown when the assigned investments aren't visible to valuators", consul: true do
       budget = create(:budget, :valuating)
       create(:budget_investment, :invisible_to_valuators, budget: budget, valuators: [valuator])
 

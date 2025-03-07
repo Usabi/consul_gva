@@ -134,7 +134,7 @@ describe "Budget Investments" do
     end
   end
 
-  scenario "Index filter by status" do
+  scenario "Index filter by status", consul: true do
     budget.update!(phase: "finished")
 
     create(:budget_investment, heading: heading, title: "Unclassified investment")
@@ -1566,7 +1566,7 @@ describe "Budget Investments" do
       end
     end
 
-    scenario "Show unselected budget investments" do
+    scenario "Show unselected budget investments", consul: true do
       investment1 = create(:budget_investment, :unselected, :feasible, :finished, heading: heading)
       investment2 = create(:budget_investment, :selected,   :feasible, :finished, heading: heading)
       investment3 = create(:budget_investment, :selected,   :feasible, :finished, heading: heading)
@@ -1584,7 +1584,7 @@ describe "Budget Investments" do
       end
     end
 
-    scenario "Do not display vote button for unselected investments in index" do
+    scenario "Do not display vote button for unselected investments in index", consul: true do
       investment = create(:budget_investment, :unselected, heading: heading)
 
       visit budget_investments_path(budget, heading_id: heading.id, filter: "unselected")
@@ -1631,7 +1631,7 @@ describe "Budget Investments" do
   end
 
   context "sidebar map" do
-    scenario "Display 6 investment's markers on sidebar map" do
+    scenario "Display 6 investment's markers on sidebar map", consul: true do
       create_list(:budget_investment, 6, :with_map_location, heading: heading)
       visit budget_investments_path(budget, heading_id: heading.id)
 
@@ -1640,7 +1640,7 @@ describe "Budget Investments" do
       end
     end
 
-    scenario "Display only investment's related to the current heading" do
+    scenario "Display only investment's related to the current heading", consul: true do
       heading_2 = create(:budget_heading, name: "Madrid", group: group)
       create_list(:budget_investment, 4, :with_map_location, heading: heading)
       create_list(:budget_investment, 2, :with_map_location, heading: heading_2)
@@ -1663,7 +1663,7 @@ describe "Budget Investments" do
       end
     end
 
-    scenario "Shows the polygon associated to the current heading" do
+    scenario "Shows the polygon associated to the current heading", consul: true do
       triangle = <<~JSON
         {
           "geometry": {
@@ -1699,7 +1699,7 @@ describe "Budget Investments" do
       expect(page).not_to have_css ".leaflet-popup"
     end
 
-    scenario "Shows all investments and not only the ones on the current page" do
+    scenario "Shows all investments and not only the ones on the current page", consul: true do
       stub_const("#{Budgets::InvestmentsController}::PER_PAGE", 2)
 
       3.times do

@@ -38,11 +38,11 @@ describe "Admin Budgets", :admin do
       visit admin_poll_path(poll)
 
       within "#poll-resources" do
-        expect(page).not_to have_content("Questions")
-        expect(page).to have_content("Booths")
-        expect(page).to have_content("Officers")
-        expect(page).to have_content("Recounting")
-        expect(page).to have_content("Results")
+        expect(page).not_to have_content("QUESTIONS")
+        expect(page).to have_content("BOOTHS")
+        expect(page).to have_content("OFFICERS")
+        expect(page).to have_content("RECOUNTING")
+        expect(page).to have_content("RESULTS")
       end
     end
   end

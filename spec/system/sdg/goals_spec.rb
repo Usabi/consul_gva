@@ -16,7 +16,7 @@ describe "SDG Goals" do
       within("#navigation_bar") { expect(page).not_to have_link "SDG" }
     end
 
-    scenario "routes to the goals index" do
+    scenario "routes to the goals index", consul: true do
       visit root_path
       within("#navigation_bar") { click_link "SDG" }
 
@@ -25,7 +25,7 @@ describe "SDG Goals" do
   end
 
   describe "Index" do
-    scenario "has links to SDGs" do
+    scenario "has links to SDGs", consul: true do
       visit sdg_goals_path
 
       click_link "7. Affordable and Clean Energy"
@@ -57,7 +57,7 @@ describe "SDG Goals" do
       create(:legislation_process, title: "Tax regulations", sdg_goals: [SDG::Goal[10]])
     end
 
-    scenario "shows the SDG and its related content" do
+    scenario "shows the SDG and its related content", consul: true do
       visit sdg_goal_path(15)
 
       within(".sdg-goal header") { expect(page).to have_content "15\nLIFE ON\nLAND" }
@@ -106,7 +106,7 @@ describe "SDG Goals" do
       end
     end
 
-    scenario "has buttons to read more and read less for long description" do
+    scenario "has buttons to read more and read less for long description", consul: true do
       visit sdg_goal_path(15)
 
       expect(page).to have_button "Read more about Life on Land"
@@ -118,7 +118,7 @@ describe "SDG Goals" do
       expect(page).to have_button "Read less about Life on Land"
     end
 
-    scenario "has tab target section" do
+    scenario "has tab target section", consul: true do
       create(:sdg_local_target, code: "15.1.1", title: "SDG local target sample text")
       visit sdg_goal_path(15)
 

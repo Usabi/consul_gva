@@ -60,7 +60,7 @@ describe "Admin banners magement", :admin do
     end
   end
 
-  scenario "Publish a banner" do
+  scenario "Publish a banner", consul: true do
     visit admin_root_path
 
     within("#side_menu") do
@@ -121,7 +121,7 @@ describe "Admin banners magement", :admin do
     expect(find("#font_color_input").value).to eq("#ffb2b2")
   end
 
-  scenario "Edit banner with live refresh" do
+  scenario "Edit banner with live refresh", consul: true do
     create(:banner, title: "Hello",
                     description: "Wrong text",
                     target_url: "http://www.url.com",

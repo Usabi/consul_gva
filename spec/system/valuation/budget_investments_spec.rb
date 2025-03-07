@@ -300,7 +300,7 @@ describe "Valuation budget investments" do
       expect(page).not_to have_content("Valuation finished")
     end
 
-    scenario "Feasibility can be marked as pending" do
+    scenario "Feasibility can be marked as pending", consul: true do
       visit valuation_budget_budget_investment_path(budget, investment)
       click_link "Edit dossier"
 
@@ -320,7 +320,7 @@ describe "Valuation budget investments" do
       expect(find("#budget_investment_feasibility_undecided")).to be_checked
     end
 
-    scenario "Feasibility selection makes proper fields visible" do
+    scenario "Feasibility selection makes proper fields visible", consul: true do
       feasible_fields = ["Price (€)", "Cost during the first year (€)", "Price explanation",
                          "Time scope"]
       unfeasible_fields = ["Feasibility explanation"]

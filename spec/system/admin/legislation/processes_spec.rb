@@ -27,7 +27,7 @@ describe "Admin collaborative legislation", :admin do
       expect(page).to have_content(process_3.title)
     end
 
-    scenario "Processes are sorted by descending start date" do
+    scenario "Processes are sorted by descending start date", consul: true do
       process_1 = create(:legislation_process, title: "Process 1", start_date: Date.yesterday)
       process_2 = create(:legislation_process, title: "Process 2", start_date: Date.current)
       process_3 = create(:legislation_process, title: "Process 3", start_date: Date.tomorrow)

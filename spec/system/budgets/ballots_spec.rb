@@ -160,7 +160,7 @@ describe "Ballots" do
         end
       end
 
-      scenario "map and content block shoud be visible before and after" do
+      scenario "map and content block shoud be visible before and after", consul: true do
         stub_const("#{Budgets::InvestmentsController}::PER_PAGE", 1)
 
         create(

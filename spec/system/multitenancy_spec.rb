@@ -40,7 +40,7 @@ describe "Multitenancy", :seed_tenants do
     end
   end
 
-  scenario "PostgreSQL extensions work for tenants" do
+  scenario "PostgreSQL extensions work for tenants", consul: true do
     Tenant.switch("mars") { login_as(create(:user)) }
 
     with_subdomain("mars") do
