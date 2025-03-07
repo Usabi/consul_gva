@@ -87,8 +87,11 @@ class Admin::KeySystemsController < Admin::BaseController
     def format_handler(job)
       require "yaml"
 
-      permitted_classes = [Symbol, Hash, Array, String, Mailer, Delayed::PerformableMailer,
-                           Delayed::PerformableMethod, TestJob]
+      permitted_classes = [TestJob,
+                           Mailer,
+                           Delayed::PerformableMailer,
+                           Delayed::PerformableMethod,
+                           ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper]
 
       handler_data = YAML.safe_load(job.handler, permitted_classes: permitted_classes)
 
