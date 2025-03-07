@@ -6,18 +6,27 @@
 
 <%= render "admin/proposals/subnav", i18n_namespace: "admin.proposals.index", active: "proposals" %>
 
-<% if @proposals.any? %>
-  <%= render Admin::SearchComponent.new(label: t("admin.shared.search.label.proposals")) %>
+<%= render "search_form" %>
 
+<% if @proposals.any? %>
+
+  <%= link_to t("admin.budget_investments.index.download_current_selection"),
+            admin_proposals_path(csv_params),
+            class: "float-right small clear" %>
   <h3><%= page_entries_info @proposals %></h3>
 
   <table>
     <thead>
       <tr>
-        <th class="text-center"><%= t("admin.proposals.index.id") %></th>
-        <th><%= Proposal.human_attribute_name(:title) %></th>
+        <th class="text-center"><%= link_to_sorted_admin_resource "proposals", :id %></th>
+        <th data-field="title"><%= link_to_sorted_admin_resource "proposals", :title %></th>
         <th><%= t("admin.proposals.index.author") %></th>
         <th><%= t("admin.proposals.index.milestones") %></th>
+        <th data-field="supports" ><%= link_to_sorted_admin_resource "proposals", :supports %></th>
+        <th data-field="created_at" ><%= link_to_sorted_admin_resource "proposals", :created_at %></th>
+        <th><%= t("admin.proposals.index.sdg") %></th>
+        <th><%= t("admin.proposals.index.target") %></th>
+        <th><%= t("admin.proposals.index.tags") %></th>
         <th><%= t("admin.proposals.index.selected") %></th>
       </tr>
     </thead>
@@ -29,6 +38,11 @@
           <td><%= link_to proposal.title, admin_proposal_path(proposal) %></td>
           <td><%= proposal.author.username %></td>
           <td><%= proposal.milestones.count %></td>
+          <td><%= proposal.cached_votes_up %></td>
+          <td><%= proposal.created_at.strftime("%d/%m/%Y") %></td>
+          <td><%= proposal.sdg_goal_list %></td>
+          <td><%= proposal.sdg_target_list %></td>
+          <td><%= proposal.tags_list.join(", ") %></td>
           <td class="js-select"><%= render "select_proposal", proposal: proposal %></td>
         </tr>
       <% end %>
@@ -37,7 +51,7 @@
 
   <%= paginate @proposals %>
 <% else %>
-  <div class="callout primary">
+  <div class="callout primary column">
     <%= t("admin.proposals.index.no_proposals") %>
   </div>
 <% end %>

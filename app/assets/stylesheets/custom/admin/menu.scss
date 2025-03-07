@@ -1,0 +1,15 @@
+@mixin icon($name, $style) {
+  @include has-fa-icon($name, $style);
+
+  &::before {
+    @extend %admin-menu-icon;
+  }
+}
+
+.admin-sidebar {
+  > ul > li a {
+    &.key-systems-link {
+      @include icon(chart-bar, solid);
+    }
+  }
+}

@@ -231,7 +231,7 @@ describe "Admin polls", :admin do
     end
   end
 
-  context "Questions" do
+  context "Questions", consul: true do
     context "Poll show" do
       scenario "Question list" do
         poll = create(:poll)

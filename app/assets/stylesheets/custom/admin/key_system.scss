@@ -1,0 +1,54 @@
+.key-system-status {
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.key-system-status.operational {
+  .card-divider {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+  }
+}
+
+.key-system-status.down {
+  .card-divider {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+  }
+}
+
+.key-system-status.error {
+  .card-divider {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+  }
+}
+
+.reveal.large {
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+pre {
+  max-height: 49em;
+
+  code {
+    font-size: 12px;
+    background-color: #2e2e2e;
+    color: #f8f8f2;
+    padding: 10px;
+    border-radius: 5px;
+    display: block;
+    max-width: 75vw;
+    max-height: 49em;
+    overflow-x: auto;
+    overflow-y: auto;
+    line-height: 1.5;
+    font-family: 'Courier New', Courier, monospace;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+}

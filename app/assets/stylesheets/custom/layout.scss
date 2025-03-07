@@ -56,3 +56,17 @@ body {
 // ----------
 
 @import "layout/header";
+
+// 07. Callout
+// -----------
+
+.notice-container[data-alert] {
+  max-width: 30vw;
+  min-width: 200px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
+  .notice {
+    height: auto;
+  }
+}
