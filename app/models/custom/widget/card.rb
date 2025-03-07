@@ -24,7 +24,7 @@ class Widget::Card
   end
 
   def self.body
-    where(header: false, middle: false, cardable_id: nil).order(:created_at)
+    where(header: false, middle: false, cardable_id: nil).sort_by_order
   end
 
   def self.middle

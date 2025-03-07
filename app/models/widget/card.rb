@@ -11,7 +11,7 @@ class Widget::Card < ApplicationRecord
   #TODO: ask consul project
   # validates_translation :title, presence: true
   # validates :link_url, presence: true, if: -> { !header? || link_text.present? }
-  # validates :order, numericality: { greater_than_or_equal_to: 1 }
+  validates :order, numericality: { greater_than_or_equal_to: 1 }
 
   scope :sort_by_order, -> { order(:order, :created_at) }
 
