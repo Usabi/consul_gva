@@ -88,11 +88,14 @@ class Admin::KeySystemsController < Admin::BaseController
       require "yaml"
 
       permitted_classes = [Symbol,
+                           Time,
                            TestJob,
                            Mailer,
                            Delayed::PerformableMailer,
                            Delayed::PerformableMethod,
-                           ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper]
+                           Newsletter,
+                           ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper,
+                           "ActiveModel::Attribute::FromDatabase"]
 
       handler_data = YAML.safe_load(job.handler, permitted_classes: permitted_classes)
 
