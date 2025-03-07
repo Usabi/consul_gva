@@ -87,7 +87,8 @@ class Admin::KeySystemsController < Admin::BaseController
     def format_handler(job)
       require "yaml"
 
-      permitted_classes = [TestJob,
+      permitted_classes = [Symbol,
+                           TestJob,
                            Mailer,
                            Delayed::PerformableMailer,
                            Delayed::PerformableMethod,
@@ -95,11 +96,20 @@ class Admin::KeySystemsController < Admin::BaseController
 
       handler_data = YAML.safe_load(job.handler, permitted_classes: permitted_classes)
 
-      if handler_data&.is_a?(Object) && handler_data&.object && handler_data&.object&.to_s == "Mailer"
+      case handler_data.class
+      when Delayed::PerformableMailer, Delayed::PerformableMethod
+        return if handler_data.object.is_a?(TestJob)
+
         object = handler_data.object
         method_name = handler_data.method_name
         email = handler_data.args&.first
         "#{object}: #{email}, Método: #{method_name}"
+      when ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper
+        return if handler_data.job_data.is_a?(TestJob)
+
+        job_class = handler_data.job_data["job_class"]
+        arguments = handler_data.job_data["arguments"]
+        "#{job_class} - #{arguments}"
       else
         handler_data.class.to_s
       end
