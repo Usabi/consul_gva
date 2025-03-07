@@ -8,7 +8,7 @@
   <%= render "shared/canonical", href: debates_url %>
 <% end %>
 
-<main>
+<div>
   <% if @search_terms || @advanced_search_terms %>
     <%= render Shared::SearchResultsSummaryComponent.new(
       results: @debates,
@@ -86,4 +86,4 @@
     </div>
 
   </div>
-</main>
+</div>

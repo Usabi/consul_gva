@@ -14,7 +14,7 @@
 <%= render "shared/header", header: @header %>
 
 <%= render 'slider' %>
-<main>
+<div>
   <div class="row">
     <% if @cards.any? %>
       <div class="small-12 column <%= "large-8" if feed_processes_enabled? %>">
@@ -36,4 +36,4 @@
                 recommended_debates: @recommended_debates,
                 recommended_proposals: @recommended_proposals %>
   <% end %>
-</main>
+</div>
