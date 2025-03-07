@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "controllers", "application_controller").to_s
+load Rails.root.join("app", "controllers", "application_controller.rb")
 
 class ApplicationController
   before_action :set_flash_alerts
