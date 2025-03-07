@@ -40,13 +40,13 @@ class CensusApi
     end
 
     def valid?
-      return false if data =~ /^ERROR/
+      return false if data.is_a?(String) && data =~ /^ERROR/
 
       datos_vivienda? && datos_habitante?
     end
 
     def error
-      return data if data =~ /^ERROR/
+      return data if data.is_a?(String) && data =~ /^ERROR/
 
       error = !datos_vivienda? && data[:datos_vivienda]["error"] ||
       !datos_habitante? && data[:datos_habitante]["error"]
