@@ -1,4 +1,4 @@
-class GVLoginApi
+class GvLoginApi
   GVLOGIN_HOSTS = {
        gvaparticipa_dsa: "http://gvlogin-dsa.gva.es",
        gvaparticipa_pre: "http://gvlogin-pre.gva.es",

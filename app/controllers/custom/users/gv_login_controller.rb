@@ -17,7 +17,7 @@ class Users::GvLoginController < ApplicationController
   def login_or_redirect_to_sso
     remote_ip = request.x_forwarded_for
     cookie = cookies["gvlogin.login.GVLOGIN_COOKIE"]
-    gvlogin_api = GVLoginApi.new(request.host)
+    gvlogin_api = GvLoginApi.new(request.host)
     if cookie
       begin
         check_context = gvlogin_api.context(remote_ip, cookie)
