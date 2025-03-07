@@ -1,6 +1,6 @@
+load Rails.root.join("app", "models", "proposal", "exporter.rb")
 class Proposal::Exporter
   require "csv"
-  include JsonExporter
 
   def initialize(proposals)
     @proposals = proposals
@@ -11,10 +11,6 @@ class Proposal::Exporter
       csv << headers
       @proposals.each { |proposal| csv << csv_values(proposal) }
     end
-  end
-
-  def model
-    Proposal
   end
 
   private
@@ -47,13 +43,5 @@ class Proposal::Exporter
         proposal.tags_list.join(";").presence || "-",
         proposal.selected? ? I18n.t("shared.yes") : I18n.t("shared.no")
       ]
-    end
-
-    def json_values(proposal)
-      {
-        id: proposal.id,
-        title: proposal.title,
-        description: strip_tags(proposal.description)
-      }
     end
 end
