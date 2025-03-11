@@ -1,22 +1,13 @@
 module Verifications
-  def select_date(values, selector)
-    selector = selector[:from]
-    day, month, year = values.split("-")
-    select day,   from: "#{selector}_3i"
-    select month, from: "#{selector}_2i"
-    select year,  from: "#{selector}_1i"
-  end
-
   def verify_residence
     fill_in "residence_name", with: Faker::Name.first_name
     fill_in "residence_first_surname", with: Faker::Name.last_name
     fill_in "residence_last_surname", with: Faker::Name.last_name
     select "DNI", from: "residence_document_type"
     fill_in "residence_document_number", with: "12345678Z"
-    select_date "31-#{I18n.l(Date.current.at_end_of_year, format: "%B")}-1980",
-                from: "residence_date_of_birth"
-    fill_in "residence_postal_code", with: "46001"
-    select "Male", from: "residence_gender"
+    fill_in "residence_date_of_birth", with: Date.new(1980, 12, 31)
+
+    fill_in "residence_postal_code", with: "28013"
     check "residence_terms_of_service"
 
     click_button "Verify residence"

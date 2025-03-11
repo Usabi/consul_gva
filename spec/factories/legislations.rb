@@ -179,5 +179,9 @@ FactoryBot.define do
     trait :hidden do
       hidden_at { Time.current }
     end
+
+    trait :selected do
+      selected { true }
+    end
   end
 end
