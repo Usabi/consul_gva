@@ -76,6 +76,9 @@ module Abilities
       can [:valuate, :comment_valuation], Budget::Investment
       cannot [:admin_update, :toggle_selection, :valuate, :comment_valuation],
              Budget::Investment, budget: { phase: "finished" }
+      can [:select, :deselect], Budget::Investment do |investment|
+        investment.feasible? && investment.valuation_finished? && !investment.budget.finished?
+      end
 
       can :create, Budget::ValuatorAssignment
 
@@ -139,9 +142,13 @@ module Abilities
 
       can [:deliver], Newsletter, hidden_at: nil
       can [:manage], Dashboard::AdministratorTask
+
       can :manage, Setting::LocalesSettings
+
       can :manage, LocalCensusRecord
       can [:create, :read], LocalCensusRecords::Import
+
+      can :manage, Cookies::Vendor
 
       if Rails.application.config.multitenancy && Tenant.default?
         can [:create, :read, :update, :hide, :restore], Tenant
