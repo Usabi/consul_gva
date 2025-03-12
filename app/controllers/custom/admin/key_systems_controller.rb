@@ -97,7 +97,11 @@ class Admin::KeySystemsController < Admin::BaseController
                            ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper,
                            "ActiveModel::Attribute::FromDatabase"]
 
-      handler_data = YAML.safe_load(job.handler, permitted_classes: permitted_classes)
+      begin
+        handler_data = YAML.safe_load(job.handler, permitted_classes: permitted_classes)
+      rescue Psych::DisallowedClass
+        return job.handler
+      end
 
       case handler_data.class
       when Delayed::PerformableMailer, Delayed::PerformableMethod
