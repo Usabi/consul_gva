@@ -1,30 +1,29 @@
-
 load Rails.root.join("app", "components", "admin", "menu_component.rb")
 
 class Admin::MenuComponent
-  def links
-    [
-      (proposals_link if feature?(:proposals)),
-      (debates_link if feature?(:debates)),
-      comments_link,
-      (polls_link if feature?(:polls)),
-      (legislation_link if feature?(:legislation)),
-      (budgets_link if feature?(:budgets)),
-      booths_links,
-      (signature_sheets_link if feature?(:signature_sheets)),
-      messages_links,
-      site_customization_links,
-      moderated_content_links,
-      profiles_links,
-      stats_link,
-      key_systems_link,
-      settings_links,
-      dashboard_links,
-      (machine_learning_link if ::MachineLearning.enabled?)
-    ]
-  end
-
   private
+
+    def default_links
+      [
+        (proposals_link if feature?(:proposals)),
+        (debates_link if feature?(:debates)),
+        comments_link,
+        (polls_link if feature?(:polls)),
+        (legislation_link if feature?(:legislation)),
+        (budgets_link if feature?(:budgets)),
+        booths_links,
+        (signature_sheets_link if feature?(:signature_sheets)),
+        messages_links,
+        site_customization_links,
+        moderated_content_links,
+        profiles_links,
+        stats_link,
+        key_systems_link,
+        settings_links,
+        dashboard_links,
+        (machine_learning_link if ::MachineLearning.enabled?)
+      ]
+    end
 
     def help_texts?
       controller_name == "help_texts" && params[:help_text_id].present?
@@ -76,7 +75,8 @@ class Admin::MenuComponent
     end
 
     def site_customization_links
-      link_to(t("admin.menu.title_site_customization"), "#", class: "site-customization-link") +
+      section(t("admin.menu.title_site_customization"),
+              active: customization?, class: "site-customization-link") do
         link_list(
           homepage_link,
           pages_link,
@@ -86,14 +86,13 @@ class Admin::MenuComponent
           information_texts_link,
           documents_link,
           images_link,
-          content_blocks_link,
-          class: ("is-active" if customization? &&
-                                 controller.class.module_parent != Admin::Poll::Questions::Options)
+          content_blocks_link
         )
+      end
     end
 
     def profiles_links
-      link_to(t("admin.menu.title_profiles"), "#", class: "profiles-link") +
+      section(t("admin.menu.title_profiles"), active: profiles?, class: "profiles-link") do
         link_list(
           administrators_link,
           organizations_link,
@@ -104,8 +103,8 @@ class Admin::MenuComponent
           (sdg_managers_link if feature?(:sdg)),
           legislations_link,
           budget_managers_link,
-          users_link,
-          class: ("is-active" if profiles?)
+          users_link
         )
+      end
     end
 end
