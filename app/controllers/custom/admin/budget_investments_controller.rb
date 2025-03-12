@@ -1,7 +1,6 @@
 load Rails.root.join("app", "controllers", "admin", "budget_investments_controller.rb")
 
 class Admin::BudgetInvestmentsController
-  before_action :load_investment, only: [:show, :edit, :update, :toggle_selection, :toggle_winner]
 
   BULK_ACTIONS = %w[
     visible_to_valuators_bulk
