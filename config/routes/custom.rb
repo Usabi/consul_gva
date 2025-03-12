@@ -34,4 +34,35 @@ constraints lambda { |request| !Rails.application.multitenancy_management_mode? 
   #
   # If multitenancy management mode is not being used, routes can be included within
   # this block and will still be accessible.
+
+  get "/users_count.json", to: "users#users_count"
+
+  resources :budgets, only: [:show, :index] do
+    # resources :groups, controller: "budgets/groups", only: [:show]
+    resources :investments, controller: "budgets/investments", only: [:index, :new, :create, :show, :destroy] do
+      member do
+        post :vote
+        post :unvote
+        put :flag
+        put :unflag
+      end
+    end
+  end
+
+  namespace :admin do
+    resources :legislators, only: [:index, :create, :destroy] do
+      get :search, on: :collection
+    end
+    resources :budget_managers, only: [:index, :create, :destroy] do
+      get :search, on: :collection
+    end
+  end
+end
+
+resolve "SDG::Goal" do |goal, options|
+  [:goal, options.merge(id: goal)]
+end
+
+resolve "SDG::Target" do |target, options|
+  [:target, options.merge(id: target)]
 end

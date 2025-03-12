@@ -28,15 +28,3 @@ namespace :sdg_management do
     get "#{type}/:id/edit", to: "relations#edit", as: "edit_#{type.singularize}"
   end
 end
-
-resolve "SDG::LocalTarget" do |target, options|
-  [:local_target, options.merge(id: target)]
-end
-
-resolve "SDG::Goal" do |goal, options|
-  [:goal, options.merge(id: goal)]
-end
-
-resolve "SDG::Target" do |target, options|
-  [:target, options.merge(id: target)]
-end
