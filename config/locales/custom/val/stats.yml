@@ -1,0 +1,128 @@
+val:
+  stats:
+    title: "Estadístiques de participació"
+    advanced: "Estadístiques avançades"
+    total_participants: "Participants"
+    by_gender: "Participants per gènere"
+    by_age: "Participants per grups d'edat"
+    by_geozone: "Participants per districtes"
+    men: "Hòmens"
+    men_percentage: "%{percentage} Hòmens"
+    women: "Dones"
+    women_percentage: "%{percentage} Dones"
+    other: "Altres"
+    other_percentage: "%{percentage} Altres"
+    age: "Edat"
+    age_more_than: "De %{start} i més anys"
+    age_range: "De %{start} a %{finish} anys"
+    total: "Total"
+    geozone: "Districte"
+    no_demographic_data:
+      one: "* No es disposa de les dades demogràfiques d'1 participant."
+      other: "* No es disposa de les dades demogràfiques de %{count} participants."
+    debates:
+      title: "Estadístiques de debats"
+      general: "Dades generals"
+      total: "Debats"
+      last_week: "Últims 7 dies"
+      votes: "Vots totals"
+      comments: "Comentaris totals"
+      participation: "Participació"
+      participants: Persones que han participat
+      most_voted: "Debat més votat"
+      most_commented: "Debat més comentat"
+      by_geozone: "Per districte"
+      votes_count: "%{count} vots"
+      comments_count: "%{count} comentaris"
+    proposals:
+      title: "Estadístiques d'iniciatives"
+      general: "Dades generals"
+      total: "Iniciatives"
+      last_week: "Últims 7 dies"
+      open: Obertes
+      archived: Acabades
+      votes: "Vots totals"
+      comments: "Comentaris totals"
+      participation: "Participació"
+      participants: Persones que han participat
+      most_voted: "Iniciativa més votada"
+      most_commented: "Iniciativa més comentada"
+      by_geozone: "Per districte"
+      votes_count: "%{count} vots"
+      comments_count: "%{count} comentaris"
+    polls:
+      by_channel: "Participants per mig"
+      vote_by_channel: "Vots emesos per mig"
+      web_percentage: "%{percentage} Web"
+      booth_percentage: "%{percentage} Urnes"
+      letter_percentage: "%{percentage} Correu"
+      title: "Estadístiques de votacions"
+      general: "Dades generals"
+      total: "Votacions"
+      last_week: "Últims 7 dies"
+      active: Obertes
+      expired: Acabades
+      participation: "Participació"
+      participants: Persones que han participat
+      total_votes: Votants
+      web_votes: "Vots per web"
+      booth_votes: "Vots per urnes"
+    legislation:
+      process:
+        title: "Estadístiques d'elaboració normativa"
+        general: "Dades generals"
+        total: "Normatives"
+        last_week: "Últims 7 dies"
+        active_processes: "Processos oberts"
+        past_processes: "Processos finalitzats"
+        phases: "Fases"
+        phase:
+          preview: "Preparació" 
+          public: "Consulta pública"
+        total_proposals: "Propostes"
+        proposals_last_week: "Últims 7 dies"
+        total_comments: "Comentaris"
+        total_votes: "Vots"
+        participation: "Participació"
+        participants: Persones que han participat
+        most_active_process: Normativa més activa
+        comments_count: "%{count} comentaris"
+    budgets:
+      link: "Estadístiques"
+      page_title: "%{budget} - Estadístiques de participació"
+      total_investments: "Total projectes de gasto"
+      total_selected_investments: "Projectes en la fase final"
+      total_unfeasible_investments: "Projectes inviables"
+      by_phase: "Participants per fases"
+      by_heading: "Participants per districtes i fase"
+      total: "Total"
+      heading: "Districte"
+      investments_sent: "Propostes<br>enviades"
+      participants_support_phase: "Participants fase suports"
+      participants_vote_phase: "Participants fase votació"
+      participants_every_phase: "Total de participants"
+      percent_total_participants: "% Total participants"
+      percent_heading_census: "% Cense districte"
+      participatory_disclaimer: "** Les xifres de total de participants es referixen a persones que han creat, secundat o votat propostes."
+      heading_disclaimer: "*** Les dades de districte es referixen al districte en el qual l'usuari ha votat, no necessàriament en el qual està empadronat."
+      title: "Estadístiques de pressupostos participatius"
+      general: "Dades generals"
+      total: "Pressupostos participatius"
+      last_week: "Últims 7 dies"
+      active: Oberts
+      finished: Acabats
+      phases: Fases
+      phase:
+        accepting: Presentació de projectes
+        reviewing: Revisió interna de projectes
+        selecting: Fase de suports
+        valuating: Avaluació de projectes
+        publishing_prices: Publicació de preus
+        balloting: Votació final
+        reviewing_ballots: Votació finalitzada
+        finished: Finalitzats
+      participation: "Participació"
+      participants: Persones que han participat
+      investments: "Projectes de gasto"
+      ballots: "Votacions"
+      voters: "Votants"

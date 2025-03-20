@@ -13,3 +13,157 @@
     }
   }
 }
+
+.summary-box {
+  background: #f8f9fa;
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.sidebar-title {
+  font-size: 1.2rem;
+  margin-bottom: 1.25rem;
+  color: #222;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 0.5rem;
+}
+
+.stats-section {
+  margin-bottom: 1.25rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .stats-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $line-height;
+    margin-bottom: $line-height;
+  }
+
+  .stats-item {
+    flex: 0 1 auto;
+  }
+}
+
+.stats-subtitle {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.75rem;
+}
+
+.stats-item {
+  margin-bottom: 0.75rem;
+
+  .stats-number {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #004a83;
+  }
+
+  .stats-label {
+    font-size: 0.85rem;
+    color: #666;
+  }
+}
+
+.stats-highlight {
+  background: #fff;
+  padding: 0.75rem;
+  border-radius: 4px;
+  border-left: 3px solid #004a83;
+
+  a {
+    color: #004a83;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .stats-detail {
+    font-size: 0.85rem;
+    color: #666;
+  }
+}
+
+.header-stats {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stats-group {
+  margin-bottom: $line-height;
+  margin-top: $line-height;
+}
+
+.number-with-info {
+  display: inline-block;
+
+  &::before {
+    display: inline-block;
+    margin-right: $line-height / 2;
+    vertical-align: top;
+  }
+
+  &.total-participants::before {
+    content: image-url("stats_users.png");
+  }
+
+  &.male::before {
+    content: image-url("stats_man.png");
+  }
+
+  &.female::before {
+    content: image-url("stats_woman.png");
+  }
+
+  &.other::before {
+    content: image-url("stats_other.png");
+  }
+
+  &.total-investments::before {
+    content: image-url("stats_investments.png");
+  }
+
+  &.web::before {
+    content: image-url("stats_web.png");
+  }
+
+  &.booth::before {
+    content: image-url("stats_booth.png");
+  }
+
+  &.mail::before {
+    content: image-url("stats_mail.png");
+  }
+
+  .content {
+    display: inline-block;
+    margin-right: $line-height * 2;
+  }
+
+  .number {
+    display: block;
+    font-size: rem-calc(36);
+    font-weight: bold;
+    line-height: rem-calc(36);
+  }
+
+  .info {
+    color: $text-medium;
+    font-size: $small-font-size;
+    font-style: italic;
+  }
+
+  &.total-participants {
+
+    .number {
+      font-size: rem-calc(60);
+      line-height: rem-calc(60);
+    }
+  }
+}

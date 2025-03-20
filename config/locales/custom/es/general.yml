@@ -828,6 +828,9 @@ es:
       visits: Visitas
       debates: Debates
       proposals: Iniciativas ciudadanas
+      polls: Votaciones
+      legislation: Elaboración normativa
+      budgets: Presupuestos participativos
       comments: Comentarios
       proposal_votes: Votos en iniciativas
       debate_votes: Votos en debates

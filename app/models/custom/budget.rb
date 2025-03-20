@@ -1,6 +1,8 @@
 require_dependency Rails.root.join("app", "models", "budget").to_s
 
 class Budget
+  scope :last_week, -> { where("created_at >= ?", 7.days.ago) }
+
   def self.change_phase
     change_active_phases
   end
@@ -17,12 +19,13 @@ class Budget
           budget.phase = next_phase.kind
           if budget.save
             message = I18n.t("budget_change_active_phases.success",
-                            budget_name: budget.name,
-                            previous_phase: I18n.t("budgets.phase.#{previous_phase}"),
-                            next_phase: I18n.t("budgets.phase.#{next_phase.kind}"))
+                             budget_name: budget.name,
+                             previous_phase: I18n.t("budgets.phase.#{previous_phase}"),
+                             next_phase: I18n.t("budgets.phase.#{next_phase.kind}"))
             Mailer.budget_change_active_phases(self, message).deliver_later
           else
-            Mailer.budget_change_active_phases(self, I18n.t("budget_change_active_phases.error")).deliver_later
+            Mailer.budget_change_active_phases(self,
+                                               I18n.t("budget_change_active_phases.error")).deliver_later
           end
         end
       end
