@@ -80,6 +80,7 @@
       <aside class="margin-bottom">
         <%= yield :header_addon %><%# Custom %>
         <%= link_to t("debates.index.start_debate"), new_debate_path, class: "button expanded" %>
+        <%= render Debates::StatsComponent.new(summary: true) %><%# Custom %>
         <%= render "shared/tag_cloud", taggable: "Debate" %>
         <%= render Debates::GeozonesComponent.new %>
       </aside>

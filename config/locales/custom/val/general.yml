@@ -612,6 +612,9 @@ val:
       visits: Visites
       debates: Debats
       proposals: Iniciatives
+      polls: Votacions
+      legislation: Elaboració normativa
+      budgets: Pressupostos participatius
       comments: Comentaris
       proposal_votes: Vots en Iniciatives
       debate_votes: Vots en debats

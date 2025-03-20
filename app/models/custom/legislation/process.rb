@@ -18,6 +18,8 @@ class Legislation::Process
   }
   scope :public_phase, -> { where("allegations_phase_enabled = true and (allegations_start_date <= :date and allegations_end_date >= :date)", date: Date.current) }
 
+  scope :last_week, -> { where("created_at >= ?", 7.days.ago) }
+
   def searchable_values
     {
       user.username => "B"
