@@ -11,9 +11,7 @@
         <div class="row align-center">
           <div class="medium-5 column">
             <div class="guide-card">
-              <div class="guide-icon">
-                <i class="fas fa-clipboard-list"></i>
-              </div>
+              <div class="guide-icon admin-icon"></div>
               <h4><%= t("admin.dashboard.index.admin_guide") %></h4>
               <p><%= t("admin.dashboard.index.admin_description") %></p>
               <div class="guide-actions">
@@ -24,10 +22,8 @@
 
           <div class="medium-5 column">
             <div class="guide-card">
-              <div class="guide-icon">
-                <i class="fas fa-tasks"></i>
-              </div>
-              <h4><%= t("admin.dashboard.index.legislator_guide") %></h4>
+              <div class="guide-icon legislation-icon"></div>
+              <h4><%= t("admin.dashboard.index.legislation_guide") %></h4>
               <p><%= t("admin.dashboard.index.legislator_description") %></p>
               <div class="guide-actions">
                 <%= link_to t("admin.dashboard.index.download_guide"), "#", class: "button hollow" %>
