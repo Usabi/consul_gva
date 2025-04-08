@@ -1,7 +1,6 @@
 <div class="dashboard-section">
   <div class="dashboard-heading">
-    <h2 class="section-heading">
-      <i class="fas fa-calendar-alt"></i>
+    <h2 class="section-heading calendar-icon">
       <%= t("admin.dashboard.index.upcoming_dates") %>
     </h2>
   </div>
@@ -11,12 +10,11 @@
       <div class="column">
         <div class="card dashboard-card" data-equalizer-watch>
           <div class="card-section">
-            <div class="card-icon">
-              <i class="fas fa-<%= date_item[:icon] %>"></i>
+            <div class="card-icon <%= date_item[:icon] %>">
+              <h4><%= date_item[:title] %></h4>
+              <p class="date"><%= l date_item[:date], format: :long %></p>
+              <p><%= date_item[:description] %></p>
             </div>
-            <h4><%= date_item[:title] %></h4>
-            <p class="date"><%= l date_item[:date], format: :long %></p>
-            <p><%= date_item[:description] %></p>
           </div>
         </div>
       </div>

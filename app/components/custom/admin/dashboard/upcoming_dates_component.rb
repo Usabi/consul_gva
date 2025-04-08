@@ -15,7 +15,7 @@ class Admin::Dashboard::UpcomingDatesComponent < ApplicationComponent
           title: poll.name,
           date: poll.ends_at,
           description: t("admin.dashboard.index.poll_ending"),
-          icon: "vote-yea"
+          icon: "polls-icon"
         }
       end
 
@@ -26,7 +26,7 @@ class Admin::Dashboard::UpcomingDatesComponent < ApplicationComponent
             title: budget.name,
             date: current_phase.ends_at,
             description: t("admin.dashboard.index.budget_phase_ending", phase: budget.current_phase.name),
-            icon: "money-bill-wave"
+            icon: "budgets-icon"
           }
         end
       end
@@ -37,7 +37,7 @@ class Admin::Dashboard::UpcomingDatesComponent < ApplicationComponent
             title: process.title,
             date: process.debate_end_date,
             description: t("admin.dashboard.index.debate_phase_ending"),
-            icon: "comments"
+            icon: "legislations-icon"
           }
         end
 
@@ -46,7 +46,7 @@ class Admin::Dashboard::UpcomingDatesComponent < ApplicationComponent
             title: process.title,
             date: process.proposals_phase_end_date,
             description: t("admin.dashboard.index.proposals_phase_ending"),
-            icon: "lightbulb"
+            icon: "legislations-icon"
           }
         end
 
@@ -55,7 +55,7 @@ class Admin::Dashboard::UpcomingDatesComponent < ApplicationComponent
             title: process.title,
             date: process.allegations_end_date,
             description: t("admin.dashboard.index.allegations_phase_ending"),
-            icon: "file-alt"
+            icon: "legislations-icon"
           }
         end
       end

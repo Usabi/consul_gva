@@ -4,7 +4,7 @@
     border-radius: 0;
     -webkit-box-shadow: none;
     box-shadow: none;
-    
+
     &:hover, &:focus, &:active {
       border-radius: 0 !important;
       -webkit-box-shadow: none !important;
@@ -64,10 +64,44 @@
     padding-bottom: 0.5rem;
     border-bottom: 1px solid #e1e8ed;
 
-    i {
-      color: #3c5d82;
-      margin-right: 0.5rem;
+    @mixin section-icon($name) {
+      @include has-fa-icon($name, solid);
+
+      &::before {
+        font-size: rem-calc(20);
+        margin-#{$global-right}: rem-calc(10);
+        color: #3c5d82;
+      }
     }
+
+    &.calendar-icon {
+      @include section-icon(calendar-alt);
+    }
+
+    &.proposals-icon {
+      @include section-icon(lightbulb);
+    }
+
+    &.debates-icon {
+      @include section-icon(comment-alt);
+    }
+
+    &.polls-icon {
+      @include section-icon(check-circle);
+    }
+
+    &.budgets-icon {
+      @include section-icon(chart-pie);
+    }
+
+    &.legislation-icon {
+      @include section-icon(file-alt);
+    }
+
+    &.tachometer-icon {
+      @include section-icon(tachometer-alt);
+    }
+
   }
 
   .dashboard-heading {
@@ -164,7 +198,6 @@
     margin: 1rem 0;
   }
 
-  // Guide section styling
   .guide-section {
     .guide-intro {
       text-align: center;
@@ -216,6 +249,28 @@
     }
   }
 
+  .guide-card {
+    .guide-icon {
+      @mixin guide-icon($name) {
+        @include has-fa-icon($name, solid);
+
+        &::before {
+          font-size: rem-calc(40);
+          color: #3c5d82;
+          margin-bottom: rem-calc(16);
+        }
+      }
+
+      &.admin-icon {
+        @include guide-icon(clipboard-list);
+      }
+
+      &.legislation-icon {
+        @include guide-icon(tasks);
+      }
+    }
+  }
+
   .contact-info {
     margin-top: 2rem;
     text-align: center;
@@ -234,23 +289,44 @@
     }
   }
 
-  // Card icon for date cards
   .card-icon {
-    font-size: 2rem;
-    color: #3c5d82;
-    text-align: center;
-    margin-bottom: 1rem;
+    @mixin date-icon($name) {
+      @include has-fa-icon($name, solid);
+
+      &::before {
+        font-size: rem-calc(32);
+        color: #3c5d82;
+        margin-bottom: rem-calc(16);
+      }
+    }
+
+    &.polls-icon {
+      @include date-icon(check-circle);
+    }
+
+    &.budgets-icon {
+      @include date-icon(chart-pie);
+    }
+
+    &.debate-icon {
+      @include date-icon(comments);
+    }
+
+    &.proposals-icon {
+      @include date-icon(lightbulb);
+    }
+
+    &.legislation-icon{
+      @include date-icon(file-alt);
+    }
   }
 
-  // Date formatting
   .date {
     font-weight: 500;
     color: #555;
     margin-bottom: 0.5rem;
   }
 }
-
-// Responsive adjustments
 @media screen and (max-width: 39.9375em) {
   .admin-dashboard-index {
     .dashboard-list {
