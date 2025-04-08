@@ -1,0 +1,41 @@
+<% provide :main_class, "admin-dashboard-index" %>
+<%= header(skip_section_title: true) %>
+
+<div class="row">
+  <div class="small-12 column">
+    <p><%= t("admin.dashboard.index.description", org: setting["org_name"]) %></p>
+    <%= info %>
+  </div>
+</div>
+
+<div class="dashboard-tabs tabs">
+  <div class="tabs-content" data-tabs-content="dashboard-tabs">
+    <ul class="tabs" data-tabs id="dashboard-tabs">
+      <li class="tabs-title is-active">
+        <a href="#panel-overview" aria-selected="true">
+          <i class="fas fa-tachometer-alt"></i>
+          <%= t("admin.dashboard.index.overview") %>
+        </a>
+      </li>
+      <li class="tabs-title">
+        <a href="#panel-guides">
+          <i class="fas fa-book"></i>
+          <%= t("admin.dashboard.index.guides") %>
+        </a>
+      </li>
+    </ul>
+
+    <div class="tabs-panel is-active" id="panel-overview">
+      <%= render upcomming_date_component %>
+      <%= render proposals_component %>
+      <%= render debates_component %>
+      <%= render polls_component %>
+      <%= render budgets_component %>
+      <%= render legislation_processes_component %>
+    </div>
+
+    <div class="tabs-panel" id="panel-guides">
+      <%= render guides_component%>
+    </div>
+  </div>
+</div>
