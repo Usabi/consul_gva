@@ -1,0 +1,59 @@
+<div class="dashboard-section">
+  <div class="dashboard-heading">
+    <h2 class="section-heading">
+      <i class="fas fa-lightbulb"></i>
+      <%= t("admin.dashboard.index.proposals") %>
+    </h2>
+  </div>
+
+  <div class="row">
+    <div class="medium-6 column">
+      <div class="card dashboard-card">
+        <div class="card-divider">
+          <h4><%= t("admin.dashboard.index.near_threshold_proposals") %></h4>
+        </div>
+        <div class="card-section">
+          <% if near_threshold_proposals.any? %>
+            <ul class="dashboard-list">
+              <% near_threshold_proposals.each do |proposal| %>
+                <li>
+                  <span class="list-title"><%= link_to proposal.title, proposal_path(proposal) %></span>
+                  <span class="list-progress">
+                    <%= proposal.cached_votes_up %> / <%= Proposal.votes_needed_for_success %>
+                    <div class="progress" role="progressbar">
+                      <div class="progress-meter" style="width: <%= (proposal.cached_votes_up.to_f / Proposal.votes_needed_for_success) * 100 %>%"></div>
+                    </div>
+                  </span>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="no-data"><%= t("admin.dashboard.index.no_near_threshold_proposals") %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="medium-6 column">
+      <div class="card dashboard-card">
+        <div class="card-divider">
+          <h4><%= t("admin.dashboard.index.most_supported_proposals") %></h4>
+        </div>
+        <div class="card-section">
+          <% if most_supported_proposals.any? %>
+            <ul class="dashboard-list">
+              <% most_supported_proposals.each do |proposal| %>
+                <li>
+                  <span class="list-title"><%= link_to proposal.title, proposal_path(proposal) %></span>
+                  <span class="list-count"><%= proposal.cached_votes_up %></span>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="no-data"><%= t("admin.dashboard.index.no_proposals") %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
