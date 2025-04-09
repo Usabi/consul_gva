@@ -31,6 +31,7 @@
 
 .stats-section {
   margin-bottom: 1.25rem;
+  margin-top: 1.25rem;
 
   &:last-child {
     margin-bottom: 0;
@@ -93,6 +94,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  padding-bottom: 1rem;
 }
 
 .stats-group {
@@ -165,5 +167,18 @@
       font-size: rem-calc(60);
       line-height: rem-calc(60);
     }
+  }
+}
+
+.stats-container {
+  padding-top: $line-height;
+  border-top: 1px solid $border;
+  .header-stats {
+    font-size: rem-calc(24);
+    border-bottom: 1px solid $border;
+  }
+
+  .stats-content {
+    border-left: 1px solid $border;
   }
 }
