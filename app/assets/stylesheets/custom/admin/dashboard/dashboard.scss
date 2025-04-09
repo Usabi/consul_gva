@@ -326,6 +326,42 @@
     color: #555;
     margin-bottom: 0.5rem;
   }
+
+  .clickable-card {
+    display: block;
+    color: inherit;
+    height: 100%;
+    text-decoration: none;
+
+    box-shadow: none !important;
+    border-radius: 0 !important;
+
+    &:hover {
+      .dashboard-card {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15) !important;
+        transition: all 0.2s ease;
+      }
+
+      color: inherit;
+      text-decoration: none;
+    }
+
+    &:focus {
+      outline: none;
+
+      .dashboard-card {
+        box-shadow: 0 0 0 2px #3c5d82 !important;
+      }
+    }
+
+    cursor: pointer;
+  }
+
+  .clickable-card .dashboard-card {
+    transition: all 0.2s ease;
+    height: 100%;
+  }
 }
 @media screen and (max-width: 39.9375em) {
   .admin-dashboard-index {
