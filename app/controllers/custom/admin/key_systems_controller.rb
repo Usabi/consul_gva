@@ -55,7 +55,7 @@ class Admin::KeySystemsController < Admin::BaseController
       logs = []
 
       if File.exist?(log_file_path)
-        logs = File.readlines(log_file_path).reverse
+        logs = File.readlines(log_file_path).last(200).reverse
       else
         logs << t("admin.key_systems.index.background_job_system.log_file_not_found")
       end
@@ -70,7 +70,7 @@ class Admin::KeySystemsController < Admin::BaseController
       errors = []
 
       if File.exist?(log_file_path)
-        File.readlines(log_file_path).reverse_each do |line|
+        File.readlines(log_file_path).last(200).reverse_each do |line|
           break if errors.size >= 5
 
           errors << line.strip if line.include?("ERROR")
@@ -123,7 +123,7 @@ class Admin::KeySystemsController < Admin::BaseController
     end
 
     def background_jobs
-      Delayed::Job.all
+      Delayed::Job.order(created_at: :desc).limit(100)
     end
 
     def background_job_stats(jobs)
