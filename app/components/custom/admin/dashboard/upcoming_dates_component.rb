@@ -15,7 +15,8 @@ class Admin::Dashboard::UpcomingDatesComponent < ApplicationComponent
           title: poll.name,
           date: poll.ends_at,
           description: t("admin.dashboard.index.poll_ending"),
-          icon: "polls-icon"
+          icon: "polls-icon",
+          url: admin_poll_path(poll)
         }
       end
 
@@ -26,7 +27,8 @@ class Admin::Dashboard::UpcomingDatesComponent < ApplicationComponent
             title: budget.name,
             date: current_phase.ends_at,
             description: t("admin.dashboard.index.budget_phase_ending", phase: budget.current_phase.name),
-            icon: "budgets-icon"
+            icon: "budgets-icon",
+            url: admin_budget_path(budget)
           }
         end
       end
@@ -37,7 +39,8 @@ class Admin::Dashboard::UpcomingDatesComponent < ApplicationComponent
             title: process.title,
             date: process.debate_end_date,
             description: t("admin.dashboard.index.debate_phase_ending"),
-            icon: "legislations-icon"
+            icon: "legislations-icon",
+            url: admin_legislation_process_path(process)
           }
         end
 
@@ -46,7 +49,8 @@ class Admin::Dashboard::UpcomingDatesComponent < ApplicationComponent
             title: process.title,
             date: process.proposals_phase_end_date,
             description: t("admin.dashboard.index.proposals_phase_ending"),
-            icon: "legislations-icon"
+            icon: "legislations-icon",
+            url: admin_legislation_process_path(process)
           }
         end
 
@@ -55,7 +59,8 @@ class Admin::Dashboard::UpcomingDatesComponent < ApplicationComponent
             title: process.title,
             date: process.allegations_end_date,
             description: t("admin.dashboard.index.allegations_phase_ending"),
-            icon: "legislations-icon"
+            icon: "legislations-icon",
+            url: admin_legislation_process_path(process)
           }
         end
       end

@@ -12,8 +12,8 @@ class Admin::Dashboard::ProposalsComponent < ApplicationComponent
     def near_threshold_proposals
       votes_needed = Proposal.votes_needed_for_success
       @proposals
-        .where("cached_votes_up > ?", votes_needed * 0.8)
-        .where("cached_votes_up < ?", votes_needed)
+        .where("cached_votes_up > ?", votes_needed * 0.9)
+        .where("cached_votes_up <= ?", votes_needed)
         .order(cached_votes_up: :desc)
         .limit(5)
     end
