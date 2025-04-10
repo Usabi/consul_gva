@@ -1,6 +1,6 @@
 class Admin::Dashboard::IndexComponent < ApplicationComponent; end
 
-require_dependency Rails.root.join("app", "components", "admin", "dashboard", "index_component").to_s
+load Rails.root.join("app", "components", "admin", "dashboard", "index_component.rb")
 
 class Admin::Dashboard::IndexComponent
   def initialize(debates:, polls:, budgets:, proposals:, preview_processes:, public_processes:)
