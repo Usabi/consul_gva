@@ -1,0 +1,34 @@
+<div class="dashboard-section">
+  <div class="dashboard-heading">
+    <h2 class="section-heading calendar-icon">
+      <%= t("admin.dashboard.index.upcoming_dates") %>
+    </h2>
+  </div>
+
+  <div class="row small-up-1 medium-up-2 large-up-3" data-equalizer data-equalize-on="medium">
+    <% upcoming_dates.each do |date_item| %>
+      <div class="column">
+        <%= link_to date_item[:url], class: "clickable-card" do %>
+          <div class="card dashboard-card" data-equalizer-watch>
+            <div class="card-section">
+              <div class="card-icon <%= date_item[:icon] %>"></div>
+              <h4><%= date_item[:title] %></h4>
+              <p class="date"><%= l date_item[:date], format: :long %></p>
+              <p><%= date_item[:description] %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if upcoming_dates.empty? %>
+      <div class="column">
+        <div class="card dashboard-card">
+          <div class="card-section">
+            <p class="no-data"><%= t("admin.dashboard.index.no_upcoming_dates") %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="dashboard-section">
+  <div class="dashboard-heading">
+    <h2 class="section-heading polls-icon">
+      <%= t("admin.dashboard.index.polls") %>
+    </h2>
+  </div>
+
+  <div class="row">
+    <div class="small-12 column">
+      <div class="card dashboard-card">
+        <div class="card-divider">
+          <h4><%= t("admin.dashboard.index.active_polls") %></h4>
+        </div>
+        <div class="card-section">
+          <% if active_polls.any? %>
+            <ul class="dashboard-list">
+              <% active_polls.each do |poll| %>
+                <li>
+                  <span class="list-title"><%= link_to poll.name, admin_poll_path(poll) %></span>
+                  <span class="list-date">
+                    <%= t("admin.dashboard.index.end_date", date: l(poll.ends_at.to_date, format: :long)) %>
+                  </span>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="no-data"><%= t("admin.dashboard.index.no_active_polls") %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
