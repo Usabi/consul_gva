@@ -143,9 +143,9 @@ class Tenant < ApplicationRecord
     Apartment::Tenant.switch(...)
   end
 
-  def self.run_on_each(&)
+  def self.run_on_each(&block)
     ["owconsul"].union(Apartment.tenant_names).each do |schema|
-      switch(schema, &)
+      switch(schema, &block)
     end
   end
 
