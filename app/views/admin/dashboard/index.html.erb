@@ -1,1 +1,8 @@
-<%= render Admin::Dashboard::IndexComponent.new %>
+<%= render Admin::Dashboard::IndexComponent.new(
+      debates: @debates,
+      polls: @polls,
+      budgets: @budgets,
+      proposals: @proposals,
+      preview_processes: @preview_processes,
+      public_processes: @public_processes
+      ) %>
