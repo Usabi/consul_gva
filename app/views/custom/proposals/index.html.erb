@@ -121,6 +121,7 @@
         <% if params[:retired].blank? %>
           <%= render "categories" %>
           <%= render "shared/tag_cloud", taggable: "Proposal" %>
+          <%= render Proposals::StatsComponent.new(summary: true) %><%# Custom %>
           <%= render Proposals::GeozonesComponent.new %>
         <% end %>
         <%= render "retired" %>

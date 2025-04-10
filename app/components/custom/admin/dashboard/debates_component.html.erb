@@ -1,0 +1,53 @@
+<div class="dashboard-section">
+  <div class="dashboard-heading">
+    <h2 class="section-heading debates-icon">
+      <%= t("admin.dashboard.index.debates") %>
+    </h2>
+  </div>
+
+  <div class="row">
+    <div class="medium-6 column">
+      <div class="card dashboard-card">
+        <div class="card-divider">
+          <h4><%= t("admin.dashboard.index.most_voted_debates") %></h4>
+        </div>
+        <div class="card-section">
+          <% if most_voted_debates.any? %>
+            <ul class="dashboard-list">
+              <% most_voted_debates.each do |debate| %>
+                <li>
+                  <span class="list-title"><%= link_to debate.title, debate_path(debate) %></span>
+                  <span class="list-count"><%= debate.cached_votes_up %></span>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="no-data"><%= t("admin.dashboard.index.no_debates") %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="medium-6 column">
+      <div class="card dashboard-card">
+        <div class="card-divider">
+          <h4><%= t("admin.dashboard.index.most_commented_debates") %></h4>
+        </div>
+        <div class="card-section">
+          <% if most_commented_debates.any? %>
+            <ul class="dashboard-list">
+              <% most_commented_debates.each do |debate| %>
+                <li>
+                  <span class="list-title"><%= link_to debate.title, debate_path(debate) %></span>
+                  <span class="list-count"><%= debate.comments_count %></span>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="no-data"><%= t("admin.dashboard.index.no_debates") %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
