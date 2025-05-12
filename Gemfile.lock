@@ -741,7 +741,7 @@ GEM
     zeitwerk (2.6.18)
 
 PLATFORMS
-  ruby 3.3.5
+  x86_64-linux
 
 DEPENDENCIES
   acts-as-taggable-on (~> 11.0.0)
