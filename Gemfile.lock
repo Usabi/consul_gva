@@ -230,7 +230,8 @@ GEM
       logger
     faraday-net_http (3.3.0)
       net-http
-    ffi (1.17.0-x86_64-linux-gnu)
+    ffi (1.17.2)
+    ffi (1.17.2-x86_64-linux-gnu)
     file_validators (3.0.0)
       activemodel (>= 3.2)
       mime-types (>= 1.0)
@@ -252,6 +253,9 @@ GEM
       request_store (~> 1.0)
     globalize-accessors (0.3.0)
       globalize (>= 5.0.0)
+    google-protobuf (4.27.5)
+      bigdecimal
+      rake (>= 13)
     google-protobuf (4.27.5-x86_64-linux)
       bigdecimal
       rake (>= 13)
@@ -352,6 +356,7 @@ GEM
     mime-types-data (3.2022.0105)
     mini_magick (4.13.2)
     mini_mime (1.1.5)
+    mini_portile2 (2.8.9)
     minitest (5.25.1)
     mixlib-cli (2.1.8)
     mixlib-config (3.0.27)
@@ -379,7 +384,10 @@ GEM
     net-ssh (7.3.0)
     nio4r (2.7.3)
     nkf (0.2.0)
-    nokogiri (1.16.7-x86_64-linux)
+    nokogiri (1.18.8)
+      mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
+    nokogiri (1.18.8-x86_64-linux-gnu)
       racc (~> 1.4)
     nori (2.7.1)
       bigdecimal
@@ -602,8 +610,11 @@ GEM
       capistrano (~> 3.0)
       sshkit (>= 1.2)
     safely_block (0.4.0)
-    sass-embedded (1.72.0-x86_64-linux-gnu)
-      google-protobuf (>= 3.25, < 5.0)
+    sass-embedded (1.79.6)
+      google-protobuf (~> 4.27)
+      rake (>= 13)
+    sass-embedded (1.79.6-x86_64-linux-gnu)
+      google-protobuf (~> 4.27)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-embedded (1.70.1)
