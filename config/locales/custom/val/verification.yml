@@ -47,7 +47,7 @@ val:
           procedure: procediment
           required_age_request_form: S'han guardat les teues dades per a verificar la teua residència, però com eres menor de %{required_age} anys has de seguir aquest %{link}
           foreign_residence_request_form: El Padró no ha pogut verificar la teua informació. Per favor, confirma que les teues dades d'empadronament siguen correctes informant-te en el teu municipi d'empadronament. Si eres valencià, però eres resident a l'estranger o fora de la Comunitat, i no estàs empadronat, has de seguir aquest %{link}
-          required_age_foreign_residence_request_form: "El Padró no ha pogut verificar la teua informació. Per favor, confirma que les teues dades d'empadronament siguen correctes informant-te en el teu municipi d'empadronament. Si eres valencià, però eres resident a l'estranger o fora de la Comunitat, i no estàs empadronat, has de seguir aquest %{foreign_link}.
+          required_age_foreign_residence_request_form: "El Padró no ha pogut verificar la teua informació. Per favor, confirma que les teues dades d'empadronament siguen correctes informant-te en el teu municipi d'empadronament.
           D'altra banda, com eres menor de %{required_age} anys, també has de seguir aquest %{age_link} per a completar la verificació."
       new:
         accept_terms_text: Declare que la informació transmesa és exacta i que accepte els %{terms_url}
@@ -78,7 +78,7 @@ val:
         error_service_not_available: "No es va poder connectar amb el servei de verificació. Per favor, intente-ho més tard."
         foreign_residence: Residisc fora de la Comunitat Valenciana, però soc valencià
         form_errors: evitaren verificar la teua residència
-        postal_code_note: Per a verificar les teues dades has d’estar empadronat/ada a la Comunitat Valenciana. Si eres valencià, però eres resident a l'estranger o fora de la Comunitat, pots indicar-ho a continuació i seguir el següent %{link}. En aquest cas, indica l’últim codi postal on vas viure.
+        postal_code_note: Per a verificar les teues dades has d’estar empadronat/ada a la Comunitat Valenciana. Actualment només es permet el registre de persones empadronades en la Comunitat Valenciana.
         procedure: procediment
         terms: termes d’accés als serveis de verificació d’edat i residència
         title: Verificar residència
