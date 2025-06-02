@@ -19,14 +19,14 @@ class Verification::Residence
   }.freeze
 
   undef gender
-  attr_accessor :gender, :name, :first_surname, :last_surname, :foreign_residence
+  attr_accessor :gender, :name, :first_surname, :last_surname
 
   def save
     return false unless valid?
 
     user.take_votes_if_erased_document(document_number, document_type)
 
-    if !census_data.valid? && foreign_residence? || Age.in_years(date_of_birth).in?(User.soft_minimum_required_age...User.minimum_required_age)
+    if Age.in_years(date_of_birth).in?(User.soft_minimum_required_age...User.minimum_required_age)
       residence_requested_at = Time.current
     else
       residence_verified_at = Time.current
@@ -40,7 +40,6 @@ class Verification::Residence
                 gender:                 gender,
                 residence_verified_at:  residence_verified_at,
                 residence_requested_at: residence_requested_at,
-                foreign_residence:      foreign_residence,
                 services_results:       (census_data.data if census_data.is_a?(CensusApi::Response)))
   end
 
@@ -84,7 +83,6 @@ class Verification::Residence
       document_type:     document_type,
       date_of_birth:     date_of_birth,
       postal_code:       postal_code,
-      foreign_residence: foreign_residence,
       services_results:  (census_data.data if census_data.respond_to?(:data)))
   end
 
@@ -99,15 +97,6 @@ class Verification::Residence
       @census_data ||= CensusCaller.new.call(document_type, document_number, other_data)
     end
 
-    def residency_valid?
-      # If age service returns ok, foreign residence is checked and residence service returns no residence error, we return true
-      return true if !census_data.valid? &&
-                     foreign_residence? &&
-                     census_data.respond_to?(:error) &&
-                     census_data.error == "No residente"
-
-      census_data.valid?
-    end
 
     def postal_code_valid?
       census_data.postal_code.to_s == postal_code
@@ -129,7 +118,4 @@ class Verification::Residence
       end
     end
 
-    def foreign_residence?
-      foreign_residence == "1"
-    end
 end

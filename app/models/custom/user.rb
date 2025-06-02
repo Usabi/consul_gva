@@ -41,10 +41,6 @@ class User
     age >= User.soft_minimum_required_age && age < User.minimum_required_age
   end
 
-  def residence_requested_foreign?
-    foreign_residence?
-  end
-
   def can_vote_budget_investment_for_this_budget?(budget_id)
     return false unless id # Esto no deberia pasar.
     return false unless budget_id # El budget_id es necesario.

@@ -14,14 +14,7 @@ class Verification::ResidenceController
         age_url = Verification::Residence.procedure_url(:age, link_locale)
         foreign_url = Verification::Residence.procedure_url(:foreign, link_locale)
 
-        if current_user.residence_requested_foreign? && current_user.residence_requested_age?
-          age_link = helpers.link_to t("verification.residence.create.flash.procedure"), age_url
-          foreign_link = helpers.link_to t("verification.residence.create.flash.procedure"), foreign_url
-          notice = t("verification.residence.create.flash.required_age_foreign_residence_request_form", age_link: age_link, foreign_link: foreign_link)
-        elsif current_user.residence_requested_foreign?
-          link = helpers.link_to t("verification.residence.create.flash.procedure"), foreign_url
-          notice = t("verification.residence.create.flash.foreign_residence_request_form", link: link)
-        elsif current_user.residence_requested_age?
+        if current_user.residence_requested_age?
           link = helpers.link_to t("verification.residence.create.flash.procedure"), age_url
           notice = t("verification.residence.create.flash.required_age_request_form", link: link, required_age: User.minimum_required_age)
         end
@@ -44,6 +37,6 @@ class Verification::ResidenceController
     end
 
     def allowed_params
-      [:document_number, :document_type, :date_of_birth, :postal_code, :terms_of_service, :gender, :name, :first_surname, :last_surname, :foreign_residence]
+      [:document_number, :document_type, :date_of_birth, :postal_code, :terms_of_service, :gender, :name, :first_surname, :last_surname]
     end
 end
