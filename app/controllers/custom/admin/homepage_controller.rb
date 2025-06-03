@@ -12,6 +12,6 @@ class Admin::HomepageController
   private
 
     def load_middle
-      @middle = ::Widget::Card.middle.order(:label)
+      @middle = ::Widget::Card.middle
     end
 end
