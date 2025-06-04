@@ -129,7 +129,7 @@ class ProposalsController < ApplicationController
     end
 
     def discard_archived
-      unless @current_order == "archival_date" || params[:selected].present?
+      unless @current_order == "archival_date" || params[:selected].present? || @current_order == "selected"
         @resources = @resources.not_archived
       end
     end
@@ -147,7 +147,7 @@ class ProposalsController < ApplicationController
     end
 
     def load_selected
-      if params[:selected].present?
+      if params[:selected].present? || @current_order == "selected"
         @resources = @resources.selected
       else
         @resources = @resources.not_selected

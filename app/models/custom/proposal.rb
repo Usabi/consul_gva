@@ -5,6 +5,7 @@ class Proposal
 
   scope :sort_by_id,               -> { order("id DESC") }
   scope :sort_by_supports,         -> { order("cached_votes_up DESC") }
+  scope :sort_by_selected,         -> { selected }
   scope :by_tag,                   ->(tag_name) { tagged_with(tag_name).distinct }
 
   def self.sort_by_title
@@ -27,7 +28,7 @@ class Proposal
   end
 
   def self.proposals_orders(user)
-    orders = %w[created_at hot_score confidence_score relevance archival_date]
+    orders = %w[created_at hot_score confidence_score relevance archival_date selected]
     orders << "recommendations" if Setting["feature.user.recommendations_on_proposals"] && user&.recommended_proposals
     orders
   end
