@@ -1275,7 +1275,7 @@ table {
 }
 
 .button.button-twitter {
-  @include has-fa-icon(twitter, brands);
+  @include has-fa-icon(x-twitter, brands);
   background: #ecf7fc;
   border-left: 3px solid #45b0e3;
 
@@ -1304,7 +1304,7 @@ table {
 }
 
 .ssb-twitter {
-  @include has-fa-icon(twitter, brands);
+  @include has-fa-icon(x-twitter, brands);
   background: #45b0e3;
 
   &:hover,
