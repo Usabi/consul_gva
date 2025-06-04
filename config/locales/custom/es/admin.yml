@@ -1218,6 +1218,7 @@ es:
     polls:
       index:
         title: "Listado de votaciones"
+        status: "Estado"
         no_polls: "No hay votaciones."
         create: "Crear votación"
         name: "Nombre"
@@ -1225,9 +1226,22 @@ es:
         start_date: "Fecha de apertura"
         closing_date: "Fecha de cierre"
         geozone_restricted: "Restringida a los distritos"
+        list:
+          id: ID
+          name: Nombre
+          starts_at: "Fecha de apertura"
+          ends_at: "Fecha de cierre"
       subnav:
         polls: Votaciones
         help_text: Texto de ayuda
+      filters:
+        all: "Todos"
+        current: "Activos"
+        expired: "Finalizados"
+        prompt: "Estado de la votación"
+      status:
+        open: "Abierta"
+        closed: "Cerrada"
       new:
         title: "Nueva votación"
         submit_button: "Crear votación"

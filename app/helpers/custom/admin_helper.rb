@@ -12,10 +12,10 @@ module Custom::AdminHelper
     icon = set_sorting_icon(direction, column)
 
     translation = t("admin.#{resource_name}.index.list.#{column}")
-
+    controller = resource_name == "polls" ? resource_name : "admin/#{resource_name}"
     link_to(
       safe_join([translation, tag.span(class: "icon-sortable #{icon}")]),
-      url_for(controller: "admin/#{resource_name}", action: "index", sort_by: column, direction: direction)
+      url_for(controller: controller, action: "index", sort_by: column, direction: direction)
     )
   end
   def set_sorting_icon(direction, sort_by)
