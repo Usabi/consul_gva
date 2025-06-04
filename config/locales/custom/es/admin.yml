@@ -1390,6 +1390,13 @@ es:
           pending: Pendientes
           rejected: Rechazadas
           verified: Verificadas
+        list:
+          id: ID
+          name: Nombre
+          email: Email
+          phone_number: Teléfono
+          responsible_name: Responsable
+          status: Estado
         hidden_count:
           one: Hay además <strong>una organización</strong> sin usuario o con el usuario bloqueado.
           other: Hay <strong>%{count} organizaciones</strong> sin usuario o con el usuario bloqueado.
@@ -1514,7 +1521,7 @@ es:
           legislation_processes: "Buscar procesos por título o descripción"
           legislation_proposals: "Buscar propuestas por título o descripción"
           local_census_records: "Búsqueda por número de documento"
-          organizations: "Nombre, email o teléfono"
+          organizations: "Nombre, email, teléfono o responsable"
           poll_officers: "Buscar presidentes de mesa"
           poll_questions: "Buscar preguntas"
           polls: "Buscar votaciones por nombre o descripción"
