@@ -1518,7 +1518,7 @@ es:
           poll_officers: "Buscar presidentes de mesa"
           poll_questions: "Buscar preguntas"
           polls: "Buscar votaciones por nombre o descripción"
-          processes: "Buscar procesos legislativos por nombre o descripción"
+          processes: "Buscar procesos legislativos por nombre,descripción, autor, email o id"
           proposals: "Buscar iniciativas por título, código, descripción o pregunta"
           users: "Buscar usuario por nombre o email"
         search: "Buscar"
