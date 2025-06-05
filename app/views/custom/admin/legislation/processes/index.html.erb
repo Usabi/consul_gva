@@ -10,9 +10,9 @@
 <%= render "help_subnav", i18n_namespace: "admin.legislation.processes.index", active: "processes" %>
 
 <%= render "shared/filter_subnav", i18n_namespace: "admin.legislation.processes.index" %>
+<%= render "search_form" %>
 
 <% if @processes.any? %>
-  <%= render Admin::SearchComponent.new(label: t("admin.shared.search.label.processes")) %>
 
   <h3><%= page_entries_info @processes %></h3>
 

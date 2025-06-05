@@ -5,14 +5,7 @@ class Admin::Legislation::ProcessesController
   include Admin::HelpPagesActions
 
   def index
-    @processes = ::Legislation::Process.send(@current_filter)
-    if @search_terms.present?
-      if @search_terms.to_i.positive?
-        @processes = @processes.where(id: @search_terms)
-      else
-        @processes = @processes.search(@search_terms)
-      end
-    end
+    @processes = ::Legislation::Process.scoped_filter(params, @current_filter, @advanced_search_terms)
 
     @processes = @processes.accessible_by(current_ability)
                            .page(params[:page])
