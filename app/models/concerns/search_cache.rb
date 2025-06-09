@@ -23,7 +23,8 @@ module SearchCache
 
     def set_tsvector(value, weight)
       dict = quote(SearchDictionarySelector.call)
-      "setweight(to_tsvector(#{dict}, unaccent.unaccent(coalesce(#{quote(strip_html(value))}, ''))), #{quote(weight)})"
+      unaccent_schema = (Rails.env.test? || Rails.env.development?) ? "unaccent" : Rails.application.secrets.unaccent_schema
+      "setweight(to_tsvector(#{dict}, #{unaccent_schema}(coalesce(#{quote(strip_html(value))}, ''))), #{quote(weight)})"
     end
 
     def quote(value)
