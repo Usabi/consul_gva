@@ -25,6 +25,8 @@
 #
 # Add your custom gem dependencies here
 
+gem "recaptcha"
+
 group :development do
   gem "solargraph"
   gem "rufo"
@@ -35,6 +37,6 @@ group :test do
   gem "pry-rails"
 end
 
-group :developmentm, :test do
+group :development, :test do
   gem "timecop"
 end
