@@ -56,7 +56,7 @@ class Tenant < ApplicationRecord
   end
 
   def self.excluded_subdomains
-    %w[mail owconsul shared_extensions www]
+    ["mail", enviroment_schema, "shared_extensions", "www"]
   end
 
   def self.default_url_options
@@ -84,7 +84,7 @@ class Tenant < ApplicationRecord
   end
 
   def self.host_for(schema)
-    if schema == "owconsul"
+    if schema == enviroment_schema
       default_host
     elsif find_by_domain(schema)
       schema
@@ -124,7 +124,7 @@ class Tenant < ApplicationRecord
   end
 
   def self.default?
-    current_schema == "owconsul"
+    current_schema == enviroment_schema
   end
 
   def self.current_schema
@@ -140,7 +140,7 @@ class Tenant < ApplicationRecord
   end
 
   def self.run_on_each(&)
-    ["owconsul"].union(Apartment.tenant_names).each do |schema|
+    [enviroment_schema].union(Apartment.tenant_names).each do |schema|
       switch(schema, &)
     end
   end
@@ -159,6 +159,10 @@ class Tenant < ApplicationRecord
 
   def hidden?
     hidden_at.present?
+  end
+
+  def self.enviroment_schema
+    Rails.env.test? ? "public" : Rails.application.secrets.db_schema
   end
 
   private

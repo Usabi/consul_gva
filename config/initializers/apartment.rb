@@ -78,8 +78,7 @@ Apartment.configure do |config|
   # Any schemas added here will be available along with your selected Tenant.
   #
   config.persistent_schemas = ["shared_extensions"]
-  config.default_tenant = "owconsul"
-
+  config.default_tenant = Rails.env.test? ? "public" : Rails.application.secrets.db_schema
   # <== PostgreSQL only options
   #
 
