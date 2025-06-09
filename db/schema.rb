@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 2025_02_25_164500) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_trgm"
   enable_extension "plpgsql"
   enable_extension "unaccent"
 
