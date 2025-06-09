@@ -1,1 +1,1 @@
-PgSearch.unaccent_function = "unaccent.unaccent"
+PgSearch.unaccent_function = (Rails.env.test? || Rails.env.development?) ? "unaccent" : Rails.application.secrets.unaccent_schema
