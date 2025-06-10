@@ -65,6 +65,7 @@ es:
         invalid_date_of_birth: La fecha de nacimiento no coincide
         invalid_postal_code: El código postal no coincide
         invalid_document_number: El número de documento es incorrecto
+        only_residents_allowed: Solo pueden registrarse personas residentes en la Comunitat Valenciana.
         gender_label: Género
         not_verified: No verificada
         postal_code: Código postal
