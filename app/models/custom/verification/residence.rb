@@ -51,6 +51,7 @@ class Verification::Residence
 
   def local_residence
     return if errors.any? # return to form with validation messages
+
     unless residency_valid?
       if census_data.respond_to?(:error) && census_data.error =~ /^Servicio no disponible/
         errors.add(:base, I18n.t("verification.residence.new.error_service_not_available"))
@@ -58,8 +59,11 @@ class Verification::Residence
       end
 
       unless census_data.datos_vivienda?
-        if census_data.datos_vivienda_error == :error_0231
+        case census_data.datos_vivienda_error
+        when :error_0231
           errors.add(:postal_code, I18n.t("verification.residence.new.invalid_postal_code"))
+        when :outside_cv
+          errors.add(:base, I18n.t("verification.residence.new.only_residents_allowed"))
         end
         errors.add(:local_residence, false)
       end
@@ -97,7 +101,6 @@ class Verification::Residence
       @census_data ||= CensusCaller.new.call(document_type, document_number, other_data)
     end
 
-
     def postal_code_valid?
       census_data.postal_code.to_s == postal_code
     end
@@ -117,5 +120,4 @@ class Verification::Residence
         end
       end
     end
-
 end
