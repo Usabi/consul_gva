@@ -1,0 +1,17 @@
+.selected-proposal {
+  border-top: 1px solid $border;
+
+  h2 + * {
+    @include has-fa-icon(lightbulb, solid);
+
+    &::before {
+      float: left;
+      font-size: rem-calc(35);
+      margin-right: rem-calc(10);
+    }
+
+    + * {
+      clear: both;
+    }
+  }
+}

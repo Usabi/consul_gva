@@ -19,6 +19,7 @@ class CensusApi
         unless data[:datos_vivienda]["error"]
           return :error_0233 if data[:datos_vivienda]["estado"] =~ /^0233/ #"Titular no Identificado o Ámbito Territorial de Residencia Incorrecto"
           return :error_4 if data[:datos_vivienda]["estado"] =~ /^4/ #"Ámbito Territorial Residencia Incorrecto"
+          return :outside_cv if data[:datos_vivienda]["estado"] == "6" #"NO POSEE PERMISOS PARA REALIZAR LA CONSULTA"
         else
           return :error_0231 if data[:datos_vivienda]["error"] =~ /^0231/ #Se ha recibido una petición en la que la validación del NIFTitular es incorrecta
         end
@@ -40,14 +41,13 @@ class CensusApi
     end
 
     def valid?
-      return false if data =~ /^ERROR/
+      return false if data.is_a?(String) && data =~ /^ERROR/
 
       datos_vivienda? && datos_habitante?
     end
 
     def error
-      return data if data =~ /^ERROR/
-
+      return data if data.is_a?(String) && data =~ /^ERROR/
       error = !datos_vivienda? && data[:datos_vivienda]["error"] ||
       !datos_habitante? && data[:datos_habitante]["error"]
 
@@ -65,11 +65,11 @@ class CensusApi
     end
 
     def postal_code
-      data[:datos_originales][:postal_code] # Devolvemos el dato entrado porque el servicio sólo comprueba residencia, no devuelve datos
+      data[:datos_originales][:postal_code] # Devolvemos el dato entrado porque el servicio sólo comprueba residencia, no devuelve datos # rubocop:disable Layout/LineLength
     end
 
     def district_code
-      data[:datos_originales][:postal_code][0..1] # Devolvemos el dato entrado porque el servicio sólo comprueba residencia, no devuelve datos
+      data[:datos_originales][:postal_code][0..1] # Devolvemos el dato entrado porque el servicio sólo comprueba residencia, no devuelve datos # rubocop:disable Layout/LineLength
     end
 
     def gender
@@ -180,6 +180,7 @@ class CensusApi
         stubbed_valid_response
       else
         stubbed_invalid_response
+        # stubbed_invalid_outcome
       end
     end
 
@@ -277,6 +278,33 @@ class CensusApi
           # "estado" => "4",
           # "estado" => "0233",
           # "literal" => "Ãmbito Territorial de Residencia Incorrecto"
+        },
+        datos_originales: {
+          postal_code: "46001",
+          name: "NAME",
+          first_surname: "FIRST SURNAME",
+          last_surname: "LAST SURNAME",
+          date_of_birth: 25.years.ago.to_date
+        }
+      }
+    end
+
+    def stubbed_invalid_outcome
+      {
+        datos_habitante: {
+          "resultado" => true,
+          "error" => false,
+          "cod_estado" => "00",
+          "literal_error" => "INFORMACION CORRECTA",
+          "nacionalidad" => "ESPAÑA-ESP",
+          "sexo" => "H",
+          "fecha_nacimiento" => "20030518"
+        },
+        datos_vivienda: {
+          "resultado" => false,
+          "error" => false,
+          "estado" => "6",
+          "literal" => "NO POSEE PERMISOS PARA REALIZAR LA CONSULTA"
         },
         datos_originales: {
           postal_code: "46001",

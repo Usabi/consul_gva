@@ -70,3 +70,37 @@ body {
     height: auto;
   }
 }
+
+// 12. Social
+// ----------
+
+.ssb-whatsapp_web {
+  @include has-fa-icon(whatsapp, brands);
+  background: #43d854;
+
+  &:hover,
+  &:focus {
+    color: #43d854;
+  }
+
+  @include breakpoint(small only) {
+    display: none !important;
+  }
+}
+
+.ssb-linkedin {
+  @include has-fa-icon(linkedin, brands);
+  background: #0A66C2;
+
+  &:hover,
+  &:focus {
+    color: #0A66C2;
+  }
+
+}
+@include breakpoint(medium) {
+
+  .ssb-telegram {
+    display: inline-block;
+  }
+}

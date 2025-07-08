@@ -1,0 +1,77 @@
+<div class="dashboard-section">
+  <div class="dashboard-heading">
+    <h2 class="section-heading legislation-icon">
+      <%= t("admin.dashboard.index.legislation_processes") %>
+    </h2>
+  </div>
+
+  <div class="row">
+    <div class="medium-6 column">
+      <div class="card dashboard-card">
+        <div class="card-divider">
+          <h4><%= t("admin.dashboard.index.preview_phase_processes") %></h4>
+        </div>
+        <div class="card-section">
+          <% if @preview_processes.any? %>
+            <ul class="dashboard-list">
+              <% @preview_processes.each do |process| %>
+                <li>
+                  <span class="list-title"><%= link_to process.title, admin_legislation_process_path(process) %></span>
+                  <span class="list-phases">
+                    <% if process.debate_phase.enabled? && process.debate_phase.open? %>
+                      <span class="phase-tag active">
+                        <%= t("admin.dashboard.index.debate_phase") %>
+                      </span>
+                    <% end %>
+
+                    <% if process.proposals_phase.enabled? && process.proposals_phase.open? %>
+                      <span class="phase-tag active">
+                        <%= t("admin.dashboard.index.proposals_phase") %>
+                      </span>
+                    <% end %>
+                  </span>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="no-data"><%= t("admin.dashboard.index.no_preview_phase_processes") %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="medium-6 column">
+      <div class="card dashboard-card">
+        <div class="card-divider">
+          <h4><%= t("admin.dashboard.index.public_phase_processes") %></h4>
+        </div>
+        <div class="card-section">
+          <% if @public_processes.any? %>
+            <ul class="dashboard-list">
+              <% @public_processes.each do |process| %>
+                <li>
+                  <span class="list-title"><%= link_to process.title, admin_legislation_process_path(process) %></span>
+                  <span class="list-phases">
+                    <% if process.allegations_phase.enabled? && process.allegations_phase.open? %>
+                      <span class="phase-tag active">
+                        <%= t("admin.dashboard.index.allegations_phase") %>
+                      </span>
+                    <% end %>
+
+                    <% if process.draft_publication.enabled? && process.draft_publication.started? %>
+                      <span class="phase-tag active">
+                        <%= t("admin.dashboard.index.draft_publication") %>
+                      </span>
+                    <% end %>
+                  </span>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="no-data"><%= t("admin.dashboard.index.no_public_phase_processes") %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

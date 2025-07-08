@@ -69,7 +69,6 @@ module Capybara
   end
 end
 
-Selenium::WebDriver::Chrome::Service.driver_path = '/usr/bin/chromedriver'
 Capybara.register_driver :headless_chrome do |app|
   options = Selenium::WebDriver::Chrome::Options.new.tap do |opts|
     opts.add_argument "--headless"

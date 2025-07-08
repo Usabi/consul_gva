@@ -37,6 +37,6 @@ group :test do
   gem "pry-rails"
 end
 
-group :developmentm, :test do
+group :development, :test do
   gem "timecop"
 end

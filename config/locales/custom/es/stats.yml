@@ -20,6 +20,73 @@ es:
     no_demographic_data:
       one: "* No se dispone de los datos demográficos de 1 participante."
       other: "* No se dispone de los datos demográficos de %{count} participantes."
+    debates:
+      title: "Estadísticas de debates"
+      general: "Datos generales"
+      total: "Debates"
+      last_week: "Últimos 7 días"
+      votes: "Votos totales"
+      comments: "Comentarios totales"
+      participation: "Participación"
+      participants: Personas que han participado
+      most_voted: "Debate más votado"
+      most_commented: "Debate más comentado"
+      by_geozone: "Por distrito"
+      votes_count: "%{count} votos"
+      comments_count: "%{count} comentarios"
+    proposals:
+      title: "Estadísticas de iniciativas"
+      general: "Datos generales"
+      total: "Iniciativas"
+      last_week: "Últimos 7 días"
+      open: Abiertas
+      archived: Finalizadas
+      votes: "Votos totales"
+      comments: "Comentarios totales"
+      participation: "Participación"
+      participants: Personas que han participado
+      most_voted: "Iniciativa más votada"
+      most_commented: "Iniciativa más comentada"
+      by_geozone: "Por distrito"
+      votes_count: "%{count} votos"
+      comments_count: "%{count} comentarios"
+    polls:
+      by_channel: "Participantes por medio"
+      vote_by_channel: "Votos emitidos por medio"
+      web_percentage: "%{percentage} Web"
+      booth_percentage: "%{percentage} Urnas"
+      letter_percentage: "%{percentage} Correo"
+      title: "Estadísticas de votaciones"
+      general: "Datos generales"
+      total: "Votaciones"
+      last_week: "Últimos 7 días"
+      active: Abiertas
+      expired: Terminadas
+      participation: "Participación"
+      participants: Personas que han participado
+      total_votes: Votantes
+      web_votes: "Votos por web"
+      booth_votes: "Votos por urnas"
+    legislation:
+      process:
+        title: "Estadísticas de elaboración normativa"
+        general: "Datos generales"
+        total: "Normativas"
+        last_week: "Últimos 7 días"
+        active_processes: "Procesos abiertos"
+        past_processes: "Procesos finalizados"
+        phases: "Fases"
+        phase:
+          preview: "Preparación" 
+          public: "Consulta pública"
+        total_proposals: "Propuestas"
+        proposals_last_week: "Últimos 7 días"
+        total_comments: "Comentarios"
+        total_votes: "Votos"
+        participation: "Participación"
+        participants: Personas que han participado
+        most_active_process: Normativa más activa
+        comments_count: "%{count} comentarios"
     budgets:
       link: "Estadísticas"
       page_title: "%{budget} - Estadísticas de participación"
@@ -38,9 +105,24 @@ es:
       percent_heading_census: "% Censo distrito"
       participatory_disclaimer: "** Las cifras de total de participantes se refieren a personas que han creado, apoyado o votado propuestas."
       heading_disclaimer: "*** Los datos de distrito se refieren al distrito en el que el usuario ha votado, no necesariamente en el que está empadronado."
-    polls:
-      by_channel: "Participantes por medio"
-      vote_by_channel: "Votos emitidos por medio"
-      web_percentage: "%{percentage} Web"
-      booth_percentage: "%{percentage} Urnas"
-      letter_percentage: "%{percentage} Correo"
+      title: "Estadísticas de presupuestos participativos"
+      general: "Datos generales"
+      total: "Presupuestos participativos"
+      last_week: "Últimos 7 días"
+      active: Abiertos
+      finished: Terminados
+      phases: Fases
+      phase:
+        accepting: Presentación de proyectos
+        reviewing: Revisión interna de proyectos
+        selecting: Fase de apoyos
+        valuating: Evaluación de proyectos
+        publishing_prices: Publicación de precios
+        balloting: Votación final
+        reviewing_ballots: Votación finalizada
+        finished: Finalizados
+      participation: "Participación"
+      participants: Personas que han participado
+      investments: "Proyectos de gasto"
+      ballots: "Votaciones"
+      voters: "Votantes"
