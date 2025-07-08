@@ -1,0 +1,111 @@
+<div id="stats_budgets">
+  <div class="header-stats">
+    <%= image_tag("icon-sections/ico-normativa.png", alt: "") unless summary? %>
+    <h2 class="<%= summary? ? 'sidebar-title' : '' %>"><%= t("stats.budgets.title") %></h2>
+  </div>
+
+  <div class="<%= summary? ? 'summary-box' : '' %>">
+    <div class="stats-section">
+      <h4 class="stats-subtitle"><%= t("stats.budgets.general") %></h4>
+      <div class="stats-row">
+        <div class="stats-item">
+          <span class="stats-number"><%= @total_budgets %></span>
+          <span class="stats-label"><%= t("stats.budgets.total") %></span>
+        </div>
+
+        <div class="stats-item">
+          <span class="stats-number"><%= @budgets_last_week %></span>
+          <span class="stats-label"><%= t("stats.budgets.last_week") %></span>
+        </div>
+
+        <div class="stats-item">
+          <span class="stats-number"><%= @active_budgets %></span>
+          <span class="stats-label"><%= t("stats.budgets.active") %></span>
+        </div>
+
+        <div class="stats-item">
+          <span class="stats-number"><%= @finished_budgets %></span>
+          <span class="stats-label"><%= t("stats.budgets.finished") %></span>
+        </div>
+      </div>
+
+      <% unless summary? %>
+        <div class="stats-section">
+          <h4 class="stats-subtitle"><%= t("stats.budgets.participation") %></h4>
+
+          <div class="stats-item number-with-info participants total-participants">
+            <div class="content">
+              <span class="stats-number number"><%= @total_participants %></span>
+            </div>
+            <span class="stats-label row"><%= t("stats.budgets.participants") %></span>
+          </div>
+        </div>
+
+        <div id="participants_by_gender" class="stats-section stats-group">
+          <h4 class="stats-subtitle"><%= t("stats.by_gender") %></h4>
+
+          <div class="stats-item number-with-info participants male">
+            <div class="content">
+              <span class="stats-number number"><%= @total_male_participants %></span>
+              <span class="stats-label info"><%= t("stats.men_percentage", percentage: helpers.number_to_stats_percentage(@male_percentage)) %></span>
+            </div>
+          </div>
+
+          <div class="stats-item number-with-info participants female">
+            <div class="content">
+              <span class="stats-number number"><%= @total_female_participants %></span>
+              <span class="stats-label info"><%= t("stats.women_percentage", percentage: helpers.number_to_stats_percentage(@female_percentage)) %></span>
+            </div>
+          </div>
+
+          <div class="stats-item number-with-info participants other">
+            <div class="content">
+              <span class="stats-number number"><%= @total_other_participants %></span>
+              <span class="stats-label info"><%= t("stats.other_percentage", percentage: helpers.number_to_stats_percentage(@other_percentage)) %></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-section">
+          <h4 class="stats-subtitle"><%= t("stats.budgets.phases") %></h4>
+          <div class="stats-row">
+            <% @phase_distribution.each do |phase, percentage| %>
+              <% unless percentage.zero? %>
+                <div class="stats-item">
+                  <span class="stats-number"><%= number_to_percentage(percentage, precision: 1) %></span>
+                  <span class="stats-label"><%= t("stats.budgets.phase.#{phase}") %></span>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="stats-section">
+          <h4 class="stats-subtitle"><%= t("stats.budgets.participation") %></h4>
+          <div class="stats-row">
+            <div class="stats-item">
+              <span class="stats-number"><%= @total_investments %></span>
+              <span class="stats-label"><%= t("stats.budgets.investments") %></span>
+            </div>
+
+            <div class="stats-item">
+              <span class="stats-number"><%= @total_ballots %></span>
+              <span class="stats-label"><%= t("stats.budgets.ballots") %></span>
+            </div>
+
+            <div class="stats-item">
+              <span class="stats-number"><%= @total_voters %></span>
+              <span class="stats-label"><%= t("stats.budgets.voters") %></span>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <% if summary? %>
+      <div>
+      <a href="<%= stats_path + "#stats_budgets" %>" class="float-right"><%= t("stats.advanced") %></a>
+      </div>
+    <% end %>
+  </div>
+</div>

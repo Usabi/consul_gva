@@ -1,0 +1,49 @@
+<div class="dashboard-section guide-section">
+  <div class="row column">
+    <div class="card dashboard-card">
+      <div class="card-section">
+        <div class="guide-intro">
+          <h3><%= t("admin.dashboard.index.guides_title") %></h3>
+          <p><%= t("admin.dashboard.index.guides_description") %></p>
+        </div>
+
+        <!-- Centrar las dos tarjetas en vez de ocupar los extremos -->
+        <div class="row align-center">
+          <div class="medium-5 column">
+            <div class="guide-card">
+              <div class="guide-icon admin-icon"></div>
+              <h4><%= t("admin.dashboard.index.admin_guide") %></h4>
+              <p><%= t("admin.dashboard.index.admin_description") %></p>
+              <div class="guide-actions">
+                <%= link_to t("admin.dashboard.index.download_guide"), "#", class: "button hollow" %>
+              </div>
+            </div>
+          </div>
+
+          <div class="medium-5 column">
+            <div class="guide-card">
+              <div class="guide-icon legislation-icon"></div>
+              <h4><%= t("admin.dashboard.index.legislator_guide") %></h4>
+              <p><%= t("admin.dashboard.index.legislator_description") %></p>
+              <div class="guide-actions">
+                <%= link_to t("admin.dashboard.index.download_guide"), "#", class: "button hollow" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dashboard-section">
+  <div class="row column">
+    <div class="contact-info">
+      <h4><%= t("admin.dashboard.index.contact_info") %></h4>
+      <address>
+        <%= email_link %>
+        <%= website_link %>
+      </address>
+    </div>
+  </div>
+</div>

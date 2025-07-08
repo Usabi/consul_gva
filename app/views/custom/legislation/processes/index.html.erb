@@ -71,6 +71,7 @@
       <aside class="margin-bottom">
         <%= render "categories" %>
         <%= render SDG::Goals::TagCloudComponent.new("Legislation::Process") %>
+        <%= render Legislation::Processes::StatsComponent.new(summary: true) %><%# Custom %>
       </aside>
     </div>
   </div>
