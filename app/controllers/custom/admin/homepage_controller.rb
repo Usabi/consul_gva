@@ -15,4 +15,3 @@ class Admin::HomepageController
       @middle = ::Widget::Card.middle
     end
 end
-

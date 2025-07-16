@@ -28,6 +28,6 @@ class Widget::Card
   end
 
   def self.middle
-    where(middle: true).order(:id)
+    distinct(true).where(middle: true).order(:id)
   end
 end

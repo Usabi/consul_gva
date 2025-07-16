@@ -767,6 +767,9 @@ en:
       visits: Visits
       debates: Debates
       proposals: Proposals
+      polls: Polls
+      legislation: Legislation processes
+      budgets: Budgets
       comments: Comments
       proposal_votes: Votes on proposals
       debate_votes: Votes on debates

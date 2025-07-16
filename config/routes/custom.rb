@@ -34,6 +34,7 @@ constraints lambda { |request| !Rails.application.multitenancy_management_mode? 
   #
   # If multitenancy management mode is not being used, routes can be included within
   # this block and will still be accessible.
+  resources :stats, only: [:index]
 
   get "/users_count.json", to: "users#users_count"
 

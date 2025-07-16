@@ -386,6 +386,7 @@ es:
         relevance: Más relevantes
         archival_date: Archivadas
         recommendations: Recomendaciones
+        selected: Seleccionadas
       recommendations:
         without_results: No existen iniciativas relacionadas con tus intereses
         without_interests: Sigue iniciativas para que podamos darte recomendaciones
@@ -397,6 +398,7 @@ es:
       retired_proposals_link: "Iniciativas retiradas por sus autores"
       selected_proposals: Iniciativas seleccionadas
       selected_proposals_link: Ver iniciativas seleccionadas
+      selected_proposals_description: Consulta las propuestas elegidas en el proceso participativo. Haz clic para conocerlas.
       archived_proposals: Iniciativas archivadas
       proposals_lists: Listas de Iniciativas
       retired_links:
@@ -828,6 +830,9 @@ es:
       visits: Visitas
       debates: Debates
       proposals: Iniciativas ciudadanas
+      polls: Votaciones
+      legislation: Elaboración normativa
+      budgets: Presupuestos participativos
       comments: Comentarios
       proposal_votes: Votos en iniciativas
       debate_votes: Votos en debates

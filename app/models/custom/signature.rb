@@ -2,7 +2,7 @@ load Rails.root.join("app", "models", "signature.rb")
 
 class Signature < ApplicationRecord
 
-  attr_accessor :gender, :name, :first_surname, :last_surname, :foreign_residence
+  attr_accessor :gender, :name, :first_surname, :last_surname
 
   def in_census?
     other_data = { date_of_birth: date_of_birth, postal_code: postal_code, name: name, first_surname: first_surname, last_surname: last_surname }

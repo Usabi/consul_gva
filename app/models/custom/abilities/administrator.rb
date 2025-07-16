@@ -126,7 +126,7 @@ module Abilities
       can :manage, Ckeditor::Picture
 
       can [:read, :debate, :draft_publication, :allegations, :result_publication,
-           :milestones, :help_pages, :help_page], Legislation::Process
+           :milestones, :help_pages, :help_page, :summary], Legislation::Process
       can [:create, :update, :destroy], Legislation::Process
       can [:manage], ::Legislation::DraftVersion
       can [:manage], ::Legislation::Question
@@ -147,6 +147,8 @@ module Abilities
 
       can :manage, LocalCensusRecord
       can [:create, :read], LocalCensusRecords::Import
+
+      can [:search], Organization
 
       can :manage, Cookies::Vendor
 

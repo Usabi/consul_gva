@@ -13,7 +13,7 @@
 <%= render "shared/section_header", i18n_namespace: "polls.index.section_header", image: "polls" %>
 
 <div class="row">
-  <div class="small-12 column">
+  <div class="small-12 medium-9 column">
     <% if show_polls_description? %>
       <div class="polls-description">
         <%= auto_link_already_sanitized_html wysiwyg(@active_poll.description) %>
@@ -53,5 +53,11 @@
       <p><%= t("polls.index.section_footer.description") %></p>
       <%= render_custom_partial "footer" %>
     </div>
+  </div>
+
+  <div class="small-12 medium-3 column">
+    <aside class="margin-bottom">
+      <%= render Polls::StatsComponent.new(summary: true) %><%# Custom %>
+    </aside>
   </div>
 </div>

@@ -1,0 +1,126 @@
+<div id="stats_legislation">
+  <div class="header-stats">
+    <%= image_tag("icon-sections/ico-normativa.png", alt: "") unless summary? %>
+    <h2 class="<%= summary? ? 'sidebar-title' : '' %>"><%= t("stats.legislation.process.title") %></h2>
+  </div>
+  
+  <div class="<%= summary? ? 'summary-box' : '' %>">
+    <div class="stats-section">
+      <h4 class="stats-subtitle"><%= t("stats.legislation.process.general") %></h4>
+      <div class="stats-row">
+        <div class="stats-item">
+          <span class="stats-number"><%= @total_processes %></span>
+          <span class="stats-label"><%= t("stats.legislation.process.total") %></span>
+        </div>
+
+        <div class="stats-item">
+          <span class="stats-number"><%= @processes_last_week %></span>
+          <span class="stats-label"><%= t("stats.legislation.process.last_week") %></span>
+        </div>
+
+        <div class="stats-item">
+          <span class="stats-number"><%= @active_processes %></span>
+          <span class="stats-label"><%= t("stats.legislation.process.active_processes") %></span>
+        </div>
+
+        <div class="stats-item">
+          <span class="stats-number"><%= @past_processes %></span>
+          <span class="stats-label"><%= t("stats.legislation.process.past_processes") %></span>
+        </div>
+      </div>
+    </div>
+
+    <% unless summary? %>
+      <div class="stats-section">
+        <h4 class="stats-subtitle"><%= t("stats.legislation.process.phases") %></h4>
+        <div class="stats-row">
+          <div class="stats-item">
+            <span class="stats-number"><%= @preview_phase_count %></span>
+            <span class="stats-label"><%= t("stats.legislation.process.phase.preview") %></span>
+          </div>
+
+          <div class="stats-item">
+            <span class="stats-number"><%= @public_phase_count %></span>
+            <span class="stats-label"><%= t("stats.legislation.process.phase.public") %></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-section">
+        <h4 class="stats-subtitle"><%= t("stats.legislation.process.participation") %></h4>
+        <div class="stats-row">
+          <div class="stats-item">
+            <span class="stats-number"><%= @total_proposals %></span>
+            <span class="stats-label"><%= t("stats.legislation.process.total_proposals") %></span>
+          </div>
+
+          <div class="stats-item">
+            <span class="stats-number"><%= @proposals_last_week %></span>
+            <span class="stats-label"><%= t("stats.legislation.process.proposals_last_week") %></span>
+          </div>
+
+          <div class="stats-item">
+            <span class="stats-number"><%= @total_comments %></span>
+            <span class="stats-label"><%= t("stats.legislation.process.total_comments") %></span>
+          </div>
+
+          <div class="stats-item">
+            <span class="stats-number"><%= @total_votes %></span>
+            <span class="stats-label"><%= t("stats.legislation.process.total_votes") %></span>
+          </div>
+        </div>
+        <div class="stats-row">
+          <div class="stats-item number-with-info participants total-participants">
+            <div class="content">
+              <span class="stats-number number"><%= @total_participants %></span>
+            </div>
+            <span class="stats-label row"><%= t("stats.legislation.participants") %></span>
+          </div>
+        </div>
+      </div>
+
+      <div id="participants_by_gender" class="stats-section stats-group">
+        <h4 class="stats-subtitle"><%= t("stats.by_gender") %></h4>
+
+        <div class="stats-item number-with-info participants male">
+          <div class="content">
+            <span class="stats-number number"><%= @total_male_participants %></span>
+            <span class="stats-label info"><%= t("stats.men_percentage", percentage: helpers.number_to_stats_percentage(@male_percentage)) %></span>
+          </div>
+        </div>
+
+        <div class="stats-item number-with-info participants female">
+          <div class="content">
+            <span class="stats-number number"><%= @total_female_participants %></span>
+            <span class="stats-label info"><%= t("stats.women_percentage", percentage: helpers.number_to_stats_percentage(@female_percentage)) %></span>
+          </div>
+        </div>
+
+        <div class="stats-item number-with-info participants other">
+          <div class="content">
+            <span class="stats-number number"><%= @total_other_participants %></span>
+            <span class="stats-label info"><%= t("stats.other_percentage", percentage: helpers.number_to_stats_percentage(@other_percentage)) %></span>
+          </div>
+        </div>
+      </div>
+
+      <% if @most_active_process.present? %>
+        <div class="stats-section">
+          <h4 class="stats-subtitle"><%= t("stats.legislation.process.most_active_process") %></h4>
+          <div class="stats-highlight">
+            <%= link_to @most_active_process.title, legislation_process_path(@most_active_process) %>
+            <span class="stats-detail">
+              <%= t("stats.legislation.process.comments_count", count: @most_active_process.total_comments) %>
+            </span>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <% if summary? %>
+      <div>
+      <a href="<%= stats_path + "#stats_legislation" %>" class="float-right"><%= t("stats.advanced") %></a>
+      </div>
+    <% end %>
+  </div>
+</div>

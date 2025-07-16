@@ -1,7 +1,6 @@
 load Rails.root.join("app", "models", "debate.rb")
 
 class Debate
-
   SORTING_OPTIONS = { id: "id", supports: "cached_votes_up", created_at: "created_at" }.freeze
 
   scope :sort_by_id,               -> { order("id DESC") }

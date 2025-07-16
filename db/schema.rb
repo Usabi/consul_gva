@@ -99,8 +99,8 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_25_164500) do
   create_table "alert_message_sections", id: :serial, force: :cascade do |t|
     t.integer "alert_message_id"
     t.integer "web_section_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "alert_message_translations", id: :serial, force: :cascade do |t|
@@ -108,9 +108,9 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_25_164500) do
     t.string "locale", null: false
     t.string "title", limit: 80
     t.string "description", limit: 150
-    t.datetime "hidden_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "hidden_at", precision: nil
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["alert_message_id"], name: "index_alert_message_translations_on_alert_message_id"
     t.index ["hidden_at"], name: "index_alert_message_translations_on_hidden_at"
     t.index ["locale"], name: "index_alert_message_translations_on_locale"
@@ -120,9 +120,9 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_25_164500) do
     t.string "target_url"
     t.string "flash_key"
     t.boolean "active"
-    t.datetime "hidden_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "hidden_at", precision: nil
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["hidden_at"], name: "index_alert_messages_on_hidden_at"
   end
 
@@ -1003,8 +1003,8 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_25_164500) do
   create_table "milestone_status_translations", force: :cascade do |t|
     t.integer "milestone_status_id", null: false
     t.string "locale", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "name"
     t.text "description"
     t.index ["locale"], name: "index_milestone_status_translations_on_locale"
