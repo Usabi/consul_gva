@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "models", "organization").to_s
+load Rails.root.join("app", "models", "organization.rb")
 
 class Organization < ApplicationRecord
   def self.search(text)

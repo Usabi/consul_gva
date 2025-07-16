@@ -1,5 +1,4 @@
-require_dependency Rails.root.join("app", "models", "poll").to_s
-
+load Rails.root.join("app", "models", "poll.rb")
 class Poll
   include Filterable
   include Taggable
@@ -12,14 +11,13 @@ class Poll
     with_translations(Globalize.fallbacks(I18n.locale))
       .select("polls.*, poll_translations.name")
       .order("poll_translations.name #{direction}")
-
   end
 
   def self.search_by_name_or_id(name_or_id)
-      with_joins = with_translations(Globalize.fallbacks(I18n.locale))
+    with_joins = with_translations(Globalize.fallbacks(I18n.locale))
 
-      with_joins.where(id: name_or_id)
-                .or(with_joins.where("poll_translations.name ILIKE ?", "%#{name_or_id}%"))
+    with_joins.where(id: name_or_id)
+              .or(with_joins.where("poll_translations.name ILIKE ?", "%#{name_or_id}%"))
   end
 
   def self.scoped_filter(params, current_filter, advanced_search_terms)
@@ -47,10 +45,9 @@ class Poll
     else
       order(id: :desc)
     end
-
   end
 
   def status
-    I18n.t("admin.polls.status.#{current? ? 'open' : 'closed'}")
+    I18n.t("admin.polls.status.#{current? ? "open" : "closed"}")
   end
 end
