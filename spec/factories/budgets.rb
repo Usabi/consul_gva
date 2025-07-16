@@ -181,6 +181,10 @@ FactoryBot.define do
       valuation_finished { true }
     end
 
+    trait :not_selected do
+      feasibility { "not_selected" }
+    end
+
     trait :hidden do
       hidden_at { Time.current }
     end
