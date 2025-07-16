@@ -5,9 +5,9 @@ class Verification::Residence
   validates :last_surname, presence: true, if: -> { document_type == 1 }
 
   validates :document_number,
-    presence: true,
-    length: { is: 9 },
-    if: -> { document_type == "1" }
+            presence: true,
+            length: { is: 9 },
+            if: -> { document_type == "1" }
 
   validate :local_postal_code
   validate :local_residence
@@ -32,15 +32,15 @@ class Verification::Residence
       residence_verified_at = Time.current
     end
 
-    user.update(document_number:        document_number,
-                document_type:          document_type,
-                geozone:                geozone,
-                postal_code:            postal_code,
-                date_of_birth:          date_of_birth.in_time_zone.to_datetime,
-                gender:                 gender,
-                residence_verified_at:  residence_verified_at,
+    user.update(document_number: document_number, # rubocop:disable Rails/SaveBang
+                document_type: document_type,
+                geozone: geozone,
+                postal_code: postal_code,
+                date_of_birth: date_of_birth.in_time_zone.to_datetime,
+                gender: gender,
+                residence_verified_at: residence_verified_at,
                 residence_requested_at: residence_requested_at,
-                services_results:       (census_data.data if census_data.is_a?(CensusApi::Response)))
+                services_results: (census_data.data if census_data.is_a?(CensusApi::Response)))
   end
 
   def allowed_age
@@ -53,7 +53,7 @@ class Verification::Residence
     return if errors.any? # return to form with validation messages
 
     unless residency_valid?
-      if census_data.respond_to?(:error) && census_data.error =~ /^Servicio no disponible/
+      if census_data.respond_to?(:error) && (census_data.error.is_a?(String) && census_data.error =~ /^Servicio no disponible/) # rubocop:disable Layout/LineLength
         errors.add(:base, I18n.t("verification.residence.new.error_service_not_available"))
         return
       end
