@@ -1,18 +1,18 @@
 <footer>
   <div class="row">
-    <%# TODO Columna Logos %>
+    <%# Columna Logos %>
     <div class="column small-12 large-4 logos">
       <%= image_tag("logos/logo-gva.png") %>
       <%= image_tag("logos/logo-participa.png") %>
     </div>
-    <%# TODO columna Texto año y quien lo hace %>
+    <%# Columna Texto año y quien lo hace %>
     <div class="column small-12 large-3 gobierno">
       <p class="info">
         <%= sanitize(t("application.slogan_text.footer",
           copyright: t("layouts.footer.copyright"))) %>
       </p>
     </div>
-    <%# TODO columna Enlaces de acciones %>
+    <%# Columna Enlaces de acciones %>
     <div class="column small-12 large-3 links">
       <ul class="no-bullet inline-block">
         <% if feature?(:debates) %>
@@ -61,16 +61,25 @@
         <% end %>
       </ul>
     </div>
-    <%# TODO columna Política de privacidad %>
-    <div class="column small-12 large-2 privacy">
-      <ul class="no-bullet inline-block">
-        <li><%= link_to t("layouts.footer.privacy"), page_path("privacy") %></li>
-        <li><%= link_to t("layouts.footer.conditions"), page_path("conditions") %></li>
-        <li><%= link_to t("layouts.footer.accessibility"), page_path("accessibility")  %></li>
-        <li><%= t("layouts.footer.contact_us_short") %> <%= mail_to Setting['mailer_from_address'] %></li>
-      </ul>
+    <%# Columna Política de privacidad %>
+    <div class="subfooter row">
+      <div class="column small-12 large-2 privacy">
+            <ul class="no-bullet inline-block">
+              <li><%= link_to t("layouts.footer.privacy"), page_path("privacy") %></li>
+              <li><%= link_to t("layouts.footer.conditions"), page_path("conditions") %></li>
+              <li><%= link_to t("layouts.footer.accessibility"), page_path("accessibility")  %></li>
+              <li><%= t("layouts.footer.contact_us_short") %> <%= mail_to Setting['mailer_from_address'] %></li>
+              <% if feature?(:cookies_consent) %>
+                <li class="cookies-consent-management-footer-content">
+                  <a href="#cookies_consent_management" data-open="cookies_consent_management">
+                    <%= t("layouts.footer.cookies_consent_management") %>
+                  </a>
+                </li>
+              <% end %>
+            <%= raw footer_legal_content_block %>
+            </ul>
+        </div>
+      <%= render Layout::SocialComponent.new %>
     </div>
-
-    <%= render Layout::SocialComponent.new %>
   </div>
 </footer>
