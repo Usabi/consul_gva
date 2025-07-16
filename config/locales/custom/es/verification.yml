@@ -47,7 +47,7 @@ es:
           procedure: procedimiento
           required_age_request_form: Se han guardado tus datos para verificar tu residencia, pero al ser menor de %{required_age} años debes seguir este %{link}
           foreign_residence_request_form: El Padrón no pudo verificar tu información. Por favor, confirma que tus datos de empadronamiento sean correctos informándote en tu municipio de empadronamiento. Si eres valenciano, pero eres residente en el extranjero o fuera de la Comunitat Valenciana, y no estás empadronado, debes seguir este %{link}.
-          required_age_foreign_residence_request_form: "El Padrón no pudo verificar tu información. Por favor, confirma que tus datos de empadronamiento sean correctos informándote en tu municipio de empadronamiento. Si eres valenciano, pero eres residente en el extranjero o fuera de la Comunitat, y no estás empadronado, debes seguir este %{foreign_link}.
+          required_age_foreign_residence_request_form: "El Padrón no pudo verificar tu información. Por favor, confirma que tus datos de empadronamiento sean correctos informándote en tu municipio de empadronamiento.
           Por otro lado, como eres menor de %{required_age} años, debes también seguir este %{age_link} para completar la verificación."
       new:
         accept_terms_text: Declaro que la información transmitida es exacta y que acepto %{terms_url}
@@ -65,6 +65,7 @@ es:
         invalid_date_of_birth: La fecha de nacimiento no coincide
         invalid_postal_code: El código postal no coincide
         invalid_document_number: El número de documento es incorrecto
+        only_residents_allowed: Solo pueden registrarse personas residentes en la Comunitat Valenciana.
         gender_label: Género
         not_verified: No verificada
         postal_code: Código postal
@@ -78,7 +79,7 @@ es:
         error_service_not_available: No se pudo conectar con el servicio de verificación. Por favor, inténtalo más tarde.
         foreign_residence: Resido fuera de la Comunitat Valenciana, pero soy valenciano
         form_errors: evitaron verificar tu residencia
-        postal_code_note: Para verificar tus datos debes estar empadronado/a en la Comunitat Valenciana. Si eres valenciano, pero eres residente en el extranjero o fuera de la Comunitat, puedes indicarlo a continuación y seguir el siguiente %{link}. En ese caso, indica aquí el último código postal donde viviste.
+        postal_code_note: Para verificar tus datos debes estar empadronado/a en la Comunitat Valenciana. Actualmente solo se permite el registro de personas empadronadas en la Comunitat Valenciana.
         procedure: procedimiento
         terms: los términos de acceso a los servicios de verificación de edad y residencia
         title: Verificar residencia

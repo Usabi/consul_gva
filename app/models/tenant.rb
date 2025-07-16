@@ -56,7 +56,7 @@ class Tenant < ApplicationRecord
   end
 
   def self.excluded_subdomains
-    %w[mail public shared_extensions www]
+    ["mail", enviroment_schema, "shared_extensions", "www"]
   end
 
   def self.default_url_options
@@ -84,7 +84,7 @@ class Tenant < ApplicationRecord
   end
 
   def self.host_for(schema)
-    if schema == "public"
+    if schema == enviroment_schema
       default_host
     elsif find_by_domain(schema)
       schema
@@ -128,7 +128,7 @@ class Tenant < ApplicationRecord
   end
 
   def self.default?
-    current_schema == "public"
+    current_schema == enviroment_schema
   end
 
   def self.current_schema
@@ -163,6 +163,10 @@ class Tenant < ApplicationRecord
 
   def hidden?
     hidden_at.present?
+  end
+
+  def self.enviroment_schema
+    Rails.env.test? ? "public" : Rails.application.secrets.db_schema
   end
 
   private

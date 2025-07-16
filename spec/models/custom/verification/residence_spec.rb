@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Verification::Residence, consul: true do
+describe Verification::Residence do
   let!(:geozone) { create(:geozone, census_code: "46") }
   let(:residence) { build(:verification_residence,
                     name: Faker::Name.name,
@@ -232,6 +232,26 @@ describe Verification::Residence, consul: true do
       residence = Verification::Residence.new(document_number: " 12.345.678 - B")
       expect(residence.document_number).to eq("12345678B")
     end
+
+    describe "INE error estado 6" do
+      it "shows error if INE says no permission to verify residence (estado 6)" do
+        outcome = CensusApi.new.send(:stubbed_invalid_outcome)
+
+        allow_any_instance_of(CensusApi).to receive(:stubbed_response).and_return(outcome)
+
+        residence = build(:verification_residence,
+                          name: "NAME",
+                          first_surname: "FIRST SURNAME",
+                          last_surname: "LAST SURNAME",
+                          gender: "male",
+                          postal_code: "46001",
+                          document_number: "12345678X")
+
+        residence.valid?
+
+        expect(residence.errors[:base]).to include("Only residents of the Valencian Community can register.")
+      end
+    end
   end
 
   describe "save" do
@@ -252,7 +272,7 @@ describe Verification::Residence, consul: true do
   end
 
   describe "tries" do
-    it "increases tries after a call to the Census", consul: true do
+    it "increases tries after a call to the Census" do
       residence.postal_code = "12001"
       residence.valid?
       expect(residence.user.lock.tries).to eq(1)
@@ -266,7 +286,7 @@ describe Verification::Residence, consul: true do
   end
 
   describe "Failed census call" do
-    it "stores failed census API calls", consul: true do
+    it "stores failed census API calls" do
       residence = build(:verification_residence,
                         :invalid,
                         name: Faker::Name.name,
@@ -274,16 +294,16 @@ describe Verification::Residence, consul: true do
                         last_surname: Faker::Name.last_name,
                         gender: "male",
                         postal_code: "46100",
-                        document_number: "12345678Z")
+                        document_number: "12345678W")
       residence.save
 
       expect(FailedCensusCall.count).to eq(1)
       expect(FailedCensusCall.first).to have_attributes(
         user_id:         residence.user.id,
-        document_number: "12345678Z",
+        document_number: "12345678W",
         document_type:   "1",
         date_of_birth:   Date.new(1980, 12, 31),
-        postal_code:     "28001"
+        postal_code:     "46100"
       )
     end
   end

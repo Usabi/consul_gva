@@ -333,6 +333,7 @@ val:
         relevance: més rellevants
         archival_date: arxivada
         recommendations: recomanacions
+        selected: Seleccionades
       recommendations:
         without_results: No existeixen iniciatives relacionades amb els teus interessos
         without_interests: "Segueix iniciatives perquè puguem donar-te recomanacions"
@@ -344,6 +345,7 @@ val:
       retired_proposals_link: "Iniciatives retirades pels seus autors/es"
       selected_proposals: Iniciatives seleccionades
       selected_proposals_link: Veure iniciatives seleccionades
+      selected_proposals_description: Consulta les propostes triades en el procés participatiu. Fes clic per a conéixer-les.
       archived_proposals: Iniciatives arxivades
       proposals_lists: Llistes de iniciatives
       retired_links:
@@ -612,6 +614,9 @@ val:
       visits: Visites
       debates: Debats
       proposals: Iniciatives
+      polls: Votacions
+      legislation: Elaboració normativa
+      budgets: Pressupostos participatius
       comments: Comentaris
       proposal_votes: Vots en Iniciatives
       debate_votes: Vots en debats

@@ -1,0 +1,33 @@
+<div class="dashboard-section">
+  <div class="dashboard-heading">
+    <h2 class="section-heading budgets-icon">
+      <%= t("admin.dashboard.index.budgets") %>
+    </h2>
+  </div>
+
+  <div class="row">
+    <div class="small-12 column">
+      <div class="card dashboard-card">
+        <div class="card-divider">
+          <h4><%= t("admin.dashboard.index.active_budgets") %></h4>
+        </div>
+        <div class="card-section">
+          <% if active_budgets.any? %>
+            <ul class="dashboard-list">
+              <% active_budgets.find_each do |budget| %>
+                <li>
+                  <span class="list-title"><%= link_to budget.name, admin_budget_path(budget) %></span>
+                  <span class="list-phase">
+                    <%= t("admin.dashboard.index.phase", phase: budget.current_phase.name) %>
+                  </span>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="no-data"><%= t("admin.dashboard.index.no_active_budgets") %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

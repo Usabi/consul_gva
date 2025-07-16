@@ -70,16 +70,6 @@
           hint: raw(t("verification.residence.new.postal_code_note", link: link)) %>
         </div>
 
-        <div class="small-12">
-            <%= f.check_box :foreign_residence,
-          title: t("verification.residence.new.foreign_residence"),
-          label: t("verification.residence.new.foreign_residence",
-                   terms_url: link_to(t("verification.residence.new.terms"), page_path("census_terms"),
-                                      title: t("shared.target_blank"),
-                                      target: "_blank")
-                  ) %>
-        </div>
-
         <div class="small-12 medium-5 clear">
             <%= f.select :gender, genders, prompt: "", label: t("verification.residence.new.gender_label") %>
         </div>

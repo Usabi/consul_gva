@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import "mixins/icons";
 
 @font-face {
   font-family: "icons";
@@ -39,9 +40,27 @@
   font-weight: normal;
 }
 
+// .icon-twitter::before {
+//   content: "\f099";
+// }
+
+// .icon-twitter::before {
+//   @include has-fa-icon(x-twitter, brands);
+// }
+
 .icon-twitter::before {
-  content: "\f099";
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background: currentColor;
+  mask-image: image-url("x-twitter.svg");
+  -webkit-mask-image:  image-url("x-twitter.svg");
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+  vertical-align: middle;
 }
+
 
 .icon-calendar::before {
   content: "\f133";

@@ -16,14 +16,7 @@
           age_url = Verification::Residence.procedure_url(:age, link_locale)
           foreign_url = Verification::Residence.procedure_url(:foreign, link_locale)
 
-          if account.residence_requested_foreign? && account.residence_requested_age?
-            age_link = link_to t('account.show.residence_request_procedure'), age_url
-            foreign_link = link_to t('account.show.residence_request_procedure'), foreign_url
-            message = t('account.show.required_age_foreign_residence_verification_request', age_link: age_link, foreign_link: foreign_link, required_age: User.minimum_required_age)
-          elsif account.residence_requested_foreign?
-            link = link_to t('account.show.residence_request_procedure'), foreign_url
-            message = t('account.show.foreign_residence_verification_request', link: link, required_age: User.minimum_required_age)
-          elsif account.residence_requested_age?
+          if account.residence_requested_age?
             link = link_to t('account.show.residence_request_procedure'), age_url
             message = t('account.show.required_age_verification_request', link: link, required_age: User.minimum_required_age)
           end

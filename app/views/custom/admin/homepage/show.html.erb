@@ -22,7 +22,8 @@
 
    <%= render Admin::Widget::Cards::TableComponent.new(
     @middle,
-    no_cards_message: t("admin.homepage.no_cards")
+    no_cards_message: t("admin.homepage.no_cards"),
+    actions: [:edit]
   ) %>
 </div>
 
