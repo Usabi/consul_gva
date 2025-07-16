@@ -1,5 +1,4 @@
-
-require_dependency Rails.root.join("app", "controllers", "admin", "organizations_controller").to_s
+load Rails.root.join("app", "controllers", "admin", "organizations_controller.rb")
 
 class Admin::OrganizationsController
   has_filters %w[pending all verified rejected], only: [:index, :search]
