@@ -15,13 +15,13 @@ def main_deploy_server
 end
 
 set :rails_env, fetch(:stage)
-set :default_env, { EXECJS_RUNTIME: "Disabled" }
+# set :default_env, { EXECJS_RUNTIME: "Disabled" }
 set :rvm1_map_bins, -> { fetch(:rvm_map_bins).to_a.concat(%w[rake gem bundle ruby]).uniq }
-set :rvm_ruby_version, "2.7.6"
+set :rvm_ruby_version, "3.3.5"
 
 set :application, deploysecret(:app_name, default: "consul")
 set :deploy_to, deploysecret(:deploy_to)
-set :ssh_options, port: deploysecret(:ssh_port)
+set :ssh_options, port: deploysecret(:ssh_port), verify_host_key: :never
 
 set :repo_url, "https://github.com/Usabi/consul_gva.git"
 
@@ -39,21 +39,21 @@ set :keep_releases, 5
 
 set :local_user, ENV["USER"]
 
-set :fnm_path, "$HOME/.fnm"
-set :fnm_install_command, "curl -fsSL https://fnm.vercel.app/install | " \
-                          "bash -s -- --install-dir \"#{fetch(:fnm_path)}\""
-set :fnm_update_command, "#{fetch(:fnm_install_command)} --skip-shell"
-set :fnm_setup_command, -> do
-                          "export PATH=\"#{fetch(:fnm_path)}:$PATH\" && " \
-                            "cd #{release_path} && fnm env > /dev/null && eval \"$(fnm env)\""
-                        end
-set :fnm_install_node_command, -> { "#{fetch(:fnm_setup_command)} && fnm use --install-if-missing" }
-set :fnm_map_bins, %w[node npm rake yarn]
+# set :fnm_path, "$HOME/.fnm"
+# set :fnm_install_command, "curl -fsSL https://fnm.vercel.app/install | " \
+#                           "bash -s -- --install-dir \"#{fetch(:fnm_path)}\""
+# set :fnm_update_command, "#{fetch(:fnm_install_command)} --skip-shell"
+# set :fnm_setup_command, -> do
+#                           "export PATH=\"#{fetch(:fnm_path)}:$PATH\" && " \
+#                             "cd #{release_path} && fnm env > /dev/null && eval \"$(fnm env)\""
+#                         end
+# set :fnm_install_node_command, -> { "#{fetch(:fnm_setup_command)} && fnm use --install-if-missing" }
+# set :fnm_map_bins, %w[node npm rake yarn]
 
-set :puma_conf, "#{release_path}/config/puma/#{fetch(:rails_env)}.rb"
-set :puma_systemctl_user, :user
-set :puma_enable_socket_service, true
-set :puma_service_unit_env_vars, ["EXECJS_RUNTIME=Disabled"]
+# set :puma_conf, "#{release_path}/config/puma/#{fetch(:rails_env)}.rb"
+# set :puma_systemctl_user, :user
+# set :puma_enable_socket_service, true
+# set :puma_service_unit_env_vars, ["EXECJS_RUNTIME=Disabled"]
 
 set :delayed_job_workers, 2
 set :delayed_job_roles, :background
@@ -62,15 +62,15 @@ set :delayed_job_monitor, true
 set :whenever_roles, -> { :app }
 
 namespace :deploy do
-  after "rvm1:hook", "map_node_bins"
+  # after "rvm1:hook", "map_node_bins"
 
-  after :updating, "install_node"
-  after :updating, "install_ruby"
+  # after :updating, "install_node"
+  # after :updating, "install_ruby"
 
-  after "deploy:migrate", "add_new_settings"
+  # after "deploy:migrate", "add_new_settings"
 
-  after :publishing, "setup_puma"
-  after :finished, "refresh_sitemap"
+  # after :publishing, "setup_puma"
+  # after :finished, "refresh_sitemap"
 
   desc "Deploys and runs the tasks needed to upgrade to a new release"
   task :upgrade do
@@ -78,8 +78,8 @@ namespace :deploy do
     invoke "deploy"
   end
 
-  before "deploy:restart", "puma:smart_restart"
-  before "deploy:restart", "delayed_job:restart"
+  # before "deploy:restart", "puma:smart_restart"
+  # before "deploy:restart", "delayed_job:restart"
 end
 
 task :install_ruby do
