@@ -43,7 +43,7 @@
           <td><%= proposal.sdg_goal_list %></td>
           <td><%= proposal.sdg_target_list %></td>
           <td><%= proposal.tags_list.join(", ") %></td>
-          <td class="js-select"><%= render "select_proposal", proposal: proposal %></td>
+          <td><%= render Admin::Proposals::ToggleSelectionComponent.new(proposal) %></td>
         </tr>
       <% end %>
     </tbody>
