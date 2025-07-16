@@ -9,7 +9,8 @@ class Budgets::InvestmentsController
   before_action :load_categories, only: [:index, :new, :create, :vote, :unvote, :edit, :update]
 
   valid_filters = %w[not_unfeasible feasible unfeasible unselected selected winners not_selected takecharged included_next_year_budget]
-  has_filters valid_filters, only: [:index, :show, :suggest]
+  has_filters ->(c) { c.instance_variable_get(:@budget).investments_filters },
+                only: [:index, :show, :suggest]
 
   def index
     session["create_investment_back_path"] = request.fullpath
@@ -46,9 +47,8 @@ class Budgets::InvestmentsController
     end
   end
 
-
-
   private
+
     def load_categories
       @categories = Tag.category.order(name: :desc)
     end
