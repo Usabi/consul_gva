@@ -68,7 +68,7 @@ describe "Residence" do
     fill_in "residence_last_surname", with: "Camps"
     fill_in "residence_document_number", with: "12345678Z"
     select "DNI", from: "residence_document_type"
-    select_date "19-October-1977", from: "residence_date_of_birth"
+    fill_in "residence_date_of_birth", with: "1977-10-19"
     fill_in "residence_postal_code", with: "46100"
     select "Male", from: "residence_gender"
     check "residence_terms_of_service"

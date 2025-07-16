@@ -75,6 +75,7 @@ describe "Users" do
 
     login_as_manager(manager)
     visit management_document_verifications_path
+
     fill_in "document_verification_document_number", with: "12345678Z"
     click_button "Check document"
 

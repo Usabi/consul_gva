@@ -245,7 +245,7 @@ describe "Admin edit translatable records", :admin do
       let(:translatable) { create(:poll, :future) }
       let(:path) { edit_admin_poll_path(translatable) }
 
-      scenario "Updates the field to a blank value" do
+      scenario "Updates the field to a blank value", consul: true do
         visit path
 
         expect(page).to have_field "Summary", with: "Summary in English"

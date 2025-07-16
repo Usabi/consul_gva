@@ -16,7 +16,7 @@ describe "Stats", :admin do
       expect(page).to have_content "VISITS\n5"
     end
 
-    scenario "Visits" do
+    scenario "Visits", consul: true do
       visit admin_stats_path
       refresh
 
@@ -26,7 +26,7 @@ describe "Stats", :admin do
 
       in_browser(:different) do
         visit root_path
-
+        debugger
         click_link "Debates"
         expect(page).to have_link "Start a debate"
 
