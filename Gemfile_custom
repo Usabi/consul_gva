@@ -27,11 +27,6 @@
 
 gem "recaptcha"
 
-group :development do
-  gem "solargraph"
-  gem "rufo"
-end
-
 group :test do
   gem "pry"
   gem "pry-rails"
