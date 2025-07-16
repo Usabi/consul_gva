@@ -12,7 +12,6 @@ resources :budgets, only: [:show, :index] do
   end
 end
 
-
 namespace :admin do
   resources :legislators, only: [:index, :create, :destroy] do
     get :search, on: :collection

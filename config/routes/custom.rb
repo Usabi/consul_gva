@@ -26,3 +26,4 @@
 # over the default routes. So, if you define a route for `/proposals`,
 # the default action for `/proposals` will not be used and the one you
 # define will be used instead.
+resources :stats, only: [:index]
