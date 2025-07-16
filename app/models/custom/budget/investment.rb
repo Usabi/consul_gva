@@ -3,8 +3,7 @@ load Rails.root.join('app', 'models', 'budget', 'investment.rb')
 
 class Budget
   class Investment
-
-    before_save :set_visible_to_valuators
+    # before_save :set_visible_to_valuators
     scope :not_selected, -> { where(feasibility: "not_selected") }
     # NOTE: This scope includes not_selected because is a filter used by default
     scope :not_unfeasible, -> { where.not(feasibility: ["unfeasible", "not_selected", "takecharge", "next_year_budget"]) }
