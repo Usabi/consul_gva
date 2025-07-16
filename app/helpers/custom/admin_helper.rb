@@ -65,4 +65,11 @@ module Custom::AdminHelper
     params[:advanced_search] || {}
   end
 
+  def csv_params
+    csv_params = params.clone.merge(format: :csv)
+    csv_params = csv_params.to_unsafe_h.transform_keys(&:to_sym)
+    csv_params.delete(:page)
+    csv_params
+  end
+
 end
