@@ -4,6 +4,8 @@ resources :budgets, only: [:show, :index] do
     member do
       put :flag
       put :unflag
+      post :vote # CUSTOM
+      post :unvote # CUSTOM
     end
 
     collection { get :suggest }
