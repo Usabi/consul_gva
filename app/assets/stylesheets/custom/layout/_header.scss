@@ -187,22 +187,21 @@
   }
 
   min-height: auto;
-  padding: 0;
+  padding: 2rem 0 2rem 0;
 
   h1 {
-    color: $white-gva;
+    color: $black-gva;
     margin: 1rem 0 1.5rem;
   }
 
   .lead {
-    color: $brand;
+    color: $black-gva;
     font-size: 1em;
     margin: 1.5rem 0;
   }
 
   .title-background {
     @include full-width-background;
-    background-color: rgba(5, 153, 155, 0.95);
   }
 }
 
