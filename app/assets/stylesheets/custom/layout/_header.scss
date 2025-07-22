@@ -4,7 +4,7 @@
 
 .top-bar {
   background: $white-gva !important;
-  color: $red-gva !important;
+  color: $black-gva !important;
 
   .top-bar-title {
     .logo-container {
@@ -36,7 +36,7 @@
 
   .menu > li {
     a {
-      color: $red-gva;
+      color: $black-gva;
 
       &:hover:not(.button) {
         font-weight: bold;
@@ -60,14 +60,14 @@
 
   .has-submenu {
     &.is-active a {
-      color: $red-gva;
+      color: $black-gva;
     }
   }
 
   .menu {
     .is-submenu-item {
       a {
-        color: $red-gva;
+        color: $black-gva;
       }
     }
   }
@@ -92,7 +92,7 @@
 }
 
 .subnavigation {
-  @include full-width-border(top, 1px solid $red-gva);
+  @include full-width-border(top, 1px solid $black-gva);
 
   @include breakpoint(medium) {
     ul {
@@ -122,11 +122,11 @@
 
 .dropdown.menu > li {
   &.is-active > a {
-    color: $red-gva;
+    color: $black-gva;
   }
 
   &.is-dropdown-submenu-parent > a::after {
-    border-color: $red-gva transparent transparent;
+    border-color: $black-gva transparent transparent;
   }
 }
 
@@ -141,7 +141,7 @@
 
   label {
     margin: 0;
-    color: $red-gva;
+    color: $black-gva;
     cursor: pointer;
 
     &:hover {
@@ -157,6 +157,7 @@
   line-height: normal;
   font-weight: 500;
   clear: both;
+  color: $black-gva;
 }
 
 .social-header .social-icons-list {
@@ -167,7 +168,7 @@
     padding: 0;
 
     li a {
-      color: $red-gva;
+      color: $black-gva;
     }
   }
 }
@@ -175,7 +176,7 @@
 .jumbo.highlight {
   @extend %brand-background;
   @include full-width-background;
-  @include full-width-border(bottom, 1px solid $red-gva);
+  @include full-width-border(bottom, 1px solid $black-gva);
 
   &.with-background-image {
     background-position: center;
