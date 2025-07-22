@@ -45,14 +45,16 @@
     }
 
     .button {
+      background-color: $brand;
+      
       @include breakpoint(medium) {
         border-radius: 10px;
-        color: $red-gva;
+        color: $white-gva;
         margin-right: 0;
       }
 
       &:hover {
-        background-color: $red-gva;
+        background-color: $button-hover;
         color: $white;
       }
     }
@@ -106,15 +108,15 @@
 
     &:hover {
       text-decoration: none;
-      color: $red-gva;
+      color: $button-hover;
     }
 
     &.is-active {
-      color: $red-gva;
+      color: $button-active;
 
       @include breakpoint(medium) {
-        border-bottom: 2px solid $red-gva;
-        color: $red-gva;
+        border-bottom: 2px solid $button-active;
+        color: $button-active;
       }
     }
   }
