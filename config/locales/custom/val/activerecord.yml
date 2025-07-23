@@ -51,6 +51,9 @@ val:
       manager:
         one: "Gestor"
         other: "Gestors"
+      bulletin:
+        one: "butlletí"
+        other: "butlletins"
       newsletter:
         one: "Butlletí informatiu"
         other: "Enviament de Newsletters"
@@ -435,6 +438,17 @@ val:
       poll/question/answer/video:
         title: Títol
         url: Video extern
+      bulletin:
+        title: Títol
+        template: Plantilla
+        templates:
+          proposal: Iniciativa
+          debate: Debat
+          legislation_process_preview_phase: Elaboració normativa - Consulta prèvia
+          legislation_process_public_phase: Elaboració normativa - Audiència ciutadana
+          legislation_process_past: Elaboració normativa - Finalitzats
+        sent_at_dates: Dates d'enviament
+        last_send_date: Últim enviament
       newsletter:
         segment_recipient: Destinataris
         subject: Asumpte

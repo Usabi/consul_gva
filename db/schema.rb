@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_02_25_164500) do
+ActiveRecord::Schema[7.0].define(version: 2025_07_15_174500) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -446,6 +446,14 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_25_164500) do
     t.string "voting_style", default: "knapsack"
     t.boolean "published"
     t.boolean "hide_money", default: false
+  end
+
+  create_table "bulletins", id: :serial, force: :cascade do |t|
+    t.string "title", null: false
+    t.string "template", null: false
+    t.jsonb "sent_at_dates", default: []
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "campaigns", id: :serial, force: :cascade do |t|

@@ -209,6 +209,12 @@ namespace :admin do
 
   resource :activity, controller: :activity, only: :show
 
+  resources :bulletins do # Custom
+    member do
+      post :deliver
+    end
+  end
+
   resources :newsletters do
     member do
       post :deliver

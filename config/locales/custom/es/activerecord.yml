@@ -56,6 +56,9 @@ es:
       manager:
         one: "Gestor"
         other: "Gestores"
+      bulletin:
+        one: "Boletín"
+        other: "Boletines"
       newsletter:
         one: "Newsletter"
         other: "Newsletters"
@@ -491,6 +494,17 @@ es:
       poll/question/answer/video:
         title: Título
         url: Vídeo externo
+      bulletin:
+        title: Título
+        template: Plantilla
+        templates:
+          proposal: Iniciativa
+          debate: Debate
+          legislation_process_preview_phase: Elaboración normativa - Consulta previa
+          legislation_process_public_phase: Elaboración normativa - Audiencia ciudadana
+          legislation_process_past: Elaboración normativa - Finalizados
+        sent_at_dates: Fechas de envío
+        last_send_date: Último envío
       newsletter:
         segment_recipient: Destinatarios
         subject: Asunto
