@@ -1,0 +1,9 @@
+<%= form_for [:admin, @bulletin] do |f| %>
+  <%= render "shared/errors", resource: @bulletin %>
+
+  <%= f.text_field :title %>
+  <%= f.select :template, options_for_select(Bulletin::TEMPLATE.map { |key| [t("activerecord.attributes.bulletin.templates.#{key}"), key] }, f.object.template) %>
+  <div class="margin-top">
+    <%= f.submit class: "button success" %>
+  </div>
+<% end %>

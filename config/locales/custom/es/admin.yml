@@ -860,6 +860,7 @@ es:
       sdg_managers: Gestores ODS
       moderators: Moderadores
       messaging_users: Mensajes a usuarios
+      bulletins: Boletines
       newsletters: Newsletters
       admin_notifications: Notificaciones
       system_emails: Emails del sistema
@@ -947,6 +948,45 @@ es:
       winner_investment_authors: Usuarios autores de proyectos de gasto ganadoras en los actuales presupuestos
       not_supported_on_current_budget: Usuarios que no han apoyado proyectos de los actuales presupuestos
       invalid_recipients_segment: "El segmento de destinatarios es inválido"
+    bulletin_templates:
+      proposal:
+        title: Novedades de Iniciativas
+      debate:
+        title: Novedades de Debates
+      legislation_processes_preview_phase:
+        title: Novedades de elaboración normativa (consulta previa)
+      legislation_processes_public_phase:
+        title: Novedades de elaboración normativa (audiencia ciudadana)
+      legislation_processes_past:
+        title: Novedades de elaboración normativa (finalizados)
+    bulletins:
+      create_success: Boletín creado correctamente
+      update_success: Boletín actualizado correctamente
+      send_success: Boletín enviado correctamente
+      delete_success: Boletín borrado correctamente
+      index:
+        title: Envío de boletines
+        new_bulletin: Crear boletín
+        send: Enviar
+        sent: Enviado
+        actions: Acciones
+        preview: Previsualizar
+        empty_bulletins: No hay boletines para mostrar
+      new:
+        title: Nuevo boletín
+      edit:
+        title: Editar boletín
+      show:
+        title: Vista previa de boletín
+        send: Enviar
+        sent_emails:
+          one: 1 correo enviado
+          other: "%{count} correos enviados"
+        sent_at: Enviado
+        from: Dirección de correo electrónico que aparecerá como remitente del boletín
+        body: Contenido del email
+        body_help_text: Así es como verán el email los usuarios
+        send_alert: '¿Estás seguro/a de que quieres enviar este boletín a %{n} usuarios?'
     newsletters:
       create_success: Newsletter creada correctamente
       update_success: Newsletter actualizada correctamente

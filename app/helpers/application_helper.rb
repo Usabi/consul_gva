@@ -18,6 +18,10 @@ module ApplicationHelper
     WYSIWYGSanitizer.new.sanitize(text)
   end
 
+  def wysiwyg_newsletter(text) # Custom
+    WYSIWYGSanitizerNewsletter.new.sanitize(text)
+  end
+
   def author_of?(authorable, user)
     return false if authorable.blank? || user.blank?
 

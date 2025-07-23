@@ -1,0 +1,67 @@
+<tr id="<%= dom_id(process) %>" style="min-height: 12rem;">
+  <td style="padding: 15px; border: 1px solid; border-color: #e5e6e9 #dfe0e4 #d0d1d5; border-radius: 0; box-shadow: 0 1px 3px 0 #dee0e3;">
+    <h3><%= link_to process.title, process, {:style=>'color: #222;'} %></h3>
+    <p style="line-height: 3rem; margin-top: 15px; margin-bottom: 15px;">
+      <span style="padding: 15px 45px; border: 1px solid #004A83; border-radius: 20px; cursor: pointer;">
+        <%= link_to process, { title: t("legislation.processes.process.see_latest_comments_title"), style: 'text-decoration: none;' } do %>
+          <span style="font-size: 1.2em; color: #007bff;">🗨️</span>&nbsp;
+          <%= t("legislation.processes.process.see_latest_comments") %>
+        <% end %>
+      </span>
+    </p>
+
+    <p>
+      <%= markdown(process.summary.presence || first_paragraph(process.description)) %>
+    </p>
+
+    <% if process.enabled_phases_and_publications_count.positive? %>
+      <p style="color: #515151"><%= t("legislation.processes.shared.key_dates") %></p>
+      <table>
+        <tbody>
+          <tr style="background-color: #E7F2FC;">
+            <% if process.debate_phase.enabled? %>
+              <td style="padding: 8px;">
+                <strong><h4 style="font-size: 14px; font-weight: 700; color: #61686E;"><%= t("legislation.processes.shared.debate_dates") %></h4></strong>
+                <p style="font-size: 12px;"><%= format_date(process.debate_start_date) %> - <%= format_date(process.debate_end_date) %></p>
+              </td>
+            <% end %>
+            <% if process.draft_publication.enabled? %>
+              <td style="padding: 8px;">
+                <strong><h4 style="font-size: 14px; font-weight: 700; color: #61686E;"><%= t("legislation.processes.shared.draft_publication_date") %></h4></strong>
+                <p style="font-size: 12px;"><%= format_date(process.draft_publication_date) %></p>
+              </td>
+            <% end %>
+            <% if process.draft_publication.enabled? %>
+              <td style="padding: 8px;">
+                <strong><h4 style="font-size: 14px; font-weight: 700; color: #61686E;"><%= t("legislation.processes.shared.draft_publication_date") %></h4></strong>
+                <p style="font-size: 12px;"><%= format_date(process.draft_publication_date) %></p>
+              </td>
+            <% end %>
+            <% if process.proposals_phase.enabled? %>
+              <td style="padding: 8px;">
+                <strong><h4 style="font-size: 14px; font-weight: 700; color: #61686E;"><%= t("legislation.processes.shared.proposals_dates") %></h4></strong>
+                <p style="font-size: 12px;"><%= format_date(process.proposals_phase_start_date) %> - <%= format_date(process.proposals_phase_end_date) %></p>
+              </td>
+            <% end %>
+            <% if process.allegations_phase.enabled? %>
+              <td style="padding: 8px;">
+                <strong><h4 style="font-size: 14px; font-weight: 700; color: #61686E;"><%= t("legislation.processes.shared.allegations_dates") %></h4></strong>
+                <p style="font-size: 12px;"><%= format_date(process.allegations_start_date) %> - <%= format_date(process.allegations_end_date) %></p>
+              </td>
+            <% end %>
+            <% if process.result_publication.enabled? %>
+              <td style="padding: 8px;">
+                <strong><h4 style="font-size: 14px; font-weight: 700; color: #61686E;"><%= t("legislation.processes.shared.result_publication_date") %></h4></strong>
+                <p style="font-size: 12px;"><%= format_date(process.result_publication_date) %></p>
+              </td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
+  </td>
+</tr>
+<tr style="height: 15px;">
+  <td>
+  </td>
+</tr>
