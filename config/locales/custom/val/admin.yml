@@ -696,6 +696,8 @@ val:
         title: Novetats d'elaboració normativa (audiència ciutadana)
       legislation_processes_past:
         title: Novetats d'elaboració normativa (finalitzats)
+      legislation_processes_results:
+        title: Novetats d'elaboració normativa (resultats de la consulta)
     bulletins:
       create_success: Butlletí creat correctament
       update_success: Butlletí actualitzat correctament

@@ -503,6 +503,7 @@ es:
           legislation_process_preview_phase: Elaboración normativa - Consulta previa
           legislation_process_public_phase: Elaboración normativa - Audiencia ciudadana
           legislation_process_past: Elaboración normativa - Finalizados
+          legislation_process_results: Elaboración normativa - Resultados de la consulta
         sent_at_dates: Fechas de envío
         last_send_date: Último envío
       newsletter:
