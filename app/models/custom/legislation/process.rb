@@ -11,7 +11,7 @@ class Legislation::Process
   has_many :legislators, through: :process_legislators
 
   def self.processes_filters
-    %w[preview_phase public_phase past relevance]
+    %w[preview_phase public_phase past relevance results]
   end
 
   scope :preview_phase, -> {
@@ -21,6 +21,8 @@ class Legislation::Process
   scope :public_phase, -> { where("allegations_phase_enabled = true and (allegations_start_date <= :date and allegations_end_date >= :date)", date: Date.current) } # rubocop:disable Layout/LineLength
 
   scope :last_week, -> { where("created_at >= ?", 7.days.ago) }
+
+  scope :results, -> { where(result_publication_enabled: true).where.not(result_publication_date: nil) }
 
   def searchable_values
     {
