@@ -13,27 +13,25 @@
 
 <%= render "shared/header", header: @header %>
 
-<%= render 'slider' %>
 <div>
   <div class="row">
+    <%= render 'sections_icons' %>
+
+    <%#  PERO DE SOLO INICIATIVAS%>
+    <%= render "proposals" %>
+
+    <%# PROCESOS Y DEBATES QUITAR INICIATIVAS %>
+    <%= render "feeds" %>
+
     <% if @cards.any? %>
-      <div class="small-12 column <%= "large-8" if feed_processes_enabled? %>">
+      <div class="small-12 column">
         <h2 class="title"><%= t("welcome.cards.title") %></h2>
 
         <%= render "shared/cards", cards: @cards %>
       </div>
     <% end %>
-    <% if feed_processes_enabled? %>
-      <div class="small-12 large-4 column">
-        <%= render "processes" %>
-      </div>
-    <% end %>
-  </div>
-  <%= render 'sections_icons' %>
-  <%= render "feeds" %>
-  <% if feature?("user.recommendations") && (@recommended_debates.present? || @recommended_proposals.present?) %>
-    <%= render "recommended",
-                recommended_debates: @recommended_debates,
-                recommended_proposals: @recommended_proposals %>
-  <% end %>
+    </div>
+
+  <%= render 'stats' %>
+  <%= render 'slider' %>
 </div>
