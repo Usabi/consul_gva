@@ -62,6 +62,7 @@ val:
           preview_phase: Consulta prèvia
           public_phase: Audiència ciutadana
           relevance: Més rellevants
+          results: Resultats de la consulta
         no_open_processes: No hi ha processos actius
         no_past_processes: No hi ha processos finalitzats
         no_preview_phase_processes: No hi ha processos

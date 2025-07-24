@@ -62,6 +62,7 @@ es:
           preview_phase: Consulta previa
           public_phase: Audiencia ciudadana
           relevance: Más relevantes
+          results: Resultados de la consulta
         no_open_processes: No hay procesos activos
         no_past_processes: No hay procesos terminados
         no_preview_phase_processes: No hay procesos
