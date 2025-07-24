@@ -687,23 +687,23 @@ val:
         other: "Sols pots avalar propostes de %{count} districtes. Ya has avalat en %{supported_headings}."
   welcome:
     sections:
-      title: "Ara podem <span class='sections-icon__title__higlight'>debatre, proposar i fer votacions </span> per a entre tots i totes millorar la nostra Comunitat"
-      registrations_counter: "Ja som <span class='sections-icon__title__higlight welcome-counter'>%{count}</span> persones registrades"
+      title: Elige cómo quieres participar
       debate:
-        title: Debatre
-        description: Obri un fil de discussió per a compartir punts de vista amb altres persones sobre allò que et preocupa.
+        process_name: Debats
+        title: Compartix la teua opinió
+        description: Participa en converses obertes sobre temes que *afectana a la teua comunitat.
       propone:
-        title: Proposar
-        description: Crea propostes d’iniciatives públiques que puguen recollir els suports suficients per a elevar-les a la consideració del departament competent.
-      vota:
-        title: Votar
-        description: Ara el teu vot és important per a la presa de decisió de les polítiques públiques. Vota les opcions que consideres més rellevants.
+        process_name: Iniciatives
+        title: Proposa millores
+        description: Llança les teues pròpies *prpuestas i aconseguix suports perquè es facen realitat.
       normativa:
-        title: Elaboració normativa
-        description: Participa de manera activa en l’elaboració de legislació, plans i programes.
+        process_name: Elaboració normativa
+        title: Contribuïx noves lleis
+        description: Consulta esborradors, aporta idees i participa en la creació de normativa.
       presupuesto:
-        title: Pressupostos participatius
-        description: Proposa i decideix de manera directa a què es destina part del pressupost de la Generalitat Valenciana.
+        process_name: Pressupostos participatius
+        title: Decidix el destí del pressupost
+        description: Tria en quins projectes s'invertiran els fons públics en el teu territori.
     slider:
       title:
         month: 18M

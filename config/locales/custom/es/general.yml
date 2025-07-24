@@ -915,23 +915,23 @@ es:
         other: "Sólo puedes apoyar propuestas de inversión de %{count} distritos"
   welcome:
     sections:
-      title: "Ahora podemos <span class='sections-icon__title__higlight'>debatir, proponer y hacer votaciones</span> para entre todos y todas mejorar nuestra Comunitat"
-      registrations_counter: "Ya somos <span class='sections-icon__title__higlight welcome-counter'>%{count}</span> personas registradas"
+      title: Elige cómo quieres participar
       debate:
-        title: Debatir
-        description: Abre un hilo de discusión para compartir puntos de vista con otras personas sobre aquello que te preocupa.
+        process_name: Debates
+        title: Comparte tu opinión
+        description: Participa en conversaciones abiertas sobre temas que afectana a tu comunidad.
       propone:
-        title: Proponer
-        description: Crea propuestas de iniciativas públicas que puedan recoger los apoyos suficientes para elevarlas a la consideración del departamento competente.
-      vota:
-        title: Votar
-        description: Ahora tu voto es importante para la toma de decisión de las políticas públicas. Vota las opciones que consideres más relevantes
+        process_name: Iniciativas
+        title: Propón mejoras
+        description: Lanza tus propias prpuestas y consigue apoyos para que se hagan realidad.
       normativa:
-        title: Elaboración normativa
-        description: Participa de manera activa en la elaboración de legislación, planes y programas.
+        process_name: Elaboración normativa
+        title: Contribuye nuevas leyes
+        description: Consulta borradores, aporta ideas y participa en la creación de normativa.
       presupuesto:
-        title: Presupuestos participativos
-        description: Propón y decide de manera directa a qué se destina parte del presupuesto de la Generalitat Valenciana.
+        process_name: Presupuestos participativos
+        title: Decide el destino del presupuesto
+        description: Elige en qué proyectos se invertirán los fondos públicos en tu territorio.
     slider:
       title:
         month: 18M
