@@ -959,6 +959,8 @@ es:
         title: Novedades de elaboración normativa (audiencia ciudadana)
       legislation_processes_past:
         title: Novedades de elaboración normativa (finalizados)
+      legislation_processes_results:
+        title: Novedades de elaboración normativa (resultados de la consulta)
     bulletins:
       create_success: Boletín creado correctamente
       update_success: Boletín actualizado correctamente

@@ -3,7 +3,8 @@ class Bulletin < ApplicationRecord
                 debate
                 legislation_process_preview_phase
                 legislation_process_public_phase
-                legislation_process_past].freeze
+                legislation_process_past
+                legislation_process_results].freeze
 
   MAX_DISPLAY_DATES = 5
 
