@@ -1,1 +1,57 @@
-<div>Estadísticas</div>
+<div class="row gva-banner">
+  <!-- LADO IZQUIERDO -->
+  <div class="medium-6 columns left-banner">
+
+    <%= image_tag('welcome/banner-destacado-left.png', alt: 'Ilustración', class: 'banner-image') %>
+    <div class="logo-container">
+      <%= image_tag('logos/logo-participa.png', alt: 'GVA Participa', class: 'logo-gva') %>
+    </div>
+  </div>
+
+  <!-- LADO DERECHO -->
+  <div class="medium-6 columns right-banner">
+    <div class="info-block">
+      <h3><%= t("welcome.stats.title") %></h3>
+      <p><%= t("welcome.stats.description") %></p>
+      <p class="registrations_counter"><%= sanitize(t("welcome.stats.registrations_counter", count: User.count)) %> </p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-item">
+        <%= image_tag("icon-sections/rectangle.png", alt: "") %>
+        <div class="stat-text">
+          <div class="stat-label"><%= t("welcome.sections.debate.process_name") %></div>
+          <div class="stat-count"><%= Debate.count%></div>
+        </div>
+      </div>
+
+      <div class="stat-item">
+        <%= image_tag("icon-sections/ico-proponer.png", alt: "") %>
+        <div class="stat-text">
+          <div class="stat-label"><%= t("welcome.sections.propone.process_name") %></div>
+          <div class="stat-count"><%= Proposal.count%></div>
+        </div>
+      </div>
+
+      <div class="stat-item">
+        <%= image_tag("icon-sections/ico-normativa.png", alt: "") %>
+        <div class="stat-text">
+          <div class="stat-label"><%= t("welcome.sections.normativa.process_name") %></div>
+          <div class="stat-count"><%= Legislation::Process.count%></div>
+        </div>
+      </div>
+
+      <div class="stat-item">
+        <%= image_tag("icon-sections/ico-presupuestos.png", alt: "") %>
+        <div class="stat-text">
+          <div class="stat-label"><%= t("welcome.sections.presupuesto.process_name") %></div>
+          <div class="stat-count"><%= Budget::Investment.count%></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info">
+      <%= link_to t("welcome.stats.more_info"), '/more-info', class: "button" %>
+    </div>
+  </div>
+</div>
