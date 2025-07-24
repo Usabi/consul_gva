@@ -7,16 +7,21 @@
     flex-grow: 2;
   }
 
-  .feed-debates {
+  .feed-selected_proposals {
     flex-basis: rem-calc(240);
+    flex-grow: 1;
+  }
+
+  .feed-debates,
+  .feed-processes {
+    // flex-basis: 50%;
     flex-grow: 1;
   }
 
   .feed-proposals,
   .feed-selected_proposals,
   .feed-processes,
-
-  .feed-debates {
+   .feed-debates {
     display: flex;
     flex-direction: column;
     margin-top: $line-height;
