@@ -17,41 +17,42 @@
     </div>
 
     <div class="stats-grid">
-      <div class="stat-item">
+      <%= link_to stats_path(anchor: "stats_debates"), class: "stat-item" do %>
         <%= image_tag("icon-sections/rectangle.png", alt: "") %>
         <div class="stat-text">
           <div class="stat-label"><%= t("welcome.sections.debate.process_name") %></div>
-          <div class="stat-count"><%= Debate.count%></div>
+          <div class="stat-count"><%= Debate.count %></div>
         </div>
-      </div>
+      <% end %>
 
-      <div class="stat-item">
+      <%= link_to stats_path(anchor: "stats_proposals"), class: "stat-item" do %>
         <%= image_tag("icon-sections/ico-proponer.png", alt: "") %>
         <div class="stat-text">
           <div class="stat-label"><%= t("welcome.sections.propone.process_name") %></div>
-          <div class="stat-count"><%= Proposal.count%></div>
+          <div class="stat-count"><%= Proposal.count %></div>
         </div>
-      </div>
+      <% end %>
 
-      <div class="stat-item">
+      <%= link_to stats_path(anchor: "stats_legislation"), class: "stat-item" do %>
         <%= image_tag("icon-sections/ico-normativa.png", alt: "") %>
         <div class="stat-text">
           <div class="stat-label"><%= t("welcome.sections.normativa.process_name") %></div>
-          <div class="stat-count"><%= Legislation::Process.count%></div>
+          <div class="stat-count"><%= Legislation::Process.count %></div>
         </div>
-      </div>
+      <% end %>
 
-      <div class="stat-item">
+      <%= link_to stats_path(anchor: "stats_budgets"), class: "stat-item" do %>
         <%= image_tag("icon-sections/ico-presupuestos.png", alt: "") %>
         <div class="stat-text">
           <div class="stat-label"><%= t("welcome.sections.presupuesto.process_name") %></div>
-          <div class="stat-count"><%= Budget::Investment.count%></div>
+          <div class="stat-count"><%= Budget::Investment.count %></div>
         </div>
-      </div>
+      <% end %>
     </div>
 
+
     <div class="info">
-      <%= link_to t("welcome.stats.more_info"), '/more-info', class: "button" %>
+      <%= link_to t("welcome.stats.more_info"), stats_path, class: "button" %>
     </div>
   </div>
 </div>

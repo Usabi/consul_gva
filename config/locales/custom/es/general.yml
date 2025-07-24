@@ -932,6 +932,11 @@ es:
         process_name: Presupuestos participativos
         title: Decide el destino del presupuesto
         description: Elige en qué proyectos se invertirán los fondos públicos en tu territorio.
+    stats:
+      title: Esto lo estamos construyendo juntos
+      description: Miles de personas ya se han unido a este espacio de decisión. Estas son algunas cifras que reflejan su implicación.
+      registrations_counter: "Ya somos <span class='welcome-counter'>%{count}</span> personas registradas"
+      more_info: Más información
     slider:
       title:
         month: 18M

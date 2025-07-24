@@ -40,6 +40,7 @@
     right: 6px;
     top: -2px;
     vertical-align: top;
+    color: $white-gva
   }
 
   abbr {
@@ -52,7 +53,7 @@
 
   .button-support {
     background: $proposals;
-    color: inherit;
+    color: $white-gva;
     display: inline-block;
     font-size: $small-font-size;
     margin-top: rem-calc(12);
@@ -443,7 +444,9 @@
   border-color: #e5e6e9 #dfe0e4 #d0d1d5;
   border-radius: 0;
   box-shadow: 0 1px 3px 0 $border;
+
   margin-bottom: rem-calc(12);
+
   min-height: rem-calc(192);
   padding: rem-calc(12) rem-calc(12) 0;
 
@@ -489,7 +492,8 @@
 .budget-investment-show,
 .legislation,
 .communities-show {
-  margin: calc(#{$line-height} / 4) 0;
+  // margin: calc(#{$line-height} / 4) 0;
+  margin: 0 0 $line-height;
 
   .panel {
     @extend %panel;

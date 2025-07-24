@@ -704,6 +704,11 @@ val:
         process_name: Pressupostos participatius
         title: Decidix el destí del pressupost
         description: Tria en quins projectes s'invertiran els fons públics en el teu territori.
+    stats:
+      title: Això l'estem construint junts
+      description: Milers de persones ja s'han unit a este espai de decisió. Estes són algunes xifres que reflectixen la seua implicació.
+      registrations_counter: "Ja som <span class='welcome-counter'>%{count}</span> persones registrades"
+      more_info: Més informació
     slider:
       title:
         month: 18M
@@ -717,10 +722,11 @@ val:
         proposals: "Iniciatives més actives"
         selected_proposals: Iniciatives seleccionades
         processes: "Processos actius"
-      see_all_debates: Veure tots els debats
-      see_all_proposals: Veure totes les iniciatives
-      see_all_selected_proposals: Veure totes les iniciatives seleccionades
-      see_all_processes: Veure tots els processos
+      see_all:
+        debates: Veure tots els debats
+        proposals: Veure totes les iniciatives
+        processes: Veure tots els processos
+        selected_proposals: Veure totes les iniciatives seleccionades
       process_label: Proces
       see_process: Veure procés
     cards:
