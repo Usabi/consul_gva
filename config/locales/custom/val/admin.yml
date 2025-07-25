@@ -480,6 +480,12 @@ val:
           milestones: Seguiment
           legislators: Legisladors
           help_text: Text d'ajuda
+        default_question_title: Opinió
+        default_question_description: Dis-nos la teua opinió sobre este futur projecte normatiu
+        default_question_created: S'ha creat una pregunta per defecte per a la fase de consulta prèvia d'este procés. <a href="%{link}">Feix clic per a editar-la</a>.
+        default_question_exists: Si desitja modificar la pregunta per a la fase de consulta prèvia <a href="%{link}">fes clic per a editar-la</a>.
+        default_question_creation_failed: Va haver-hi un problema en crear la pregunta per defecte per a la fase de consulta prèvia d'este procés
+        default_question_create_error: "Error en crear la pregunta per defecte per a la fase de consulta prèvia d'este procés: %{error}"
       homepage:
         edit:
           title: Configura la teua pàgina principal
