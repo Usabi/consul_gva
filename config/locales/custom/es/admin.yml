@@ -731,6 +731,12 @@ es:
           milestones: Seguimiento
           legislators: Legisladores
           help_text: Texto de ayuda
+        default_question_title: Opinión
+        default_question_description: Dinos tu opinión sobre este futuro proyecto normativo
+        default_question_created: 'Se ha creado una pregunta por defecto para la fase de consulta previa de este proceso. <a href="%{link}">Haz click para editarla</a>.'
+        default_question_exists: 'Si desea modificar la pregunta para la fase de consulta previa <a href="%{link}">haz click para editarla</a>.'
+        default_question_creation_failed: Hubo un problema al crear la pregunta por defecto para la fase de consulta previa de este proceso
+        default_question_create_error: 'Error al crear la pregunta por defecto para la fase de consulta previa de este proceso: %{error}'
       homepage:
         edit:
           title: Configura la homepage del proceso

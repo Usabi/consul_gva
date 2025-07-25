@@ -10,6 +10,8 @@ class Legislation::Process
   has_many :process_legislators, dependent: :destroy, foreign_key: "legislation_process_id" # rubocop:disable Rails/InverseOf
   has_many :legislators, through: :process_legislators
 
+  after_create :create_default_question
+
   def self.processes_filters
     %w[preview_phase public_phase past relevance]
   end
@@ -77,4 +79,17 @@ class Legislation::Process
       order(id: :desc)
     end
   end
+
+  private
+
+    def create_default_question
+      Legislation::Question.create!(
+        title: I18n.t("admin.legislation.processes.default_question_title"),
+        description: I18n.t("admin.legislation.processes.default_question_description"),
+        process: self,
+        author: user
+      )
+    rescue ActiveRecord::RecordInvalid => e
+      Rails.logger.error I18n.t("admin.legislation.processes.default_question_create_error", error: e.message)
+    end
 end
