@@ -2,7 +2,7 @@ set :branch, "issue/7683-update-2.2.2-custom_changes"
 
 set :bundle_path, -> { release_path.join('vendor/bundle') }
 # set :linked_dirs, %w[log tmp public/system]
-set :gva_svn_path, -> { "#{ENV['PWD']}_compilation" }
+set :gva_svn_path, -> { "#{ENV['PWD']}_svn" }
 
 # Defaults to nil (no asset cleanup is performed)
 # If you use Rails 4+ and you'd like to clean up old assets after each deploy,
