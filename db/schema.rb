@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_07_15_174500) do
+ActiveRecord::Schema[7.0].define(version: 2025_07_29_130118) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -643,6 +643,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_07_15_174500) do
     t.datetime "updated_at", precision: nil, null: false
     t.boolean "admin", default: false
     t.boolean "consult_document", default: false
+    t.integer "position"
     t.index ["documentable_type", "documentable_id"], name: "index_documents_on_documentable_type_and_documentable_id"
     t.index ["user_id", "documentable_type", "documentable_id"], name: "access_documents"
     t.index ["user_id"], name: "index_documents_on_user_id"
