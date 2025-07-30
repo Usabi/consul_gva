@@ -3,8 +3,8 @@
 
   <p class="help-text"><%= note %></p>
 
-  <div id="nested-documents<%=@consult_document ? "-consult-document" : "" %>" data-max-documents-allowed="<%= max_documents_allowed %>">
-    <% documents = f.object.documents.where(consult_document: @consult_document) %>
+  <div id="nested-documents<%=@consult_document ? "-consult-document" : "" %>" data-max-documents-allowed="<%= max_documents_allowed %>" class="sortable">
+    <% documents = f.object.documents.where(consult_document: @consult_document).order(:position) %>
     <%= f.fields_for :documents, documents do |documents_builder| %>
       <%= render Documents::FieldsComponent.new(documents_builder, @consult_document) %>
     <% end %>
