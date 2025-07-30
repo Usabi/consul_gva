@@ -87,15 +87,16 @@ class Admin::MenuComponent
     end
 
     def messages_links
-      link_to(t("admin.menu.messaging_users"), "#", class: "messages-link") +
+      section(t("admin.menu.messaging_users"), active: messages_menu_active?, class: "messages-link") do
         link_list(
           bulletins_link,
           newsletters_link,
           admin_notifications_link,
           system_emails_link,
           emails_download_link,
-          id: "messaging_users_menu", class: ("is-active" if messages_menu_active?)
+          id: "messaging_users_menu"
         )
+      end
     end
 
     def site_customization_links
