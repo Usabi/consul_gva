@@ -4,7 +4,11 @@ module FollowablesHelper
   end
 
   def followable_icon(followable)
-    { proposals: "Proposal", budget: "Budget::Investment" }.invert[followable]
+    {
+      proposals: "Proposal",
+      budget: "Budget::Investment",
+      processes: "Legislation::Process" # Custom
+    }.invert[followable]
   end
 
   def render_follow(follow)
