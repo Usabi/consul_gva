@@ -25,7 +25,7 @@ class Legislation::Process
 
   scope :last_week, -> { where("created_at >= ?", 7.days.ago) }
 
-  scope :results, -> { where(result_publication_enabled: true).where.not(result_publication_date: nil) }
+  scope :results, -> { where(result_publication_enabled: true).where('result_publication_date <= :date', date: Date.current) }
 
   def searchable_values
     {
