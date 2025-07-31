@@ -34,10 +34,8 @@ en:
         notice: "Alert message updated successfully"
     legislation:
       processes:
-        default_question_title: Opinion
-        default_question_description: Tell us your opinion about this future regulatory project
+        default_question_title: Tell us your opinion about this future regulatory project
         default_question_created: 'A default question has been created for the preliminary consultation phase of this process. <a href="%{link}">Click to edit it</a>.'
-        default_question_exists: 'If you wish to modify the question for the preliminary consultation phase, <a href="%{link}">click to edit it</a>.'
         default_question_creation_failed: There was a problem creating the default question for the preliminary consultation phase of this process
         default_question_create_error: 'Error creating the default question for the preliminary consultation phase of this process: %{error}'
     menu:
