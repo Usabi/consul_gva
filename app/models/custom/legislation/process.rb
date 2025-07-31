@@ -88,7 +88,6 @@ class Legislation::Process
     def create_default_question
       Legislation::Question.create!(
         title: I18n.t("admin.legislation.processes.default_question_title"),
-        description: I18n.t("admin.legislation.processes.default_question_description"),
         process: self,
         author: user
       )
