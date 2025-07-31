@@ -2,6 +2,7 @@ load Rails.root.join("app", "models", "legislation", "process.rb")
 
 class Legislation::Process
   include Filterable
+  include Followable
 
   SORTING_OPTIONS = { id: "id", created_at: "created_at" }.freeze
 

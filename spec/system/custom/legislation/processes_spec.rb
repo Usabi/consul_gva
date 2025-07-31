@@ -1,7 +1,14 @@
 require "rails_helper"
 
-describe "Legislation" do
+describe Legislation::Process do
   let!(:administrator) { create(:administrator).user }
+
+  context "Concerns" do
+    it_behaves_like "followable",
+                    :legislation_process,
+                    "legislation_process_path",
+                    { id: "id" }
+  end
 
   shared_examples "not published permissions" do |path|
     let(:not_published_process) { create(:legislation_process, :not_published, title: "Process not published") }

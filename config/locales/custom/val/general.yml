@@ -520,9 +520,9 @@ val:
     advanced_search:
       author_type: "Per categoria d'autor/a"
       author_type_blank: "Eligeix una categoria"
+      date: "Per data"
       category_type: "Per categoria"
       category_type_blank: "Eligeix una categoría"
-      date: "Per data"
       date_placeholder: "DD/MM/AAAA"
       date_range_blank: "Eligeix una data"
       date_1: "Últimes 24 hores"
@@ -533,11 +533,18 @@ val:
       from: "De"
       general: "Amb el text"
       general_placeholder: "Escriu el text"
+      goal: "Per ODS"
+      goal_blank: "Tria un objectiu"
       search: "Filtre"
+      target: "Per meta"
+      target_blank: "Tria una meta"
       title: "Cerca avançada"
       to: "Fins"
+      geozone: "Àmbit d'actuació"
+      geozone_blank: "Tria un àmbit d'actuació"
     author_info:
       author_deleted: Usuari eliminat
+      email_deleted: Email eliminat
     back: Tornar
     check: Seleccionar
     check_all: Totes
@@ -547,6 +554,22 @@ val:
     follow: "Seguir"
     following: "Seguint"
     follow_entity: "Seguir %{entity}"
+    followable:
+      budget_investment:
+        create:
+          notice: "Ara estàs seguint este projecte de gasto! <br> Et notificarem els canvis a mesura que es produïsquen perquè estigues al dia."
+        destroy:
+          notice: "Has deixat de seguir este projecte de gasto! <br> Ja no rebràs més notificacions relacionades amb este projecte."
+      proposal:
+        create:
+          notice: "Ara estàs seguint esta proposta ciutadana! <br> Et notificarem els canvis a mesura que es produïsquen perquè estigues al dia."
+        destroy:
+          notice: "Has deixat de seguir esta proposta ciutadana! <br> Ja no rebràs més notificacions relacionades amb esta proposta."
+      legislation_process:
+        create:
+          notice: "Ara estàs seguint esta elaboració normativa! <br> Et notificarem els canvis a mesura que es produïsquen perquè estigues al dia."
+        destroy:
+          notice: "Has deixat de seguir esta elaboració normativa! <br> Ja no rebràs més notificacions relacionades amb esta elaboració normativa."
     print:
       print_button: Imprimir esta informació
     search: Cercar
