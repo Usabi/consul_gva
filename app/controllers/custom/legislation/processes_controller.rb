@@ -22,7 +22,7 @@ class Legislation::ProcessesController
     end
 
     @processes = advance_search_term_present? ? @processes.filter_by(@advanced_search_terms) : @processes
-    @processes = @processes.page(params[:page]).order(start_date: :desc)
+    @processes = @processes.page(params[:page]).order(order_by_phase)
     @tag_cloud = tag_cloud
   end
 
@@ -50,5 +50,16 @@ class Legislation::ProcessesController
       if (params[:search].present? || advance_search_present?) && params[:filter].blank?
         params[:filter] = "relevance"
       end
+    end
+
+    def order_by_phase
+      phase_dates = {
+        draft_phase: :draft_start_date,
+        preview_phase: :debate_start_date,
+        proposals_phase: :proposals_phase_start_date,
+        public_phase: :allegations_start_date,
+        results: :result_publication_date
+      }
+      { phase_dates[@current_filter.to_sym] || :start_date => :desc }
     end
 end
