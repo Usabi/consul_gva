@@ -50,10 +50,10 @@ set :local_user, ENV["USER"]
 # set :fnm_install_node_command, -> { "#{fetch(:fnm_setup_command)} && fnm use --install-if-missing" }
 # set :fnm_map_bins, %w[node npm rake yarn]
 
-# set :puma_conf, "#{release_path}/config/puma/#{fetch(:rails_env)}.rb"
-# set :puma_systemctl_user, :user
-# set :puma_enable_socket_service, true
-# set :puma_service_unit_env_vars, ["EXECJS_RUNTIME=Disabled"]
+set :puma_conf, "#{release_path}/config/puma/#{fetch(:rails_env)}.rb"
+set :puma_systemctl_user, :user
+set :puma_enable_socket_service, true
+set :puma_service_unit_env_vars, ["EXECJS_RUNTIME=Disabled"]
 
 set :delayed_job_workers, 2
 set :delayed_job_roles, :background
@@ -67,9 +67,9 @@ namespace :deploy do
   # after :updating, "install_node"
   # after :updating, "install_ruby"
 
-  # after "deploy:migrate", "add_new_settings"
+  after "deploy:migrate", "add_new_settings"
 
-  # after :publishing, "setup_puma"
+  after :publishing, "setup_puma"
   # after :finished, "refresh_sitemap"
 
   desc "Deploys and runs the tasks needed to upgrade to a new release"
@@ -78,8 +78,8 @@ namespace :deploy do
     invoke "deploy"
   end
 
-  # before "deploy:restart", "puma:smart_restart"
-  # before "deploy:restart", "delayed_job:restart"
+  before "deploy:restart", "puma:smart_restart"
+  before "deploy:restart", "delayed_job:restart"
 end
 
 task :install_ruby do
