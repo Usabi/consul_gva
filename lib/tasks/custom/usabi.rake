@@ -1,7 +1,8 @@
 namespace :usabi do
   desc "Update database and settings"
   task execute_update_tasks: [
-    "recaptcha:verify_recaptcha"
+    "recaptcha:verify_recaptcha",
+    "usabi_issue:number_issue",
+    "consul:execute_release_tasks"
   ]
-  # "consul:execute_release_tasks"
 end
