@@ -480,6 +480,10 @@ val:
           milestones: Seguiment
           legislators: Legisladors
           help_text: Text d'ajuda
+        default_question_title: Dis-nos la teua opinió sobre este futur projecte normatiu
+        default_question_created: S'ha creat una pregunta per defecte per a la fase de consulta prèvia d'este procés. <a href="%{link}">Feix clic per a editar-la</a>.
+        default_question_creation_failed: Va haver-hi un problema en crear la pregunta per defecte per a la fase de consulta prèvia d'este procés
+        default_question_create_error: "Error en crear la pregunta per defecte per a la fase de consulta prèvia d'este procés: %{error}"
       homepage:
         edit:
           title: Configura la teua pàgina principal
@@ -605,6 +609,7 @@ val:
       managers: Gestors
       moderators: Moderadors
       messaging_users: Missatges als usuaris
+      bulletins: Butlletins
       newsletters: Enviament de Newsletters
       admin_notifications: Notificacions
       system_emails: Correus electònics del sistema
@@ -684,6 +689,47 @@ val:
       winner_investment_authors: Usuaris autors de projectes guanyadors en els actuals pressupostos
       not_supported_on_current_budget: Usuaris que no han avalat projectes en els actuals pressupostos
       invalid_recipients_segment: "El segment de destinataris es invàlid"
+    bulletin_templates:
+      proposal:
+        title: Novetats d'Iniciatives
+      debate:
+        title: Novetats de Debats
+      legislation_processes_preview_phase:
+        title: Novetats d'elaboració normativa (consulta prèvia)
+      legislation_processes_public_phase:
+        title: Novetats d'elaboració normativa (audiència ciutadana)
+      legislation_processes_past:
+        title: Novetats d'elaboració normativa (finalitzats)
+      legislation_processes_results:
+        title: Novetats d'elaboració normativa (resultats de la consulta)
+    bulletins:
+      create_success: Butlletí creat correctament
+      update_success: Butlletí actualitzat correctament
+      send_success: Butlletí enviat correctament
+      delete_success: Butlletí esborrat correctament
+      index:
+        title: Enviament de butlletins
+        new_bulletin: Crear butlletí
+        send: Enviar
+        sent: Enviat
+        actions: Accions
+        preview: Vista prèvia
+        empty_bulletins: No hi ha butlletins per a mostrar
+      new:
+        title: Nou butlletí
+      edit:
+        title: Editar butlletí
+      show:
+        title: Vista prèvia de butlletí
+        send: Enviar
+        sent_emails:
+          one: 1 correu enviat
+          other: "%{count} correu-vos enviats"
+        sent_at: Enviat
+        from: Adreça de correu electrònic que apareixerà com a remitent del butlletí
+        body: Contingut de l'email
+        body_help_text: Així és com veuran l'email els usuaris
+        send_alert: 'Estàs segur/a que vols enviar este butlletí a %{n} usuaris?'       
     newsletters:
       create_success: Butlletí informatiu creat correctament
       update_success: Butlletí informatiu actualitzat correctament

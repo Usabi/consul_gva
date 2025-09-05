@@ -1,48 +1,59 @@
-<div class="row">
-  <div class="sections-icon margin">
-    <div class="sections-icon__title">
-      <%= sanitize(t("welcome.sections.title")) %>
-      <br />
-      <%= sanitize(t("welcome.sections.registrations_counter", count: User.count)) %>
-    </div>
-    <div class="small-12 row ">
-      <%= link_to debates_path do %>
-        <div class="columns medium-4 small-12 padding sections-icon__item">
-          <%= image_tag("icon-sections/rectangle.png", alt: "") %>
-          <h2 class="sections-icon__item__title"><%=t("welcome.sections.debate.title") %></h2>
-          <p class="sections-icon__item__description"><%=t("welcome.sections.debate.description") %></p>
+<div  class="sections-icon">
+
+  <h2 class="title"><%= t("welcome.sections.title") %></h2>
+
+  <div class="sections-icon__grid">
+    <%= link_to debates_path, class: "sections-icon__item" do %>
+      <div class="sections-icon__top">
+        <div class="sections-icon__item__icon">
+          <%= image_tag("icon-sections/ico-debatir.png", alt: "") %>
         </div>
-      <% end %>
-      <%= link_to proposals_path do %>
-        <div class="columns medium-4 small-12 padding sections-icon__item">
+        <div class="sections-icon__item__process-name">
+          <%= t("welcome.sections.debate.process_name") %>
+        </div>
+      </div>
+      <div class="sections-icon__item__title"><%= t("welcome.sections.debate.title") %></div>
+      <div class="sections-icon__item__description"><%= t("welcome.sections.debate.description") %></div>
+    <% end %>
+
+    <%= link_to proposals_path, class: "sections-icon__item" do %>
+      <div class="sections-icon__top">
+        <div class="sections-icon__item__icon">
           <%= image_tag("icon-sections/ico-proponer.png", alt: "") %>
-          <h2 class="sections-icon__item__title"><%=t("welcome.sections.propone.title") %></h2>
-          <p class="sections-icon__item__description"><%=t("welcome.sections.propone.description") %></p>
         </div>
-      <% end %>
-      <%= link_to polls_path do %>
-        <div class="columns medium-4 small-12 padding sections-icon__item">
-          <%= image_tag("icon-sections/ico-votar.png", alt: "") %>
-          <h2 class="sections-icon__item__title"><%=t("welcome.sections.vota.title") %></h2>
-          <p class="sections-icon__item__description"><%=t("welcome.sections.vota.description") %></p>
+        <div class="sections-icon__item__process-name">
+          <%= t("welcome.sections.propone.process_name") %>
         </div>
-      <% end %>
-    </div>
-    <div class="small-12 row">
-      <%= link_to legislation_processes_path do %>
-        <div class="columns medium-offset-2 medium-4 small-12 padding sections-icon__item">
+      </div>
+      <div class="sections-icon__item__title"><%= t("welcome.sections.propone.title") %></div>
+      <div class="sections-icon__item__description"><%= t("welcome.sections.propone.description") %></div>
+    <% end %>
+
+    <%= link_to legislation_processes_path, class: "sections-icon__item" do %>
+      <div class="sections-icon__top">
+        <div class="sections-icon__item__icon">
           <%= image_tag("icon-sections/ico-normativa.png", alt: "") %>
-          <h2 class="sections-icon__item__title"><%=t("welcome.sections.normativa.title") %></h2>
-          <p class="sections-icon__item__description"><%=t("welcome.sections.normativa.description") %></p>
         </div>
-      <% end %>
-      <%= link_to budgets_path do %>
-        <div class="columns medium-4 end small-12 padding sections-icon__item">
+        <div class="sections-icon__item__process-name">
+          <%= t("welcome.sections.normativa.process_name") %>
+        </div>
+      </div>
+      <div class="sections-icon__item__title"><%= t("welcome.sections.normativa.title") %></div>
+      <div class="sections-icon__item__description"><%= t("welcome.sections.normativa.description") %></div>
+    <% end %>
+
+    <%= link_to budgets_path, class: "sections-icon__item" do %>
+      <div class="sections-icon__top">
+        <div class="sections-icon__item__icon">
           <%= image_tag("icon-sections/ico-presupuestos.png", alt: "") %>
-          <h2 class="sections-icon__item__title"><%=t("welcome.sections.presupuesto.title") %></h2>
-          <p class="sections-icon__item__description"><%=t("welcome.sections.presupuesto.description") %></p>
         </div>
-      <% end %>
-    </div>
+        <div class="sections-icon__item__process-name">
+          <%= t("welcome.sections.presupuesto.process_name") %>
+        </div>
+      </div>
+      <div class="sections-icon__item__title"><%= t("welcome.sections.presupuesto.title") %></div>
+      <div class="sections-icon__item__description"><%= t("welcome.sections.presupuesto.description") %></div>
+    <% end %>
+
   </div>
 </div>

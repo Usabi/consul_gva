@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_02_25_164500) do
+ActiveRecord::Schema[7.0].define(version: 2025_07_29_130118) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -435,6 +435,21 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_25_164500) do
     t.boolean "hide_money", default: false
   end
 
+  create_table "bulletins", id: :serial, force: :cascade do |t|
+    t.string "title", null: false
+    t.string "template", null: false
+    t.jsonb "sent_at_dates", default: []
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+  end
+
+  create_table "campaigns", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.string "track_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+  end
+
   create_table "ckeditor_assets", id: :serial, force: :cascade do |t|
     t.string "data_file_name", null: false
     t.string "data_content_type"
@@ -625,6 +640,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_25_164500) do
     t.datetime "updated_at", precision: nil, null: false
     t.boolean "admin", default: false
     t.boolean "consult_document", default: false
+    t.integer "position"
     t.index ["documentable_type", "documentable_id"], name: "index_documents_on_documentable_type_and_documentable_id"
     t.index ["user_id", "documentable_type", "documentable_id"], name: "access_documents"
     t.index ["user_id"], name: "index_documents_on_user_id"

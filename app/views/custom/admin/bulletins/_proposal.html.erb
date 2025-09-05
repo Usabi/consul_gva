@@ -1,0 +1,63 @@
+<tr id="<%= dom_id(proposal) %>" style="min-height: 12rem;">
+  <td style="padding: 15px; border-top: 1px solid #e5e6e9; border-bottom: 1px solid #d0d1d5; border-left: 1px solid #dfe0e4; border-radius: 0; box-shadow: 0 1px 3px 0 #dee0e3;">
+    <% cache [locale_and_user_status(proposal), "index", proposal, proposal.author] do %>
+      <h3 style="font-size: 1.5rem"><%= link_to proposal.title, namespaced_proposal_path(proposal), {:style=>'color: #222;'} %></h3>
+      <p>
+        <%= l proposal.created_at.to_date %>
+
+        <% if proposal.author.hidden? || proposal.author.erased? %>
+          <span>&nbsp;&bull;&nbsp;</span>
+          <span>
+            <%= t("proposals.show.author_deleted") %>
+          </span>
+        <% else %>
+          <span>&nbsp;&bull;&nbsp;</span>
+          <span>
+            <%= proposal.author.name %>
+          </span>
+          <% if proposal.author.display_official_position_badge? %>
+            <span>&nbsp;&bull;&nbsp;</span>
+            <span>
+              <%= proposal.author.official_position %>
+            </span>
+          <% end %>
+        <% end %>
+
+        <% if proposal.author.verified_organization? %>
+          <span>&nbsp;&bull;&nbsp;</span>
+          <span>
+            <%= t("shared.collective") %>
+          </span>
+        <% end %>
+
+        <% if Geozone.any? %>
+          <span>&nbsp;&bull;&nbsp;</span>
+          <span style="border: 1px solid #E7F2FC; background-color: #E7F2FC; border-radius: 6px; padding: 6px;">
+            <%= link_to geozone_name(proposal), proposals_path(search: geozone_name(proposal)) %>
+          </span>
+        <% end %>
+      </p>
+      <p><%= proposal.summary %></p>
+    <% end %>
+  </td>
+  <td style="text-align: center; border-top: 1px solid #e5e6e9; border-bottom: 1px solid #d0d1d5; border-right: 1px solid #dfe0e4;">
+    <p style="width: <%= progress_bar_percentage(proposal) %>%; background: #4db6ac;">
+      <span>
+        <%= supports_percentage(proposal) %>&nbsp;/&nbsp;<%= t("proposals.proposal.total_percent") %>
+      </span>
+    </p>
+    <p class="total-supports">
+      <strong><%= t("proposals.proposal.supports", count: proposal.total_votes) %>&nbsp;</strong>
+      <p>
+        <abbr title="<%= t("proposals.proposal.reason_for_supports_necessary") %>">
+          <%= t("proposals.proposal.supports_necessary",
+                number: number_with_delimiter(Proposal.votes_needed_for_success)) %>
+        </abbr>
+      </p>
+    </p>
+  </td>
+</tr>
+<tr style="height: 15px;">
+  <td>
+  </td>
+</tr>

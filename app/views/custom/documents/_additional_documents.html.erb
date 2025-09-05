@@ -1,5 +1,5 @@
-<% consult_documents_collections = documents.where(consult_document: true) %>
-<% documents_collections = documents.where(consult_document: false) %>
+<% consult_documents_collections = documents.where(consult_document: true).order(:position) %>
+<% documents_collections = documents.where(consult_document: false).order(:position) %>
 <% if documents_collections.any? || consult_documents_collections.any? %>
   <div class="document-divider no-margin-top margin-bottom padding">
     <div class="row">

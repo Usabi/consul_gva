@@ -33,6 +33,10 @@ class Admin::MenuComponent
       controller_name == "alert_messages" && params[:alert_message_id].present?
     end
 
+    def messages_sections
+      %w[bulletins newsletters emails_download admin_notifications system_emails]
+    end
+
     def key_systems_link
       [
         t("admin.menu.key_systems"),
@@ -74,8 +78,30 @@ class Admin::MenuComponent
       ]
     end
 
+    def bulletins_link
+      [
+        t("admin.menu.bulletins"),
+        admin_bulletins_path,
+        controller_name == "bulletins"
+      ]
+    end
+
+    def messages_links
+      section(t("admin.menu.messaging_users"), active: messages_menu_active?, class: "messages-link") do
+        link_list(
+          bulletins_link,
+          newsletters_link,
+          admin_notifications_link,
+          system_emails_link,
+          emails_download_link,
+          id: "messaging_users_menu"
+        )
+      end
+    end
+
     def site_customization_links
-      section(t("admin.menu.title_site_customization"), active: customization?, class: "site-customization-link") do
+      section(t("admin.menu.title_site_customization"),
+              active: customization?, class: "site-customization-link") do
         link_list(
           homepage_link,
           pages_link,

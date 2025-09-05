@@ -1,0 +1,41 @@
+<h2 class="inline-block"><%= t("admin.bulletins.index.title") %></h2>
+<%= link_to t("admin.bulletins.index.new_bulletin"),
+            new_admin_bulletin_path,
+            class: "button float-right" %>
+
+<% if @bulletins.any? %>
+  <table id="bulletins">
+    <thead>
+      <tr>
+        <th class="small-2"><%= t("activerecord.attributes.bulletin.title") %></th>
+        <th><%= t("activerecord.attributes.bulletin.template") %></th>
+        <th><%= t("activerecord.attributes.bulletin.last_send_date") %></th>
+        <th><%= t("admin.bulletins.index.actions") %></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @bulletins.order(created_at: :desc).each do |bulletin| %>
+      <tr id="<%= dom_id(bulletin) %>" class="bulletin">
+        <td>
+          <%= bulletin.title %>
+        </td>
+        <td>
+          <%= t("activerecord.attributes.bulletin.templates.#{bulletin.template}") %>
+        </td>
+        <td>
+          <%= bulletin.last_send_date %>
+        </td>
+        <td>
+          <%= render Admin::TableActionsComponent.new(bulletin) do |actions| %>
+            <%= actions.action :preview, text: t("admin.bulletins.index.preview") %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div data-alert class="callout primary margin-top clear">
+    <%= t("admin.bulletins.index.empty_bulletins") %>
+  </div>
+<% end %>
