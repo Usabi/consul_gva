@@ -20,7 +20,9 @@ class Setting
     # in the test environment.
     def defaults
       if Rails.env.test?
-        consul_defaults
+        consul_defaults.merge({
+          "homepage.widgets.feeds.selected_proposals": true
+        })
       else
         consul_defaults.merge({
           # Overwrite default CONSUL DEMOCRACY settings or add new settings here
