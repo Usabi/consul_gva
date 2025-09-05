@@ -443,13 +443,6 @@ ActiveRecord::Schema[7.0].define(version: 2025_07_29_130118) do
     t.datetime "updated_at", precision: nil, null: false
   end
 
-  create_table "campaigns", id: :serial, force: :cascade do |t|
-    t.string "name"
-    t.string "track_id"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-  end
-
   create_table "ckeditor_assets", id: :serial, force: :cascade do |t|
     t.string "data_file_name", null: false
     t.string "data_content_type"
