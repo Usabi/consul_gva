@@ -2,7 +2,7 @@
   background: $blue-gva;
 
   .info {
-    background: $dark-blue-gva;
+    background: $brand;
   }
 
   .callout.warning {
@@ -36,7 +36,7 @@
 
 .expanded.budget .button {
   @include custom-button;
-  color: $red-gva;
+  color: $brand;
 }
 
 .groups-and-headings {

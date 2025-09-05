@@ -1,7 +1,14 @@
 require "rails_helper"
 
-describe "Legislation" do
+describe Legislation::Process do
   let!(:administrator) { create(:administrator).user }
+
+  context "Concerns" do
+    it_behaves_like "followable",
+                    :legislation_process,
+                    "legislation_process_path",
+                    { id: "id" }
+  end
 
   shared_examples "not published permissions" do |path|
     let(:not_published_process) { create(:legislation_process, :not_published, title: "Process not published") }
@@ -61,15 +68,34 @@ describe "Legislation" do
       end
     end
 
-    scenario "Processes are sorted by descending start date" do
-      create(:legislation_process, title: "Process 1", start_date: 3.days.ago)
-      create(:legislation_process, title: "Process 2", start_date: 2.days.ago)
-      create(:legislation_process, title: "Process 3", start_date: Date.yesterday)
+    scenario "Processes are sorted by phase dates" do
+      # Preview phase
+      create(:legislation_process, title: "Preview 1", debate_start_date: 3.days.ago)
+      create(:legislation_process, title: "Preview 2", debate_start_date: Date.yesterday)
 
-      visit legislation_processes_path
+      visit legislation_processes_path(filter: "preview_phase")
+      expect("Preview 2").to appear_before("Preview 1")
 
-      expect("Process 3").to appear_before("Process 2")
-      expect("Process 2").to appear_before("Process 1")
+      # Public phase
+      create(:legislation_process, title: "Public 1", allegations_start_date: 3.days.ago)
+      create(:legislation_process, title: "Public 2", allegations_start_date: Date.yesterday)
+
+      visit legislation_processes_path(filter: "public_phase")
+      expect("Public 2").to appear_before("Public 1")
+
+      # Past
+      create(:legislation_process, title: "Past 1", start_date: 3.days.ago, end_date: Date.yesterday)
+      create(:legislation_process, title: "Past 2", start_date: Date.yesterday, end_date: Date.yesterday)
+
+      visit legislation_processes_path(filter: "past")
+      expect("Past 2").to appear_before("Past 1")
+
+      # Results phase
+      create(:legislation_process, title: "Result 1", result_publication_date: 3.days.ago)
+      create(:legislation_process, title: "Result 2", result_publication_date: Date.yesterday)
+
+      visit legislation_processes_path(filter: "results")
+      expect("Result 2").to appear_before("Result 1")
     end
 
     scenario "Participation phases are displayed only if there is a phase enabled" do

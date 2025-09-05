@@ -1,0 +1,46 @@
+<%= back_link_to admin_bulletins_path %>
+
+<h2><%= t("admin.bulletins.show.title") %></h2>
+<%= link_to t("admin.bulletins.show.send"),
+            deliver_admin_bulletin_path,
+            method: :post,
+            class: "button float-right" %>
+
+<div class="small-12 column callout highlight">
+  <div class="small-12 medium-4 column">
+    <strong><%= t("activerecord.attributes.bulletin.title") %></strong><br>
+    <%= @bulletin.title %>
+  </div>
+  <div class="small-12 column">
+    <strong><%= t("activerecord.attributes.bulletin.template") %></strong><br>
+    <%= t("activerecord.attributes.bulletin.templates.#{@bulletin.template}") %>
+  </div>
+  <div class="small-12 column">
+    <strong><%= t("activerecord.attributes.bulletin.sent_at_dates") %></strong><br>
+    <%= @bulletin.display_sent_at_dates %>
+    <% if @bulletin.show_full_sent_at_dates_tooltip? %>
+      <span data-tooltip title="<%= @bulletin.ordered_sent_at_dates.join(', ') %>">
+        ...
+      </span>
+    <% end %>
+  </div>
+</div>
+
+<div class="small-12 column">
+  <strong><%= t("admin.newsletters.show.body") %></strong>
+  <p class="help-text" id="phase-description-help-text">
+    <%= t("admin.newsletters.show.body_help_text") %>
+  </p>
+</div>
+
+<div class="newsletter-body-content">
+  <%= render "layouts/mailer_header" %>
+
+  <table cellpadding="0" cellspacing="0" border="0" style="background: #fff; margin: 0 auto; max-width: 1000px; width:100%;">
+    <tbody>
+      <%= render "admin/bulletin_templates/#{@bulletin.template}" %>
+    </tbody>
+  </table>
+
+  <%= render "layouts/mailer_footer" %>
+</div>

@@ -14,8 +14,14 @@ class Admin::Legislation::ProcessesController
   def create
     @process.user = current_user
     if @process.save
-      link = legislation_process_path(@process)
-      notice = t("admin.legislation.processes.create.notice", link: link)
+      default_question = @process.questions.last
+      notice = t("admin.legislation.processes.create.notice", link: legislation_process_path(@process))
+      if default_question.present?
+        notice += "<br>" + t("admin.legislation.processes.default_question_created",
+                             link: edit_admin_legislation_process_question_path(@process, default_question))
+      else
+        notice += "<br>" + t("admin.legislation.processes.default_question_creation_failed")
+      end
       redirect_to edit_admin_legislation_process_path(@process), notice: notice
     else
       flash.now[:error] = t("admin.legislation.processes.create.error")

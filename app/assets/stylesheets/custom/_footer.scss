@@ -15,12 +15,18 @@ footer {
       margin-bottom: 10px;
     }
   }
+
+  .logos {
+    img {
+      max-width: rem-calc(150);
+    }
+  }
 }
 
 .footer {
-  background: $black-gva;
+  background: $footer;
   font-size: 0.875rem;
-
+  margin-top: 0;
   .public & {
     @include full-width-background($adjust-margin: false, $adjust-padding: false);
   }

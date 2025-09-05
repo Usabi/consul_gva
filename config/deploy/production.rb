@@ -1,4 +1,4 @@
-set :branch, ENV["branch"] || :devel
+set :branch, "issue/7683-update-2.2.2-custom_changes"
 
 server deploysecret(:server), user: deploysecret(:user), roles: %w[web app db importer cron background]
 # server main_deploy_server, user: deploysecret(:user), roles: %w[web app db importer cron background]

@@ -1,14 +1,20 @@
-<div class="<%= singular_name %>-fields direct-upload nested-fields">
+<div class="<%= singular_name %>-fields direct-upload nested-fields" data-document-id="<%= attachable.id %>">
   <%= f.hidden_field :id %>
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :cached_attachment %>
+  <%= f.hidden_field :position, class: "document-position-field" %>
 
   <% if controller_name == 'processes' %>
     <%= f.hidden_field :consult_document, value: @consult_document %>
   <% end %>
 
-  <div class="small-12 column title">
-    <%= f.text_field :title, placeholder: t("#{plural_name}.form.title_placeholder") %>
+  <div class="row">
+    <div class="small-1 column handle">  
+      <span class="drag-handle" style="cursor: grab;">&#9776;</span>
+    </div>
+    <div class="small-11 column title">
+      <%= f.text_field :title, placeholder: t("#{plural_name}.form.title_placeholder") %>
+    </div>
   </div>
 
   <% if attachable.attachment.attached? && attachable.attachment.image? %>

@@ -1,0 +1,40 @@
+<tr id="<%= dom_id(debate) %>" style="min-height: 12rem;">
+  <td style="padding: 15px; border: 1px solid; border-color: #e5e6e9 #dfe0e4 #d0d1d5; border-radius: 0; box-shadow: 0 1px 3px 0 #dee0e3;">
+    <% cache [locale_and_user_status, debate, current_user&.voted_as_when_voted_for(debate)] do %>
+      <h3 style="font-size: 1.5rem"><%= link_to debate.title, debate, {:style=>'color: #222;'} %></h3>
+      <p style="color: #222;">
+        <%= l debate.created_at.to_date %>
+
+        <% if debate.author.hidden? || debate.author.erased? %>
+          <span>&nbsp;&bull;&nbsp;</span>
+          <span>
+            <%= t("debates.show.author_deleted") %>
+          </span>
+        <% else %>
+          <span>&nbsp;&bull;&nbsp;</span>
+          <span>
+            <%= debate.author.name %>
+          </span>
+          <% if debate.author.display_official_position_badge? %>
+            <span>&nbsp;&bull;&nbsp;</span>
+            <span>
+              <%= debate.author.official_position %>
+            </span>
+          <% end %>
+        <% end %>
+
+        <% if debate.author.verified_organization? %>
+          <span>&nbsp;&bull;&nbsp;</span>
+          <span>
+            <%= t("shared.collective") %>
+          </span>
+        <% end %>
+      </p>
+      <p style="color: #222;"><%= wysiwyg_newsletter(debate.description) %></p>
+    <% end %>
+  </td>
+</tr>
+<tr style="height: 15px;">
+  <td>
+  </td>
+</tr>

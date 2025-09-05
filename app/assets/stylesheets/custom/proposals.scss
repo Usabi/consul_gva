@@ -1,5 +1,4 @@
 .selected-proposal {
-  border-top: 1px solid $border;
 
   h2 + * {
     @include has-fa-icon(lightbulb, solid);

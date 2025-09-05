@@ -113,3 +113,19 @@ body {
     display: inline-block;
   }
 }
+
+
+
+// Others
+
+.search-form-header {
+
+  .input-group-field {
+    border-radius: 25px 0 0 25px;
+    padding-left: 2rem;
+  }
+
+  .button.button  {
+    border-radius: 0 25px 25px 0;
+  }
+}

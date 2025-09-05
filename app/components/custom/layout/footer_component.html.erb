@@ -1,18 +1,16 @@
 <footer>
   <div class="row">
-    <%# Columna Logos %>
     <div class="column small-12 large-4 logos">
-      <%= image_tag("logos/logo-gva.png") %>
-      <%= image_tag("logos/logo-participa.png") %>
+      <%= image_tag("logos/logo-gva.png", alt: "Logo gva") %>
+      <%= image_tag("logos/logo-participa.png", alt: "Logo participa") %>
     </div>
-    <%# Columna Texto año y quien lo hace %>
+
     <div class="column small-12 large-3 gobierno">
       <p class="info">
         <%= sanitize(t("application.slogan_text.footer",
           copyright: t("layouts.footer.copyright"))) %>
       </p>
     </div>
-    <%# Columna Enlaces de acciones %>
     <div class="column small-12 large-3 links">
       <ul class="no-bullet inline-block">
         <% if feature?(:debates) %>

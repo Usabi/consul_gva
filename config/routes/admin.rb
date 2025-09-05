@@ -226,7 +226,13 @@ namespace :admin do
     put :request_verification, on: :collection
   end
 
-    resource :activity, controller: :activity, only: :show
+  resource :activity, controller: :activity, only: :show
+
+  resources :bulletins do # Custom
+    member do
+      post :deliver
+    end
+  end
 
     resources :newsletters do
       member do

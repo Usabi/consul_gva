@@ -690,10 +690,15 @@ en:
         destroy:
           notice: "You have stopped following this investment project! <br> You will no longer receive notifications related to this project."
       proposal:
-          create:
-            notice: "Now you are following this citizen proposal! <br> We will notify you of changes as they occur so that you are up-to-date."
-          destroy:
-            notice: "You have stopped following this citizen proposal! <br> You will no longer receive notifications related to this proposal."
+        create:
+          notice: "Now you are following this citizen proposal! <br> We will notify you of changes as they occur so that you are up-to-date."
+        destroy:
+          notice: "You have stopped following this citizen proposal! <br> You will no longer receive notifications related to this proposal."
+      legislation_process:
+        create:
+          notice: "Now you are following this legislation process! <br> We will notify you of changes as they occur so that you are up-to-date."
+        destroy:
+          notice: "You have stopped following this legislation process! <br> You will no longer receive notifications related to this legislation process."
     print:
       print_button: Print this info
     search: Search

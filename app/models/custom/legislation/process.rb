@@ -2,6 +2,7 @@ load Rails.root.join("app", "models", "legislation", "process.rb")
 
 class Legislation::Process
   include Filterable
+  include Followable
 
   SORTING_OPTIONS = { id: "id", created_at: "created_at" }.freeze
 
@@ -10,8 +11,10 @@ class Legislation::Process
   has_many :process_legislators, dependent: :destroy, foreign_key: "legislation_process_id" # rubocop:disable Rails/InverseOf
   has_many :legislators, through: :process_legislators
 
+  after_create :create_default_question
+
   def self.processes_filters
-    %w[preview_phase public_phase past relevance]
+    %w[preview_phase public_phase past relevance results]
   end
 
   scope :preview_phase, -> {
@@ -21,6 +24,8 @@ class Legislation::Process
   scope :public_phase, -> { where("allegations_phase_enabled = true and (allegations_start_date <= :date and allegations_end_date >= :date)", date: Date.current) } # rubocop:disable Layout/LineLength
 
   scope :last_week, -> { where("created_at >= ?", 7.days.ago) }
+
+  scope :results, -> { where(result_publication_enabled: true).where('result_publication_date <= :date', date: Date.current) }
 
   def searchable_values
     {
@@ -77,4 +82,16 @@ class Legislation::Process
       order(id: :desc)
     end
   end
+
+  private
+
+    def create_default_question
+      Legislation::Question.create!(
+        title: I18n.t("admin.legislation.processes.default_question_title"),
+        process: self,
+        author: user
+      )
+    rescue ActiveRecord::RecordInvalid => e
+      Rails.logger.error I18n.t("admin.legislation.processes.default_question_create_error", error: e.message)
+    end
 end
