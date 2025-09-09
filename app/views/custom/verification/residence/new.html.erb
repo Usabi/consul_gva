@@ -2,17 +2,11 @@
     <div class="small-12 column">
         <h1><%= t("verification.residence.new.title") %></h1>
 
-        <div class="user-permissions small-12">
-            <p><%= t("verification.user_permission_info") %></p>
+      <div class="user-permissions small-12">
+        <p><%= t("verification.user_permission_info") %></p>
 
-            <ul>
-                <li><span class="icon-check"></span>&nbsp;<%= t("verification.user_permission_debates") %></li>
-                <li><span class="icon-check"></span>&nbsp;<%= t("verification.user_permission_proposal") %></li>
-                <li><span class="icon-check"></span>&nbsp;<%= t("verification.user_permission_support_proposal") %></li>
-                <li><span class="icon-x"></span>&nbsp;<%= t("verification.user_permission_votes") %></li>
-            </ul>
-        </div>
-
+        <%= render Account::PermissionsListComponent.new(User.new(level_two_verified_at: Time.current)) %>
+      </div>
         <%= form_for @residence, as: "residence", url: residence_path do |f| %>
         <%= render "errors" %>
 
@@ -41,10 +35,10 @@
                         <%= f.label t("verification.residence.new.document_number") %>
                     </div>
 
-                    <div class="inline-block" data-toggle="info-document-number">
-                        <span class="icon-help"></span>
-                        <span class="show-for-sr"><%= t("verification.residence.new.document_number_help_title") %></span>
-                    </div>
+                    <button type="button" class="inline-block" data-toggle="info-document-number">
+                      <span class="icon-help"></span>
+                      <span class="show-for-sr"><%= t("verification.residence.new.document_number_help_title") %></span>
+                    </button>
 
                     <div class="dropdown-pane" id="info-document-number" data-dropdown data-hover="true" data-hover-pane="true">
                         <%= sanitize(t("verification.residence.new.document_number_help_text")) %>
@@ -56,10 +50,7 @@
         </div>
 
         <div class="date-of-birth small-12 medium-6 clear">
-            <%= f.date_select :date_of_birth,
-                        label: t("verification.residence.new.date_of_birth"),
-                        prompt: true,
-                        start_year: 1900, end_year: soft_minimum_required_age.years.ago.year %>
+          <%= render Shared::DateOfBirthFieldComponent.new(f) %>
         </div>
 
         <div class="small-12 medium-5 clear">
