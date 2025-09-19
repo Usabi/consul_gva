@@ -40,15 +40,25 @@ class Legislation::Process
   end
 
   def self.search_by_title_or_id(search)
-    with_joins = with_translations(Globalize.fallbacks(I18n.locale)).joins(:user)
+    with_joins = with_translations(Globalize.fallbacks(I18n.locale))
+      .joins(:user)
+      .left_joins(:council)
+      .joins('LEFT JOIN legislation_council_translations ON legislation_council_translations.legislation_council_id = legislation_councils.id')
+      .joins('LEFT JOIN legislation_process_legislators ON legislation_process_legislators.legislation_process_id = legislation_processes.id')
+      .joins('LEFT JOIN legislators ON legislators.id = legislation_process_legislators.legislator_id')
+      .joins('LEFT JOIN users AS legislator_users ON legislator_users.id = legislators.user_id')
 
     if search.to_s.match?(/^\d+$/)
       with_joins.where(legislation_processes: { id: search.to_i })
     else
       with_joins.where("users.username ILIKE :like_query OR
                         users.email ILIKE :like_query OR
-                        legislation_process_translations.title ILIKE :like_query",
-                       like_query: "%#{search}%")
+                        legislation_process_translations.title ILIKE :like_query OR
+                        legislation_councils.title ILIKE :like_query OR
+                        legislation_council_translations.name ILIKE :like_query OR
+                        legislator_users.email ILIKE :like_query",
+                        like_query: "%#{search}%"
+                      ).distinct
     end
   end
 

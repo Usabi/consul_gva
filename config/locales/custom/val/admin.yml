@@ -464,14 +464,17 @@ val:
             title: Títol
             supports: Avals
         process:
+          id: ID
           title: Procés
           comments: Aportacions a l'esborrany
+          status: Estat
           start_date: Data d'obertura
           end_date: Data de tancament
-          status: Estat
           status_open: Oberts
           status_closed: Tancat
           status_planned: Pròximament
+          email: Email
+          legislator_email: Email del legislador
         subnav:
           info: Informació
           homepage: Pàgina principal
@@ -1209,13 +1212,25 @@ val:
       true_value: "Si"
       false_value: "No"
       search:
+        advanced_filters:
+          sdg_goals:
+            all: "Tots els objectius"
+            label: "Per objectiu"
+          sdg_targets:
+            all: "Totes les metes"
+            label: "Per meta"
         label:
           booths: "Cercar urna per nom"
+          budget_investments: "Buscar projectes per títol, descripció o partida"
           debates: "Busca debats per títol o descripció"
-          organizations: "Nom, email o telèfon"
+          legislation_processes: "Buscar processos per títol o descripció"
+          legislation_proposals: "Buscar propostes per títol o descripció"
+          local_census_records: "Busca per número de document"
+          organizations: "Nom, email, telèfon o responsable"
           poll_officers: "Cercar presidents de taula"
           poll_questions: "Cercar preguntes"
-          processes: "Cercar processos de elaboració normativa pero títol ,descripció, autor, email o id"
+          polls: "Buscar votacions per nom o descripció"
+          processes: "Buscar processos legislatius per nom,descripció, autor, email, conselleria, legislador o id"
           proposals: "Cercar iniciatives per títol, codi, descripció o pregunta"
           users: "Cercar usuari per nom o correu electrònic"
         search: "Cercar"
