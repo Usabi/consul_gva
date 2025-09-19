@@ -17,6 +17,7 @@ class Ability
         can [:manage], ::Legislator
         can [:manage], ::BudgetManager
         can [:manage], ::Bulletin
+        can [:manage], ::Legislation::Council
       elsif user.legislator?
         merge Abilities::Legislator.new(user)
       elsif user.budget_manager?

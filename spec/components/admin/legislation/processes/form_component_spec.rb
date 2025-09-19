@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe Admin::Legislation::Processes::FormComponent, :admin do
   let(:process) { build(:legislation_process) }
-  let(:component) { Admin::Legislation::Processes::FormComponent.new(process) }
+  let(:component) { Admin::Legislation::Processes::FormComponent.new(process, councils: @councils) }
 
   describe "background color fields" do
     it "renders two inputs sharing the same label" do

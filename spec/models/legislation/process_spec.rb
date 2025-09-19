@@ -341,6 +341,30 @@ describe Legislation::Process do
     end
   end
 
+  describe "councils" do
+    context "without council" do
+      let(:process) { create(:legislation_process) }
+
+      it "do not have council" do
+        expect(process.council).to be_nil
+      end
+
+      it "add a new council" do
+        council = create(:legislation_council)
+        process.council = council
+
+        expect(process.council).to eq(council)
+      end
+    end
+    context "with council" do
+      let(:process) { create(:legislation_process, :with_council) }
+
+      it "has council" do
+        expect(process.council).to be_present
+      end
+    end
+  end
+
   describe ".search" do
     let!(:traffic) do
       create(:legislation_process,

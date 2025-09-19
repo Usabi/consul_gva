@@ -125,6 +125,9 @@ es:
       legislation/answers:
         one: "Respuesta"
         other: "Respuestas"
+      legisltation/councils:
+        one: "Consejería"
+        other: "Consejerías"
       documents:
         one: "Documento"
         other: "Documentos"
@@ -443,6 +446,7 @@ es:
         proposals_phase_start_date: Fecha de inicio de propuestas
         proposals_phase_end_date: Fecha de fin de propuestas
         result_publication_date: Fecha de publicación del resultado final
+        council_id: Consejería
         background_color: Color del fondo
         font_color: Color del texto
         homepage_enabled: "Homepage activada"
@@ -479,6 +483,11 @@ es:
         value: Valor
       legislation/annotation:
         text: Comentario
+      legislation/council:
+        title: Título
+        active: Activo
+      legislation/council/translation:
+        title: Título
       document:
         title: Título
         attachment: "Selecciona un documento"

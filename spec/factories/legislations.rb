@@ -100,6 +100,13 @@ FactoryBot.define do
     trait :with_milestone_tags do
       after(:create) { |legislation| legislation.milestone_tags << create(:tag, :milestone) }
     end
+
+    trait :with_council do
+      after(:create) do |legislation|
+        legislation.council = create(:legislation_council)
+        legislation.save!
+      end
+    end
   end
 
   factory :legislation_draft_version, class: "Legislation::DraftVersion" do

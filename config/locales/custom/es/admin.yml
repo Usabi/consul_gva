@@ -692,6 +692,7 @@ es:
           draft_phase_description: Si esta fase está activa, el proceso no aparecerá en la página de procesos. Permite previsualizar el proceso y crear contenido antes del inicio.
           allegations_phase: Fase de audiencia ciudadana
           proposals_phase: Fase de propuestas
+          admin_councils: Administrar Consejerías
           use_markdown: Usa Markdown para formatear el texto
           homepage_description: Aquí puedes explicar el contenido del proceso
           banner_title: Colores del encabezado
@@ -735,6 +736,21 @@ es:
         default_question_created: 'Se ha creado una pregunta por defecto para la fase de consulta previa de este proceso. <a href="%{link}">Haz click para editarla</a>.'
         default_question_creation_failed: Hubo un problema al crear la pregunta por defecto para la fase de consulta previa de este proceso
         default_question_create_error: 'Error al crear la pregunta por defecto para la fase de consulta previa de este proceso: %{error}'
+      council: Consejería
+      councils:
+        index:
+          title: Consejerías
+          empty_councils: No hay consejerías
+          new: Nueva consejería
+          table_title: Título
+          table_active: Activo
+          table_actions: Acciones
+        new:
+          title: Nueva consejería
+          submit_button: Crear consejería
+        edit:
+          title: Editar consejería
+          submit_button: Actualizar consejería
       homepage:
         edit:
           title: Configura la homepage del proceso
@@ -830,7 +846,10 @@ es:
             zero: "Seleccionar legisladores"
             one: "1 legislador seleccionado"
             other: "%{count} legisladores seleccionados"
-
+    council:
+      create:
+        notice: Consejería creada correctamente
+        error: No se ha podido crear la consejería
     managers:
       index:
         title: Gestores
@@ -912,6 +931,7 @@ es:
       title_site_customization: Contenido del sitio
       title_booths: Urnas de votación
       legislation: Elaboración normativa
+      legislation_councils: Consejerías
       users: Usuarios
       dashboard: Panel de progreso de iniciativas
       administrator_tasks: Recursos solicitados

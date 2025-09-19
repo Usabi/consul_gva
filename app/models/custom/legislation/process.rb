@@ -11,6 +11,8 @@ class Legislation::Process
   has_many :process_legislators, dependent: :destroy, foreign_key: "legislation_process_id" # rubocop:disable Rails/InverseOf
   has_many :legislators, through: :process_legislators
 
+  belongs_to :council, class_name: "Legislation::Council", optional: true, foreign_key: "council_id", inverse_of: :processes
+
   after_create :create_default_question
 
   def self.processes_filters

@@ -9,7 +9,7 @@ class Admin::MenuComponent
         (debates_link if feature?(:debates)),
         comments_link,
         (polls_link if feature?(:polls)),
-        (legislation_link if feature?(:legislation)),
+        (legislation_links if feature?(:legislation)),
         (budgets_link if feature?(:budgets)),
         booths_links,
         (signature_sheets_link if feature?(:signature_sheets)),
@@ -33,6 +33,10 @@ class Admin::MenuComponent
       controller_name == "alert_messages" && params[:alert_message_id].present?
     end
 
+    def legislation?
+      [:councils, :processes].include?(controller_name.to_sym) || controller_name.start_with?("legislation::")
+    end
+
     def messages_sections
       %w[bulletins newsletters emails_download admin_notifications system_emails]
     end
@@ -43,6 +47,34 @@ class Admin::MenuComponent
         admin_key_systems_path,
         controller_name == "key_systems",
         class: "key-systems-link"
+      ]
+    end
+
+    def legislation_links
+      section(t("admin.menu.legislation"), active: legislation?, class: "legislation-link") do
+        link_list(
+          legislation_link,
+          councils_link,
+          id: "legislation_menu"
+        )
+      end
+    end
+
+    def legislation_link
+      [
+        t("admin.menu.legislation"),
+        admin_legislation_processes_path,
+        legislation? && controller_name != "councils",
+        class: "legislation-link"
+      ]
+    end
+
+    def councils_link
+      [
+        t("admin.menu.legislation_councils"),
+        admin_legislation_councils_path,
+        controller_name == "councils",
+        class: "legislation-councils-link"
       ]
     end
 

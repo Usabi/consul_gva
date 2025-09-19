@@ -108,6 +108,9 @@ val:
       legislation/answers:
         one: "Resposta"
         other: "Respostes"
+      legisltation/councils:
+        one: "Conselleria"
+        other: "Conselleries"
       documents:
         one: "Document"
         other: "Documents"
@@ -423,6 +426,11 @@ val:
         value: Valor
       legislation/annotation:
         text: Comentari
+      legislation/council:
+        title: Títol
+        active: Actiu
+      legislation/council/translation:
+        title: Títol
       document:
         title: Títol
         attachment: "Fitxer adjunt"

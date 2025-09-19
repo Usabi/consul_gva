@@ -43,7 +43,7 @@ describe "Legislation" do
       end
     end
 
-    scenario "Processes are sorted by descending start date" do
+    scenario "Processes are sorted by descending start date", :consul do
       create(:legislation_process, title: "Process 1", start_date: 3.days.ago)
       create(:legislation_process, title: "Process 2", start_date: 2.days.ago)
       create(:legislation_process, title: "Process 3", start_date: Date.yesterday)
