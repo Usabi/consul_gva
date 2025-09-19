@@ -36,6 +36,18 @@ en:
       processes:
         form:
           admin_councils: Manage councils
+        process:
+          id: ID
+          title: Process
+          comments: Contributions to the draft
+          status: Status
+          start_date: Start date
+          end_date: End date
+          status_open: Open
+          status_closed: Closed
+          status_planned: Coming soon
+          email: Email
+          legislator_email: Legislator email
         default_question_title: Tell us your opinion about this future regulatory project
         default_question_created: 'A default question has been created for the preliminary consultation phase of this process. <a href="%{link}">Click to edit it</a>.'
         default_question_creation_failed: There was a problem creating the default question for the preliminary consultation phase of this process
@@ -64,3 +76,47 @@ en:
         alert_messages: Manage alert messages
       legislation: Legislation
       legislation_councils: Councils
+    shared:
+      true_value: "Yes"
+      false_value: "No"
+      search:
+        advanced_filters:
+          sdg_goals:
+            all: "All objectives"
+            label: "By objective"
+          sdg_targets:
+            all: "All goals"
+            label: "By goal"
+        label:
+          booths: "Search ballot box by name"
+          budget_investments: "Search projects by title, description, or item"
+          debates: "Search discussions by title or description"
+          legislation_processes: "Search processes by title or description"
+          legislation_proposals: "Search proposals by title or description"
+          local_census_records: "Search by document number"
+          organizations: "Name, email, phone number, or person in charge"
+          poll_officers: "Search for polling station presidents"
+          poll_questions: "Search for questions"
+          polls: "Search votes by name or description"
+          processes: "Search legislative processes by name, description, author, email, council, legislator, or ID"
+          proposals: "Search initiatives by title, code, description, or question"
+          users: "Search for user by name or email"
+        search: "Search"
+      search_results: "Search results"
+      no_search_results: "No results found."
+      actions: Actions
+      title: Title
+      description: Description
+      image: Image
+      show_image: Show image
+      moderated_content: "Review the content moderated by the moderators, and confirm whether the moderation has been done correctly."
+      view: View
+      proposal: Proposal
+      author: Author
+      content: Content
+      created_at: Created at
+      color_help: Hexadecimal format
+      show_results_and_stats: "Display results and statistics"
+      results_and_stats_reminder: "If you check these boxes, the results and/or statistics will be public and visible to all users."
+      close_modal: Close pop-up window
+      example_url: "For example, https://consulproject.org or /help"

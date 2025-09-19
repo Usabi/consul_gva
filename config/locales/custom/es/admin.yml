@@ -715,6 +715,7 @@ es:
             title: "Ordenar por título"
             supports: "Ordenar por apoyos totales"
         process:
+          id: ID
           title: Proceso
           comments: Aportaciones al borrador
           status: Estado
@@ -723,6 +724,8 @@ es:
           status_open: Abierto
           status_closed: Cerrado
           status_planned: Próximamente
+          email: Email
+          legislator_email: Email del legislador
         subnav:
           info: Información
           homepage: Página principal
@@ -1605,7 +1608,7 @@ es:
           poll_officers: "Buscar presidentes de mesa"
           poll_questions: "Buscar preguntas"
           polls: "Buscar votaciones por nombre o descripción"
-          processes: "Buscar procesos legislativos por nombre,descripción, autor, email o id"
+          processes: "Buscar procesos legislativos por nombre,descripción, autor, email, consejería, legislador o id"
           proposals: "Buscar iniciativas por título, código, descripción o pregunta"
           users: "Buscar usuario por nombre o email"
         search: "Buscar"
