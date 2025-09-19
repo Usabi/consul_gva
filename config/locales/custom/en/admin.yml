@@ -34,10 +34,33 @@ en:
         notice: "Alert message updated successfully"
     legislation:
       processes:
+        form:
+          admin_councils: Manage councils
         default_question_title: Tell us your opinion about this future regulatory project
         default_question_created: 'A default question has been created for the preliminary consultation phase of this process. <a href="%{link}">Click to edit it</a>.'
         default_question_creation_failed: There was a problem creating the default question for the preliminary consultation phase of this process
         default_question_create_error: 'Error creating the default question for the preliminary consultation phase of this process: %{error}'
+      council: Council
+      councils:
+        index:
+          title: Councils
+          empty_councils: No councils
+          new: New council
+          table_title: Title
+          table_active: Active
+          table_actions: Actions
+        new:
+          title: New council
+          submit_button: Create council
+        edit:
+          title: Edit council
+          submit_button: Update council
+    council:
+      create:
+        notice: Council created successfully
+        error: Council could not be created
     menu:
       site_customization:
         alert_messages: Manage alert messages
+      legislation: Legislation
+      legislation_councils: Councils

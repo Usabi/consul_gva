@@ -15,3 +15,13 @@ en:
       alert_message/translation:
         title: Title
         description: Description
+  models:
+    legisltation/councils:
+      one: "Council"
+      other: "Councils"
+  attributes:
+    legislation/council:
+      title: Title
+      active: Active
+    legislation/council/translation:
+      title: Title

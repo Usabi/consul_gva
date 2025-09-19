@@ -4,6 +4,8 @@ class Admin::Legislation::ProcessesController
   include Search
   include Admin::HelpPagesActions
 
+  before_action :load_councils, only: [:index, :new, :create, :edit, :update]
+
   def index
     @processes = ::Legislation::Process.scoped_filter(params, @current_filter, @advanced_search_terms)
 
@@ -36,6 +38,10 @@ class Admin::Legislation::ProcessesController
 
   private
 
+    def load_councils
+      @councils = Legislation::Council.active
+    end
+
     def allowed_params
       [
         :start_date,
@@ -57,6 +63,7 @@ class Admin::Legislation::ProcessesController
         :draft_publication_enabled,
         :result_publication_enabled,
         :published,
+        :council_id,
         :custom_list,
         :background_color,
         :font_color,

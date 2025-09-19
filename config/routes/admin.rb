@@ -288,6 +288,7 @@ namespace :admin do
       resource :help_pages, only: [:show] # Custom
       get :help_page, on: :collection # Custom
     end
+      resources :councils # Custom
     end
 
     resources :geozones, only: [:index, :new, :create, :edit, :update, :destroy]

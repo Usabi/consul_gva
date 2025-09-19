@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_07_29_130118) do
+ActiveRecord::Schema[7.0].define(version: 2025_09_16_130000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -764,6 +764,26 @@ ActiveRecord::Schema[7.0].define(version: 2025_07_29_130118) do
     t.index ["user_id"], name: "index_legislation_answers_on_user_id"
   end
 
+  create_table "legislation_council_translations", force: :cascade do |t|
+    t.bigint "legislation_council_id", null: false
+    t.string "title"
+    t.string "locale", null: false
+    t.datetime "hidden_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hidden_at"], name: "index_legislation_council_translations_on_hidden_at"
+    t.index ["legislation_council_id", "locale"], name: "idx_leg_pr_council_translations"
+  end
+
+  create_table "legislation_councils", id: :serial, force: :cascade do |t|
+    t.string "title", limit: 80
+    t.boolean "active", default: true
+    t.datetime "hidden_at", precision: nil
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.index ["hidden_at"], name: "index_legislation_councils_on_hidden_at"
+  end
+
   create_table "legislation_draft_version_translations", id: :serial, force: :cascade do |t|
     t.integer "legislation_draft_version_id", null: false
     t.string "locale", null: false
@@ -845,8 +865,10 @@ ActiveRecord::Schema[7.0].define(version: 2025_07_29_130118) do
     t.text "font_color"
     t.bigint "user_id"
     t.tsvector "tsv"
+    t.integer "council_id"
     t.index ["allegations_end_date"], name: "index_legislation_processes_on_allegations_end_date"
     t.index ["allegations_start_date"], name: "index_legislation_processes_on_allegations_start_date"
+    t.index ["council_id"], name: "index_legislation_processes_on_council_id"
     t.index ["debate_end_date"], name: "index_legislation_processes_on_debate_end_date"
     t.index ["debate_start_date"], name: "index_legislation_processes_on_debate_start_date"
     t.index ["draft_end_date"], name: "index_legislation_processes_on_draft_end_date"
@@ -1910,9 +1932,11 @@ ActiveRecord::Schema[7.0].define(version: 2025_07_29_130118) do
   add_foreign_key "geozones_polls", "polls"
   add_foreign_key "identities", "users"
   add_foreign_key "images", "users"
+  add_foreign_key "legislation_council_translations", "legislation_councils"
   add_foreign_key "legislation_draft_versions", "legislation_processes"
   add_foreign_key "legislation_process_legislators", "legislation_processes"
   add_foreign_key "legislation_process_legislators", "legislators"
+  add_foreign_key "legislation_processes", "legislation_councils", column: "council_id"
   add_foreign_key "legislation_processes", "users"
   add_foreign_key "legislation_proposals", "legislation_processes"
   add_foreign_key "legislators", "users"

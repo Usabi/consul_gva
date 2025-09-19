@@ -1,0 +1,37 @@
+<h2 class="inline-block"><%= t("admin.legislation.councils.index.title") %></h2>
+
+<%= link_to t("admin.legislation.councils.index.new"),
+            new_admin_legislation_council_path,
+            class: "button float-right margin-right" %>
+
+<% if @councils.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th><%= t("admin.legislation.councils.index.table_title") %></th>
+        <th><%= t("admin.legislation.councils.index.table_active") %></th>
+        <th><%= t("admin.legislation.councils.index.table_actions") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @councils.each do |council| %>
+        <tr id="<%= dom_id(council) %>" class="council">
+          <td>
+            <%= council.title %>
+          </td>
+          <td>
+            <%= council.active ? t("shared.yes") : t("shared.no") %>
+          </td>
+          <td>
+            <% actions = [:edit, :destroy] %>
+            <%= render Admin::TableActionsComponent.new(council, actions: actions) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div data-alert class="callout primary margin-top clear">
+    <%= t("admin.legislation.councils.index.empty_councils") %>
+  </div>
+<% end %>

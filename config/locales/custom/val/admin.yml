@@ -435,6 +435,7 @@ val:
           draft_phase_description: Si aquesta fase està activa, el procés no es mostrarà en el llistat de processos. Permet una vista prèvia del procés i crea contingut abans que comence.
           allegations_phase: Fase d'audiència ciutadana
           proposals_phase: Fase de propostes
+          admin_councils: Administrar Conselleries
           use_markdown: Usa Markdown per a formatejar el text
           title_placeholder: Escriu el títol del procés
           summary_placeholder: Resum curt de la descripció
@@ -484,6 +485,21 @@ val:
         default_question_created: S'ha creat una pregunta per defecte per a la fase de consulta prèvia d'este procés. <a href="%{link}">Feix clic per a editar-la</a>.
         default_question_creation_failed: Va haver-hi un problema en crear la pregunta per defecte per a la fase de consulta prèvia d'este procés
         default_question_create_error: "Error en crear la pregunta per defecte per a la fase de consulta prèvia d'este procés: %{error}"
+      council: Conselleria
+      councils:
+        index:
+          title: Conselleries
+          empty_councils: No hi ha conselleries
+          new: Nova conselleria
+          table_title: Títol
+          table_active: Activa
+          table_actions: Accions
+        new:
+          title: Nova conselleria
+          submit_button: Crear conselleria
+        edit:
+          title: Editar conselleria
+          submit_button: Actualitzar conselleria
       homepage:
         edit:
           title: Configura la teua pàgina principal
@@ -654,6 +670,7 @@ val:
       title_site_customization: Personalitzar lloc
       title_booths: Cabines de vot
       legislation: Elaboració normativa
+      legislation_councils: Conselleries
       users: Usuaris
     administrators:
       index:

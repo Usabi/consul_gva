@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Admin collaborative legislation", :admin do
+describe "Admin collaborative legislation", :admin, :consul do
   it_behaves_like "admin_milestoneable",
                   :legislation_process,
                   "admin_legislation_process_milestones_path"

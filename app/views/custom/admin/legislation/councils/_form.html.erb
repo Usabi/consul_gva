@@ -1,0 +1,21 @@
+<%= render "shared/globalize_locales", resource: @council %>
+
+<%= translatable_form_for [:admin, @council] do |f| %>
+  <%= render "shared/errors", resource: @council %>
+
+  <div class="row">
+    <%= f.translatable_fields do |translations_form| %>
+      <div class="column">
+        <%= translations_form.text_field :title %>
+      </div>
+    <% end %>
+
+    <div class="column">
+      <%= f.check_box :active %>
+    </div>
+  </div>
+
+  <div class="margin-top">
+    <%= f.submit t("admin.legislation.councils.#{action_name}.submit_button"), class: "button success" %>
+  </div>
+<% end %>
