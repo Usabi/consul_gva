@@ -438,11 +438,11 @@ es:
         end_date: Fecha de fin del proceso
         debate_start_date: Fecha de inicio del debate
         debate_end_date: Fecha de fin del debate
-        draft_start_date: Fecha de inicio del borrador
-        draft_end_date: Fecha en la que se acaba la redacción
+        draft_start_date: Fecha de inicio de elaboración interna
+        draft_end_date: Fecha de fin de elaboración interna
         draft_publication_date: Fecha de publicación del borrador
-        allegations_start_date: Fecha de inicio de alegaciones
-        allegations_end_date: Fecha de fin de alegaciones
+        allegations_start_date: Fecha de inicio de aportaciones al borrador
+        allegations_end_date: Fecha de fin de aportaciones al borrador
         proposals_phase_start_date: Fecha de inicio de propuestas
         proposals_phase_end_date: Fecha de fin de propuestas
         result_publication_date: Fecha de publicación del resultado final

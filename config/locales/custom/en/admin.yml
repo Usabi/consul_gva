@@ -35,7 +35,29 @@ en:
     legislation:
       processes:
         form:
-          admin_councils: Manage councils
+          enabled: Active
+          process: Process
+          process_description: Defines the total duration of the process. It includes the prior consultation (debate and proposals) and public hearing phases.
+          prior_consultation_phase: Prior consultation phase
+          prior_consultation_phase_description: "Includes two simultaneous sub-phases: Debates and Proposals. They must share the same start and end dates and both must be active."
+          debate: Debate
+          debate_description: An editable question will be automatically created to collect opinions and comments.
+          proposals: Proposals
+          proposals_description: Allows citizens to submit proposals; shares dates with Debates.
+          draft_phase: Internal drafting phase
+          draft_phase_description: If active, the process will not be public. Allows content to be prepared and reviewed before publication.
+          allegations_phase: Public hearing phase
+          allegations_phase_description: There must be a draft registered in the Draft tab.
+          draft_contributions: Contributions to the draft
+          draft_contributions_description: By activating this field, citizens will be able to make contributions to the draft.
+          draft_publication: Publication of the draft
+          draft_publication_description: By activating this field, citizens will be able to consult the draft.
+          final_result_publication: Publication of results
+          final_result_publication_description: By activating this field, the process will be displayed in the Results tab.
+          admin_councils: Manage Councils
+          use_markdown: Use Markdown to format text
+          homepage_description: Here you can explain the content of the process
+          banner_title: Header colors
         process:
           id: ID
           title: Process
@@ -48,6 +70,15 @@ en:
           status_planned: Coming soon
           email: Email
           legislator_email: Legislator email
+        subnav:
+          info: Info
+          homepage: Homepage
+          draft_versions: Draft
+          questions: Debate
+          proposals: Proposals
+          milestones: Milestones
+          legislators: Legislators
+          help_text: Help text
         default_question_title: Tell us your opinion about this future regulatory project
         default_question_created: 'A default question has been created for the preliminary consultation phase of this process. <a href="%{link}">Click to edit it</a>.'
         default_question_creation_failed: There was a problem creating the default question for the preliminary consultation phase of this process
