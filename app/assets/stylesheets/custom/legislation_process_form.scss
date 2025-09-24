@@ -1,0 +1,7 @@
+.legislation-process-form {
+  fieldset.without_border_bottom {
+    &::after {
+      border-bottom: none;
+    }
+  }
+}

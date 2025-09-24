@@ -430,17 +430,25 @@ val:
         form:
           enabled: Activa
           process: Procés
-          debate_phase: Consulta prèvia
+          process_description: Definix la duració total del procés. Inclou les fases de consulta prèvia (debat i propostes) i d'audiència ciutadana.
+          prior_consultation_phase: Fase de consulta prèvia
+          prior_consultation_phase_description: "Inclou dos subfases simultànies: Debats i Propostes. Han de compartir la mateixa data d'inici i fi i estar les dos actives."
+          debate: Debat
+          debate_description: Es crearà automàticament una pregunta editable per a arreplegar opinions i comentaris.
+          proposals: Propostes
+          proposals_description: Permet a la ciutadania enviar propostes; compartix dates amb Debats.
           draft_phase: Fase de elaboració interna
-          draft_phase_description: Si aquesta fase està activa, el procés no es mostrarà en el llistat de processos. Permet una vista prèvia del procés i crea contingut abans que comence.
+          draft_phase_description: Si està activa, el procés no serà públic. Permet preparar i revisar contingut abans de la seua publicació.
           allegations_phase: Fase d'audiència ciutadana
-          proposals_phase: Fase de propostes
+          allegations_phase_description: Ha d'existir un esborrany donat d'alta en la pestanya Esborrador.
+          draft_contributions: Aportacions a l'esborrany
+          draft_contributions_description: En activar este camp, els ciutadans podran fer aportacions a l'esborrany.
+          draft_publication: Publicació de l'esborrany
+          draft_publication_description: En activar este camp, el ciutadà podrà consultar l'esborrany.
+          final_result_publication: Publicació de resultats
+          final_result_publication_description: En activar este camp, el procés es mostrarà en la pestanya de Resultats.
           admin_councils: Administrar Conselleries
           use_markdown: Usa Markdown per a formatejar el text
-          title_placeholder: Escriu el títol del procés
-          summary_placeholder: Resum curt de la descripció
-          description_placeholder: Afegeix una descripció del procés
-          additional_info_placeholder: Afegeix qualsevol informació addicional que puga ser d'interès
           homepage_description: Ací pots explicar el contingut del procés
           banner_title: Colors de capçalera
         index:
@@ -478,7 +486,7 @@ val:
         subnav:
           info: Informació
           homepage: Pàgina principal
-          draft_versions: Redacció
+          draft_versions: Esborrany
           questions: Debat
           proposals: Propostes
           milestones: Seguiment

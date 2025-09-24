@@ -382,13 +382,13 @@ val:
         end_date: Data de fi del procés
         debate_start_date: Data d'inici del debat
         debate_end_date: Data de fi del debat
-        draft_start_date: Data d'inici de l'esborrany
-        draft_end_date: Data en què s'acaba la redacció
+        draft_start_date: Data d'inici de elaboració interna
+        draft_end_date: Data de fi de elaboració interna
         draft_publication_date: Data de publicació de l'esborrany
-        allegations_start_date: Data d'inici d'al·legacions
-        allegations_end_date: Data de fi d'al·legacions
-        proposals_phase_start_date: Inici
-        proposals_phase_end_date: Fi
+        allegations_start_date: Data d'inici d'aportacions a l'esborrany
+        allegations_end_date: Data de fi d'aportacions a l'esborrany
+        proposals_phase_start_date: Data d'inici de propostes
+        proposals_phase_end_date: Data de fi de propostes
         result_publication_date: Data de publicació del resultat final
         background_color: Color de fons
         font_color: Color de font

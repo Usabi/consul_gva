@@ -687,11 +687,23 @@ es:
         form:
           enabled: Activa
           process: Proceso
-          debate_phase: Consulta previa
+          process_description: Define la duración total del proceso. Incluye las fases de consulta previa (debate y propuestas) y de audiencia ciudadana.
+          prior_consultation_phase: Fase de consulta previa
+          prior_consultation_phase_description: "Incluye dos subfases simultáneas: Debates y Propuestas. Deben compartir la misma fecha de inicio y fin y estar ambas activas."
+          debate: Debate
+          debate_description: Se creará automáticamente una pregunta editable para recoger opiniones y comentarios.
+          proposals: Propuestas
+          proposals_description: Permite a la ciudadanía enviar propuestas; comparte fechas con Debates.
           draft_phase: Fase de elaboración interna
-          draft_phase_description: Si esta fase está activa, el proceso no aparecerá en la página de procesos. Permite previsualizar el proceso y crear contenido antes del inicio.
+          draft_phase_description: Si está activa, el proceso no será público. Permite preparar y revisar contenido antes de su publicación.
           allegations_phase: Fase de audiencia ciudadana
-          proposals_phase: Fase de propuestas
+          allegations_phase_description: Debe existir un borrador dado de alta en la pestaña Borrador.
+          draft_contributions: Aportaciones al borrador
+          draft_contributions_description: Al activar este campo, los ciudadanos podrán hacer aportaciones al borrador.
+          draft_publication: Publicación del borrador
+          draft_publication_description: Al activar este campo, el ciudadano podrá consultar el borrador.
+          final_result_publication: Publicación de resultados
+          final_result_publication_description: Al activar este campo, el proceso se mostrará en la pestaña de Resultados.
           admin_councils: Administrar Consejerías
           use_markdown: Usa Markdown para formatear el texto
           homepage_description: Aquí puedes explicar el contenido del proceso
@@ -729,9 +741,9 @@ es:
         subnav:
           info: Información
           homepage: Página principal
-          draft_versions: Redacción
+          draft_versions: Borrador
           questions: Debate
-          proposals: Iniciativas
+          proposals: Propuestas
           milestones: Seguimiento
           legislators: Legisladores
           help_text: Texto de ayuda
