@@ -26,7 +26,6 @@ describe "Stats", :admin do
 
       in_browser(:different) do
         visit root_path
-        debugger
         click_link "Debates"
         expect(page).to have_link "Start a debate"
 
