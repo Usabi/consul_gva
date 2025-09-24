@@ -21,6 +21,12 @@
     </div>
   </div>
 
+  <% if process.council.present?%>
+    <div class="column end">
+      <%= t("activerecord.models.legisltation/councils.one") %>: <strong><%= process.council.title %></strong>
+    </div>
+  <% end %>
+
   <% if process.enabled_phases_and_publications_count.positive? %>
     <% column_width = 12 / process.enabled_phases_and_publications_count %>
     <div class="column row">

@@ -40,6 +40,12 @@ module Custom::AdminHelper
     options_from_collection_for_select(targets.sort, :code, :code_and_title, selected_code)
   end
 
+  def admin_council_options(selected_code = nil)
+    councils = Legislation::Council.active
+
+    options_from_collection_for_select(councils.sort, :title, :title, selected_code)
+  end
+
   def date_range_options
     options_for_select(
       [
