@@ -38,8 +38,13 @@
     <%= select_tag :target, admin_target_options(params[:targe]),
                       include_blank: t("shared.advanced_search.target_blank") %>
   </div>
+  <div class="small-12 medium-3 column">
+    <%= select_tag :council, admin_council_options(params[:council]),
+                      include_blank: t("shared.advanced_search.council_blank")
+    %>
+  </div>
 
-  <div class="small-12 medium-6 column">
+  <div class="small-12 medium-9 column">
     <div class="input-group">
       <%= text_field_tag :search, params["search"], placeholder: t("admin.shared.search.label.processes"), "aria-label": t("admin.shared.search.label.processes") %>
     </div>

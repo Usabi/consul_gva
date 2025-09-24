@@ -16,7 +16,8 @@ class Legislation::Process
   after_create :create_default_question
 
   def self.processes_filters
-    %w[preview_phase public_phase past relevance results]
+    # %w[preview_phase public_phase past relevance results]
+    %w[preview_phase public_phase past results]
   end
 
   scope :preview_phase, -> {
@@ -55,7 +56,7 @@ class Legislation::Process
                         users.email ILIKE :like_query OR
                         legislation_process_translations.title ILIKE :like_query OR
                         legislation_councils.title ILIKE :like_query OR
-                        legislation_council_translations.name ILIKE :like_query OR
+                        legislation_council_translations.title ILIKE :like_query OR
                         legislator_users.email ILIKE :like_query",
                         like_query: "%#{search}%"
                       ).distinct
@@ -75,6 +76,7 @@ class Legislation::Process
     results = results.by_tag(params[:tag_name])          if params[:tag_name].present?
     results = results.by_goal(params[:goal])             if params[:goal].present?
     results = results.by_target(params[:target])         if params[:target].present?
+    results = results.by_council(params[:council])       if params[:council].present?
 
     results = results.search_by_title_or_id(params[:search].strip) if params[:search]
     results = results.send(current_filter) if current_filter.present?

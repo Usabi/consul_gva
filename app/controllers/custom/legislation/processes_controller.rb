@@ -4,13 +4,14 @@ class Legislation::ProcessesController
   include CommentableActions
 
   before_action :load_categories, only: :index
-  before_action :set_search_filter, only: :index
-  skip_before_action :set_search_order
-  has_filters Legislation::Process.processes_filters, only: :index
+  
+  valid_filters = Legislation::Process.processes_filters
+  has_filters valid_filters, only: :index
+
   # Overwrite index of CommentableActions
   def index
     @current_filter ||= "preview_phase"
-    @processes = @search_terms.present? || advance_search_term_present? ? resource_model.all.published.not_in_draft : resource_model.send(@current_filter).published.not_in_draft
+    @processes = resource_model.send(@current_filter).published.not_in_draft
 
     if @search_terms.present?
       if @search_terms.to_i.positive?
@@ -44,12 +45,6 @@ class Legislation::ProcessesController
 
     def advance_search_term_present?
       @advanced_search_terms.present? && @advanced_search_terms.keys.map { |key| @advanced_search_terms[key].present? }.uniq.include?(true)
-    end
-
-    def set_search_filter
-      if (params[:search].present? || advance_search_present?) && params[:filter].blank?
-        params[:filter] = "relevance"
-      end
     end
 
     def order_by_phase

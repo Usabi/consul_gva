@@ -68,6 +68,14 @@
       </div>
     <% end %>
 
+    <% if processes? %>
+      <div class="filter">
+        <label for="advanced_search_council"><%= t("shared.advanced_search.council") %></label>
+        <%= select_tag("advanced_search[council]", council_options,
+                      include_blank: t("shared.advanced_search.council_blank")) %>
+      </div>
+    <% end %>
+
     <div class="submit">
       <%= submit_tag t("shared.advanced_search.search"), class: "button expanded" %>
     </div>
