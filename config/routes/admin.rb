@@ -43,8 +43,8 @@ namespace :admin do
     end
 
     resources :debates, only: [:index, :show] do
-    get :help_page, on: :collection # Custom
-  end
+      get :help_page, on: :collection # Custom
+    end
 
     resources :proposals, only: [:index, :show, :update] do
       member do
@@ -55,7 +55,7 @@ namespace :admin do
       resources :milestones, controller: "proposal_milestones"
       resources :progress_bars, except: :show, controller: "proposal_progress_bars"
       get :help_page, on: :collection # Custom
-  end
+    end
 
     resources :hidden_proposals, only: :index do
       member do
@@ -105,7 +105,7 @@ namespace :admin do
         end
       end
       get :help_page, on: :collection # Custom
-  end
+    end
 
     namespace :budgets_wizard do
       resources :budgets, only: [:create, :new, :edit, :update] do
@@ -130,11 +130,11 @@ namespace :admin do
       collection { get :search }
     end
 
-  resources :alert_messages, only: [:index, :new, :create, :edit, :update, :destroy] do
-    collection { get :search }
-  end
+    resources :alert_messages, only: [:index, :new, :create, :edit, :update, :destroy] do
+      collection { get :search }
+    end
 
-  resources :key_systems, only: [:index] # Custom
+    resources :key_systems, only: [:index] # Custom
 
     resources :hidden_comments, only: :index do
       member do
@@ -193,7 +193,7 @@ namespace :admin do
         resources :recounts, only: :index
         resources :results, only: :index
         get :help_page, on: :collection # Custom
-    end
+      end
 
       resources :officers, only: [:index, :new, :create, :destroy] do
         get :search, on: :collection
@@ -223,16 +223,16 @@ namespace :admin do
     resources :verifications, controller: :verifications, only: :index do
       get :search, on: :collection
       # Added by usabi for two phase verification
-    put :request_verification, on: :collection
-  end
-
-  resource :activity, controller: :activity, only: :show
-
-  resources :bulletins do # Custom
-    member do
-      post :deliver
+      put :request_verification, on: :collection
     end
-  end
+
+    resource :activity, controller: :activity, only: :show
+
+    resources :bulletins do # Custom
+      member do
+        post :deliver
+      end
+    end
 
     resources :newsletters do
       member do
@@ -264,7 +264,7 @@ namespace :admin do
       get :budget_supporting, on: :member
       get :budget_balloting, on: :member
       get :budget_stats, on: :member
-    get :proposal_notifications, on: :collection
+      get :proposal_notifications, on: :collection
       get :direct_messages, on: :collection
       get :polls, on: :collection
       get :sdg, on: :collection
@@ -279,15 +279,15 @@ namespace :admin do
             patch :deselect
           end
           get :summary, on: :collection # Custom
-      end
+        end
         resources :draft_versions
         resources :milestones
         resources :progress_bars, except: :show
         resource :homepage, only: [:edit, :update]
         resource :legislators, only: [:edit, :update] # Custom
-      resource :help_pages, only: [:show] # Custom
-      get :help_page, on: :collection # Custom
-    end
+        resource :help_pages, only: [:show] # Custom
+        get :help_page, on: :collection # Custom
+      end
       resources :councils # Custom
     end
 
@@ -299,7 +299,7 @@ namespace :admin do
         resources :cards, except: [:show], as: :widget_cards
       end
       resources :help_texts # Custom
-    resources :images, only: [:index, :update, :destroy]
+      resources :images, only: [:index, :update, :destroy]
       resources :content_blocks, except: [:show]
       delete "/heading_content_blocks/:id", to: "content_blocks#delete_heading_content_block",
                                             as: "delete_heading_content_block"
