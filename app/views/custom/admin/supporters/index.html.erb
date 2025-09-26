@@ -1,0 +1,38 @@
+<h2><%= t("admin.supporters.index.title") %></h2>
+
+<%= render "admin/shared/user_search", url: search_admin_supporters_path %>
+
+<div id="supporters">
+  <% if @supporters.any? %>
+    <h3><%= page_entries_info @supporters %></h3>
+
+    <table>
+      <thead>
+        <th scope="col"><%= Supporter.human_attribute_name(:name) %></th>
+        <th scope="col"><%= Supporter.human_attribute_name(:email) %></th>
+        <th scope="col" class="small-3"><%= t("admin.shared.actions") %></th>
+      </thead>
+      <tbody>
+        <% @supporters.each do |supporter| %>
+          <tr>
+            <td>
+              <%= supporter.name %>
+            </td>
+            <td>
+              <%= supporter.email %>
+            </td>
+            <td>
+              <%= render Admin::Roles::TableActionsComponent.new(supporter) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= paginate @supporters %>
+  <% else %>
+    <div class="callout primary margin">
+      <%= t("admin.supporters.index.no_supporters") %>
+    </div>
+  <% end %>
+</div>

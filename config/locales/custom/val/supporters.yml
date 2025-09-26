@@ -1,0 +1,26 @@
+val:
+  activerecord:
+    models:
+      supporter:
+        one: "Suport"
+        other: "Suports"
+  admin:
+    menu:
+      supporters: "Suports"
+    supporters:
+      header:
+        title: "Suport i assistència"
+      index:
+        title: "Suports"
+        name: "Nom"
+        email: "Correu electrònic"
+        no_supporters: "No hi ha usuaris de suport."
+      supporter:
+        add: "Afegir com a suport"
+      search:
+        title: "Suports: Cerca d’usuaris"
+        no_results: "No s’han trobat resultats"
+        submit: "Cercar"
+      form:
+        edit_title: "Editar suport"
+        updated: "Suport actualitzat correctament"

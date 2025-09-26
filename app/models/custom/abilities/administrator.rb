@@ -54,6 +54,7 @@ module Abilities
                                       Legislation::Proposal, Legislation::Annotation, Topic]
 
       can [:search, :create, :index, :destroy, :update], ::Administrator
+      can [:search, :create, :update, :index, :destroy], ::Supporter
       can [:search, :create, :index, :destroy], ::Moderator
       can [:search, :show, :update, :create, :index, :destroy, :summary], ::Valuator
       can [:search, :create, :index, :destroy], ::Manager

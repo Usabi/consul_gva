@@ -78,6 +78,14 @@ class Admin::MenuComponent
       ]
     end
 
+    def supporters_link
+      [
+        t("admin.menu.supporters"),
+        admin_supporters_path,
+        controller_name == "supporters"
+      ]
+    end
+
     def legislations_link
       [
         t("admin.menu.legislators"),
@@ -152,6 +160,7 @@ class Admin::MenuComponent
       section(t("admin.menu.title_profiles"), active: profiles?, class: "profiles-link") do
         link_list(
           administrators_link,
+          supporters_link,
           organizations_link,
           officials_link,
           moderators_link,
