@@ -1,0 +1,26 @@
+es:
+  activerecord:
+    models:
+      supporter:
+        one: "Soporte"
+        other: "Soportes"
+  admin:
+    menu:
+      supporters: "Soportes"
+    supporters:
+      header:
+        title: "Soporte y asistencia"
+      index:
+        title: "Soportes"
+        name: "Nombre"
+        email: "Email"
+        no_supporters: "No hay usuarios de soporte."
+      supporter:
+        add: "Añadir como soporte"
+      search:
+        title: "Soportes: Búsqueda de usuarios"
+        no_results: "No se han encontrado resultados"
+        submit: "Buscar"
+      form:
+        edit_title: "Editar soporte"
+        updated: "Soporte actualizado correctamente"

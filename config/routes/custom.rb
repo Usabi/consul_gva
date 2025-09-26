@@ -57,6 +57,9 @@ constraints lambda { |request| !Rails.application.multitenancy_management_mode? 
     resources :budget_managers, only: [:index, :create, :destroy] do
       get :search, on: :collection
     end
+    resources :supporters, only: [:show, :index, :edit, :update, :create, :destroy] do
+      get :search, on: :collection
+    end
   end
 end
 

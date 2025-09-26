@@ -1,0 +1,26 @@
+en:
+  activerecord:
+    models:
+      supporter:
+        one: "Supporter"
+        other: "Supporters"
+  admin:
+    menu:
+      supporters: "Supporters"
+    supporters:
+      header:
+        title: "Support & assistance"
+      index:
+        title: "Supporters"
+        name: "Name"
+        email: "Email"
+        no_supporters: "There are no supporters."
+      supporter:
+        add: "Add to supporters"
+      search:
+        title: "Supporters: User search"
+        no_results: "No results found"
+        submit: "Search"
+      form:
+        edit_title: "Edit supporter"
+        updated: "Supporter updated successfully"
