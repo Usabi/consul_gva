@@ -1,5 +1,5 @@
 module Abilities
-  class Support
+  class Supporter
     include CanCan::Ability
 
     def initialize(user)
