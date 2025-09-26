@@ -842,12 +842,59 @@ val:
         title: "Resum de Notificacions de Iniciatives"
         description: "Reuneix totes les notificacions de iniciatives en un únic missatge, per a evitar massa emails."
         preview_detail: "Els usuaris sols rebran les notificacions d'aquelles iniciatives que segueixquen"
+      duplicated_proposal_for_author:
+        title: "Iniciativa duplicada"
+        description: "Enviat a l'autor d'una iniciativa quan es marca com a duplicada."
+      budget_investment_created:
+        title: "Projecte de gasto creat"
+        description: "Enviat quan un usuari crea un projecte de pressupostos participatius."
+      budget_investment_selected:
+        title: "Projecte de gasto seleccionat"
+        description: "Enviat a l'autor d'un projecte de pressupostos participatius que ha sigut seleccionat."
+      budget_investment_unfeasible:
+        title: "Projecte de gasto inviable"
+        description: "Enviat a l'autor d'un projecte de pressupostos participatius que ha sigut marcat com a inviable."
+      budget_investment_not_selected:
+        title: "Projecte de gasto no seleccionat"
+        description: "Enviat a l'autor d'un projecte de pressupostos participatius que ha sigut marcat com no seleccionat en fase de revisió interna."
+      budget_investment_unselected:
+        title: "Projecte de gasto no seleccionat"
+        description: "Enviat a l'autor d'un projecte de pressupostos participatius que no ha sigut seleccionat per a la fase de votació."
       budget_investment_takecharge:
         title: "Projecte de gasto assumit"
         description: "Enviat a l'autor d'un projecte de pressupostos participatius que ha sigut marcat com assumit."
       budget_investment_next_year_budget:
         title: "Projecte de gasto previst per a inclusió en pressupost del pròxim any"
         description: "Enviat a l'autor d'un projecte de pressupostos participatius que ha sigut marcat com a previst per a inclusió en pressupost del pròxim any."
+      comment:
+        title: "Comentari"
+        description: "Enviat a l'autor quan rep un comentari."
+      reply:
+        title: "Resposta"
+        description: "Enviat a l'autor del comentari quan rep una resposta."
+      direct_message_for_receiver:
+        title: "Missatge privat rebut"
+        description: "Enviat al receptor d'un missatge privat."
+      direct_message_for_sender:
+        title: "Missatge privat enviat"
+        description: "Enviat al remitent d'un missatge privat."
+      email_verification:
+        title: "Verificació per email"
+        description: "Enviat al nou usuari registrat per a verificar el seu compte."
+      user_invite:
+        title: "Invitació d'usuaris"
+        description: "Enviat a la persona que ha sigut convidada a registrar un compte."
+      evaluation_comment:
+        title: "Nou comentari d'avaluació"
+        description: "Enviat a administradors i avaluadors del pressupost."
+      edit_info: "Pots editar este email en"
+      message_title: "Títol del missatge"
+      message_body: "Este és un exemple de contingut d'un missatge."
+      alert:
+        no_investments: "No s'ha creat cap projecte de gasto. Es necessita algun exemple per a poder previsualizar l'email."
+        no_comments: "No s'ha creat cap comentari. Es necessita algun exemple per a poder previsualizar l'email."
+        no_replies: "No s'ha creat cap resposta. Es necessita algun exemple per a poder previsualizar l'email."
+        no_evaluation_comments: "No s'ha creat cap comentari d'avaluació. Es necessita algun exemple per a poder previsualizar l'email."
     emails_download:
       index:
         title: Descàrrega de emails
@@ -1167,6 +1214,7 @@ val:
         target: Meta
         select: Seleccionar
         selected: Seleccionada
+        duplicated: Duplicada
         no_proposals: No hi han iniciatives.
         list:
             id: ID
@@ -1179,6 +1227,14 @@ val:
             target: Meta
             tags: Etiquetes
             selected: Seleccionada
+      show:
+        create_question: Afegir esta iniciativa a una votació per a ser votada
+      form:
+        update: Actualitzar iniciativa ciutadana
+        duplicated_of_proposal_description: "L'autor d'esta iniciativa rebrà una notificació per email. Pots veure la plantilla de l'email %{link}."
+        here: "ací"
+      update:
+        notice: Iniciativa actualitzada correctament
       subnav:
         proposals: Iniciatives
         help_text: Text d'ajuda

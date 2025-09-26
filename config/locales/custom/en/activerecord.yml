@@ -15,6 +15,17 @@ en:
       alert_message/translation:
         title: Title
         description: Description
+      proposal:
+        author: "Author"
+        title: "Title"
+        question: "Question"
+        description: "Description"
+        responsible_name: "Name and surname of the person who makes this proposal"
+        retired_reason: "Reason for retiring the proposal"
+        selected: "Mark as selected"
+        duplicated_of_proposal_id: "Duplicated proposal of"
+        terms_of_service: "Terms of service"
+        video_url: "External video link"
   models:
     legisltation/councils:
       one: "Council"

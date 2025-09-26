@@ -253,6 +253,7 @@ val:
         responsible_name: "Nom i cognoms de la persona que fa aquesta proposta"
         retired_reason: "Razón por la que se retira la propuesta"
         selected: "Marcar como seleccionada"
+        duplicated_of_proposal_id: "Iniciativa duplicada de"
         terms_of_service: "Termes de servei"
         video_url: "Enllaç a vídeo extern"
       proposal/translation:

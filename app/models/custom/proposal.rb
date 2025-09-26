@@ -3,10 +3,34 @@ load Rails.root.join("app", "models", "proposal.rb")
 class Proposal
   SORTING_OPTIONS = { id: "id", supports: "cached_votes_up", created_at: "created_at" }.freeze
 
+  belongs_to :duplicated_of_proposal, class_name: "Proposal", optional: true
+  has_many :duplicates, class_name: "Proposal", foreign_key: :duplicated_of_proposal_id, dependent: :nullify
+
+  after_update :send_duplicated_proposal_email, if: :saved_change_to_duplicated_of_proposal_id?
+
   scope :sort_by_id,               -> { order("id DESC") }
   scope :sort_by_supports,         -> { order("cached_votes_up DESC") }
   scope :sort_by_selected,         -> { selected }
   scope :by_tag,                   ->(tag_name) { tagged_with(tag_name).distinct }
+  scope :duplicable,            -> { published
+                                     .not_retired
+                                     .not_archived }
+
+  def duplicated?
+    duplicated_of_proposal.present?
+  end
+
+  def saved_change_to_duplicated_of_proposal_id?
+    saved_change_to_attribute?(:duplicated_of_proposal_id)
+  end
+
+  def send_duplicated_proposal_email
+    return unless duplicated_of_proposal.present? && saved_change_to_duplicated_of_proposal_id?
+
+    Mailer.duplicated_proposal_for_author(author, self).deliver_now
+  rescue StandardError => e
+    Rails.logger.error("Error sending duplicated proposal email: #{e.message}")
+  end
 
   def self.sort_by_title
     all.sort_by(&:title)

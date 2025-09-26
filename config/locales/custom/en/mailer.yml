@@ -1,0 +1,16 @@
+en:
+  mailers:
+    duplicated_proposal_for_author:
+      sample:
+        proposal:
+          title: 'TITLE OF YOUR PROPOSAL'
+          descripción: 'DESCRIPTION OF YOUR PROPOSAL'
+        original_proposal:
+          title: 'TITLE OF THE ORIGINAL PROPOSAL'
+          descripción: 'DESCRIPTION OF THE ORIGINAL PROPOSAL'
+      subject: "Your proposal %{proposal_title} is similar to another one"
+      hi: Hi
+      explanation: "We have detected that the proposal %{title} you have submitted is very similar to another one that already exists on the platform. This can happen for several reasons, such as the proposal having been duplicated by mistake or the topic having already been addressed previously. We believe that the related proposal that will unify similar proposals is the following:"
+      options: 'We recommend reviewing the existing proposal to see if it aligns with your ideas or if you can contribute to it. In this case, you should withdraw your proposal (see below for instructions on how to do so). If you believe your proposal is different and deserves to be considered separately, please contact us so we can review it manually.'
+      action: "To withdraw your proposal, click on the following link:"
+      sincerely: We appreciate your participation and encourage you to continue contributing new ideas and proposals.

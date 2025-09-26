@@ -34,6 +34,20 @@ es:
       comment: Comentar propuesta
       unsubscribe_text: "Si no quieres recibir notificaciones de propuestas, puedes entrar en %{notifications} y desmarcar la opción 'Recibir resumen de notificaciones sobre propuestas'."
       unfollow: "Si no quieres recibir más notificaciones, visita esta propuesta y deja de seguirla."
+    duplicated_proposal_for_author:
+      sample:
+        proposal:
+          title: 'TÍTULO DE TU INICIATIVA'
+          descripción: 'DESCRIPCIÓN DE TU INICIATIVA'
+        original_proposal:
+          title: 'TÍTULO DE LA INICIATIVA ORIGINAL'
+          descripción: 'DESCRIPCIÓN DE LA INICIATIVA ORIGINAL'
+      subject: "Tu iniciativa '%{proposal_title}' es muy similar a otra ya existente"
+      hi: Hola
+      explanation: "Hemos detectado que la iniciativa %{title} que has enviado es muy similar a otra que ya existe en la plataforma. Esto puede ocurrir por varias razones, como que la iniciativa haya sido duplicada por error o que el tema ya haya sido tratado anteriormente. Consideramos que la iniciativa relacionada que unificará las iniciativas similares es la siguiente:"
+      options: 'Te recomendamos revisar la iniciativa existente para ver si se ajusta a tus ideas o si puedes contribuir a ella. En este caso debes retirar tu iniciativa (a continuación te indicamos cómo hacerlo).Si crees que tu iniciativa es diferente y merece ser considerada por separado, por favor contáctanos para que podamos revisarla manualmente.'
+      action: "Para retirar tu iniciativa, haz clic en el siguiente enlace:"
+      sincerely: Agradecemos tu participación y te animamos a seguir contribuyendo con nuevas ideas y iniciativas.
     direct_message_for_receiver:
       subject: "Has recibido un nuevo mensaje privado"
       reply: Responder a %{sender}

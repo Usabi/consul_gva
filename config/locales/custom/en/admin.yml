@@ -151,3 +151,14 @@ en:
       results_and_stats_reminder: "If you check these boxes, the results and/or statistics will be public and visible to all users."
       close_modal: Close pop-up window
       example_url: "For example, https://consulproject.org or /help"
+
+    system_emails:
+      duplicated_proposal_for_author:
+        title: "Duplicated proposal"
+        description: "Sent to the author of a proposal when it is marked as duplicated."
+
+    proposals:
+      form:
+        update: Update proposal
+        duplicated_of_proposal_description: "The author of this initiative will receive an email notification. You can view the email template %{link}."
+        here: "here"
