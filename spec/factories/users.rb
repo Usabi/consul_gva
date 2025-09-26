@@ -106,6 +106,10 @@ FactoryBot.define do
     user
   end
 
+  factory :supporter do
+    user
+  end
+
   factory :sdg_manager, class: "SDG::Manager" do
     user
   end
