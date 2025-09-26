@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_09_24_163000) do
+ActiveRecord::Schema[7.0].define(version: 2025_09_26_103703) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -1637,6 +1637,14 @@ ActiveRecord::Schema[7.0].define(version: 2025_09_24_163000) do
     t.string "locale"
   end
 
+  create_table "supporters", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_supporters_on_user_id"
+  end
+
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
@@ -1971,6 +1979,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_09_24_163000) do
   add_foreign_key "related_content_scores", "users"
   add_foreign_key "sdg_managers", "users"
   add_foreign_key "site_customization_help_text_translations", "site_customization_help_texts"
+  add_foreign_key "supporters", "users"
   add_foreign_key "users", "geozones"
   add_foreign_key "valuators", "users"
 end

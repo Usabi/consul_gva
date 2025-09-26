@@ -3,11 +3,13 @@ load Rails.root.join("app", "models", "user.rb")
 class User
   has_one :legislator
   has_one :budget_manager
+  has_one :supporter
   has_many :legislation_processes, inverse_of: :user, class_name: "Legislation::Process"
 
   scope :residence_requested, -> { where.not(residence_requested_at: nil).where(residence_verified_at: nil) }
   scope :legislators, -> { joins(:legislator) }
   scope :budget_managers, -> { joins(:budget_manager) }
+  scope :supporters, -> { joins(:supporter) }
   scope :other, -> { where(gender: "other") }
 
   # Antes estaba en el inicializer de vote_extensión y lo eliminaron porque no se utilizaba
@@ -21,6 +23,10 @@ class User
 
   def budget_manager?
     budget_manager.present?
+  end
+
+  def supporter?
+    supporter.present?
   end
 
   def show_welcome_screen?
