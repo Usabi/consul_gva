@@ -418,7 +418,12 @@ val:
         one: 1 Comentari
         other: "%{count} Comentaris"
       comments_tab: Comentaris
+      dashboard_proposal_link: Panell de control
       flag: Esta iniciativa ha sigut marcada com inapropiada per diversos usuaris.
+      duplicated: Iniciativa duplicada
+      duplicated_description: Esta iniciativa ha sigut marcada com a duplicada de la iniciativa %{link_to_original}.
+      original: Iniciativa original
+      original_description: "Esta iniciativa és l'original de les següents iniciatives duplicades:"
       notifications_tab: Notificacions
       milestones_tab: Seguiments
       retired_warning: "L'autor/a d'esta iniciativa considera que ja no ha de seguir recollint avals."
@@ -429,6 +434,7 @@ val:
       embed_video_title: "Vídeo en %{proposal}"
       title_video_url: "Video extern"
       author: Autor/a
+      draft: Iniciativa en esborrany. Encara no pot arreplegar suports, ni apareix en la llista d'iniciatives.
     update:
       form:
         submit_button: Guardar canvis

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_09_16_130000) do
+ActiveRecord::Schema[7.0].define(version: 2025_09_24_163000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -1412,11 +1412,13 @@ ActiveRecord::Schema[7.0].define(version: 2025_09_16_130000) do
     t.integer "community_id"
     t.datetime "published_at", precision: nil
     t.boolean "selected", default: false
+    t.bigint "duplicated_of_proposal_id"
     t.index ["author_id", "hidden_at"], name: "index_proposals_on_author_id_and_hidden_at"
     t.index ["author_id"], name: "index_proposals_on_author_id"
     t.index ["cached_votes_up"], name: "index_proposals_on_cached_votes_up"
     t.index ["community_id"], name: "index_proposals_on_community_id"
     t.index ["confidence_score"], name: "index_proposals_on_confidence_score"
+    t.index ["duplicated_of_proposal_id"], name: "index_proposals_on_duplicated_of_proposal_id"
     t.index ["geozone_id"], name: "index_proposals_on_geozone_id"
     t.index ["hidden_at"], name: "index_proposals_on_hidden_at"
     t.index ["hot_score"], name: "index_proposals_on_hot_score"
@@ -1964,6 +1966,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_09_16_130000) do
   add_foreign_key "poll_voters", "polls"
   add_foreign_key "polls", "budgets"
   add_foreign_key "proposals", "communities"
+  add_foreign_key "proposals", "proposals", column: "duplicated_of_proposal_id"
   add_foreign_key "related_content_scores", "related_contents"
   add_foreign_key "related_content_scores", "users"
   add_foreign_key "sdg_managers", "users"

@@ -276,6 +276,7 @@ es:
         responsible_name: "Nombre y apellidos de la persona que hace esta propuesta"
         retired_reason: "Razón por la que se retira la propuesta"
         selected: "Marcar como seleccionada"
+        duplicated_of_proposal_id: "Iniciativa duplicada de"
         terms_of_service: "Términos de servicio"
         video_url: "Enlace a vídeo externo"
       proposal/translation:

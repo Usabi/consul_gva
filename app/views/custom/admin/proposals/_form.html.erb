@@ -1,0 +1,29 @@
+<%= form_for [:admin, @proposal] do |f| %>
+
+  <%= render "shared/errors", resource: @proposal %>
+
+  <%= f.check_box :selected %>
+
+  <hr>
+
+  <div class="small-12 column">
+    <%= f.collection_select :duplicated_of_proposal_id,
+                            Proposal.where.not(id: @proposal.id)
+                                    .duplicable
+                                    .order(:id),
+                            :id,
+                            :title,
+                            include_blank: true,
+                            class: "view_in_new_tab" %>
+    <legend">
+      <span class="help-text">
+        <%= t("admin.proposals.form.duplicated_of_proposal_description", link: link_to(t("admin.proposals.form.here"), admin_system_email_view_path('duplicated_proposal_for_author'))).html_safe %>
+      </span>
+    </legend>
+  </div>
+
+  <hr>
+
+  <%= f.submit t("admin.proposals.form.update"), class: "button success" %>
+
+<% end %>

@@ -27,6 +27,7 @@
         <th><%= t("admin.proposals.index.sdg") %></th>
         <th><%= t("admin.proposals.index.target") %></th>
         <th><%= t("admin.proposals.index.tags") %></th>
+        <th><%= t("admin.proposals.index.duplicated") %></th>
         <th><%= t("admin.proposals.index.selected") %></th>
       </tr>
     </thead>
@@ -43,6 +44,7 @@
           <td><%= proposal.sdg_goal_list %></td>
           <td><%= proposal.sdg_target_list %></td>
           <td><%= proposal.tags_list.join(", ") %></td>
+          <td><%= t("admin.proposals.index.duplicated") if proposal.duplicated_of_proposal.present? %></td>
           <td><%= render Admin::Proposals::ToggleSelectionComponent.new(proposal) %></td>
         </tr>
       <% end %>

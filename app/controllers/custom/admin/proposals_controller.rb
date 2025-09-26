@@ -23,4 +23,10 @@ class Admin::ProposalsController
     @help_text_content = help_text(controller_name)
     render "admin/proposals/help_pages/show"
   end
+
+  private
+
+    def allowed_params
+      [:selected, :duplicated_of_proposal_id]
+    end
 end

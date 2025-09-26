@@ -24,6 +24,22 @@ val:
       title: "Notificacions de propostes en %{org_name}"
       share: Compartir proposta
       comment: Comentar proposta
+      unsubscribe_text: "Si no vols rebre notificacions de propostes, pots entrar en %{notifications} i desmarcar l'opció 'Rebre resum de notificacions sobre propostes'."
+      unfollow: "Si no vols rebre més notificacions, visita esta proposta i deixa de seguir-la."
+    duplicated_proposal_for_author:
+      sample:
+        proposal:
+          title: 'TÍTOL DE LA TEUA INICIATIVA'
+          descripción: 'DESCRIPCIÓ DEL TEU INICIATIVA'
+        original_proposal:
+          title: 'TÍTOL DE LA INICIATIVA ORIGINAL'
+          descripción: 'DESCRIPCIÓ DE LA INICIATIVA ORIGINAL'
+      subject: "La teua iniciativa '%{*proposal_*title}' és molt similar a una altra ja existent"
+      hi: Hola
+      explanation: "Hem detectat que la iniciativa %{*title} que has enviat és molt similar a una altra que ja existix en la plataforma. Això pot ocórrer per diverses raons, com que la iniciativa haja sigut duplicada per error o que el tema ja haja sigut tractat anteriorment. Considerem que la iniciativa relacionada que unificarà les iniciatives similars és la següent:"
+      options: "Et recomanem revisar la iniciativa existent per a veure si s'ajusta a les teues idees o si pots contribuir a ella. En este cas has de retirar la teua iniciativa (a continuació t'indiquem com fer-ho).Si creus que la teua iniciativa és diferent i mereix ser considerada per separat, per favor contacta'ns perquè puguem revisar-la manualment."
+      action: "Per a retirar la teua iniciativa, fes clic en el següent enllaç:"
+      sincerely: Agraïm la teua participació i t'animem a continuar contribuint amb noves idees i iniciatives.
     direct_message_for_receiver:
       subject: "Has rebut un missatge privat"
       reply: Respondre a %{sender}

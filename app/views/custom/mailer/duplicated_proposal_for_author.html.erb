@@ -1,0 +1,30 @@
+<td style="padding-bottom: 20px; padding-left: 10px;">
+
+  <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px;">
+    <%= t("mailers.duplicated_proposal_for_author.hi") %>
+  </p>
+
+  <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px;">
+    <%= t("mailers.duplicated_proposal_for_author.explanation", title: @proposal.title) %>
+  </p>
+
+  <h3 style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px; padding-left: 12px; border-left: 2px solid #ccc;">
+    <strong><%= link_to @original_proposal.title, proposal_url(@original_proposal) %></strong><br>
+  </h3>
+
+  <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px;">
+    <%= t("mailers.duplicated_proposal_for_author.options") %>
+  </p>
+
+  <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px;">
+    <%= t("mailers.duplicated_proposal_for_author.action") %>
+    <%= link_to "Retirar propuesta",
+                retire_form_proposal_url(@proposal,
+                                         retired_reason: "duplicated", 
+                                         retired_explanation: "Esta propuesta ya existe como duplicada") %>
+  </p>
+
+  <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px;">
+    <%= t("mailers.duplicated_proposal_for_author.sincerely") %>
+  </p>
+</td>
