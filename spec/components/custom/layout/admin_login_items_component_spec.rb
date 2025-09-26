@@ -44,4 +44,18 @@ describe Layout::AdminLoginItemsComponent do
       expect(menu).to have_link count: 3
     end
   end
+
+  it "shows the administration link to supporters" do
+    user = create(:user)
+    create(:supporter, user: user)
+
+    render_inline Layout::AdminLoginItemsComponent.new(user)
+
+    expect(page).to have_link "Menu"
+
+    page.find("ul") do |menu|
+      expect(menu).to have_link "Administration"
+      expect(menu).to have_link count: 1
+    end
+  end
 end

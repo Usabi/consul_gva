@@ -2,14 +2,14 @@ load Rails.root.join("app", "components", "layout", "admin_login_items_component
 
 class Layout::AdminLoginItemsComponent
   def render?
-    show_admin_menu?(user) || user&.legislator? || user&.budget_manager?
+    show_admin_menu?(user) || user&.legislator? || user&.budget_manager? || user&.supporter?
   end
 
   private
 
     def admin_links
       [
-        (admin_link if user.administrator?),
+        (admin_link if user.administrator? || user.supporter?),
         (moderation_link if user.administrator? || user.moderator?),
         (valuation_link if feature?(:budgets) && (user.administrator? || user.valuator? || user.budget_manager)),
         (management_link if user.administrator? || user.manager?),
