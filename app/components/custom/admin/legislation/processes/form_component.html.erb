@@ -157,8 +157,16 @@
     <div class="small-12 column">
       <%= render Documents::NestedComponent.new(f) %>
     </div>
+     <% if controller_name == 'processes'%>
+      <div class="small-12 column">
+        <hr>
+      </div>
+      <div class="documents small-12 column">
+        <%= render Documents::NestedComponent.new(f, true) %>
+      </div>
+    <% end %>
 
-    <div class="small-12 column">
+    <div class="images small-12 column">
       <%= render Images::NestedComponent.new(f) %>
     </div>
 
