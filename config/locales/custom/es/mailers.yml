@@ -44,10 +44,11 @@ es:
           descripción: 'DESCRIPCIÓN DE LA INICIATIVA ORIGINAL'
       subject: "Tu iniciativa '%{proposal_title}' es muy similar a otra ya existente"
       hi: Hola
-      explanation: "Hemos detectado que la iniciativa %{title} que has enviado es muy similar a otra que ya existe en la plataforma. Esto puede ocurrir por varias razones, como que la iniciativa haya sido duplicada por error o que el tema ya haya sido tratado anteriormente. Consideramos que la iniciativa relacionada que unificará las iniciativas similares es la siguiente:"
-      options: 'Te recomendamos revisar la iniciativa existente para ver si se ajusta a tus ideas o si puedes contribuir a ella. En este caso debes retirar tu iniciativa (a continuación te indicamos cómo hacerlo).Si crees que tu iniciativa es diferente y merece ser considerada por separado, por favor contáctanos para que podamos revisarla manualmente.'
-      action: "Para retirar tu iniciativa, haz clic en el siguiente enlace:"
-      sincerely: Agradecemos tu participación y te animamos a seguir contribuyendo con nuevas ideas y iniciativas.
+      explanation: "Hemos visto que la iniciativa <strong>%{title}</strong> que has enviado es muy parecida a otra que ya está publicada en la plataforma:"
+      reason: "Cuando existen varias iniciativas casi idénticas, los apoyos pueden dividirse entre ellas y dificultar que se alcance el objetivo principal: reunir los apoyos necesarios dentro del plazo establecido."
+      option: "Por eso, te animamos a revisar la iniciativa existente y valorar la posibilidad de <strong>retirar tu propuesta</strong> para concentrar esfuerzos en la que ya cuenta con más apoyos o está más desarrollada. Si decides hacerlo, puedes indicar en tu iniciativa que la retiras porque es igual o muy similar a la otra. Para retirarla, accede desde este enlace:"
+      alternative: "Si prefieres mantener tu iniciativa activa, no hay problema: seguirá disponible en la plataforma como hasta ahora."
+      sincerely: Gracias por tu participación y por contribuir con tus ideas a la comunidad.
     direct_message_for_receiver:
       subject: "Has recibido un nuevo mensaje privado"
       reply: Responder a %{sender}

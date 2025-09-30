@@ -36,4 +36,12 @@ class Mailer
       )
     end
   end
+
+  def duplicated_proposal_for_author(author, proposal)
+    @proposal = proposal
+    @original_proposal = Proposal.find(@proposal.duplicated_of_proposal_id)
+    @email_to = author.email
+    
+    mail(to: @email_to, subject: t('mailers.duplicated_proposal_for_author.subject', proposal_title: @proposal.title))
+  end
 end
