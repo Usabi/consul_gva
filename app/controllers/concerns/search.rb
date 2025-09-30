@@ -4,6 +4,7 @@ module Search
   included do
     before_action :parse_search_terms, only: [:index, :suggest]
     before_action :parse_advanced_search_terms, only: :index
+    before_action :set_search_order, only: :index
   end
 
   def parse_search_terms
@@ -46,5 +47,11 @@ module Search
 
   def search_date_range
     [100.years.ago, search_start_date].max.beginning_of_day..[search_finish_date, Date.current].min.end_of_day
+  end
+
+  def set_search_order
+    if params[:search].present? && params[:order].blank?
+      params[:order] = "relevance"
+    end
   end
 end

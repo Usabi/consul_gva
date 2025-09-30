@@ -4,6 +4,7 @@ class Legislation::ProcessesController
   include CommentableActions
 
   before_action :load_categories, only: :index
+  skip_before_action :set_search_order
   
   valid_filters = Legislation::Process.processes_filters
   has_filters valid_filters, only: :index
