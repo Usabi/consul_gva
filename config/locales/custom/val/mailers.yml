@@ -36,10 +36,11 @@ val:
           descripción: 'DESCRIPCIÓ DE LA INICIATIVA ORIGINAL'
       subject: "La teua iniciativa '%{*proposal_*title}' és molt similar a una altra ja existent"
       hi: Hola
-      explanation: "Hem detectat que la iniciativa %{*title} que has enviat és molt similar a una altra que ja existix en la plataforma. Això pot ocórrer per diverses raons, com que la iniciativa haja sigut duplicada per error o que el tema ja haja sigut tractat anteriorment. Considerem que la iniciativa relacionada que unificarà les iniciatives similars és la següent:"
-      options: "Et recomanem revisar la iniciativa existent per a veure si s'ajusta a les teues idees o si pots contribuir a ella. En este cas has de retirar la teua iniciativa (a continuació t'indiquem com fer-ho).Si creus que la teua iniciativa és diferent i mereix ser considerada per separat, per favor contacta'ns perquè puguem revisar-la manualment."
-      action: "Per a retirar la teua iniciativa, fes clic en el següent enllaç:"
-      sincerely: Agraïm la teua participació i t'animem a continuar contribuint amb noves idees i iniciatives.
+      explanation: "Hem vist que la iniciativa <strong>%{title}</strong> que has enviat és molt semblant a una altra que ja està publicada en la plataforma:"
+      reason: "Quan existixen diverses iniciatives quasi idèntiques, els suports poden dividir-se entre elles i dificultar que s'aconseguisca l'objectiu principal: reunir els suports necessaris dins del termini establit."
+      option: "Per això, t'animem a revisar la iniciativa existent i valorar la possibilitat de <strong>retirar la teua proposta</strong> per a concentrar esforços en la qual ja compta amb més suports o està més desenrotllada. Si decidixes fer-ho, pots indicar en la teua iniciativa que la retires perquè és igual o molt similar a l'altra. Per a retirar-la, accedix des d'este enllaç:"
+      alternative: "Si preferixes mantindre la teua iniciativa activa, no hi ha problema: continuarà disponible en la plataforma com fins ara."
+      sincerely: Gràcies per la teua participació i per contribuir amb les teues idees a la comunitat.
     direct_message_for_receiver:
       subject: "Has rebut un missatge privat"
       reply: Respondre a %{sender}

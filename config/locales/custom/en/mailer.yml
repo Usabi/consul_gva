@@ -10,7 +10,8 @@ en:
           descripción: 'DESCRIPTION OF THE ORIGINAL PROPOSAL'
       subject: "Your proposal %{proposal_title} is similar to another one"
       hi: Hi
-      explanation: "We have detected that the proposal %{title} you have submitted is very similar to another one that already exists on the platform. This can happen for several reasons, such as the proposal having been duplicated by mistake or the topic having already been addressed previously. We believe that the related proposal that will unify similar proposals is the following:"
-      options: 'We recommend reviewing the existing proposal to see if it aligns with your ideas or if you can contribute to it. In this case, you should withdraw your proposal (see below for instructions on how to do so). If you believe your proposal is different and deserves to be considered separately, please contact us so we can review it manually.'
-      action: "To withdraw your proposal, click on the following link:"
-      sincerely: We appreciate your participation and encourage you to continue contributing new ideas and proposals.
+      explanation: "We have noticed that the initiative <strong>%{title}</strong> you have submitted is very similar to another one already published on the platform:"
+      reason: "When there are several almost identical initiatives, support can be divided between them and make it difficult to achieve the main objective: to gather the necessary support within the established deadline."
+      option: "Therefore, we encourage you to review the existing initiative and consider <strong>withdrawing your proposal</strong> in order to focus your efforts on the one that already has more support or is more developed. If you decide to do so, you can indicate in your initiative that you are withdrawing it because it is the same or very similar to the other one. To withdraw it, click on this link:"
+      alternative: "If you prefer to keep your initiative active, that's fine: it will continue to be available on the platform as before."
+      sincerely: Thank you for your participation and for contributing your ideas to the community.
