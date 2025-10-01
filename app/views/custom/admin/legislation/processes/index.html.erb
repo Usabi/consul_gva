@@ -30,7 +30,6 @@
           <th class="text-center"><%= t("admin.legislation.processes.process.email") %></th>
         <% end %>
         <th class="text-center"><%= t("admin.legislation.council") %></th>
-        <th class="text-center"><%= t("admin.legislation.processes.process.legislator_email") %></th>
         <% if feature?(:sdg) %>
           <th class="text-center"><%= SDG::Goal.model_name.human(count: :other).upcase_first %></th>
           <th class="text-center"><%= SDG::Target.model_name.human(count: :other).upcase_first %></th>
@@ -54,10 +53,11 @@
           <td class="text-center"><%= process.total_comments %></td>
           <% if current_user.administrator? %>
             <td class="text-center"><%= process.user&.username %></td>
-            <td class="text-center"><%= process.user&.email %></td>
+            <td class="text-center">
+              <%= ([process.user&.email] + process.legislators.map(&:email)).compact.join(", ") %>
+            </td>
           <% end %>
           <td class="text-center"><%= process.council&.title %></td>
-          <td class="text-center"><%= process.legislators.map(&:email).join(", ") if process.legislators.any? %></td>
           <% if feature?(:sdg) %>
             <td class="text-center"><%= process.sdg_goal_list %></td>
             <td class="text-center"><%= process.sdg_target_list %></td>
