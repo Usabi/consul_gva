@@ -32,31 +32,17 @@
               <%= link_to t("proposals.show.retired_warning_link_to_explanation"),
                           "#retired_explanation" %>
             </strong>
+            <% if @proposal.duplicated? %>
+              <br>
+              <strong><%= t("proposals.show.duplicated") %></strong>
+              <div>
+                <%= t("proposals.show.duplicated_description", link_to_original: link_to(@proposal.duplicated_of_proposal.title, proposal_path(@proposal.duplicated_of_proposal))).html_safe %>
+              </div>
+            <% end %>
           </div>
         <% elsif @proposal.conflictive? %>
           <div data-alert class="callout alert margin-top">
             <strong><%= t("proposals.show.flag") %></strong>
-          </div>
-        <% elsif @proposal.duplicated? %>
-          <div data-alert class="callout alert margin-top">
-            <strong><%= t("proposals.show.duplicated") %></strong>
-            <div>
-              <%= t("proposals.show.duplicated_description", link_to_original: link_to(@proposal.duplicated_of_proposal.title, proposal_path(@proposal.duplicated_of_proposal))).html_safe %>
-            </div>
-          </div>
-        <% elsif @proposal.duplicates.present? %>
-          <div data-warning class="callout warning margin-top">
-            <strong><%= t("proposals.show.original") %></strong>
-            <div>
-              <%= t("proposals.show.original_description") %>
-              <ul>
-                <% @proposal.duplicates.each do |duplicate| %>
-                  <li>
-                    <%= link_to duplicate.title, proposal_path(duplicate) %>
-                  </li>
-                <% end %>
-              </ul>
-            </div>
           </div>
         <% end %>
 
