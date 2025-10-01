@@ -1543,8 +1543,11 @@ es:
         create_question: Añadir esta iniciativa a una votación para ser votada
       form:
         update: Actualizar iniciativa ciudadana
-        duplicated_of_proposal_description: "El autor de esta iniciativa recibirá una notificación por email. Puedes ver la plantilla del email %{link}."
+        duplicated_title: Marcar como duplicada
+        duplicated_of_proposal_description: "Selecciona la iniciativa original. Esto ayuda a evitar dividir apoyos. No fusiona apoyos ni oculta esta iniciativa. El autor de esta iniciativa recibirá una notificación por email."
+        placeholder: Selecciona una iniciativa
         here: "aquí"
+        mail_template: "Puedes ver la plantilla del email %{link}."
       update:
         notice: Iniciativa actualizada correctamente
       subnav:

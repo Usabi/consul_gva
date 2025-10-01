@@ -1231,8 +1231,11 @@ val:
         create_question: Afegir esta iniciativa a una votació per a ser votada
       form:
         update: Actualitzar iniciativa ciutadana
-        duplicated_of_proposal_description: "L'autor d'esta iniciativa rebrà una notificació per email. Pots veure la plantilla de l'email %{link}."
+        duplicated_title: Marcar com a duplicada
+        duplicated_of_proposal_description: "Selecciona la iniciativa original. Això ajuda a evitar dividir suports. No fusiona suports ni oculta esta iniciativa. L'autor d'esta iniciativa rebrà una notificació per email."
+        placeholder: Selecciona una iniciativa
         here: "ací"
+        mail_template: "Pots veure la plantilla de l'email %{link}."
       update:
         notice: Iniciativa actualitzada correctament
       subnav:
