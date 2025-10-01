@@ -421,9 +421,7 @@ val:
       dashboard_proposal_link: Panell de control
       flag: Esta iniciativa ha sigut marcada com inapropiada per diversos usuaris.
       duplicated: Iniciativa duplicada
-      duplicated_description: Esta iniciativa ha sigut marcada com a duplicada de la iniciativa %{link_to_original}.
-      original: Iniciativa original
-      original_description: "Esta iniciativa és l'original de les següents iniciatives duplicades:"
+      duplicated_description: La iniciativa que està relacionada amb esta i que es troba arreplegant suports és %{link_to_original}.
       notifications_tab: Notificacions
       milestones_tab: Seguiments
       retired_warning: "L'autor/a d'esta iniciativa considera que ja no ha de seguir recollint avals."

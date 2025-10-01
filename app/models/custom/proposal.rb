@@ -16,8 +16,12 @@ class Proposal
                                      .not_retired
                                      .not_archived }
 
-  def duplicated?
+  def marked_as_duplicate_by_an_admin?
     duplicated_of_proposal.present?
+  end
+  
+  def duplicated?
+    retired_reason == 'duplicated'
   end
 
   def saved_change_to_duplicated_of_proposal_id?
