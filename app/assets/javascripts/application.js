@@ -78,6 +78,7 @@
 //= require registration_form
 //= require suggest
 //= require forms
+//= require tom-select.complete.min
 //= require valuation_budget_investment_form
 //= require embed_video
 //= require fixed_bar
@@ -181,6 +182,7 @@ var initialize_modules = function() {
   App.SDGManagementRelationSearch.initialize();
   App.AuthenticityTokenRefresh.initialize();
   App.CookiesConsent.initialize();
+  App.TomSelect.initialize();
 };
 
 var destroy_non_idempotent_modules = function() {
@@ -192,6 +194,7 @@ var destroy_non_idempotent_modules = function() {
   App.LegislationAnnotatable.destroy();
   App.Map.destroy();
   App.SocialShare.destroy();
+  App.TomSelect.destroy();
 };
 
 $(document).on("turbolinks:load", initialize_modules);

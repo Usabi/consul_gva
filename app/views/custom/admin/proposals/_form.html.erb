@@ -6,18 +6,28 @@
 
   <hr>
 
-  <div class="small-12 column">
+  <h2><%= t("admin.proposals.form.duplicated_title") %></h2>
+
+  <legend">
+    <span class="help-text">
+      <%= t("admin.proposals.form.duplicated_of_proposal_description", link: link_to(t("admin.proposals.form.here"), admin_system_email_view_path('duplicated_proposal_for_author'))).html_safe %>
+    </span>
+  </legend>
+
+  <div class="small-12 column padding-top">
     <%= f.collection_select :duplicated_of_proposal_id,
                             Proposal.where.not(id: @proposal.id)
                                     .duplicable
                                     .order(:id),
                             :id,
                             :title,
-                            include_blank: true,
-                            class: "view_in_new_tab" %>
+                            { include_blank: '...' },
+                            { placeholder: t("admin.proposals.form.placeholder"),
+                            autocomplete: "off",
+                            class: "view_in_new_tab tom-select" } %>
     <legend">
       <span class="help-text">
-        <%= t("admin.proposals.form.duplicated_of_proposal_description", link: link_to(t("admin.proposals.form.here"), admin_system_email_view_path('duplicated_proposal_for_author'))).html_safe %>
+        <%= t("admin.proposals.form.mail_template", link: link_to(t("admin.proposals.form.here"), admin_system_email_view_path('duplicated_proposal_for_author'))).html_safe %>
       </span>
     </legend>
   </div>

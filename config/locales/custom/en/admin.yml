@@ -160,5 +160,8 @@ en:
     proposals:
       form:
         update: Update proposal
-        duplicated_of_proposal_description: "The author of this initiative will receive an email notification. You can view the email template %{link}."
+        duplicated_title: Mark as duplicate
+        duplicated_of_proposal_description: "Select the original initiative. This helps avoid splitting support. It does not merge support or hide this initiative. The author of this initiative will receive an email notification."
+        placeholder: Select an initiative
         here: "here"
+        mail_template: "You can view the email template %{link}."
