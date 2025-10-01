@@ -418,8 +418,6 @@ en:
       flag: This proposal has been flagged as inappropriate by several users.
       duplicated: Duplicated proposal
       duplicated_description: This proposal has been marked as a duplicate of the proposal %{link_to_original}.
-      original: Original proposal
-      original_description: "This proposal is the original of the following duplicated proposals:"
       notifications_tab: Notifications
       milestones_tab: Milestones
       retired_warning: "The author considers this proposal should not receive more supports."
