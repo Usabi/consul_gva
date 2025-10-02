@@ -1,8 +1,8 @@
 class GvLoginApi
   GVLOGIN_HOSTS = {
-       gvaparticipa_dsa: "http://gvlogin-dsa.gva.es",
-       gvaparticipa_pre: "http://gvlogin-pre.gva.es",
-       gvaparticipa: "http://gvlogin.gva.es",
+       gvaparticipa_dsa: "https://gvlogin-dsa.gva.es",
+       gvaparticipa_pre: "https://gvlogin-pre.gva.es",
+       gvaparticipa: "https://gvlogin.gva.es",
        localhost: "http://gvlogin-dsa.gva.es"
   }.freeze
 
