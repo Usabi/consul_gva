@@ -26,6 +26,8 @@
 # Add your custom gem dependencies here
 
 gem "recaptcha"
+gem "terser"
+gem "tom-select-rails"
 
 group :test do
   gem "pry"

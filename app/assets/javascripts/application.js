@@ -78,7 +78,6 @@
 //= require registration_form
 //= require suggest
 //= require forms
-//= require tom-select.complete.min
 //= require valuation_budget_investment_form
 //= require embed_video
 //= require fixed_bar
@@ -125,6 +124,7 @@
 //= require_tree ./sdg_management
 //= require_tree ./custom
 //= require custom
+//= require tom-select-rails/js/tom-select.complete.min
 
 var initialize_modules = function() {
   "use strict";
