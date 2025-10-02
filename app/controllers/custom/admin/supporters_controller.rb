@@ -22,7 +22,6 @@ class Admin::SupportersController < Admin::BaseController
   end
 
   def update
-    debugger
     if @supporter.update(update_supporter_params)
       notice = t("admin.supporters.form.updated")
       redirect_to admin_supporters_path, notice: notice
@@ -39,7 +38,6 @@ class Admin::SupportersController < Admin::BaseController
   private
 
     def update_supporter_params
-      debugger
       params.require(:supporter).permit(allowed_params)
     end
 
