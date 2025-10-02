@@ -15,16 +15,20 @@
   </legend>
 
   <div class="small-12 column padding-top">
-    <%= f.collection_select :duplicated_of_proposal_id,
-                            Proposal.where.not(id: @proposal.id)
-                                    .duplicable
-                                    .order(:id),
-                            :id,
-                            :title,
-                            { include_blank: '...' },
-                            { placeholder: t("admin.proposals.form.placeholder"),
-                            autocomplete: "off",
-                            class: "view_in_new_tab tom-select" } %>
+    <div id="custom-select" class="custom-select">
+      <input type="text" id="search-input" placeholder="<%= t('admin.proposals.form.placeholder') %>" autocomplete="off" />
+      <div id="options-container" class="options-container"></div>
+    </div>
+
+    <select id="proposal-select" name="proposal[duplicated_of_proposal_id]" style="display:none;">
+      <option value=""><%= "..." %></option>
+      <% Proposal.where.not(id: @proposal.id).duplicable.order(:id).each do |proposal| %>
+        <option value="<%= proposal.id %>" <%= "selected" if proposal.id == @proposal.duplicated_of_proposal_id %>>
+          <%= "ID#{proposal.id} - #{proposal.title}" %>
+        </option>
+      <% end %>
+    </select>
+    
     <legend">
       <span class="help-text">
         <%= t("admin.proposals.form.mail_template", link: link_to(t("admin.proposals.form.here"), admin_system_email_view_path('duplicated_proposal_for_author'))).html_safe %>

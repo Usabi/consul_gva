@@ -124,7 +124,6 @@
 //= require_tree ./sdg_management
 //= require_tree ./custom
 //= require custom
-//= require tom-select-rails/js/tom-select.complete.min
 
 var initialize_modules = function() {
   "use strict";
@@ -182,7 +181,7 @@ var initialize_modules = function() {
   App.SDGManagementRelationSearch.initialize();
   App.AuthenticityTokenRefresh.initialize();
   App.CookiesConsent.initialize();
-  App.TomSelect.initialize();
+  App.SearchInSelect.initialize();
 };
 
 var destroy_non_idempotent_modules = function() {
@@ -194,7 +193,6 @@ var destroy_non_idempotent_modules = function() {
   App.LegislationAnnotatable.destroy();
   App.Map.destroy();
   App.SocialShare.destroy();
-  App.TomSelect.destroy();
 };
 
 $(document).on("turbolinks:load", initialize_modules);
