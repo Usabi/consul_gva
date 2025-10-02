@@ -9,7 +9,8 @@ class Users::GvLoginController < ApplicationController
     "R_GESTOR" => :manager,
     "R_ODS" => :sdg_manager,
     "R_LEGISLA" => :legislator,
-    "R_PRESUPUESTO" => :budget_manager
+    "R_PRESUPUESTO" => :budget_manager,
+    "R_SOPORTE" => :supporter
   }.freeze
 
   ROLES = GVA_ROLES.map { |role, value| role }.freeze

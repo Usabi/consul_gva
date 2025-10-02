@@ -578,4 +578,124 @@ describe Users::GvLoginController do
       end
     end
   end
+
+  describe "Create session by GVLogin API" do # rubocop:disable RSpec/RepeatedExampleGroupDescription
+    context "create new user" do
+      before do
+        request.headers["X-FORWARDED-FOR"] = ip
+        request.headers["HOST"] = host
+        cookies["gvlogin.login.GVLOGIN_COOKIE"] = cookie
+      end
+
+      context "valid vmcrc_user" do
+        before { valid_vmcrc_user.save }
+
+        describe "role assignment" do
+          it "assigns only MODERATOR role when R_MODERA is received" do
+            resp = gvlogin_response_with_roles("R_MODERA")
+            expect_any_instance_of(GvLoginApi).to receive(:context).with(ip, cookie).and_return(resp)
+
+            get :login_or_redirect_to_sso
+
+            user = Identity.find_by(uid: data.codper).user
+
+            expect(user.moderator?).to be true
+            expect(user.administrator?).to be false
+            expect(user.official?).to be false
+            expect(user.valuator?).to be false
+            expect(user.manager?).to be false
+            expect(user.sdg_manager?).to be false
+            expect(user.legislator?).to be false
+            expect(user.budget_manager?).to be false
+            expect(user.supporter?).to be false
+
+            expect(flash[:success]).to eq(I18n.t("devise.sessions.signed_in"))
+            expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to eq(cookie)
+          end
+
+          it "assigns ADMIN role when R_ADMIN is received" do
+            resp = gvlogin_response_with_roles("R_ADMIN")
+            expect_any_instance_of(GvLoginApi).to receive(:context).with(ip, cookie).and_return(resp)
+
+            get :login_or_redirect_to_sso
+
+            user = Identity.find_by(uid: data.codper).user
+
+            expect(user.administrator?).to be true
+            expect(user.moderator?).to be false
+
+            expect(flash[:success]).to eq(I18n.t("devise.sessions.signed_in"))
+          end
+
+          it "assigns multiple roles when an array of roles is received" do
+            resp = gvlogin_response_with_roles(%w[R_MODERA R_ODS])
+            expect_any_instance_of(GvLoginApi).to receive(:context).with(ip, cookie).and_return(resp)
+
+            get :login_or_redirect_to_sso
+
+            user = Identity.find_by(uid: data.codper).user
+
+            expect(user.moderator?).to be true
+            expect(user.sdg_manager?).to be true
+            expect(user.administrator?).to be false
+            expect(user.manager?).to be false
+            expect(user.legislator?).to be false
+            expect(user.budget_manager?).to be false
+            expect(user.supporter?).to be false
+
+            expect(flash[:success]).to eq(I18n.t("devise.sessions.signed_in"))
+          end
+
+          it "replaces previous roles based on incoming roles (single login)" do
+            # Creamos un usuario existente con rol MODERATOR y su identidad GVLogin (uid = codper)
+            user = User.new(username: "", email: "consulgva@gva.es")
+            user.save!(validate: false)
+            user.create_moderator # estado inicial
+
+            auth = OpenStruct.new(uid: data.codper, provider: :gvlogin)
+            identity = Identity.first_or_create_from_oauth(auth)
+            identity.update!(user: user)
+
+            # Preparamos headers/cookie y la respuesta con el NUEVO rol (R_SOPORTE)
+            request.headers["X-FORWARDED-FOR"] = ip
+            request.headers["HOST"] = host
+            cookies["gvlogin.login.GVLOGIN_COOKIE"] = cookie
+
+            resp_new_role = gvlogin_response_with_roles("R_SOPORTE")
+            expect_any_instance_of(GvLoginApi).to receive(:context).with(ip, cookie).and_return(resp_new_role)
+
+            # Un único login
+            get :login_or_redirect_to_sso
+
+            user.reload
+            # Debe quitar MODERATOR y poner SUPPORTER
+            expect(user.supporter?).to be true
+            expect(user.moderator?).to be false
+
+            expect(flash[:success]).to eq(I18n.t("devise.sessions.signed_in"))
+            expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to eq(cookie)
+          end
+
+          it "rejects login when role is invalid" do
+            resp = gvlogin_response_with_roles("ROL_INEXISTENTE")
+            expect_any_instance_of(GvLoginApi).to receive(:context).with(ip, cookie).and_return(resp)
+
+            get :login_or_redirect_to_sso
+
+            user = Identity.find_by(uid: data.codper)&.user
+            expect(user.moderator?).to be false
+            expect(user.sdg_manager?).to be false
+            expect(user.administrator?).to be false
+            expect(user.manager?).to be false
+            expect(user.legislator?).to be false
+            expect(user.budget_manager?).to be false
+            expect(user.supporter?).to be false
+
+            expect(cookies["gvlogin.login.GVLOGIN_COOKIE"]).to be(nil)
+            expect(flash[:error]).to eq(I18n.t("devise.failure.default"))
+          end
+        end
+      end
+    end
+  end
 end
