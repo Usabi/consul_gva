@@ -417,7 +417,7 @@ en:
       dashboard_proposal_link: Dashboard
       flag: This proposal has been flagged as inappropriate by several users.
       duplicated: Duplicated proposal
-      duplicated_description: This proposal has been marked as a duplicate of the proposal %{link_to_original}.
+      duplicated_description: This initiative is related to %{link_to_original}, which is currently gathering support.
       notifications_tab: Notifications
       milestones_tab: Milestones
       retired_warning: "The author considers this proposal should not receive more supports."

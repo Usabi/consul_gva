@@ -479,7 +479,7 @@ es:
       dashboard_proposal_link: Panel de control
       flag: Esta iniciativa ha sido marcada como inapropiada por varios usuarios.
       duplicated: Iniciativa duplicada
-      duplicated_description: La iniciativa que está relacionada con ésta y que se encuentra recogiendo apoyos es %{link_to_original}.
+      duplicated_description: Esta iniciativa está relacionada con %{link_to_original}, que actualmente recoge apoyos.
       notifications_tab: Notificaciones
       milestones_tab: Seguimiento
       retired_warning: "El autor/a de esta iniciativa considera que ya no debe seguir recogiendo apoyos."
