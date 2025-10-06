@@ -13,6 +13,12 @@ class Admin::Legislation::ProcessesController
                            .page(params[:page])
   end
 
+  def edit
+    if current_user.supporter?
+      redirect_to edit_admin_legislation_process_legislators_path(@process) and return
+    end
+  end
+
   def create
     @process.user = current_user
     if @process.save

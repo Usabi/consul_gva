@@ -55,14 +55,19 @@ module Abilities
 
       can [:search, :create, :index, :destroy, :update], ::Administrator
       can [:search, :create, :update, :index, :destroy], ::Supporter
+      can [:manage], ::Legislator
+      can [:manage], ::BudgetManager
       can [:search, :create, :index, :destroy], ::Moderator
       can [:search, :show, :update, :create, :index, :destroy, :summary], ::Valuator
       can [:search, :create, :index, :destroy], ::Manager
       can [:create, :read, :destroy], ::SDG::Manager
       can [:search, :index], ::User
 
+      can [:manage], ::Bulletin
+      can [:manage], ::Milestone::Status
       can :manage, Dashboard::Action
 
+      can [:index, :select, :deselect], Proposal
       can [:index, :read, :create, :update, :destroy, :help_page], Budget
       can :publish, Budget, id: Budget.drafting.ids
       can :calculate_winners, Budget, &:reviewing_ballots?
@@ -156,6 +161,8 @@ module Abilities
       if Rails.application.config.multitenancy && Tenant.default?
         can [:create, :read, :update, :hide, :restore], Tenant
       end
+
+      can :view, :booth
     end
   end
 end

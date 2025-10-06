@@ -45,7 +45,7 @@
             <%= process.id %>
           </td>
           <td class="small-12 medium-6 large-4">
-            <%= link_to process.title, edit_admin_legislation_process_path(process) %>
+            <%= link_to process.title, current_user.supporter? ? edit_admin_legislation_process_legislators_path(process) : edit_admin_legislation_process_path(process)%>
           </td>
           <td><%= t("admin.legislation.processes.process.status_#{process.status}") %></td>
           <td class="text-center"><%= I18n.l process.start_date %></td>

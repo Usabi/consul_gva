@@ -7,7 +7,7 @@
 
   <h2><%= @process.title %></h2>
 
-  <%= render "subnav", process: @process, active: "info" %>
+  <%= render "subnav", process: @process, active: current_user.supporter? ? "legislators" : "info" %>
 
   <%= render Admin::Legislation::Processes::FormComponent.new(@process, councils: @councils) %>
 </div>
