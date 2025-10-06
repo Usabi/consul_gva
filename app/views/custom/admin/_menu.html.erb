@@ -6,5 +6,10 @@
       <%= render 'admin/budget_manager_menu' %>
   <% end %>
 <%else%>
-  <%= render Admin::MenuComponent.new %>
+  <% if current_user.supporter? %>
+    <%= render Support::MenuComponent.new %>
+  <% end %>
+  <% if current_user.administrator? %>
+    <%= render Admin::MenuComponent.new %>
+  <% end %>
 <% end %>

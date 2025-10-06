@@ -14,7 +14,7 @@ module Abilities
 
       can :read, Proposal
       can :update, Proposal do |proposal|
-        proposal.editable_by?(user)
+        user.administrator? || proposal.editable_by?(user)
       end
       can :publish, Proposal do |proposal|
         proposal.draft? && proposal.author.id == user.id && !proposal.retired?
@@ -93,7 +93,8 @@ module Abilities
         can :edit, Budget::Investment,                 budget: { phase: "accepting" }, author_id: user.id
         can :update, Budget::Investment,               budget: { phase: "accepting" }, author_id: user.id
         can :suggest, Budget::Investment,              budget: { phase: "accepting" }
-        can :destroy, Budget::Investment,              budget: { phase: ["accepting", "reviewing"] }, author_id: user.id
+        can :destroy, Budget::Investment,              budget: { phase: ["accepting", "reviewing"] },
+                                                       author_id: user.id
       end
 
       if user.level_two_or_three_verified?
@@ -110,13 +111,13 @@ module Abilities
         can :edit, Budget::Investment,                 budget: { phase: "accepting" }, author_id: user.id
         can :update, Budget::Investment,               budget: { phase: "accepting" }, author_id: user.id
         can :suggest, Budget::Investment,              budget: { phase: "accepting" }
-        can :destroy, Budget::Investment,              budget: { phase: ["accepting", "reviewing"] }, author_id: user.id
+        can :destroy, Budget::Investment,              budget: { phase: ["accepting", "reviewing"] },
+                                                       author_id: user.id
         can [:create, :destroy], ActsAsVotable::Vote,
             voter_id: user.id,
             votable_type: "Budget::Investment",
             votable: { budget: { phase: "selecting" }}
         can :unvote, Budget::Investment,               budget: { phase: "selecting" }
-
 
         can [:show, :create], Budget::Ballot,          budget: { phase: "balloting" }
         can [:create, :destroy], Budget::Ballot::Line, budget: { phase: "balloting" }
