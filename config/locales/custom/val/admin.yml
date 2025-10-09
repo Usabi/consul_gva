@@ -641,6 +641,7 @@ val:
       admin_notifications: Notificacions
       system_emails: Correus electònics del sistema
       emails_download: Descàrrega de emails
+      citizenship_mailbox: Bústia de la ciutadania
       valuators: Avaluadors
       poll_officers: Presidents de taula
       polls: Votacions
@@ -901,6 +902,19 @@ val:
         download_segment: Descarregar direccions de email
         download_segment_help_text: Descarrega en format CSV
         download_emails_button: Descarregar llista de emails
+    citizen_opinions:
+      index:
+        title: Bústia de la ciutadania
+        no_citizen_opinions: No hi ha missatges en la bústia de la ciutadania
+        list:
+          id: ID
+          topic: Tema
+          name: Nom
+          subject: Assumpte
+          body: Missatge
+          phone: Telèfon
+          email: Email
+          created_at: Data d'enviament
     valuators:
       index:
         title: Avaluadors

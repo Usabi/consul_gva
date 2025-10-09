@@ -234,6 +234,9 @@ namespace :admin do
       end
     end
 
+    # get :citizenship_mailbox, to: "citizen_opinions#index"
+    resources :citizen_opinions, path: "citizenship_mailbox", only: [:index]
+
     resources :newsletters do
       member do
         post :deliver

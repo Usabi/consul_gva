@@ -903,6 +903,7 @@ es:
       admin_notifications: Notificaciones
       system_emails: Emails del sistema
       emails_download: Descarga de emails
+      citizenship_mailbox: Buzón de la ciudadanía
       valuators: Evaluadores
       poll_officers: Presidentes de mesa
       polls: Votaciones
@@ -1169,6 +1170,19 @@ es:
         download_segment: Descargar direcciones de correo electrónico
         download_segment_help_text: Descarga en formato CSV
         download_emails_button: Descargar lista de emails
+    citizen_opinions:
+      index:
+        title: Buzón de la ciudadanía
+        no_citizen_opinions: No hay mensajes en el buzón de la ciudadanía
+        list:
+          id: ID
+          topic: Tema
+          name: Nombre
+          subject: Asunto
+          body: Mensaje
+          phone: Teléfono
+          email: Email
+          created_at: Fecha de envío
     valuators:
       index:
         title: Evaluadores

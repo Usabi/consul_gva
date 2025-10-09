@@ -1,0 +1,40 @@
+<% provide(:title) do %>
+  <%= t("admin.header.title") %> - <%= t("admin.citizen_opinions.index.title") %>
+<% end %>
+
+<h2><%= t("admin.citizen_opinions.index.title") %></h2>
+
+<% if @citizen_opinions.any? %>
+  <h3><%= page_entries_info @citizen_opinions %></h3>
+  <table>
+    <thead>
+      <th><%= link_to_sorted_admin_resource "citizen_opinions", :created_at %></th>
+      <th class="text-right"><%= link_to_sorted_admin_resource "citizen_opinions", :id %></th>
+      <th><%= link_to_sorted_admin_resource "citizen_opinions", :topic %></th>
+      <th><%= link_to_sorted_admin_resource "citizen_opinions", :name %></th>
+      <th><%= link_to_sorted_admin_resource "citizen_opinions", :subject %></th>
+      <th><%= link_to_sorted_admin_resource "citizen_opinions", :body %></th>
+      <th><%= link_to_sorted_admin_resource "citizen_opinions", :phone %></th>
+      <th><%= link_to_sorted_admin_resource "citizen_opinions", :email %></th>
+    </thead>
+    <tbody>
+      <% @citizen_opinions.each do |citizen_opinion| %>
+        <tr id="<%= dom_id(citizen_opinion) %>" class="citizen_opinions">
+          <td><%= I18n.l citizen_opinion.created_at, format: :short %></td>
+          <td class="text-right"><%= citizen_opinion.id %></td>
+          <td><%= t("citizen_opinions.form.topic.options.#{citizen_opinion.topic}") %></td>
+          <td><%= citizen_opinion.name %></td>
+          <td><%= citizen_opinion.subject %></td>
+          <td><%= citizen_opinion.body %></td>
+          <td><%= citizen_opinion.phone %></td>
+          <td><%= citizen_opinion.email %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @citizen_opinions %>
+<% else %>
+  <div class="callout primary margin column">
+    <%= t("admin.citizen_opinions.index.no_citizen_opinions") %>
+  </div>
+<% end %>
