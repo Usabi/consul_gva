@@ -279,6 +279,116 @@ val:
       sign_up: Regístrat amb Twitter
       name: Twitter
     or_fill: "O ompli el següent formulari:"
+  citizen_opinions:
+    new:
+      title: "La meua opinió compta"
+      processing_personal_data: Tractament de dades de caràcter personal
+      processing_personal_data_description: S'informa que la Generalitat durà a terme el tractament de les seues dades personals d'acord amb el Reglament General de Protecció de Dades (UE) 2016/679 i la Llei Orgànica 3/2018 de Protecció de Dades i garantia dels drets digitals.
+      basic_information_on_data_protection: Informació bàsica sobre protecció de dades
+      data_protection_link: https://www.gva.es/va/web/atencio_ciutadania/inicio/mi_opinion_cuenta/informacio-basica-sobre-proteccio-de-dades
+    form:
+      topic:
+        label: "Tema de la consulta"
+        prompt: "Seleccioneu una opció"
+        groups:
+          general: "General"
+          social_services: "Vicepresidència primera i Conselleria de Servicis Socials, Igualtat i Vivenda" 
+          treasury: "Conselleria d'Hisenda i Economia"
+          justice: "Conselleria de Justícia i Administració Pública"
+          health: "Conselleria de Sanitat"
+          education: "Conselleria d'Educació, Cultura, Universitats i Ocupació"
+          environment: "Conselleria de Medi Ambient, Infraestructures i Territori"
+          innovation: "Conselleria d'Innovació, Indústria, Comerç i Turisme"
+          agriculture: "Conselleria d'Agricultura, Aigua, Ramaderia i Pesca"
+          emergency: "Conselleria d'Emergències i Interior"
+        options:
+          suggestions: Suggeriments, iniciatives i agraïments
+          public_employment: Ocupació pública
+          others: Altres temes
+          dependency: Dependència
+          disability: Discapacitat / Diversitat funcional
+          large_families: Família nombrosa / monoparental
+          childhood: Infància i adolescència
+          inclusion_income: Renda valenciana d'inclusió
+          other_social_services: Altres temes de serveis socials
+          housing_rental: Lloguer habitatge
+          housing_purchase: Compra habitatge
+          subsidized_housing: Promoció habitatge protegit
+          housing_registry: Registre valencià de l'habitatge
+          housing_renovation: Rehabilitació habitatge
+          economy: Economia
+          taxes: Impostos i transmissions
+          associations: Associacions
+          legal_aid: Justícia gratuïta
+          common_law_marriages: Unions de fet
+          other_justice_issues: Altres temes de justícia i administració pública
+          civil_registry_Alcoy: Registre Civil d'Alcoi/Alcoy
+          civil_registry_Alzira: Registre Civil d'Alzira
+          civil_registry_Benidorm: Registre Civil de Benidorm
+          civil_registry_Carlet: Registre Civil de Carlet
+          civil_registry_Castello: Registre Civil de Castelló de la Plana
+          civil_registry_Catarroja: Registre Civil de Catarroja
+          civil_registry_Dénia: Registre Civil de Dénia
+          civil_registry_Elda: Registre Civil d'Elda
+          civil_registry_Elche: Registre Civil d'Elx/Elche
+          civil_registry_Gandia: Registre Civil de Gandia
+          civil_registry_Ibi: Registre Civil d'Ibi
+          civil_registry_Villajoyosa: Registre Civil de Vila Joiosa 
+          civil_registry_Lliria: Registre Civil de Llíria
+          civil_registry_Massamagrell: Registre Civil de Massamagrell
+          civil_registry_Mislata: Registre Civil de Mislata
+          civil_registry_Moncada: Registre Civil de Moncada
+          civil_registry_Novelda: Registre Civil de Novelda
+          civil_registry_Nules: Registre Civil de Nules
+          civil_registry_Ontinyent: Registre Civil d'Ontinyent
+          civil_registry_Orihuela: Registre Civil d'Orihuela
+          civil_registry_Paterna: Registre Civil de Paterna
+          civil_registry_Picassent: Registre Civil de Picassent
+          civil_registry_Quart: Registre Civil de Quart de Poblet
+          civil_registry_Requena: Registre Civil de Requenat
+          civil_registry_Sagunto: Registre Civil de Sagunt
+          civil_registry_San_Vicente: Registre Civil de Sant Vicent del Raspeig
+          civil_registry_Segorbe: Registre Civil de Segorbe
+          civil_registry_Sueca: Registre Civil de Sueca
+          civil_registry_Torrent: Registre Civil de Torrent
+          civil_registry_Torrevieja: Registre Civil de Torrevieja
+          civil_registry_Vila_real: Registre Civil de Vila-real
+          civil_registry_Villena: Registre Civil de Villena
+          civil_registry_Vinaros: Registre Civil de Vinaròs
+          civil_registry_Xativa: Registre Civil de Xàtiva
+          exclusive_civil_registry_1_Alicante: Registre Civil Exclusivo Nº1 Alacant
+          exclusive_civil_registry_1_Valencia: Registre Civil Exclusivo Nº1 València
+          exclusive_civil_registry_2_Alicante: Registre Civil Exclusivo Nº2 Alacant
+          exclusive_civil_registry_2_Valencia: Registre Civil Exclusivo Nº2 València
+          exclusive_civil_registry_3_Valencia: Registre Civil Exclusivo Nº3 València
+          healthcare: Sanitat
+          education: Ensenyança
+          valencian: Valencià (Junta Qualificadora)
+          social_economy: Economia social / Cooperatives
+          work: Treball
+          employment: Ocupació (LABORA)
+          culture: Cultura
+          airports: Aeroports
+          nautical_activities: Activitats nàutiques (exàmens / titulacions)
+          coasts: Costes
+          roads: Carreteres
+          ports: Ports
+          transport: Transports (Exàmens transportistes / targetes transports ...)
+          urban_planning: Urbanisme
+          territorial_policy: Política territorial i paisatge
+          environment: Medi ambient
+          trade: Comerç i consum
+          industry: Indústria, energia i mines
+          innovation: Innovació
+          AVI: AVI (Agència Valenciana de la Innovació) 
+          IVACE: IVACE (Institut Valencià de Competitivitat Empresarial)
+          tourism: Turisme (Turisme Comunitat Valenciana) 
+          agriculture: Agricultura, aigua, ramaderia i pesca 
+          forest_fire_prevention: Prevenció d'incendis forestals
+          entertainment: Espectacles
+      submit: "Envia"
+    success:
+      title: "Gràcies per la seua col·laboració! Rebrà un email amb una còpia del seu missatge."
   proposals:
     create:
       form:

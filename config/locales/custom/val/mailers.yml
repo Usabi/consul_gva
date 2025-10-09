@@ -164,3 +164,22 @@ val:
     budget_change_active_phases:
       success: "%{budget_name} ha cambiado de la fase '%{previous_phase}' a '%{next_phase}'"
       error: Error al cambiar de fase
+  citizen_opinion_mailer:
+    shared:
+      date: "Data"
+      body: "Pregunta o suggeriment"
+      phone: "Telèfon"
+      email: "Correu electrònic de resposta"
+      topic: "Tema"
+      subject: "Assumpte"
+    confirmation:
+      subject: "Bústia de consultes per al PROP"
+      title: "Confirmació d'enviament del formulari."
+      text: "Gràcies per escriure'ns. Hem rebut el seu missatge."
+      name: "Nombre"
+    notification:
+      subject: "Nou missatge en bústia de la ciutadania sobre TEMA: %{topic}"
+      title: "Nou missatge en bústia de la ciutadania"
+      text: "S'ha rebut un nou missatge en la bústia de la ciutadania amb el següent contingut:"
+      from: "De"
+      citizen_mailbox: "bústia de la ciutadania"

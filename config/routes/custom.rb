@@ -50,6 +50,8 @@ constraints lambda { |request| !Rails.application.multitenancy_management_mode? 
     end
   end
 
+  resources :citizen_opinions, only: [:new, :create]
+
   namespace :admin do
     resources :legislators, only: [:index, :create, :destroy] do
       get :search, on: :collection

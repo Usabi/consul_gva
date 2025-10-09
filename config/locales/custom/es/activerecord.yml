@@ -158,6 +158,9 @@ es:
       alert_message:
         one: Mensaje de alerta
         other: Mensajes de alerta
+      citizen_opinion:
+        one: Opinión del ciudadano
+        other: Opiniones del ciudadano
     attributes:
       administrator:
         description: Descripción
@@ -578,6 +581,13 @@ es:
         document_number: Número de documento
         date_of_birth: Fecha de nacimiento
         postal_code: Código postal
+      citizen_opinion:
+        topic: Tema de la consulta
+        name: Nombre
+        phone: Teléfono
+        subject: Asunto
+        body: Pregunta o Sugerencia
+        email: Correo electrónico de respuesta
     errors:
       models:
         user:
@@ -667,6 +677,15 @@ es:
           attributes:
             code:
               invalid: "debe empezar con el código de su meta seguido de un punto y terminar con un número"
+        citizen_opinion:
+          attributes:
+            topic:
+              blank: "Por favor, seleccione un tema de la lista"
+            body:
+              blank: "No puede estar en blanco"
+            email:
+              blank: "No puede estar en blanco"
+              invalid: "No es un formato de email válido"
       messages:
         translations_too_short: El obligatorio proporcionar una traducción como mínimo
         record_invalid: "Error de validación: %{errors}"
