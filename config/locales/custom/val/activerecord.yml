@@ -141,6 +141,9 @@ val:
       alert_message:
         one: Missatge d'alerta
         other: Missatges d'alerta
+      citizen_opinion:
+        one: Opinió del ciutadà
+        other: Opinions del ciutadà
     attributes:
       administrator:
         description: Descripción
@@ -521,6 +524,13 @@ val:
         document_number: Número de documento
         date_of_birth: Fecha de nacimiento
         postal_code: Códi postal
+      citizen_opinion:
+        topic: Tema de la consulta
+        name: Nom
+        phone: Telèfon
+        subject: Assumpte
+        body: Pregunta o Suggeriment
+        email: Correu electrònic de resposta
     errors:
       models:
         user:
@@ -610,6 +620,15 @@ val:
           attributes:
             locale:
               already_translated: Recurso ya traducido
+        citizen_opinion:
+          attributes:
+            topic:
+              blank: "Per favor, seleccione un tema de la llista"
+            body:
+              blank: "No pot estar en blanc"
+            email:
+              blank: "No pot estar en blanc"
+              invalid: "No és un format d'email vàlid"
       messages:
         translations_too_short: El obligatorio proporcionar una traducción como mínimo
         record_invalid: "Error de validación: %{errors}"

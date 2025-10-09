@@ -1,0 +1,12 @@
+<h1><%= t("citizen_opinion_mailer.confirmation.title") %></h1>
+<p><%= t("citizen_opinion_mailer.confirmation.text") %></p>
+
+<p><strong><%= t("citizen_opinion_mailer.shared.date") %>:</strong> <%= I18n.l @citizen_opinion.created_at, format: :short %></p>
+<p><strong><%= t("citizen_opinion_mailer.confirmation.name") %>:</strong> <%= @citizen_opinion.name %></p>
+<p><strong><%= t("citizen_opinion_mailer.shared.phone") %>:</strong> <%= @citizen_opinion.phone %></p>
+<p><strong><%= t("citizen_opinion_mailer.shared.email") %>:</strong> <%= @citizen_opinion.email %></p>
+<p><strong><%= t("citizen_opinion_mailer.shared.topic") %>:</strong> <%= t("citizen_opinions.form.topic.options.#{@citizen_opinion.topic}") %></p>
+<p><strong><%= t("citizen_opinion_mailer.shared.subject") %>:</strong> <%= @citizen_opinion.subject %></p>
+
+<h2><%= t("citizen_opinion_mailer.shared.body") %>:</h2>
+<p><%= simple_format @citizen_opinion.body %></p>

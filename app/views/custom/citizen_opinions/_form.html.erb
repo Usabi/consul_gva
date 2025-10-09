@@ -1,0 +1,34 @@
+<%= form_for @citizen_opinion, url: citizen_opinions_path, html: { novalidate: true } do |f| %>
+  <div class="row">
+    <div class="small-12 column">
+      <%= f.select :topic,
+                   grouped_options_for_select(topics_options),
+                   { prompt: t("citizen_opinions.form.topic.prompt") },
+                   { required: true, class: "form-control" } %>
+    </div>
+
+    <div class="small-12 medium-6 column">
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="small-12 medium-6 column">
+      <%= f.text_field :phone %>
+    </div>
+
+    <div class="small-12 column">
+      <%= f.text_field :subject %>
+    </div>
+
+    <div class="small-12 column">
+      <%= f.text_area :body, rows: 5, required: true %>
+    </div>
+
+    <div class="small-12 column">
+      <%= f.email_field :email, required: true %>
+    </div>
+  </div>
+
+  <div class="small-12 column text-center">
+    <%= f.submit t("citizen_opinions.form.submit"), class: "button" %>
+  </div>
+<% end %>

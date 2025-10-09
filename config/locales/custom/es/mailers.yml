@@ -185,3 +185,22 @@ es:
       text_9: "También encontrarás esta nueva acción de difusión recomendada…"
       text_10: "¡Seguro que tienes más recursos pendientes de usar!"
       dashboard_button: "Adelante, ¡descúbrelos!"
+  citizen_opinion_mailer:
+    shared:
+      date: "Fecha"
+      body: "Pregunta o sugerencia"
+      phone: "Teléfono"
+      email: "Correo electrónico de respuesta"
+      topic: "Tema"
+      subject: "Asunto"
+    confirmation:
+      subject: "Buzón de consultas para el PROP"
+      title: "Confirmación de envío del formulario."
+      text: "Gracias por escribirnos. Hemos recibido su mensaje."
+      name: "Nombre"
+    notification:
+      subject: "Nuevo mensaje en buzón de la ciudadanía sobre TEMA: %{topic}"
+      title: "Nuevo mensaje en buzón de la ciudadanía"
+      text: "Se ha recibido un nuevo mensaje en el buzón de la ciudadanía con el siguiente contenido:"
+      from: "De"
+      citizen_mailbox: "buzón de la ciudadanía"
