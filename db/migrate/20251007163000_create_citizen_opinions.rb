@@ -7,7 +7,7 @@ class CreateCitizenOpinions < ActiveRecord::Migration[6.1]
       t.string :subject
       t.text :body, null: false
       t.string :email, null: false
-      
+
       t.timestamps
     end
   end

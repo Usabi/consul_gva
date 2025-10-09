@@ -45,7 +45,7 @@ RSpec.describe CitizenOpinion do
 
       it "is not valid with an invalid email format" do
         invalid_emails = ["test", "test@", "@test.com", "test@test", "test.com"]
-        
+
         invalid_emails.each do |email|
           citizen_opinion.email = email
           expect(citizen_opinion).not_to be_valid
@@ -54,7 +54,7 @@ RSpec.describe CitizenOpinion do
 
       it "is valid with a valid email format" do
         valid_emails = ["test@test.com", "user.name@domain.com", "user+label@domain.co.uk"]
-        
+
         valid_emails.each do |email|
           citizen_opinion.email = email
           expect(citizen_opinion).to be_valid

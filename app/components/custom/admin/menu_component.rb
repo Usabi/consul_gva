@@ -38,7 +38,7 @@ class Admin::MenuComponent
     end
 
     def messages_sections
-      %w[bulletins newsletters emails_download admin_notifications system_emails]
+      %w[bulletins newsletters admin_notifications system_emails emails_download citizen_opinions]
     end
 
     def key_systems_link
@@ -126,6 +126,14 @@ class Admin::MenuComponent
       ]
     end
 
+    def citizenship_mailbox_link
+      [
+        t("admin.menu.citizenship_mailbox"),
+        admin_citizen_opinions_path,
+        controller_name == "citizen_opinions"
+      ]
+    end
+
     def messages_links
       section(t("admin.menu.messaging_users"), active: messages_menu_active?, class: "messages-link") do
         link_list(
@@ -134,6 +142,7 @@ class Admin::MenuComponent
           admin_notifications_link,
           system_emails_link,
           emails_download_link,
+          citizenship_mailbox_link,
           id: "messaging_users_menu"
         )
       end
