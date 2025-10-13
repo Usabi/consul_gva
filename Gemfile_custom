@@ -30,9 +30,12 @@ gem "recaptcha"
 group :test do
   gem "pry"
   gem "pry-rails"
-  gem 'shoulda-matchers', '~> 6.0'
+  gem "shoulda-matchers", "~> 6.0"
+  gem "rack-test"
+  gem "webdrivers"
 end
 
 group :development, :test do
   gem "timecop"
+  gem "parallel_tests"
 end
