@@ -24,4 +24,4 @@ production:
 
 test:
   <<: *default
-  database: consul_test
+  database: consul_test<%= ENV['TEST_ENV_NUMBER'] %>
