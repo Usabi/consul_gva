@@ -103,10 +103,57 @@ en:
         notice: Council created successfully
         error: Council could not be created
     menu:
+      management_newsletters: Newsletters de gestión
       site_customization:
         alert_messages: Manage alert messages
       legislation: Legislation
       legislation_councils: Councils
+    management_newsletters:
+      index:
+        title: "Management newsletters"
+        created_at: "Creation date"
+        status: "Status"
+        sent_at: "Sent date"
+        actions: "Actions"
+        view: "View"
+        pending: "Pending"
+        sent: "Sent"
+        failed: "Failed"
+        resend: "Resend"
+        confirm_resend: "Are you sure you want to resend this management newsletter?"
+      show:
+        title: "Management newsletter"
+        created_at: "Creation date"
+        status: "Status"
+        sent_at: "Sent date"
+        back: "Back"
+        resend: "Resend"
+        most_supported_proposals: "Most Supported Proposals"
+        most_active_debates: "Debates Most Active"
+        preview_processes: "Processes in Preview Phase"
+        public_processes: "Processes in Public Hearing Phase"
+        supports:
+          one: "%{count} support"
+          other: "%{count} supports"
+        comments:
+          one: "%{count} comment"
+          other: "%{count} comments"
+        all_proposals: "View all proposals"
+        all_debates: "View all debates"
+        all_processes: "View all legislation processes"
+      resend:
+        success: "Management newsletter resent successfully."
+        error: "There was an error resending the management newsletter."
+      mailer:
+        subject: "The highlights on GVA Participa this week"
+        intro: "During this week, citizens have continued to actively participate on the platform. Here we show you a brief summary of the most notable activity."
+      configuration:
+        title: "Management newsletter configuration"
+        daily: "Daily"
+        weekly: "Weekly"
+        save: "Save configuration"
+        updated: "Configuration updated successfully."
+        invalid: "Invalid configuration."
     shared:
       true_value: "Yes"
       false_value: "No"
@@ -151,12 +198,15 @@ en:
       results_and_stats_reminder: "If you check these boxes, the results and/or statistics will be public and visible to all users."
       close_modal: Close pop-up window
       example_url: "For example, https://consulproject.org or /help"
-
     system_emails:
       duplicated_proposal_for_author:
         title: "Duplicated proposal"
         description: "Sent to the author of a proposal when it is marked as duplicated."
-
+      management_newsletter:
+        title: "Management newsletter"
+        description: "Sent to administrators with a daily/weekly summary of activity on the platform."
+        mailer:
+          subject: "Platform summary"
     proposals:
       form:
         update: Update proposal

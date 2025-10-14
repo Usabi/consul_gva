@@ -18,6 +18,7 @@ class Ability
         can [:manage], ::BudgetManager
         can [:manage], ::Bulletin
         can [:manage], ::Legislation::Council
+        can [:manage], ::ManagementNewsletter
         can [:manage], ::CitizenOpinion
       elsif user.supporter?
         merge Abilities::Supporter.new(user)

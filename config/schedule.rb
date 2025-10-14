@@ -39,6 +39,10 @@ every 1.day, at: "00:00", roles: [:cron] do
   runner "Budget.change_phase"
 end
 
+every 1.day, at: "06:00", roles: [:cron] do # Custom
+  rake "management_newsletters:generate"
+end
+
 every :reboot do
   # Number of workers must be kept in sync with capistrano's delayed_job_workers
   command "cd #{@path} && RAILS_ENV=#{@environment} bundle exec bin/delayed_job -m -n 2 restart"

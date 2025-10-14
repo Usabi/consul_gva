@@ -30,6 +30,7 @@ gem "recaptcha"
 group :test do
   gem "pry"
   gem "pry-rails"
+  gem 'shoulda-matchers', '~> 6.0'
 end
 
 group :development, :test do

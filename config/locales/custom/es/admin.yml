@@ -900,6 +900,7 @@ es:
       messaging_users: Mensajes a usuarios
       bulletins: Boletines
       newsletters: Newsletters
+      management_newsletters: Newsletters de gestión
       admin_notifications: Notificaciones
       system_emails: Emails del sistema
       emails_download: Descarga de emails
@@ -1064,6 +1065,52 @@ es:
         body: Contenido del email
         body_help_text: Así es como verán el email los usuarios
         send_alert: '¿Estás seguro/a de que quieres enviar esta newsletter a %{n} usuarios?'
+    management_newsletters:
+      index:
+        title: "Newsletters de gestión"
+        created_at: "Fecha de creación"
+        status: "Estado"
+        sent_at: "Fecha de envío"
+        actions: "Acciones"
+        view: "Ver"
+        pending: "Pendiente"
+        sent: "Enviada"
+        failed: "Fallida"
+        resend: "Reenviar"
+        confirm_resend: "¿Estás seguro/a de que quieres reenviar esta newsletter de gestión?"
+      show:
+        title: "Vista previa de newsletter de gestión"
+        created_at: "Fecha de creación"
+        status: "Estado"
+        sent_at: "Fecha de envío"
+        back: "Volver a la lista"
+        resend: "Reenviar"
+        most_supported_proposals: "Iniciativas más apoyadas"
+        most_active_debates: "Debates más activos"
+        preview_processes: "Procesos en fase de consulta previa"
+        public_processes: "Procesos en fase de audiencia ciudadana"
+        supports:
+          one: "%{count} apoyo"
+          other: "%{count} apoyos"
+        comments:
+          one: "%{count} comentario"
+          other: "%{count} comentarios"
+        all_proposals: "Ver todas las iniciativas"
+        all_debates: "Ver todos los debates"
+        all_processes: "Ver todos los procesos de elaboración normativa"
+      resend:
+        success: "La newsletter de gestión se ha reenviado correctamente y se está procesando."
+        error: "No se ha podido reenviar la newsletter de gestión."
+      mailer:
+        subject: "Lo más destacado en GVA Participa esta semana"
+        intro: "Durante esta semana, la ciudadanía ha seguido participando activamente en la plataforma. Aquí te mostramos un breve resumen de la actividad más destacada."
+      configuration:
+        title: "Configuración"
+        daily: "Diaria"
+        weekly: "Semanal"
+        save: "Guardar configuración"
+        updated: "Configuración actualizada correctamente."
+        invalid: "Opción inválida para la configuración."
     admin_notifications:
       create_success: Notificación creada correctamente
       update_success: Notificación actualizada correctamente
@@ -1164,6 +1211,11 @@ es:
         no_comments: "No se ha creado ningún comentario. Se necesita algún ejemplo para poder previsualizar el email."
         no_replies: "No se ha creado ninguna respuesta. Se necesita algún ejemplo para poder previsualizar el email."
         no_evaluation_comments: "No se ha creado ningún comentario de evaluación. Se necesita algún ejemplo para poder previsualizar el email."
+      management_newsletter:
+        title: "Newsletter de gestión"
+        description: "Enviado a administradores con un resumen diario/semanal de la actividad en la plataforma."
+        mailer:
+          subject: "Resumen de la plataforma de participación"
     emails_download:
       index:
         title: Descarga de emails

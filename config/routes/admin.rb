@@ -250,6 +250,16 @@ namespace :admin do
       end
     end
 
+    resources :management_newsletters, only: [:index, :show, :create] do # Custom
+      collection do
+        post :update_frequency
+      end
+
+      member do
+        post :resend
+      end
+    end
+
     resources :system_emails, only: [:index] do
       get :view
       get :preview_pending
