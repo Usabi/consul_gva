@@ -1027,6 +1027,55 @@ ActiveRecord::Schema[7.0].define(version: 2025_10_07_163000) do
     t.index ["user_id"], name: "index_machine_learning_jobs_on_user_id"
   end
 
+  create_table "management_newsletter_debates", force: :cascade do |t|
+    t.bigint "management_newsletter_id", null: false
+    t.bigint "debate_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["debate_id"], name: "index_management_newsletter_debates_on_debate_id"
+    t.index ["management_newsletter_id", "debate_id"], name: "index_mnd_on_newsletter_debate", unique: true
+    t.index ["management_newsletter_id"], name: "index_mnd_on_newsletter_id"
+  end
+
+  create_table "management_newsletter_preview_processes", force: :cascade do |t|
+    t.bigint "management_newsletter_id", null: false
+    t.bigint "process_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["management_newsletter_id", "process_id"], name: "index_mnpvp_on_newsletter_preview_process", unique: true
+    t.index ["management_newsletter_id"], name: "index_mnpvp_on_newsletter_id"
+    t.index ["process_id"], name: "index_management_newsletter_preview_processes_on_process_id"
+  end
+
+  create_table "management_newsletter_proposals", force: :cascade do |t|
+    t.bigint "management_newsletter_id", null: false
+    t.bigint "proposal_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["management_newsletter_id", "proposal_id"], name: "index_mnp_on_newsletter_proposal", unique: true
+    t.index ["management_newsletter_id"], name: "index_mnp_on_newsletter_id"
+    t.index ["proposal_id"], name: "index_management_newsletter_proposals_on_proposal_id"
+  end
+
+  create_table "management_newsletter_public_processes", force: :cascade do |t|
+    t.bigint "management_newsletter_id", null: false
+    t.bigint "process_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["management_newsletter_id", "process_id"], name: "index_mnpp_on_newsletter_public_process", unique: true
+    t.index ["management_newsletter_id"], name: "index_mnpp_on_newsletter_id"
+    t.index ["process_id"], name: "index_management_newsletter_public_processes_on_process_id"
+  end
+
+  create_table "management_newsletters", force: :cascade do |t|
+    t.string "status", default: "pending"
+    t.datetime "sent_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_management_newsletters_on_created_at"
+    t.index ["status"], name: "index_management_newsletters_on_status"
+  end
+
   create_table "managers", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.index ["user_id"], name: "index_managers_on_user_id"
@@ -1963,6 +2012,14 @@ ActiveRecord::Schema[7.0].define(version: 2025_10_07_163000) do
   add_foreign_key "legislators", "users"
   add_foreign_key "locks", "users"
   add_foreign_key "machine_learning_jobs", "users"
+  add_foreign_key "management_newsletter_debates", "debates"
+  add_foreign_key "management_newsletter_debates", "management_newsletters"
+  add_foreign_key "management_newsletter_preview_processes", "legislation_processes", column: "process_id"
+  add_foreign_key "management_newsletter_preview_processes", "management_newsletters"
+  add_foreign_key "management_newsletter_proposals", "management_newsletters"
+  add_foreign_key "management_newsletter_proposals", "proposals"
+  add_foreign_key "management_newsletter_public_processes", "legislation_processes", column: "process_id"
+  add_foreign_key "management_newsletter_public_processes", "management_newsletters"
   add_foreign_key "managers", "users"
   add_foreign_key "moderators", "users"
   add_foreign_key "notifications", "users"

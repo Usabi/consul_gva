@@ -61,6 +61,8 @@ class Budget
     end
 
     def is_supported?
+      return false if heading.min_supports.nil? || heading.min_supports.zero?
+
       total_votes >= heading.min_supports
     end
 

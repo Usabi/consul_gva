@@ -7,3 +7,10 @@ RSpec.configure do |config|
   # changes and when upgrading to a newer version of CONSUL DEMOCRACY
   config.filter_run_excluding consul: true
 end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end

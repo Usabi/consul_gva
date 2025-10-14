@@ -1,0 +1,75 @@
+<td style="padding-bottom: 20px; padding-left: 10px;">
+  <h2 style="font-family: 'Roboto', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif;font-size: 24px;font-weight: normal;line-height: 32px; padding-left: 12px;"><%= "#{t('admin.management_newsletters.mailer.subject')} (#{Date.current})" %></h2>
+  <p><%= t("admin.management_newsletters.mailer.intro") %></p>
+  <% if @management_newsletter.most_supported_proposals.any? %>
+    <h3 style="font-family: 'Roboto', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif; font-size: 27px; font-weight: 700; line-height: 38px; margin-bottom: 15px;">
+      <%= t("admin.management_newsletters.show.most_supported_proposals") %>
+    </h3>
+    <ul style="list-style: none; padding-left: 0; margin-bottom: 30px;">
+      <% @management_newsletter.most_supported_proposals.each do |proposal| %>
+        <li style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 3px solid #007bff;">
+          <strong>
+            <%= link_to proposal.title, admin_proposal_url(proposal), style: "color: #004a83; text-decoration: none;" %>
+          </strong>
+          <br>
+          <span style="color: #666; font-size: 14px;">
+            <%= t("admin.management_newsletters.show.supports", count: proposal.votes_for.size) %>
+          </span>
+        </li>
+      <% end %>
+      <li><%= link_to t("admin.management_newsletters.show.all_proposals"), admin_proposals_url %>
+    </ul>
+  <% end %>
+
+  <% if @management_newsletter.active_debates.any? %>
+    <h3 style="font-family: 'Roboto', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif; font-size: 27px; font-weight: 700; line-height: 38px; margin-bottom: 15px;">
+      <%= t("admin.management_newsletters.show.most_active_debates") %>
+    </h3>
+    <ul style="list-style: none; padding-left: 0; margin-bottom: 30px;">
+      <% @management_newsletter.active_debates.each do |debate| %>
+        <li style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 3px solid #007bff;">
+          <strong>
+            <%= link_to debate.title, admin_debate_url(debate), style: "color: #004a83; text-decoration: none;" %>
+          </strong>
+          <br>
+          <span style="color: #666; font-size: 14px;">
+            <%= t("admin.management_newsletters.show.comments", count: debate.comments_count) %>
+          </span>
+        </li>
+      <% end %>
+      <li><%= link_to t("admin.management_newsletters.show.all_debates"), admin_debates_url %>
+    </ul>
+  <% end %>
+
+  <% if @management_newsletter.preview_processes.any? %>
+    <h3 style="font-family: 'Roboto', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif; font-size: 27px; font-weight: 700; line-height: 38px; margin-bottom: 15px;">
+      <%= t("admin.management_newsletters.show.preview_processes") %>
+    </h3>
+    <ul style="list-style: none; padding-left: 0; margin-bottom: 30px;">
+      <% @management_newsletter.preview_processes.each do |process| %>
+        <li style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 3px solid #007bff;">
+          <strong>
+            <%= link_to process.title, admin_legislation_process_url(process), style: "color: #004a83; text-decoration: none;" %>
+          </strong>
+        </li>
+      <% end %>
+      <li><%= link_to t("admin.management_newsletters.show.all_processes"), admin_legislation_processes_url %></li>
+    </ul>
+  <% end %>
+
+  <% if @management_newsletter.public_processes.any? %>
+    <h3 style="font-family: 'Roboto', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif; font-size: 27px; font-weight: 700; line-height: 38px; margin-bottom: 15px;">
+      <%= t("admin.management_newsletters.show.public_processes") %>
+    </h3>
+    <ul style="list-style: none; padding-left: 0; margin-bottom: 30px;">
+      <% @management_newsletter.public_processes.each do |process| %>
+        <li style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 3px solid #007bff;">
+          <strong>
+            <%= link_to process.title, admin_legislation_process_url(process), style: "color: #004a83; text-decoration: none;" %>
+          </strong>
+        </li>
+      <% end %>
+      <li><%= link_to t("admin.management_newsletters.show.all_processes"), admin_legislation_processes_url %></li>
+    </ul>
+  <% end %>
+</td>

@@ -1,0 +1,113 @@
+<div>
+  <%= back_link_to admin_management_newsletters_path %>
+</div>
+
+<h1 class="inline-block"><%= t("admin.management_newsletters.show.title") %></h1>
+<% if can?(:manage, @management_newsletter) && (@management_newsletter.pending? || @management_newsletter.failed?) %>
+  <div class="float-right">
+    <%= link_to t("admin.management_newsletters.show.resend"),
+                resend_admin_management_newsletter_path(@management_newsletter),
+                class: "button hollow" %>
+  </div>
+<% end %>
+
+<div class="small-12 column callout highlight">
+  <p><strong><%= t("admin.management_newsletters.show.created_at") %>:</strong>
+             <%= l @management_newsletter.created_at.to_datetime, format: :long %></p>
+  <p><strong><%= t("admin.management_newsletters.show.status") %>:</strong>
+    <span class="label <%= @management_newsletter.status_class %>">
+      <%= t("admin.management_newsletters.index.#{@management_newsletter.status}") %>
+    </span>
+  </p>
+  <% if @management_newsletter.sent_at %>
+    <p><strong><%= t("admin.management_newsletters.show.sent_at") %>:</strong>
+      <%= l @management_newsletter.sent_at.to_datetime, format: :long %></p>
+  <% end %>
+</div>
+
+<div class="small-12 column">
+  <strong><%= t("admin.newsletters.show.body") %></strong>
+  <p class="help-text" id="phase-description-help-text">
+    <%= t("admin.newsletters.show.body_help_text") %>
+  </p>
+</div>
+
+<div class="newsletter-body-content">
+  <%= render "layouts/mailer_header" %>
+
+  <table cellpadding="0" cellspacing="0" border="0">
+    <tbody>
+      <tr>
+        <td>
+          <h2><%= "#{t('admin.management_newsletters.mailer.subject')} (#{Time.zone.now.to_date})" %></h2>
+          <p><%= t("admin.management_newsletters.mailer.intro") %></p>
+          <% if @management_newsletter.most_supported_proposals.any? %>
+            <h3>
+              <%= t("admin.management_newsletters.show.most_supported_proposals") %>
+            </h3>
+            <ul>
+              <% @management_newsletter.most_supported_proposals.each do |proposal| %>
+                <li class="background">
+                  <strong><%= link_to proposal.title, admin_proposal_path(proposal) %></strong>
+                  <br>
+                  <span>
+                    <%= t("admin.management_newsletters.show.supports", count: proposal.votes_for.size) %>
+                  </span>
+                </li>
+              <% end %>
+              <li><%= link_to t("admin.management_newsletters.show.all_proposals"), admin_proposals_path %>
+            </ul></li>
+          <% end %>
+
+          <% if @management_newsletter.active_debates.any? %>
+            <h3>
+              <%= t("admin.management_newsletters.show.most_active_debates") %>
+            </h3>
+            <ul>
+              <% @management_newsletter.active_debates.each do |debate| %>
+                <li class="background">
+                  <strong><%= link_to debate.title, admin_debate_path(debate) %></strong>
+                  <br>
+                  <span>
+                    <%= t("admin.management_newsletters.show.comments", count: debate.comments_count) %>
+                  </span>
+                </li>
+              <% end %>
+              <li><%= link_to t("admin.management_newsletters.show.all_debates"), admin_debates_path %>
+            </ul></li>
+          <% end %>
+
+          <% if @management_newsletter.preview_processes.any? %>
+            <h3>
+              <%= t("admin.management_newsletters.show.preview_processes") %>
+            </h3>
+            <ul>
+              <% @management_newsletter.preview_processes.each do |process| %>
+                <li class="background">
+                  <strong><%= link_to process.title, admin_legislation_process_path(process) %></strong>
+                </li>
+              <% end %>
+              <li><%= link_to t("admin.management_newsletters.show.all_processes"), admin_legislation_processes_path %></li>
+            </ul>
+          <% end %>
+
+          <% if @management_newsletter.public_processes.any? %>
+            <h3>
+              <%= t("admin.management_newsletters.show.public_processes") %>
+            </h3>
+            <ul>
+              <% @management_newsletter.public_processes.each do |process| %>
+                <li class="background">
+                  <strong><%= link_to process.title, admin_legislation_process_path(process) %></strong>
+                </li>
+              <% end %>
+              <li><%= link_to t("admin.management_newsletters.show.all_processes"), admin_legislation_processes_path %></li>
+            </ul>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <%= render "layouts/mailer_footer" %>
+</div>

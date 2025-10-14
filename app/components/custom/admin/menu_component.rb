@@ -37,8 +37,12 @@ class Admin::MenuComponent
       [:councils, :processes].include?(controller_name.to_sym) || controller_name.start_with?("legislation::")
     end
 
+    def management_newsletters?
+      controller_name == "management_newsletters"
+    end
+
     def messages_sections
-      %w[bulletins newsletters admin_notifications system_emails emails_download citizen_opinions]
+      %w[bulletins newsletters admin_notifications management_newsletters system_emails emails_download citizen_opinions]
     end
 
     def key_systems_link
@@ -126,6 +130,14 @@ class Admin::MenuComponent
       ]
     end
 
+    def management_newsletters_link
+      [
+        t("admin.menu.management_newsletters"),
+        admin_management_newsletters_path,
+        management_newsletters?
+      ]
+    end
+
     def citizenship_mailbox_link
       [
         t("admin.menu.citizenship_mailbox"),
@@ -140,6 +152,7 @@ class Admin::MenuComponent
           bulletins_link,
           newsletters_link,
           admin_notifications_link,
+          management_newsletters_link,
           system_emails_link,
           emails_download_link,
           citizenship_mailbox_link,

@@ -1,0 +1,61 @@
+<h2 class="inline-block"><%= t("admin.management_newsletters.index.title") %></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= t("admin.management_newsletters.index.created_at") %></th>
+      <th><%= t("admin.management_newsletters.index.status") %></th>
+      <th><%= t("admin.management_newsletters.index.sent_at") %></th>
+      <th><%= t("admin.management_newsletters.index.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @management_newsletters.last(25).each do |newsletter| %>
+      <tr>
+        <td><%= l newsletter.created_at.to_datetime, format: :long %></td>
+        <td>
+          <span class="label <%= newsletter.status_class %>">
+            <%= t("admin.management_newsletters.index.#{newsletter.status}") %>
+          </span>
+        </td>
+        <td><%= l newsletter.sent_at.to_datetime, format: :long if newsletter.sent_at %></td>
+        <td>
+          <%= link_to t("admin.management_newsletters.index.view"),
+                      admin_management_newsletter_path(newsletter),
+                      class: "button hollow" %>
+          <% if newsletter.pending? || newsletter.failed? %>
+            <%= link_to t("admin.management_newsletters.index.resend"),
+                        resend_admin_management_newsletter_path(newsletter),
+                        method: :post,
+                        class: "button hollow alert",
+                        data: { confirm: t("admin.management_newsletters.index.confirm_resend") } %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @management_newsletters %>
+
+<hr>
+
+<h3><%= t("admin.management_newsletters.configuration.title") %></h3>
+
+<% freq = Setting["management_newsletter_frequency"].presence || "weekly" %>
+<%= form_with url: update_frequency_admin_management_newsletters_path, method: :post, local: true do |f| %>
+  <div>
+    <label>
+      <input type="radio" name="frequency" value="daily" <%= "checked" if freq == "daily" %> >
+      <%= t("admin.management_newsletters.configuration.daily") %>
+    </label>
+  </div>
+  <div>
+    <label>
+      <input type="radio" name="frequency" value="weekly" <%= "checked" if freq == "weekly" %>>
+      <%= t("admin.management_newsletters.configuration.weekly") %>
+    </label>
+  </div>
+
+  <%= f.submit t("admin.management_newsletters.configuration.save"), class: "button" %>
+<% end %>
