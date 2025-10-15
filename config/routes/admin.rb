@@ -47,6 +47,10 @@ namespace :admin do
     end
 
     resources :proposals, only: [:index, :show, :update] do
+      collection do
+        get :successful
+      end
+
       member do
         patch :select
         patch :deselect
@@ -207,7 +211,7 @@ namespace :admin do
         end
       end
 
-      resources :questions, shallow: true do
+      resources :questions, except: :index, shallow: true do
         resources :options, except: [:index, :show], controller: "questions/options", shallow: false
         resources :options, only: [], controller: "questions/options" do
           resources :images, controller: "questions/options/images"

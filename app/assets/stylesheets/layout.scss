@@ -153,10 +153,6 @@ button,
   color: $color-alert;
 }
 
-.postfix.button {
-  padding: 0;
-}
-
 .clear {
   clear: both;
 }
@@ -234,12 +230,12 @@ button,
 .menu.simple {
   border-bottom: 1px solid $border;
   clear: both;
-  margin-bottom: calc(#{$line-height} / 2);
+  margin-bottom: calc($line-height / 2);
 
   li {
     font-size: $base-font-size;
     margin-bottom: 0;
-    margin-right: calc(#{$line-height} / 2);
+    margin-right: calc($line-height / 2);
 
     @include breakpoint(medium) {
       margin-right: $line-height * 1.5;
@@ -264,7 +260,7 @@ button,
     }
 
     &:not(.is-active) {
-      margin-bottom: calc(#{$line-height} / 3);
+      margin-bottom: calc($line-height / 3);
     }
   }
 
@@ -322,7 +318,7 @@ button,
 }
 
 .close-button {
-  top: calc(#{$line-height} / 2);
+  top: calc($line-height / 2);
 }
 
 .back,
@@ -330,7 +326,7 @@ button,
   clear: both;
   color: $text-medium;
   display: inline-block;
-  padding-right: calc(#{$line-height} / 2);
+  padding-right: calc($line-height / 2);
 }
 
 .back:not([class^="icon-"]) {
@@ -386,7 +382,7 @@ button,
 }
 
 .button.float-right ~ .button.float-right {
-  margin: 0 calc(#{$line-height} / 2);
+  margin: 0 calc($line-height / 2);
 }
 
 .pagination .current {
@@ -670,13 +666,13 @@ body > header,
 .submenu {
   border-bottom: 1px solid $border;
   clear: both;
-  margin-bottom: calc(#{$line-height} / 2);
+  margin-bottom: calc($line-height / 2);
 
   a {
     @include text-colored-link;
     display: inline-block;
     font-weight: bold;
-    margin-right: calc(#{$line-height} / 2);
+    margin-right: calc($line-height / 2);
     position: relative;
     text-align: left;
 
@@ -764,7 +760,7 @@ footer {
 .subfooter {
   border-top: 1px solid $text-light;
   font-size: $small-font-size;
-  padding-top: calc(#{$line-height} / 2);
+  padding-top: calc($line-height / 2);
 
   .legal {
     display: inline-block;
@@ -815,8 +811,8 @@ footer {
   display: inline-block;
   font-size: rem-calc(16);
   font-weight: bold;
-  margin: -1px 0 calc(#{$line-height} / 2);
-  padding-top: calc(#{$line-height} / 4);
+  margin: -1px 0 calc($line-height / 2);
+  padding-top: calc($line-height / 4);
   text-transform: uppercase;
 }
 
@@ -877,9 +873,9 @@ footer {
     background: $body-background;
     box-decoration-break: clone;
     font-weight: bold;
-    padding: 0 calc(#{$line-height} / 2);
+    padding: 0 calc($line-height / 2);
     position: relative;
-    top: calc(#{-$line-height} / 2);
+    top: calc(-1 * $line-height / 2);
   }
 }
 
@@ -935,7 +931,7 @@ form {
   }
 
   [type=file] {
-    margin: calc(#{$line-height} / 2) 0 calc(#{$line-height} / 2) calc(#{$line-height} / 4);
+    margin: calc($line-height / 2) 0 calc($line-height / 2) calc($line-height / 4);
   }
 
   .cke {
@@ -1015,10 +1011,6 @@ form {
     padding-top: $line-height;
     width: 100%;
   }
-}
-
-.translation-locale {
-  padding-top: $line-height;
 }
 
 // 07. Callout
@@ -1110,7 +1102,7 @@ form {
   background: $alert-bg;
   color: $color-alert;
   display: inline-block;
-  margin: 0 calc(#{$line-height} / 4);
+  margin: 0 calc($line-height / 4);
 
   a {
     color: $color-alert;
@@ -1132,7 +1124,7 @@ form {
 
   select {
     height: $line-height * 2;
-    margin-right: calc(#{$line-height} / 2);
+    margin-right: calc($line-height / 2);
   }
 
   .final-votes-info {
@@ -1140,10 +1132,10 @@ form {
     border: 1px solid $warning-border;
     color: $color-warning;
     margin-top: $line-height;
-    padding: calc(#{$line-height} / 2);
+    padding: calc($line-height / 2);
 
     ul li {
-      margin: calc(#{$line-height} / 2) 0;
+      margin: calc($line-height / 2) 0;
     }
 
     .icon-box {
@@ -1190,9 +1182,9 @@ form {
 .notification {
   border: 1px solid $border;
   display: block;
-  margin-bottom: calc(#{$line-height} / 4);
+  margin-bottom: calc($line-height / 4);
   margin-left: $line-height;
-  padding: calc(#{$line-height} / 2) $line-height;
+  padding: calc($line-height / 2) $line-height;
   position: relative;
 
   @include breakpoint(medium) {
@@ -1286,19 +1278,9 @@ form {
       width: 14px;
     }
   }
-
-  .map-attributtion {
-    height: auto;
-    visibility: visible;
-  }
 }
 
 .map-marker {
-  visibility: hidden;
-}
-
-.map-attributtion {
-  height: 0;
   visibility: hidden;
 }
 
@@ -1354,7 +1336,7 @@ table {
 
     td {
       line-height: $line-height;
-      padding: calc(#{$line-height} / 2) calc(#{$line-height} / 4);
+      padding: calc($line-height / 2) calc($line-height / 4);
     }
 
     &:nth-child(odd) {
@@ -1474,7 +1456,7 @@ table {
 
   @include breakpoint(medium) {
     .left + .left {
-      margin-left: calc(#{$line-height} / 2);
+      margin-left: calc($line-height / 2);
     }
   }
 
@@ -1506,7 +1488,7 @@ table {
     background: #f6f6f6;
     font-weight: bold;
     line-height: rem-calc(20);
-    padding-top: calc(#{$line-height} / 4);
+    padding-top: calc($line-height / 4);
     text-transform: uppercase;
     vertical-align: top;
 
@@ -1538,7 +1520,7 @@ table {
 
   .button + form {
     display: inline-block;
-    margin-left: calc(#{$line-height} / 2);
+    margin-left: calc($line-height / 2);
   }
 
   .verification-list {
@@ -1587,7 +1569,7 @@ table {
       color: $color-info;
       font-size: rem-calc(24);
       margin-left: -27px;
-      padding: 0 calc(#{$line-height} / 2);
+      padding: 0 calc($line-height / 2);
       position: absolute;
       top: -12px;
     }
@@ -1618,7 +1600,7 @@ table {
 
   .comment {
     line-height: $list-lineheight;
-    margin: calc(#{$line-height} / 4) 0;
+    margin: calc($line-height / 4) 0;
     position: relative;
 
     p {
@@ -1638,7 +1620,7 @@ table {
 
   img,
   svg {
-    margin-#{$global-right}: calc(#{$line-height} / 2);
+    margin-#{$global-right}: calc($line-height / 2);
   }
 
   .reply {
@@ -1646,8 +1628,8 @@ table {
     border-left: 0;
     border-right: 0;
     font-size: $small-font-size;
-    margin: calc(#{$line-height} / 4) 0;
-    padding: calc(#{$line-height} / 4);
+    margin: calc($line-height / 4) 0;
+    padding: calc($line-height / 4);
     position: relative;
 
     &:empty {
@@ -1660,7 +1642,7 @@ table {
     }
 
     .comment-form form {
-      margin-top: calc(#{$line-height} / 2);
+      margin-top: calc($line-height / 2);
     }
   }
 
@@ -1713,9 +1695,9 @@ table {
   }
 
   .comment-user {
-    margin-top: calc(#{$line-height} / 4);
+    margin-top: calc($line-height / 4);
     overflow: hidden;
-    padding: calc(#{$line-height} / 4) 0;
+    padding: calc($line-height / 4) 0;
 
     &.level-1,
     &.level-2,
@@ -1726,7 +1708,7 @@ table {
     &.is-admin,
     &.is-moderator {
       background: rgba(70, 219, 145, 0.3);
-      padding: calc(#{$line-height} / 4) calc(#{$line-height} / 2);
+      padding: calc($line-height / 4) calc($line-height / 2);
     }
 
     &.level-1 {
@@ -1746,7 +1728,7 @@ table {
 }
 
 .comment-list {
-  margin: calc(#{$line-height} / 4) 0;
+  margin: calc($line-height / 4) 0;
 
   .comment-list {
     border-left: 1px dashed $border;
@@ -1867,7 +1849,7 @@ table {
 .public-interests {
 
   li {
-    margin-right: calc(#{$line-height} / 4);
+    margin-right: calc($line-height / 4);
 
     span {
       background: none;
@@ -1880,10 +1862,10 @@ table {
 
   .follow-list {
     list-style-type: circle;
-    padding: calc(#{$line-height} / 2);
+    padding: calc($line-height / 2);
 
     li {
-      margin-bottom: calc(#{$line-height} / 2);
+      margin-bottom: calc($line-height / 2);
       margin-left: $line-height;
     }
   }
@@ -1945,7 +1927,7 @@ table {
   }
 
   .card {
-    padding: calc(#{$line-height} / 2);
+    padding: calc($line-height / 2);
 
     .card {
       border: 0;
@@ -1988,8 +1970,7 @@ table {
   }
 
   .debates-inner,
-  .proposals-inner,
-  .budget-investments-inner {
+  .proposals-inner {
     max-height: rem-calc(350);
 
     @include breakpoint(small) {
@@ -2029,8 +2010,7 @@ table {
     }
 
     .debates-inner,
-    .proposals-inner,
-    .budget-investments-inner {
+    .proposals-inner {
       border: 1px solid $border;
       margin-right: $line-height;
       max-height: rem-calc(500);
@@ -2059,7 +2039,7 @@ table {
   background: #fafafa;
   margin-bottom: $line-height;
   margin-top: rem-calc(-25);
-  padding: $line-height 0 calc(#{$line-height} / 2);
+  padding: $line-height 0 calc($line-height / 2);
 
   @include breakpoint(medium) {
     padding-top: 0;
@@ -2087,8 +2067,8 @@ table {
     background: $body-background;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
     display: block;
-    margin-bottom: calc(#{$line-height} / 4);
-    padding: calc(#{$line-height} / 2);
+    margin-bottom: calc($line-height / 4);
+    padding: calc($line-height / 2);
     z-index: 1;
 
     &:hover:not(:focus-within) {
@@ -2120,8 +2100,8 @@ table {
   background: $highlight-soft;
   border: 1px solid $highlight;
   display: block;
-  margin: calc(#{$line-height} / 2) 0;
-  padding: calc(#{$line-height} / 2);
+  margin: calc($line-height / 2) 0;
+  padding: calc($line-height / 2);
   position: relative;
 
   a {
@@ -2216,8 +2196,8 @@ table {
 
     &::before {
       $button-padding-left: nth($button-padding, 2);
-      margin-left: calc(#{-$button-padding-left} / 2);
-      margin-right: calc(#{$button-padding-left} / 2);
+      margin-left: calc(-1 * $button-padding-left / 2);
+      margin-right: calc($button-padding-left / 2);
     }
   }
 }
@@ -2248,8 +2228,8 @@ table {
     margin-top: rem-calc(-48);
 
     @include breakpoint($global-width) {
-      margin-left: calc(#{$full-width-margin});
-      margin-right: calc(#{$full-width-margin});
+      margin-left: calc($full-width-margin);
+      margin-right: calc($full-width-margin);
     }
   }
 
@@ -2285,7 +2265,7 @@ table {
 
     p,
     .sdg-tag-list {
-      padding: 0 calc(#{$line-height} / 4);
+      padding: 0 calc($line-height / 4);
     }
   }
 
@@ -2302,7 +2282,7 @@ table {
       @include brand-border(top, 4px);
       display: inline-block;
       margin-bottom: 0;
-      padding: calc(#{$line-height} / 2) 0;
+      padding: calc($line-height / 2) 0;
     }
   }
 
@@ -2324,7 +2304,7 @@ table {
       border-bottom: 1px solid $border;
       display: block;
       font-size: $small-font-size;
-      margin: $line-height 0 calc(#{$line-height} / 2);
+      margin: $line-height 0 calc($line-height / 2);
       text-align: right;
       width: 100%;
     }
@@ -2379,7 +2359,7 @@ table {
     color: #fff;
     font-size: rem-calc(24);
     line-height: rem-calc(24);
-    padding: calc(#{$line-height} / 4) calc(#{$line-height} / 2);
+    padding: calc($line-height / 4) calc($line-height / 2);
     position: absolute;
     text-transform: uppercase;
     width: 100%;
@@ -2404,7 +2384,7 @@ table {
       display: inline-block;
       font-size: $small-font-size;
       font-weight: bold;
-      margin-bottom: calc(#{$line-height} / 4);
+      margin-bottom: calc($line-height / 4);
       padding: rem-calc(4) rem-calc(8);
     }
   }
@@ -2419,7 +2399,7 @@ table {
   .date-of-birth {
     select {
       float: left;
-      margin-right: calc(#{$line-height} / 4);
+      margin-right: calc($line-height / 4);
       width: 30%;
     }
   }

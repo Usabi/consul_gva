@@ -14,9 +14,9 @@ module Verifications
     expect(page).to have_content "Your account is already verified"
   end
 
-  def officing_verify_residence
+  def officing_verify_residence(document_number: "12345678Z")
     select "DNI", from: "residence_document_type"
-    fill_in "residence_document_number", with: "12345678Z"
+    fill_in "residence_document_number", with: document_number
     fill_in "residence_year_of_birth", with: "1980"
 
     click_button "Validate document"
