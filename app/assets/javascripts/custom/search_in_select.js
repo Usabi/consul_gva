@@ -12,7 +12,6 @@
       }).get();
 
       var selectedValue = $select.val();
-      debugger
       if (selectedValue) {
         var selectedOption = allOptions.find(function(opt) {
           return opt.value === selectedValue;
