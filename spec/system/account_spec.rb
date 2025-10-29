@@ -108,7 +108,7 @@ describe "Account" do
       expect(page).to have_field "Receive a summary of proposal notifications", checked: true
     end
 
-    scenario "Does not appear when the proposals process is disabled", consul: true do
+    scenario "Does not appear when the proposals process is disabled", :consul do
       Setting["process.proposals"] = false
 
       visit account_path

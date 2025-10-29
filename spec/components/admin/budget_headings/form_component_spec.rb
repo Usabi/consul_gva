@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe Admin::BudgetHeadings::FormComponent do
-  describe "geozone field" do
+  describe "geozone field", :consul do
     let(:heading) { create(:budget_heading) }
     let(:component) { Admin::BudgetHeadings::FormComponent.new(heading, path: "/", action: nil) }
     before { Setting["feature.map"] = true }

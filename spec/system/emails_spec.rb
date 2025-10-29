@@ -247,7 +247,7 @@ describe "Emails" do
       expect(email).to have_body_text(budget_path(budget))
     end
 
-    scenario "Unfeasible investment", consul: true do
+    scenario "Unfeasible investment", :consul do
       budget.update!(phase: "valuating")
       valuator = create(:valuator)
       investment = create(:budget_investment, author: author, budget: budget, valuators: [valuator])
@@ -269,7 +269,7 @@ describe "Emails" do
       expect(email).to have_body_text "This is not legal as stated in Article 34.9"
     end
 
-    scenario "Selected investment", consul: true do
+    scenario "Selected investment", :consul do
       author1 = create(:user)
       author2 = create(:user)
       author3 = create(:user)
@@ -291,7 +291,7 @@ describe "Emails" do
       expect(email).to deliver_to(investment.author.email)
     end
 
-    scenario "Unselected investment", consul: true do
+    scenario "Unselected investment", :consul do
       author1 = create(:user)
       author2 = create(:user)
       author3 = create(:user)

@@ -54,7 +54,7 @@ describe "Sessions" do
     expect(page).to have_current_path "/"
   end
 
-  scenario "Sign out does not redirect to POST requests URLs", consul: true do
+  scenario "Sign out does not redirect to POST requests URLs", :consul do
     login_as(create(:user))
 
     visit account_path

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Tenants", :admin, :seed_tenants, consul: true do
+describe "Tenants", :admin, :seed_tenants, :consul do
   before { allow(Tenant).to receive(:default_host).and_return("localhost") }
 
   describe "Create" do

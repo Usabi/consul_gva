@@ -14,7 +14,7 @@ describe "BudgetPolls", :with_frozen_time do
   end
 
   context "Offline" do
-    scenario "A citizen can cast a paper vote", consul: true do
+    scenario "A citizen can cast a paper vote", :consul do
       admin = create(:administrator).user
       login_through_form_as_officer(officer)
 
@@ -42,7 +42,7 @@ describe "BudgetPolls", :with_frozen_time do
       end
     end
 
-    scenario "A citizen cannot vote offline again", consul: true do
+    scenario "A citizen cannot vote offline again", :consul do
       login_through_form_as_officer(officer)
 
       visit new_officing_residence_path
@@ -62,7 +62,7 @@ describe "BudgetPolls", :with_frozen_time do
       end
     end
 
-    scenario "A citizen cannot vote online after voting offline", consul: true do
+    scenario "A citizen cannot vote online after voting offline", :consul do
       login_through_form_as_officer(officer)
 
       visit new_officing_residence_path
@@ -98,7 +98,7 @@ describe "BudgetPolls", :with_frozen_time do
       end
     end
     # TODO: revisar custom
-    scenario "A citizen cannot vote online again", consul: true do
+    scenario "A citizen cannot vote online again", :consul do
       login_as(user)
       visit budget_investment_path(budget, investment)
 
@@ -114,7 +114,7 @@ describe "BudgetPolls", :with_frozen_time do
       end
     end
 
-    scenario "A citizen cannot vote offline after voting online", consul: true do
+    scenario "A citizen cannot vote offline after voting online", :consul do
       login_as(user)
       visit budget_investment_path(budget, investment)
 

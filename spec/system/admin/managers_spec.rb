@@ -88,7 +88,7 @@ describe "Admin managers", :admin do
       expect(page).not_to have_content(manager1.email)
     end
 
-    scenario "Delete after searching" do
+    scenario "Delete after searching", :consul do
       fill_in "Search user by name or email", with: manager2.email
       click_button "Search"
 

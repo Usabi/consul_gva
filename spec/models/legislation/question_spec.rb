@@ -59,7 +59,7 @@ describe Legislation::Question do
     end
   end
 
-  describe "#first_question_id" do
+  describe "#first_question_id", :consul do
     let!(:question1) { create(:legislation_question) }
     let!(:question2) do
       create(:legislation_question, legislation_process_id: question1.legislation_process_id)

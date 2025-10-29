@@ -3,6 +3,57 @@ require "rails_helper"
 describe "Admin legislation questions", :admin do
   let!(:process) { create(:legislation_process, title: "An example legislation process") }
 
+  context "Create" do
+    scenario "Valid legislation question" do
+      visit admin_root_path
+
+      within("#side_menu") do
+        click_button "Legislation"
+        within("#legislation_menu") do
+          click_link "Legislation"
+        end
+      end
+
+      within("tr", text: "An example legislation process") { click_link "Edit" }
+      click_link "Debate"
+
+      click_link "Create question"
+
+      fill_in "Question", with: "Question 3"
+      fill_in_ckeditor "Description", with: "A little description about question 3"
+      click_button "Create question"
+
+      expect(page).to have_content "Question 3"
+    end
+  end
+
+  context "Update" do
+    scenario "Valid legislation question" do
+      create(:legislation_question, title: "Question 2", description: "Description 2", process: process)
+
+      visit admin_root_path
+
+      within("#side_menu") do
+        click_button "Legislation"
+        within("#legislation_menu") do
+          click_link "Legislation"
+        end
+      end
+
+      within("tr", text: "An example legislation process") { click_link "Edit" }
+      click_link "Debate"
+
+      click_link "Question 2"
+
+      fill_in "Question", with: "Question 2 edited"
+      fill_in_ckeditor "Description", with: "A little description about question 2 edited"
+      click_button "Save changes"
+
+      expect(page).to have_content "Question 2 edited"
+      expect(page).to have_ckeditor "Description", with: "A little description about question 2 edited"
+    end
+  end
+
   context "Legislation options" do
     let!(:question) { create(:legislation_question) }
 
@@ -56,7 +107,7 @@ describe "Admin legislation questions", :admin do
 
         find("#nested_question_options input").set("Opción 1")
 
-        select "English", from: :select_language
+        select "Eng", from: :select_language
 
         find("#nested_question_options input").set("Option 1")
 

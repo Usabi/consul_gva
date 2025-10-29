@@ -16,7 +16,7 @@ describe "Stats", :admin do
       expect(page).to have_content "VISITS\n5"
     end
 
-    scenario "Visits", consul: true do
+    scenario "Visits", :consul do
       visit admin_stats_path
       refresh
 
@@ -97,7 +97,7 @@ describe "Stats", :admin do
       expect(page).to have_content "TOTAL USERS\n1"
     end
 
-    scenario "Level 2 user Graph", consul: true do
+    scenario "Level 2 user Graph", :consul do
       create(:geozone)
       visit account_path
       click_link "Verify my account"

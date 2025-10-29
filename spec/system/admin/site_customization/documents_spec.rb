@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Documents", :admin do
-  scenario "Navigation", consul: true do
+  scenario "Navigation", :consul do
     visit admin_root_path
 
     within("#side_menu") do

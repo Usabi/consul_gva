@@ -785,7 +785,7 @@ describe Proposal do
       expect(Proposal.for_summary.values.flatten).to eq [proposal]
     end
 
-    it "does not return proposals created more than a week ago", consul: true do
+    it "does not return proposals created more than a week ago", :consul do
       create(:tag, :category, name: "culture")
       create(:proposal, tag_list: "culture", created_at: 8.days.ago)
 

@@ -6,7 +6,7 @@ describe "Multitenancy management mode", :admin do
     Setting["org_name"] = "CONSUL"
   end
 
-  scenario "renders expected content for multitenancy manage mode in admin section", consul: true do
+  scenario "renders expected content for multitenancy manage mode in admin section", :consul do
     visit admin_root_path
 
     within ".top-links" do

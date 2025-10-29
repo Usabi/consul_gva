@@ -9,7 +9,7 @@ describe Attachable do
     expect(file_path).not_to include "tenants"
   end
 
-  it "stores tenant attachments in a folder for the tenant" do
+  it "stores tenant attachments in a folder for the tenant", :consul do
     allow(Tenant).to receive(:current_schema).and_return("image-master")
 
     expect(build(:image).file_path).to include "storage/tenants/image-master/"

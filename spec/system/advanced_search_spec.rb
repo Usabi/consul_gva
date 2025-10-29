@@ -66,7 +66,7 @@ describe "Advanced search" do
 
   context "Search by date" do
     context "Predefined date ranges" do
-      scenario "Last day", consul: true do
+      scenario "Last day", :consul do
         bdgt_invest1 = create(:budget_investment, heading: heading, created_at: 1.minute.ago)
         bdgt_invest2 = create(:budget_investment, heading: heading, created_at: 1.hour.ago)
         bdgt_invest3 = create(:budget_investment, heading: heading, created_at: 2.days.ago)
@@ -126,7 +126,7 @@ describe "Advanced search" do
         end
       end
 
-      scenario "Last year", consul: true do
+      scenario "Last year", :consul do
         bdgt_invest1 = create(:budget_investment, heading: heading, created_at: 300.days.ago)
         bdgt_invest2 = create(:budget_investment, heading: heading, created_at: 350.days.ago)
         bdgt_invest3 = create(:budget_investment, heading: heading, created_at: 370.days.ago)
@@ -170,7 +170,7 @@ describe "Advanced search" do
       end
     end
 
-    scenario "Search by custom invalid date range", consul: true do
+    scenario "Search by custom invalid date range", :consul do
       proposal1 = create(:proposal, created_at: 2.days.ago)
       proposal2 = create(:proposal, created_at: 3.days.ago)
       proposal3 = create(:proposal, created_at: 9.days.ago)
@@ -193,7 +193,7 @@ describe "Advanced search" do
       end
     end
 
-    scenario "Search by multiple filters", consul: true do
+    scenario "Search by multiple filters", :consul do
       Setting["feature.sdg"] = true
       Setting["sdg.process.budgets"] = true
 
@@ -241,7 +241,7 @@ describe "Advanced search" do
       end
     end
 
-    scenario "Maintain custom date search criteria", consul: true do
+    scenario "Maintain custom date search criteria", :consul do
       visit proposals_path
       click_button "Advanced search"
 
@@ -271,7 +271,7 @@ describe "Advanced search" do
       Setting["sdg.process.budgets"] = true
     end
 
-    scenario "Search by goal", consul: true do
+    scenario "Search by goal", :consul do
       create(:budget_investment, title: "Purifier", heading: heading, sdg_goals: [SDG::Goal[6]])
       create(:budget_investment, title: "Hospital", heading: heading, sdg_goals: [SDG::Goal[3]])
 
@@ -303,7 +303,7 @@ describe "Advanced search" do
                                   enabled_options: ["Select a target"] + goal_6_targets
     end
 
-    scenario "Search by target", consul: true do
+    scenario "Search by target", :consul do
       create(:debate, title: "Unrelated")
       create(:debate, title: "High school", sdg_targets: [SDG::Target["4.1"]])
       create(:debate, title: "Preschool", sdg_targets: [SDG::Target["4.2"]])

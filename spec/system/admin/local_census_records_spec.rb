@@ -79,7 +79,7 @@ describe "Admin local census records", :admin do
       expect(page).to have_content "can't be blank", count: 4
     end
 
-    scenario "Should show successful notice after create valid record" do
+    scenario "Should show successful notice after create valid record", :consul do
       visit new_admin_local_census_record_path
 
       select "DNI", from: :local_census_record_document_type
@@ -109,7 +109,7 @@ describe "Admin local census records", :admin do
       expect(page).to have_content "can't be blank", count: 1
     end
 
-    scenario "Should show successful notice after valid update", consul: true do
+    scenario "Should show successful notice after valid update", :consul do
       visit edit_admin_local_census_record_path(local_census_record)
 
       select "Passport", from: :local_census_record_document_type

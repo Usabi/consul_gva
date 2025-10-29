@@ -302,7 +302,7 @@ describe "Budget Investments" do
         end
       end
 
-      scenario "unselected", consul: true do
+      scenario "unselected", :consul do
         investment1 = create(:budget_investment, :unselected, heading: heading)
         investment2 = create(:budget_investment, :selected, heading: heading)
 
@@ -1048,7 +1048,7 @@ describe "Budget Investments" do
     end
   end
 
-  scenario "Show (not selected budget investment)", consul: true do
+  scenario "Show (not selected budget investment)", :consul do
     budget.update!(phase: "balloting")
 
     investment = create(:budget_investment,

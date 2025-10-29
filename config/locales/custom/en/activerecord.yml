@@ -25,12 +25,14 @@ en:
         selected: "Mark as selected"
         duplicated_of_proposal_id: "Duplicated proposal of"
         terms_of_service: "Terms of service"
-        video_url: "External video link"
+        video_url: "External video URL"
   models:
     legisltation/councils:
       one: "Council"
       other: "Councils"
   attributes:
+    budget/heading:
+      min_supports: "Minimum number of supports"
     legislation/council:
       title: Title
       active: Active

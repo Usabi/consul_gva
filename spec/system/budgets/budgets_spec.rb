@@ -178,7 +178,7 @@ describe "Budgets" do
     end
   end
 
-  scenario "Index shows only published phases", consul: true do
+  scenario "Index shows only published phases", :consul do
     budget.update!(phase: :finished)
     phases = budget.phases
 
@@ -259,7 +259,7 @@ describe "Budgets" do
       Setting["feature.map"] = true
     end
 
-    scenario "Display investment's map location markers", consul: true do
+    scenario "Display investment's map location markers", :consul do
       create_list(:budget_investment, 3, :with_map_location, heading: heading)
 
       visit budgets_path
@@ -269,7 +269,7 @@ describe "Budgets" do
       end
     end
 
-    scenario "Display all investment's map location if there are no selected", consul: true do
+    scenario "Display all investment's map location if there are no selected", :consul do
       budget.update!(phase: :publishing_prices)
       create_list(:budget_investment, 4, :with_map_location, heading: heading)
 
@@ -280,7 +280,7 @@ describe "Budgets" do
       end
     end
 
-    scenario "Display only selected investment's map location from publishing prices phase", consul: true do
+    scenario "Display only selected investment's map location from publishing prices phase", :consul do
       budget.update!(phase: :publishing_prices)
       create_list(:budget_investment, 2, :selected, :with_map_location, heading: heading)
       create_list(:budget_investment, 2, :with_map_location, heading: heading)
@@ -292,7 +292,7 @@ describe "Budgets" do
       end
     end
 
-    scenario "Skip invalid map markers", consul: true do
+    scenario "Skip invalid map markers", :consul do
       map_locations = []
 
       investment = create(:budget_investment, heading: heading)
@@ -320,7 +320,7 @@ describe "Budgets" do
       end
     end
 
-    scenario "when the marker clustering feature is enabled the map shows clusters instead of markers", consul: true do
+    scenario "when the marker clustering feature is enabled the map shows clusters instead of markers", :consul do
       Setting["map.feature.marker_clustering"] = true
       create_list(:budget_investment, 3, :selected, :with_map_location, heading: heading)
 

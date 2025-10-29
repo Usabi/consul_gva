@@ -9,6 +9,12 @@ describe "Public area translatable records" do
   end
 
   context "Globalize javascript interface" do
+    scenario "Highlight current locale" do
+      visit new_debate_path
+
+      expect_to_have_language_selected "Eng"
+    end
+
     scenario "Highlight new locale added" do
       visit new_proposal_path
 

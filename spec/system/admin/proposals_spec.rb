@@ -4,7 +4,7 @@ describe "Admin proposals", :admin do
   it_behaves_like "admin_milestoneable", :proposal, "admin_polymorphic_path"
 
   context "Index" do
-    scenario "Search", consul: true do
+    scenario "Search", :consul do
       create(:proposal, title: "Make Pluto a planet again")
       create(:proposal, title: "Build a monument to honour CONSUL developers")
 

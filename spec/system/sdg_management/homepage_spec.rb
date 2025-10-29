@@ -17,7 +17,7 @@ describe "SDG homepage configuration" do
       expect(page).to have_title "SDG content - Homepage configuration"
     end
 
-    scenario "Create card", consul: true do
+    scenario "Create card", :consul do
       visit sdg_management_homepage_path
       click_link "Create planning card"
 
@@ -56,7 +56,7 @@ describe "SDG homepage configuration" do
       end
     end
 
-    scenario "Create header card", consul: true do
+    scenario "Create header card", :consul do
       visit sdg_management_homepage_path
       click_link "Create header"
 

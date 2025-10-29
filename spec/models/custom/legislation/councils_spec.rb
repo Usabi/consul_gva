@@ -11,14 +11,14 @@ describe Legislation::Council do
       expect(council).to be_valid
     end
 
-    it "is not valid without a name" do
-      council.name = nil
+    it "is not valid without a title" do
+      council.title = nil
       expect(council).not_to be_valid
     end
 
     describe "translations" do
-      it "is not valid without a translated name" do
-        council.translations.first.name = nil
+      it "is not valid without a translated title" do
+        council.translations.first.title = nil
         expect(council).not_to be_valid
       end
     end
@@ -28,7 +28,7 @@ describe Legislation::Council do
     it "has many processes" do
       process1 = create(:legislation_process)
       process2 = create(:legislation_process)
-      
+
       council.processes << process1
       council.processes << process2
 
@@ -39,11 +39,11 @@ describe Legislation::Council do
     it "nullifies processes when destroyed" do
       process = create(:legislation_process)
       council.processes << process
-      
+
       council.destroy
 
       process.reload
-      expect(process.council_id).to be_nil
+      expect(process.council_id).to be(nil)
     end
   end
 
@@ -66,7 +66,7 @@ describe Legislation::Council do
     it "restores hidden council" do
       council.destroy
       council.restore
-      expect(council.hidden_at).to be_nil
+      expect(council.hidden_at).to be(nil)
     end
   end
 end

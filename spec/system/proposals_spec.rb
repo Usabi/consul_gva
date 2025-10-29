@@ -210,7 +210,7 @@ describe "Proposals" do
       end
     end
 
-    scenario "After using the browser's back button, social buttons will have one screen reader", consul: true do
+    scenario "After using the browser's back button, social buttons will have one screen reader", :consul do
       Setting["org_name"] = "CONSUL"
       proposal = create(:proposal)
       visit proposal_path(proposal)
@@ -237,7 +237,7 @@ describe "Proposals" do
     end
   end
 
-  describe "Show sticky support button on small screens", :small_window, consul: true do
+  describe "Show sticky support button on small screens", :small_window, :consul do
     scenario "On a first visit" do
       proposal = create(:proposal)
       visit proposal_path(proposal)
@@ -336,7 +336,7 @@ describe "Proposals" do
     expect(page).to have_css "meta[property='og:title'][content='#{proposal.title}']", visible: :hidden
   end
 
-  scenario "Create and publish", :with_frozen_time do
+  scenario "Create and publish", :with_frozen_time, :consul do
     author = create(:user)
     login_as(author)
 
@@ -794,7 +794,7 @@ describe "Proposals" do
   end
 
   describe "Proposal index order filters" do
-    scenario "Default order is hot_score", consul: true do
+    scenario "Default order is hot_score", :consul do
       best_proposal = create(:proposal, title: "Best proposal")
       best_proposal.update_column(:hot_score, 10)
       worst_proposal = create(:proposal, title: "Worst proposal")
@@ -1536,7 +1536,7 @@ describe "Proposals" do
       expect(medium_proposal.title).to appear_before(worst_proposal.title)
     end
 
-    scenario "Displays proposals from last week", consul: true do
+    scenario "Displays proposals from last week", :consul do
       create(:tag, :category, name: "culture")
       proposal1 = create(:proposal, tag_list: "culture", created_at: 1.day.ago)
       proposal2 = create(:proposal, tag_list: "culture", created_at: 5.days.ago)
@@ -1642,7 +1642,7 @@ describe "Successful proposals" do
       Setting["sdg.process.proposals"] = true
     end
 
-    scenario "create proposal with sdg related list" do
+    scenario "create proposal with sdg related list", :consul do
       login_as(user)
       visit new_proposal_path
       fill_in_new_proposal_title with: "A title for a proposal related with SDG related content"

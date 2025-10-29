@@ -280,7 +280,7 @@ describe "Polls" do
     let(:booth) { create(:poll_booth) }
     let(:officer) { create(:poll_officer) }
 
-    scenario "Already voted on booth cannot vote on website", consul: true do
+    scenario "Already voted on booth cannot vote on website", :consul do
       create(:poll_shift, officer: officer, booth: booth, date: Date.current, task: :vote_collection)
       create(:poll_officer_assignment, officer: officer, poll: poll, booth: booth, date: Date.current)
       question = create(:poll_question, :yes_no, poll: poll)
@@ -315,7 +315,7 @@ describe "Polls" do
   end
 
   context "Results and stats" do
-    scenario "Show poll results and stats if enabled and poll expired" do
+    scenario "Show poll results and stats if enabled and poll expired", :consul do
       poll = create(:poll, :expired, results_enabled: true, stats_enabled: true)
       user = create(:user)
 
@@ -334,7 +334,7 @@ describe "Polls" do
       expect(page).not_to have_content "Advanced statistics"
     end
 
-    scenario "Advanced stats enabled" do
+    scenario "Advanced stats enabled", :consul do
       poll = create(:poll, :expired, stats_enabled: true, advanced_stats_enabled: true)
 
       visit stats_poll_path(poll)

@@ -15,7 +15,7 @@ describe Layout::AdminLoginItemsComponent do
     expect(page).not_to be_rendered
   end
 
-  it "is not rendered when multitenancy_management_mode is enabled" do
+  it "is not rendered when multitenancy_management_mode is enabled", :consul do
     allow(Rails.application.config).to receive(:multitenancy_management_mode).and_return(true)
     user = create(:administrator).user
 

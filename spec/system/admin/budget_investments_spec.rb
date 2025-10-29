@@ -821,7 +821,7 @@ describe "Admin budget investments", :admin do
         end
       end
 
-      scenario "Sort by supports", consul: true do
+      scenario "Sort by supports", :consul do
         visit admin_budget_budget_investments_path(budget, sort_by: "supports", direction: "asc")
 
         expect("C Third Investment").to appear_before("A Second Investment")
@@ -853,7 +853,7 @@ describe "Admin budget investments", :admin do
         end
       end
 
-      scenario "Sort by supports", consul: true do
+      scenario "Sort by supports", :consul do
         visit admin_budget_budget_investments_path(budget, sort_by: "supports", direction: "desc")
 
         expect("B First Investment").to appear_before("A Second Investment")
@@ -885,7 +885,7 @@ describe "Admin budget investments", :admin do
         end
       end
 
-      scenario "Sort by supports", consul: true do
+      scenario "Sort by supports", :consul do
         visit admin_budget_budget_investments_path(budget, sort_by: "supports")
 
         expect("C Third Investment").to appear_before("A Second Investment")
@@ -1308,7 +1308,7 @@ describe "Admin budget investments", :admin do
     end
   end
 
-  context "Selecting", consul: true do
+  context "Selecting", :consul do
     let!(:unfeasible_bi) do
       create(:budget_investment, :unfeasible, budget: budget, title: "Unfeasible project")
     end
@@ -1404,7 +1404,7 @@ describe "Admin budget investments", :admin do
       expect(page).not_to have_content(feasible_vf_bi.title)
     end
 
-    scenario "Selecting an investment", consul: true do
+    scenario "Selecting an investment", :consul do
       visit admin_budget_budget_investments_path(budget)
 
       expect(page).to have_content "Unfeasible project"
@@ -1488,7 +1488,7 @@ describe "Admin budget investments", :admin do
     end
   end
 
-  context "Mark as visible to valuators", consul: true do
+  context "Mark as visible to valuators", :consul do
     let(:valuator) { create(:valuator) }
     let(:admin) { create(:administrator) }
 
@@ -1548,7 +1548,7 @@ describe "Admin budget investments", :admin do
       expect(page).not_to have_content investment2.title
     end
 
-    scenario "Unmark as visible to valuator", consul: true do
+    scenario "Unmark as visible to valuator", :consul do
       budget.update!(phase: "valuating")
 
       investment1.valuators << valuator
@@ -1653,7 +1653,7 @@ describe "Admin budget investments", :admin do
     end
   end
 
-  context "Selecting csv", :no_js, consul: true do
+  context "Selecting csv", :no_js, :consul do
     scenario "Downloading CSV file" do
       admin = create(:administrator, user: create(:user, username: "Admin"))
       valuator = create(:valuator, user: create(:user, username: "Valuator"))
@@ -1755,7 +1755,7 @@ describe "Admin budget investments", :admin do
       expect(page).to have_content(investment.title)
     end
 
-    scenario "Set cookie with default columns value if undefined", consul: true do
+    scenario "Set cookie with default columns value if undefined", :consul do
       visit admin_budget_budget_investments_path(budget)
 
       cookie_value = cookie_by_name("investments-columns")[:value]
@@ -1794,7 +1794,7 @@ describe "Admin budget investments", :admin do
       end
     end
 
-    scenario "Cookie will be updated after change columns selection", consul: true do
+    scenario "Cookie will be updated after change columns selection", :consul do
       visit admin_budget_budget_investments_path(budget)
 
       click_button "Columns"
@@ -1843,7 +1843,7 @@ describe "Admin budget investments", :admin do
       expect(page).not_to have_content "Don't display me, please!"
     end
 
-    scenario "When restoring the page from browser history renders columns selectors only once", consul: true do
+    scenario "When restoring the page from browser history renders columns selectors only once", :consul do
       visit admin_budget_budget_investments_path(budget)
 
       click_link "Proposals"

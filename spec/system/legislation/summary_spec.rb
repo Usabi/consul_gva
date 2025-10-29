@@ -30,7 +30,7 @@ describe "Legislation" do
     expect(page).to have_content "This process didn't have any participation phases"
   end
 
-  scenario "empty phases" do
+  scenario "empty phases", :consul do
     process = create(:legislation_process, end_date: Date.current - 1.day)
     visit summary_legislation_process_path(process)
 

@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Locales management", :admin do
-  scenario "Navigate to languages page and update them", consul: true do
+  scenario "Navigate to languages page and update them", :consul do
     allow(I18n).to receive(:available_locales).and_return(%i[de en es fr])
     Setting["locales.default"] = "en"
     Setting["locales.enabled"] = "en de"

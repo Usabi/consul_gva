@@ -33,4 +33,15 @@ describe "Admin poll questions", :admin do
                                   options: ["Sélectionner un vote", poll.name_es])
     end
   end
+
+  scenario "Successful proposals tab not available in custom" do
+    create(:poll, :future, name: "Proposals")
+    create(:proposal, :successful)
+
+    visit admin_proposals_path
+
+    # In custom, the proposals_tabs helper (app/helpers/custom/proposals_helper.rb)
+    # only includes "proposals" and "help_text" tabs, not "successful_proposals"
+    expect(page).not_to have_link "Successful proposals"
+  end
 end

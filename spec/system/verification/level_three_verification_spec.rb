@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Level three verification" do
-  scenario "Verification with residency and verified sms", consul: true do
+  scenario "Verification with residency and verified sms", :consul do
     allow_any_instance_of(Verification::Sms).to receive(:generate_confirmation_code).and_return("2015")
     create(:geozone)
     user = create(:user)
@@ -33,7 +33,7 @@ describe "Level three verification" do
     expect(page).to have_content "Account verified"
   end
 
-  scenario "Verification with residency and verified email", consul: true do
+  scenario "Verification with residency and verified email", :consul do
     create(:geozone)
     user = create(:user)
 
@@ -64,7 +64,7 @@ describe "Level three verification" do
     expect(page).to have_content "Account verified"
   end
 
-  scenario "Verification with residency and sms and letter", consul: true do
+  scenario "Verification with residency and sms and letter", :consul do
     allow_any_instance_of(Verification::Sms).to receive(:generate_confirmation_code).and_return("1234")
     create(:geozone)
     user = create(:user)

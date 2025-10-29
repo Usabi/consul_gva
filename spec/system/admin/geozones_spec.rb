@@ -108,7 +108,7 @@ describe "Admin geozones", :admin do
     end
   end
 
-  scenario "Show polygons when a heading is associated with a geozone", consul: true do
+  scenario "Show polygons when a heading is associated with a geozone", :consul do
     Setting["feature.map"] = true
     geojson = <<~JSON
       {
@@ -151,7 +151,7 @@ describe "Admin geozones", :admin do
     end
   end
 
-  scenario "Show polygons on geozone admin view", consul: true do
+  scenario "Show polygons on geozone admin view", :consul do
     Setting["feature.map"] = true
     geojson = <<~JSON
       {

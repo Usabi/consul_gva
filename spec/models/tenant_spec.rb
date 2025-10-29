@@ -416,7 +416,7 @@ describe Tenant do
     end
   end
 
-  describe "#rename_storage" do
+  describe "#rename_storage", :consul do
     after do
       FileUtils.rm_rf(File.join(ActiveStorage::Blob.service.root, "tenants", "notypo"))
     end

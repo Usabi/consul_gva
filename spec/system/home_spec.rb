@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "Home" do
   context "For not logged users" do
-    scenario "Welcome message", consul: true do
+    scenario "Welcome message", :consul do
       visit root_path
 
       expect(page).to have_content "CONSUL"
@@ -25,7 +25,7 @@ describe "Home" do
         login_as(user)
       end
 
-      scenario "Display recommended section when feature flag recommended is active" do
+      scenario "Display recommended section when feature flag recommended is active", :consul do
         create(:debate, tag_list: "Sport")
 
         visit root_path
@@ -33,7 +33,7 @@ describe "Home" do
         expect(page).to have_content "Recommendations that may interest you"
       end
 
-      scenario "Not display recommended section when feature flag recommended is not active" do
+      scenario "Not display recommended section when feature flag recommended is not active", :consul do
         create(:debate, tag_list: "Sport")
         Setting["feature.user.recommendations"] = false
 
@@ -42,7 +42,7 @@ describe "Home" do
         expect(page).not_to have_content "Recommendations that may interest you"
       end
 
-      scenario "Display debates" do
+      scenario "Display debates", :consul do
         debate = create(:debate, tag_list: "Sport")
 
         visit root_path
@@ -51,7 +51,7 @@ describe "Home" do
         expect(page).to have_content debate.description
       end
 
-      scenario "Display all recommended debates link" do
+      scenario "Display all recommended debates link", :consul do
         create(:debate, tag_list: "Sport")
 
         visit root_path
@@ -59,7 +59,7 @@ describe "Home" do
         expect(page).to have_link("All recommended debates", href: debates_path(order: "recommendations"))
       end
 
-      scenario "Display proposal" do
+      scenario "Display proposal", :consul do
         proposal = create(:proposal, tag_list: "Sport")
 
         visit root_path
@@ -68,7 +68,7 @@ describe "Home" do
         expect(page).to have_content proposal.description
       end
 
-      scenario "Display all recommended proposals link" do
+      scenario "Display all recommended proposals link", :consul do
         create(:proposal, tag_list: "Sport")
 
         visit root_path
@@ -76,7 +76,7 @@ describe "Home" do
         expect(page).to have_link("All recommended proposals", href: proposals_path(order: "recommendations"))
       end
 
-      scenario "Display orbit carrousel" do
+      scenario "Display orbit carrousel", :consul do
         create_list(:debate, 3, tag_list: "Sport")
 
         visit root_path
@@ -86,7 +86,7 @@ describe "Home" do
         expect(page).to have_css "li[data-slide='2']", visible: :hidden
       end
 
-      scenario "Display recommended show when click on carousel" do
+      scenario "Display recommended show when click on carousel", :consul do
         debate = create(:debate, tag_list: "Sport")
 
         visit root_path
@@ -98,7 +98,7 @@ describe "Home" do
         expect(page).to have_current_path(debate_path(debate))
       end
 
-      scenario "Do not display recommended section when there are not debates and proposals" do
+      scenario "Do not display recommended section when there are not debates and proposals", :consul do
         visit root_path
         expect(page).not_to have_content "Recommendations that may interest you"
       end
@@ -143,7 +143,7 @@ describe "Home" do
     expect(page).not_to have_css(".title", text: "Featured")
   end
 
-  scenario "cards are first sorted by 'order' field, then by 'created_at' when order is equal", consul: true do
+  scenario "cards are first sorted by 'order' field, then by 'created_at' when order is equal", :consul do
     create(:widget_card, title: "Card one", order: 1)
     create(:widget_card, title: "Card two", order: 3)
     create(:widget_card, title: "Card three", order: 2)
@@ -167,7 +167,7 @@ describe "Home" do
       expect(page).to have_link "Link text", href: "consul.dev"
     end
 
-    scenario "if there is header card without link, the link content is not rendered", consul: true do
+    scenario "if there is header card without link, the link content is not rendered", :consul do
       create(:widget_card, :header, link_text: nil, link_url: nil)
 
       visit root_path
@@ -175,7 +175,7 @@ describe "Home" do
       within(".header-card") { expect(page).not_to have_link }
     end
 
-    scenario "if there is header card without link and with text, the link content is not rendered", consul: true do
+    scenario "if there is header card without link and with text, the link content is not rendered", :consul do
       create(:widget_card, :header, link_text: "", link_url: "", link_text_es: "Link ES", title_es: "ES")
 
       visit root_path(locale: :es)

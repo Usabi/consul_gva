@@ -1,6 +1,16 @@
 require "rails_helper"
 
 describe Layout::AdminLoginItemsComponent do
+  it "is rendered when multitenancy_management_mode is enabled" do
+    allow(Rails.application.config).to receive(:multitenancy_management_mode).and_return(true)
+    user = create(:administrator).user
+
+    render_inline Layout::AdminLoginItemsComponent.new(user)
+
+    expect(page).to be_rendered
+    expect(page).to have_link "Menu"
+  end
+
   it "shows the valuation link and admin budget to budget manager" do
     user = create(:budget_manager).user
 

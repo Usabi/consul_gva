@@ -27,7 +27,7 @@ describe "Signature sheets", :admin do
   end
 
   context "Create" do
-    scenario "Proposal", consul: true do
+    scenario "Proposal", :consul do
       proposal = create(:proposal)
       visit new_admin_signature_sheet_path
 
@@ -47,7 +47,7 @@ describe "Signature sheets", :admin do
       expect(page).to have_content "1 support"
     end
 
-    scenario "Budget Investment", consul: true do
+    scenario "Budget Investment", :consul do
       investment = create(:budget_investment)
       budget = investment.budget
       budget.update!(phase: "selecting")
@@ -123,7 +123,7 @@ describe "Signature sheets", :admin do
     expect(page).to have_content error_message
   end
 
-  scenario "Show", consul: true do
+  scenario "Show", :consul do
     proposal = create(:proposal)
     user = Administrator.first.user
     signature_sheet = create(:signature_sheet,

@@ -17,13 +17,16 @@ describe "System Emails" do
     end
 
     context "System emails with info" do
-      scenario "have information about how to edit the email templates", consul: true do
+      scenario "have information about how to edit the email templates", :consul do
         visit admin_system_emails_path
 
         system_emails_with_info = system_emails - system_emails_with_preview
         system_emails_with_info.each do |email_id|
           within("##{email_id}") do
-            template_path = email_id == "budget_investment_unfeasible" ? "app/views/custom/mailer/#{email_id}.html.erb" : "app/views/mailer/#{email_id}.html.erb"
+            template_path =
+              email_id == "budget_investment_unfeasible" ?
+              "app/views/custom/mailer/#{email_id}.html.erb" :
+              "app/views/mailer/#{email_id}.html.erb"
             expect(page).to have_content "You can edit this email in"
             expect(page).to have_content template_path
 

@@ -5,7 +5,7 @@ describe "Admin newsletter emails", :admin do
     create(:budget)
   end
 
-  context "Show", consul: true do
+  context "Show", :consul do
     scenario "Valid newsletter" do
       newsletter = create(:newsletter, subject: "This is a subject",
                                        segment_recipient: ["all_users"],
@@ -47,7 +47,7 @@ describe "Admin newsletter emails", :admin do
       end
     end
 
-    scenario "Invalid newsletter", consul: true do
+    scenario "Invalid newsletter", :consul do
       invalid_newsletter = create(:newsletter)
       invalid_newsletter.update_column(:segment_recipient, "invalid_segment")
 
@@ -129,7 +129,7 @@ describe "Admin newsletter emails", :admin do
     expect(page).to have_content error_message
   end
 
-  context "Send newsletter", consul: true do
+  context "Send newsletter", :consul do
     scenario "Sends newsletter emails" do
       newsletter = create(:newsletter)
       visit admin_newsletter_path(newsletter)
@@ -148,7 +148,7 @@ describe "Admin newsletter emails", :admin do
     end
   end
 
-  context "Counter of emails sent", consul: true do
+  context "Counter of emails sent", :consul do
     scenario "Display counter" do
       newsletter = create(:newsletter, segment_recipient: "administrators")
       visit admin_newsletter_path(newsletter)

@@ -221,7 +221,7 @@ describe UserSegments do
   end
 
   describe ".selected_investment_authors" do
-    it "returns authors of selected budget investments", consul: true do
+    it "returns authors of selected budget investments", :consul do
       selected_investment = create(:budget_investment, :selected, author: user1)
       unselected_investment = create(:budget_investment, :unselected, author: user2)
       budget = create(:budget)

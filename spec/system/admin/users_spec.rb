@@ -15,7 +15,7 @@ describe "Admin users" do
     expect(page).to have_content admin.email
   end
 
-  scenario "The username links to their public profile", consul: true do
+  scenario "The username links to their public profile", :consul do
     visit admin_users_path
 
     click_link user.name

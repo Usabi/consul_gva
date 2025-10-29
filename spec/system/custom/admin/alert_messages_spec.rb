@@ -75,7 +75,7 @@ describe "Admin alert messages magement", :admin do
   scenario "Publish an alert message with a translation different than the current locale" do
     visit new_admin_alert_message_path
 
-    expect_to_have_language_selected "English"
+    expect_to_have_language_selected "Eng"
 
     click_link "Remove language"
     select "Français", from: "add_language"

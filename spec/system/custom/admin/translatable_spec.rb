@@ -99,7 +99,6 @@ describe "Admin edit translatable records", :admin do
         expect(page).to have_field "Text", with: "Texte en Français"
       end
     end
-
   end
 
   context "Add an invalid translation" do
@@ -170,7 +169,7 @@ describe "Admin edit translatable records", :admin do
       let(:translatable) { create(:widget_card) }
       let(:path) { edit_admin_widget_card_path(translatable) }
 
-      scenario "Changes the existing translation", consul: true do
+      scenario "Changes the existing translation", :consul do
         visit path
 
         select "Cast", from: "Current language"
@@ -331,7 +330,7 @@ describe "Admin edit translatable records", :admin do
       visit path
 
       expect(page).not_to have_select "Current language", with_options: ["Cast"]
-      expect(page).to have_select "Current language", with_options: ["English"]
+      expect(page).to have_select "Current language", with_options: ["Eng"]
     end
   end
 
@@ -344,7 +343,9 @@ describe "Admin edit translatable records", :admin do
       visit admin_polymorphic_path(translatable, action: :edit)
 
       click_link "Remove language"
+      expect_to_have_language_selected "Cast"
       click_link "Remove language"
+      expect_to_have_language_selected nil
 
       click_button "Update milestone"
 
@@ -355,9 +356,12 @@ describe "Admin edit translatable records", :admin do
       translatable.update!(status: Milestone::Status.first)
 
       visit admin_polymorphic_path(translatable, action: :edit)
+      expect_to_have_language_selected "Eng"
 
       click_link "Remove language"
+      expect_to_have_language_selected "Cast"
       click_link "Remove language"
+      expect_to_have_language_selected nil
 
       click_button "Update milestone"
 
@@ -375,13 +379,13 @@ describe "Admin edit translatable records", :admin do
       select "Cast", from: "Current language"
       click_link "Remove language"
 
-      select "English", from: "Current language"
+      select "Eng", from: "Current language"
       fill_in "Question", with: ""
       click_button "Save"
 
       expect(page).to have_css "#error_explanation"
       expect(page).to have_field "Question", with: "", class: "is-invalid-input"
-      expect_to_have_language_selected "English"
+      expect_to_have_language_selected "Eng"
       expect_not_to_have_language "Cast"
 
       visit path
@@ -400,7 +404,7 @@ describe "Admin edit translatable records", :admin do
 
         visit edit_admin_admin_notification_path(translatable)
 
-        select "English", from: "Current language"
+        select "Eng", from: "Current language"
         click_link "Remove language"
         select "Cast", from: "Current language"
         click_link "Remove language"
@@ -419,7 +423,7 @@ describe "Admin edit translatable records", :admin do
 
         visit edit_admin_budget_budget_phase_path(translatable.budget, translatable)
 
-        select "English", from: "Current language"
+        select "Eng", from: "Current language"
         click_link "Remove language"
         select "Cast", from: "Current language"
         click_link "Remove language"
@@ -427,7 +431,7 @@ describe "Admin edit translatable records", :admin do
         click_button "Save changes"
 
         visit budgets_path
-        click_link "Name en Français"
+        find("a", text: "Name en Français").click
 
         expect(page).to have_content "Phase en Français"
       end
@@ -441,7 +445,7 @@ describe "Admin edit translatable records", :admin do
 
         visit edit_admin_active_polls_path(translatable)
 
-        select "English", from: "Current language"
+        select "Eng", from: "Current language"
         click_link "Remove language"
         select "Cast", from: "Current language"
         click_link "Remove language"
@@ -462,7 +466,7 @@ describe "Admin edit translatable records", :admin do
     scenario "Select current locale when its translation exists" do
       visit path
 
-      expect_to_have_language_selected "English"
+      expect_to_have_language_selected "Eng"
       select_language("Cast")
 
       expect_to_have_language_selected "Cast"

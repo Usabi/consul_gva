@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe CensusCaller, consul: true do
+describe CensusCaller, :consul do
   let(:api) { CensusCaller.new }
 
   describe "#call" do

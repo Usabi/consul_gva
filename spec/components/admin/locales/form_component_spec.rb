@@ -8,7 +8,7 @@ describe Admin::Locales::FormComponent do
   before { allow(I18n).to receive(:available_locales).and_return(%i[de en es nl]) }
 
   describe "default language selector" do
-    it "renders radio buttons when there are only a few locales", consul: true do
+    it "renders radio buttons when there are only a few locales", :consul do
       render_inline component
 
       page.find(:fieldset, "Default language") do |fieldset|
@@ -21,7 +21,7 @@ describe Admin::Locales::FormComponent do
       expect(page).not_to have_select
     end
 
-    it "renders a select when there are many locales", consul: true do
+    it "renders a select when there are many locales", :consul do
       allow(component).to receive(:select_field_threshold).and_return(3)
 
       render_inline component

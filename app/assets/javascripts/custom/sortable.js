@@ -20,9 +20,8 @@
 
         var isDocumentContainer = (containerId === 'nested-documents' || containerId === 'nested-documents-consult-document');
 
-        $container.sortable({
+        var sortableOptions = {
           animation: 150,
-          handle: '.drag-handle',
           update: function() {
             if (isDocumentContainer) {
               updateDocumentPositions($container[0]);
@@ -42,7 +41,14 @@
               }
             }
           }
-        });
+        };
+
+        // Only apply drag-handle for document containers
+        if (isDocumentContainer) {
+          sortableOptions.handle = '.drag-handle';
+        }
+
+        $container.sortable(sortableOptions);
 
         if (isDocumentContainer) {
           $container.on('cocoon:after-insert cocoon:after-remove', function() {

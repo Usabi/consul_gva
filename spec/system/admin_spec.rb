@@ -74,7 +74,7 @@ describe "Admin" do
     expect(page).not_to have_content "You do not have permission to access this page"
   end
 
-  scenario "Admin menu does not hide active elements", :admin, consul: true do
+  scenario "Admin menu does not hide active elements", :admin, :consul do
     visit admin_budgets_path
 
     within("#admin_menu") do

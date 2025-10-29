@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "Documents" do
   describe "Metadata" do
-    scenario "download document without metadata" do
+    scenario "download document without metadata", :consul do
       login_as(create(:user))
       visit new_proposal_path
 

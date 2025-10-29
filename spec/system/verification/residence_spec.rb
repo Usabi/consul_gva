@@ -3,7 +3,7 @@ require "rails_helper"
 describe "Residence" do
   before { create(:geozone) }
 
-  scenario "Verify resident", consul: true do
+  scenario "Verify resident", :consul do
     user = create(:user)
     login_as(user)
 
@@ -20,7 +20,7 @@ describe "Residence" do
     expect(page).to have_content "Residence verified"
   end
 
-  scenario "Verify resident throught RemoteCensusApi", :remote_census, consul: true do
+  scenario "Verify resident throught RemoteCensusApi", :remote_census, :consul do
     user = create(:user)
     login_as(user)
     mock_valid_remote_census_response
@@ -38,7 +38,7 @@ describe "Residence" do
     expect(page).to have_content "Residence verified"
   end
 
-  scenario "When trying to verify a deregistered account old votes are reassigned", consul: true do
+  scenario "When trying to verify a deregistered account old votes are reassigned", :consul do
     erased_user = create(:user, document_number: "12345678Z", document_type: "1", erased_at: Time.current)
     new_user = create(:user)
     debate = create(:debate, title: "Improve everything")
@@ -80,7 +80,7 @@ describe "Residence" do
     expect(page).to have_content(/\d errors? prevented the verification of your residence/)
   end
 
-  scenario "Error on postal code not in census", consul: true do
+  scenario "Error on postal code not in census", :consul do
     Setting["postal_codes"] = "00001:99999"
     user = create(:user)
     login_as(user)
@@ -99,7 +99,7 @@ describe "Residence" do
     expect(page).to have_content "Citizens from this postal code cannot participate"
   end
 
-  scenario "Error on census", consul: true do
+  scenario "Error on census", :consul do
     user = create(:user)
     login_as(user)
 
@@ -116,7 +116,7 @@ describe "Residence" do
     expect(page).to have_content "The Census was unable to verify your information"
   end
 
-  scenario "5 tries allowed", consul: true do
+  scenario "5 tries allowed", :consul do
     user = create(:user)
     login_as(user)
 

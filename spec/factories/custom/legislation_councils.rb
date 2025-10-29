@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :legislation_council, class: "Legislation::Council" do
-    name { Faker::Company.name }
+    title { Faker::Company.name }
     active { true }
 
     trait :inactive do

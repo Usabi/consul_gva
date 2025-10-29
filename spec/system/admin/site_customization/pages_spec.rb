@@ -29,7 +29,7 @@ describe "Admin custom pages", :admin do
   end
 
   context "Create" do
-    scenario "Valid custom page", consul: true do
+    scenario "Valid custom page", :consul do
       visit admin_root_path
 
       within("#side_menu") do
@@ -59,7 +59,7 @@ describe "Admin custom pages", :admin do
       create(:site_customization_page, title: "An example custom page", slug: "custom-example-page")
     end
 
-    scenario "Valid custom page", consul: true do
+    scenario "Valid custom page", :consul do
       visit admin_root_path
 
       within("#side_menu") do

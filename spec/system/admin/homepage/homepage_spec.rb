@@ -170,7 +170,7 @@ describe "Homepage", :admin do
     end
   end
 
-  scenario "Cards", consul: true do
+  scenario "Cards", :consul do
     card1 = create(:widget_card, label: "Card1 label",
                                  title: "Card1 text",
                                  description: "Card1 description",
@@ -206,7 +206,7 @@ describe "Homepage", :admin do
     end
   end
 
-  scenario "Recomendations" do
+  scenario "Recomendations", :consul do
     create(:proposal, tag_list: "Sport", followers: [user])
     create(:proposal, tag_list: "Sport")
     user_recommendations = Setting.find_by(key: "feature.user.recommendations")

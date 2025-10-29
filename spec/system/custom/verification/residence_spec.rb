@@ -78,12 +78,12 @@ describe "Residence" do
     expect(page).to have_content "Account verified"
   end
 
-  scenario "Verify resident above 12 years", consul: true do
+  scenario "Verify resident above 12 years", :consul do
     user = create(:user)
     login_as(user)
 
     valid_body[:datos_originales][:date_of_birth] = 13.years.ago.to_date
-    valid_body[:datos_habitante]['fecha_nacimiento'] = 13.years.ago.strftime('%Y%m%d')
+    valid_body[:datos_habitante]["fecha_nacimiento"] = 13.years.ago.strftime("%Y%m%d")
 
     visit account_path
     click_link "Verify my account"
@@ -93,7 +93,7 @@ describe "Residence" do
     fill_in "residence_last_surname", with: "Camps"
     fill_in "residence_document_number", with: "12345678Z"
     select "DNI", from: "residence_document_type"
-    select_date 13.years.ago.strftime('%d-%B-%Y'), from: "residence_date_of_birth"
+    select_date 13.years.ago.strftime("%d-%B-%Y"), from: "residence_date_of_birth"
     fill_in "residence_postal_code", with: "46100"
     select "Male", from: "residence_gender"
     check "residence_terms_of_service"
@@ -133,7 +133,7 @@ describe "Residence" do
   context 'foreign residence' do
     before { expect_any_instance_of(CensusApi).to receive(:get_response_body).with('1', '12345678Z', other_data).and_return(invalid_residence_body) }
 
-    scenario "Verify foreign resident", consul: true do
+    scenario "Verify foreign resident", :consul do
 
       user = create(:user)
       login_as(user)
@@ -161,7 +161,7 @@ describe "Residence" do
     end
   end
 
-  scenario "Verify foreign resident above 12 years", consul: true do
+  scenario "Verify foreign resident above 12 years", :consul do
     user = create(:user)
     login_as(user)
     Setting["min_age_to_participate"] = 12
@@ -190,7 +190,7 @@ describe "Residence" do
     expect(page).to have_content "Required Age Foreign Residence Verification Request"
   end
 
-  scenario "Error on residence", consul: true do
+  scenario "Error on residence", :consul do
     user = create(:user)
     login_as(user)
 
@@ -215,7 +215,7 @@ describe "Residence" do
     expect(page).to have_content("In order to be verified, you must be registered")
   end
 
-  scenario "Error on foreign residence", consul: true do
+  scenario "Error on foreign residence", :consul do
     user = create(:user)
     login_as(user)
 
@@ -268,7 +268,7 @@ end
 #     expect(page).to have_content "Your account is already verified"
 #   end
 
-#   scenario "Verify resident throught RemoteCensusApi", :remote_census, consul: true do
+#   scenario "Verify resident throught RemoteCensusApi", :remote_census, :consul do
 #     user = create(:user)
 #     login_as(user)
 #     mock_valid_remote_census_response

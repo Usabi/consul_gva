@@ -42,7 +42,7 @@ describe "Legislation" do
       expect(page).not_to have_content("NEXT QUESTION")
     end
 
-    scenario "shows question page" do
+    scenario "shows question page", :consul do
       visit legislation_process_question_path(process, process.questions.first)
 
       expect(page).to have_content("Question 1")
@@ -50,7 +50,7 @@ describe "Legislation" do
       expect(page).to have_content("Open answers (0)")
     end
 
-    scenario "shows next question link in question page" do
+    scenario "shows next question link in question page", :consul do
       visit legislation_process_question_path(process, process.questions.first)
 
       expect(page).to have_content("Question 1")

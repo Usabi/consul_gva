@@ -152,7 +152,7 @@ describe "Users" do
       expect(page).not_to have_content("activity list private")
     end
 
-    scenario "user can hide public page", consul: true do
+    scenario "user can hide public page", :consul do
       login_as(user)
       visit account_path
 
@@ -460,7 +460,7 @@ describe "Users" do
       end
     end
 
-    scenario "Display interests", consul: true do
+    scenario "Display interests", :consul do
       create(:proposal, tag_list: "Sport", followers: [user])
 
       login_as(user)

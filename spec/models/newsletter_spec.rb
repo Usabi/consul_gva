@@ -17,7 +17,7 @@ describe Newsletter do
     expect(newsletter).not_to be_valid
   end
 
-  it "is not valid with an inexistent user segment for segment_recipient", consul: true do
+  it "is not valid with an inexistent user segment for segment_recipient", :consul do
     newsletter.segment_recipient = "invalid_user_segment_name"
     expect(newsletter).not_to be_valid
   end
@@ -37,7 +37,7 @@ describe Newsletter do
     expect(newsletter).not_to be_valid
   end
 
-  describe "#valid_segment_recipient?", consul: true do
+  describe "#valid_segment_recipient?", :consul do
     it "is false when segment_recipient value is invalid" do
       newsletter.segment_recipient = "invalid_segment_name"
       error = "The user recipients segment is invalid"
@@ -47,7 +47,7 @@ describe Newsletter do
     end
   end
 
-  describe "#list_of_recipient_emails", consul: true do
+  describe "#list_of_recipient_emails", :consul do
     before do
       create(:user, newsletter: true, email: "newsletter_user@consul.dev")
       create(:user, newsletter: true, email: "newsletter_unconfirmed_user@consul.dev", confirmed_at: nil)
@@ -61,7 +61,7 @@ describe Newsletter do
     end
   end
 
-  describe "#deliver", :delay_jobs, consul: true do
+  describe "#deliver", :delay_jobs, :consul do
     let!(:proposals) { Array.new(3) { create(:proposal) } }
 
     let!(:recipients) { proposals.map(&:author).map(&:email) }

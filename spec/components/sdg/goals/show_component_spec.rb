@@ -7,7 +7,7 @@ describe SDG::Goals::ShowComponent do
     Setting["feature.sdg"] = true
   end
 
-  it "renders a heading", consul: true do
+  it "renders a heading", :consul do
     component = SDG::Goals::ShowComponent.new(goal_1)
 
     render_inline component
@@ -16,7 +16,7 @@ describe SDG::Goals::ShowComponent do
     expect(page).to have_content "No Poverty"
   end
 
-  it "renders a long description", consul: true do
+  it "renders a long description", :consul do
     component = SDG::Goals::ShowComponent.new(goal_1)
 
     render_inline component

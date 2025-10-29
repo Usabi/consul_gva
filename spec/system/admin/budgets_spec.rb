@@ -4,7 +4,7 @@ describe "Admin budgets", :admin do
   context "Load" do
     before { create(:budget, slug: "budget_slug") }
 
-    scenario "finds budget by slug", consul: true do
+    scenario "finds budget by slug", :consul do
       visit edit_admin_budget_path("budget_slug")
 
       expect(page).to have_content("Edit Participatory budget")
@@ -280,7 +280,7 @@ describe "Admin budgets", :admin do
       end
     end
 
-    scenario "Show results and stats settings" do
+    scenario "Show results and stats settings", :consul do
       visit edit_admin_budget_path(budget)
 
       within_fieldset "Show results and stats" do
@@ -305,7 +305,7 @@ describe "Admin budgets", :admin do
       expect(page).to have_link("Participate now", href: "https://consuldemocracy.org")
     end
 
-    scenario "Changing name for current locale will update the slug if budget is in draft phase", consul: true do
+    scenario "Changing name for current locale will update the slug if budget is in draft phase", :consul do
       budget.update!(published: false, name: "Old English Name")
 
       visit edit_admin_budget_path(budget)
@@ -451,7 +451,7 @@ describe "Admin budgets", :admin do
   end
 
   context "Calculate Budget's Winner Investments" do
-    scenario "For a Budget in reviewing balloting", consul: true do
+    scenario "For a Budget in reviewing balloting", :consul do
       budget = create(:budget, :reviewing_ballots)
       heading = create(:budget_heading, budget: budget, price: 4)
       unselected = create(:budget_investment, :unselected, heading: heading,

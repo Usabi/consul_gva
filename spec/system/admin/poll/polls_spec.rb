@@ -9,7 +9,7 @@ describe "Admin polls", :admin do
     expect(page).to have_content "There are no polls"
   end
 
-  scenario "Index show polls list order by starts at date" do
+  scenario "Index show polls list order by starts at date", :consul do
     poll_1 = create(:poll, name: "Poll first",  starts_at: 15.days.ago)
     poll_2 = create(:poll, name: "Poll second", starts_at: 1.month.ago)
     poll_3 = create(:poll, name: "Poll third",  starts_at: 2.days.ago)
@@ -228,7 +228,7 @@ describe "Admin polls", :admin do
     end
   end
 
-  context "Questions", consul: true do
+  context "Questions", :consul do
     context "Poll show" do
       scenario "Question list" do
         poll = create(:poll)
@@ -383,7 +383,7 @@ describe "Admin polls", :admin do
         expect(page).to have_content "Results by booth"
       end
 
-      scenario "Enable stats and results for booth polls" do
+      scenario "Enable stats and results for booth polls", :consul do
         unvoted_poll = create(:poll)
 
         voted_poll = create(:poll)
@@ -400,7 +400,7 @@ describe "Admin polls", :admin do
         expect(page).not_to have_content "There are no results"
       end
 
-      scenario "Enable stats and results for online polls" do
+      scenario "Enable stats and results for online polls", :consul do
         unvoted_poll = create(:poll)
 
         voted_poll = create(:poll)
@@ -516,7 +516,7 @@ describe "Admin polls", :admin do
       Setting["sdg.process.polls"] = true
     end
 
-    scenario "do not show SDG columns if disabled" do
+    scenario "do not show SDG columns if disabled", :consul do
       poll = create(:poll, name: "Poll with SDG related content")
       poll.sdg_goals = [SDG::Goal[1], SDG::Goal[17]]
 

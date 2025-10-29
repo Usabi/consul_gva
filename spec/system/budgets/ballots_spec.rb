@@ -46,7 +46,7 @@ describe "Ballots" do
     let!(:city) { create(:budget_group, budget: budget, name: "City") }
     let!(:districts) { create(:budget_group, budget: budget, name: "Districts") }
 
-    context "Group and Heading Navigation", consul: true do
+    context "Group and Heading Navigation", :consul do
       scenario "Headings" do
         create(:budget_heading, group: city,      name: "Investments Type1")
         create(:budget_heading, group: city,      name: "Investments Type2")
@@ -168,7 +168,7 @@ describe "Ballots" do
         end
       end
 
-      scenario "map and content block shoud be visible before and after", consul: true do
+      scenario "map and content block shoud be visible before and after", :consul do
         stub_const("#{Budgets::InvestmentsController}::PER_PAGE", 1)
 
         create(

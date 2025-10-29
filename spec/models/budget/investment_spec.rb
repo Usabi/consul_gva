@@ -195,7 +195,7 @@ describe Budget::Investment do
       expect(investment.should_show_ballots?).to be true
     end
 
-    it "returns false for unselected investments", consul: true do
+    it "returns false for unselected investments", :consul do
       budget = create(:budget, :balloting)
       investment = create(:budget_investment, :unselected, budget: budget)
 
@@ -702,7 +702,7 @@ describe Budget::Investment do
         expect(Budget::Investment.selected).to eq [selected_investment]
       end
 
-      it "does not return unselected investments", consul: true do
+      it "does not return unselected investments", :consul do
         create(:budget_investment, :unselected)
 
         expect(Budget::Investment.selected).to be_empty
@@ -710,7 +710,7 @@ describe Budget::Investment do
     end
 
     describe "unselected" do
-      it "returns all unselected not_unfeasible investments", consul: true do
+      it "returns all unselected not_unfeasible investments", :consul do
         unselected_undecided_investment = create(:budget_investment, :unselected, :undecided)
         unselected_feasible_investment = create(:budget_investment, :unselected, :feasible)
 
@@ -854,7 +854,7 @@ describe Budget::Investment do
       expect(results).not_to include investment3
     end
 
-    it "returns selected investments", consul: true do
+    it "returns selected investments", :consul do
       budget.update!(phase: "balloting")
 
       investment1 = create(:budget_investment, :feasible, :selected,   budget: budget)
@@ -868,7 +868,7 @@ describe Budget::Investment do
       expect(results).not_to include investment3
     end
 
-    it "returns unselected investments", consul: true do
+    it "returns unselected investments", :consul do
       budget.update!(phase: "balloting")
 
       investment1 = create(:budget_investment, :feasible, :unselected, budget: budget)

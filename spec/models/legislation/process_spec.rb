@@ -361,7 +361,7 @@ describe Legislation::Process do
       let(:process) { create(:legislation_process) }
 
       it "do not have council" do
-        expect(process.council).to be_nil
+        expect(process.council).to be(nil)
       end
 
       it "add a new council" do
@@ -371,6 +371,7 @@ describe Legislation::Process do
         expect(process.council).to eq(council)
       end
     end
+
     context "with council" do
       let(:process) { create(:legislation_process, :with_council) }
 

@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "Admin milestone statuses", :admin do
   context "Index" do
-    scenario "Displaying only not hidden statuses", consul: true do
+    scenario "Displaying only not hidden statuses", :consul do
       status1 = create(:milestone_status)
       status2 = create(:milestone_status)
 
@@ -25,7 +25,7 @@ describe "Admin milestone statuses", :admin do
   end
 
   context "New" do
-    scenario "Create status", consul: true do
+    scenario "Create status", :consul do
       visit admin_milestone_statuses_path
 
       click_link "Create new milestone status"
@@ -38,7 +38,7 @@ describe "Admin milestone statuses", :admin do
       expect(page).to have_content "This status description"
     end
 
-    scenario "Show validation errors in status form", consul: true do
+    scenario "Show validation errors in status form", :consul do
       visit admin_milestone_statuses_path
 
       click_link "Create new milestone status"
@@ -53,7 +53,7 @@ describe "Admin milestone statuses", :admin do
   end
 
   context "Edit" do
-    scenario "Change name and description", consul: true do
+    scenario "Change name and description", :consul do
       status = create(:milestone_status)
 
       visit admin_milestone_statuses_path

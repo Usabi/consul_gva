@@ -30,7 +30,7 @@ describe "Poll Votation Type" do
     end
   end
 
-  scenario "Multiple answers", consul: true do
+  scenario "Multiple answers", :consul do
     question = create(:poll_question_multiple, :abc, max_votes: 2)
     visit poll_path(question.poll)
 

@@ -178,7 +178,7 @@ en:
           polls: "Search votes by name or description"
           processes: "Search legislative processes by name, description, author, email, council, legislator, or ID"
           proposals: "Search initiatives by title, code, description, or question"
-          users: "Search for user by name or email"
+          users: "Search user by name or email"
         search: "Search"
       search_results: "Search results"
       no_search_results: "No results found."

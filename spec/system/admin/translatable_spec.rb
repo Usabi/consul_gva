@@ -19,7 +19,7 @@ describe "Admin edit translatable records", :admin do
       let(:translatable) { create(:budget_heading) }
       let(:path) { admin_polymorphic_path(translatable, action: :edit) }
 
-      scenario "Maintains existing translations", consul: true do
+      scenario "Maintains existing translations", :consul do
         visit path
 
         select "Français", from: "Add language"
@@ -46,7 +46,7 @@ describe "Admin edit translatable records", :admin do
       let(:translatable) { create(:site_customization_page) }
       let(:path) { edit_admin_site_customization_page_path(translatable) }
 
-      scenario "Maintains existing translations", consul: true do
+      scenario "Maintains existing translations", :consul do
         visit path
 
         select "Français", from: "Add language"
@@ -75,7 +75,7 @@ describe "Admin edit translatable records", :admin do
       let(:translatable) { create(:legislation_draft_version) }
       let(:path) { edit_admin_legislation_process_draft_version_path(translatable.process, translatable) }
 
-      scenario "Maintains existing translations", consul: true do
+      scenario "Maintains existing translations", :consul do
         visit path
 
         select "Français", from: "Add language"
@@ -109,7 +109,7 @@ describe "Admin edit translatable records", :admin do
       let(:translatable) { create(:legislation_question) }
       let(:path) { edit_admin_legislation_process_question_path(translatable.process, translatable) }
 
-      scenario "Adds a translation for that locale", consul: true do
+      scenario "Adds a translation for that locale", :consul do
         visit path
 
         select "Português brasileiro", from: "Add language"
@@ -195,7 +195,7 @@ describe "Admin edit translatable records", :admin do
       let(:translatable) { create(:widget_card) }
       let(:path) { edit_admin_widget_card_path(translatable) }
 
-      scenario "Changes the existing translation", consul: true do
+      scenario "Changes the existing translation", :consul do
         visit path
 
         select "Español", from: "Current language"
@@ -224,7 +224,7 @@ describe "Admin edit translatable records", :admin do
       end
     end
 
-    context "CKEditor fields", consul: true do
+    context "CKEditor fields", :consul do
       let(:translatable) { create(:poll_question_option, poll: create(:poll, :future)) }
       let(:path) { edit_admin_question_option_path(translatable.question, translatable) }
 
@@ -257,7 +257,7 @@ describe "Admin edit translatable records", :admin do
       let(:translatable) { create(:poll, :future) }
       let(:path) { edit_admin_poll_path(translatable) }
 
-      scenario "Updates the field to a blank value", consul: true do
+      scenario "Updates the field to a blank value", :consul do
         visit path
 
         expect(page).to have_field "Summary", with: "Summary in English"
@@ -274,7 +274,7 @@ describe "Admin edit translatable records", :admin do
     end
   end
 
-  context "Update a translation with invalid data", consul: true do
+  context "Update a translation with invalid data", :consul do
     context "Input fields" do
       let(:translatable) { create(:banner) }
 
@@ -343,7 +343,7 @@ describe "Admin edit translatable records", :admin do
     end
   end
 
-  context "Remove a translation", consul: true do
+  context "Remove a translation", :consul do
     let(:translatable) { create(:budget_group) }
     let(:path) { edit_admin_budget_group_path(translatable.budget, translatable) }
 
@@ -369,7 +369,7 @@ describe "Admin edit translatable records", :admin do
   context "Remove all translations" do
     let(:translatable) { create(:milestone) }
 
-    scenario "Shows an error message when there's a mandatory translatable field" do
+    scenario "Shows an error message when there's a mandatory translatable field", :consul do
       translatable.update!(status: nil)
 
       visit admin_polymorphic_path(translatable, action: :edit)
@@ -385,7 +385,7 @@ describe "Admin edit translatable records", :admin do
       expect(page).to have_content "Is mandatory to provide one translation at least"
     end
 
-    scenario "Is successful when there isn't a mandatory translatable field" do
+    scenario "Is successful when there isn't a mandatory translatable field", :consul do
       translatable.update!(status: Milestone::Status.first)
 
       visit admin_polymorphic_path(translatable, action: :edit)
@@ -402,7 +402,7 @@ describe "Admin edit translatable records", :admin do
     end
   end
 
-  context "Remove a translation with invalid data", consul: true do
+  context "Remove a translation with invalid data", :consul do
     let(:translatable) { create(:poll_question, poll: create(:poll, :future)) }
     let(:path) { edit_admin_question_path(translatable) }
 
@@ -428,7 +428,7 @@ describe "Admin edit translatable records", :admin do
     end
   end
 
-  context "Current locale translation does not exist", consul: true do
+  context "Current locale translation does not exist", :consul do
     context "For all translatable except ActivePoll and Budget::Phase" do
       let(:translatable) { create(:admin_notification, segment_recipient: "all_users") }
 
@@ -502,7 +502,7 @@ describe "Admin edit translatable records", :admin do
     let(:content) { translatable }
     let(:path) { admin_site_customization_information_texts_path }
 
-    scenario "Select current locale when its translation exists", consul: true do
+    scenario "Select current locale when its translation exists", :consul do
       visit path
 
       expect_to_have_language_selected "English"
@@ -512,14 +512,14 @@ describe "Admin edit translatable records", :admin do
       expect_to_have_language_selected "Español"
     end
 
-    scenario "Select first locale of existing translations when current locale translation does not exists", consul: true do
+    scenario "Select first locale of existing translations when current locale translation does not exists", :consul do
       content.translations.where(locale: :en).destroy_all
       visit path
 
       expect_to_have_language_selected "Español"
     end
 
-    scenario "Show selected locale form", consul: true do
+    scenario "Show selected locale form", :consul do
       visit path
 
       expect(page).to have_field content.key, with: "Value in English"

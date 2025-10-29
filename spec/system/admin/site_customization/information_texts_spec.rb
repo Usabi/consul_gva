@@ -103,7 +103,7 @@ describe "Admin custom information texts", :admin do
       expect(page).not_to have_content "Partager la proposition"
     end
 
-    scenario "Remove a translation", consul: true do
+    scenario "Remove a translation", :consul do
       create(:i18n_content, key: "debates.index.featured_debates",
                             value_en: "Custom featured",
                             value_es: "Destacar personalizado")

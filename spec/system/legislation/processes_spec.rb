@@ -25,7 +25,7 @@ describe "Legislation" do
   end
 
   context "processes home page" do
-    scenario "No processes to be listed", consul: true do
+    scenario "No processes to be listed", :consul do
       visit legislation_processes_path
       expect(page).to have_text "There aren't open processes"
 
@@ -84,7 +84,7 @@ describe "Legislation" do
       expect(page).to have_content("01 ene 2018 - 01 dic 2018")
     end
 
-    scenario "Filtering processes", consul: true do
+    scenario "Filtering processes", :consul do
       create(:legislation_process, title: "Process open")
       create(:legislation_process, :past, title: "Process past")
       create(:legislation_process, :in_draft_phase, title: "Process in draft phase")
@@ -217,7 +217,7 @@ describe "Legislation" do
         expect(page).to have_content("Français")
       end
 
-      scenario "Shows Create a Proposal button when process is in draft phase", consul: true do
+      scenario "Shows Create a Proposal button when process is in draft phase", :consul do
         process = create(:legislation_process,
                          :in_draft_phase,
                          proposals_phase_start_date: Date.tomorrow)

@@ -114,7 +114,7 @@ describe "Admin poll questions", :admin do
     expect(page).to have_content(proposal.title)
   end
 
-  scenario "Create from successful proposal" do
+  scenario "Create from successful proposal", :consul do
     create(:poll, :future, name: "Proposals")
     proposal = create(:proposal, :successful)
 
@@ -172,7 +172,7 @@ describe "Admin poll questions", :admin do
     expect(page).to have_current_path admin_poll_path(poll)
   end
 
-  context "Poll select box", consul: true do
+  context "Poll select box", :consul do
     scenario "translates the poll name in options" do
       poll = create(:poll, :future, name_en: "Name in English", name_es: "Nombre en Español")
       proposal = create(:proposal)

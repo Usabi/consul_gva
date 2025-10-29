@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Admin custom images", :admin do
-  scenario "Upload valid png image", consul: true do
+  scenario "Upload valid png image", :consul do
     visit admin_root_path
 
     within("#side_menu") do
