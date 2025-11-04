@@ -78,7 +78,7 @@ namespace :deploy do
     invoke "deploy"
   end
 
-  before "deploy:restart", "puma:smart_restart"
+  # before "deploy:restart", "puma:smart_restart"
   before "deploy:restart", "delayed_job:restart"
 end
 

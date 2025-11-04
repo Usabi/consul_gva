@@ -1,4 +1,4 @@
-set :branch, "issue/7801-update-2.3.0-custom"
+set :branch, "issue/8435-update-2.3.1-custom"
 
 server deploysecret(:server), user: deploysecret(:user), roles: %w[web app db importer cron background]
 # server main_deploy_server, user: deploysecret(:user), roles: %w[web app db importer cron background]
