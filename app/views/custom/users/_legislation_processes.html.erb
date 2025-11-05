@@ -1,0 +1,5 @@
+<% legislation_processes.each do |legislation_process| %>
+  <%= render "legislation_process", legislation_process: legislation_process, user: user %>
+<% end %>
+
+<%= paginate legislation_processes %>

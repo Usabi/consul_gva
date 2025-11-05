@@ -1,0 +1,22 @@
+.process-summary {
+  @extend %panel;
+  margin-top: $line-height * 1.5;
+  padding: 0 rem-calc(16);
+
+  .debate-summary,
+  .proposal-summary,
+  .annotation-summary {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .proposal-summary .icon-like::before {
+    margin-right: 0.3rem;
+  }
+}
+
+section:last-child {
+  margin-bottom: $line-height * 1.5;
+}

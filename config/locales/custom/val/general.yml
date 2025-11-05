@@ -797,6 +797,9 @@ val:
         budget_investments:
           one: 1 Projecte de pressupostos participatius
           other: "%{count} Projectes de pressupostos participatius"
+        legislation_processes:
+          one: 1 Procés de elaboració normativa
+          other: "%{count} Processos de elaboració normativa"
         follows:
           one: 1 Seguint
           other: "%{count} Seguint"
