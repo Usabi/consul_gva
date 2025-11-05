@@ -9,6 +9,7 @@ class Users::PublicActivityComponent
       ("debates" if feature?(:debates)),
       ("budget_investments" if feature?(:budgets)),
       ("legislation_processes" if feature?("process.legislation")),
+      "attached_documents",
       "comments",
       ("follows" if valid_interests_access?(user))
     ].compact.select { |filter| send(filter).any? }
@@ -46,5 +47,12 @@ class Users::PublicActivityComponent
                                               .pluck(:legislation_process_id)
 
       Legislation::Process.where(id: process_ids.uniq).published
+    end
+
+    def attached_documents
+      Document.where(user: user.id)
+              .includes(:documentable)
+              .where.not(admin: true)
+              .where.not(documentable_type: "Milestone")
     end
 end

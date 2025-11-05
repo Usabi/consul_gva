@@ -817,6 +817,16 @@ en:
       budget_investments: Budget investments
       comments: Comments
       actions: Actions
+      attached_documents:
+        title: Document title
+        type: Type
+        associated_to: Associated to
+        date: Upload date
+        actions: Actions
+        download: Download
+        no_associated: No associated resource
+        download_aria: "Download document: %{title}"
+        delete_aria: "Delete document: %{title}"
       filters:
         comments:
           one: 1 Comment
@@ -833,6 +843,9 @@ en:
         legislation_processes:
           one: 1 Legislation process
           other: "%{count} Legislation processes"
+        attached_documents:
+          one: 1 Attached document
+          other: "%{count} Attached documents"
         follows:
           one: 1 Following
           other: "%{count} Following"
