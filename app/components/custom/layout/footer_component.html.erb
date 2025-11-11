@@ -10,6 +10,12 @@
         <%= sanitize(t("application.slogan_text.footer",
           copyright: t("layouts.footer.copyright"))) %>
       </p>
+      <p class="info">
+        <%= sanitize(t("layouts.footer.description",
+                       open_source: open_source_link,
+                       consul: repository_link),
+                       attributes: allowed_link_attributes) %>
+      </p>
     </div>
     <div class="column small-12 large-3 links">
       <ul class="no-bullet inline-block">
@@ -59,6 +65,7 @@
         <% end %>
       </ul>
     </div>
+
     <%# Columna Política de privacidad %>
     <div class="subfooter row">
       <div class="column small-12 large-2 privacy">
