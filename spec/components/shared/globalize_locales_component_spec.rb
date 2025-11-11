@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe Shared::GlobalizeLocalesComponent do
-  describe "Language selector" do
+  describe "Language selector", :consul do
     it "only includes enabled locales" do
       Setting["locales.enabled"] = "en nl"
 
@@ -37,7 +37,7 @@ describe Shared::GlobalizeLocalesComponent do
     end
   end
 
-  describe "Add language selector" do
+  describe "Add language selector", :consul do
     it "only includes enabled locales" do
       Setting["locales.enabled"] = "en nl"
 

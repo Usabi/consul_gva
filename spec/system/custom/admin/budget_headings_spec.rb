@@ -22,7 +22,7 @@ describe "Admin budget headings", :admin do
 
       visit edit_admin_budget_group_heading_path(budget, group, heading)
 
-      select "English", from: :select_language
+      select "Eng", from: :select_language
       fill_in "Heading name", with: "New English Name"
       click_button "Save heading"
 

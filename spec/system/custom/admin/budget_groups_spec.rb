@@ -21,7 +21,7 @@ describe "Admin budget groups", :admin do
 
       visit edit_admin_budget_group_path(budget, group)
 
-      select "English", from: :select_language
+      select "Eng", from: :select_language
       fill_in "Group name", with: "New English Name"
       click_button "Save group"
 

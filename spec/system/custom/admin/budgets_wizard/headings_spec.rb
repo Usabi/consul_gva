@@ -9,7 +9,7 @@ describe "Budgets wizard, headings step", :admin do
       visit admin_budgets_wizard_budget_group_headings_path(budget, group, mode: "single")
       fill_in "Heading name", with: "Heading wiht typo"
       fill_in "Money amount", with: "300000"
-      click_button "Create new heading"
+      click_button "Continue to phases"
 
       expect(page).to have_content "Heading created successfully"
 
@@ -18,7 +18,7 @@ describe "Budgets wizard, headings step", :admin do
       expect(page).to have_field "Heading name", with: "Heading wiht typo"
 
       fill_in "Heading name", with: "Heading without typos"
-      click_button "Create new heading"
+      click_button "Continue to phases"
 
       expect(page).to have_content "Heading updated successfully"
 

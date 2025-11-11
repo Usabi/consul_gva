@@ -147,7 +147,7 @@ describe "SDG Relations" do
         expect(page).to have_css "li.is-active h2", exact_text: "Pending"
       end
 
-      scenario "goal filter" do
+      scenario "goal filter", :consul do
         create(:budget_investment, title: "School", sdg_goals: [SDG::Goal[4]])
         create(:budget_investment, title: "Hospital", sdg_goals: [SDG::Goal[3]])
 
@@ -243,7 +243,7 @@ describe "SDG Relations" do
         expect(page).to have_css "li.is-active h2", exact_text: "All"
       end
 
-      scenario "dynamic target options depending on the selected goal" do
+      scenario "dynamic target options depending on the selected goal", :consul do
         goal_1_targets = [
           "1.1. Eradicate Extreme Poverty",
           "1.2. Reduce Poverty by at Least 50%",

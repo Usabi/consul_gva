@@ -1,11 +1,11 @@
 require "rails_helper"
 
-describe "Admin collaborative legislation", :admin, :consul do
+describe "Admin collaborative legislation", :admin do
   it_behaves_like "admin_milestoneable",
                   :legislation_process,
                   "admin_legislation_process_milestones_path"
 
-  context "Index" do
+  context "Index", :consul do
     scenario "Displaying collaborative legislation" do
       process_1 = create(:legislation_process, title: "Process open")
       process_2 = create(:legislation_process, title: "Process for the future",
@@ -48,7 +48,7 @@ describe "Admin collaborative legislation", :admin, :consul do
   end
 
   context "Create" do
-    scenario "Valid legislation process" do
+    scenario "Valid legislation process", :consul do
       visit admin_root_path
 
       within("#side_menu") do
@@ -117,7 +117,7 @@ describe "Admin collaborative legislation", :admin, :consul do
       expect(page).not_to have_content "Describing the process"
     end
 
-    scenario "Legislation process in draft phase" do
+    scenario "Legislation process in draft phase", :consul do
       visit admin_root_path
 
       within("#side_menu") do
@@ -163,7 +163,7 @@ describe "Admin collaborative legislation", :admin, :consul do
       expect(page).not_to have_content "Describing the process"
     end
 
-    scenario "Create a legislation process with an image" do
+    scenario "Create a legislation process with an image", :consul do
       visit new_admin_legislation_process_path
       fill_in "Process Title", with: "An example legislation process"
       fill_in "Summary", with: "Summary of the process"
@@ -205,7 +205,7 @@ describe "Admin collaborative legislation", :admin, :consul do
              description: "Description of the process")
     end
 
-    scenario "Remove summary text" do
+    scenario "Remove summary text", :consul do
       visit admin_root_path
 
       within("#side_menu") do
@@ -228,7 +228,7 @@ describe "Admin collaborative legislation", :admin, :consul do
       expect(page).to have_content "Description of the process"
     end
 
-    scenario "Deactivate draft publication" do
+    scenario "Deactivate draft publication", :consul do
       visit admin_root_path
 
       within("#side_menu") do
@@ -289,7 +289,7 @@ describe "Admin collaborative legislation", :admin, :consul do
       expect(page).to have_field "draft_publication_date", disabled: true
     end
 
-    scenario "Enabling comments phase with blank dates" do
+    scenario "Enabling comments phase with blank dates", :consul do
       visit edit_admin_legislation_process_path(process)
 
       within_fieldset "Comments phase" do
@@ -307,7 +307,7 @@ describe "Admin collaborative legislation", :admin, :consul do
       end
     end
 
-    scenario "Change proposal categories" do
+    scenario "Change proposal categories", :consul do
       visit edit_admin_legislation_process_path(process)
       within(".admin-content") { click_link "Proposals" }
 
@@ -376,7 +376,7 @@ describe "Admin collaborative legislation", :admin, :consul do
       Setting["sdg.process.legislation"] = true
     end
 
-    scenario "do not show SDG columns if disabled" do
+    scenario "do not show SDG columns if disabled", :consul do
       process = create(:legislation_process, title: "Legislation process with SDG related content")
       process.sdg_goals = [SDG::Goal[1], SDG::Goal[17]]
 
@@ -392,7 +392,7 @@ describe "Admin collaborative legislation", :admin, :consul do
       end
     end
 
-    scenario "create Collaborative Legislation with sdg related list" do
+    scenario "create Collaborative Legislation with sdg related list", :consul do
       visit new_admin_legislation_process_path
       fill_in "Process Title", with: "Legislation process with SDG related content"
       within_fieldset "Process" do

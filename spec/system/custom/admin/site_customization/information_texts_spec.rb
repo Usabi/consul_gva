@@ -1,17 +1,15 @@
 require "rails_helper"
 
 describe "Admin custom information texts", :admin do
-
   context "Globalization" do
-
     scenario "Remove a translation" do
       featured = create(:i18n_content, key: "debates.index.featured_debates",
                                        value_en: "Custom featured",
                                        value_es: "Destacar personalizado")
 
       page_title = create(:i18n_content, key: "debates.new.start_new",
-                                          value_en: "Start a new debate",
-                                          value_es: "Empezar un debate")
+                                         value_en: "Start a new debate",
+                                         value_es: "Empezar un debate")
 
       visit admin_site_customization_information_texts_path(tab: "debates")
 
@@ -22,7 +20,7 @@ describe "Admin custom information texts", :admin do
       expect(page).not_to have_link "Cast"
 
       visit admin_site_customization_information_texts_path(tab: "debates")
-      select "English", from: :select_language
+      select "Eng", from: :select_language
 
       expect(page).to have_content "Start a new debate"
       expect(page).to have_content "Custom featured"

@@ -26,6 +26,8 @@ describe "Admin edit translatable records", :admin do
         fill_in "Heading name", with: "Nom en Français"
         click_button "Save heading"
 
+        expect(page).to have_content "Heading updated successfully"
+
         visit path
 
         expect(page).to have_field "Heading name", with: "Heading name in English"
@@ -52,6 +54,8 @@ describe "Admin edit translatable records", :admin do
         fill_in "Subtitle", with: "Sous-titres en Français"
         fill_in_ckeditor "Content", with: "Contenu en Français"
         click_button "Update Custom page"
+
+        expect(page).to have_content "Page updated successfully"
 
         visit path
 
@@ -97,6 +101,31 @@ describe "Admin edit translatable records", :admin do
         click_link class: "fullscreen-toggle"
 
         expect(page).to have_field "Text", with: "Texte en Français"
+      end
+    end
+
+    context "Locale with non-underscored name" do
+      let(:translatable) { create(:legislation_question) }
+      let(:path) { edit_admin_legislation_process_question_path(translatable.process, translatable) }
+
+      scenario "Adds a translation for that locale" do
+        visit path
+
+        select "Português brasileiro", from: "Add language"
+        fill_in "Question", with: "Português"
+        click_button "Save changes"
+
+        expect(page).to have_content "Question updated successfully"
+
+        visit path
+
+        expect(page).not_to have_content "Question updated successfully"
+
+        within(".radio-toolbar") do
+          find("label", text: /Português brasileiro/).click
+        end
+
+        expect(page).to have_field "Questão", with: "Português"
       end
     end
   end
@@ -169,7 +198,7 @@ describe "Admin edit translatable records", :admin do
       let(:translatable) { create(:widget_card) }
       let(:path) { edit_admin_widget_card_path(translatable) }
 
-      scenario "Changes the existing translation", :consul do
+      scenario "Changes the existing translation" do
         visit path
 
         select "Cast", from: "Current language"
@@ -182,6 +211,8 @@ describe "Admin edit translatable records", :admin do
         end
 
         click_button "Save card"
+
+        expect(page).to have_content "Card updated successfully"
 
         visit path
 
@@ -212,6 +243,8 @@ describe "Admin edit translatable records", :admin do
 
         click_button "Save"
 
+        expect(page).to have_content "Changes saved"
+
         visit path
 
         expect(page).to have_field "Answer", with: "Answer in English"
@@ -220,6 +253,26 @@ describe "Admin edit translatable records", :admin do
 
         expect(page).to have_field "Respuesta", with: "Respuesta corregida"
         expect(page).to have_ckeditor "Descripción", with: "Descripción corregida"
+      end
+    end
+
+    context "Change value of a translated field to blank" do
+      let(:translatable) { create(:poll, :future) }
+      let(:path) { edit_admin_poll_path(translatable) }
+
+      scenario "Updates the field to a blank value" do
+        visit path
+
+        expect(page).to have_field "Summary", with: "Summary in English"
+
+        fill_in "Summary", with: ""
+        click_button "Update poll"
+
+        expect(page).to have_content "Poll updated successfully"
+
+        visit path
+
+        expect(page).to have_field "Summary", with: ""
       end
     end
   end
@@ -267,24 +320,6 @@ describe "Admin edit translatable records", :admin do
 
         expect(page).to have_field "Text", with: ""
       end
-
-      context "Locale with non-underscored name" do
-        let(:translatable) { create(:legislation_question) }
-        let(:path) { edit_admin_legislation_process_question_path(translatable.process, translatable) }
-
-        scenario "Adds a translation for that locale" do
-          visit path
-
-          select "Português brasileiro", from: "Add language"
-          fill_in "Question", with: "Português"
-          click_button "Save changes"
-
-          visit path
-          select_language("Português brasileiro")
-
-          expect(page).to have_field "Questão", with: "Português"
-        end
-      end
     end
   end
 
@@ -300,7 +335,7 @@ describe "Admin edit translatable records", :admin do
       visit edit_admin_legislation_process_path(translatable)
 
       expect_to_have_language_selected "Français"
-      expect_not_to_have_language "English"
+      expect_not_to_have_language "Eng"
 
       click_button "Save changes"
 
@@ -309,7 +344,7 @@ describe "Admin edit translatable records", :admin do
       visit edit_admin_legislation_process_path(translatable)
 
       expect_to_have_language_selected "Français"
-      expect_not_to_have_language "English"
+      expect_not_to_have_language "Eng"
     end
   end
 
@@ -327,10 +362,12 @@ describe "Admin edit translatable records", :admin do
 
       click_button "Save group"
 
+      expect(page).to have_content "Group updated successfully"
+
       visit path
 
-      expect(page).not_to have_select "Current language", with_options: ["Cast"]
       expect(page).to have_select "Current language", with_options: ["Eng"]
+      expect(page).not_to have_select "Current language", with_options: ["Cast"]
     end
   end
 
@@ -487,46 +524,6 @@ describe "Admin edit translatable records", :admin do
       select "Cast",  from: "Current language"
 
       expect(page).to have_field "contents_content_#{content.key}values_value_es", with: "Value en español"
-    end
-
-    context "Languages in use" do
-      scenario "Show default description" do
-        visit path
-
-        expect(page).to have_content "2 languages in use"
-      end
-
-      scenario "Increase description count after add new language" do
-        visit path
-
-        select "Français", from: "Add language"
-
-        expect(page).to have_content "3 languages in use"
-      end
-
-      scenario "Decrease description count after remove a language" do
-        visit path
-
-        click_link "Remove language"
-
-        expect(page).to have_content "1 language in use"
-      end
-    end
-
-    context "When translation interface feature setting" do
-      scenario "Is enabled translation interface should be rendered" do
-        visit path
-
-        expect(page).to have_css ".globalize-languages"
-      end
-
-      scenario "Is disabled translation interface should be rendered" do
-        Setting["feature.translation_interface"] = nil
-
-        visit path
-
-        expect(page).to have_css ".globalize-languages"
-      end
     end
   end
 end

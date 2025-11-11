@@ -1,7 +1,7 @@
 en:
   stats:
-    title: "Participation Statistics"
-    advanced: "Advanced Statistics"
+    title: "Participation statistics"
+    advanced: "Advanced statistics"
     total_participants: "Participants"
     by_gender: "Participants by gender"
     by_age: "Participants by age groups"

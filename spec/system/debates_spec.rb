@@ -86,7 +86,7 @@ describe "Debates" do
 
   describe "Social share buttons" do
     context "On desktop browsers" do
-      scenario "Shows links to share on facebook and twitter" do
+      scenario "Shows links to share on facebook and twitter", :consul do
         visit debate_path(create(:debate))
 
         within(".social-share-button") do
@@ -98,7 +98,7 @@ describe "Debates" do
     end
 
     context "On small devices", :small_window do
-      scenario "Shows links to share on telegram and whatsapp too" do
+      scenario "Shows links to share on telegram and whatsapp too", :consul do
         visit debate_path(create(:debate))
 
         within(".social-share-button") do

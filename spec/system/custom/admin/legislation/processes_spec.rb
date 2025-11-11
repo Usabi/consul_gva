@@ -68,25 +68,26 @@ describe "Admin collaborative legislation", :admin do
 
       base_date = Date.current
 
-      within "fieldset", text: "Draft phase" do
-        check "Enabled"
+      within "fieldset", text: "Internal drafting phase" do
+        check "Active"
         fill_in "Start", with: base_date - 3.days
         fill_in "End", with: base_date - 1.day
       end
 
-      within_fieldset "Process" do
+      within "fieldset", text: "Process" do
         fill_in "Start", with: base_date
         fill_in "End", with: base_date + 5.days
+        check "Active"
       end
 
-      within_fieldset "Debate phase" do
-        check "Enabled"
+      within "fieldset", text: "> Debate" do
+        check "Active"
         fill_in "Start", with: base_date
         fill_in "End", with: base_date + 2.days
       end
 
-      within_fieldset "Comments phase" do
-        check "Enabled"
+      within "fieldset", text: "> Contributions to the draft" do
+        check "Active"
         fill_in "Start", with: base_date + 3.days
         fill_in "End", with: base_date + 5.days
       end
@@ -119,6 +120,231 @@ describe "Admin collaborative legislation", :admin do
       expect(page).to have_content "An example legislation process"
       expect(page).to have_content "Summary of the process"
       expect(page).not_to have_content "Describing the process"
+    end
+
+    scenario "Legislation process in draft phase" do
+      visit admin_root_path
+
+      within("#side_menu") do
+        click_button "Legislation"
+        within("#legislation_menu") do
+          click_link "Legislation"
+        end
+      end
+
+      expect(page).not_to have_content "An example legislation process"
+
+      click_link "New process"
+
+      fill_in "Process Title", with: "An example legislation process in draft phase"
+      fill_in "Summary", with: "Summary of the process"
+      fill_in "Description", with: "Describing the process"
+
+      base_date = Date.current - 2.days
+
+      within "fieldset", text: "Internal drafting phase" do
+        check "Active"
+        fill_in "Start", with: base_date
+        fill_in "End", with: base_date + 3.days
+      end
+
+      within "fieldset", text: "Process" do
+        fill_in "Start", with: base_date
+        fill_in "End", with: base_date + 5.days
+        check "Active"
+      end
+
+      click_button "Create process"
+
+      expect(page).to have_content "An example legislation process in draft phase"
+      expect(page).to have_content "Process created successfully"
+
+      click_link "Click to visit"
+
+      expect(page).to have_content "An example legislation process in draft phase"
+      expect(page).not_to have_content "Summary of the process"
+      expect(page).to have_content "Describing the process"
+
+      visit legislation_processes_path
+
+      expect(page).not_to have_content "An example legislation process in draft phase"
+      expect(page).not_to have_content "Summary of the process"
+      expect(page).not_to have_content "Describing the process"
+    end
+
+    scenario "Create a legislation process with an image" do
+      visit new_admin_legislation_process_path
+      fill_in "Process Title", with: "An example legislation process"
+      fill_in "Summary", with: "Summary of the process"
+
+      base_date = Date.current
+
+      within "fieldset", text: "Process" do
+        fill_in "Start", with: base_date
+        fill_in "End", with: base_date + 5.days
+        check "Active"
+      end
+
+      imageable_attach_new_file(file_fixture("clippy.jpg"))
+
+      click_button "Create process"
+
+      expect(page).to have_content "An example legislation process"
+      expect(page).to have_content "Process created successfully"
+
+      click_link "Click to visit"
+
+      expect(page).to have_content "An example legislation process"
+      expect(page).not_to have_content "Summary of the process"
+      expect(page).to have_css("img[alt='An example legislation process']")
+    end
+  end
+
+  context "Update" do
+    let!(:process) do
+      create(:legislation_process,
+             title: "An example legislation process",
+             summary: "Summarizing the process",
+             description: "Description of the process")
+    end
+
+    scenario "Remove summary text" do
+      visit admin_root_path
+
+      within("#side_menu") do
+        click_button "Legislation"
+        within("#legislation_menu") do
+          click_link "Legislation"
+        end
+      end
+
+      within("tr", text: "An example legislation process") { click_link "Edit" }
+
+      expect(page).to have_css "h2", text: "An example legislation process"
+      expect(find("#legislation_process_debate_phase_enabled")).to be_checked
+      expect(find("#legislation_process_published")).to be_checked
+
+      fill_in "Summary", with: ""
+      click_button "Save changes"
+
+      expect(page).to have_content "Process updated successfully"
+
+      visit legislation_processes_path
+      expect(page).not_to have_content "Summarizing the process"
+      expect(page).to have_content "Description of the process"
+    end
+
+    scenario "Deactivate draft publication" do
+      visit admin_root_path
+
+      within("#side_menu") do
+        click_button "Legislation"
+        within("#legislation_menu") do
+          click_link "Legislation"
+        end
+      end
+
+      within("tr", text: "An example legislation process") { click_link "Edit" }
+
+      expect(find("#legislation_process_draft_publication_enabled")).to be_checked
+
+      uncheck "legislation_process_draft_publication_enabled"
+      click_button "Save changes"
+
+      expect(page).to have_content "Process updated successfully"
+      expect(find("#debate_start_date").value).not_to be_blank
+      expect(find("#debate_end_date").value).not_to be_blank
+
+      click_link "Click to visit"
+
+      expect(page).not_to have_content "Draft publication"
+    end
+
+    scenario "Enabling comments phase with blank dates" do
+      visit edit_admin_legislation_process_path(process)
+
+      within "fieldset", text: "> Contributions to the draft" do
+        check "Active"
+        fill_in "Start", with: ""
+        fill_in "End", with: ""
+      end
+
+      click_button "Save changes"
+
+      expect(page).to have_content "errors prevented this process from being saved"
+
+      within "fieldset", text: "> Contributions to the draft" do
+        expect(page).to have_content "can't be blank"
+      end
+    end
+
+    scenario "Change proposal categories" do
+      visit edit_admin_legislation_process_path(process)
+      within(".admin-content") { click_link "Proposals" }
+
+      fill_in "Categories", with: "recycling,bicycles,pollution"
+      click_button "Save changes"
+
+      expect(page).to have_content "Process updated successfully"
+
+      visit admin_legislation_process_proposals_path(process)
+
+      expect(page).to have_field("Categories", with: "bicycles, pollution, recycling")
+
+      within(".admin-content") { click_link "Info" }
+      fill_in "Summary", with: "Summarizing the process"
+      click_button "Save changes"
+
+      expect(page).to have_content "Process updated successfully"
+
+      visit admin_legislation_process_proposals_path(process)
+
+      expect(page).to have_field("Categories", with: "bicycles, pollution, recycling")
+    end
+  end
+
+  context "SDG related list" do
+    before do
+      Setting["feature.sdg"] = true
+      Setting["sdg.process.legislation"] = true
+    end
+
+    scenario "do not show SDG columns if disabled" do
+      process = create(:legislation_process, title: "Legislation process with SDG related content")
+      process.sdg_goals = [SDG::Goal[1], SDG::Goal[17]]
+
+      Setting["feature.sdg"] = false
+
+      visit admin_legislation_processes_path
+
+      expect(page).not_to have_css "th", text: "Goals"
+      expect(page).not_to have_css "th", text: "Targets"
+
+      within "tr", text: "Legislation process with SDG related content" do
+        expect(page).not_to have_content "1, 17"
+      end
+    end
+
+    scenario "create Collaborative Legislation with sdg related list" do
+      visit new_admin_legislation_process_path
+      fill_in "Process Title", with: "Legislation process with SDG related content"
+
+      within "fieldset", text: "Process" do
+        fill_in "Start", with: 2.days.ago
+        fill_in "End", with: 1.day.from_now
+        check "Active"
+      end
+
+      click_sdg_goal(17)
+      click_button "Create process"
+
+      expect(page).to have_content "Process created successfully"
+
+      visit admin_legislation_processes_path
+
+      within("tr", text: "Legislation process with SDG related content") do
+        expect(page).to have_css "td", exact_text: "17"
+      end
     end
   end
 end

@@ -89,7 +89,7 @@ describe "Admin banners magement", :admin do
     expect(page).to have_link "Such banner many text wow link", href: "https://www.url.com"
   end
 
-  scenario "Publish a banner with a translation different than the current locale" do
+  scenario "Publish a banner with a translation different than the current locale", :consul do
     visit new_admin_banner_path
 
     expect_to_have_language_selected "English"

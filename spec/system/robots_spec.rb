@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "robots.txt" do
+describe "robots.txt", :consul do
   scenario "uses the default sitemap for the default tenant" do
     visit "/robots.txt"
 

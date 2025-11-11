@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Social media meta tags", :consul do
+describe "Social media meta tags" do
   context "Setting social media meta tags" do
     let(:meta_keywords) { "citizen, participation, open government" }
     let(:meta_title) { "CONSUL" }
@@ -18,6 +18,15 @@ describe "Social media meta tags", :consul do
       Setting["twitter_handle"] = twitter_handle
       Setting["facebook_handle"] = facebook_handle
       Setting["org_name"] = org_name
+    end
+
+    after do
+      Setting["meta_keywords"] = nil
+      Setting["meta_title"] = nil
+      Setting["meta_description"] = nil
+      Setting["twitter_handle"] = nil
+      Setting["facebook_handle"] = nil
+      Setting["org_name"] = nil
     end
 
     scenario "Social media meta tags partial render settings content" do

@@ -1,8 +1,8 @@
 require "rails_helper"
 
-RSpec.feature "Admin::ManagementNewsletters", type: :feature do
+RSpec.describe "Admin::ManagementNewsletters" do
   let(:admin) { create(:administrator) }
-  let!(:newsletter) { create(:management_newsletter, status: 'pending') }
+  let!(:newsletter) { create(:management_newsletter, status: "pending") }
 
   before { login_as admin.user }
 
@@ -16,9 +16,11 @@ RSpec.feature "Admin::ManagementNewsletters", type: :feature do
     expect(page).to have_content(newsletter.status.upcase_first)
   end
 
-  scenario "admin resends a newsletter" do
+  scenario "admin resends a newsletter", :js do
     visit admin_management_newsletters_path
-    click_link "Resend"
+    accept_confirm do
+      click_link "Resend"
+    end
     expect(page).to have_content(I18n.t("admin.management_newsletters.resend.success"))
   end
 

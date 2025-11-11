@@ -63,7 +63,7 @@ describe "Legislation" do
       end
     end
 
-    scenario "shows debates list" do
+    scenario "shows debates list", :consul do
       visit summary_legislation_process_path(process)
 
       expect(page).to have_content "Debate phase"
@@ -99,7 +99,7 @@ describe "Legislation" do
                                     title: "Legislation proposal 4", selected: false)
     end
 
-    scenario "shows proposals list" do
+    scenario "shows proposals list", :consul do
       visit summary_legislation_process_path(process)
 
       expect(page).to have_content "Debate phase"
@@ -150,7 +150,7 @@ describe "Legislation" do
       create(:comment, user: user, commentable: annotation2, body: "Comment 3")
     end
 
-    scenario "shows coments list" do
+    scenario "shows coments list", :consul do
       visit summary_legislation_process_path(process)
 
       expect(page).to have_content "Debate phase"

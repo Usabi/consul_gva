@@ -17,7 +17,7 @@ describe "Polls" do
 
       visit stats_poll_path(poll)
 
-      expect(page).to have_content("Participation Statistics")
+      expect(page).to have_content("Participation statistics")
       expect(page).not_to have_content "Advanced statistics"
     end
 
@@ -26,8 +26,8 @@ describe "Polls" do
 
       visit stats_poll_path(poll)
 
-      expect(page).to have_content "Participation Statistics"
-      expect(page).to have_content "Advanced Statistics"
+      expect(page).to have_content "Participation statistics"
+      expect(page).to have_content "Advanced statistics"
     end
   end
 end

@@ -14,12 +14,12 @@ describe "Admin edit translatable records", :admin do
     end
   end
 
-  context "Add a translation" do
+  context "Add a translation", :consul do
     context "Input fields" do
       let(:translatable) { create(:budget_heading) }
       let(:path) { admin_polymorphic_path(translatable, action: :edit) }
 
-      scenario "Maintains existing translations", :consul do
+      scenario "Maintains existing translations" do
         visit path
 
         select "Français", from: "Add language"
@@ -46,7 +46,7 @@ describe "Admin edit translatable records", :admin do
       let(:translatable) { create(:site_customization_page) }
       let(:path) { edit_admin_site_customization_page_path(translatable) }
 
-      scenario "Maintains existing translations", :consul do
+      scenario "Maintains existing translations" do
         visit path
 
         select "Français", from: "Add language"
@@ -75,7 +75,7 @@ describe "Admin edit translatable records", :admin do
       let(:translatable) { create(:legislation_draft_version) }
       let(:path) { edit_admin_legislation_process_draft_version_path(translatable.process, translatable) }
 
-      scenario "Maintains existing translations", :consul do
+      scenario "Maintains existing translations" do
         visit path
 
         select "Français", from: "Add language"
@@ -109,7 +109,7 @@ describe "Admin edit translatable records", :admin do
       let(:translatable) { create(:legislation_question) }
       let(:path) { edit_admin_legislation_process_question_path(translatable.process, translatable) }
 
-      scenario "Adds a translation for that locale", :consul do
+      scenario "Adds a translation for that locale" do
         visit path
 
         select "Português brasileiro", from: "Add language"
@@ -190,12 +190,12 @@ describe "Admin edit translatable records", :admin do
     end
   end
 
-  context "Update a translation" do
+  context "Update a translation", :consul do
     context "Input fields" do
       let(:translatable) { create(:widget_card) }
       let(:path) { edit_admin_widget_card_path(translatable) }
 
-      scenario "Changes the existing translation", :consul do
+      scenario "Changes the existing translation" do
         visit path
 
         select "Español", from: "Current language"
@@ -224,7 +224,7 @@ describe "Admin edit translatable records", :admin do
       end
     end
 
-    context "CKEditor fields", :consul do
+    context "CKEditor fields" do
       let(:translatable) { create(:poll_question_option, poll: create(:poll, :future)) }
       let(:path) { edit_admin_question_option_path(translatable.question, translatable) }
 
@@ -257,7 +257,7 @@ describe "Admin edit translatable records", :admin do
       let(:translatable) { create(:poll, :future) }
       let(:path) { edit_admin_poll_path(translatable) }
 
-      scenario "Updates the field to a blank value", :consul do
+      scenario "Updates the field to a blank value" do
         visit path
 
         expect(page).to have_field "Summary", with: "Summary in English"
@@ -320,7 +320,7 @@ describe "Admin edit translatable records", :admin do
     end
   end
 
-  context "Update a translation not having the current locale" do
+  context "Update a translation not having the current locale", :consul do
     let(:translatable) { create(:legislation_process) }
 
     before do
@@ -366,10 +366,10 @@ describe "Admin edit translatable records", :admin do
     end
   end
 
-  context "Remove all translations" do
+  context "Remove all translations", :consul do
     let(:translatable) { create(:milestone) }
 
-    scenario "Shows an error message when there's a mandatory translatable field", :consul do
+    scenario "Shows an error message when there's a mandatory translatable field" do
       translatable.update!(status: nil)
 
       visit admin_polymorphic_path(translatable, action: :edit)
@@ -385,7 +385,7 @@ describe "Admin edit translatable records", :admin do
       expect(page).to have_content "Is mandatory to provide one translation at least"
     end
 
-    scenario "Is successful when there isn't a mandatory translatable field", :consul do
+    scenario "Is successful when there isn't a mandatory translatable field" do
       translatable.update!(status: Milestone::Status.first)
 
       visit admin_polymorphic_path(translatable, action: :edit)
@@ -512,7 +512,8 @@ describe "Admin edit translatable records", :admin do
       expect_to_have_language_selected "Español"
     end
 
-    scenario "Select first locale of existing translations when current locale translation does not exists", :consul do
+    scenario "Select first locale of existing translations when current locale translation does not exists",
+             :consul do
       content.translations.where(locale: :en).destroy_all
       visit path
 
