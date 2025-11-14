@@ -1,0 +1,89 @@
+<td style="padding-bottom: 20px; padding-left: 10px;">
+  <h2 style="font-family: 'Roboto', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif;font-size: 24px;font-weight: normal;line-height: 32px; padding-left: 12px;"><%= t('citizen_newsletter.email.subject', date: l(Date.current, format: :long)) %></h2>
+  <p><%= t("citizen_newsletter.email.intro") %></p>
+
+  <% if @citizen_newsletter.most_supported_proposals.any? && @user.newsletter_proposals %>
+    <h3 style="font-family: 'Roboto', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif; font-size: 27px; font-weight: 700; line-height: 38px; margin-bottom: 15px;">
+      <%= t("citizen_newsletter.email.most_supported_proposals") %>
+    </h3>
+    <ul style="list-style: none; padding-left: 0; margin-bottom: 30px;">
+      <% @citizen_newsletter.most_supported_proposals.each do |proposal| %>
+        <li style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 3px solid #007bff;">
+          <strong>
+            <%= link_to proposal.title, proposal_url(proposal), style: "color: #004a83; text-decoration: none;" %>
+          </strong>
+          <br>
+          <span style="color: #666; font-size: 14px;">
+            <%= t("citizen_newsletter.email.supports", count: proposal.votes_for.size) %>
+          </span>
+        </li>
+      <% end %>
+      <li><%= link_to t("citizen_newsletter.email.all_proposals"), proposals_url, style: "color: #004a83; text-decoration: none;" %></li>
+    </ul>
+  <% end %>
+
+  <% if @citizen_newsletter.active_debates.any? && @user.newsletter_debates %>
+    <h3 style="font-family: 'Roboto', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif; font-size: 27px; font-weight: 700; line-height: 38px; margin-bottom: 15px;">
+      <%= t("citizen_newsletter.email.most_active_debates") %>
+    </h3>
+    <ul style="list-style: none; padding-left: 0; margin-bottom: 30px;">
+      <% @citizen_newsletter.active_debates.each do |debate| %>
+        <li style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 3px solid #007bff;">
+          <strong>
+            <%= link_to debate.title, debate_url(debate), style: "color: #004a83; text-decoration: none;" %>
+          </strong>
+          <br>
+          <span style="color: #666; font-size: 14px;">
+            <%= t("citizen_newsletter.email.comments", count: debate.comments_count) %>
+          </span>
+        </li>
+      <% end %>
+      <li><%= link_to t("citizen_newsletter.email.all_debates"), debates_url, style: "color: #004a83; text-decoration: none;" %></li>
+    </ul>
+  <% end %>
+
+  <% if @citizen_newsletter.preview_processes.any? && @user.newsletter_legislation %>
+    <h3 style="font-family: 'Roboto', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif; font-size: 27px; font-weight: 700; line-height: 38px; margin-bottom: 15px;">
+      <%= t("citizen_newsletter.email.preview_processes") %>
+    </h3>
+    <ul style="list-style: none; padding-left: 0; margin-bottom: 30px;">
+      <% @citizen_newsletter.preview_processes.each do |process| %>
+        <li style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 3px solid #007bff;">
+          <strong>
+            <%= link_to process.title, legislation_process_url(process), style: "color: #004a83; text-decoration: none;" %>
+          </strong>
+        </li>
+      <% end %>
+      <li><%= link_to t("citizen_newsletter.email.all_processes"), legislation_processes_url, style: "color: #004a83; text-decoration: none;" %></li>
+    </ul>
+  <% end %>
+
+  <% if @citizen_newsletter.public_processes.any? && @user.newsletter_legislation %>
+    <h3 style="font-family: 'Roboto', 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif; font-size: 27px; font-weight: 700; line-height: 38px; margin-bottom: 15px;">
+      <%= t("citizen_newsletter.email.public_processes") %>
+    </h3>
+    <ul style="list-style: none; padding-left: 0; margin-bottom: 30px;">
+      <% @citizen_newsletter.public_processes.each do |process| %>
+        <li style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-left: 3px solid #007bff;">
+          <strong>
+            <%= link_to process.title, legislation_process_url(process), style: "color: #004a83; text-decoration: none;" %>
+          </strong>
+        </li>
+      <% end %>
+      <li><%= link_to t("citizen_newsletter.email.all_processes"), legislation_processes_url, style: "color: #004a83; text-decoration: none;" %></li>
+    </ul>
+  <% end %>
+
+  <p style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 12px;">
+    <%= sanitize(
+      t("citizen_newsletter.email.unsubscribe_html",
+        link: link_to(
+          t("citizen_newsletter.email.unsubscribe_link"),
+          citizen_newsletter_unsubscribe_url(token: @token),
+          style: "color: #004a83; text-decoration: none;"
+        )
+      ),
+      attributes: %w[href style]
+    ) %>
+  </p>
+</td>

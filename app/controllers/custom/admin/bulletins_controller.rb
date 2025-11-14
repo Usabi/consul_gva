@@ -53,9 +53,10 @@ class Admin::BulletinsController < Admin::BaseController
         template: "admin/bulletin_templates/_#{@bulletin.template}",
         layout: false
       )
+      segment = @bulletin.for_citizen_newsletter? ? @bulletin.citizen_newsletter_segment : "all_users"
       newsletter = Newsletter.create!(
         subject: @bulletin.title,
-        segment_recipient: ["all_users"],
+        segment_recipient: [segment],
         from: "no-reply@consul.dev",
         body: rendered_body,
         sent_at: Time.current

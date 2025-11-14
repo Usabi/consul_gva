@@ -49,8 +49,20 @@ class Mailer
 
   def management_newsletter(newsletter)
     @management_newsletter = newsletter
-    administrators = User.joins(:administrator).pluck(:email)
+    @email_to = User.joins(:administrator).pluck(:email)
     subject = "#{t("admin.management_newsletters.mailer.subject")} #{Time.zone.now.to_date}"
-    mail(to: administrators, subject: subject)
+    mail(to: @email_to, subject: subject)
+  end
+
+  def citizen_newsletter(newsletter, user)
+    @citizen_newsletter = newsletter
+    @user = user
+    @email_to = user.email
+    @token = user.subscriptions_token
+
+    with_user(user) do
+      subject = t("citizen_newsletter.email.subject", date: l(Date.current, format: :long))
+      mail(to: @email_to, subject: subject)
+    end
   end
 end

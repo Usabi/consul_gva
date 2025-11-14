@@ -41,8 +41,13 @@ class Admin::MenuComponent
       controller_name == "management_newsletters"
     end
 
+    def citizen_newsletters?
+      controller_name == "citizen_newsletters"
+    end
+
     def messages_sections
-      %w[bulletins newsletters admin_notifications management_newsletters system_emails emails_download citizen_opinions]
+      %w[bulletins newsletters admin_notifications management_newsletters citizen_newsletters
+         system_emails emails_download citizen_opinions]
     end
 
     def key_systems_link
@@ -138,6 +143,14 @@ class Admin::MenuComponent
       ]
     end
 
+    def citizen_newsletters_link
+      [
+        t("admin.menu.citizen_newsletters"),
+        admin_citizen_newsletters_path,
+        citizen_newsletters?
+      ]
+    end
+
     def citizenship_mailbox_link
       [
         t("admin.menu.citizenship_mailbox"),
@@ -153,6 +166,7 @@ class Admin::MenuComponent
           newsletters_link,
           admin_notifications_link,
           management_newsletters_link,
+          citizen_newsletters_link,
           system_emails_link,
           emails_download_link,
           citizenship_mailbox_link,

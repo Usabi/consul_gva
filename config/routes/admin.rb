@@ -264,6 +264,12 @@ namespace :admin do
       end
     end
 
+    resources :citizen_newsletters, only: [:index, :show, :create] do # Custom
+      member do
+        post :resend
+      end
+    end
+
     resources :system_emails, only: [:index] do
       get :view
       get :preview_pending

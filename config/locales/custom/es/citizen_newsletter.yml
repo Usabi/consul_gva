@@ -1,0 +1,48 @@
+es:
+  citizen_newsletter:
+    call_to_action:
+      title: "Suscríbete al boletín ciudadano"
+      description: "Recibe información sobre las últimas novedades en debates, iniciativas y procesos de elaboración normativa. Tú decides qué contenidos quieres recibir."
+      guest: "Regístrate para suscribirte"
+      signed_in: "Gestionar mi suscripción"
+    unsubscribe:
+      title: "Cancelar suscripción a newsletters ciudadanas"
+      confirmation_question: "¿Estás seguro de que quieres cancelar tu suscripción a las newsletters ciudadanas?"
+      description: "Si cancelas tu suscripción, dejarás de recibir correos automáticos sobre debates, iniciativas y procesos de elaboración normativa."
+      confirm_button: "Sí, cancelar suscripción"
+      cancel_button: "No, mantener suscripción"
+      are_you_sure: "¿Estás seguro? Esta acción cancelará todas tus suscripciones a newsletters ciudadanas."
+      success: "Tu suscripción a las newsletters ciudadanas ha sido cancelada correctamente."
+      invalid_token: "El enlace de cancelación no es válido o ha expirado."
+    email:
+      subject: "Novedades de GVA Participa - %{date}"
+      intro: "Te enviamos un resumen con las últimas novedades en debates, iniciativas y procesos de elaboración normativa."
+      most_supported_proposals: "Iniciativas más apoyadas"
+      most_active_debates: "Debates más activos"
+      preview_processes: "Procesos de elaboración normativa (Consulta previa)"
+      public_processes: "Procesos de elaboración normativa (Audiencia ciudadana)"
+      supports: "%{count} apoyos"
+      comments: "%{count} comentarios"
+      all_proposals: "Ver todas las iniciativas"
+      all_debates: "Ver todos los debates"
+      all_processes: "Ver todos los procesos"
+      unsubscribe_html: "Si no deseas recibir más estos correos, puedes %{link}."
+      unsubscribe_link: "darte de baja aquí"
+
+  account:
+    show:
+      citizen_newsletter:
+        title: "Boletines informativos"
+        description: "Selecciona qué tipo de contenidos quieres recibir por email"
+
+  activerecord:
+    attributes:
+      user:
+        newsletter_debates: "Quiero recibir novedades sobre debates"
+        newsletter_proposals: "Quiero recibir novedades sobre iniciativas"
+        newsletter_legislation: "Quiero recibir novedades sobre procesos de elaboración normativa"
+
+  mailers:
+    citizen_newsletter:
+      unsubscribe_link_html: "Si no deseas recibir más estos correos, puedes %{link}."
+      unsubscribe_link_text: "darte de baja aquí"

@@ -639,6 +639,7 @@ val:
       bulletins: Butlletins
       newsletters: Enviament de Newsletters
       management_newsletters: Newsletters de gestió
+      citizen_newsletters: Newsletters ciutadanes
       admin_notifications: Notificacions
       system_emails: Correus electònics del sistema
       emails_download: Descàrrega de emails
@@ -718,6 +719,9 @@ val:
       selected_investment_authors: Autors de projectes seleccionades en els actuals pressupostos
       winner_investment_authors: Usuaris autors de projectes guanyadors en els actuals pressupostos
       not_supported_on_current_budget: Usuaris que no han avalat projectes en els actuals pressupostos
+      newsletter_debates: Usuaris subscrits a butlletí de debats
+      newsletter_proposals: Usuaris subscrits a butlletí d'iniciatives
+      newsletter_legislation: Usuaris subscrits a butlletí d'elaboració normativa
       invalid_recipients_segment: "El segment de destinataris es invàlid"
     bulletin_templates:
       proposal:
@@ -841,6 +845,42 @@ val:
         save: "Guardar configuració"
         updated: "Configuració actualitzada correctament."
         invalid: "Opció invàlida per a la configuració."
+    citizen_newsletters:
+      index:
+        title: "Newsletters ciutadanes"
+        created_at: "Data de creació"
+        status: "Estat"
+        sent_at: "Data d'enviament"
+        actions: "Accions"
+        view: "Veure"
+        pending: "Pendent"
+        sent: "Enviada"
+        failed: "Fallida"
+        resend: "Reexpedir"
+        confirm_resend: "Estàs segur/a que vols reexpedir esta newsletter ciutadana?"
+      show:
+        title: "Vista prèvia de newsletter ciutadana"
+        created_at: "Data de creació"
+        status: "Estat"
+        sent_at: "Data d'enviament"
+        back: "Tornar a la llista"
+        resend: "Reexpedir"
+        most_supported_proposals: "Iniciatives més secundades"
+        most_active_debates: "Debats més actius"
+        preview_processes: "Processos en fase de consulta prèvia"
+        public_processes: "Processos en fase d'audiència ciutadana"
+        supports:
+          one: "%{count} suport"
+          other: "%{count} suports"
+        comments:
+          one: "%{count} comentari"
+          other: "%{count} comentaris"
+        all_proposals: "Veure totes les iniciatives"
+        all_debates: "Veure tots els debats"
+        all_processes: "Veure tots els processos d'elaboració normativa"
+      resend:
+        success: "La newsletter ciutadana s'ha reexpedit correctament i s'està processant."
+        error: "No s'ha pogut reexpedir la newsletter ciutadana."
     admin_notifications:
       create_success: Notificació creada correctament
       update_success: Notificació actualitzada correctament
@@ -948,6 +988,9 @@ val:
         description: "Enviat a administradors amb un resum diari/setmanal de l'activitat en la plataforma."
         mailer:
           subject: "Resum de la plataforma de participació"
+      citizen_newsletter:
+        title: "Newsletter ciutadana"
+        description: "Enviat setmanalment a ciutadans subscrits amb un resum de l'activitat en la plataforma."
     emails_download:
       index:
         title: Descàrrega de emails

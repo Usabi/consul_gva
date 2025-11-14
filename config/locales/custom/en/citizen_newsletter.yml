@@ -1,0 +1,48 @@
+en:
+  citizen_newsletter:
+    call_to_action:
+      title: "Subscribe to the citizen newsletter"
+      description: "Get information about the latest news on debates, initiatives and legislative processes. You decide what content you want to receive."
+      guest: "Register to subscribe"
+      signed_in: "Manage my subscription"
+    unsubscribe:
+      title: "Unsubscribe from citizen newsletters"
+      confirmation_question: "Are you sure you want to unsubscribe from citizen newsletters?"
+      description: "If you unsubscribe, you will stop receiving automatic emails about debates, initiatives and legislative processes."
+      confirm_button: "Yes, unsubscribe"
+      cancel_button: "No, keep subscription"
+      are_you_sure: "Are you sure? This action will cancel all your citizen newsletter subscriptions."
+      success: "Your subscription to citizen newsletters has been successfully cancelled."
+      invalid_token: "The unsubscribe link is not valid or has expired."
+    email:
+      subject: "GVA Participa News - %{date}"
+      intro: "We send you a summary with the latest news on debates, initiatives and legislative processes."
+      most_supported_proposals: "Most supported initiatives"
+      most_active_debates: "Most active debates"
+      preview_processes: "Legislative processes (Prior consultation)"
+      public_processes: "Legislative processes (Public hearing)"
+      supports: "%{count} supports"
+      comments: "%{count} comments"
+      all_proposals: "See all initiatives"
+      all_debates: "See all debates"
+      all_processes: "See all processes"
+      unsubscribe_html: "If you don't want to receive these emails anymore, you can %{link}."
+      unsubscribe_link: "unsubscribe here"
+
+  account:
+    show:
+      citizen_newsletter:
+        title: "Newsletters"
+        description: "Select what type of content you want to receive by email"
+
+  activerecord:
+    attributes:
+      user:
+        newsletter_debates: "I want to receive news about debates"
+        newsletter_proposals: "I want to receive news about initiatives"
+        newsletter_legislation: "I want to receive news about legislative processes"
+
+  mailers:
+    citizen_newsletter:
+      unsubscribe_link_html: "If you don't want to receive these emails anymore, you can %{link}."
+      unsubscribe_link_text: "unsubscribe here"

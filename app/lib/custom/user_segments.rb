@@ -15,7 +15,10 @@ class UserSegments
        feasible_and_undecided_investment_authors
        selected_investment_authors
        winner_investment_authors
-       not_supported_on_current_budget] + geozones.keys
+       not_supported_on_current_budget
+       newsletter_debates
+       newsletter_proposals
+       newsletter_legislation] + geozones.keys
   end
 
   def self.legislators
@@ -36,6 +39,18 @@ class UserSegments
 
   def self.rejected_organizations
     author_ids(Organization.rejected.pluck(:user_id))
+  end
+
+  def self.newsletter_debates
+    all_users.newsletter_debates_subscribers
+  end
+
+  def self.newsletter_proposals
+    all_users.newsletter_proposals_subscribers
+  end
+
+  def self.newsletter_legislation
+    all_users.newsletter_legislation_subscribers
   end
 
   def self.recipients(segment)

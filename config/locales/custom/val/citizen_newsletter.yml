@@ -1,0 +1,48 @@
+val:
+  citizen_newsletter:
+    call_to_action:
+      title: "Subscriu-te al butlletí ciutadà"
+      description: "Rep informació sobre les últimes novetats en debats, iniciatives i processos d'elaboració normativa. Tu decideixes quins continguts vols rebre."
+      guest: "Registra't per a subscriure't"
+      signed_in: "Gestionar la meua subscripció"
+    unsubscribe:
+      title: "Cancel·lar subscripció a newsletters ciutadanes"
+      confirmation_question: "Estàs segur que vols cancel·lar la teua subscripció a les newsletters ciutadanes?"
+      description: "Si cancel·les la teua subscripció, deixaràs de rebre correus automàtics sobre debats, iniciatives i processos d'elaboració normativa."
+      confirm_button: "Sí, cancel·lar subscripció"
+      cancel_button: "No, mantindre subscripció"
+      are_you_sure: "Estàs segur? Aquesta acció cancel·larà totes les teues subscripcions a newsletters ciutadanes."
+      success: "La teua subscripció a les newsletters ciutadanes ha sigut cancel·lada correctament."
+      invalid_token: "L'enllaç de cancel·lació no és vàlid o ha caducat."
+    email:
+      subject: "Novetats de GVA Participa - %{date}"
+      intro: "T'enviem un resum amb les últimes novetats en debats, iniciatives i processos d'elaboració normativa."
+      most_supported_proposals: "Iniciatives més avalades"
+      most_active_debates: "Debats més actius"
+      preview_processes: "Processos d'elaboració normativa (Consulta prèvia)"
+      public_processes: "Processos d'elaboració normativa (Audiència ciutadana)"
+      supports: "%{count} avals"
+      comments: "%{count} comentaris"
+      all_proposals: "Veure totes les iniciatives"
+      all_debates: "Veure tots els debats"
+      all_processes: "Veure tots els processos"
+      unsubscribe_html: "Si no desitges rebre més aquests correus, pots %{link}."
+      unsubscribe_link: "donar-te de baixa ací"
+
+  account:
+    show:
+      citizen_newsletter:
+        title: "Butlletins informatius"
+        description: "Selecciona quin tipus de continguts vols rebre per email"
+
+  activerecord:
+    attributes:
+      user:
+        newsletter_debates: "Vull rebre novetats sobre debats"
+        newsletter_proposals: "Vull rebre novetats sobre iniciatives"
+        newsletter_legislation: "Vull rebre novetats sobre processos d'elaboració normativa"
+
+  mailers:
+    citizen_newsletter:
+      unsubscribe_link_html: "Si no desitges rebre més aquests correus, pots %{link}."
+      unsubscribe_link_text: "donar-te de baixa ací"

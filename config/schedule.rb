@@ -43,6 +43,10 @@ every 1.day, at: "06:00", roles: [:cron] do # Custom
   rake "management_newsletters:generate"
 end
 
+every :monday, at: "06:30", roles: [:cron] do # Custom
+  rake "citizen_newsletters:generate"
+end
+
 every :reboot do
   # Number of workers must be kept in sync with capistrano's delayed_job_workers
   command "cd #{@path} && RAILS_ENV=#{@environment} bundle exec bin/delayed_job -m -n 2 restart"

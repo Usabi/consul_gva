@@ -55,6 +55,10 @@ constraints lambda { |request| !Rails.application.multitenancy_management_mode? 
 
   resources :citizen_opinions, only: [:new, :create]
 
+  get "/citizen_newsletter/unsubscribe/:token", to: "citizen_newsletter_unsubscriptions#show",
+                                                as: :citizen_newsletter_unsubscribe
+  patch "/citizen_newsletter/unsubscribe/:token", to: "citizen_newsletter_unsubscriptions#update"
+
   namespace :admin do
     resources :legislators, only: [:index, :create, :destroy] do
       get :search, on: :collection

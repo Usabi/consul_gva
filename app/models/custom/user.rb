@@ -11,6 +11,9 @@ class User
   scope :budget_managers, -> { joins(:budget_manager) }
   scope :supporters, -> { joins(:supporter) }
   scope :other, -> { where(gender: "other") }
+  scope :newsletter_debates_subscribers, -> { newsletter.where(newsletter_debates: true) }
+  scope :newsletter_proposals_subscribers, -> { newsletter.where(newsletter_proposals: true) }
+  scope :newsletter_legislation_subscribers, -> { newsletter.where(newsletter_legislation: true) }
 
   # Antes estaba en el inicializer de vote_extensión y lo eliminaron porque no se utilizaba
   def for_budget_investments(budget_investments = Budget::Investment.all)
@@ -49,19 +52,23 @@ class User
 
   def can_vote_budget_investment_for_this_budget?(budget_id)
     return false unless id # Esto no deberia pasar.
+
     return false unless budget_id # El budget_id es necesario.
-    vote_registers = Vote.where(voter_id: id, votable_type: 'Budget::Investment', vote_flag: true)
+
+    vote_registers = Vote.where(voter_id: id, votable_type: "Budget::Investment", vote_flag: true)
     return true if vote_registers.empty? # El usuario no tiene votos
-    max_votes_setting = Setting.find_by(key: 'max_votes_per_budget_per_user')
+
+    max_votes_setting = Setting.find_by(key: "max_votes_per_budget_per_user")
     return true unless max_votes_setting # El parametro max_votes_per_budget_per_user no existe
+
     max_votes_setting = max_votes_setting.value.to_i
     i = 0
     vote_registers.find_each do |vote|
       if vote&.votable&.budget_id == budget_id # Comprobamos que el voto pertenece a budget_id
-        i+=1
+        i += 1
       end
       # No hace falta seguir comprobando si hemos alcanzado el limite
-      return false if i>=max_votes_setting # El usuario ha votado limite veces.
+      return false if i >= max_votes_setting # El usuario ha votado limite veces.
     end
     true
   end
@@ -71,7 +78,8 @@ class User
     return list unless id
     return list unless budget_id
     return list unless Budget.exists?(id: budget_id)
-    vote_registers = Vote.where(voter_id: id, votable_type: 'Budget::Investment', vote_flag: true)
+
+    vote_registers = Vote.where(voter_id: id, votable_type: "Budget::Investment", vote_flag: true)
     vote_registers.find_each do |vote|
       if vote&.votable&.budget_id == budget_id
         list << vote
@@ -83,40 +91,47 @@ class User
   def number_of_budget_investment_votes_left_per_budget(budget_id)
     return 0 unless id
     return 0 unless budget_id # El budget_id es necesario
-    vote_registers = Vote.where(voter_id: id, votable_type: 'Budget::Investment', vote_flag: true)
-    max_votes_setting = Setting.where(key: 'max_votes_per_budget_per_user')
+
+    vote_registers = Vote.where(voter_id: id, votable_type: "Budget::Investment", vote_flag: true)
+    max_votes_setting = Setting.where(key: "max_votes_per_budget_per_user")
     return 100 if max_votes_setting.empty? # En teoria en este caso no se muestra.
-    max_votes_setting=max_votes_setting.first.value.to_i
+
+    max_votes_setting = max_votes_setting.first.value.to_i
     return max_votes_setting if vote_registers.empty? # El usuario no tiene votos
+
     i = 0
     vote_registers.find_each do |vote|
       if vote&.votable&.budget_id == budget_id
-        i+=1
+        i += 1
       end
-      return 0 if i>=max_votes_setting # Al usuario no le quedan votos.
+      return 0 if i >= max_votes_setting # Al usuario no le quedan votos.
     end
-    return max_votes_setting-i
+    max_votes_setting - i
   end
 
   def count_my_budget_investments_for_budget(budget_id)
     return 0 unless id
     return 0 unless budget_id
+
     Budget::Investment.where(author_id: id, budget_id: budget_id).count.to_i
   end
 
   def count_my_remaining_budget_investments_for_budget(budget_id)
     my_budget_investments = count_my_budget_investments_for_budget(budget_id)
-    max_proposals = Setting.where(key: 'max_proposals_per_budget_per_user')
+    max_proposals = Setting.where(key: "max_proposals_per_budget_per_user")
     return 100 if max_proposals.empty? # No mostrar este valor.
+
     max_proposals = max_proposals.first.value.to_i
-    return 0 if my_budget_investments>=max_proposals
-    max_proposals-my_budget_investments
+    return 0 if my_budget_investments >= max_proposals
+
+    max_proposals - my_budget_investments
   end
 
   def has_votes?(budget_id)
     return false unless budget_id
     return false unless Budget.exists?(id: budget_id)
-    vote_registers = Vote.where(voter_id: id, votable_type: 'Budget::Investment', vote_flag: true)
+
+    vote_registers = Vote.where(voter_id: id, votable_type: "Budget::Investment", vote_flag: true)
     vote_registers.find_each { |vote| return true if vote&.votable&.budget_id == budget_id }
     false
   end
@@ -150,6 +165,18 @@ class User
       next_index = match[1].to_i if match && match[1]
     end
     next_index ||= 0
-    gvlogin_username = "#{name}-GVLogin#{next_index + 1}"
+    "#{name}-GVLogin#{next_index + 1}"
+  end
+
+  def subscribed_to_any_citizen_newsletter?
+    newsletter_debates || newsletter_proposals || newsletter_legislation
+  end
+
+  def citizen_newsletter_preferences
+    {
+      debates: newsletter_debates,
+      proposals: newsletter_proposals,
+      legislation: newsletter_legislation
+    }
   end
 end
