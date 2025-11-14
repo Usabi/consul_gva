@@ -38,4 +38,5 @@ end
 group :development, :test do
   gem "timecop"
   gem "parallel_tests"
+  gem "lefthook"
 end
