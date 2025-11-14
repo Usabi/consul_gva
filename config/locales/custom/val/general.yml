@@ -784,6 +784,16 @@ val:
       budget_investments: Propostes
       comments: Comentaris
       actions: Accions
+      attached_documents:
+        title: Títol del document
+        type: Tipus
+        associated_to: Associat a
+        date: Data de pujada
+        actions: Accions
+        download: Descarregar
+        no_associated: Sense recurs associat
+        download_aria: "Descarregar document: %{title}"
+        delete_aria: "Eliminar document: %{title}"
       filters:
         comments:
           one: 1 Comentari
@@ -800,6 +810,9 @@ val:
         legislation_processes:
           one: 1 Procés de elaboració normativa
           other: "%{count} Processos de elaboració normativa"
+        attached_documents:
+          one: 1 Document adjunt
+          other: "%{count} Documents adjunts"
         follows:
           one: 1 Seguint
           other: "%{count} Seguint"

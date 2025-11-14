@@ -1,0 +1,64 @@
+<table class="margin-top">
+  <thead>
+    <tr>
+      <th scope="col"><%= t("users.show.attached_documents.title") %></th>
+      <th scope="col"><%= t("users.show.attached_documents.type") %></th>
+      <th scope="col"><%= t("users.show.attached_documents.associated_to") %></th>
+      <th scope="col" class="text-center"><%= t("users.show.attached_documents.date") %></th>
+      <th scope="col" class="text-center"><%= t("users.show.attached_documents.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% attached_documents.each do |document| %>
+      <tr id="document_<%= document.id %>">
+        <td>
+          <strong><%= document.title %></strong>
+        </td>
+        <td>
+          <% if document.attachment.attached? %>
+            <span class="label"><%= document.humanized_content_type %></span>
+          <% end %>
+        </td>
+        <td>
+          <% if document.documentable.present? %>
+            <%= link_to document.documentable.title,
+                        polymorphic_path(document.documentable),
+                        class: "document-link" %>
+            <br>
+            <small class="text-muted">
+              <%= t("activerecord.models.#{document.documentable_type.underscore}", count: 1, default: document.documentable_type) %>
+            </small>
+          <% else %>
+            <span class="text-muted"><%= t("users.show.attached_documents.no_associated") %></span>
+          <% end %>
+        </td>
+        <td class="text-center">
+          <%= l(document.created_at.to_date, format: :long) %>
+        </td>
+        <td class="text-right">
+          <div class="table-actions">
+            <% if document.attachment.attached? %>
+              <%= link_to t("users.show.attached_documents.download"),
+                          rails_blob_path(document.attachment, disposition: "attachment"),
+                          class: "download-link",
+                          target: "_blank",
+                          "aria-label": t("users.show.attached_documents.download_aria", title: document.title) %>
+            <% end %>
+
+            <% if can?(:destroy, document) %>
+              <%= button_to t("documents.buttons.destroy_document"),
+                            document_path(document),
+                            method: :delete,
+                            data: { confirm: t("documents.actions.destroy.confirm") },
+                            class: "destroy-link",
+                            form_class: "inline-block",
+                            "aria-label": t("users.show.attached_documents.delete_aria", title: document.title) %>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate attached_documents %>

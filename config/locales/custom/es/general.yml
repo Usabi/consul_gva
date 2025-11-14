@@ -988,6 +988,16 @@ es:
       budget_investments: Proyectos de presupuestos participativos
       comments: Comentarios
       actions: Acciones
+      attached_documents:
+        title: Título del documento
+        type: Tipo
+        associated_to: Asociado a
+        date: Fecha de subida
+        actions: Acciones
+        download: Descargar
+        no_associated: Sin recurso asociado
+        download_aria: "Descargar documento: %{title}"
+        delete_aria: "Eliminar documento: %{title}"
       filters:
         comments:
           one: 1 Comentario
@@ -1004,6 +1014,9 @@ es:
         legislation_processes:
           one: 1 Proceso de elaboración normativa
           other: "%{count} Procesos de elaboración normativa"
+        attached_documents:
+          one: 1 Documento adjunto
+          other: "%{count} Documentos adjuntos"
         follows:
           one: 1 Siguiendo
           other: "%{count} Siguiendo"
