@@ -1,0 +1,34 @@
+<section class="proposals-phase">
+  <header>
+    <h4><%= t("legislation.summary.proposals_phase") %></h4>
+    <h4 class="float-right"><%= t("legislation.summary.proposals", count: proposals&.count || 0) %></h4>
+  </header>
+
+  <% if proposals&.any? %>
+    <div>
+      <% proposals.sort_by_supports.each do |proposal| %>
+        <div class="proposal-summary">
+          <div class="proposal-title">
+            <%= link_to proposal.title, polymorphic_path(proposal) %>
+          </div>
+          <div>
+            <div>
+              <span class="icon-like"></span>
+              <%= t("legislation.summary.votes", count: proposal.votes_score) %>
+            </div>
+            <div>
+              <%= render Shared::CommentsCountComponent.new(
+                proposal.comments.where(user: user).count,
+                url: polymorphic_path(proposal, anchor: "comments")
+              ) %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="callout primary">
+      <p><%= t("legislation.processes.proposals.empty_proposals") %></p>
+    </div>
+  <% end %>
+</section>

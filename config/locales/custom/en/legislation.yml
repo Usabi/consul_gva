@@ -53,6 +53,10 @@ en:
         filters:
           open: Open processes
           past: Past
+          preview_phase: Preview phase
+          public_phase: Public phase
+          relevance: Most relevant
+          results: Consultation results
         no_open_processes: There aren't open processes
         no_past_processes: There aren't past processes
         section_header:

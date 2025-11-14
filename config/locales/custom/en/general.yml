@@ -830,6 +830,9 @@ en:
         budget_investments:
           one: 1 Investment
           other: "%{count} Investments"
+        legislation_processes:
+          one: 1 Legislation process
+          other: "%{count} Legislation processes"
         follows:
           one: 1 Following
           other: "%{count} Following"

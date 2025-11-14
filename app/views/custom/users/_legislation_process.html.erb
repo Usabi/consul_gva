@@ -1,0 +1,18 @@
+<section id="legislation_process_<%= legislation_process.id %>" class="process-summary">
+  <h3 class="margin-top margin-left"><strong>
+    <%= link_to legislation_process.title, legislation_process %>
+  </strong></h3>
+  <% participation = user_participation_in_process(legislation_process, user) %>
+
+  <% if participation[:questions].any? %>
+    <%= render "summary_debate", questions: participation[:questions], user: user %>
+  <% end %>
+
+  <% if participation[:proposals].any? %>
+    <%= render "summary_proposals", proposals: participation[:proposals], user: user %>
+  <% end %>
+
+  <% if participation[:annotations].any? %>
+    <%= render "summary_allegations", comments: participation[:annotation_comments], user: user %>
+  <% end %>
+</section>

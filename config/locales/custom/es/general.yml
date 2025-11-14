@@ -1001,6 +1001,9 @@ es:
         budget_investments:
           one: 1 Proyecto de presupuestos participativos
           other: "%{count} Proyectos de presupuestos participativos"
+        legislation_processes:
+          one: 1 Proceso de elaboración normativa
+          other: "%{count} Procesos de elaboración normativa"
         follows:
           one: 1 Siguiendo
           other: "%{count} Siguiendo"

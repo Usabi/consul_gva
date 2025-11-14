@@ -11,7 +11,8 @@ class Legislation::Process
   has_many :process_legislators, dependent: :destroy, foreign_key: "legislation_process_id" # rubocop:disable Rails/InverseOf
   has_many :legislators, through: :process_legislators
 
-  belongs_to :council, class_name: "Legislation::Council", optional: true, foreign_key: "council_id", inverse_of: :processes
+  belongs_to :council, class_name: "Legislation::Council", optional: true,
+                       foreign_key: "council_id", inverse_of: :processes
 
   after_create :create_default_question
 
@@ -26,9 +27,11 @@ class Legislation::Process
   }
   scope :public_phase, -> { where("allegations_phase_enabled = true and (allegations_start_date <= :date and allegations_end_date >= :date)", date: Date.current) } # rubocop:disable Layout/LineLength
 
-  scope :last_week, -> { where("created_at >= ?", 7.days.ago) }
+  scope :last_week, -> { where(created_at: 7.days.ago..) }
 
-  scope :results, -> { where(result_publication_enabled: true).where('result_publication_date <= :date', date: Date.current) }
+  scope :results, -> {
+    where(result_publication_enabled: true).where("result_publication_date <= :date", date: Date.current)
+  }
 
   def searchable_values
     {
@@ -42,12 +45,15 @@ class Legislation::Process
 
   def self.search_by_title_or_id(search)
     with_joins = with_translations(Globalize.fallbacks(I18n.locale))
-      .joins(:user)
-      .left_joins(:council)
-      .joins('LEFT JOIN legislation_council_translations ON legislation_council_translations.legislation_council_id = legislation_councils.id')
-      .joins('LEFT JOIN legislation_process_legislators ON legislation_process_legislators.legislation_process_id = legislation_processes.id')
-      .joins('LEFT JOIN legislators ON legislators.id = legislation_process_legislators.legislator_id')
-      .joins('LEFT JOIN users AS legislator_users ON legislator_users.id = legislators.user_id')
+                 .joins(:user)
+                 .left_joins(:council)
+                 .joins("LEFT JOIN legislation_council_translations ON
+                   legislation_council_translations.legislation_council_id = legislation_councils.id")
+                 .joins("LEFT JOIN legislation_process_legislators ON
+                   legislation_process_legislators.legislation_process_id = legislation_processes.id")
+                 .joins("LEFT JOIN legislators ON
+                   legislators.id = legislation_process_legislators.legislator_id")
+                 .joins("LEFT JOIN users AS legislator_users ON legislator_users.id = legislators.user_id")
 
     if search.to_s.match?(/^\d+$/)
       with_joins.where(legislation_processes: { id: search.to_i })
@@ -58,8 +64,7 @@ class Legislation::Process
                         legislation_councils.title ILIKE :like_query OR
                         legislation_council_translations.title ILIKE :like_query OR
                         legislator_users.email ILIKE :like_query",
-                        like_query: "%#{search}%"
-                      ).distinct
+                       like_query: "%#{search}%").distinct
     end
   end
 
@@ -67,10 +72,10 @@ class Legislation::Process
     results = Legislation::Process
     results = results.filter_by(advanced_search_terms) if advanced_search_terms.present?
     if params[:min_total_supports].present?
-      results = results.where("cached_votes_up >= ?", params[:min_total_supports])
+      results = results.where(cached_votes_up: (params[:min_total_supports])..)
     end
     if params[:max_total_supports].present?
-      results = results.where("cached_votes_up <= ?", params[:max_total_supports])
+      results = results.where(cached_votes_up: ..(params[:max_total_supports]))
     end
 
     results = results.by_tag(params[:tag_name])          if params[:tag_name].present?
