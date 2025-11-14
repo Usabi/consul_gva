@@ -336,6 +336,7 @@ GEM
       addressable (~> 2.8)
       childprocess (~> 5.0)
       logger (~> 1.6)
+    lefthook (2.0.4)
     letter_opener (1.10.0)
       launchy (>= 2.2, < 4)
     letter_opener_web (3.0.0)
@@ -791,6 +792,7 @@ DEPENDENCIES
   kaminari (~> 1.2.2)
   knapsack_pro (~> 7.8.0)
   launchy (~> 3.1.1)
+  lefthook
   letter_opener_web (~> 3.0.0)
   mdl (~> 0.13.0)
   mini_magick (~> 4.13.2)

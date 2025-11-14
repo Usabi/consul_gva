@@ -112,5 +112,17 @@
     ],
     "strict": "error",
     "yoda": "error"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.config.js"],
+      "env": {
+        "node": true,
+        "commonjs": true
+      },
+      "parserOptions": {
+        "ecmaVersion": 2020
+      }
+    }
+  ]
 }
