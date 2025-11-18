@@ -1,0 +1,128 @@
+<div>
+  <%= back_link_to admin_citizen_newsletters_path %>
+</div>
+
+<h1 class="inline-block"><%= t("admin.citizen_newsletters.show.title") %></h1>
+<% if can?(:manage, @citizen_newsletter) && (@citizen_newsletter.pending? || @citizen_newsletter.failed?) %>
+  <div class="float-right">
+    <%= link_to t("admin.citizen_newsletters.show.resend"),
+                resend_admin_citizen_newsletter_path(@citizen_newsletter),
+                method: :post,
+                class: "button hollow" %>
+  </div>
+<% end %>
+
+<div class="small-12 column callout highlight">
+  <p><strong><%= t("admin.citizen_newsletters.show.created_at") %>:</strong>
+             <%= l @citizen_newsletter.created_at.to_datetime, format: :long %></p>
+  <p><strong><%= t("admin.citizen_newsletters.show.status") %>:</strong>
+    <span class="label <%= @citizen_newsletter.status_class %>">
+      <%= t("admin.citizen_newsletters.index.#{@citizen_newsletter.status}") %>
+    </span>
+  </p>
+  <% if @citizen_newsletter.sent_at %>
+    <p><strong><%= t("admin.citizen_newsletters.show.sent_at") %>:</strong>
+      <%= l @citizen_newsletter.sent_at.to_datetime, format: :long %></p>
+  <% end %>
+</div>
+
+<div class="small-12 column">
+  <strong><%= t("admin.newsletters.show.body") %></strong>
+  <p class="help-text" id="phase-description-help-text">
+    <%= t("admin.newsletters.show.body_help_text") %>
+  </p>
+</div>
+
+<div class="newsletter-body-content">
+  <%= render "layouts/mailer_header" %>
+
+  <table cellpadding="0" cellspacing="0" border="0">
+    <tbody>
+      <tr>
+        <td>
+          <h2><%= t("citizen_newsletter.email.subject", date: Time.zone.now.to_date) %></h2>
+          <p><%= t("citizen_newsletter.email.intro") %></p>
+
+          <% if @citizen_newsletter.most_supported_proposals.any? %>
+            <h3>
+              <%= t("admin.citizen_newsletters.show.most_supported_proposals") %>
+            </h3>
+            <ul>
+              <% @citizen_newsletter.most_supported_proposals.each do |proposal| %>
+                <li class="background">
+                  <strong><%= link_to proposal.title, proposal_url(proposal) %></strong>
+                  <br>
+                  <span>
+                    <%= t("admin.citizen_newsletters.show.supports", count: proposal.votes_for.size) %>
+                  </span>
+                </li>
+              <% end %>
+              <li><%= link_to t("admin.citizen_newsletters.show.all_proposals"), proposals_url %></li>
+            </ul>
+          <% end %>
+
+          <% if @citizen_newsletter.active_debates.any? %>
+            <h3>
+              <%= t("admin.citizen_newsletters.show.most_active_debates") %>
+            </h3>
+            <ul>
+              <% @citizen_newsletter.active_debates.each do |debate| %>
+                <li class="background">
+                  <strong><%= link_to debate.title, debate_url(debate) %></strong>
+                  <br>
+                  <span>
+                    <%= t("admin.citizen_newsletters.show.comments", count: debate.comments_count) %>
+                  </span>
+                </li>
+              <% end %>
+              <li><%= link_to t("admin.citizen_newsletters.show.all_debates"), debates_url %></li>
+            </ul>
+          <% end %>
+
+          <% if @citizen_newsletter.preview_processes.any? %>
+            <h3>
+              <%= t("admin.citizen_newsletters.show.preview_processes") %>
+            </h3>
+            <ul>
+              <% @citizen_newsletter.preview_processes.each do |process| %>
+                <li class="background">
+                  <strong><%= link_to process.title, legislation_process_url(process) %></strong>
+                </li>
+              <% end %>
+              <li><%= link_to t("admin.citizen_newsletters.show.all_processes"), legislation_processes_url %></li>
+            </ul>
+          <% end %>
+
+          <% if @citizen_newsletter.public_processes.any? %>
+            <h3>
+              <%= t("admin.citizen_newsletters.show.public_processes") %>
+            </h3>
+            <ul>
+              <% @citizen_newsletter.public_processes.each do |process| %>
+                <li class="background">
+                  <strong><%= link_to process.title, legislation_process_url(process) %></strong>
+                </li>
+              <% end %>
+              <li><%= link_to t("admin.citizen_newsletters.show.all_processes"), legislation_processes_url %></li>
+            </ul>
+          <% end %>
+
+          <p style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 12px;">
+            <%= sanitize(
+              t("citizen_newsletter.email.unsubscribe_html",
+                link: link_to(
+                  t("citizen_newsletter.email.unsubscribe_link"),
+                  "#",
+                  style: "color: #004a83; text-decoration: none;"
+                )
+              ),
+              attributes: %w[href style]
+            ) %>
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <%= render "layouts/mailer_footer" %>
+</div>

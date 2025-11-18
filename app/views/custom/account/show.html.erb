@@ -63,6 +63,22 @@
             <div>
               <%= f.check_box :email_on_direct_message %>
             </div>
+
+            <h2 id="citizen_newsletter"><%= t("account.show.citizen_newsletter.title") %></h2>
+
+            <p class="help-text"><%= t("account.show.citizen_newsletter.description") %></p>
+
+            <div>
+              <%= f.check_box :newsletter_debates %>
+            </div>
+
+            <div>
+              <%= f.check_box :newsletter_proposals %>
+            </div>
+
+            <div>
+              <%= f.check_box :newsletter_legislation %>
+            </div>
           <% end %>
 
           <% if @account.official_level == 1 %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_10_13_103000) do
+ActiveRecord::Schema[7.0].define(version: 2025_11_13_123000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -441,6 +441,55 @@ ActiveRecord::Schema[7.0].define(version: 2025_10_13_103000) do
     t.jsonb "sent_at_dates", default: []
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+  end
+
+  create_table "citizen_newsletter_debates", force: :cascade do |t|
+    t.bigint "citizen_newsletter_id", null: false
+    t.bigint "debate_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["citizen_newsletter_id", "debate_id"], name: "index_cnd_on_newsletter_debate", unique: true
+    t.index ["citizen_newsletter_id"], name: "index_cnd_on_newsletter_id"
+    t.index ["debate_id"], name: "index_citizen_newsletter_debates_on_debate_id"
+  end
+
+  create_table "citizen_newsletter_preview_processes", force: :cascade do |t|
+    t.bigint "citizen_newsletter_id", null: false
+    t.bigint "process_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["citizen_newsletter_id", "process_id"], name: "index_cnpvp_on_newsletter_preview_process", unique: true
+    t.index ["citizen_newsletter_id"], name: "index_cnpvp_on_newsletter_id"
+    t.index ["process_id"], name: "index_citizen_newsletter_preview_processes_on_process_id"
+  end
+
+  create_table "citizen_newsletter_proposals", force: :cascade do |t|
+    t.bigint "citizen_newsletter_id", null: false
+    t.bigint "proposal_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["citizen_newsletter_id", "proposal_id"], name: "index_cnp_on_newsletter_proposal", unique: true
+    t.index ["citizen_newsletter_id"], name: "index_cnp_on_newsletter_id"
+    t.index ["proposal_id"], name: "index_citizen_newsletter_proposals_on_proposal_id"
+  end
+
+  create_table "citizen_newsletter_public_processes", force: :cascade do |t|
+    t.bigint "citizen_newsletter_id", null: false
+    t.bigint "process_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["citizen_newsletter_id", "process_id"], name: "index_cnpp_on_newsletter_public_process", unique: true
+    t.index ["citizen_newsletter_id"], name: "index_cnpp_on_newsletter_id"
+    t.index ["process_id"], name: "index_citizen_newsletter_public_processes_on_process_id"
+  end
+
+  create_table "citizen_newsletters", force: :cascade do |t|
+    t.string "status", default: "pending"
+    t.datetime "sent_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_citizen_newsletters_on_created_at"
+    t.index ["status"], name: "index_citizen_newsletters_on_status"
   end
 
   create_table "citizen_opinions", force: :cascade do |t|
@@ -1829,6 +1878,9 @@ ActiveRecord::Schema[7.0].define(version: 2025_10_13_103000) do
     t.integer "failed_attempts", default: 0, null: false
     t.datetime "locked_at", precision: nil
     t.string "unlock_token"
+    t.boolean "newsletter_debates", default: false
+    t.boolean "newsletter_proposals", default: false
+    t.boolean "newsletter_legislation", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["date_of_birth"], name: "index_users_on_date_of_birth"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -1988,6 +2040,14 @@ ActiveRecord::Schema[7.0].define(version: 2025_10_13_103000) do
   add_foreign_key "budget_managers", "users"
   add_foreign_key "budget_valuators", "budgets"
   add_foreign_key "budget_valuators", "valuators"
+  add_foreign_key "citizen_newsletter_debates", "citizen_newsletters"
+  add_foreign_key "citizen_newsletter_debates", "debates"
+  add_foreign_key "citizen_newsletter_preview_processes", "citizen_newsletters"
+  add_foreign_key "citizen_newsletter_preview_processes", "legislation_processes", column: "process_id"
+  add_foreign_key "citizen_newsletter_proposals", "citizen_newsletters"
+  add_foreign_key "citizen_newsletter_proposals", "proposals"
+  add_foreign_key "citizen_newsletter_public_processes", "citizen_newsletters"
+  add_foreign_key "citizen_newsletter_public_processes", "legislation_processes", column: "process_id"
   add_foreign_key "dashboard_administrator_tasks", "users"
   add_foreign_key "dashboard_executed_actions", "dashboard_actions", column: "action_id"
   add_foreign_key "dashboard_executed_actions", "proposals"

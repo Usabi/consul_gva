@@ -42,4 +42,22 @@ class Bulletin < ApplicationRecord
   def format_time(time)
     time.strftime("%Y-%m-%d %H:%M")
   end
+
+  def citizen_newsletter_segment
+    case template
+    when "proposal"
+      "newsletter_proposals"
+    when "debate"
+      "newsletter_debates"
+    when "legislation_process_preview_phase", "legislation_process_public_phase",
+         "legislation_process_past", "legislation_process_results"
+      "newsletter_legislation"
+    else
+      nil
+    end
+  end
+
+  def for_citizen_newsletter?
+    citizen_newsletter_segment.present?
+  end
 end

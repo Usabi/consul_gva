@@ -1,0 +1,23 @@
+<% content_for :body_class, "citizen-newsletter-unsubscribe" %>
+
+<div class="row">
+  <div class="small-12 medium-8 large-6 small-centered column">
+    <div class="callout warning">
+      <h1><%= t("citizen_newsletter.unsubscribe.title") %></h1>
+
+      <p><%= t("citizen_newsletter.unsubscribe.confirmation_question") %></p>
+
+      <p class="help-text"><%= t("citizen_newsletter.unsubscribe.description") %></p>
+
+      <%= form_with url: citizen_newsletter_unsubscribe_path(token: params[:token]), method: :patch do |f| %>
+        <%= f.submit t("citizen_newsletter.unsubscribe.confirm_button"),
+                     class: "button alert expanded",
+                     data: { confirm: t("citizen_newsletter.unsubscribe.are_you_sure") } %>
+      <% end %>
+
+      <%= link_to t("citizen_newsletter.unsubscribe.cancel_button"),
+                  root_path,
+                  class: "button hollow expanded" %>
+    </div>
+  </div>
+</div>

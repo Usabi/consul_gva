@@ -19,7 +19,8 @@ class Admin::SystemEmailsController
       email_verification: %w[view edit_info],
       user_invite: %w[view edit_info],
       evaluation_comment: %w[view edit_info],
-      management_newsletter: %w[view edit_info]
+      management_newsletter: %w[view edit_info],
+      citizen_newsletter: %w[view edit_info]
     }
   end
 
@@ -45,6 +46,8 @@ class Admin::SystemEmailsController
       load_sample_valuation_comment
     when "management_newsletter"
       load_sample_management_newsletter
+    when "citizen_newsletter"
+      load_sample_citizen_newsletter
     end
   end
 
@@ -75,5 +78,23 @@ class Admin::SystemEmailsController
       @management_newsletter.active_debates << active_debates if active_debates.present?
       @management_newsletter.preview_processes << preview_processes if preview_processes.present?
       @management_newsletter.public_processes << public_processes if public_processes.present?
+    end
+
+    def load_sample_citizen_newsletter
+      @subject = t("citizen_newsletter.email.subject", date: I18n.l(Date.current, format: :long))
+      most_supported_proposals = Proposal.sort_by_confidence_score.limit(3)
+      active_debates = Debate.sort_by_supports.limit(3)
+      preview_processes = Legislation::Process.published.active.preview_phase.order(start_date: :asc).limit(3)
+      public_processes = Legislation::Process.published.active.public_phase.order(start_date: :asc).limit(3)
+      @citizen_newsletter = CitizenNewsletter.new(status: "pending")
+
+      @citizen_newsletter
+        .most_supported_proposals << most_supported_proposals if most_supported_proposals.present?
+      @citizen_newsletter.active_debates << active_debates if active_debates.present?
+      @citizen_newsletter.preview_processes << preview_processes if preview_processes.present?
+      @citizen_newsletter.public_processes << public_processes if public_processes.present?
+
+      @user = current_user
+      @token = @user.subscriptions_token || SecureRandom.hex
     end
 end

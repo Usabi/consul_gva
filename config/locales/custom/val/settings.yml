@@ -97,3 +97,5 @@ val:
       public_stats_description: "Mostra les estadístiques públiques en el panell d'Administració"
       help_page: "Pàgina d'ajuda"
       help_page_description: 'Mostra un menú Ajuda que conté una pàgina amb una secció d''informació sobre cada funcionalitat habilitada'
+      citizen_newsletter: "Butlletins ciutadans"
+      citizen_newsletter_description: "Permet mostrar la crida d'acció de subscripció a butlletins ciutadans en la pàgina principal i gestionar les preferències de newsletters per tipus de contingut"

@@ -103,11 +103,26 @@ en:
         notice: Council created successfully
         error: Council could not be created
     menu:
-      management_newsletters: Newsletters de gestión
+      management_newsletters: Management newsletters
+      citizen_newsletters: Citizen newsletters
       site_customization:
         alert_messages: Manage alert messages
       legislation: Legislation
       legislation_councils: Councils
+    segment_recipient:
+      all_users: All users
+      administrators: Administrators
+      all_proposal_authors: Users who have authored initiatives (including archived and withdrawn ones)
+      proposal_authors: Users who have authored initiatives
+      investment_authors: Users who have authored spending projects in the current budgets
+      feasible_and_undecided_investment_authors: "Users who have authored any budget investment in the current budgets that does not comply: [final assessment completed, unfeasible]"
+      selected_investment_authors: Users who have authored selected spending projects in the current budgets
+      winner_investment_authors: Users who have authored winning spending projects in the current budgets
+      not_supported_on_current_budget: Users who have not supported any spending project in the current budgets
+      newsletter_debates: Users subscribed to debate newsletter
+      newsletter_proposals: Users subscribed to proposal newsletter
+      newsletter_legislation: Users subscribed to legislation newsletter
+      invalid_recipients_segment: "The selected recipient segment is invalid."
     management_newsletters:
       index:
         title: "Management newsletters"
@@ -154,6 +169,42 @@ en:
         save: "Save configuration"
         updated: "Configuration updated successfully."
         invalid: "Invalid configuration."
+    citizen_newsletters:
+      index:
+        title: "Citizen newsletters"
+        created_at: "Creation date"
+        status: "Status"
+        sent_at: "Sent date"
+        actions: "Actions"
+        view: "View"
+        pending: "Pending"
+        sent: "Sent"
+        failed: "Failed"
+        resend: "Resend"
+        confirm_resend: "Are you sure you want to resend this citizen newsletter?"
+      show:
+        title: "Citizen newsletter"
+        created_at: "Creation date"
+        status: "Status"
+        sent_at: "Sent date"
+        back: "Back"
+        resend: "Resend"
+        most_supported_proposals: "Most Supported Proposals"
+        most_active_debates: "Most Active Debates"
+        preview_processes: "Processes in Preview Phase"
+        public_processes: "Processes in Public Hearing Phase"
+        supports:
+          one: "%{count} support"
+          other: "%{count} supports"
+        comments:
+          one: "%{count} comment"
+          other: "%{count} comments"
+        all_proposals: "View all proposals"
+        all_debates: "View all debates"
+        all_processes: "View all legislation processes"
+      resend:
+        success: "Citizen newsletter resent successfully."
+        error: "There was an error resending the citizen newsletter."
     shared:
       true_value: "Yes"
       false_value: "No"
@@ -207,6 +258,9 @@ en:
         description: "Sent to administrators with a daily/weekly summary of activity on the platform."
         mailer:
           subject: "Platform summary"
+      citizen_newsletter:
+        title: "Citizen newsletter"
+        description: "Sent weekly to subscribed citizens with a summary of activity on the platform."
     proposals:
       form:
         update: Update proposal
