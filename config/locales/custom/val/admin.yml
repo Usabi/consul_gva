@@ -685,6 +685,7 @@ val:
       title_booths: Cabines de vot
       legislation: Elaboració normativa
       legislation_councils: Conselleries
+      changelog: "Registre de canvis"
       users: Usuaris
     administrators:
       index:
@@ -1730,3 +1731,5 @@ val:
         submit_header: Guardar capçalera
         card_title: Editar targeta
         submit_card: Guardar targeta
+    changelog:
+      title: "Registre de canvis"

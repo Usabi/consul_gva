@@ -348,6 +348,8 @@ namespace :admin do
       resources :administrator_tasks, only: [:index, :edit, :update]
     end
 
+    resource :changelog, only: [:show] # Custom
+
     resources :local_census_records
     namespace :local_census_records do
       resources :imports, only: [:new, :create, :show]
