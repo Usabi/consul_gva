@@ -46,7 +46,7 @@ describe "Direct messages" do
       expect(page).not_to have_link "Send private message"
     end
 
-    scenario "Unverified user" do
+    scenario "Unverified user", :consul do
       sender = create(:user)
       receiver = create(:user)
 
