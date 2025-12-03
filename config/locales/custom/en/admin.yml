@@ -109,6 +109,9 @@ en:
         alert_messages: Manage alert messages
       legislation: Legislation
       legislation_councils: Councils
+      supporters: Supporters
+      legislators: Legislators
+      budget_managers: Budget participatory administrators
     segment_recipient:
       all_users: All users
       administrators: Administrators
@@ -261,6 +264,17 @@ en:
       citizen_newsletter:
         title: "Citizen newsletter"
         description: "Sent weekly to subscribed citizens with a summary of activity on the platform."
+    users:
+      columns:
+        postal_code: Postal code
+        services_results: Verification result
+        residence_requested_reason: Residence requested reason
+      index:
+        administrator: Administrator
+        moderator: Moderator
+        valuator: Valuator
+        manager: Manager
+        poll_officer: Poll officer
     proposals:
       form:
         update: Update proposal

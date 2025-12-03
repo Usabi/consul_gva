@@ -26,6 +26,35 @@ en:
         duplicated_of_proposal_id: "Duplicated proposal of"
         terms_of_service: "Terms of service"
         video_url: "External video URL"
+      user:
+        id: "ID"
+        document_number: "Document number"
+        created_at: "Registration date"
+      administrator:
+        id: "ID"
+        description: "Description"
+      moderator:
+        id: "ID"
+      manager:
+        id: "ID"
+      valuator:
+        id: "ID"
+        valuator_group: "Valuator group"
+      supporter:
+        id: "ID"
+        description: "Description"
+      legislator:
+        id: "ID"
+        description: "Description"
+      budget_manager:
+        id: "ID"
+        description: "Description"
+      official:
+        id: "ID"
+        official_position: "Official position"
+        official_level: "Official level"
+      sdg/manager:
+        id: "ID"
   models:
     legisltation/councils:
       one: "Council"

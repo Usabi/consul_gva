@@ -5,6 +5,9 @@
 <div id="budget_managers">
   <% if @budget_managers.any? %>
     <h3 class="margin"><%= page_entries_info @budget_managers %></h3>
+    <%= link_to t("admin.budget_investments.index.download_current_selection"),
+              admin_budget_managers_path(csv_params),
+              class: "float-right small clear" %>
 
     <table>
       <thead>

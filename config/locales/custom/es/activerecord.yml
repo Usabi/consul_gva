@@ -163,7 +163,25 @@ es:
         other: Opiniones del ciudadano
     attributes:
       administrator:
+        id: "ID"
         description: Descripción
+      moderator:
+        id: "ID"
+      manager:
+        id: "ID"
+      supporter:
+        id: "ID"
+        description: Descripción
+      legislator:
+        id: "ID"
+        description: Descripción
+      budget_manager:
+        id: "ID"
+        description: Descripción
+      official:
+        id: "ID"
+        official_position: "Cargo público"
+        official_level: "Nivel del cargo"
       budget:
         name: "Nombre"
         description_accepting: "Descripción durante la fase de presentación de proyectos"
@@ -288,9 +306,12 @@ es:
         summary: "Resumen de la iniciativa"
         retired_explanation: "Explicación"
       user:
+        id: "ID"
         login: "Email o nombre de usuario"
         email: "Email"
         username: "Nombre de la persona usuaria"
+        document_number: "Número de documento"
+        created_at: "Fecha de registro"
         password_confirmation: "Confirmación de contraseña"
         password: "Contraseña"
         current_password: "Contraseña actual"
@@ -359,6 +380,8 @@ es:
       sdg/local_target/translation:
         title: "Título"
         description: "Descripción"
+      sdg/manager:
+        id: "ID"
       sdg/phase/kind:
         sensitization: "Sensibilización"
         planning: "Planificación"
@@ -570,7 +593,9 @@ es:
         label: Título
         url: URL
       valuator:
+        id: "ID"
         description: Descripción
+        valuator_group: Grupo de evaluación
         valuator_group_id: Grupo de evaluación
         can_comment: Puede comentar
         can_edit_dossier: Puede editar informes

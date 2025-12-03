@@ -146,7 +146,27 @@ val:
         other: Opinions del ciutadà
     attributes:
       administrator:
-        description: Descripción
+        id: "ID"
+        description: Descripció
+      moderator:
+        id: "ID"
+      manager:
+        id: "ID"
+      supporter:
+        id: "ID"
+        description: Descripció
+      legislator:
+        id: "ID"
+        description: Descripció
+      budget_manager:
+        id: "ID"
+        description: Descripció
+      official:
+        id: "ID"
+        official_position: "Càrrec públic"
+        official_level: "Nivell del càrrec"
+      sdg/manager:
+        id: "ID"
       budget:
         name: "Nom"
         description_accepting: "Descripció durant la fase d'aceptació"
@@ -265,9 +285,12 @@ val:
         summary: "Resum de la iniciativa"
         retired_explanation: "Explicación"
       user:
+        id: "ID"
         login: "Email o nom de la persona usuària"
         email: "Correu electrònic"
         username: "Nom de la persona usuària"
+        document_number: "Número de document"
+        created_at: "Data de registre"
         password_confirmation: "Confirmació de contrasenya"
         password: "Contrasenya"
         current_password: "Contrasenya actual"
@@ -513,10 +536,12 @@ val:
         label: Título
         url: Enlace
       valuator:
-        description: Descripción
-        valuator_group_id: Grupo de evaluación
-        can_comment: Puede comentar
-        can_edit_dossier: Puede editar informes
+        id: "ID"
+        description: Descripció
+        valuator_group: Grup d'avaluació
+        valuator_group_id: Grup d'avaluació
+        can_comment: Pot comentar
+        can_edit_dossier: Pot editar informes
       valuator_group:
         name: "Nombre del grupo"
       local_census_record:

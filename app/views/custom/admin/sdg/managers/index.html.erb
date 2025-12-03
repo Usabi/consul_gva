@@ -1,0 +1,39 @@
+<h2><%= t("admin.sdg.managers.index.title") %></h2>
+
+<%= render "admin/shared/user_search", url: admin_sdg_managers_path %>
+
+<div id="sdg_managers">
+  <% if @users.any? %>
+    <h3><%= page_entries_info @users %></h3>
+    <%= link_to t("admin.budget_investments.index.download_current_selection"),
+              admin_sdg_managers_path(csv_params),
+              class: "float-right small clear" %>
+
+    <table>
+      <thead>
+        <th scope="col"><%= t("admin.sdg.managers.index.name") %></th>
+        <th scope="col"><%= t("admin.sdg.managers.index.email") %></th>
+        <th scope="col" class="small-3"><%= t("admin.shared.actions") %></th>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td>
+              <%= render Admin::Roles::TableActionsComponent.new(
+                user.sdg_manager || user.build_sdg_manager
+              ) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= paginate @users %>
+  <% else %>
+    <div class="callout primary">
+      <%= t("admin.sdg.managers.index.no_sdg_managers") %>
+    </div>
+  <% end %>
+</div>

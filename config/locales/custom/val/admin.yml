@@ -1584,6 +1584,11 @@ val:
       index:
         title: Usuari
         no_users: No hi ha usuaris.
+        administrator: Administrador
+        moderator: Moderador
+        valuator: Avaluador
+        manager: Gestor
+        poll_officer: President de taula
         filters:
           active: Actius
           erased: Esborrats

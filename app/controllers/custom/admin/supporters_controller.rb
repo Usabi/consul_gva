@@ -2,13 +2,28 @@ class Admin::SupportersController < Admin::BaseController
   load_and_authorize_resource
 
   def index
-    @supporters = @supporters.page(params[:page])
+    @supporters = @supporters.page(params[:page]) unless request.format.csv?
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data Supporter::Exporter.new(@supporters).to_csv,
+                  filename: "supporters.csv"
+      end
+    end
   end
 
   def search
     @users = User.search(params[:search])
                  .includes(:supporter)
-                 .page(params[:page])
+    @users = @users.page(params[:page]) unless request.format.csv?
+    respond_to do |format|
+      format.html
+      format.csv do
+        supporters = @users.map(&:supporter).compact
+        send_data Supporter::Exporter.new(supporters).to_csv,
+                  filename: "supporters.csv"
+      end
+    end
   end
 
   def create
