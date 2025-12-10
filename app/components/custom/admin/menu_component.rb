@@ -21,6 +21,7 @@ class Admin::MenuComponent
         key_systems_link,
         settings_links,
         dashboard_links,
+        changelog_link,
         (machine_learning_link if ::MachineLearning.enabled?)
       ]
     end
@@ -208,5 +209,14 @@ class Admin::MenuComponent
           users_link
         )
       end
+    end
+
+    def changelog_link
+      [
+        t("admin.menu.changelog"),
+        admin_changelog_path,
+        controller_name == "changelogs",
+        class: "changelog-link"
+      ]
     end
 end

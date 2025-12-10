@@ -11,5 +11,9 @@
     &.key-systems-link {
       @include icon(chart-bar, solid);
     }
+
+    &.changelog-link {
+      @include icon(calendar-check, solid);
+    }
   }
 }

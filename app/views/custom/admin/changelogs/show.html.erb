@@ -1,0 +1,269 @@
+<h2><%= t("admin.changelog.title") %></h2>
+
+<div class="changelog-content">
+  <section class="changelog-version">
+    <h3>Release 2025.10 <small>(October 2025)</small></h3>
+    <p><strong>Based on:</strong> Consul Democracy 2.3.1 (issue/8435-update-2.3.1-custom)</p>
+
+    <h4>Features</h4>
+    <ul>
+      <li>Add attached_documents tab in users public activity</li>
+      <li>Add legislation_process tab in users public activity</li>
+    </ul>
+
+    <h4>Consul Democracy 2.3.1 updates</h4>
+    <ul>
+      <li>Accessibility improvements: labels, ARIA attributes, button contrasts</li>
+      <li>Fix result publication validation for processes</li>
+      <li>Update translations from Crowdin</li>
+    </ul>
+  </section>
+
+  <section class="changelog-version">
+    <h3>Release 2025.09 <small>(September 2025)</small></h3>
+    <p><strong>Based on:</strong> Consul Democracy 2.3.0 (issue/7801-update-2.3.0-custom)</p>
+
+    <h4>User management and roles</h4>
+    <ul>
+      <li>Create supporter role system with abilities and permissions</li>
+      <li>Create new menu and views for supporter users</li>
+      <li>Add supporter factory and tests</li>
+      <li>Show login items specific to supporter users</li>
+    </ul>
+
+    <h4>Newsletters and communications</h4>
+    <ul>
+      <li>Add daily/weekly management newsletters to admin users</li>
+      <li>Implement citizens newsletter system</li>
+      <li>Add citizenship mailbox to backend</li>
+      <li>Add citizen opinion form to frontend with email templates</li>
+    </ul>
+
+    <h4>Duplicate proposals</h4>
+    <ul>
+      <li>Admins can mark proposals as duplicates of other proposals</li>
+      <li>Add tom-select gem for proposal search by title and ID</li>
+      <li>Show original proposal only when author has retired it as duplicated</li>
+      <li>Update mail template for duplicated proposals</li>
+      <li>Update warning message for duplicated proposals</li>
+      <li>Add consult document to proposal form</li>
+    </ul>
+
+    <h4>Legislative processes (Elaboración normativa)</h4>
+    <ul>
+      <li>Add legislation councils feature</li>
+      <li>Add filter by council in backend and frontend</li>
+      <li>Add council and legislator email columns to tables</li>
+      <li>Update legislation processes texts in backend</li>
+      <li>Sort processes by corresponding date depending on selected filter</li>
+      <li>Add followable feature to legislation processes</li>
+      <li>Update verification residence view</li>
+      <li>Create default question with enhanced title</li>
+      <li>Sort documents in frontend by position</li>
+    </ul>
+
+    <h4>Configuration and infrastructure</h4>
+    <ul>
+      <li>Enable Puma server</li>
+      <li>Add parallel tests support</li>
+      <li>Change minimum required age access setting</li>
+      <li>Add new tool on gvLogin with tests</li>
+      <li>Move custom routes to separate file and reorganize SDG resolve</li>
+      <li>Change js_compressor to terser</li>
+      <li>Update banner image (banner-destacado-left.png)</li>
+      <li>Change Node version in nvm</li>
+      <li>Comment rake tasks</li>
+    </ul>
+
+    <h4>Bug fixes</h4>
+    <ul>
+      <li>Fix routes indentation</li>
+      <li>Fix redirection issues</li>
+      <li>Remove forgotten debuggers</li>
+      <li>Get back removed methods in concerns</li>
+      <li>Join email and legislators_email columns</li>
+      <li>Update results scope to work when current date equals or is greater than result_publication_date</li>
+    </ul>
+
+    <h4>UI/UX improvements</h4>
+    <ul>
+      <li>Change icons for better visibility</li>
+      <li>Various stats page improvements</li>
+    </ul>
+  </section>
+
+  <section class="changelog-version">
+    <h3>Release 2025.07 <small>(July 2025)</small></h3>
+    <p><strong>Based on:</strong> Consul Democracy 2.2.2 (issue/7683-update-2.2.2-custom_changes)</p>
+
+    <h4>Custom features</h4>
+    <ul>
+      <li>Restrict access to admin functions by IP</li>
+      <li>Modify toggle for bulk actions in budget investments</li>
+      <li>Remove color option from CKEditor</li>
+      <li>Remove additional CKEditor options for simplified editing</li>
+      <li>Customize help view</li>
+      <li>Add more options to CKEditor in site customization pages</li>
+      <li>Comment widget card migration task</li>
+    </ul>
+
+    <h4>Admin improvements</h4>
+    <ul>
+      <li>Use switches to toggle visibility to valuators</li>
+      <li>Use switches to toggle investment selection</li>
+      <li>Use switches to toggle proposal selection</li>
+      <li>Make it possible to select investments/proposals without JavaScript</li>
+      <li>Extract components for investment and proposal toggle selection</li>
+      <li>Use abilities to allow toggling investment selection</li>
+      <li>Move omniauth form partial to a component</li>
+    </ul>
+
+    <h4>Bug fixes</h4>
+    <ul>
+      <li>Fix legislator permissions error</li>
+      <li>Fix social login button spacing when options are turned off</li>
+      <li>Fix default dashboard actions factories</li>
+    </ul>
+
+    <h4>Consul Democracy 2.2.2 updates</h4>
+    <ul>
+      <li>Allow embedded video component in legislation proposals</li>
+      <li>Use Ubuntu 24.04 in workflows</li>
+      <li>Unify database configuration files</li>
+      <li>Multiple dependency updates</li>
+      <li>Code quality improvements with RuboCop rules</li>
+    </ul>
+  </section>
+
+  <section class="changelog-version">
+    <h3>Release 2024.06 <small>(June 2024)</small></h3>
+    <p><strong>Based on:</strong> Consul Democracy 2.1.1 (issue/6234-update-2.1.1-custom-changes)</p>
+
+    <h4>Budget system</h4>
+    <ul>
+      <li>Multiple budget selection and status management improvements</li>
+      <li>Create default milestones for budget projects</li>
+      <li>Create new project states: assumed and planned for next year</li>
+      <li>Enable option to mark projects as winners</li>
+      <li>Automatic budget phase transitions</li>
+      <li>Add translation for milestone states</li>
+      <li>Improve usability in participatory budgets</li>
+      <li>Change admin budget investment layout</li>
+      <li>Change budget header design</li>
+      <li>Add dates in budget phases component</li>
+      <li>Add projects filter in budget executions</li>
+    </ul>
+
+    <h4>Legislation improvements</h4>
+    <ul>
+      <li>Allow process authors to assign other legislators to work on the process</li>
+      <li>Allow legislators to view draft versions</li>
+      <li>Add search to admin legislation processes list</li>
+      <li>Add legislator selector in legislation process</li>
+      <li>Change "Collaborative Legislation" to "Legislative Development"</li>
+      <li>Add site customization help texts feature</li>
+      <li>Add help text tab within legislation processes</li>
+    </ul>
+
+    <h4>Debates improvements</h4>
+    <ul>
+      <li>Add geozone in debate creation form</li>
+      <li>Add geozone selector in advanced search</li>
+      <li>Add map view similar to proposals</li>
+    </ul>
+
+    <h4>Proposals</h4>
+    <ul>
+      <li>Enable button to download proposal summaries</li>
+      <li>Allow registered users to participate in legislation proposals</li>
+    </ul>
+
+    <h4>Configuration and testing</h4>
+    <ul>
+      <li>Add activation status column to manage content visibility</li>
+      <li>Modify CensusCaller implementation</li>
+      <li>Fix email preview functionality</li>
+      <li>Change locale order configuration</li>
+      <li>Customize admin component for users with admin roles</li>
+      <li>Customize social component</li>
+      <li>Add Valencian language support in tests</li>
+      <li>Rename #parent to #module_parent (Rails 6.1 compatibility)</li>
+      <li>Replace SCSS Lint with Stylelint</li>
+      <li>Install timecop gem for time testing</li>
+      <li>Extensive custom test implementations for various features</li>
+    </ul>
+
+    <h4>Code organization</h4>
+    <ul>
+      <li>Improve custom code loading and organization</li>
+      <li>Move custom routes to separate file</li>
+      <li>Allow customizing text to display poll dates</li>
+    </ul>
+
+    <h4>Consul Democracy 2.1.1 updates</h4>
+    <ul>
+      <li>Fix invalid HTML in comment votes</li>
+      <li>Bug fixes and component improvements</li>
+      <li>Multiple dependency updates</li>
+    </ul>
+  </section>
+
+  <section class="changelog-version">
+    <h3>Release 2023.11 <small>(November 2023)</small></h3>
+    <p><strong>Based on:</strong> Consul Democracy 2.0.1 (issue/6234-update-2.0.1)</p>
+
+    <h4>Verification and authentication</h4>
+    <ul>
+      <li>Remove length validation of NIE (National Identity Number)</li>
+      <li>Add minimum required age to translations</li>
+      <li>Improve gvlogin log messages</li>
+      <li>Enable/disable gvlogin link in production</li>
+      <li>Add public schema when calling unaccent</li>
+      <li>Add Ruby version specification</li>
+    </ul>
+
+    <h4>Budget system</h4>
+    <ul>
+      <li>Change admin budget investment layout</li>
+      <li>Change budget header design</li>
+      <li>Add dates in budget phases component</li>
+      <li>Add projects filter in budget executions</li>
+    </ul>
+
+    <h4>Legislation</h4>
+    <ul>
+      <li>Add search to admin legislation processes list</li>
+      <li>Add legislator selector in legislation process</li>
+    </ul>
+
+    <h4>UI/UX improvements</h4>
+    <ul>
+      <li>Changes in various texts and translations</li>
+      <li>Fix slider image version</li>
+      <li>Fix missing translations</li>
+      <li>Fix wrong helper for background image</li>
+    </ul>
+
+    <h4>Testing</h4>
+    <ul>
+      <li>Custom test implementations for verification residence</li>
+      <li>Custom system tests for SDG filters</li>
+      <li>Custom tests for admin site customization</li>
+      <li>Custom tests for advanced search</li>
+      <li>Custom tests for budget management</li>
+      <li>Custom tests for proposals and subscriptions</li>
+    </ul>
+
+    <h4>Consul Democracy 2.0.1 updates</h4>
+    <ul>
+      <li>Fix syntax in robots.txt</li>
+      <li>Use custom translations in components</li>
+      <li>Update selenium-webdriver</li>
+    </ul>
+  </section>
+
+  <section class="changelog-version">
+    <h3>Earlier versions</h3>
+    <p>For information about releases prior to 2023, please refer to the project's git commit history.</p>
+  </section>
+</div>
