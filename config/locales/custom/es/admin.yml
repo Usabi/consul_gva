@@ -954,6 +954,7 @@ es:
       dashboard: Panel de progreso de iniciativas
       administrator_tasks: Recursos solicitados
       dashboard_actions: Recursos y acciones
+      changelog: "Registro de cambios"
       debates: "Debates"
       comments: "Comentarios"
       local_census_records: Gestionar censo local
@@ -2200,3 +2201,5 @@ es:
       tags: "Etiquetas"
       tags_description: "Genera etiquetas automáticas para todos los elementos que pueden ser etiquetados."
       title: "IA / Machine learning"
+    changelog:
+      title: "Registro de cambios"

@@ -1,8 +1,6 @@
 load Rails.root.join("app", "controllers", "admin", "users_controller.rb")
 
 class Admin::UsersController
-  has_filters %w[active erased residence_requested], only: :index
-
   def index
     @users = @users.send(@current_filter)
     @users = @users.by_username_email_or_document_number(params[:search]) if params[:search]

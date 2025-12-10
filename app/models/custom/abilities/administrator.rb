@@ -146,6 +146,9 @@ module Abilities
       end
       can [:create, :destroy], DirectUpload
 
+      can :create, DirectMessage
+      can :show, DirectMessage, sender_id: user.id
+
       can [:deliver], Newsletter, hidden_at: nil
       can [:manage], Dashboard::AdministratorTask
 

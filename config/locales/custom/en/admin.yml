@@ -105,6 +105,7 @@ en:
     menu:
       management_newsletters: Management newsletters
       citizen_newsletters: Citizen newsletters
+      changelog: "Changelog"
       site_customization:
         alert_messages: Manage alert messages
       legislation: Legislation
@@ -283,3 +284,5 @@ en:
         placeholder: Select an initiative
         here: "here"
         mail_template: "You can view the email template %{link}."
+    changelog:
+      title: "Changelog"

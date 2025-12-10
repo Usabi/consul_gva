@@ -31,6 +31,9 @@ module Abilities
       cannot :comment_as_moderator,
              [::Legislation::Question, Legislation::Annotation, ::Legislation::Proposal]
 
+      can :create, DirectMessage
+      can :show, DirectMessage, sender_id: user.id
+
       cannot [:manage], ::Milestone::Status
     end
   end
