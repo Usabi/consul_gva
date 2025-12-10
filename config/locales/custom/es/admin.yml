@@ -1950,6 +1950,11 @@ es:
       index:
         title: Usuarios
         no_users: No hay usuarios.
+        administrator: Administrador
+        moderator: Moderador
+        valuator: Evaluador
+        manager: Gestor
+        poll_officer: Presidente de mesa
         filter: Filtro
         filters:
           active: Activos

@@ -3,6 +3,13 @@ load Rails.root.join("app", "components", "admin", "menu_component.rb")
 class Admin::MenuComponent
   private
 
+    def profiles?
+      controllers = %w[administrators supporters organizations officials moderators valuators
+                       managers users legislators budget_managers]
+      controllers << "sdg/managers" if feature?(:sdg)
+      controllers.include?(controller_name)
+    end
+
     def default_links
       [
         (proposals_link if feature?(:proposals)),
