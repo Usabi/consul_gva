@@ -20,13 +20,15 @@ class Setting
     # in the test environment.
     def defaults
       if Rails.env.test?
-        consul_defaults.merge({
-          "homepage.widgets.feeds.selected_proposals": true
+        consul_defaults.merge({ # rubocop:todo Style/IdenticalConditionalBranches
+          "homepage.widgets.feeds.selected_proposals": true,
+          "feature.citizen_newsletter": nil
         })
-      else
-        consul_defaults.merge({
+      else # rubocop:todo Lint/DuplicateBranch
+        consul_defaults.merge({ # rubocop:todo Style/IdenticalConditionalBranches
           # Overwrite default CONSUL DEMOCRACY settings or add new settings here
-          "homepage.widgets.feeds.selected_proposals": true
+          "homepage.widgets.feeds.selected_proposals": true,
+          "feature.citizen_newsletter": nil
         })
       end
     end
