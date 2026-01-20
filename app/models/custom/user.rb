@@ -20,6 +20,10 @@ class User
     votes.where(votable_type: "Budget::Investment", votable_id: budget_investments)
   end
 
+  def sso_user?
+    identities.exists?
+  end
+
   def legislator?
     legislator.present?
   end
