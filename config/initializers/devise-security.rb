@@ -49,7 +49,7 @@ module Devise
   module Models
     module PasswordExpirable
       def need_change_password?
-        administrator? && password_expired?
+        administrator? && !sso_user? && password_expired?
       end
 
       def password_expired?
