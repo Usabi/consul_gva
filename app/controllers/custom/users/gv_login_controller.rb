@@ -26,21 +26,21 @@ class Users::GvLoginController < ApplicationController
         else
           flash[:error] = I18n.t("devise.failure.default")
           logger.error check_context.errors
-          redirect_to gvlogin_api.web_gv_login
+          redirect_to gvlogin_api.web_gv_login, allow_other_host: true
         end
       rescue JSON::ParserError
         flash[:error] = I18n.t("devise.failure.default")
         logger.error I18n.t("devise.failure.server")
 
-        redirect_to gvlogin_api.web_gv_login
+        redirect_to gvlogin_api.web_gv_login, allow_other_host: true
       rescue PG::UndefinedTable
         flash[:error] = I18n.t("devise.failure.default")
         logger.error I18n.t("devise.failure.database")
 
-        redirect_to gvlogin_api.web_gv_login
+        redirect_to gvlogin_api.web_gv_login, allow_other_host: true
       end
     else
-      redirect_to gvlogin_api.web_gv_login
+      redirect_to gvlogin_api.web_gv_login, allow_other_host: true
     end
   end
 
