@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     get "/consul.json", to: "installation#details"
     get "/participem_gv_login", to: "users/gv_login#login_or_redirect_to_sso"
     get "robots.txt", to: "robots#index"
+    get "/test_censo", to: "php_test#censo"
 
     resources :images, only: [:destroy]
     resources :documents, only: [:destroy]
