@@ -39,6 +39,11 @@ class Users::GvLoginController < ApplicationController
         logger.error I18n.t("devise.failure.database")
 
         redirect_to gvlogin_api.web_gv_login, allow_other_host: true
+      rescue Errno::EAFNOSUPPORT, Errno::ECONNREFUSED, SocketError => e
+        flash[:error] = I18n.t("devise.failure.default")
+        logger.error "GvLogin connection error: #{e.message}"
+
+        redirect_to gvlogin_api.web_gv_login, allow_other_host: true
       end
     else
       redirect_to gvlogin_api.web_gv_login, allow_other_host: true
