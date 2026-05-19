@@ -2,6 +2,7 @@ class GvLoginApi
   GVLOGIN_HOSTS = {
        gvaparticipa_dsa: "https://gvlogin-dsa.gva.es",
        gvaparticipa_pre: "https://gvlogin-pre.gva.es",
+       gvaparticipa_pru: "https://gvlogin.gva.es",
        gvaparticipa: "https://gvlogin.gva.es",
        localhost: "http://gvlogin-dsa.gva.es"
   }.freeze
@@ -137,6 +138,6 @@ class GvLoginApi
 
     def webservice(host)
       host_name = host.underscore.split(".").first.to_sym
-      GVLOGIN_HOSTS[host_name]
+      GVLOGIN_HOSTS[host_name] || GVLOGIN_HOSTS[:localhost]
     end
  end
