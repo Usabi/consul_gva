@@ -110,6 +110,7 @@ group :development do
   gem "rubocop-rspec", "~> 3.4.0", require: false
   gem "rubocop-rspec_rails", "~> 2.30.0", require: false
   gem "rvm1-capistrano3", "~> 1.4.0", require: false
+  gem "brakeman", "~> 8.0", require: false
   gem "spring", "~> 4.2.1"
   gem "web-console", "~> 4.2.1"
 end
