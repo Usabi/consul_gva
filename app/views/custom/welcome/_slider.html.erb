@@ -4,8 +4,7 @@
 <% if card_left && card_right %>
   <div class="header-card jumbo slider-gva">
     <div class="row">
-      <% [:left, :right].each do |position| %>
-        <% card = eval("card_#{position}") %>
+      <% { left: card_left, right: card_right }.each do |_position, card| %>
         <div class="small-12 medium-6 column content-left">
           <% if card.title.present? || card.description.present? %>
             <div class="content-text">
