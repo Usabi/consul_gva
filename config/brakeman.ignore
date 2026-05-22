@@ -1,0 +1,52 @@
+{
+  "ignored_warnings": [
+    {
+      "fingerprint": "274fa659e9f6bd20179b33f32c7eac5054c8c792d6d63b05fa43b38c00e38440",
+      "note": "Falso positivo: relatable_type se valida contra SDG::Related::RELATABLE_TYPES antes de llamar a constantize"
+    },
+    {
+      "fingerprint": "9dac50d6382899dccd82828e26d162b1aea30150a7caae8f5dcd744b84bc8d7c",
+      "note": "Falso positivo: el parámetro se sanea con regex, se verifica que el path empiece en bin/ y que el fichero exista"
+    },
+    {
+      "fingerprint": "b22f9db80a9124cb3bec546ab917d3fbed7b81b2e4a3bf8d423bea1c32935079",
+      "note": "Falso positivo: params[:id] se valida con /\\A[\\w\\/\\-]+\\z/ antes de pasar a render; ActionView::MissingTemplate captura plantillas inexistentes"
+    },
+    {
+      "fingerprint": "ac6871aef9413d865621b7b28e29f002af2f895e06d5ab16b530b94e60f86241",
+      "note": "Riesgo aceptado en no-producción: VERIFY_NONE solo se activa cuando errbit_self_hosted_ssl está configurado; bloqueado explícitamente en producción con raise"
+    },
+    {
+      "fingerprint": "7784a4507e462d45711e93678cbd15ee8c1b162c4a751bd9e2c5d9fd1c9b6f75",
+      "note": "Código upstream CONSUL: job.script proviene de Machine Learning jobs administrados internamente, no de input de usuario"
+    },
+    {
+      "fingerprint": "5688770305b0eabd4bd303443cecae2da82d07689f72f1ff5bf4829e797717b7",
+      "note": "Código upstream CONSUL: schema es el nombre de un tenant validado antes de guardar en la base de datos"
+    },
+    {
+      "fingerprint": "57900293c4b212bf4a48065895cb7ebd08cb7732d371d46ee2d528bdbb2c7075",
+      "note": "Código upstream CONSUL: days_diff es un valor entero calculado internamente, no controlado por el usuario"
+    },
+    {
+      "fingerprint": "66a67c0837ea99aa2b08915b80ebe62391c615430f97f83f9a0e01c7cef647c0",
+      "note": "Código upstream CONSUL: searchable_values_sql es generado internamente por el modelo, no controlado por el usuario"
+    },
+    {
+      "fingerprint": "957b4a0199d3972ea5180b255ca65e2b9ef2329cffa3795ce4399b1e55ad23d4",
+      "note": "Código upstream CONSUL: los IDs son enteros de la base de datos, no input de usuario"
+    },
+    {
+      "fingerprint": "adcdded937ccf1e16fd8c43590e39e858a7ea7a05e506c75a128983eb75e8899",
+      "note": "El script PHP se carga desde secrets (no desde params); los argumentos identifier/document_number deberían sanitizarse con Shellwords (mejora pendiente en census_api)"
+    },
+    {
+      "fingerprint": "b18f7b2a0353c1463e40749c26e56d0657226367160a2d4e6a3b6081ea31681e",
+      "note": "El script PHP se carga desde secrets (no desde params); los argumentos identifier/document_number deberían sanitizarse con Shellwords (mejora pendiente en census_api)"
+    },
+    {
+      "fingerprint": "d84924377155b41e094acae7404ec2e521629d86f97b0ff628e3d1b263f8101c",
+      "note": "EOL Rails 7.0.8.4 conocido; actualización a Rails 7.1/7.2 pendiente como tarea mayor"
+    }
+  ]
+}
