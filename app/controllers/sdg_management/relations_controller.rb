@@ -33,7 +33,11 @@ class SDGManagement::RelationsController < SDGManagement::BaseController
     end
 
     def relatable_class
-      params[:relatable_type].classify.constantize
+      class_name = params[:relatable_type].classify
+      unless class_name.in?(SDG::Related::RELATABLE_TYPES)
+        raise ActionController::BadRequest, "relatable_type inválido"
+      end
+      class_name.constantize
     end
 
     def check_feature_flags
