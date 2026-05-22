@@ -11,7 +11,9 @@ class PagesController < ApplicationController
       @cards = @custom_page.cards.sort_by_order
       render action: :custom_page
     else
-      render action: params[:id].split(".").first
+      page_action = params[:id].split(".").first.to_s
+      raise ActionView::MissingTemplate.new([], page_action, [], false, {}) unless page_action.match?(/\A[\w\/\-]+\z/)
+      render action: page_action
     end
   rescue ActionView::MissingTemplate
     head :not_found, content_type: "text/html"
