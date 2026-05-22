@@ -11,7 +11,7 @@ class Budget
     scope :supported, -> { joins(:heading).where("budget_investments.cached_votes_up + budget_investments.physical_votes >= budget_headings.min_supports") }
     scope :takecharged, -> { where(feasibility: "takecharge") }
     scope :included_next_year_budget, -> { where(feasibility: "nextyearbudget") }
-    scope :by_milestones_statuses, ->(status) { joins(milestones: :status).where("milestone_statuses.kind = '#{status}'") }
+    scope :by_milestones_statuses, ->(status) { joins(milestones: :status).where(milestone_statuses: { kind: status }) }
     scope :milestone_drafting, -> { by_milestones_statuses("drafting") }
     scope :milestone_processing, -> { by_milestones_statuses("processing") }
     scope :milestone_execution, -> { by_milestones_statuses("execution") }
