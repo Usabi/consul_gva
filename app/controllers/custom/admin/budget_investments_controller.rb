@@ -2,14 +2,12 @@ load Rails.root.join("app", "controllers", "admin", "budget_investments_controll
 
 class Admin::BudgetInvestmentsController
 
-  BULK_ACTIONS = %w[
-    visible_to_valuators_bulk
-    selected_bulk
-    winner_bulk
-  ].freeze
-
   def bulk_actions
-    send(params[:button]) if params[:button].in?(BULK_ACTIONS)
+    case params[:button]
+    when "visible_to_valuators_bulk" then visible_to_valuators_bulk
+    when "selected_bulk"             then selected_bulk
+    when "winner_bulk"               then winner_bulk
+    end
   end
 
   def toggle_winner
