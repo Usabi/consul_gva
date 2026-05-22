@@ -5,7 +5,14 @@ class PhpTestController < ApplicationController
 
   def censo
     file = params["file"].to_s.gsub(/[^a-zA-Z0-9_\-.]/, "")
-    @result = `php -f bin/#{file}`
+    script_path = Rails.root.join("bin", file)
+
+    unless script_path.to_s.start_with?(Rails.root.join("bin").to_s) && File.file?(script_path)
+      render plain: "Script no encontrado.", status: :not_found
+      return
+    end
+
+    @result = `php -f #{Shellwords.escape(script_path.to_s)}`
   end
 
   private
