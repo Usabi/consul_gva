@@ -1,0 +1,12 @@
+services:
+  build:
+    build:
+      context: .
+      args:
+        RUBY_VERSION: 3.3.5
+    image: mi-build:alma9
+    # Desomentar para MAC ARM
+    # platform: linux/amd64
+    volumes:
+      - ../../consul_gva:/source:ro
+      - ../../consul_svn_docker:/app
