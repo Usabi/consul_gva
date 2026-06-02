@@ -40,8 +40,14 @@ RUN rvm install ${RUBY_VERSION} && \
 
 ENV BUNDLE_SILENCE_ROOT_WARNING=1
 
-WORKDIR /app
+ARG HOST_UID=1000
+RUN useradd -u ${HOST_UID} --no-log-init -m builduser && \
+    usermod -aG rvm builduser
+
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
+
+WORKDIR /app
+USER builduser
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
