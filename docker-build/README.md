@@ -36,7 +36,18 @@ cd consul_gva/docker-build
 docker compose build
 
 # 3. Ejecutar la compilación completa
-SVN_USER=tu_usuario SVN_PASS=tu_contraseña docker compose run --rm build
+docker compose run --rm build
+
+# Si tu working copy SVN tiene un nombre o ruta diferente, pásalo con SVN_PATH:
+SVN_PATH=/ruta/a/tu/svn docker compose run --rm build
+```
+
+Por defecto apunta a `../../consul_gva_svn`. Puedes definir `SVN_PATH` en un
+fichero `.env` en esta misma carpeta para no tener que pasarlo cada vez:
+
+```bash
+# docker-build/.env
+SVN_PATH=/home/usuario/otro_nombre_svn
 ```
 
 El contenedor monta el directorio padre (`consul_gva_svn/`) como `/app` y ejecuta:
