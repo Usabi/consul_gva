@@ -52,6 +52,11 @@ bundle config set --local path 'vendor/bundle'
 bundle config set --local without 'development test'
 bundle install
 
+echo ">> Corrigiendo shebangs ruby_executable_hooks para servidores sin RVM..."
+find vendor/bundle/ruby/3.3.0/bin -type f | \
+  xargs grep -l "ruby_executable_hooks" 2>/dev/null | \
+  xargs sed -i 's|#!/usr/bin/env ruby_executable_hooks|#!/usr/bin/env ruby|g' 2>/dev/null || true
+
 echo ">> Creando database.yml stub para assets:precompile..."
 cat > config/database.yml << 'EOF'
 production:
