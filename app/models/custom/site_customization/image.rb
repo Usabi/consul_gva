@@ -1,6 +1,7 @@
 load Rails.root.join("app", "models", "site_customization", "image.rb")
 
 class SiteCustomization::Image
+  remove_const :VALID_IMAGES
   VALID_IMAGES = {
     "logo_header" => [435, 85],
     "logo_header2" => [435, 85],
