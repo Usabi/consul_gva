@@ -7,9 +7,10 @@ namespace :docker_build do
       abort("Error al construir la imagen Docker")
   end
 
-  desc "Compila gemas nativas y assets dentro del contenedor AlmaLinux 9"
+  desc "Compila gemas nativas y assets dentro del contenedor AlmaLinux 9. Acepta SVN_PATH=ruta"
   task :compile do
-    system("docker compose run --rm build", chdir: DOCKER_BUILD_DIR) ||
+    env = ENV["SVN_PATH"] ? { "SVN_PATH" => ENV["SVN_PATH"] } : {}
+    system(env, "docker compose run --rm build", chdir: DOCKER_BUILD_DIR) ||
       abort("Error durante la compilación")
   end
 
