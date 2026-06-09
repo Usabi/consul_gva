@@ -51,7 +51,7 @@ gem "ros-apartment", "~> 2.11.0", require: "apartment" # Remove ConnectionHandli
 gem "sassc-embedded", "~> 1.70.1"
 gem "sassc-rails", "~> 2.1.2"
 gem "savon", "~> 2.15.1"
-gem "sitemap_generator", "~> 6.3.0"
+gem "sitemap_generator", "~> 7.0.1"
 gem "social-share-button", "~> 1.2.4"
 gem "sprockets", "~> 4.2.1"
 gem "sprockets-rails", "~> 3.5.2", require: "sprockets/railtie"
