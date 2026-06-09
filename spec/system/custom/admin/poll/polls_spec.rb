@@ -25,6 +25,44 @@ describe "Admin polls" do
     expect(page).not_to have_content "There are no polls"
   end
 
+  context "Search and filter form" do
+    scenario "Filters polls by status: current" do
+      current_poll = create(:poll, name: "Encuesta activa")
+      expired_poll = create(:poll, :expired, name: "Encuesta finalizada")
+
+      visit admin_polls_path
+      find("select[name='filter'] option[value='current']").select_option
+      find("form[action='#{admin_polls_path}'] [type='submit']").click
+
+      expect(page).to have_content current_poll.name
+      expect(page).not_to have_content expired_poll.name
+    end
+
+    scenario "Filters polls by status: expired" do
+      current_poll = create(:poll, name: "Encuesta activa")
+      expired_poll = create(:poll, :expired, name: "Encuesta finalizada")
+
+      visit admin_polls_path
+      find("select[name='filter'] option[value='expired']").select_option
+      find("form[action='#{admin_polls_path}'] [type='submit']").click
+
+      expect(page).to have_content expired_poll.name
+      expect(page).not_to have_content current_poll.name
+    end
+
+    scenario "Searches polls by name" do
+      create(:poll, name: "Encuesta de movilidad")
+      create(:poll, name: "Encuesta de reciclaje")
+
+      visit admin_polls_path
+      fill_in "name_or_id", with: "movilidad"
+      find("form[action='#{admin_polls_path}'] [type='submit']").click
+
+      expect(page).to have_content "Encuesta de movilidad"
+      expect(page).not_to have_content "Encuesta de reciclaje"
+    end
+  end
+
   context "SDG related list" do
     scenario "show SDG filter dropdowns even when feature is disabled" do
       poll = create(:poll, name: "Poll with SDG related content")

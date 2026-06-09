@@ -310,7 +310,7 @@ describe "Admin collaborative legislation", :admin do
 
       visit admin_legislation_processes_path
       fill_in "search", with: "reciclaje"
-      click_button "Filter"
+      find("form[action='#{admin_legislation_processes_path}'] [type='submit']").click
 
       expect(page).to have_content "Proceso de reciclaje"
       expect(page).not_to have_content "Proceso de movilidad"
@@ -322,7 +322,7 @@ describe "Admin collaborative legislation", :admin do
 
       visit admin_legislation_processes_path
       fill_in "search", with: process.id.to_s
-      click_button "Filter"
+      find("form[action='#{admin_legislation_processes_path}'] [type='submit']").click
 
       expect(page).to have_content "Proceso único"
       expect(page).not_to have_content "Otro proceso"

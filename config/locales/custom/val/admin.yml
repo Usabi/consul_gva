@@ -1140,6 +1140,20 @@ val:
         start_date: "Data d'apertura"
         closing_date: "Data de tancament"
         geozone_restricted: "Restringida als districtes"
+        status: "Estat"
+        list:
+          id: ID
+          name: Nom
+          starts_at: "Data d'apertura"
+          ends_at: "Data de tancament"
+      filters:
+        all: "Tots"
+        current: "Actius"
+        expired: "Finalitzats"
+        prompt: "Estat de la votació"
+      status:
+        open: "Oberta"
+        closed: "Tancada"
       subnav:
         polls: Votacions
         help_text: Text d'ajuda
