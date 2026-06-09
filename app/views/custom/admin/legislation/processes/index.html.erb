@@ -4,8 +4,10 @@
 
 <h2 class="inline-block"><%= t("admin.legislation.processes.index.title") %></h2>
 
-<%= link_to t("admin.legislation.processes.index.create"), new_admin_legislation_process_path,
-            class: "button float-right" %>
+<% if can? :create, Legislation::Process %>
+  <%= link_to t("admin.legislation.processes.index.create"), new_admin_legislation_process_path,
+              class: "button float-right" %>
+<% end %>
 
 <%= render "help_subnav", i18n_namespace: "admin.legislation.processes.index", active: "processes" %>
 

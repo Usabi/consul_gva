@@ -9,11 +9,13 @@
     <td class="text-center"><%= poll.sdg_target_list %></td>
   <% end %>
   <td>
-    <%= render Admin::TableActionsComponent.new(
+    <%= render Admin::AllowedTableActionsComponent.new(
       poll,
       destroy_confirmation: t("admin.polls.destroy.alert")
     ) do |actions| %>
-      <%= actions.action(:configure) %>
+      <% if can?(:update, poll) %>
+        <%= actions.action(:configure) %>
+      <% end %>
     <% end %>
   </td>
 </tr>
