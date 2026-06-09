@@ -1,6 +1,10 @@
 require "capybara/rspec"
 require "selenium/webdriver"
 
+# webdrivers gem hooks into Selenium but uses a deprecated Google URL that returns 404 for Chrome > 115.
+# Clear its hook so Selenium Manager (built into selenium-webdriver 4.6+) handles driver management instead.
+Selenium::WebDriver::Chrome::Service.driver_path = nil
+
 Capybara.register_driver :headless_chrome do |app|
   options = Selenium::WebDriver::Chrome::Options.new.tap do |opts|
     opts.add_argument "--headless"
