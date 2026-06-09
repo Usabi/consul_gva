@@ -303,6 +303,32 @@ describe "Admin collaborative legislation", :admin do
     end
   end
 
+  context "Search form" do
+    scenario "Searches processes by title" do
+      create(:legislation_process, title: "Proceso de reciclaje")
+      create(:legislation_process, title: "Proceso de movilidad")
+
+      visit admin_legislation_processes_path
+      fill_in "search", with: "reciclaje"
+      click_button "Filter"
+
+      expect(page).to have_content "Proceso de reciclaje"
+      expect(page).not_to have_content "Proceso de movilidad"
+    end
+
+    scenario "Searches processes by id" do
+      process = create(:legislation_process, title: "Proceso único")
+      create(:legislation_process, title: "Otro proceso")
+
+      visit admin_legislation_processes_path
+      fill_in "search", with: process.id.to_s
+      click_button "Filter"
+
+      expect(page).to have_content "Proceso único"
+      expect(page).not_to have_content "Otro proceso"
+    end
+  end
+
   context "SDG related list" do
     before do
       Setting["feature.sdg"] = true
