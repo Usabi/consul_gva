@@ -274,6 +274,18 @@ describe "Proposals" do
   end
 
   describe "Proposal index order filters" do
+    scenario "Selected proposals are shown when using 'selected' order" do
+      selected_proposal = create(:proposal, :selected, title: "Selected proposal")
+      regular_proposal  = create(:proposal, title: "Regular proposal")
+
+      visit proposals_path(order: "selected")
+
+      within "#proposals" do
+        expect(page).to have_content selected_proposal.title
+        expect(page).not_to have_content regular_proposal.title
+      end
+    end
+
     scenario "Debates are ordered by hot_score" do
       best_proposal = create(:proposal, title: "Best proposal")
       best_proposal.update_column(:hot_score, 10)
