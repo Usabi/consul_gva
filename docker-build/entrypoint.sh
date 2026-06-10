@@ -17,6 +17,7 @@ rsync -a \
   --exclude='.tool-versions' \
   --exclude='.byebug_history' \
   --exclude='.knapsack_pro/' \
+  --exclude='.playwright-mcp/' \
   --exclude='CLAUDE.md' \
   --exclude='log/' \
   --exclude='tmp/' \
