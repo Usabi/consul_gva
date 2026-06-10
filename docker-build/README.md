@@ -28,18 +28,24 @@ El SVN working copy apunta a: `https://subversion.gva.es/svn/participem_gv` → 
 
 ## Uso
 
+Desde la raíz del proyecto Rails (`consul_gva/`), usando las tareas rake
+(`lib/tasks/custom/docker_build.rake`):
+
 ```bash
-# 1. Situarse en la carpeta docker-build
-cd consul_gva/docker-build
+# Construir la imagen (solo la primera vez o al cambiar Dockerfile)
+bin/rake docker_build:build
 
-# 2. Construir la imagen (solo la primera vez o al cambiar Dockerfile)
-docker compose build
+# Ejecutar la compilación completa
+bin/rake docker_build:compile
 
-# 3. Ejecutar la compilación completa
-docker compose run --rm build
+# Build + compile en un solo paso
+bin/rake docker_build:run
+
+# Eliminar la imagen Docker de compilación
+bin/rake docker_build:clean
 
 # Si tu working copy SVN tiene un nombre o ruta diferente, pásalo con SVN_PATH:
-SVN_PATH=/ruta/a/tu/svn docker compose run --rm build
+SVN_PATH=/ruta/a/tu/svn bin/rake docker_build:compile
 ```
 
 Por defecto apunta a `../../consul_gva_svn`. Puedes definir `SVN_PATH` en un
@@ -54,7 +60,9 @@ El contenedor monta el directorio padre (`consul_gva_svn/`) como `/app` y ejecut
 
 1. `bundle install` — compila gemas nativas para RHEL 9 en `vendor/bundle`
 2. `rake assets:precompile` — genera `public/assets`
-3. `svn commit` — sube los binarios compilados al repositorio SVN
+3. Deja `vendor/bundle` y `public/assets` listos en el working copy SVN. Subida
+   manual: `bin/actualiza_svn.sh` (añade ficheros nuevos/binarios `.so` y elimina
+   los borrados) seguido de `svn commit`
 
 ## Versiones
 
