@@ -21,12 +21,14 @@ class Setting
     def defaults
       if Rails.env.test?
         consul_defaults.merge({
-          "homepage.widgets.feeds.selected_proposals": true
+          "homepage.widgets.feeds.selected_proposals": true,
+          "feature.citizen_newsletter": false
         })
       else
         consul_defaults.merge({
           # Overwrite default CONSUL DEMOCRACY settings or add new settings here
-          "homepage.widgets.feeds.selected_proposals": true
+          "homepage.widgets.feeds.selected_proposals": true,
+          "feature.citizen_newsletter": false
         })
       end
     end
