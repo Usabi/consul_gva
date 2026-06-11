@@ -68,7 +68,7 @@ El contenedor monta el directorio padre (`consul_gva_svn/`) como `/app` y ejecut
 
 | Componente | Versión |
 |------------|---------|
-| Ruby       | 3.3.8   |
+| Ruby       | 3.3.10  |
 | Node       | 20.x    |
 | SO base    | AlmaLinux 9 (compatible RHEL 9) |
 
