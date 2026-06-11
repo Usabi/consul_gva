@@ -190,6 +190,7 @@ val:
       ie_title: Esta web no està optimitzada per al teu navegador
     footer:
       accessibility: Accessibilitat
+      citizen_opinions: La meua opinió compta
       conditions: Termes i condicions d'ús
       consul: Aplicació CONSUL
       consul_url: https://github.com/consul/consul

@@ -233,6 +233,7 @@ es:
           other: "Apoyos"
     footer:
       accessibility: Accesibilidad
+      citizen_opinions: Mi opinión cuenta
       conditions: Condiciones de uso
       consul: aplicación CONSUL
       consul_url: https://github.com/consul/consul

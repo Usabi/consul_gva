@@ -73,6 +73,7 @@
               <li><%= link_to t("layouts.footer.privacy"), page_path("privacy") %></li>
               <li><%= link_to t("layouts.footer.conditions"), page_path("conditions") %></li>
               <li><%= link_to t("layouts.footer.accessibility"), page_path("accessibility")  %></li>
+              <li><%= link_to t("layouts.footer.citizen_opinions"), new_citizen_opinion_path %></li>
               <li><%= t("layouts.footer.contact_us_short") %> <%= mail_to Setting['mailer_from_address'] %></li>
               <% if feature?(:cookies_consent) %>
                 <li class="cookies-consent-management-footer-content">
