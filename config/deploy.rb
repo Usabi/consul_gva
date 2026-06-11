@@ -17,7 +17,7 @@ end
 set :rails_env, fetch(:stage)
 # set :default_env, { EXECJS_RUNTIME: "Disabled" }
 set :rvm1_map_bins, -> { fetch(:rvm_map_bins).to_a.concat(%w[rake gem bundle ruby]).uniq }
-set :rvm_ruby_version, "3.3.5"
+set :rvm_ruby_version, "3.3.8"
 
 set :application, deploysecret(:app_name, default: "consul")
 set :deploy_to, deploysecret(:deploy_to)
