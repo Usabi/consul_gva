@@ -14,18 +14,18 @@ es:
     failure:
       already_authenticated: "Ya has iniciado sesión."
       inactive: "Tu cuenta aún no ha sido activada."
-      invalid: "%{authentication_keys} o contraseña inválidos."
-      locked: "Tu cuenta ha sido bloqueada."
-      last_attempt: "Tienes un último intento antes de que tu cuenta sea bloqueada."
+      invalid: "El correo electrónico o la contraseña no son correctos. Por favor, revísalos e inténtalo de nuevo."
+      locked: "Tu cuenta ha sido bloqueada por demasiados intentos fallidos. Revisa tu correo electrónico para desbloquearla."
+      last_attempt: "Atención: este es tu último intento. Si la contraseña es incorrecta, tu cuenta quedará bloqueada."
       default: "Error al intentar iniciar sesión"
       database: "Ocurrió error en la base de datos"
       server: "Ocurrió error en el servidor"
       no_backend_roles: "Tu cuenta no tiene roles asignados."
       no_codeper_email: "Tu cuenta no es correo GVA o no tiene codper asignado."
-      not_found_in_database: "%{authentication_keys} o contraseña inválidos."
-      timeout: "Tu sesión ha expirado, por favor inicia sesión nuevamente para continuar."
-      unauthenticated: "Necesitas iniciar sesión o registrarte para continuar."
-      unconfirmed: "Para continuar, por favor pulsa en el enlace de confirmación que hemos enviado a tu cuenta de correo."
+      not_found_in_database: "El correo electrónico o la contraseña no son correctos. Por favor, revísalos e inténtalo de nuevo."
+      timeout: "Tu sesión ha expirado. Por favor, vuelve a iniciar sesión para continuar."
+      unauthenticated: "Necesitas identificarte para continuar. Por favor, inicia sesión o regístrate."
+      unconfirmed: "Confirma tu cuenta antes de continuar. Revisa tu bandeja de entrada (también la carpeta de spam) y haz clic en el enlace que te hemos enviado."
     mailer:
       confirmation_instructions:
         subject: "Instrucciones de confirmación"
@@ -47,7 +47,7 @@ es:
       signed_up: "¡Bienvenido! Has sido identificado."
       signed_up_but_inactive: "Te has registrado correctamente, pero no has podido iniciar sesión porque tu cuenta no ha sido activada."
       signed_up_but_locked: "Te has registrado correctamente, pero no has podido iniciar sesión porque tu cuenta está bloqueada."
-      signed_up_but_unconfirmed: "Se te ha enviado un mensaje con un enlace de confirmación. Por favor visita el enlace para activar tu cuenta."
+      signed_up_but_unconfirmed: "Ya casi está. Te hemos enviado un correo electrónico con un enlace de confirmación. Revisa tu bandeja de entrada (también la carpeta de spam) y haz clic en el enlace para activar tu cuenta."
       update_needs_confirmation: "Has actualizado tu cuenta correctamente, sin embargo necesitamos verificar tu nueva cuenta de correo. Por favor revisa tu correo electrónico y visita el enlace para finalizar la confirmación de tu nueva dirección de correo electrónico."
       updated: "Has actualizado tu cuenta correctamente."
     sessions:
@@ -70,6 +70,6 @@ es:
       not_found: "no se ha encontrado."
       not_locked: "no estaba bloqueado."
       not_saved:
-        one: "1 error impidió que este %{resource} fuera guardado. Por favor revisa los campos marcados para saber cómo corregirlos:"
-        other: "%{count} errores impidieron que este %{resource} fuera guardado. Por favor revisa los campos marcados para saber cómo corregirlos:"
+        one: "Hay un error que impide guardar los cambios. Revisa el campo marcado para corregirlo:"
+        other: "Hay %{count} errores que impiden guardar los cambios. Revisa los campos marcados para corregirlos:"
       equal_to_current_password: "debe ser diferente a la contraseña actual"
