@@ -270,7 +270,7 @@ val:
       name: Facebook
     finish_signup:
       title: "Detalls adicionals del teu compte"
-      username_warning: "Degut a que hem canviat la forma en la que ens conectem amb les xarxes socials i es possible que el teu nom ja aparega com \"ya en us\", inclus si abans podies accedir amb ell. Si es el teu cas, si us plau eligeix un nom d'usuari distint."
+      username_warning: "Hem canviat la forma de connectar-nos amb les xarxes socials i és possible que el teu nom d'usuari aparega com \"ja en ús\", fins i tot si abans podies accedir amb ell. Si és el teu cas, si us plau, tria un nom d'usuari diferent."
     google_oauth2:
       sign_in: Entra amb Google
       sign_up: Regístrat amb Google

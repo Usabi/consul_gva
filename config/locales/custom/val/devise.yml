@@ -14,18 +14,18 @@ val:
     failure:
       already_authenticated: "Ja has iniciat sessió."
       inactive: "El teu compte encara no ha sigut activat."
-      invalid: "%{authentication_keys} o contrasenya invàlids."
-      locked: "El teu compte ha segut bloquejat."
-      last_attempt: "Tens un últim intent abans que el teu compte siga bloquejat."
+      invalid: "El correu electrònic o la contrasenya no són correctes. Si us plau, revisa'ls i torna-ho a intentar."
+      locked: "El teu compte ha sigut bloquejat per massa intents fallits. Revisa el teu correu electrònic per a desbloquejar-lo."
+      last_attempt: "Atenció: aquest és el teu últim intent. Si la contrasenya és incorrecta, el teu compte quedarà bloquejat."
       default: "Error en intentar iniciar sessió"
       database: "Va ocórrer error en la base de dades"
       server: "Va ocórrer error en el servidor"
       no_backend_roles: "El teu compte no té rols assignats."
       no_codeper_email: "El teu compte no és correu GVA o no tens codper assignat."
-      not_found_in_database: "%{authentication_keys} o contrasenya invàlids."
-      timeout: "La teua sessió ha expirat, per favor inicia sessió novament per a continuar."
-      unauthenticated: "Necessites iniciar sessió o registrar-te per a continuar."
-      unconfirmed: "Per a continuar, per favor prem en l'enllaç de confirmació que hem enviat al teu compte de correu"
+      not_found_in_database: "El correu electrònic o la contrasenya no són correctes. Si us plau, revisa'ls i torna-ho a intentar."
+      timeout: "La teua sessió ha expirat. Si us plau, torna a iniciar sessió per a continuar."
+      unauthenticated: "Necessites identificar-te per a continuar. Si us plau, inicia sessió o registra't."
+      unconfirmed: "Confirma el teu compte abans de continuar. Revisa la teua safata d'entrada (també la carpeta de correu no desitjat) i fes clic en l'enllaç que t'hem enviat."
     mailer:
       confirmation_instructions:
         subject: "Instruccions de confirmació"
@@ -47,7 +47,7 @@ val:
       signed_up: "Benvingut! Has sigut identificat."
       signed_up_but_inactive: "T'has registrat correctament, pero no has pogut iniciar sessió perque el teu compte no ha segut activada."
       signed_up_but_locked: "T'has registrat correctament, però no has pogut iniciar sessió perquè el teu compte està bloquejat."
-      signed_up_but_unconfirmed: "Se t'ha enviat un missatge amb un enllaç de confirmació. Per favor visita l'enllaç per a activar el teu compte."
+      signed_up_but_unconfirmed: "Ja quasi està. T'hem enviat un correu electrònic amb un enllaç de confirmació. Revisa la teua safata d'entrada (també la carpeta de correu no desitjat) i fes clic en l'enllaç per a activar el teu compte."
       update_needs_confirmation: "Has actualitzat el teu compte correctament, no obstant açò necessitem verificar el teu nou compte de correu. Per favor revisa el teu correu electrònic i visita l'enllaç per a finalitzar la confirmació de la teua nova adreça de correu electrònica."
       updated: "Has actualitzat el teu compte correctament."
     sessions:
@@ -70,6 +70,6 @@ val:
       not_found: "no s'ha trobat."
       not_locked: "no estava bloquejat."
       not_saved:
-        one: "1 error impedeix salvar este %{resource}. Si us plau verifica els camps marcats per a corregirlos:"
-        other: "%{count} errors impedeixen salvar este %{resource}. Si us plau verifica els camps marcats per a corregirlos:"
+        one: "Hi ha un error que impedeix guardar els canvis. Revisa el camp marcat per a corregir-lo:"
+        other: "Hi ha %{count} errors que impedeixen guardar els canvis. Revisa els camps marcats per a corregir-los:"
       equal_to_current_password: "ha de ser diferent a la contrasenya actual."

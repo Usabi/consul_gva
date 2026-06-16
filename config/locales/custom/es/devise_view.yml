@@ -9,7 +9,7 @@ es:
         instructions: Vamos a proceder a confirmar la cuenta con el email <b>%{email}</b>
         new_password_confirmation_label: Repite la clave de nuevo
         new_password_label: Nueva clave de acceso
-        please_set_password: Por favor introduce una nueva clave de acceso para su cuenta (te permitirá hacer login con el email de más arriba)
+        please_set_password: Por favor, introduce una nueva contraseña para tu cuenta (la usarás para iniciar sesión con el correo de más arriba)
         submit: Confirmar
         title: Confirmar mi cuenta
     mailer:
@@ -27,7 +27,7 @@ es:
         title: Cambia tu contraseña
       unlock_instructions:
         hello: Hola
-        info_text: Tu cuenta ha sido bloqueada debido a un excesivo número de intentos fallidos de alta.
+        info_text: Tu cuenta ha sido bloqueada debido a demasiados intentos fallidos de inicio de sesión.
         instructions_text: "Sigue el siguiente enlace para desbloquear tu cuenta:"
         title: Tu cuenta ha sido bloqueada
         unlock_link: Desbloquear mi cuenta
@@ -118,8 +118,8 @@ es:
           privacy_terms: Política de protección de datos
           terms_title: Al registrarte aceptas las condiciones de uso y protección de datos
           title: Registrarse
-          username_is_available: Nombre de persona usuaria disponible
-          username_is_not_available: Nombre de persona usuaria ya existente
+          username_is_available: "Este nombre de usuario está disponible."
+          username_is_not_available: "Este nombre de usuario ya está en uso. Por favor, elige otro."
           username_label: Nombre de persona usuaria
           username_note: Nombre público que aparecerá en tus publicaciones
         success:

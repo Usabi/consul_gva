@@ -27,7 +27,7 @@ val:
         title: Canvia la teua contrasenya
       unlock_instructions:
         hello: Hola
-        info_text: El teu compte ha segut bloquejat a causa d'un excessiu nombre d'intents fallits d'alta.
+        info_text: El teu compte ha sigut bloquejat a causa de massa intents fallits d'inici de sessió.
         instructions_text: "Segueix el seguent enllaç per a desbloquejar el teu compte:"
         title: El teu compte ha segut bloquejat
         unlock_link: Desbloquejar el meu compte
@@ -51,7 +51,7 @@ val:
         success:
           back_to_index: Entés, tornar a la pàgina principal
           instructions_1: "En breu <b>ens posarem en contacte amb tu</b> per a verificar que realment representes a aquest col·lectiu."
-          instructions_2: <b>revisa el teu correu electrìnic</b>, t’hem enviat un <b>enllaç per a confirmar el teu compte</b>.
+          instructions_2: "Mentrestant, <b>revisa el teu correu electrònic</b>: t’hem enviat un <b>enllaç per a confirmar el teu compte</b>."
           instructions_3: Una vegada confirmat, podràs començar a participar com a col·lectiu no verificat.
           thank_you: Gràcies per registrar el teu col·lectiu en la web. Ara està <b>pendent de verificació</b>.
           title: Registre d'organització / col·lectiu
@@ -118,8 +118,8 @@ val:
           privacy_terms: Política de protecció de dades
           terms_title: "Al registrar-te acceptes les condicions d’ús i protecció de dades"
           title: Registrar-se
-          username_is_available: Nom de persona usuària disponible
-          username_is_not_available: Nom de persona usuària ja existeix
+          username_is_available: "Aquest nom d'usuari està disponible."
+          username_is_not_available: "Aquest nom d'usuari ja està en ús. Si us plau, tria'n un altre."
           username_label: Nom de persona usuària
           username_note: Nom públic que apareixerà en les teues publicacions
         success:
