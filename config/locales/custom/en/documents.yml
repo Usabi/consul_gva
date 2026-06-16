@@ -1,0 +1,4 @@
+en:
+  documents:
+    form:
+      public_warning: "Uploaded documents are <strong>public</strong> and may be indexed by search engines (Google, Bing, etc.). Deleting your account does not delete documents or prevent their indexing."
