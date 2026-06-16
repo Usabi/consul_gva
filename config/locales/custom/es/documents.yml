@@ -11,6 +11,7 @@ es:
       delete_button: Eliminar documento
       cancel_button: Cancelar
       note: "Puedes subir hasta un máximo de %{max_documents_allowed} documentos en formato %{accepted_content_types} y de hasta %{max_file_size} MB por archivo."
+      public_warning: "Los documentos subidos son <strong>públicos</strong> y pueden ser indexados por buscadores (Google, Bing, etc.). La eliminación de la cuenta no elimina los documentos ni evita su indexación."
       add_new_document: Añadir nuevo documento
     actions:
       destroy:
