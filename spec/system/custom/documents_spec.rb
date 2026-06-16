@@ -1,6 +1,23 @@
 require "rails_helper"
 
 describe "Documents" do
+  describe "Public warning" do
+    let(:val_warning) { ActionController::Base.helpers.strip_tags(I18n.t("documents.form.public_warning", locale: :val)) }
+
+    scenario "shows public indexing warning on citizen proposal form (val)" do
+      login_as(create(:user))
+      visit new_proposal_path(locale: :val)
+
+      expect(page).to have_text val_warning
+    end
+
+    scenario "hides public indexing warning in admin namespace" do
+      login_as(create(:administrator).user)
+      visit new_admin_legislation_process_path(locale: :val)
+
+      expect(page).not_to have_text val_warning
+    end
+  end
   describe "Metadata" do
     scenario "download document without metadata" do
       login_as(create(:user))
