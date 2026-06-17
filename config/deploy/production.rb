@@ -1,4 +1,4 @@
-set :branch, "issue/7683-update-2.2.2-custom_changes"
+set :branch, "issue/update-ruby-3.3.8"
 
 server deploysecret(:server), user: deploysecret(:user), roles: %w[web app db importer cron background]
 # server main_deploy_server, user: deploysecret(:user), roles: %w[web app db importer cron background]

@@ -32,7 +32,7 @@ ENV PATH=/usr/local/rvm/bin:$PATH
 
 SHELL ["/bin/bash", "-l", "-c"]
 
-ARG RUBY_VERSION=3.3.5
+ARG RUBY_VERSION=3.3.8
 ENV RUBY_VERSION=${RUBY_VERSION}
 RUN rvm install ${RUBY_VERSION} && \
     rvm use ${RUBY_VERSION} --default && \
