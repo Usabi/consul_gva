@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+ruby "3.3.8"
+
 gem "rails", "7.0.8.4"
 
 gem "acts-as-taggable-on", "~> 11.0.0"
