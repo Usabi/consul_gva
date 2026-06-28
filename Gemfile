@@ -101,7 +101,7 @@ group :development do
   gem "erb_lint", "~> 0.9.0", require: false
   gem "faraday-retry", "~> 2.2.1", require: false
   gem "htmlbeautifier", "~> 1.4.3", require: false
-  gem "mdl", "~> 0.13.0", require: false
+  gem "mdl", "~> 0.16.0", require: false
   gem "pronto", "~> 0.11.2", require: false
   gem "pronto-erb_lint", "~> 0.1.6", require: false
   gem "pronto-eslint", "~> 0.11.1", require: false
