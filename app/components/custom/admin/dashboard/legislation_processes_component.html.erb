@@ -16,7 +16,7 @@
             <ul class="dashboard-list">
               <% @preview_processes.each do |process| %>
                 <li>
-                  <span class="list-title"><%= link_to process.title, admin_legislation_process_path(process) %></span>
+                  <span class="list-title"><%= link_to process.title, edit_admin_legislation_process_path(process) %></span>
                   <span class="list-phases">
                     <% if process.debate_phase.enabled? && process.debate_phase.open? %>
                       <span class="phase-tag active">
@@ -50,7 +50,7 @@
             <ul class="dashboard-list">
               <% @public_processes.each do |process| %>
                 <li>
-                  <span class="list-title"><%= link_to process.title, admin_legislation_process_path(process) %></span>
+                  <span class="list-title"><%= link_to process.title, edit_admin_legislation_process_path(process) %></span>
                   <span class="list-phases">
                     <% if process.allegations_phase.enabled? && process.allegations_phase.open? %>
                       <span class="phase-tag active">
