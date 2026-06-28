@@ -813,6 +813,7 @@ DEPENDENCIES
   launchy (~> 3.1.1)
   lefthook
   letter_opener_web (~> 3.0.0)
+  logger
   mdl (~> 0.16.0)
   mini_magick (~> 4.13.2)
   omniauth (~> 2.1.2)

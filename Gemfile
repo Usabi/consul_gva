@@ -6,6 +6,7 @@ gem "rails", "7.0.8.7"
 
 gem "drb"
 gem "fiddle"
+gem "logger"
 gem "parser", "3.3.8.0"
 
 gem "acts-as-taggable-on", "~> 11.0.0"
