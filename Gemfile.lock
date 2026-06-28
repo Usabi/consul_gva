@@ -450,7 +450,7 @@ GEM
       parallel
     paranoia (3.0.0)
       activerecord (>= 6, < 8.1)
-    parser (3.3.5.0)
+    parser (3.3.8.0)
       ast (~> 2.4.1)
       racc
     pdf-reader (2.14.1)
@@ -812,7 +812,7 @@ DEPENDENCIES
   omniauth-twitter (~> 1.4.0)
   parallel_tests
   paranoia (~> 3.0.0)
-  parser (= 3.3.5.0)
+  parser (= 3.3.8.0)
   pdf-reader (~> 2.14.1)
   pg (~> 1.5.8)
   pg_search (~> 2.3.7)
