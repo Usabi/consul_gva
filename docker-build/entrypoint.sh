@@ -2,6 +2,7 @@
 set -eo pipefail
 
 source /usr/local/rvm/scripts/rvm
+rvm use "$RUBY_VERSION" --default
 
 echo ">> Sincronizando fuentes desde /source a /app..."
 rsync -a \
@@ -43,6 +44,9 @@ rsync -a \
   --exclude='public/system' \
   --exclude='lib/tasks/custom/docker_build.rake' \
   /source/ /app/
+
+echo ">> Eliminando .ruby-version residual (no gestionamos versión Ruby por archivo)..."
+rm -f /app/.ruby-version
 
 echo ">> Compilando gemas nativas (vendor/bundle)..."
 rm -f .bundle/config
