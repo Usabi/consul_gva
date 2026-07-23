@@ -136,6 +136,7 @@ es:
       debate_phase: "Fase de debate"
       proposals_phase: "Fase de propuestas"
       allegations_phase: "Fase de aportaciones al comentario"
+      stats_phase: "Estadísticas"
       debates:
         zero: "No hay debates"
         one: "%{count} debate"
