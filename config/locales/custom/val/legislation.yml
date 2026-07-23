@@ -131,6 +131,7 @@ val:
       debate_phase: "Fase prèvia"
       proposals_phase: "Fase de propostes"
       allegations_phase: "Fase de aportacions a l'esborrany"
+      stats_phase: "Estadístiques"
       comments:
         zero: "Sense aportacions"
         one: "%{count} aportació"
