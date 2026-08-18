@@ -91,6 +91,7 @@ group :test do
 end
 
 group :development do
+  gem "brakeman", "~> 8.0", require: false
   gem "capistrano", "~> 3.20.1", require: false
   gem "capistrano-bundler", "~> 2.1.1", require: false
   gem "capistrano-npm", "~> 1.0.3", require: false
@@ -108,13 +109,12 @@ group :development do
   gem "pronto-stylelint", "~> 0.11.0", require: false
   gem "rubocop", "~> 1.87.0", require: false
   gem "rubocop-capybara", "~> 2.23.0", require: false
-  gem "rubocop-factory_bot", "~> 2.26.1", require: false
+  gem "rubocop-factory_bot", "~> 2.28.0", require: false
   gem "rubocop-performance", "~> 1.23.1", require: false
   gem "rubocop-rails", "~> 2.35.5", require: false
-  gem "rubocop-rspec", "~> 3.4.0", require: false
-  gem "rubocop-rspec_rails", "~> 2.30.0", require: false
+  gem "rubocop-rspec", "~> 3.5.0", require: false
+  gem "rubocop-rspec_rails", "~> 2.31.0", require: false
   gem "rvm1-capistrano3", "~> 1.4.0", require: false
-  gem "brakeman", "~> 8.0", require: false
   gem "spring", "~> 4.2.1"
   gem "web-console", "~> 4.2.1"
 end
