@@ -73,7 +73,7 @@ describe "Emails" do
     end
   end
 
-  scenario "Email depending on user's locale" do
+  scenario "Email depending on user's locale", :consul do
     visit root_path(locale: :es)
 
     click_link "Registrarse"
@@ -337,7 +337,7 @@ describe "Emails" do
   end
 
   context "Newsletter", :admin do
-    scenario "Send newsletter email to selected users" do
+    scenario "Send newsletter email to selected users", :consul do
       user_with_newsletter_in_segment_1 = create(:user, :with_proposal, newsletter: true)
       user_with_newsletter_in_segment_2 = create(:user, :with_proposal, newsletter: true)
       user_with_newsletter_not_in_segment = create(:user, newsletter: true)
