@@ -114,13 +114,13 @@ describe Users::SessionsController do
 
       it "signs in the user when the recaptcha verification succeeds" do
         allow(controller).to receive(:verify_recaptcha).and_return(true)
-        post :create, params: { user: { login: "citizen@consul.org", password: "12345678" } }
+        post :create, params: { user: { login: "citizen@consul.org", password: "12345678" }}
         expect(controller.current_user).to eq(user)
       end
 
       it "does not sign in the user when the recaptcha verification fails" do
         allow(controller).to receive(:verify_recaptcha).and_return(false)
-        post :create, params: { user: { login: "citizen@consul.org", password: "12345678" } }
+        post :create, params: { user: { login: "citizen@consul.org", password: "12345678" }}
         expect(controller.current_user).to be_nil
         expect(flash[:alert]).to be_present
       end
@@ -138,7 +138,7 @@ describe Users::SessionsController do
       end
 
       it "signs in the user without any captcha check" do
-        post :create, params: { user: { login: "citizen@consul.org", password: "12345678" } }
+        post :create, params: { user: { login: "citizen@consul.org", password: "12345678" }}
         expect(controller.current_user).to eq(user)
       end
 
