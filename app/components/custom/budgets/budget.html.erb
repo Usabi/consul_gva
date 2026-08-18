@@ -19,25 +19,25 @@
         <% if current_user %>
           <% if current_user.level_two_or_three_verified? || (current_user.organization? && current_user.organization.verified?) %>
             <%= link_to t("budgets.investments.index.sidebar.create"),
-                            new_budget_investment_path(current_budget),
-                            class: "button margin-top expanded" %>
+                        new_budget_investment_path(current_budget),
+                        class: "button margin-top expanded" %>
           <% else %>
             <div class="callout warning margin-top">
               <%= sanitize(t("budgets.investments.index.sidebar.verified_only",
-                        verify: link_to_verify_account)) %>
+                             verify: link_to_verify_account)) %>
             </div>
           <% end %>
         <% else %>
           <div class="callout primary margin-top">
             <%= sanitize(t("budgets.investments.index.sidebar.not_logged_in",
-                      sign_in: link_to_signin, sign_up: link_to_signup)) %>
+                           sign_in: link_to_signin, sign_up: link_to_signup)) %>
           </div>
         <% end %>
       <% end %>
       <% if can?(:read_results, current_budget) %>
         <%= link_to t("budgets.show.see_results"),
-                      budget_results_path(current_budget, heading_id: current_budget.headings.first),
-                      class: "button margin-top expanded" %>
+                    budget_results_path(current_budget, heading_id: current_budget.headings.first),
+                    class: "button margin-top expanded" %>
       <% end %>
     </div>
   </div>
@@ -53,7 +53,7 @@
               <li class="heading comarca_<%= heading.id %> small-12 medium-4 large-2" data-equalizer-watch>
                 <% unless current_budget.informing? || current_budget.finished? %>
                   <%= link_to budget_investments_path(current_budget.id,
-                                                        heading_id: heading.id) do %>
+                                                      heading_id: heading.id) do %>
                     <%= heading_name_and_price_html(heading, current_budget) %>
                   <% end %>
                 <% else %>
@@ -97,7 +97,7 @@
           </li>
           <% if show_links %>
             <li>
-              <%= link_to page_path('assumed') do %>
+              <%= link_to page_path("assumed") do %>
                 <small><%= t("budgets.index.assumed_investment_proyects") %></small>
               <% end %>
             </li>
