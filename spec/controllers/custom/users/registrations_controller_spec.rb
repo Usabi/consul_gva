@@ -88,4 +88,52 @@ describe Users::RegistrationsController do
       end
     end
   end
+
+  describe "Google reCAPTCHA fallback" do
+    before do
+      allow(Rails.application.secrets).to receive(:ptt_app_id).and_return("")
+      InvisibleCaptcha.timestamp_enabled = false
+    end
+
+    after { InvisibleCaptcha.timestamp_enabled = true }
+
+    context "when site_key and secret_key are configured" do
+      before do
+        allow(Rails.application.secrets).to receive(:site_key).and_return("SITE-KEY")
+        allow(Rails.application.secrets).to receive(:secret_key).and_return("SECRET-KEY")
+      end
+
+      it "does not request a PTT captcha on #new" do
+        expect(PttCaptchaApi).not_to receive(:crear)
+        get :new
+      end
+
+      it "creates the user when the recaptcha verification succeeds" do
+        allow(controller).to receive(:verify_recaptcha).and_return(true)
+        expect { post :create, params: valid_params }.to change(User, :count).by(1)
+      end
+
+      it "does not create the user when the recaptcha verification fails" do
+        allow(controller).to receive(:verify_recaptcha).and_return(false)
+        expect { post :create, params: valid_params }.not_to change(User, :count)
+        expect(flash[:alert]).to be_present
+      end
+    end
+
+    context "when neither PTT nor Google secrets are configured" do
+      before do
+        allow(Rails.application.secrets).to receive(:site_key).and_return("")
+        allow(Rails.application.secrets).to receive(:secret_key).and_return("")
+      end
+
+      it "does not request a PTT captcha on #new" do
+        expect(PttCaptchaApi).not_to receive(:crear)
+        get :new
+      end
+
+      it "creates the user without any captcha check" do
+        expect { post :create, params: valid_params }.to change(User, :count).by(1)
+      end
+    end
+  end
 end

@@ -45,25 +45,10 @@
                                 title: t("shared.target_blank"),
                                 target: "_blank")
                 ) %>
-      <% if @ptt_captcha_id.present? %>
-        <% ptt_idioma = I18n.locale.to_s == "val" ? "va" : I18n.locale.to_s %>
-        <div data-captcha-id="<%= @ptt_captcha_id %>"
-             data-captcha-idioma="<%= ptt_idioma %>"
-             data-captcha-posicio="centrat"></div>
-        <%= hidden_field_tag :ptt_valor_captcha, "", id: "ptt_valor_captcha" %>
-        <%= javascript_include_tag PttCaptchaApi.front_js_url %>
-        <script>
-          (function() {
-            var form = document.querySelector("form[action*='registration']");
-            var captchaId = "<%= @ptt_captcha_id %>";
-            if (!form) return;
-            form.addEventListener("submit", function(e) {
-              e.preventDefault();
-              document.getElementById("ptt_valor_captcha").value = getCaptchaValue(captchaId);
-              form.submit();
-            });
-          })();
-        </script>
+      <% if ptt_captcha_enabled? %>
+        <%= ptt_captcha_tags %>
+      <% elsif google_recaptcha_enabled? %>
+        <%= recaptcha_tags %>
       <% end %>
       <div class="small-12 medium-6 small-centered">
         <%= f.submit t("devise_views.users.registrations.new.submit"), class: "button expanded" %>

@@ -97,4 +97,56 @@ describe Users::SessionsController do
       end
     end
   end
+
+  describe "Google reCAPTCHA fallback" do
+    before { allow(Rails.application.secrets).to receive(:ptt_app_id).and_return("") }
+
+    context "when site_key and secret_key are configured" do
+      before do
+        allow(Rails.application.secrets).to receive(:site_key).and_return("SITE-KEY")
+        allow(Rails.application.secrets).to receive(:secret_key).and_return("SECRET-KEY")
+      end
+
+      it "does not request a PTT captcha on #new" do
+        expect(PttCaptchaApi).not_to receive(:crear)
+        get :new
+      end
+
+      it "signs in the user when the recaptcha verification succeeds" do
+        allow(controller).to receive(:verify_recaptcha).and_return(true)
+        post :create, params: { user: { login: "citizen@consul.org", password: "12345678" } }
+        expect(controller.current_user).to eq(user)
+      end
+
+      it "does not sign in the user when the recaptcha verification fails" do
+        allow(controller).to receive(:verify_recaptcha).and_return(false)
+        post :create, params: { user: { login: "citizen@consul.org", password: "12345678" } }
+        expect(controller.current_user).to be_nil
+        expect(flash[:alert]).to be_present
+      end
+    end
+
+    context "when neither PTT nor Google secrets are configured" do
+      before do
+        allow(Rails.application.secrets).to receive(:site_key).and_return("")
+        allow(Rails.application.secrets).to receive(:secret_key).and_return("")
+      end
+
+      it "does not request a PTT captcha on #new" do
+        expect(PttCaptchaApi).not_to receive(:crear)
+        get :new
+      end
+
+      it "signs in the user without any captcha check" do
+        post :create, params: { user: { login: "citizen@consul.org", password: "12345678" } }
+        expect(controller.current_user).to eq(user)
+      end
+
+      it "does not render any captcha widget", render_views: true do
+        get :new
+        expect(response.body).not_to include("data-captcha-id")
+        expect(response.body).not_to include("g-recaptcha")
+      end
+    end
+  end
 end
