@@ -463,8 +463,8 @@ GEM
     parallel (1.28.0)
     parallel_tests (5.4.0)
       parallel
-    paranoia (3.1.0)
-      activerecord (>= 7, < 8.2)
+    paranoia (3.0.1)
+      activerecord (>= 6, < 8.1)
     parser (3.3.8.0)
       ast (~> 2.4.1)
       racc
@@ -474,7 +474,8 @@ GEM
       hashery (~> 2.0)
       ruby-rc4
       ttfunk
-    pg (1.5.8)
+    pg (1.6.3)
+    pg (1.6.3-x86_64-linux)
     pg_search (2.3.7)
       activerecord (>= 6.1)
       activesupport (>= 6.1)
@@ -840,10 +841,10 @@ DEPENDENCIES
   omniauth-rails_csrf_protection (~> 1.0.2)
   omniauth-twitter (~> 1.4.0)
   parallel_tests
-  paranoia (~> 3.1.0)
+  paranoia (~> 3.0.0)
   parser (= 3.3.8.0)
   pdf-reader (~> 2.14.1)
-  pg (~> 1.5.8)
+  pg (~> 1.6.3)
   pg_search (~> 2.3.7)
   pronto (~> 0.11.2)
   pronto-erb_lint (~> 0.1.6)
