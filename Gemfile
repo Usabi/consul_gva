@@ -23,6 +23,7 @@ gem "cocoon", "~> 1.2.15"
 gem "csv", "~> 3.3"
 gem "daemons", "~> 1.4.1"
 gem "dalli", "~> 3.2.8"
+gem "delayed_job", "< 4.2" # delayed_job 4.2.0's ActiveJob adapter requires Rails >= 7.1
 gem "delayed_job_active_record", "~> 4.1.11"
 gem "devise", "~> 4.9.4"
 gem "devise-security", "~> 0.18.0"
