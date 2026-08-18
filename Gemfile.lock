@@ -200,8 +200,8 @@ GEM
     diff-lcs (1.6.0)
     docile (1.4.0)
     drb (2.2.3)
-    email_spec (2.3.0)
-      htmlentities (~> 4.3.3)
+    email_spec (2.3.1)
+      htmlentities (~> 4.3)
       launchy (>= 2.1, < 4.0)
       mail (~> 2.7)
     erb_lint (0.9.0)
@@ -283,7 +283,7 @@ GEM
     hashie (5.0.0)
     highline (2.0.3)
     htmlbeautifier (1.4.3)
-    htmlentities (4.3.4)
+    htmlentities (4.4.2)
     httparty (0.22.0)
       csv
       mini_mime (>= 1.0.0)
@@ -353,7 +353,7 @@ GEM
     loofah (2.24.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
-    mail (2.9.0)
+    mail (2.9.1)
       logger
       mini_mime (>= 0.1.1)
       net-imap
@@ -388,7 +388,7 @@ GEM
     mutex_m (0.3.0)
     net-http (0.9.1)
       uri (>= 0.11.1)
-    net-imap (0.6.4.1)
+    net-imap (0.6.6)
       date
       net-protocol
     net-pop (0.1.2)
@@ -792,7 +792,7 @@ DEPENDENCIES
   devise (~> 4.9.4)
   devise-security (~> 0.18.0)
   drb
-  email_spec (~> 2.3.0)
+  email_spec (~> 2.3.1)
   erb_lint (~> 0.9.0)
   exiftool_vendored (~> 12.97.0)
   factory_bot_rails (~> 6.4.4)
