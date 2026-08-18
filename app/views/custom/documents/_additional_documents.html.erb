@@ -15,7 +15,7 @@
           <% end %>
           <% if consult_documents_collections.any? %>
             <p>
-              <strong><%= t("documents.consult")%></strong>
+              <strong><%= t("documents.consult") %></strong>
             </p>
             <% consult_documents_collections.each do |document| %>
               <%= render Documents::DocumentComponent.new(document) %>

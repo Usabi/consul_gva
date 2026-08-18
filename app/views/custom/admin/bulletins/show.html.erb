@@ -19,7 +19,7 @@
     <strong><%= t("activerecord.attributes.bulletin.sent_at_dates") %></strong><br>
     <%= @bulletin.display_sent_at_dates %>
     <% if @bulletin.show_full_sent_at_dates_tooltip? %>
-      <span data-tooltip title="<%= @bulletin.ordered_sent_at_dates.join(', ') %>">
+      <span data-tooltip title="<%= @bulletin.ordered_sent_at_dates.join(", ") %>">
         ...
       </span>
     <% end %>

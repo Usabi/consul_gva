@@ -3,11 +3,11 @@
   <% if can?(:create, Budget::Investment.new(budget: @budget)) %>
     <% if current_user && current_user.level_two_or_three_verified? %>
       <%= link_to t("budgets.investments.index.sidebar.create"),
-                 new_budget_investment_path(budget_id: @budget.id), class: "button budget expanded" %>
+                  new_budget_investment_path(budget_id: @budget.id), class: "button budget expanded" %>
     <% else %>
       <div class="callout warning">
         <%= sanitize(t("budgets.investments.index.sidebar.verified_only",
-            verify: link_to_verify_account)) %>
+                       verify: link_to_verify_account)) %>
       </div>
     <% end %>
   <% end %>
@@ -15,7 +15,8 @@
     <p class="callout">
       <%= sanitize(@ballot.change_vote_info(
           link: link_to(t("budgets.investments.index.sidebar.change_vote_link"),
-              budget_ballot_path(@budget)))) %>
+                        budget_ballot_path(@budget))
+        )) %>
     </p>
   <% end %>
   <% if @budget.phase == 'selecting' && current_user %>
@@ -27,27 +28,25 @@
       <% if current_user.has_votes?(@budget.id) %>
         <p>
           <em>
-            <% max_votes_per_budget_per_user = Setting['max_votes_per_budget_per_user'].to_i %>
+            <% max_votes_per_budget_per_user = Setting["max_votes_per_budget_per_user"].to_i %>
             <% if @votes.count < max_votes_per_budget_per_user %>
               <%= t("budgets.investments.index.sidebar.supported_html",
                     count: @votes.count,
                     max_supported_count: max_votes_per_budget_per_user,
-                    phase_end_date: (I18n.l(@budget.phases.find_by(kind: 'selecting').ends_at.to_date - 1.day, format: :long) rescue '-')
-                  ) %>
+                    phase_end_date: (I18n.l(@budget.phases.find_by(kind: "selecting").ends_at.to_date - 1.day, format: :long) rescue "-")) %>
             <% else %>
               <%= t("budgets.investments.index.sidebar.all_supports_html",
-                  phase_end_date: (I18n.l(@budget.phases.find_by(kind: 'selecting').ends_at.to_date - 1.day, format: :long) rescue '-')
-              ) %>
+                    phase_end_date: (I18n.l(@budget.phases.find_by(kind: "selecting").ends_at.to_date - 1.day, format: :long) rescue "-")) %>
             <% end %>
           </em>
         </p>
-        <%= render partial: 'my_votes' %>
+        <%= render partial: "my_votes" %>
       <% else %>
         <p><strong><%= t("budgets.investments.index.sidebar.zero_supports") %></strong></p>
       <% end %>
     </div>
   <% end %>
-  <%= render 'budgets/investments/headings' %>
+  <%= render "budgets/investments/headings" %>
   <div id="my_ballot">
     <%= render Budgets::Investments::MyBallotComponent.new(
     ballot: @ballot,
