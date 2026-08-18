@@ -18,7 +18,7 @@ describe "Admin Notifications", :admin do
       expect(page).to have_content("All users")
     end
 
-    scenario "Notification with invalid segment recipient" do
+    scenario "Notification with invalid segment recipient", :consul do
       invalid_notification = create(:admin_notification)
       invalid_notification.update_column(:segment_recipient, "invalid_segment")
 
@@ -51,7 +51,7 @@ describe "Admin Notifications", :admin do
       end
     end
 
-    scenario "Notifications with invalid segment recipient" do
+    scenario "Notifications with invalid segment recipient", :consul do
       invalid_notification = create(:admin_notification)
       invalid_notification.update_column(:segment_recipient, "invalid_segment")
 
@@ -61,7 +61,7 @@ describe "Admin Notifications", :admin do
     end
   end
 
-  scenario "Create" do
+  scenario "Create", :consul do
     visit admin_admin_notifications_path
     click_link "New notification"
 

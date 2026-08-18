@@ -14,7 +14,7 @@ describe "Admin feature flags", :admin do
     end
   end
 
-  scenario "Disable a participatory process", :show_exceptions do
+  scenario "Disable a participatory process", :show_exceptions, :consul do
     budget = create(:budget)
 
     visit admin_settings_path
@@ -40,7 +40,7 @@ describe "Admin feature flags", :admin do
     expect(page).to have_title "Forbidden"
   end
 
-  scenario "Enable a disabled participatory process" do
+  scenario "Enable a disabled participatory process", :consul do
     Setting["process.budgets"] = nil
 
     visit admin_root_path
@@ -63,7 +63,7 @@ describe "Admin feature flags", :admin do
     end
   end
 
-  scenario "Disable a feature" do
+  scenario "Disable a feature", :consul do
     visit admin_settings_path
     click_link "Features"
 
@@ -75,7 +75,7 @@ describe "Admin feature flags", :admin do
     end
   end
 
-  scenario "Enable a disabled feature" do
+  scenario "Enable a disabled feature", :consul do
     visit admin_settings_path
     click_link "Features"
 
