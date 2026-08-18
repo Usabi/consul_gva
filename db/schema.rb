@@ -261,11 +261,11 @@ ActiveRecord::Schema[7.0].define(version: 2025_11_13_123000) do
     t.boolean "allow_custom_content", default: false
     t.text "latitude"
     t.text "longitude"
+    t.integer "geozone_id"
     t.integer "max_ballot_lines", default: 1
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.integer "min_supports"
-    t.integer "geozone_id"
     t.index ["geozone_id"], name: "index_budget_headings_on_geozone_id"
     t.index ["group_id"], name: "index_budget_headings_on_group_id"
   end
@@ -547,9 +547,9 @@ ActiveRecord::Schema[7.0].define(version: 2025_11_13_123000) do
     t.string "ancestry"
     t.integer "confidence_score", default: 0, null: false
     t.boolean "valuation", default: false
+    t.tsvector "tsv"
     t.integer "budget_manager_id"
     t.integer "legislator_id"
-    t.tsvector "tsv"
     t.index ["ancestry"], name: "index_comments_on_ancestry"
     t.index ["cached_votes_down"], name: "index_comments_on_cached_votes_down"
     t.index ["cached_votes_total"], name: "index_comments_on_cached_votes_total"
@@ -923,8 +923,8 @@ ActiveRecord::Schema[7.0].define(version: 2025_11_13_123000) do
     t.boolean "homepage_enabled", default: false
     t.text "background_color"
     t.text "font_color"
-    t.bigint "user_id"
     t.tsvector "tsv"
+    t.bigint "user_id"
     t.integer "council_id"
     t.index ["allegations_end_date"], name: "index_legislation_processes_on_allegations_end_date"
     t.index ["allegations_start_date"], name: "index_legislation_processes_on_allegations_start_date"
@@ -1870,11 +1870,11 @@ ActiveRecord::Schema[7.0].define(version: 2025_11_13_123000) do
     t.boolean "public_interests", default: false
     t.boolean "recommended_debates", default: true
     t.boolean "recommended_proposals", default: true
+    t.string "subscriptions_token"
     t.string "postal_code"
     t.jsonb "services_results"
     t.datetime "residence_requested_at", precision: nil
     t.boolean "foreign_residence"
-    t.string "subscriptions_token"
     t.integer "failed_attempts", default: 0, null: false
     t.datetime "locked_at", precision: nil
     t.string "unlock_token"
@@ -2017,8 +2017,8 @@ ActiveRecord::Schema[7.0].define(version: 2025_11_13_123000) do
     t.datetime "updated_at", precision: nil, null: false
     t.integer "cardable_id"
     t.integer "columns", default: 4
-    t.boolean "middle", default: false
     t.string "cardable_type", default: "SiteCustomization::Page"
+    t.boolean "middle", default: false
     t.integer "order", default: 1, null: false
     t.index ["cardable_id"], name: "index_widget_cards_on_cardable_id"
   end
