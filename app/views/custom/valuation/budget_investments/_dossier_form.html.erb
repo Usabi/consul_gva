@@ -90,14 +90,14 @@
       <div class="row">
         <div class="small-12 medium-6 column">
           <%= f.number_field :price,
-            label: t("valuation.budget_investments.edit.price", currency: budget.currency_symbol),
-            max: 1000000000000000 %>
+                             label: t("valuation.budget_investments.edit.price", currency: budget.currency_symbol),
+                             max: 1000000000000000 %>
         </div>
 
         <div class="small-12 medium-6 column end">
           <%= f.number_field :price_first_year,
-            label: t("valuation.budget_investments.edit.price_first_year", currency: budget.currency_symbol),
-            max: 1000000000000000 %>
+                             label: t("valuation.budget_investments.edit.price_first_year", currency: budget.currency_symbol),
+                             max: 1000000000000000 %>
         </div>
       </div>
 
@@ -121,12 +121,12 @@
   <div class="row">
     <div class="small-12 medium-8 column">
       <%= f.check_box :valuation_finished,
-          id: "js-investment-report-alert",
-          "data-alert": t("valuation.budget_investments.edit.valuation_finished_alert"),
-          "data-not-feasible-alert": t("valuation.budget_investments.edit.not_feasible_alert"),
-          "data-not-selected-alert": t("valuation.budget_investments.edit.not_selected_alert"),
-          "data-takecharge-alert": t("valuation.budget_investments.edit.takecharge_alert"),
-          "data-next-year-budget-alert": t("valuation.budget_investments.edit.next_year_budget_alert") %>
+                      id: "js-investment-report-alert",
+                      "data-alert": t("valuation.budget_investments.edit.valuation_finished_alert"),
+                      "data-not-feasible-alert": t("valuation.budget_investments.edit.not_feasible_alert"),
+                      "data-not-selected-alert": t("valuation.budget_investments.edit.not_selected_alert"),
+                      "data-takecharge-alert": t("valuation.budget_investments.edit.takecharge_alert"),
+                      "data-next-year-budget-alert": t("valuation.budget_investments.edit.next_year_budget_alert") %>
     </div>
   </div>
 

@@ -23,8 +23,8 @@
                       class: "button hollow" %>
 
           <%= link_to "Descargar estadísticas",
-                  budget_stats_admin_stats_path(budget_id: budget.id, format: :xlsx),
-                  class: "button download-button" %>
+                      budget_stats_admin_stats_path(budget_id: budget.id, format: :xlsx),
+                      class: "button download-button" %>
         <% end %>
 
         <% if can? :read_admin_stats, budget %>
