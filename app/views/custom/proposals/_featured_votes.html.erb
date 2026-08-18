@@ -6,8 +6,8 @@
       </div>
     <% elsif !budget_phase_selecting? %>
       <%= link_to vote_featured_proposal_path(proposal, value: "yes"),
-          class: "button button-support small expanded",
-          title: t("proposals.proposal.support_title"), method: "post", remote: true do %>
+                  class: "button button-support small expanded",
+                  title: t("proposals.proposal.support_title"), method: "post", remote: true do %>
         <%= t("proposals.proposal.support") %>
       <% end %>
     <% end %>
@@ -33,10 +33,10 @@
     <% if setting["twitter_handle"] %>
       <div class="share-supported">
         <%= render "shared/social_share",
-          title: proposal.title,
-          url: proposal_url(proposal),
-          description: proposal.summary,
-          mobile: proposal.title %>
+                   title: proposal.title,
+                   url: proposal_url(proposal),
+                   description: proposal.summary,
+                   mobile: proposal.title %>
       </div>
     <% end %>
   <% end %>

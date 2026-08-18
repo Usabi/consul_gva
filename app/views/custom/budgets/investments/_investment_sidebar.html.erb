@@ -1,6 +1,6 @@
 <% if investment.should_show_vote_count? %>
   <h3><%= t("budgets.investments.investment.supports",
-       count: investment.total_votes) %></h3>
+            count: investment.total_votes) %></h3>
   <hr>
 <% end %>
 <% if investment.unfeasible? %>
@@ -49,33 +49,31 @@
       <p>
         <em>
           <%= t("budgets.investments.index.sidebar.voted_html",
-              count: @ballot.investments.by_heading(investment.heading_id).count,
-              amount_spent: @ballot.formatted_amount_spent(investment.heading),
-              amount_available: @ballot.formatted_amount_available(investment.heading)) %>
+                count: @ballot.investments.by_heading(investment.heading_id).count,
+                amount_spent: @ballot.formatted_amount_spent(investment.heading),
+                amount_available: @ballot.formatted_amount_available(investment.heading)) %>
         </em>
       </p>
     <% elsif @assigned_heading.present? %>
       <p>
         <%= t("budgets.investments.index.sidebar.different_heading_assigned_html",
-                heading_link: heading_link(@assigned_heading, @budget)
-              ) %>
+              heading_link: heading_link(@assigned_heading, @budget)) %>
         <br>
         <small>
           <%= t("budgets.investments.index.sidebar.change_ballot",
-              check_ballot: link_to(t("budgets.investments.index.sidebar.check_ballot_link"),
-                            budget_ballot_path(@budget))).html_safe %>
+                check_ballot: link_to(t("budgets.investments.index.sidebar.check_ballot_link"),
+                                      budget_ballot_path(@budget))).html_safe %>
         </small>
       </p>
     <% elsif @custom_assigned_heading.present? %>
       <p>
         <%= t("budgets.investments.index.sidebar.different_heading_assigned_html",
-                  heading_link: heading_link(@custom_assigned_heading, @budget)
-                ) %>
+              heading_link: heading_link(@custom_assigned_heading, @budget)) %>
         <br>
         <small>
           <%= t("budgets.investments.index.sidebar.change_ballot",
                 check_ballot: link_to(t("budgets.investments.index.sidebar.check_ballot_link"),
-                              budget_ballot_path(@budget))).html_safe %>
+                                      budget_ballot_path(@budget))).html_safe %>
         </small>
       </p>
     <% else %>
@@ -99,37 +97,34 @@
     <% if current_user.has_votes?(@budget.id) %>
       <p>
         <em>
-          <% max_votes_per_budget_per_user = Setting['max_votes_per_budget_per_user'].to_i %>
+          <% max_votes_per_budget_per_user = Setting["max_votes_per_budget_per_user"].to_i %>
           <% if @votes.count < max_votes_per_budget_per_user %>
             <%= t("budgets.investments.index.sidebar.supported_html",
                   count: @votes.count,
                   max_supported_count: max_votes_per_budget_per_user,
-                  phase_end_date: (I18n.l(@budget.phases.find_by(kind: 'selecting').ends_at.to_date - 1.day, format: :long) rescue '-')
-                ) %>
+                  phase_end_date: (I18n.l(@budget.phases.find_by(kind: "selecting").ends_at.to_date - 1.day, format: :long) rescue "-")) %>
           <% else %>
             <%= t("budgets.investments.index.sidebar.all_supports_html",
-                phase_end_date: (I18n.l(@budget.phases.find_by(kind: 'selecting').ends_at.to_date - 1.day, format: :long) rescue '-')
-            ) %>
+                  phase_end_date: (I18n.l(@budget.phases.find_by(kind: "selecting").ends_at.to_date - 1.day, format: :long) rescue "-")) %>
           <% end %>
         </em>
       </p>
-      <%= render partial: 'my_votes' %>
+      <%= render partial: "my_votes" %>
     <% else %>
       <p><strong><%= t("budgets.investments.index.sidebar.zero_supports") %></strong></p>
     <% end %>
   </div>
 <% end %>
 <div class="hide sidebar-item">
-  <%= render partial: 'shared/social_share',
-    share_title: t("budgets.investments.show.share"),
-    title: investment.title,
-    image_url: image_absolute_url(investment.image, :thumb),
-    url: budget_investment_url(investment.budget, investment),
-    description: t("budgets.investments.share.message",
-                    title: investment.title,
-                    handle: setting["org_name"]),
-    mobile: t("budgets.investments.share.message",
-                title: investment.title,
-                handle: setting["twitter_handle"])
-  %>
+  <%= render partial: "shared/social_share",
+             share_title: t("budgets.investments.show.share"),
+             title: investment.title,
+             image_url: image_absolute_url(investment.image, :thumb),
+             url: budget_investment_url(investment.budget, investment),
+             description: t("budgets.investments.share.message",
+                            title: investment.title,
+                            handle: setting["org_name"]),
+             mobile: t("budgets.investments.share.message",
+                       title: investment.title,
+                       handle: setting["twitter_handle"]) %>
 </div>

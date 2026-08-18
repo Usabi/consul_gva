@@ -19,9 +19,9 @@
   <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px;">
     <%= t("mailers.duplicated_proposal_for_author.option").html_safe %>
     <strong><%= link_to "Retirar propuesta",
-                retire_form_proposal_url(@proposal,
-                                         retired_reason: "duplicated", 
-                                         retired_explanation: "Esta propuesta ya existe como duplicada") %></strong>
+                        retire_form_proposal_url(@proposal,
+                                                 retired_reason: "duplicated",
+                                                 retired_explanation: "Esta propuesta ya existe como duplicada") %></strong>
   </p>
 
   <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px;">

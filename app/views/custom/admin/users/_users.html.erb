@@ -3,16 +3,16 @@
 <% if @users.any? %>
   <h3><%= page_entries_info @users %></h3>
   <%= link_to t("admin.budget_investments.index.download_current_selection"),
-            admin_users_path(csv_params),
-            class: "float-right small clear" %>
+              admin_users_path(csv_params),
+              class: "float-right small clear" %>
 
   <%= form_tag request_verification_admin_verifications_path(request.query_parameters), method: :put do %>
     <% if @current_filter == 'residence_requested' %>
       <p class="js-check">
-        <%= t('shared.check') %>:
-        <%= link_to t('shared.check_all'), '#', data: {check_all: "user_ids[]"} %>
+        <%= t("shared.check") %>:
+        <%= link_to t("shared.check_all"), "#", data: { check_all: "user_ids[]" } %>
         |
-        <%= link_to t('shared.check_none'), '#', data: {check_none: "user_ids[]"} %>
+        <%= link_to t("shared.check_none"), "#", data: { check_none: "user_ids[]" } %>
       </p>
     <% end %>
 
@@ -85,11 +85,10 @@
 
       <% if @current_filter == 'residence_requested' %>
         <div class="float-right">
-          <%= submit_tag t('admin.verifications.index.verify'),
-          name: "request_verification",
-          class: "button hollow alert",
-          data: {confirm: t('admin.verifications.index.confirm')}
-        %>
+          <%= submit_tag t("admin.verifications.index.verify"),
+                         name: "request_verification",
+                         class: "button hollow alert",
+                         data: { confirm: t("admin.verifications.index.confirm") } %>
         </div>
       <% end %>
       <%= paginate @users %>

@@ -54,11 +54,11 @@
       </div>
 
       <div class="small-12 medium-5 clear">
-        <% link_locale = I18n.locale == :val ? 'va' : I18n.locale %>
+        <% link_locale = I18n.locale == :val ? "va" : I18n.locale %>
         <% foreign_url = Verification::Residence.procedure_url(:foreign, link_locale) %>
-        <% link = link_to t('verification.residence.new.procedure'), foreign_url, target: :_blank %>
+        <% link = link_to t("verification.residence.new.procedure"), foreign_url, target: :_blank %>
         <%= f.text_field :postal_code, label: t("verification.residence.new.postal_code"),
-          hint: raw(t("verification.residence.new.postal_code_note", link: link)) %>
+                                       hint: raw(t("verification.residence.new.postal_code_note", link: link)) %>
       </div>
 
       <div class="small-12 medium-5 clear">
@@ -67,12 +67,11 @@
 
       <div class="small-12">
         <%= f.check_box :terms_of_service,
-          title: t("verification.residence.new.accept_terms_text_title"),
-          label: t("verification.residence.new.accept_terms_text",
-                   terms_url: link_to(t("verification.residence.new.terms"), page_path("census_terms"),
-                                      title: t("shared.target_blank"),
-                                      target: "_blank")
-                  ) %>
+                        title: t("verification.residence.new.accept_terms_text_title"),
+                        label: t("verification.residence.new.accept_terms_text",
+                                 terms_url: link_to(t("verification.residence.new.terms"), page_path("census_terms"),
+                                                    title: t("shared.target_blank"),
+                                                    target: "_blank")) %>
       </div>
 
       <div class="small-12 medium-3 clear">

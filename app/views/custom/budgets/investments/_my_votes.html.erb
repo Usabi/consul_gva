@@ -1,13 +1,13 @@
 <ul class="votes-group-sidebar">
   <% if @budget %>
     <% heading = nil %>
-    <% @votes.sort_by {|v| v.votable.group_id}.each do |vote| %>
+    <% @votes.sort_by { |v| v.votable.group_id }.each do |vote| %>
       <% if heading != vote.votable.heading %>
         <% heading = vote.votable.heading %>
         <li class="investment_group"><strong><%= heading.name %></strong></li>
       <% end %>
-      <p><%= render 'investment_vote',
-                investment: vote.votable %></p>
+      <p><%= render "investment_vote",
+                    investment: vote.votable %></p>
     <% end %>
   <% end %>
 </ul>
