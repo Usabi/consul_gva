@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "rails", "7.0.8.7"
+gem "rails", "7.0.10"
 
 gem "drb"
 gem "fiddle"
@@ -10,7 +10,7 @@ gem "parser", "3.3.8.0"
 gem "acts-as-taggable-on", "~> 11.0.0"
 gem "acts_as_votable", "~> 0.14.0"
 gem "ahoy_matey", "~> 5.3.0"
-gem "airbrake", "~> 13.0.4"
+gem "airbrake", "~> 13.0.5"
 gem "ancestry", "~> 4.3.3"
 gem "audited", "~> 5.7.0"
 gem "autoprefixer-rails", "~> 10.4.19"
@@ -41,7 +41,7 @@ gem "kaminari", "~> 1.2.2"
 gem "mini_magick", "~> 4.13.2"
 gem "omniauth", "~> 2.1.2"
 gem "omniauth-facebook", "~> 10.0.0"
-gem "omniauth-google-oauth2", "~> 1.2.0"
+gem "omniauth-google-oauth2", "~> 1.2.2"
 gem "omniauth-rails_csrf_protection", "~> 1.0.2"
 gem "omniauth-twitter", "~> 1.4.0"
 gem "paranoia", "~> 3.0.0"
@@ -49,13 +49,13 @@ gem "pg", "~> 1.5.8"
 gem "pg_search", "~> 2.3.7"
 gem "puma", "~> 5.6.9"
 gem "recipient_interceptor", "~> 0.3.3"
-gem "redcarpet", "~> 3.6.0"
+gem "redcarpet", "~> 3.6.1"
 gem "responders", "~> 3.1.1"
 gem "rinku", "~> 2.0.6", require: "rails_rinku"
 gem "ros-apartment", "~> 2.11.0", require: "apartment" # Remove ConnectionHandling monkey patch when upgrading
-gem "sassc-embedded", "~> 1.77.5"
+gem "sassc-embedded", "~> 1.80.9"
 gem "sassc-rails", "~> 2.1.2"
-gem "savon", "~> 2.17.2"
+gem "savon", "~> 2.17.4"
 gem "sitemap_generator", "~> 6.3.0"
 gem "social-share-button", "~> 1.2.4"
 gem "sprockets", "~> 4.2.1"
@@ -65,7 +65,7 @@ gem "turnout", "~> 2.5.0"
 gem "uglifier", "~> 4.2.1"
 gem "uuidtools", "~> 2.2.0"
 gem "view_component", "~> 3.11.0"
-gem "whenever", "~> 1.0.0", require: false
+gem "whenever", "~> 1.1.2", require: false
 gem "wicked_pdf", "~> 2.8.1"
 gem "wkhtmltopdf-binary", "~> 0.12.6"
 
@@ -83,11 +83,11 @@ group :test do
   gem "capybara", "~> 3.40.0"
   gem "capybara-webmock", "~> 0.7.0"
   gem "email_spec", "~> 2.3.0"
-  gem "pdf-reader", "~> 2.14.1"
+  gem "pdf-reader", "~> 2.16.0"
   gem "rspec-rails", "~> 7.1.1"
   gem "selenium-webdriver", "~> 4.44.0"
   gem "simplecov", "~> 0.22.0", require: false
-  gem "simplecov-lcov", "~> 0.8.0", require: false
+  gem "simplecov-lcov", "~> 0.9.0", require: false
 end
 
 group :development do
@@ -106,7 +106,7 @@ group :development do
   gem "pronto-erb_lint", "~> 0.1.6", require: false
   gem "pronto-eslint", "~> 0.11.1", require: false
   gem "pronto-rubocop", "~> 0.11.6", require: false
-  gem "pronto-stylelint", "~> 0.11.0", require: false
+  gem "pronto-stylelint", "~> 0.11.1", require: false
   gem "rubocop", "~> 1.87.0", require: false
   gem "rubocop-capybara", "~> 2.23.0", require: false
   gem "rubocop-factory_bot", "~> 2.28.0", require: false
@@ -115,7 +115,7 @@ group :development do
   gem "rubocop-rspec", "~> 3.5.0", require: false
   gem "rubocop-rspec_rails", "~> 2.31.0", require: false
   gem "rvm1-capistrano3", "~> 1.4.0", require: false
-  gem "spring", "~> 4.2.1"
+  gem "spring", "~> 4.7.0"
   gem "web-console", "~> 4.2.1"
 end
 
