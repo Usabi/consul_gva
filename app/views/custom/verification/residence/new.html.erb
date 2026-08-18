@@ -1,85 +1,85 @@
 <div class="verification account row">
-    <div class="small-12 column">
-        <h1><%= t("verification.residence.new.title") %></h1>
+  <div class="small-12 column">
+    <h1><%= t("verification.residence.new.title") %></h1>
 
-      <div class="user-permissions small-12">
-        <p><%= t("verification.user_permission_info") %></p>
+    <div class="user-permissions small-12">
+      <p><%= t("verification.user_permission_info") %></p>
 
-        <%= render Account::PermissionsListComponent.new(User.new(level_two_verified_at: Time.current)) %>
+      <%= render Account::PermissionsListComponent.new(User.new(level_two_verified_at: Time.current)) %>
+    </div>
+    <%= form_for @residence, as: "residence", url: residence_path do |f| %>
+      <%= render "errors" %>
+
+      <div class="row">
+        <div class="small-12 medium-6 clear">
+          <div class="small-12 medium-4 column">
+            <%= f.text_field :name, label: t("verification.residence.new.name") %>
+          </div>
+          <div class="small-12 medium-4 column">
+            <%= f.text_field :first_surname, label: t("verification.residence.new.first_surname") %>
+          </div>
+          <div class="small-12 medium-4 column end">
+            <%= f.text_field :last_surname, label: t("verification.residence.new.last_surname") %>
+          </div>
+        </div>
       </div>
-        <%= form_for @residence, as: "residence", url: residence_path do |f| %>
-        <%= render "errors" %>
 
-        <div class="row">
-            <div class="small-12 medium-6 clear">
-                <div class="small-12 medium-4 column">
-                    <%= f.text_field :name, label: t("verification.residence.new.name") %>
-                </div>
-                <div class="small-12 medium-4 column">
-                    <%= f.text_field :first_surname, label: t("verification.residence.new.first_surname") %>
-                </div>
-                <div class="small-12 medium-4 column end">
-                    <%= f.text_field :last_surname, label: t("verification.residence.new.last_surname") %>
-                </div>
+      <div class="row">
+        <div class="small-12 medium-8">
+          <div class="small-12 medium-3 column">
+            <%= f.select :document_type, document_type_dni, prompt: "", label: t("verification.residence.new.document_type_label") %>
+          </div>
+          <div class="small-12 medium-5 column end">
+
+            <div class="inline-block">
+              <%= f.label t("verification.residence.new.document_number") %>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="small-12 medium-8">
-                <div class="small-12 medium-3 column">
-                    <%= f.select :document_type, document_type_dni, prompt: "", label: t("verification.residence.new.document_type_label") %>
-                </div>
-                <div class="small-12 medium-5 column end">
+            <button type="button" class="inline-block" data-toggle="info-document-number">
+              <span class="icon-help"></span>
+              <span class="show-for-sr"><%= t("verification.residence.new.document_number_help_title") %></span>
+            </button>
 
-                    <div class="inline-block">
-                        <%= f.label t("verification.residence.new.document_number") %>
-                    </div>
-
-                    <button type="button" class="inline-block" data-toggle="info-document-number">
-                      <span class="icon-help"></span>
-                      <span class="show-for-sr"><%= t("verification.residence.new.document_number_help_title") %></span>
-                    </button>
-
-                    <div class="dropdown-pane" id="info-document-number" data-dropdown data-hover="true" data-hover-pane="true">
-                        <%= sanitize(t("verification.residence.new.document_number_help_text")) %>
-                    </div>
-
-                    <%= f.text_field :document_number, label: false %>
-                </div>
+            <div class="dropdown-pane" id="info-document-number" data-dropdown data-hover="true" data-hover-pane="true">
+              <%= sanitize(t("verification.residence.new.document_number_help_text")) %>
             </div>
-        </div>
 
-        <div class="date-of-birth small-12 medium-6 clear">
-          <%= render Shared::DateOfBirthFieldComponent.new(f) %>
+            <%= f.text_field :document_number, label: false %>
+          </div>
         </div>
+      </div>
 
-        <div class="small-12 medium-5 clear">
-            <% link_locale = I18n.locale == :val ? 'va' : I18n.locale %>
-            <% foreign_url = Verification::Residence.procedure_url(:foreign, link_locale) %>
-            <% link = link_to t('verification.residence.new.procedure'), foreign_url, target: :_blank %>
-            <%= f.text_field :postal_code, label: t("verification.residence.new.postal_code"),
+      <div class="date-of-birth small-12 medium-6 clear">
+        <%= render Shared::DateOfBirthFieldComponent.new(f) %>
+      </div>
+
+      <div class="small-12 medium-5 clear">
+        <% link_locale = I18n.locale == :val ? 'va' : I18n.locale %>
+        <% foreign_url = Verification::Residence.procedure_url(:foreign, link_locale) %>
+        <% link = link_to t('verification.residence.new.procedure'), foreign_url, target: :_blank %>
+        <%= f.text_field :postal_code, label: t("verification.residence.new.postal_code"),
           hint: raw(t("verification.residence.new.postal_code_note", link: link)) %>
-        </div>
+      </div>
 
-        <div class="small-12 medium-5 clear">
-            <%= f.select :gender, genders, prompt: "", label: t("verification.residence.new.gender_label") %>
-        </div>
+      <div class="small-12 medium-5 clear">
+        <%= f.select :gender, genders, prompt: "", label: t("verification.residence.new.gender_label") %>
+      </div>
 
-        <div class="small-12">
-            <%= f.check_box :terms_of_service,
+      <div class="small-12">
+        <%= f.check_box :terms_of_service,
           title: t("verification.residence.new.accept_terms_text_title"),
           label: t("verification.residence.new.accept_terms_text",
                    terms_url: link_to(t("verification.residence.new.terms"), page_path("census_terms"),
                                       title: t("shared.target_blank"),
                                       target: "_blank")
                   ) %>
-        </div>
+      </div>
 
-        <div class="small-12 medium-3 clear">
-            <%= f.submit t("verification.residence.new.verify_residence"),
+      <div class="small-12 medium-3 clear">
+        <%= f.submit t("verification.residence.new.verify_residence"),
                      id: "new_residence_submit",
                      class: "button success expanded" %>
-        </div>
-        <% end %>
-    </div>
+      </div>
+    <% end %>
+  </div>
 </div>

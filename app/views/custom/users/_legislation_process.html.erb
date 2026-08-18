@@ -1,7 +1,7 @@
 <section id="legislation_process_<%= legislation_process.id %>" class="process-summary">
   <h3 class="margin-top margin-left"><strong>
-    <%= link_to legislation_process.title, legislation_process %>
-  </strong></h3>
+      <%= link_to legislation_process.title, legislation_process %>
+    </strong></h3>
   <% participation = user_participation_in_process(legislation_process, user) %>
 
   <% if participation[:questions].any? %>

@@ -21,24 +21,24 @@
           <%= link_to participem_gv_login_path do %>
             <%= image_tag(image_path_for("consulgva/gvlogingvparticipa.png"), alt: "Entrar con GVLogin") %>
           <% end %>
-        <h1>
-      </div>
+          <h1>
+          </div>
 
-      <div class="small-12 medium-9 column">
-        <div class="row">
-          <div class="small-12 medium-9 large-7 small-centered column">
-            <main id="main" class="auth-form margin <%= yield(:main_class) %>">
-              <%= render "layouts/flash" %>
+          <div class="small-12 medium-9 column">
+            <div class="row">
+              <div class="small-12 medium-9 large-7 small-centered column">
+                <main id="main" class="auth-form margin <%= yield(:main_class) %>">
+                  <%= render "layouts/flash" %>
 
-              <%= yield %>
-            </main>
+                  <%= yield %>
+                </main>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="footer">
-      <%= render Layout::FooterComponent.new %>
-    </div>
-  </body>
-</html>
+        <div class="footer">
+          <%= render Layout::FooterComponent.new %>
+        </div>
+      </body>
+    </html>

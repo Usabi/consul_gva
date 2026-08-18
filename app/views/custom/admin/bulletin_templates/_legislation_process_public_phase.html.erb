@@ -6,6 +6,6 @@
       </td>
     </tr>
     <%- @processes = Legislation::Process.public_phase.last(5) %>
-    <%= render partial: "process", collection: @processes %>  
+    <%= render partial: "process", collection: @processes %>
   </tbody>
 </table>

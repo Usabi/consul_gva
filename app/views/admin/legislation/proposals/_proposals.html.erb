@@ -2,7 +2,7 @@
   <div>
     <div class="small-12 medium-8 column clear end">
       <h3><%= page_entries_info proposals %></h3>
-      </div>
+    </div>
     <div class="small-12 medium-3 column clear end">
       <%= link_to t("legislation.summary.download"),
                   summary_admin_legislation_process_proposals_path(@process, format: :xlsx),
@@ -33,7 +33,6 @@
       <% end %>
     </tbody>
   </table>
-
 
   <%= paginate proposals %>
 <% end %>

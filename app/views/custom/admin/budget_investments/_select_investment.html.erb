@@ -63,7 +63,7 @@
 <td class="small text-center" data-field="visible_to_valuators">
   <% if can?(:admin_update, investment) %>
     <%= form_for [:admin, investment.budget, investment], remote: true, format: :json do |f| %>
-        <%= f.check_box :visible_to_valuators,
+      <%= f.check_box :visible_to_valuators,
                         label: false,
                         class: "js-submit-on-change",
                         id: "budget_investment_visible_to_valuators" %>
@@ -75,7 +75,7 @@
 
 <td id="selection" class="small text-center" data-field="selected">
   <% if investment.selected? %>
-      <%= link_to_if can?(:toggle_selection, investment),
+    <%= link_to_if can?(:toggle_selection, investment),
                      t("admin.budget_investments.index.selected"),
                      toggle_selection_admin_budget_budget_investment_path(
                        @budget,
@@ -113,7 +113,7 @@
 <% if params[:advanced_filters]&.include?("selected") %>
   <td id="winner" class="small text-center" data-field="winner">
     <% if investment.selected? && investment.winner? %>
-        <%= link_to_if can?(:toggle_winner, investment),
+      <%= link_to_if can?(:toggle_winner, investment),
                       t("admin.budget_investments.index.winner"),
                       toggle_winner_admin_budget_budget_investment_path(
                         @budget,

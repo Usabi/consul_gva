@@ -14,7 +14,7 @@
         <% elsif comment.as_moderator? %>
           <%= image_tag("avatar_moderator.png", size: 32, class: "moderator-avatar float-left") %>
         <% else %>
-        <% if comment.user.hidden? || comment.user.erased? %>
+          <% if comment.user.hidden? || comment.user.erased? %>
             <span class="icon-deleted user-deleted"></span>
           <% elsif comment.user.organization? %>
             <%= image_tag("avatar_collective.png", size: 32, class: "avatar float-left") %>

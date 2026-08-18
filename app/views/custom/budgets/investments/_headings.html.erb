@@ -1,35 +1,35 @@
 <% if @budget.headings.where(" price > 0" ).count > 1 %>
 
-	<% if @budget.groups.where(slug: "districts").first.present? %>
-		<div class="sidebar-item">
-			<div class="sidebar-divider"></div>
-			<h3 class="sidebar-item-title"><%= t("shared.tags_cloud.districts_only") %></h3>
-			<br>
+  <% if @budget.groups.where(slug: "districts").first.present? %>
+    <div class="sidebar-item">
+      <div class="sidebar-divider"></div>
+      <h3 class="sidebar-item-title"><%= t("shared.tags_cloud.districts_only") %></h3>
+      <br>
 
-			<ul id="categories" class="no-bullet categories">
-				<% @budget.groups.where(slug: "districts").first.headings.where(" price > 0" ).sort_by_name.each do |heading| %>
-			    	<li class="inline-block">
-			      		<% css_class = { class: 'is-active' } if params[:heading_id] == heading.id %>
-			    		<%= link_to heading.name, budget_investments_path(@budget, heading_id: heading.id), css_class || {} %>
-			    	</li>
-			  	<% end %>
-			</ul>
-		</div>
-	<% end %>
-	<% if @budget.groups.where(slug: "neighborhood").first.present? %>
-		<div class="sidebar-item">
-			<div class="sidebar-divider"></div>
-			<h3 class="sidebar-item-title"><%= t("shared.tags_cloud.neighborhoods_only") %></h3>
-			<br>
+      <ul id="categories" class="no-bullet categories">
+        <% @budget.groups.where(slug: "districts").first.headings.where(" price > 0" ).sort_by_name.each do |heading| %>
+          <li class="inline-block">
+            <% css_class = { class: 'is-active' } if params[:heading_id] == heading.id %>
+            <%= link_to heading.name, budget_investments_path(@budget, heading_id: heading.id), css_class || {} %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% if @budget.groups.where(slug: "neighborhood").first.present? %>
+    <div class="sidebar-item">
+      <div class="sidebar-divider"></div>
+      <h3 class="sidebar-item-title"><%= t("shared.tags_cloud.neighborhoods_only") %></h3>
+      <br>
 
-			<ul id="categories" class="no-bullet categories">
-				<% @budget.groups.where(slug: "neighborhood").first.headings.where(" price > 0" ).sort_by_name.each do |heading| %>
-			    	<li class="inline-block">
-			      		<% css_class = { class: 'is-active' } if params[:heading_id] == heading.id %>
-			    		<%= link_to heading.name, budget_investments_path(@budget, heading_id: heading.id), css_class || {} %>
-			    	</li>
-			  	<% end %>
-			</ul>
-		</div>
-	<% end %>
+      <ul id="categories" class="no-bullet categories">
+        <% @budget.groups.where(slug: "neighborhood").first.headings.where(" price > 0" ).sort_by_name.each do |heading| %>
+          <li class="inline-block">
+            <% css_class = { class: 'is-active' } if params[:heading_id] == heading.id %>
+            <%= link_to heading.name, budget_investments_path(@budget, heading_id: heading.id), css_class || {} %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 <% end %>

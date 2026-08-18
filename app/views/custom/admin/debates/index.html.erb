@@ -4,7 +4,6 @@
 
 <h2><%= t("admin.debates.index.title") %></h2>
 
-
 <%= render "admin/debates/subnav", i18n_namespace: "admin.debates.index", active: "debates" %>
 
 <%= render "search_form" %>
@@ -14,7 +13,6 @@
   <%= link_to t("admin.budget_investments.index.download_current_selection"),
             admin_debates_path(csv_params),
             class: "float-right small clear" %>
-
 
   <h3><%= page_entries_info @debates %></h3>
 

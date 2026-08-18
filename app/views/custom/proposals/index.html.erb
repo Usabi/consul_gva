@@ -10,12 +10,7 @@
 <% end %>
 
 <div>
-  <% if [
-          @search_terms,
-          @advanced_search_terms,
-          params[:retired].present?,
-          params[:selected].present?
-        ].any? %>
+  <% if [@search_terms, @advanced_search_terms, params[:retired].present?, params[:selected].present?].any? %>
     <%= render Shared::SearchResultsSummaryComponent.new(
       results: @proposals,
       search_terms: @search_terms,

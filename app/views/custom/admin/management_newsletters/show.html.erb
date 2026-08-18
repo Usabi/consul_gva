@@ -13,7 +13,7 @@
 
 <div class="small-12 column callout highlight">
   <p><strong><%= t("admin.management_newsletters.show.created_at") %>:</strong>
-             <%= l @management_newsletter.created_at.to_datetime, format: :long %></p>
+    <%= l @management_newsletter.created_at.to_datetime, format: :long %></p>
   <p><strong><%= t("admin.management_newsletters.show.status") %>:</strong>
     <span class="label <%= @management_newsletter.status_class %>">
       <%= t("admin.management_newsletters.index.#{@management_newsletter.status}") %>
@@ -56,7 +56,8 @@
                 </li>
               <% end %>
               <li><%= link_to t("admin.management_newsletters.show.all_proposals"), admin_proposals_path %>
-            </ul></li>
+              </ul>
+            </li>
           <% end %>
 
           <% if @management_newsletter.active_debates.any? %>
@@ -74,7 +75,8 @@
                 </li>
               <% end %>
               <li><%= link_to t("admin.management_newsletters.show.all_debates"), admin_debates_path %>
-            </ul></li>
+              </ul>
+            </li>
           <% end %>
 
           <% if @management_newsletter.preview_processes.any? %>

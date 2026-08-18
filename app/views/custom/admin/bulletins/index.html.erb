@@ -14,24 +14,24 @@
       </tr>
     </thead>
     <tbody>
-    <% @bulletins.order(created_at: :desc).each do |bulletin| %>
-      <tr id="<%= dom_id(bulletin) %>" class="bulletin">
-        <td>
-          <%= bulletin.title %>
-        </td>
-        <td>
-          <%= t("activerecord.attributes.bulletin.templates.#{bulletin.template}") %>
-        </td>
-        <td>
-          <%= bulletin.last_send_date %>
-        </td>
-        <td>
-          <%= render Admin::TableActionsComponent.new(bulletin) do |actions| %>
-            <%= actions.action :preview, text: t("admin.bulletins.index.preview") %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
+      <% @bulletins.order(created_at: :desc).each do |bulletin| %>
+        <tr id="<%= dom_id(bulletin) %>" class="bulletin">
+          <td>
+            <%= bulletin.title %>
+          </td>
+          <td>
+            <%= t("activerecord.attributes.bulletin.templates.#{bulletin.template}") %>
+          </td>
+          <td>
+            <%= bulletin.last_send_date %>
+          </td>
+          <td>
+            <%= render Admin::TableActionsComponent.new(bulletin) do |actions| %>
+              <%= actions.action :preview, text: t("admin.bulletins.index.preview") %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 <% else %>
