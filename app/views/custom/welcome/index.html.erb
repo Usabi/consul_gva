@@ -8,14 +8,14 @@
 
 <% provide :social_media_meta_tags do %>
   <%= render "shared/social_media_meta_tags",
-              social_url: root_url %>
+             social_url: root_url %>
 <% end %>
 
 <%= render "shared/header", header: @header %>
 
 <div>
   <div class="row">
-    <%= render 'sections_icons' %>
+    <%= render "sections_icons" %>
 
     <%= render Shared::CitizenNewsletterCallToActionComponent.new %>
 
@@ -34,7 +34,7 @@
     <% end %>
   </div>
 
-  <%= render 'stats' %>
-  <%= render 'slider' %>
+  <%= render "stats" %>
+  <%= render "slider" %>
 </div>
 <!-- <%= USABI_ISSUE %> - Ruby <%= RUBY_VERSION %> -->

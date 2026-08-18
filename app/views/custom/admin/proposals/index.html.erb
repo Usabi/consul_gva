@@ -11,8 +11,8 @@
 <% if @proposals.any? %>
 
   <%= link_to t("admin.budget_investments.index.download_current_selection"),
-            admin_proposals_path(csv_params),
-            class: "float-right small clear" %>
+              admin_proposals_path(csv_params),
+              class: "float-right small clear" %>
   <h3><%= page_entries_info @proposals %></h3>
 
   <table>
@@ -22,8 +22,8 @@
         <th data-field="title"><%= link_to_sorted_admin_resource "proposals", :title %></th>
         <th><%= t("admin.proposals.index.author") %></th>
         <th><%= t("admin.proposals.index.milestones") %></th>
-        <th data-field="supports" ><%= link_to_sorted_admin_resource "proposals", :supports %></th>
-        <th data-field="created_at" ><%= link_to_sorted_admin_resource "proposals", :created_at %></th>
+        <th data-field="supports"><%= link_to_sorted_admin_resource "proposals", :supports %></th>
+        <th data-field="created_at"><%= link_to_sorted_admin_resource "proposals", :created_at %></th>
         <th><%= t("admin.proposals.index.sdg") %></th>
         <th><%= t("admin.proposals.index.target") %></th>
         <th><%= t("admin.proposals.index.tags") %></th>
