@@ -2,12 +2,14 @@
 
   .dashboard-card a {
     border-radius: 0;
-    -webkit-box-shadow: none;
+    box-shadow: none;
     box-shadow: none;
 
-    &:hover, &:focus, &:active {
+    &:hover,
+    &:focus,
+    &:active {
       border-radius: 0 !important;
-      -webkit-box-shadow: none !important;
+      box-shadow: none !important;
       box-shadow: none !important;
       transform: none !important;
     }
@@ -19,34 +21,34 @@
   }
 
   .phase-tag {
+    background-color: #e9ecef;
+    border-radius: 3px;
+    color: #495057;
     display: inline-block;
+    font-size: 0.8rem;
     margin: 0.2rem;
     padding: 0.2rem 0.5rem;
-    border-radius: 3px;
-    font-size: 0.8rem;
-    background-color: #e9ecef;
-    color: #495057;
 
     &.active {
       background-color: #17a2b8;
-      color: white;
+      color: #fff;
     }
 
     &.ending {
       background-color: #fd7e14;
-      color: white;
+      color: #fff;
     }
   }
 
   .list-phases {
+    align-items: center;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
   }
 
   .tabs-title > a {
-    padding: 0.75rem 1.25rem;
     font-size: 1rem;
+    padding: 0.75rem 1.25rem;
   }
 
   .tabs-title > a i {
@@ -58,19 +60,19 @@
   }
 
   h2.section-heading {
+    border-bottom: 1px solid #e1e8ed;
     font-size: 1.6rem;
     font-weight: normal;
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid #e1e8ed;
 
     @mixin section-icon($name) {
       @include has-fa-icon($name, solid);
 
       &::before {
+        color: #3c5d82;
         font-size: rem-calc(20);
         margin-#{$global-right}: rem-calc(10);
-        color: #3c5d82;
       }
     }
 
@@ -109,10 +111,10 @@
   }
 
   .dashboard-card {
-    height: 100%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 1.5rem;
     border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    margin-bottom: 1.5rem;
     overflow: hidden;
 
     .card-divider {
@@ -137,11 +139,11 @@
     padding: 0;
 
     li {
-      padding: 0.75rem 0;
-      display: flex;
-      justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid #f0f0f0;
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 0;
 
       &:last-child {
         border-bottom: none;
@@ -150,8 +152,8 @@
 
     .list-title {
       flex: 1;
-      margin-right: 1rem;
       font-weight: normal;
+      margin-right: 1rem;
 
       a {
         color: #0077c9;
@@ -162,26 +164,29 @@
       }
     }
 
-    .list-count, .list-date, .list-phase, .list-progress {
+    .list-count,
+    .list-date,
+    .list-phase,
+    .list-progress {
       background: #ecf5fd;
-      color: #397db9;
-      padding: 0.25rem 0.5rem;
       border-radius: 3px;
+      color: #397db9;
       font-size: 0.85rem;
       font-weight: normal;
-      white-space: nowrap;
+      padding: 0.25rem 0.5rem;
       text-align: right;
+      white-space: nowrap;
     }
 
     .list-progress {
       width: 40%;
 
       .progress {
-        margin-top: 0.25rem;
-        margin-bottom: 0;
-        height: 8px;
         background-color: #e9ecef;
         border-radius: 4px;
+        height: 8px;
+        margin-bottom: 0;
+        margin-top: 0.25rem;
       }
 
       .progress-meter {
@@ -192,24 +197,24 @@
   }
 
   .no-data {
-    font-style: italic;
     color: #777;
-    text-align: center;
+    font-style: italic;
     margin: 1rem 0;
+    text-align: center;
   }
 
   .guide-section {
     .guide-intro {
-      text-align: center;
       margin-bottom: 2rem;
+      text-align: center;
 
       h3 {
         margin-bottom: 0.5rem;
       }
 
       p {
-        max-width: 48rem;
         margin: 0 auto;
+        max-width: 48rem;
       }
     }
 
@@ -217,19 +222,19 @@
       background: #fff;
       border: 1px solid #e1e8ed;
       border-radius: 4px;
-      padding: 1.5rem 1rem;
       height: 100%;
+      padding: 1.5rem 1rem;
       text-align: center;
       transition: all 0.2s ease;
 
       &:hover {
-        transform: translateY(-3px);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transform: translateY(-3px);
       }
 
       .guide-icon {
-        font-size: 2.5rem;
         color: #3c5d82;
+        font-size: 2.5rem;
         margin-bottom: 1rem;
       }
 
@@ -239,8 +244,8 @@
       }
 
       p {
-        margin-bottom: 1.5rem;
         color: #555;
+        margin-bottom: 1.5rem;
       }
 
       .guide-actions {
@@ -255,8 +260,8 @@
         @include has-fa-icon($name, solid);
 
         &::before {
-          font-size: rem-calc(40);
           color: #3c5d82;
+          font-size: rem-calc(40);
           margin-bottom: rem-calc(16);
         }
       }
@@ -294,8 +299,8 @@
       @include has-fa-icon($name, solid);
 
       &::before {
-        font-size: rem-calc(32);
         color: #3c5d82;
+        font-size: rem-calc(32);
         margin-bottom: rem-calc(16);
       }
     }
@@ -316,35 +321,38 @@
       @include date-icon(lightbulb);
     }
 
-    &.legislation-icon{
+    &.legislation-icon {
       @include date-icon(file-alt);
     }
   }
 
   .date {
-    font-weight: 500;
     color: #555;
+    font-weight: 500;
     margin-bottom: 0.5rem;
   }
 
   .clickable-card {
-    display: block;
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
     color: inherit;
+
+    cursor: pointer;
+    display: block;
     height: 100%;
     text-decoration: none;
 
-    box-shadow: none !important;
-    border-radius: 0 !important;
-
     &:hover {
-      .dashboard-card {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15) !important;
-        transition: all 0.2s ease;
-      }
 
       color: inherit;
       text-decoration: none;
+
+      .dashboard-card {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15) !important;
+        transform: translateY(-2px);
+        transition: all 0.2s ease;
+      }
     }
 
     &:focus {
@@ -354,21 +362,19 @@
         box-shadow: 0 0 0 2px #3c5d82 !important;
       }
     }
-
-    cursor: pointer;
   }
 
   .clickable-card .dashboard-card {
-    transition: all 0.2s ease;
     height: 100%;
+    transition: all 0.2s ease;
   }
 }
 @media screen and (max-width: 39.9375em) {
   .admin-dashboard-index {
     .dashboard-list {
       li {
-        flex-direction: column;
         align-items: flex-start;
+        flex-direction: column;
       }
 
       .list-title {
@@ -377,8 +383,8 @@
       }
 
       .list-progress {
-        width: 100%;
         text-align: left;
+        width: 100%;
       }
     }
   }

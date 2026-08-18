@@ -21,10 +21,11 @@
   .feed-proposals,
   .feed-selected_proposals,
   .feed-processes,
-   .feed-debates {
+  .feed-debates {
     display: flex;
     flex-direction: column;
     margin-top: $line-height;
+
     .feed-content {
       flex-grow: 1;
     }
