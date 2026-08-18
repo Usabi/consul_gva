@@ -1,0 +1,46 @@
+<% provide :title, @process.title %>
+
+<%= render "legislation/processes/header", process: @process, header: :full %>
+
+<%= render "key_dates", process: @process, phase: @phase %>
+
+<% if @summary_sections.any? %>
+  <section class="process-summary">
+    <div class="row">
+      <div class="small-12 medium-3 large-2 column">
+        <ul id="summary-sections" class="menu vertical no-margin-top no-padding-top">
+          <% @summary_sections.each do |section| %>
+            <li>
+              <%= link_to t("legislation.summary.#{section[:key]}_phase"),
+                          summary_legislation_process_path(@process, section: section[:key]),
+                          class: (section == @active_section ? "is-active" : "") %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class="small-12 medium-9 large-10 column">
+        <% unless @active_section[:key] == "stats" %>
+          <%= link_to t("legislation.summary.download"),
+                      summary_legislation_process_path(@process, format: :xlsx, section: @active_section[:key]),
+                      class: "button hollow download-button" %>
+        <% end %>
+
+        <% case @active_section[:key]
+           when "debate" %>
+          <%= render "summary_debate", questions: @process.questions %>
+        <% when "proposals" %>
+          <%= render "summary_proposals", proposals: @proposals %>
+        <% when "allegations" %>
+          <%= render "summary_allegations", comments: @comments %>
+        <% when "stats" %>
+          <%= render "summary_stats", stats: @stats %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+<% else %>
+  <div class="callout primary">
+    <p><%= t("legislation.summary.process_empty") %></p>
+  </div>
+<% end %>

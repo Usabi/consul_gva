@@ -121,6 +121,7 @@ en:
       debate_phase: "Debate phase"
       proposals_phase: "Proposals phase"
       allegations_phase: "Comments phase"
+      stats_phase: "Statistics"
       debates:
         zero: "No debates"
         one: "%{count} debate"

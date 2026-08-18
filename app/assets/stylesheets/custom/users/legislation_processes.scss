@@ -1,7 +1,7 @@
 .process-summary {
   @extend %panel;
   margin-top: $line-height * 1.5;
-  padding: 0 rem-calc(16);
+  padding: rem-calc(16);
 
   .debate-summary,
   .proposal-summary,

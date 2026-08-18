@@ -1,0 +1,37 @@
+<section class="stats-phase">
+  <header>
+    <h3><%= t("legislation.summary.stats_phase") %></h3>
+  </header>
+
+  <div class="stats-item number-with-info participants total-participants">
+    <div class="content">
+      <span class="stats-number number"><%= stats.total_participants %></span>
+    </div>
+    <span class="stats-label row"><%= t("stats.legislation.process.participants") %></span>
+  </div>
+
+  <div id="participants_by_gender" class="stats-section stats-group">
+    <h4 class="stats-subtitle"><%= t("stats.by_gender") %></h4>
+
+    <div class="stats-item number-with-info participants male">
+      <div class="content">
+        <span class="stats-number number"><%= stats.total_male_participants %></span>
+        <span class="stats-label info"><%= t("stats.men_percentage", percentage: number_to_stats_percentage(stats.male_percentage)) %></span>
+      </div>
+    </div>
+
+    <div class="stats-item number-with-info participants female">
+      <div class="content">
+        <span class="stats-number number"><%= stats.total_female_participants %></span>
+        <span class="stats-label info"><%= t("stats.women_percentage", percentage: number_to_stats_percentage(stats.female_percentage)) %></span>
+      </div>
+    </div>
+
+    <div class="stats-item number-with-info participants other">
+      <div class="content">
+        <span class="stats-number number"><%= stats.total_other_participants %></span>
+        <span class="stats-label info"><%= t("stats.other_percentage", percentage: number_to_stats_percentage(stats.other_percentage)) %></span>
+      </div>
+    </div>
+  </div>
+</section>

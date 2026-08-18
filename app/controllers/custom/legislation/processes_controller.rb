@@ -32,13 +32,26 @@ class Legislation::ProcessesController
     @phase = :summary
     @proposals = @process.proposals.selected
     @comments = (params[:format] == "xlsx" ? @process.draft_versions.published.last&.all_comments : @process.draft_versions.published.last&.best_comments) || Comment.none
+    @stats = Legislation::Stats.new(@process)
+    @summary_sections = summary_sections
+    @active_section = @summary_sections.find { |section| section[:key] == params[:section] } || @summary_sections.first
+
     respond_to do |format|
       format.html
-      format.xlsx { render xlsx: "summary", filename: "summary-#{Date.current}.xlsx" }
+      format.xlsx { render xlsx: "summary", filename: "summary-#{@active_section&.dig(:key)}-#{Date.current}.xlsx" }
     end
   end
 
   private
+
+    def summary_sections
+      [
+        { key: "debate", enabled: @process.debate_phase.enabled? },
+        { key: "proposals", enabled: @process.proposals_phase.enabled? },
+        { key: "allegations", enabled: @process.allegations_phase.enabled? },
+        { key: "stats", enabled: true }
+      ].select { |section| section[:enabled] }
+    end
 
     def resource_model
       Legislation::Process
