@@ -39,6 +39,6 @@ jobs:
         # vmcrc_siac_personas lives only on the client's server (external, not
         # managed by Rails migrations) — excluded from both sides of the diff.
         run: |
-          sed '/create_table "vmcrc_siac_personas"/,/^  end$/d' db/schema.rb > /tmp/schema.rb
-          sed '/create_table "vmcrc_siac_personas"/,/^  end$/d' db/commited_schema.rb > /tmp/commited_schema.rb
+          sed '/create_table "vmcrc_siac_personas"/,/^  end$/d' db/schema.rb | cat -s > /tmp/schema.rb
+          sed '/create_table "vmcrc_siac_personas"/,/^  end$/d' db/commited_schema.rb | cat -s > /tmp/commited_schema.rb
           diff /tmp/schema.rb /tmp/commited_schema.rb

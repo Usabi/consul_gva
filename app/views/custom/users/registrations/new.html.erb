@@ -8,7 +8,7 @@
 
   <p>
     <%= sanitize(t("devise_views.users.registrations.new.organization_signup",
-        signup_link: link_to(t("devise_views.users.registrations.new.organization_signup_link"), new_organization_registration_path))) %>
+                   signup_link: link_to(t("devise_views.users.registrations.new.organization_signup_link"), new_organization_registration_path))) %>
   </p>
 
   <div class="row">
@@ -22,29 +22,28 @@
 
       <%= f.invisible_captcha :address %>
 
-      <%= f.email_field :email,     placeholder: t("devise_views.users.registrations.new.email_label") %>
+      <%= f.email_field :email, placeholder: t("devise_views.users.registrations.new.email_label") %>
 
       <%= f.password_field :password, autocomplete: "off",
-                           placeholder: t("devise_views.users.registrations.new.password_label") %>
+                                      placeholder: t("devise_views.users.registrations.new.password_label") %>
 
       <%= f.password_field :password_confirmation, autocomplete: "off",
-                           label: t("devise_views.users.registrations.new.password_confirmation_label"),
-                           placeholder: t("devise_views.users.registrations.new.password_confirmation_label") %>
+                                                   label: t("devise_views.users.registrations.new.password_confirmation_label"),
+                                                   placeholder: t("devise_views.users.registrations.new.password_confirmation_label") %>
 
-      <% privacy_page = SiteCustomization::Page.find_by(slug: 'privacy-registration') %>
+      <% privacy_page = SiteCustomization::Page.find_by(slug: "privacy-registration") %>
       <% if privacy_page %>
-        <label><%= t('devise_views.users.registrations.new.privacy_terms') %></label>
+        <label><%= t("devise_views.users.registrations.new.privacy_terms") %></label>
         <div class="privacy-registration">
           <%= raw privacy_page.content %>
         </div>
       <% end %>
       <%= f.check_box :terms_of_service,
-        title: t("devise_views.users.registrations.new.terms_title"),
-        label: t("devise_views.users.registrations.new.terms",
-                 use_terms: link_to(t("devise_views.users.registrations.new.use_terms_link"), "/conditions",
-                                title: t("shared.target_blank"),
-                                target: "_blank")
-                ) %>
+                      title: t("devise_views.users.registrations.new.terms_title"),
+                      label: t("devise_views.users.registrations.new.terms",
+                               use_terms: link_to(t("devise_views.users.registrations.new.use_terms_link"), "/conditions",
+                                                  title: t("shared.target_blank"),
+                                                  target: "_blank")) %>
       <%= render Users::CaptchaComponent.new %>
       <div class="small-12 medium-6 small-centered">
         <%= f.submit t("devise_views.users.registrations.new.submit"), class: "button expanded" %>
