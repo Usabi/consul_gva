@@ -22,6 +22,16 @@ linters:
       - app/views/layouts/application.html.erb
       - app/views/layouts/dashboard.html.erb
       - app/views/layouts/devise.html.erb
+      - app/views/custom/verification/residence/new.html.erb
+      - app/views/custom/users/registrations/new.html.erb
+      - app/components/custom/layout/footer_component.html.erb
+      - app/components/custom/layout/social_component.html.erb
+      - app/components/custom/layout/subnavigation_component.html.erb
+      - app/views/custom/admin/proposals/_form.html.erb
+      - app/views/custom/budgets/investments/_investment_sidebar.html.erb
+      - app/views/custom/mailer/duplicated_proposal_for_author.html.erb
+      - app/views/custom/organizations/registrations/new.html.erb
+      - app/views/custom/proposals/show.html.erb
   ExtraNewline:
     enabled: true
   FinalNewline:

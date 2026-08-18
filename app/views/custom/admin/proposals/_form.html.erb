@@ -10,13 +10,13 @@
 
   <legend">
     <span class="help-text">
-      <%= t("admin.proposals.form.duplicated_of_proposal_description", link: link_to(t("admin.proposals.form.here"), admin_system_email_view_path('duplicated_proposal_for_author'))).html_safe %>
+      <%= t("admin.proposals.form.duplicated_of_proposal_description", link: link_to(t("admin.proposals.form.here"), admin_system_email_view_path("duplicated_proposal_for_author"))).html_safe %>
     </span>
   </legend>
 
   <div class="small-12 column padding-top">
     <div id="custom-select" class="custom-select">
-      <input type="text" id="search-input" placeholder="<%= t('admin.proposals.form.placeholder') %>" autocomplete="off" />
+      <input type="text" id="search-input" placeholder="<%= t("admin.proposals.form.placeholder") %>" autocomplete="off" />
       <div id="options-container" class="options-container"></div>
     </div>
 
@@ -31,7 +31,7 @@
 
       <legend">
         <span class="help-text">
-          <%= t("admin.proposals.form.mail_template", link: link_to(t("admin.proposals.form.here"), admin_system_email_view_path('duplicated_proposal_for_author'))).html_safe %>
+          <%= t("admin.proposals.form.mail_template", link: link_to(t("admin.proposals.form.here"), admin_system_email_view_path("duplicated_proposal_for_author"))).html_safe %>
         </span>
       </legend>
     </div>
