@@ -1,11 +1,11 @@
 <% if current_user.legislator? || current_user.budget_manager? %>
   <% if current_user.legislator? %>
-    <%= render 'admin/legislation_menu' %>
+    <%= render "admin/legislation_menu" %>
   <% end %>
   <% if current_user.budget_manager? %>
-    <%= render 'admin/budget_manager_menu' %>
+    <%= render "admin/budget_manager_menu" %>
   <% end %>
-<%else%>
+<% else %>
   <% if current_user.supporter? %>
     <%= render Support::MenuComponent.new %>
   <% end %>

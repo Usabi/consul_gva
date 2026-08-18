@@ -2,9 +2,9 @@
   "name": "consuldemocracy",
   "dependencies": {
     "blueimp-file-upload": "^10.32.0",
-    "foundation-sites": "^6.8.1",
+    "foundation-sites": "^6.9.0",
     "jquery": "^3.7.1",
-    "jquery-ui": "^1.13.3",
+    "jquery-ui": "^1.14.2",
     "jquery-ujs": "^1.2.3",
     "leaflet": "^1.9.4",
     "leaflet.markercluster": "^1.5.3",
