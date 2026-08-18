@@ -16,6 +16,7 @@
     "annotator": "readonly",
     "c3": "readonly",
     "CKEDITOR": "readonly",
+    "getCaptchaValue": "readonly",
     "L": "readonly",
     "Turbolinks": "readonly"
   },

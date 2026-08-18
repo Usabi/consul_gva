@@ -183,6 +183,9 @@ var initialize_modules = function() {
   App.AuthenticityTokenRefresh.initialize();
   App.CookiesConsent.initialize();
   App.SearchInSelect.initialize();
+  if ($("[data-captcha-id]").length) {
+    App.PttCaptcha.initialize();
+  }
 };
 
 var destroy_non_idempotent_modules = function() {
