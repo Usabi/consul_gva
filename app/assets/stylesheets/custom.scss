@@ -31,12 +31,13 @@
 // // 10. Layout
 // @import "custom/layout";
 @mixin custom-button {
-  color: $white-gva;
   background: button-hover;
+  border-radius: 25px;
+  color: $white-gva;
   font-size: $base-font-size;
   margin-right: 2rem;
   padding: 15px 45px;
-  border-radius: 25px;
+
   &:hover,
   &:focus {
     background-color: $button-hover;

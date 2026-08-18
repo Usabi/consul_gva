@@ -3,16 +3,16 @@
     .sortable {
       .document-fields.nested-fields {
         .row {
-          display: flex;
           align-items: center;
+          display: flex;
         }
-        
+
         &.ui-sortable-helper {
           background-color: $info-bg;
           border: 1px solid $info-border;
+          border-radius: 5px;
           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
           color: $color-info;
-          border-radius: 5px;
           padding: 10px;
         }
       }

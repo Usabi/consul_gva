@@ -1,8 +1,8 @@
 
 @mixin custom-icon-mv {
   display: inline-block;
-  width: 130px;
   height: 44px;
+  width: 130px;
 }
 
 $padding: 30px;
@@ -11,32 +11,38 @@ $padding: 30px;
   // margin: 20px 0;
   background-color: #f6f6f6;
 
-  .content-left, .content-right {
-    padding: 5em 1em;
-    text-align: left;
-    display:flex;
+  .content-left,
+  .content-right {
+    display: flex;
     flex-direction: column;
     height: 34em;
     justify-content: center;
+    padding: 5em 1em;
+    text-align: left;
+
     h1 {
+      color: #1c9799;
       font-family: Roboto;
       font-size: 36px;
       font-weight: bold;
-      color: #1C9799;
     }
+
     p {
-      width: 90%;
+      color: #191919;
       font-family: Roboto;
       font-size: 16px;
-      color: #191919;
+      width: 90%;
     }
+
     img {
       margin: 0 10px;
     }
+
     .buttons {
-      margin: 15px 0px;
       display: flex;
       justify-content: left;
+      margin: 15px 0;
+
       a.button {
         margin: 1em;
       }
@@ -59,7 +65,8 @@ $padding: 30px;
 
 @media (max-width: 640px) {
 
-  .slider-gva .content-left, .slider-gva .content-right {
+  .slider-gva .content-left,
+  .slider-gva .content-right {
     height: auto;
     padding: 0;
   }

@@ -4,8 +4,8 @@ $grid-column-gutter: (
 );
 
 .admin .header {
-  padding-right: 0.9375rem;
   padding-left: 0.9375rem;
+  padding-right: 0.9375rem;
 }
 
 body > header,
@@ -44,10 +44,10 @@ body {
     position: relative;
 
     .login-gva {
-      width: 100px;
-      position: absolute;
       bottom: -17px;
+      position: absolute;
       right: 12px;
+      width: 100px;
     }
   }
 }
@@ -72,8 +72,8 @@ body {
 .notice-container[data-alert] {
   max-width: 30vw;
   min-width: 200px;
-  word-wrap: break-word;
   overflow-wrap: break-word;
+  word-wrap: break-word;
 
   .notice {
     height: auto;
@@ -87,23 +87,23 @@ body {
   @include has-fa-icon(whatsapp, brands);
   background: #43d854;
 
+  @include breakpoint(small only) {
+    display: none !important;
+  }
+
   &:hover,
   &:focus {
     color: #43d854;
-  }
-
-  @include breakpoint(small only) {
-    display: none !important;
   }
 }
 
 .ssb-linkedin {
   @include has-fa-icon(linkedin, brands);
-  background: #0A66C2;
+  background: #0a66c2;
 
   &:hover,
   &:focus {
-    color: #0A66C2;
+    color: #0a66c2;
   }
 
 }
@@ -125,7 +125,7 @@ body {
     padding-left: 2rem;
   }
 
-  .button.button  {
+  .button.button {
     border-radius: 0 25px 25px 0;
   }
 }

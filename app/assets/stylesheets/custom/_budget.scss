@@ -41,6 +41,7 @@
 
 .groups-and-headings {
   $spacing: $line-height / 2;
+
   .heading {
     border-radius: 18px;
 
@@ -51,9 +52,10 @@
     @include breakpoint(large) {
       width: calc(100% / 4 - #{$spacing});
     }
+
     a {
-      width: 100%;
       border-radius: 18px;
+      width: 100%;
     }
   }
 }
@@ -73,11 +75,13 @@ ul.votes-group-sidebar {
     margin-bottom: $line-height / 4;
     padding: $line-height $line-height / 2;
     position: relative;
-    &.investment_group, &.investment_group:hover {
+
+    &.investment_group,
+    &.investment_group:hover {
       background-color: transparent;
+      color: #1c9799;
       line-height: 1rem;
       padding: 0;
-      color: #1c9799;
     }
 
     a {
@@ -127,8 +131,8 @@ ul.votes-group-sidebar {
 }
 
 .filters-and-search {
-  display: flex;
   align-items: end;
+  display: flex;
   justify-content: space-between;
 }
 
@@ -137,8 +141,8 @@ ul.votes-group-sidebar {
 }
 
 .budget-header {
-  padding: 0;
   min-height: auto;
+  padding: 0;
 
   &.with-background-image {
     padding: 1.5rem 0;

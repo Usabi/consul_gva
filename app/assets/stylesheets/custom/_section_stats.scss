@@ -3,17 +3,17 @@
   flex-wrap: wrap;
 
   .left-banner {
-    position: relative;
     background-color: #dce8ff;
-    flex: 1 1 100%;
-    min-height: 350px;
     display: flex;
+    flex: 1 1 100%;
     flex-direction: column;
+    min-height: 350px;
+    position: relative;
 
     .logo-container {
+      left: 3rem;
       position: absolute;
       top: 2.5rem;
-      left: 3rem;
 
 
       .logo-gva {
@@ -22,17 +22,17 @@
     }
 
     .banner-image {
-      position: absolute;
       bottom: 0;
-      left: 0;
-      width: 100%;
       height: auto;
+      left: 0;
+      position: absolute;
+      width: 100%;
     }
   }
 
   .right-banner {
-    flex: 1 1 100%;
     background-color: #dce8ff;
+    flex: 1 1 100%;
     padding: 2rem;
 
     @media screen and (min-width: 768px) {
@@ -40,8 +40,8 @@
     }
 
     .info-block {
-      max-width: 90%;
       margin: 0 auto;
+      max-width: 90%;
 
       .registrations_counter {
         font-size: 1.25rem;
@@ -57,41 +57,41 @@
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
+      margin: 0 auto 1rem;
       max-width: 90%;
-      margin: 0 auto 1rem auto;
 
       .stat-item {
-        flex: 1 1 45%;
-        display: flex;
         align-items: center;
+        display: flex;
+        flex: 1 1 45%;
         gap: 1rem;
 
         img {
-          width: 70px;
           flex-shrink: 0;
+          width: 70px;
         }
 
         .stat-text {
           display: flex;
           flex-direction: column;
-          justify-content: center;
           gap: 0.25rem;
+          justify-content: center;
 
           .stat-label {
             font-weight: bold;
           }
 
           .stat-count {
-            font-size: 1.25rem;
             color: #000;
+            font-size: 1.25rem;
           }
         }
       }
     }
 
     .info {
-      max-width: 90%;
       margin: 0 auto;
+      max-width: 90%;
     }
   }
 

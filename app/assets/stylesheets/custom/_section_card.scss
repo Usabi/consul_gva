@@ -17,19 +17,19 @@
   }
 
   &__title {
-    margin-top: 22.3px;
-    margin-left: 14.7px;
-    margin-bottom: 10.2px;
+    color: $brand;
     font-size: 18px;
     font-weight: bold;
-    color: $brand;
+    margin-bottom: 10.2px;
+    margin-left: 14.7px;
+    margin-top: 22.3px;
   }
 
   &__description {
-    padding: 0 14.7px !important;
+    color: $black-gva;
     font-size: 12px;
     line-height: 1.42;
-    color: $black-gva;
+    padding: 0 14.7px !important;
   }
 
   &__link {
