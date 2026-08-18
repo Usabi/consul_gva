@@ -5,30 +5,12 @@ class PttCaptchaApi
   BASE_PRE  = "https://innovacion-pre.gva.es/pai_bus_inno/CAPTCHA/CAPTCHA_REST_v1_00"
   BASE_PROD = "https://innovacion.gva.es/pai_bus_inno/CAPTCHA/CAPTCHA_REST_v1_00"
 
-  # Códigos de error del bus PAI (doc §5)
-  BUSINESS_ERRORS = {
-    "0101" => "Servicio PTT-CAPTCHA caído",
-    "0301" => "Organismo no autorizado — revisar credenciales PAI",
-    "0309" => "Error al verificar credenciales PAI",
-    "0800" => "Operación no existe en el servicio",
-    "0809" => "Falta cabecera x-api-key en secrets",
-    "0810" => "Falta cabecera aplicacion en secrets"
-  }.freeze
-
-  HTTP_ERRORS = {
-    "400" => "Petición incorrecta",
-    "401" => "No autorizada",
-    "402" => "Prohibida",
-    "404" => "Recurso no encontrado",
-    "422" => "No se puede procesar la petición"
-  }.freeze
-
-  def self.crear
+  def self.create_captcha
     response = post("/crear", { appId: app_id, nivel: "F" })
     response["idCaptcha"]
   end
 
-  def self.validar(id_captcha, valor_captcha)
+  def self.validate_captcha(id_captcha, valor_captcha)
     response = post("/validar", { idCaptcha: id_captcha, valorCaptcha: valor_captcha.to_s })
     response["valido"].to_s == "true"
   end
@@ -72,14 +54,16 @@ class PttCaptchaApi
     # Error de negocio PAI: {"errorMessage": "[0301]Organismo no autorizado"}
     if parsed["errorMessage"].present?
       code = parsed["errorMessage"][/\[(\d{4})\]/, 1]
-      description = BUSINESS_ERRORS[code] || parsed["errorMessage"]
+      description = I18n.t("ptt_captcha_api.business_errors.#{code}",
+                            locale: :es, default: parsed["errorMessage"])
       Rails.logger.error("PttCaptchaApi [#{path}] error PAI #{code}: #{description}")
       return
     end
 
     # Error HTTP genérico
     unless http_code == "200"
-      description = HTTP_ERRORS[http_code] || "desconocido"
+      description = I18n.t("ptt_captcha_api.http_errors.#{http_code}",
+                            locale: :es, default: I18n.t("ptt_captcha_api.unknown_error", locale: :es))
       Rails.logger.error("PttCaptchaApi [#{path}] HTTP #{http_code}: #{description}")
     end
   end
@@ -89,14 +73,14 @@ class PttCaptchaApi
   end
 
   private_class_method def self.app_id
-    Rails.application.secrets.ptt_app_id
+    PttCaptcha.configuration.app_id
   end
 
   private_class_method def self.x_api_key
-    Rails.application.secrets.ptt_x_api_key
+    PttCaptcha.configuration.x_api_key
   end
 
   private_class_method def self.aplicacion
-    Rails.application.secrets.ptt_aplicacion
+    PttCaptcha.configuration.aplicacion
   end
 end
