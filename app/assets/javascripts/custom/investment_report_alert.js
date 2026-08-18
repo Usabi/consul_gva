@@ -8,7 +8,7 @@
         } else if (this.checked && $("#budget_investment_feasibility_not_selected").is(":checked")) {
           return confirm(this.dataset.alert + "\n" + this.dataset.notSelectedAlert);
         } else if ($("#budget_investment_feasibility_takecharge").is(":checked")) {
-           return confirm(this.dataset.alert + "\n" + this.dataset.takechargeAlert);
+          return confirm(this.dataset.alert + "\n" + this.dataset.takechargeAlert);
         } else if ($("#budget_investment_feasibility_nextyearbudget").is(":checked")) {
           return confirm(this.dataset.alert + "\n" + this.dataset.nextYearBudgetAlert);
         } else if (this.checked) {
