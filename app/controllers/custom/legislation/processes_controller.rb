@@ -45,11 +45,14 @@ class Legislation::ProcessesController
   private
 
     def summary_sections
+      has_phases = @process.debate_phase.enabled? || @process.proposals_phase.enabled? ||
+                   @process.allegations_phase.enabled?
+
       [
         { key: "debate", enabled: @process.debate_phase.enabled? },
         { key: "proposals", enabled: @process.proposals_phase.enabled? },
         { key: "allegations", enabled: @process.allegations_phase.enabled? },
-        { key: "stats", enabled: true }
+        { key: "stats", enabled: has_phases }
       ].select { |section| section[:enabled] }
     end
 

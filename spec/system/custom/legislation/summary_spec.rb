@@ -6,15 +6,14 @@ describe "Legislation" do
     process = create(:legislation_process, end_date: Date.current - 1.day)
     visit summary_legislation_process_path(process)
 
-    expect(page).to have_content "Debate phase"
     expect(page).to have_content "1 debate"
     expect(page).to have_content I18n.t("admin.legislation.processes.default_question_title")
 
-    expect(page).to have_content "Proposals phase"
+    click_link "Proposals phase"
     expect(page).to have_content "No proposals"
     expect(page).to have_content "There are no proposals"
 
-    expect(page).to have_content "Comments phase"
+    click_link "Comments phase"
     expect(page).to have_content "No comments"
     expect(page).to have_content "There are no comments"
   end
@@ -38,7 +37,6 @@ describe "Legislation" do
     scenario "shows debates list including default question" do
       visit summary_legislation_process_path(process)
 
-      expect(page).to have_content "Debate phase"
       expect(page).to have_content "3 debates"
       expect(page).to have_link "Question 1"
       expect(page).to have_content "Answer 1"
@@ -47,11 +45,11 @@ describe "Legislation" do
       expect(page).to have_content "Answer 3"
       expect(page).to have_content "Answer 4"
 
-      expect(page).to have_content "Proposals phase"
+      click_link "Proposals phase"
       expect(page).to have_content "No proposals"
       expect(page).to have_content "There are no proposals"
 
-      expect(page).to have_content "Comments phase"
+      click_link "Comments phase"
       expect(page).to have_content "No comments"
       expect(page).to have_content "There are no comments"
     end
@@ -74,17 +72,16 @@ describe "Legislation" do
     scenario "shows proposals list with default question" do
       visit summary_legislation_process_path(process)
 
-      expect(page).to have_content "Debate phase"
       expect(page).to have_content "1 debate"
 
-      expect(page).to have_content "Proposals phase"
+      click_link "Proposals phase"
       expect(page).to have_content "2 proposals"
       expect(page).to have_link "Legislation proposal 1"
       expect(page).not_to have_content "Legislation proposal 2"
       expect(page).to have_link "Legislation proposal 3"
       expect(page).not_to have_content "Legislation proposal 4"
 
-      expect(page).to have_content "Comments phase"
+      click_link "Comments phase"
       expect(page).to have_content "No comments"
       expect(page).to have_content "There are no comments"
     end
@@ -124,14 +121,13 @@ describe "Legislation" do
     scenario "shows coments list with default question" do
       visit summary_legislation_process_path(process)
 
-      expect(page).to have_content "Debate phase"
       expect(page).to have_content "1 debate"
 
-      expect(page).to have_content "Proposals phase"
+      click_link "Proposals phase"
       expect(page).to have_content "No proposals"
       expect(page).to have_content "There are no proposals"
 
-      expect(page).to have_content "Comments phase"
+      click_link "Comments phase"
       expect(page).to have_content "Top comments"
       expect(page).not_to have_content "Comment 0"
       expect(page).to have_link "Comment 1"
