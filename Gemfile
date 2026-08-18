@@ -9,7 +9,7 @@ gem "parser", "3.3.8.0"
 
 gem "acts-as-taggable-on", "~> 11.0.0"
 gem "acts_as_votable", "~> 0.14.0"
-gem "ahoy_matey", "~> 5.2.0"
+gem "ahoy_matey", "~> 5.3.0"
 gem "airbrake", "~> 13.0.5"
 gem "ancestry", "~> 4.3.3"
 gem "audited", "~> 5.7.0"
