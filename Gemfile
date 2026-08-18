@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "rails", "7.0.8.7"
+gem "rails", "7.0.10"
 
 gem "drb"
 gem "fiddle"
