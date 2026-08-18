@@ -9,13 +9,13 @@
 <% if @investments.any? %>
   <h3 class="inline-block"><%= page_entries_info @investments %></h3>
   <%= render "admin/shared/columns_selector",
-        cookie: "investments-columns", default: %w[id title supports min_supports admin valuator geozone feasibility price valuation_finished visible_to_valuators selected winner incompatible] %>
+             cookie: "investments-columns", default: %w[id title supports min_supports admin valuator geozone feasibility price valuation_finished visible_to_valuators selected winner incompatible] %>
   <br>
 
   <%= render "filters_description", i18n_namespace: "admin.budget_investments.index" %>
 
-  <%= form_for([:admin, @budget], url: bulk_actions_admin_budget_budget_investments_path(@budget), html: { id: 'bulk-actions-form' }) do |f| %>
-    <button type="button" id="select-all" class="button small"><%= t("admin.budget_investments.index.select_all")%></button>
+  <%= form_for([:admin, @budget], url: bulk_actions_admin_budget_budget_investments_path(@budget), html: { id: "bulk-actions-form" }) do |f| %>
+    <button type="button" id="select-all" class="button small"><%= t("admin.budget_investments.index.select_all") %></button>
     <%= button_tag t("admin.budget_investments.index.visible_to_valuators_bulk"), type: "submit", class: "button small", value: "visible_to_valuators_bulk" %>
     <%= button_tag t("admin.budget_investments.index.selected_bulk"), type: "submit", class: "button small", value: "selected_bulk" %>
     <% if params[:advanced_filters]&.include?("selected") && @budget.phase.in?(["reviewing_ballots", "finished"]) %>

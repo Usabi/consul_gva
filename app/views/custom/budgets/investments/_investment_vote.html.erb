@@ -2,12 +2,12 @@
   <% if @budget.phase == 'selecting' %>
     <% reason = investment.reason_for_not_being_selectable_by(current_user) %>
     <%= link_to namespaced_budget_investment_unvote_path(investment),
-        class: 'remove-investment-project',
-        title: t('budgets.investments.investment.remove_support'),
-        method: "post",
-        remote: (current_user && current_user.voted_in_group?(investment.group) ? true : false),
-        data:   (current_user && current_user.voted_in_group?(investment.group) ? nil : { confirm: t('budgets.investments.investment.confirm_group', count: investment.group.max_votable_headings)} ) do %>
-      <span class="show-for-sr"><%= t('budgets.ballots.show.remove') %></span>
+                class: "remove-investment-project",
+                title: t("budgets.investments.investment.remove_support"),
+                method: "post",
+                remote: current_user && current_user.voted_in_group?(investment.group),
+                data: (current_user && current_user.voted_in_group?(investment.group) ? nil : { confirm: t("budgets.investments.investment.confirm_group", count: investment.group.max_votable_headings) }) do %>
+      <span class="show-for-sr"><%= t("budgets.ballots.show.remove") %></span>
       <span class="icon-x"></span>
     <% end %>
   <% end %>
