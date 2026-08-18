@@ -11,23 +11,23 @@ describe Users::RegistrationsController do
   end
 
   before do
-    allow(Rails.application.secrets).to receive(:ptt_app_id).and_return("TEST-APP")
+    allow(PttCaptcha.configuration).to receive(:app_id).and_return("TEST-APP")
   end
 
   describe "GET #new" do
-    context "when ptt_app_id is configured" do
+    context "when PttCaptcha app_id is configured" do
       it "generates a captcha and stores it in session" do
-        allow(PttCaptchaApi).to receive(:crear).and_return(captcha_id)
+        allow(PttCaptchaApi).to receive(:create_captcha).and_return(captcha_id)
         get :new
         expect(session[:ptt_captcha_id]).to eq(captcha_id)
       end
     end
 
-    context "when ptt_app_id is blank" do
-      before { allow(Rails.application.secrets).to receive(:ptt_app_id).and_return("") }
+    context "when PttCaptcha app_id is blank" do
+      before { allow(PttCaptcha.configuration).to receive(:app_id).and_return("") }
 
       it "does not call PttCaptchaApi" do
-        expect(PttCaptchaApi).not_to receive(:crear)
+        expect(PttCaptchaApi).not_to receive(:create_captcha)
         get :new
       end
 
@@ -41,14 +41,14 @@ describe Users::RegistrationsController do
   describe "POST #create" do
     before do
       InvisibleCaptcha.timestamp_enabled = false
-      allow(PttCaptchaApi).to receive(:crear).and_return(captcha_id)
+      allow(PttCaptchaApi).to receive(:create_captcha).and_return(captcha_id)
       session[:ptt_captcha_id] = captcha_id
     end
 
     after { InvisibleCaptcha.timestamp_enabled = true }
 
     context "when captcha is valid" do
-      before { allow(PttCaptchaApi).to receive(:validar).with(captcha_id, "1234").and_return(true) }
+      before { allow(PttCaptchaApi).to receive(:validate_captcha).with(captcha_id, "1234").and_return(true) }
 
       it "creates the user" do
         expect do
@@ -58,7 +58,7 @@ describe Users::RegistrationsController do
     end
 
     context "when captcha is invalid" do
-      before { allow(PttCaptchaApi).to receive(:validar).and_return(false) }
+      before { allow(PttCaptchaApi).to receive(:validate_captcha).and_return(false) }
 
       it "does not create the user" do
         expect do
@@ -73,7 +73,7 @@ describe Users::RegistrationsController do
 
       it "deletes old captcha and generates a new one" do
         new_captcha_id = "NEW-CAPTCHA-ID-002"
-        allow(PttCaptchaApi).to receive(:crear).and_return(new_captcha_id)
+        allow(PttCaptchaApi).to receive(:create_captcha).and_return(new_captcha_id)
         post :create, params: valid_params.merge(ptt_valor_captcha: "wrong")
         expect(session[:ptt_captcha_id]).to eq(new_captcha_id)
       end
@@ -81,17 +81,17 @@ describe Users::RegistrationsController do
 
     context "security: captcha id comes from session, not params" do
       it "validates against session id, ignoring any forged param" do
-        allow(PttCaptchaApi).to receive(:validar).and_return(true)
+        allow(PttCaptchaApi).to receive(:validate_captcha).and_return(true)
         post :create, params: valid_params.merge(ptt_valor_captcha: "1234",
                                                  ptt_captcha_id: "FORGED-ID")
-        expect(PttCaptchaApi).to have_received(:validar).with(captcha_id, anything)
+        expect(PttCaptchaApi).to have_received(:validate_captcha).with(captcha_id, anything)
       end
     end
   end
 
   describe "Google reCAPTCHA fallback" do
     before do
-      allow(Rails.application.secrets).to receive(:ptt_app_id).and_return("")
+      allow(PttCaptcha.configuration).to receive(:app_id).and_return("")
       InvisibleCaptcha.timestamp_enabled = false
     end
 
@@ -104,7 +104,7 @@ describe Users::RegistrationsController do
       end
 
       it "does not request a PTT captcha on #new" do
-        expect(PttCaptchaApi).not_to receive(:crear)
+        expect(PttCaptchaApi).not_to receive(:create_captcha)
         get :new
       end
 
@@ -127,12 +127,18 @@ describe Users::RegistrationsController do
       end
 
       it "does not request a PTT captcha on #new" do
-        expect(PttCaptchaApi).not_to receive(:crear)
+        expect(PttCaptchaApi).not_to receive(:create_captcha)
         get :new
       end
 
       it "creates the user without any captcha check" do
         expect { post :create, params: valid_params }.to change(User, :count).by(1)
+      end
+
+      it "does not render any captcha widget", render_views: true do
+        get :new
+        expect(response.body).not_to include("data-captcha-id")
+        expect(response.body).not_to include("g-recaptcha")
       end
     end
   end

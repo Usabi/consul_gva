@@ -45,11 +45,7 @@
                                 title: t("shared.target_blank"),
                                 target: "_blank")
                 ) %>
-      <% if ptt_captcha_enabled? %>
-        <%= ptt_captcha_tags %>
-      <% elsif google_recaptcha_enabled? %>
-        <%= recaptcha_tags %>
-      <% end %>
+      <%= render Users::CaptchaComponent.new %>
       <div class="small-12 medium-6 small-centered">
         <%= f.submit t("devise_views.users.registrations.new.submit"), class: "button expanded" %>
       </div>

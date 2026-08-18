@@ -9,14 +9,14 @@ describe "PTT captcha widget (JavaScript)" do
   end
 
   before do
-    allow(Rails.application.secrets).to receive(:ptt_app_id).and_return("TEST-APP")
-    allow(PttCaptchaApi).to receive(:crear).and_return(captcha_id)
+    allow(PttCaptcha.configuration).to receive(:app_id).and_return("TEST-APP")
+    allow(PttCaptchaApi).to receive(:create_captcha).and_return(captcha_id)
     allow(PttCaptchaApi).to receive(:front_js_url).and_return(stub_front_js_url)
   end
 
   scenario "fills the hidden field with the widget value and submits the form" do
     user = create(:user, email: "citizen@consul.org", password: "12345678")
-    allow(PttCaptchaApi).to receive(:validar).with(captcha_id, "STUBBED-CAPTCHA-VALUE").and_return(true)
+    allow(PttCaptchaApi).to receive(:validate_captcha).with(captcha_id, "STUBBED-CAPTCHA-VALUE").and_return(true)
 
     visit new_user_session_path
 
@@ -27,12 +27,12 @@ describe "PTT captcha widget (JavaScript)" do
     click_button "Enter"
 
     expect(page).to have_content("You have been signed in successfully")
-    expect(PttCaptchaApi).to have_received(:validar).with(captcha_id, "STUBBED-CAPTCHA-VALUE")
+    expect(PttCaptchaApi).to have_received(:validate_captcha).with(captcha_id, "STUBBED-CAPTCHA-VALUE")
   end
 
   scenario "blocks sign in when the widget value fails validation" do
     user = create(:user, email: "citizen@consul.org", password: "12345678")
-    allow(PttCaptchaApi).to receive(:validar).and_return(false)
+    allow(PttCaptchaApi).to receive(:validate_captcha).and_return(false)
 
     visit new_user_session_path
     fill_in "user_login", with: user.email

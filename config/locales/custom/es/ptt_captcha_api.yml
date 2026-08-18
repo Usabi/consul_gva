@@ -1,0 +1,16 @@
+es:
+  ptt_captcha_api:
+    business_errors:
+      "0101": Servicio PTT-CAPTCHA caído
+      "0301": Organismo no autorizado — revisar credenciales PAI
+      "0309": Error al verificar credenciales PAI
+      "0800": Operación no existe en el servicio
+      "0809": Falta cabecera x-api-key en secrets
+      "0810": Falta cabecera aplicacion en secrets
+    http_errors:
+      "400": Petición incorrecta
+      "401": No autorizada
+      "402": Prohibida
+      "404": Recurso no encontrado
+      "422": No se puede procesar la petición
+    unknown_error: desconocido

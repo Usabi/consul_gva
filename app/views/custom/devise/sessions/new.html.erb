@@ -19,15 +19,9 @@
       <%= link_to t("devise_views.shared.links.new_password"), new_password_path(resource_name), class: "float-right" %>
     </div>
 
-    <% if ptt_captcha_enabled? %>
-      <div class="small-12 column">
-        <%= ptt_captcha_tags %>
-      </div>
-    <% elsif google_recaptcha_enabled? %>
-      <div class="small-12 column">
-        <%= recaptcha_tags %>
-      </div>
-    <% end %>
+    <div class="small-12 column">
+      <%= render Users::CaptchaComponent.new %>
+    </div>
 
     <% if devise_mapping.rememberable? %>
       <div class="small-12 column">

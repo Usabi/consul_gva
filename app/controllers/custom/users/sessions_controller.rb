@@ -1,7 +1,7 @@
 load Rails.root.join("app", "controllers", "users", "sessions_controller.rb")
 
 class Users::SessionsController
-  include PttCaptchaProtected
+  include CaptchaProtected
 
   private
 
