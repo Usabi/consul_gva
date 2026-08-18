@@ -733,9 +733,9 @@ GEM
     uri (1.1.1)
     uuidtools (2.2.0)
     version_gem (1.1.4)
-    view_component (3.11.0)
-      activesupport (>= 5.2.0, < 8.0)
-      concurrent-ruby (~> 1.0)
+    view_component (3.26.0)
+      activesupport (>= 5.2.0, < 8.2)
+      concurrent-ruby (~> 1)
       method_source (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -758,7 +758,7 @@ GEM
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    whenever (1.1.2)
+    whenever (1.0.0)
       chronic (>= 0.6.3)
     wicked_pdf (2.8.1)
       activesupport
@@ -882,10 +882,10 @@ DEPENDENCIES
   turnout (~> 2.5.0)
   uglifier (~> 4.2.1)
   uuidtools (~> 2.2.0)
-  view_component (~> 3.11.0)
+  view_component (~> 3.26.0)
   web-console (~> 4.2.1)
   webdrivers
-  whenever (~> 1.1.2)
+  whenever (~> 1.0.0)
   wicked_pdf (~> 2.8.1)
   wkhtmltopdf-binary (~> 0.12.6)
 
