@@ -1,10 +1,10 @@
 <div id="stats_debates">
   <div class="header-stats">
     <%= image_tag("icon-sections/ico-debatir.png", alt: "") unless summary? %>
-    <h2 class="<%= summary? ? 'sidebar-title' : '' %>"><%= t("stats.debates.title") %></h2>
+    <h2 class="<%= summary? ? "sidebar-title" : "" %>"><%= t("stats.debates.title") %></h2>
   </div>
 
-  <div class="<%= summary? ? 'summary-box' : '' %>">
+  <div class="<%= summary? ? "summary-box" : "" %>">
     <div class="stats-section">
       <h4 class="stats-subtitle"><%= t("stats.debates.general") %></h4>
       <div class="stats-row">
