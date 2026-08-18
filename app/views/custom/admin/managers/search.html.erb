@@ -6,8 +6,8 @@
   <% if @users.any? %>
     <h3><%= page_entries_info @users %></h3>
     <%= link_to t("admin.budget_investments.index.download_current_selection"),
-              search_admin_managers_path(csv_params),
-              class: "float-right small clear" %>
+                search_admin_managers_path(csv_params),
+                class: "float-right small clear" %>
 
     <table>
       <thead>

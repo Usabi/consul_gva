@@ -1,7 +1,7 @@
 <tr id="<%= dom_id(proposal) %>" style="min-height: 12rem;">
   <td style="padding: 15px; border-top: 1px solid #e5e6e9; border-bottom: 1px solid #d0d1d5; border-left: 1px solid #dfe0e4; border-radius: 0; box-shadow: 0 1px 3px 0 #dee0e3;">
     <% cache [locale_and_user_status(proposal), "index", proposal, proposal.author] do %>
-      <h3 style="font-size: 1.5rem"><%= link_to proposal.title, namespaced_proposal_path(proposal), {:style=>'color: #222;'} %></h3>
+      <h3 style="font-size: 1.5rem"><%= link_to proposal.title, namespaced_proposal_path(proposal), { style: "color: #222;" } %></h3>
       <p>
         <%= l proposal.created_at.to_date %>
 
