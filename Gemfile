@@ -82,8 +82,8 @@ end
 group :test do
   gem "capybara", "~> 3.40.0"
   gem "capybara-webmock", "~> 0.7.0"
-  gem "email_spec", "~> 2.3.0"
-  gem "pdf-reader", "~> 2.16.0"
+  gem "email_spec", "~> 2.3.1"
+  gem "pdf-reader", "~> 2.14.1"
   gem "rspec-rails", "~> 7.1.1"
   gem "selenium-webdriver", "~> 4.44.0"
   gem "simplecov", "~> 0.22.0", require: false
