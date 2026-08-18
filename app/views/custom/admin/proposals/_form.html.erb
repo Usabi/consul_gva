@@ -26,18 +26,18 @@
         <option value="<%= proposal.id %>" <%= "selected" if proposal.id == @proposal.duplicated_of_proposal_id %>>
           <%= "ID#{proposal.id} - #{proposal.title}" %>
         </option>
-      <% end %>
-    </select>
-    
-    <legend">
-      <span class="help-text">
-        <%= t("admin.proposals.form.mail_template", link: link_to(t("admin.proposals.form.here"), admin_system_email_view_path('duplicated_proposal_for_author'))).html_safe %>
-      </span>
-    </legend>
-  </div>
+        <% end %>
+      </select>
 
-  <hr>
+      <legend">
+        <span class="help-text">
+          <%= t("admin.proposals.form.mail_template", link: link_to(t("admin.proposals.form.here"), admin_system_email_view_path('duplicated_proposal_for_author'))).html_safe %>
+        </span>
+      </legend>
+    </div>
 
-  <%= f.submit t("admin.proposals.form.update"), class: "button success" %>
+    <hr>
 
-<% end %>
+    <%= f.submit t("admin.proposals.form.update"), class: "button success" %>
+
+  <% end %>

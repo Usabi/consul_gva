@@ -3,7 +3,7 @@
     <%= render 'admin/legislation_menu' %>
   <% end %>
   <% if current_user.budget_manager? %>
-      <%= render 'admin/budget_manager_menu' %>
+    <%= render 'admin/budget_manager_menu' %>
   <% end %>
 <%else%>
   <% if current_user.supporter? %>

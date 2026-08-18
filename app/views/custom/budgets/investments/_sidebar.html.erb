@@ -49,13 +49,13 @@
   <% end %>
   <%= render 'budgets/investments/headings' %>
   <div id="my_ballot">
-  <%= render Budgets::Investments::MyBallotComponent.new(
+    <%= render Budgets::Investments::MyBallotComponent.new(
     ballot: @ballot,
     heading: @heading,
     investment_ids: @investment_ids,
     assigned_heading: @assigned_heading
   ) %>
-</div>
+  </div>
 </div>
 
 <%= render Budgets::Investments::ContentBlocksComponent.new(@heading) %>

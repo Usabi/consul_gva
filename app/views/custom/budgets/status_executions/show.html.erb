@@ -1,7 +1,7 @@
 <% provide :title, t("budgets.executions.page_title", budget: @budget.name) %>
 <% content_for :meta_description do %><%= @budget.description_for_phase("finished") %><% end %>
 <% provide :social_media_meta_tags do %>
-<%= render "shared/social_media_meta_tags",
+  <%= render "shared/social_media_meta_tags",
            social_url: budget_executions_url(@budget),
            social_title: @budget.name,
            social_description: @budget.description_for_phase("finished") %>
@@ -27,7 +27,7 @@
 
 <%= render "budgets/subnav", budget: @budget %>
 
- <% if @investments.any? %>
+<% if @investments.any? %>
   <div id="advanced_statistics" class="participation-stats">
     <h3 class="section-title"><%=t("budgets.status_executions.link")%></h3>
     <div id="total_investments" class="stats-group">
@@ -47,7 +47,7 @@
                                 t("budgets.milestone.statuses.executed")) %>
     </div>
   </div>
-  <% end %>
+<% end %>
 <div class="row">
 
   <div class="small-12 medium-9 large-10 column">

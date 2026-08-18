@@ -14,7 +14,7 @@
 
 <div class="small-12 column callout highlight">
   <p><strong><%= t("admin.citizen_newsletters.show.created_at") %>:</strong>
-             <%= l @citizen_newsletter.created_at.to_datetime, format: :long %></p>
+    <%= l @citizen_newsletter.created_at.to_datetime, format: :long %></p>
   <p><strong><%= t("admin.citizen_newsletters.show.status") %>:</strong>
     <span class="label <%= @citizen_newsletter.status_class %>">
       <%= t("admin.citizen_newsletters.index.#{@citizen_newsletter.status}") %>

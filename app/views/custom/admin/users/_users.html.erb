@@ -21,81 +21,81 @@
         <tr>
           <% if @current_filter == 'residence_requested' %>
             <th />
-          <% end %>
-          <% if @current_filter == "erased" %>
-            <th scope="col"><%= t("admin.users.columns.id") %></th>
-            <th scope="col"><%= t("admin.users.columns.erase_reason") %></th>
-          <% else %>
-            <th scope="col"><%= t("admin.users.columns.name") %></th>
-            <th scope="col"><%= t("admin.users.columns.email") %></th>
-            <th scope="col"><%= t("admin.users.columns.document_number") %></th>
-            <th scope="col"><%= t("admin.users.columns.roles") %></th>
-            <th scope="col"><%= t("admin.users.columns.verification_level") %></th>
-            <th scope="col"><%= t("admin.users.columns.activation_status") %></th>
-            <th scope="col"><%= t("admin.users.columns.postal_code") %></th>
-            <% if @current_filter == "residence_requested" %>
-              <th scope="col"><%= t("admin.users.columns.residence_requested_reason") %></th>
-            <% end %>
-            <th scope="col"><%= t("admin.users.columns.services_results") %></th>
-          <% end %>
-        </tr>
-      </thead>
-      <tbody>
-        <% @users.each do |user| %>
-          <tr>
-            <% if @current_filter == 'residence_requested' %>
-              <td class="text-center">
-                <% if user.residence_requested? %>
-                  <%= check_box_tag "user_ids[]", user.id, nil, id: "#{dom_id(user)}_check" %>
-                <% end %>
-              </td>
             <% end %>
             <% if @current_filter == "erased" %>
-              <td><%= link_to user.id, user_path(user), target: "_blank" %></td>
-              <td><%= user.erase_reason %></td>
+              <th scope="col"><%= t("admin.users.columns.id") %></th>
+              <th scope="col"><%= t("admin.users.columns.erase_reason") %></th>
             <% else %>
-              <td><%= link_to user.name, user_path(user), target: "_blank" %></td>
-              <td><%= user.email %></td>
-              <td><%= user.document_number %></td>
-              <td><%= display_user_roles(user) %></td>
-              <td>
-                <% if user.verified_at && user.residence_requested_at %>
-                  <span title="<%= special_verification_reason(user) %>">
-                    <%= user.user_type %> *
-                  </span>
-                <% else %>
-                  <%= user.user_type %>
-                <% end %>
-              </td>
-              <td><%= user.confirmed_at? ? t("admin.users.account.active_status") : t("admin.users.account.inactive_status") %></td>
-              <td><%= user.postal_code %></td>
-              <% if @current_filter == 'residence_requested' %>
-                <td><%= special_verification_reason(user) %></td>
+              <th scope="col"><%= t("admin.users.columns.name") %></th>
+              <th scope="col"><%= t("admin.users.columns.email") %></th>
+              <th scope="col"><%= t("admin.users.columns.document_number") %></th>
+              <th scope="col"><%= t("admin.users.columns.roles") %></th>
+              <th scope="col"><%= t("admin.users.columns.verification_level") %></th>
+              <th scope="col"><%= t("admin.users.columns.activation_status") %></th>
+              <th scope="col"><%= t("admin.users.columns.postal_code") %></th>
+              <% if @current_filter == "residence_requested" %>
+                <th scope="col"><%= t("admin.users.columns.residence_requested_reason") %></th>
               <% end %>
-              <td>
-                <div class="services_results">
-                  <%= user.services_results %>
-                </div>
-              </td>
+              <th scope="col"><%= t("admin.users.columns.services_results") %></th>
             <% end %>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <% if @current_filter == 'residence_requested' %>
+                <td class="text-center">
+                  <% if user.residence_requested? %>
+                    <%= check_box_tag "user_ids[]", user.id, nil, id: "#{dom_id(user)}_check" %>
+                  <% end %>
+                </td>
+              <% end %>
+              <% if @current_filter == "erased" %>
+                <td><%= link_to user.id, user_path(user), target: "_blank" %></td>
+                <td><%= user.erase_reason %></td>
+              <% else %>
+                <td><%= link_to user.name, user_path(user), target: "_blank" %></td>
+                <td><%= user.email %></td>
+                <td><%= user.document_number %></td>
+                <td><%= display_user_roles(user) %></td>
+                <td>
+                  <% if user.verified_at && user.residence_requested_at %>
+                    <span title="<%= special_verification_reason(user) %>">
+                      <%= user.user_type %> *
+                    </span>
+                  <% else %>
+                    <%= user.user_type %>
+                  <% end %>
+                </td>
+                <td><%= user.confirmed_at? ? t("admin.users.account.active_status") : t("admin.users.account.inactive_status") %></td>
+                <td><%= user.postal_code %></td>
+                <% if @current_filter == 'residence_requested' %>
+                  <td><%= special_verification_reason(user) %></td>
+                <% end %>
+                <td>
+                  <div class="services_results">
+                    <%= user.services_results %>
+                  </div>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-    <% if @current_filter == 'residence_requested' %>
-      <div class="float-right">
-        <%= submit_tag t('admin.verifications.index.verify'),
+      <% if @current_filter == 'residence_requested' %>
+        <div class="float-right">
+          <%= submit_tag t('admin.verifications.index.verify'),
           name: "request_verification",
           class: "button hollow alert",
           data: {confirm: t('admin.verifications.index.confirm')}
         %>
-      </div>
+        </div>
+      <% end %>
+      <%= paginate @users %>
     <% end %>
-    <%= paginate @users %>
+  <% else %>
+    <div class="callout primary">
+      <%= t("admin.users.index.no_users") %>
+    </div>
   <% end %>
-<% else %>
-  <div class="callout primary">
-    <%= t("admin.users.index.no_users") %>
-  </div>
-<% end %>
