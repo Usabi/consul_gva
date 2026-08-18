@@ -562,9 +562,7 @@ GEM
     rbtree3 (0.7.1)
     rdoc (6.6.3.1)
       psych (>= 4.0.0)
-    recaptcha (5.12.3)
-      json
-      mail
+    recaptcha (5.21.2)
     recipient_interceptor (0.3.3)
       mail
     redcarpet (3.6.1)
