@@ -25,11 +25,10 @@
                                                    label: t("devise_views.organizations.registrations.new.password_confirmation_label") %>
 
       <%= f.check_box :terms_of_service,
-        title: t("devise_views.users.registrations.new.terms_title"),
-        label: t("devise_views.users.registrations.new.terms",
-                 use_terms: new_window_link_to(t("devise_views.users.registrations.new.use_terms_link"), "/conditions"),
-                 privacy_terms: new_window_link_to(t("devise_views.users.registrations.new.privacy_terms_link"), "/privacy")
-                ) %>
+                      title: t("devise_views.users.registrations.new.terms_title"),
+                      label: t("devise_views.users.registrations.new.terms",
+                               use_terms: new_window_link_to(t("devise_views.users.registrations.new.use_terms_link"), "/conditions"),
+                               privacy_terms: new_window_link_to(t("devise_views.users.registrations.new.privacy_terms_link"), "/privacy")) %>
 
       <div class="small-12 medium-6 small-centered">
         <%= f.submit t("devise_views.organizations.registrations.new.submit"), class: "button expanded" %>
