@@ -4,8 +4,8 @@
     <div class="filter">
 
       <%= select_tag("advanced_search[date_min]", date_range_options,
-                      include_blank: t("shared.advanced_search.date_range_blank"),
-                      id: "js-advanced-search-date-min") %>
+                     include_blank: t("shared.advanced_search.date_range_blank"),
+                     id: "js-advanced-search-date-min") %>
     </div>
 
     <div id="js-custom-date" class="custom-date-filters" style="display: none">
@@ -14,37 +14,37 @@
           <%= t("shared.advanced_search.from") %> (<%= t("shared.advanced_search.date_placeholder") %>)
         </label>
         <%= text_field_tag "advanced_search[date_min]",
-                            advanced_search[:date_min],
-                            class: "js-calendar" %>
+                           advanced_search[:date_min],
+                           class: "js-calendar" %>
       </div>
       <div class="filter">
         <label for="advanced_search_date_max">
           <%= t("shared.advanced_search.to") %> (<%= t("shared.advanced_search.date_placeholder") %>)
         </label>
         <%= text_field_tag "advanced_search[date_max]",
-                            advanced_search[:date_max],
-                            class: "js-calendar" %>
+                           advanced_search[:date_max],
+                           class: "js-calendar" %>
       </div>
     </div>
   </div>
   <div class="small-12 medium-3 column">
     <div class="filter">
       <%= select_tag :filter,
-                    options_for_select([
-                      [t("admin.polls.filters.all"), "all"],
-                      [t("admin.polls.filters.current"), "current"],
-                      [t("admin.polls.filters.expired"), "expired"]
-                    ], params[:filter]),
-                    prompt: t("admin.polls.filters.prompt") %>
+                     options_for_select([
+                       [t("admin.polls.filters.all"), "all"],
+                       [t("admin.polls.filters.current"), "current"],
+                       [t("admin.polls.filters.expired"), "expired"]
+                     ], params[:filter]),
+                     prompt: t("admin.polls.filters.prompt") %>
     </div>
   </div>
   <div class="small-12 medium-3 column">
     <%= select_tag :goal, admin_goal_options(params[:goal]),
-                      include_blank: t("shared.advanced_search.goal_blank") %>
+                   include_blank: t("shared.advanced_search.goal_blank") %>
   </div>
   <div class="small-12 medium-3 column">
     <%= select_tag :target, admin_target_options(params[:target]),
-                      include_blank: t("shared.advanced_search.target_blank") %>
+                   include_blank: t("shared.advanced_search.target_blank") %>
   </div>
 
   <div class="small-12 medium-6 column">

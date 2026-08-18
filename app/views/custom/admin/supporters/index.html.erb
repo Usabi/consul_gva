@@ -6,8 +6,8 @@
   <% if @supporters.any? %>
     <h3><%= page_entries_info @supporters %></h3>
     <%= link_to t("admin.budget_investments.index.download_current_selection"),
-              admin_supporters_path(csv_params),
-              class: "float-right small clear" %>
+                admin_supporters_path(csv_params),
+                class: "float-right small clear" %>
 
     <table>
       <thead>
