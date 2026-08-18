@@ -293,7 +293,7 @@ GEM
     highline (2.0.3)
     htmlbeautifier (1.4.3)
     htmlentities (4.3.4)
-    httparty (0.22.0)
+    httparty (0.24.2)
       csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
@@ -392,8 +392,8 @@ GEM
     mixlib-shellout (3.4.10)
       chef-utils
     multi_json (1.15.0)
-    multi_xml (0.7.1)
-      bigdecimal (~> 3.1)
+    multi_xml (0.9.1)
+      bigdecimal (>= 3.1, < 5)
     mutex_m (0.3.0)
     net-http (0.9.1)
       uri (>= 0.11.1)
@@ -493,7 +493,7 @@ GEM
     pronto-rubocop (0.11.6)
       pronto (~> 0.11.0)
       rubocop (>= 0.63.1, < 2.0)
-    pronto-stylelint (0.11.0)
+    pronto-stylelint (0.11.1)
       pronto (>= 0.10, < 0.12)
       rugged (>= 0.24, < 2.0)
     pry (0.15.2)
@@ -633,7 +633,7 @@ GEM
       ffi (~> 1.12)
       logger
     rubyzip (2.4.1)
-    rugged (1.6.3)
+    rugged (1.9.6)
     rvm1-capistrano3 (1.4.0)
       capistrano (~> 3.0)
       sshkit (>= 1.2)
@@ -662,7 +662,7 @@ GEM
       nokogiri (>= 1.8.1)
       nori (~> 2.7)
       wasabi (>= 5.1.0, < 6)
-    sawyer (0.9.2)
+    sawyer (0.9.3)
       addressable (>= 2.3.5)
       faraday (>= 0.17.3, < 3)
     securerandom (0.4.1)
@@ -845,7 +845,7 @@ DEPENDENCIES
   pronto-erb_lint (~> 0.1.6)
   pronto-eslint (~> 0.11.1)
   pronto-rubocop (~> 0.11.6)
-  pronto-stylelint (~> 0.11.0)
+  pronto-stylelint (~> 0.11.1)
   pry
   pry-rails
   puma (~> 5.6.9)
