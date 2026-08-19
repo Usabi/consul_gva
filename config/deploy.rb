@@ -50,6 +50,12 @@ set :local_user, ENV["USER"]
 # set :fnm_install_node_command, -> { "#{fetch(:fnm_setup_command)} && fnm use --install-if-missing" }
 # set :fnm_map_bins, %w[node npm rake yarn]
 
+# Puma se gestiona a mano en el servidor, Capistrano no lo toca
+# set :puma_conf, "#{release_path}/config/puma/#{fetch(:rails_env)}.rb"
+# set :puma_systemctl_user, :user
+# set :puma_enable_socket_service, true
+# set :puma_service_unit_env_vars, ["EXECJS_RUNTIME=Disabled"]
+
 set :delayed_job_workers, 2
 set :delayed_job_roles, :background
 set :delayed_job_monitor, true
@@ -64,6 +70,7 @@ namespace :deploy do
 
   after "deploy:migrate", "add_new_settings"
 
+  # after :publishing, "setup_puma"
   # after :finished, "refresh_sitemap"
 
   desc "Deploys and runs the tasks needed to upgrade to a new release"
@@ -72,6 +79,7 @@ namespace :deploy do
     invoke "deploy"
   end
 
+  # before "deploy:restart", "puma:smart_restart"
   before "deploy:restart", "delayed_job:restart"
 end
 
@@ -144,6 +152,19 @@ task :add_new_settings do
     end
   end
 end
+
+# Puma se gestiona a mano en el servidor, Capistrano no lo toca
+# desc "Create pid and socket folders needed by puma"
+# task :setup_puma do
+#   on roles(fetch(:puma_role)) do
+#     with rails_env: fetch(:rails_env) do
+#       execute "mkdir -p #{shared_path}/tmp/sockets; true"
+#       execute "mkdir -p #{shared_path}/tmp/pids; true"
+#     end
+#   end
+#
+#   after "setup_puma", "puma:install"
+# end
 
 task :execute_release_tasks do
   on roles(:app) do
