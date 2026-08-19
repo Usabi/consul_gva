@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock "~> 3.19.1"
+lock "~> 3.20.1"
 
 def deploysecret(key, default: "")
   @deploy_secrets_yml ||= YAML.load_file("config/deploy-secrets.yml", aliases: true)[fetch(:stage).to_s]
@@ -17,7 +17,7 @@ end
 set :rails_env, fetch(:stage)
 # set :default_env, { EXECJS_RUNTIME: "Disabled" }
 set :rvm1_map_bins, -> { fetch(:rvm_map_bins).to_a.concat(%w[rake gem bundle ruby]).uniq }
-set :rvm_ruby_version, "3.3.8"
+set :rvm_ruby_version, "3.3.10"
 
 set :application, deploysecret(:app_name, default: "consul")
 set :deploy_to, deploysecret(:deploy_to)

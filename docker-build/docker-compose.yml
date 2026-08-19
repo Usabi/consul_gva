@@ -3,7 +3,7 @@ services:
     build:
       context: .
       args:
-        RUBY_VERSION: 3.3.8
+        RUBY_VERSION: 3.3.10
         HOST_UID: ${HOST_UID:-1000}
     image: mi-build:alma9
     # Desomentar para MAC ARM
