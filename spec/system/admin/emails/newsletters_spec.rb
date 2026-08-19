@@ -57,7 +57,7 @@ describe "Admin newsletter emails", :admin do
     end
   end
 
-  scenario "Create" do
+  scenario "Create", :consul do
     visit admin_newsletters_path
     click_link "New newsletter"
 
@@ -75,7 +75,7 @@ describe "Admin newsletter emails", :admin do
     expect(page).to have_content "This is a body"
   end
 
-  scenario "Update" do
+  scenario "Update", :consul do
     newsletter = create(:newsletter)
 
     visit admin_newsletters_path

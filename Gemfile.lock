@@ -358,7 +358,7 @@ GEM
       railties (>= 6.1)
       rexml
     lint_roller (1.1.0)
-    logger (1.7.0)
+    logger (1.6.0)
     loofah (2.24.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -832,7 +832,7 @@ DEPENDENCIES
   launchy (~> 3.1.1)
   lefthook
   letter_opener_web (~> 3.0.0)
-  logger
+  logger (= 1.6.0)
   mdl (~> 0.18.1)
   mini_magick (~> 4.13.2)
   omniauth (~> 2.1.2)
