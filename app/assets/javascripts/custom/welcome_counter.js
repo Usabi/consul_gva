@@ -1,11 +1,13 @@
-document.addEventListener('DOMContentLoaded', function(event) {
-  document.querySelectorAll('.welcome-counter').forEach(function(element) {
-    new WelcomeCounter(element);
-  });
-});
+(function() {
+  "use strict";
 
-class WelcomeCounter {
-  constructor(element) {
+  document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll(".welcome-counter").forEach(function(element) {
+      new WelcomeCounter(element);
+    });
+  });
+
+  function WelcomeCounter(element) {
     this.element = element;
     this.countTo = parseInt(element.innerHTML);
 
@@ -17,18 +19,18 @@ class WelcomeCounter {
     this.countInterval = setInterval(this.countUp.bind(this), 10);
   }
 
-  countUp() {
-    if(this.current == this.countTo) {
+  WelcomeCounter.prototype.countUp = function() {
+    if (this.current === this.countTo) {
       clearInterval(this.countInterval);
       this.countFetchInterval = setInterval(this.countFetch.bind(this), 10000);
     }
     this.element.innerHTML = this.current++;
-  }
+  };
 
-  countFetch() {
+  WelcomeCounter.prototype.countFetch = function() {
     $.ajax({
-      url: '/users_count.json',
-      dataType: 'json',
+      url: "/users_count.json",
+      dataType: "json",
       success: function(data) {
         if (data.count > this.countTo) {
           clearInterval(this.countFetchInterval);
@@ -37,9 +39,9 @@ class WelcomeCounter {
         }
       }.bind(this)
     });
-  }
+  };
 
-  random(min, max) {
+  WelcomeCounter.prototype.random = function(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
-  }
-}
+  };
+}).call(this);

@@ -6,7 +6,7 @@ describe UserSegments do
   let(:user3) { create(:user) }
 
   describe ".segment_name" do
-    it "returns a readable name of the segment" do
+    it "returns a readable name of the segment", :consul do
       expect(UserSegments.segment_name("all_users")).to eq "All users"
       expect(UserSegments.segment_name("administrators")).to eq "Administrators"
       expect(UserSegments.segment_name("proposal_authors")).to eq "Proposal authors"

@@ -5,12 +5,11 @@
     $("textarea.html-area").each(function() {
       if ($(this).hasClass("admin")) {
         CKEDITOR.replace(this.name, { language: $("html").attr("lang"), toolbar: "admin", height: 500 });
-      } else if($(this).hasClass("custom")) {
+      } else if ($(this).hasClass("custom")) {
         CKEDITOR.replace(this.name, { language: $("html").attr("lang"), toolbar: "page", height: 500 });
-      } else  {
+      } else {
         CKEDITOR.replace(this.name, { language: $("html").attr("lang") });
       }
     });
-  }
-
+  };
 }).call(this);

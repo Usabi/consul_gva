@@ -20,22 +20,22 @@
   width: 100%;
 
   #search-input {
-    width: 100%;
     padding-right: 36px; // espacio para la flecha
+    width: 100%;
   }
 
   &::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: 12px;
-    margin-top: -3px;
-    width: 0;
-    height: 0;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
     border-top: 6px solid #555;
+    content: "";
+    height: 0;
+    margin-top: -3px;
     pointer-events: none;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    width: 0;
   }
 
   #search-input:focus + #options-container,
@@ -44,27 +44,27 @@
   }
 
   #options-container {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    max-height: 220px;
-    overflow-y: auto;
     background: #fff;
     border: 1px solid #ccc;
-    border-top: none;
     border-radius: 0 0 5px 5px;
+    border-top: none;
     box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    z-index: 20;
+    display: none;
     font-size: 1rem;
+    left: 0;
+    max-height: 220px;
+    overflow-y: auto;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    z-index: 20;
   }
 
   .option-item {
-    padding: 10px 12px;
     cursor: pointer;
-    white-space: nowrap;
+    padding: 10px 12px;
     transition: background 0.2s;
+    white-space: nowrap;
   }
 
   .option-item:hover,

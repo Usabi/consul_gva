@@ -17,10 +17,7 @@
 <% end %>
 
 <div>
-  <% if [
-          @search_terms,
-          @advanced_search_terms
-        ].any? %>
+  <% if [@search_terms, @advanced_search_terms].any? %>
     <div class="highlight no-margin-top padding margin-bottom">
       <div class="row">
         <div class="small-12 column">

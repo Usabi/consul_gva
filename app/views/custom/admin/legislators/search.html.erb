@@ -6,8 +6,8 @@
   <% if @users.any? %>
     <h3><%= page_entries_info @users %></h3>
     <%= link_to t("admin.budget_investments.index.download_current_selection"),
-              search_admin_legislators_path(csv_params),
-              class: "float-right small clear" %>
+                search_admin_legislators_path(csv_params),
+                class: "float-right small clear" %>
 
     <table>
       <thead>
@@ -16,15 +16,15 @@
         <th scope="col"><%= t("admin.shared.actions") %></th>
       </thead>
       <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= user.name %></td>
-          <td><%= user.email %></td>
-          <td>
-            <%= render Admin::Roles::TableActionsComponent.new(user.legislator ||user.build_legislator) %>
-          </td>
-        </tr>
-      <% end %>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td>
+              <%= render Admin::Roles::TableActionsComponent.new(user.legislator || user.build_legislator) %>
+            </td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   <% else %>

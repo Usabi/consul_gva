@@ -7,7 +7,7 @@ describe Users::RegistrationsController do
   let(:valid_params) do
     { user: { username: "newuser", email: "newuser@consul.org",
               password: "12345678", password_confirmation: "12345678",
-              terms_of_service: "1", address: "" } }
+              terms_of_service: "1", address: "" }}
   end
 
   before do

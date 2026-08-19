@@ -20,7 +20,7 @@
 <div id="middle">
   <h3 class="inline-block"><%= t("admin.homepage.middle_title") %></h3>
 
-   <%= render Admin::Widget::Cards::TableComponent.new(
+  <%= render Admin::Widget::Cards::TableComponent.new(
     @middle,
     no_cards_message: t("admin.homepage.no_cards"),
     actions: [:edit]

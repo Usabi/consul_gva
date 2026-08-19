@@ -2,10 +2,12 @@
   "use strict";
 
   function updateDocumentPositions(container) {
-    if (!container) return;
+    if (!container) {
+      return;
+    }
 
-    Array.from(container.children).forEach((item, index) => {
-      const positionField = item.querySelector('.document-position-field');
+    Array.from(container.children).forEach(function(item, index) {
+      var positionField = item.querySelector(".document-position-field");
       if (positionField) {
         positionField.value = index + 1;
       }
@@ -16,9 +18,10 @@
     initialize: function() {
       $(".sortable").each(function() {
         var $container = $(this);
-        var containerId = $container.attr('id');
+        var containerId = $container.attr("id");
 
-        var isDocumentContainer = (containerId === 'nested-documents' || containerId === 'nested-documents-consult-document');
+        var isDocumentContainer = (containerId === "nested-documents" ||
+                                    containerId === "nested-documents-consult-document");
 
         var sortableOptions = {
           animation: 150,
@@ -45,21 +48,20 @@
 
         // Only apply drag-handle for document containers
         if (isDocumentContainer) {
-          sortableOptions.handle = '.drag-handle';
+          sortableOptions.handle = ".drag-handle";
         }
 
         $container.sortable(sortableOptions);
 
         if (isDocumentContainer) {
-          $container.on('cocoon:after-insert cocoon:after-remove', function() {
+          $container.on("cocoon:after-insert cocoon:after-remove", function() {
             updateDocumentPositions($container[0]);
           });
         }
       });
 
-      updateDocumentPositions(document.getElementById('nested-documents'));
-      updateDocumentPositions(document.getElementById('nested-documents-consult-document'));
+      updateDocumentPositions(document.getElementById("nested-documents"));
+      updateDocumentPositions(document.getElementById("nested-documents-consult-document"));
     }
   };
-
 }).call(this);

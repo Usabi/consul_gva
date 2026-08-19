@@ -36,21 +36,19 @@ npm run lint:rubocop
 
 ## Configuración de ESLint
 
-En el archivo `.eslintrc.json` se ha añadido la siguiente configuración en la sección `overrides` para permitir que archivos de configuración Node.js (`*.config.js`) sean validados correctamente:
+En el archivo `eslint.config.cjs` (flat config, formato requerido desde ESLint 9) se ha añadido un bloque extra para permitir que archivos de configuración Node.js (`*.config.js`, `*.config.cjs`) sean validados correctamente:
 
-```json
-"overrides": [
-  {
-    "files": ["*.config.js"],
-    "env": {
-      "node": true,
-      "commonjs": true
+```js
+{
+  files: ["*.config.js", "*.config.cjs"],
+  languageOptions: {
+    globals: {
+      ...globals.node,
     },
-    "parserOptions": {
-      "ecmaVersion": 2020
-    }
-  }
-]
+    ecmaVersion: 2020,
+    sourceType: "commonjs",
+  },
+}
 ```
 
 Esto permite que archivos como `commitlint.config.js` utilicen sintaxis de Node.js (`module.exports`, `require()`) sin generar errores de linting.

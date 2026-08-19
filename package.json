@@ -2,23 +2,25 @@
   "name": "consuldemocracy",
   "dependencies": {
     "blueimp-file-upload": "^10.32.0",
-    "foundation-sites": "^6.8.1",
+    "foundation-sites": "^6.9.0",
     "jquery": "^3.7.1",
-    "jquery-ui": "^1.13.3",
+    "jquery-ui": "^1.14.2",
     "jquery-ujs": "^1.2.3",
     "leaflet": "^1.9.4",
     "leaflet.markercluster": "^1.5.3",
     "markdown-it": "^13.0.2"
   },
   "devDependencies": {
-    "@stylistic/stylelint-plugin": "^3.1.1",
-    "eslint": "^8.57.0",
+    "@eslint/js": "^10.0.1",
+    "@stylistic/stylelint-plugin": "^5.2.1",
+    "eslint": "^10.8.0",
+    "globals": "^17.8.0",
     "postcss-scss": "^4.0.9",
-    "stylelint": "^16.14.1",
-    "stylelint-order": "^6.0.4",
-    "stylelint-scss": "^6.11.0",
-    "@commitlint/cli": "^19.0.0",
-    "@commitlint/config-conventional": "^19.0.0"
+    "stylelint": "^17.14.1",
+    "stylelint-order": "^8.1.1",
+    "stylelint-scss": "^7.2.0",
+    "@commitlint/cli": "^21.2.1",
+    "@commitlint/config-conventional": "^21.2.0"
   },
   "scripts": {
     "test:rspec": "bundle exec rspec",

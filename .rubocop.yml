@@ -1,7 +1,14 @@
+inherit_from: .rubocop_todo.yml
+inherit_mode:
+  merge:
+    - Exclude
+
 require:
+  - rubocop-performance
+
+plugins:
   - rubocop-capybara
   - rubocop-factory_bot
-  - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
   - rubocop-rspec_rails
@@ -26,10 +33,10 @@ Capybara/ClickLinkOrButtonStyle:
   Enabled: true
   EnforcedStyle: strict
 
-Capybara/CurrentPathExpectation:
+Capybara/RSpec/CurrentPathExpectation:
   Enabled: true
 
-Capybara/NegationMatcher:
+Capybara/RSpec/NegationMatcher:
   Enabled: true
   EnforcedStyle: not_to
 
@@ -39,7 +46,7 @@ Capybara/RSpec/HaveSelector:
 Capybara/SpecificActions:
   Enabled: true
 
-Capybara/VisibilityMatcher:
+Capybara/RSpec/VisibilityMatcher:
   Enabled: true
 
 FactoryBot/AssociationStyle:

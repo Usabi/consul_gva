@@ -100,10 +100,36 @@ overrides:
   - files: app/assets/stylesheets/icons.scss
     rules:
       at-rule-descriptor-value-no-unknown: null
+  - files: app/assets/stylesheets/_custom_settings.scss
+    rules:
+      at-rule-descriptor-value-no-unknown: null
   - files: app/assets/stylesheets/legislation_process.scss
     rules:
       max-nesting-depth: 8
       selector-max-compound-selectors: 8
+  - files: app/assets/stylesheets/custom/_section_stats.scss
+    rules:
+      max-nesting-depth: 8
+      selector-max-compound-selectors: 8
+      selector-class-pattern: null
   - files: app/assets/stylesheets/shared/social_share.scss
     rules:
       selector-class-pattern: "^([a-z][a-z0-9]*)((-|_)[a-z0-9]+)*$"
+  - files:
+      - app/assets/stylesheets/custom/_admin_layout.scss
+      - app/assets/stylesheets/custom/_slider.scss
+      - app/assets/stylesheets/custom/proposals.scss
+    rules:
+      selector-max-id: null
+  - files: app/assets/stylesheets/custom/_budget.scss
+    rules:
+      scss/function-calculation-no-interpolation: null
+      selector-class-pattern: null
+  - files:
+      - app/assets/stylesheets/custom/_global.scss
+      - app/assets/stylesheets/custom/_section_icon.scss
+      - app/assets/stylesheets/custom/layout.scss
+      - app/assets/stylesheets/custom/legislation_process_form.scss
+      - app/assets/stylesheets/widgets/feeds/participation.scss
+    rules:
+      selector-class-pattern: null

@@ -10,8 +10,8 @@
 <% if @organizations.any? %>
   <h3><%= page_entries_info @organizations %></h3>
   <%= link_to t("admin.budget_investments.index.download_current_selection"),
-            admin_organizations_path(csv_params),
-            class: "float-right small clear" %>
+              admin_organizations_path(csv_params),
+              class: "float-right small clear" %>
 
   <table>
     <% hidden = 0 %>
@@ -24,30 +24,30 @@
       <th scpope="col" class="small-3"><%= t("admin.shared.actions") %></th>
     </thead>
     <tbody>
-    <% @organizations.each do |organization| %>
-      <% hidden += 1 and next if organization.user.nil? %>
-      <tr id="<%= dom_id(organization) %>">
-      <td><%= organization.name %></td>
-      <td><%= organization.email %></td>
-      <td><%= organization.phone_number %></td>
-      <td><%= organization.responsible_name %></td>
-      <td>
-        <% if organization.verified? %>
-          <span class="icon-check"></span>
-          <%= t("admin.organizations.index.verified") %>
-        <% elsif organization.rejected? %>
-          <span class="icon-x rejected"></span>
-          <%= t("admin.organizations.index.rejected") %>
-        <% else %>
-          <span class="icon-eye"></span>
-          <%= t("admin.organizations.index.pending") %>
-        <% end %>
-      </td>
-      <td>
-        <%= render Admin::Organizations::TableActionsComponent.new(organization) %>
-      </td>
-    </tr>
-    <% end %>
+      <% @organizations.each do |organization| %>
+        <% hidden += 1 and next if organization.user.nil? %>
+        <tr id="<%= dom_id(organization) %>">
+          <td><%= organization.name %></td>
+          <td><%= organization.email %></td>
+          <td><%= organization.phone_number %></td>
+          <td><%= organization.responsible_name %></td>
+          <td>
+            <% if organization.verified? %>
+              <span class="icon-check"></span>
+              <%= t("admin.organizations.index.verified") %>
+            <% elsif organization.rejected? %>
+              <span class="icon-x rejected"></span>
+              <%= t("admin.organizations.index.rejected") %>
+            <% else %>
+              <span class="icon-eye"></span>
+              <%= t("admin.organizations.index.pending") %>
+            <% end %>
+          </td>
+          <td>
+            <%= render Admin::Organizations::TableActionsComponent.new(organization) %>
+          </td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 

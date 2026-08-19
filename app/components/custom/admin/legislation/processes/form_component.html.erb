@@ -142,9 +142,9 @@
     <div class="small-12 medium-6 margin-bottom column end">
       <%- if @councils.present? %>
         <%= f.select :council_id,
-              @councils.map { |c| [c.title, c.id] },
-              { include_blank: @councils.any? ? "" : t("admin.councils.form.no_councils_defined") },
-              { disabled: @councils.blank? } %>
+                     @councils.map { |c| [c.title, c.id] },
+                     { include_blank: @councils.any? ? "" : t("admin.councils.form.no_councils_defined") },
+                     { disabled: @councils.blank? } %>
       <% end %>
       <% if helpers.current_ability.can? :create, Legislation::Council %>
         <%= link_to t("admin.legislation.processes.form.admin_councils"),
@@ -157,7 +157,7 @@
     <div class="small-12 column">
       <%= render Documents::NestedComponent.new(f) %>
     </div>
-     <% if controller_name == 'processes'%>
+    <% if controller_name == 'processes' %>
       <div class="small-12 column">
         <hr>
       </div>

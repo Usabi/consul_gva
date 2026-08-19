@@ -1,4 +1,4 @@
-<h2><%= t("admin.sdg.managers.index.title") %></h2>
+<h2><%= SDG::Manager.model_name.human(count: 2).upcase_first %></h2>
 
 <%= render "admin/shared/user_search", url: admin_sdg_managers_path %>
 
@@ -6,13 +6,13 @@
   <% if @users.any? %>
     <h3><%= page_entries_info @users %></h3>
     <%= link_to t("admin.budget_investments.index.download_current_selection"),
-              admin_sdg_managers_path(csv_params),
-              class: "float-right small clear" %>
+                admin_sdg_managers_path(csv_params),
+                class: "float-right small clear" %>
 
     <table>
       <thead>
-        <th scope="col"><%= t("admin.sdg.managers.index.name") %></th>
-        <th scope="col"><%= t("admin.sdg.managers.index.email") %></th>
+        <th scope="col"><%= SDG::Manager.human_attribute_name(:name) %></th>
+        <th scope="col"><%= SDG::Manager.human_attribute_name(:email) %></th>
         <th scope="col" class="small-3"><%= t("admin.shared.actions") %></th>
       </thead>
       <tbody>
@@ -33,7 +33,7 @@
     <%= paginate @users %>
   <% else %>
     <div class="callout primary">
-      <%= t("admin.sdg.managers.index.no_sdg_managers") %>
+      <%= t("admin.sdg_managers.index.no_sdg_managers") %>
     </div>
   <% end %>
 </div>

@@ -26,7 +26,9 @@
         <td>
           <%= alert_message.text %>
         </td>
-        <td><div class="callout <%= alert_message.flash_key %>"><%= t("activerecord.attributes.alert_message.flash_keys.#{alert_message.flash_key}") %></div></td>
+        <td>
+          <div class="callout <%= alert_message.flash_key %>"><%= t("activerecord.attributes.alert_message.flash_keys.#{alert_message.flash_key}") %></div>
+        </td>
         <td><%= render Admin::TableActionsComponent.new(alert_message) %></td>
       </tr>
     <% end %>

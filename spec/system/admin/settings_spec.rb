@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Admin settings", :admin do
-  scenario "Index" do
+  scenario "Index", :consul do
     visit admin_settings_path
 
     expect(page).to have_content "Level 1 public official"
@@ -9,7 +9,7 @@ describe "Admin settings", :admin do
     expect(page).to have_content "Comments body max length"
   end
 
-  scenario "Update" do
+  scenario "Update", :consul do
     visit admin_settings_path
 
     within "tr", text: "Level 1 public official" do
@@ -180,7 +180,7 @@ describe "Admin settings", :admin do
       end
     end
 
-    scenario "On #tab-configuration" do
+    scenario "On #tab-configuration", :consul do
       visit admin_settings_path
 
       within "tr", text: "Level 1 public official" do
@@ -253,7 +253,7 @@ describe "Admin settings", :admin do
       expect(page).to have_css("div#tab-feature-flags.is-active")
     end
 
-    scenario "On #tab-sdg-configuration" do
+    scenario "On #tab-sdg-configuration", :consul do
       Setting["feature.sdg"] = true
       visit admin_settings_path
       click_link "SDG configuration"

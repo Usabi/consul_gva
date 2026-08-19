@@ -14,7 +14,7 @@
         <% elsif comment.as_moderator? %>
           <%= image_tag("avatar_moderator.png", size: 32, class: "moderator-avatar float-left") %>
         <% else %>
-        <% if comment.user.hidden? || comment.user.erased? %>
+          <% if comment.user.hidden? || comment.user.erased? %>
             <span class="icon-deleted user-deleted"></span>
           <% elsif comment.user.organization? %>
             <%= image_tag("avatar_collective.png", size: 32, class: "avatar float-left") %>
@@ -34,7 +34,7 @@
                   <% if legislator.present? %>
                     <%= legislator.description_or_name %>
                   <% else %>
-                    #<%= t("comments.comment.legislator_deleted")%>
+                    #<%= t("comments.comment.legislator_deleted") %>
                   <% end %>
                 <% else %>
                   #<%= comment.legislator_id %>
@@ -46,7 +46,7 @@
                   <% if budget_manager.present? %>
                     <%= budget_manager.description_or_name %>
                   <% else %>
-                    #<%= t("comments.comment.budget_manager_deleted")%>
+                    #<%= t("comments.comment.budget_manager_deleted") %>
                   <% end %>
                 <% else %>
                   #<%= comment.budget_manager_id %>
@@ -58,7 +58,7 @@
                   <% if administrator.present? %>
                     <%= administrator.description_or_name %>
                   <% else %>
-                    #<%= t("comments.comment.budget_manager_deleted")%>
+                    #<%= t("comments.comment.budget_manager_deleted") %>
                   <% end %>
                 <% else %>
                   #<%= comment.administrator_id %>

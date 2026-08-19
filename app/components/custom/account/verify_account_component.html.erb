@@ -11,17 +11,14 @@
     <% if account.residence_requested? %>
       <p class="verification-requested">
         <span class="icon-info-circle"></span>
-        <%=
-          link_locale = I18n.locale == :val ? 'va' : I18n.locale
-          age_url = Verification::Residence.procedure_url(:age, link_locale)
-          foreign_url = Verification::Residence.procedure_url(:foreign, link_locale)
-
-          if account.residence_requested_age?
-            link = link_to t('account.show.residence_request_procedure'), age_url
-            message = t('account.show.required_age_verification_request', link: link, required_age: User.minimum_required_age)
-          end
-          raw message
-        %>
+        <% link_locale = I18n.locale == :val ? "va" : I18n.locale %>
+        <% age_url = Verification::Residence.procedure_url(:age, link_locale) %>
+        <% foreign_url = Verification::Residence.procedure_url(:foreign, link_locale) %>
+        <% if account.residence_requested_age? %>
+          <% link = link_to t("account.show.residence_request_procedure"), age_url %>
+          <% message = t("account.show.required_age_verification_request", link: link, required_age: User.minimum_required_age) %>
+        <% end %>
+        <%= raw message %>
       </p>
     <% elsif account.level_two_verified? %>
       <%= link_to t("account.show.finish_verification"), verification_path, class: "button success" %>
