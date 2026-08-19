@@ -17,10 +17,6 @@ require "rvm1/capistrano3"
 # patch for sshkit with capistrano-whenever
 require_relative 'lib/gem_extensions/sshkit'
 
-require "capistrano/puma"
-install_plugin Capistrano::Puma, load_hooks: false
-install_plugin Capistrano::Puma::Systemd
-
 #SCM: Git
 require "capistrano/scm/git"
 install_plugin Capistrano::SCM::Git
