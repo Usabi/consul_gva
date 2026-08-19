@@ -42,7 +42,8 @@
         </label>
         <%= text_field_tag "advanced_search[date_min]",
                            advanced_search[:date_min],
-                           class: "js-calendar" %>
+                           class: "js-calendar",
+                           autocomplete: "off" %>
       </div>
       <div class="filter">
         <label for="advanced_search_date_max">
@@ -50,7 +51,8 @@
         </label>
         <%= text_field_tag "advanced_search[date_max]",
                            advanced_search[:date_max],
-                           class: "js-calendar" %>
+                           class: "js-calendar",
+                           autocomplete: "off" %>
       </div>
     </div>
   </div>

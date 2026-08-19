@@ -1,1 +1,22 @@
-.eslintrc.json
+{
+  "rules": {
+    "curly": 2,
+    "eqeqeq": 2,
+    "no-undef": 2,
+    "strict": 2
+  },
+  "env": {
+    "browser": true
+  },
+  "globals": {
+    "$": false,
+    "App": false,
+    "AmsifySuggestags": false,
+    "annotator": false,
+    "c3": false,
+    "CKEDITOR": false,
+    "getCaptchaValue": false,
+    "L": false,
+    "Turbolinks": false
+  }
+}
