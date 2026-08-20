@@ -55,6 +55,7 @@ gem install bundler -v 2.5.22 --no-document
 bundle config set --local deployment 'true'
 bundle config set --local path 'vendor/bundle'
 bundle config set --local without 'development test'
+bundle config set --local force_ruby_platform 'true'
 bundle install
 
 echo ">> Corrigiendo shebangs ruby_executable_hooks para servidores sin RVM..."
