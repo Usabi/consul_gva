@@ -51,7 +51,7 @@ gem "pg_search", "~> 2.3.7"
 gem "puma", "~> 5.6.9"
 gem "recipient_interceptor", "~> 0.3.3"
 gem "redcarpet", "~> 3.6.0"
-gem "responders", "~> 3.2.0"
+gem "responders", "~> 3.2.1"
 gem "rinku", "~> 2.0.6", require: "rails_rinku"
 gem "ros-apartment", "~> 2.11.0", require: "apartment" # Remove ConnectionHandling monkey patch when upgrading
 gem "sassc-embedded", "~> 1.80.9"
