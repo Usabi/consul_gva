@@ -129,7 +129,7 @@ describe "Proposals" do
     expect(page).not_to have_css ".js-follow"
   end
 
-  describe "Social share buttons" do
+  describe "Social share buttons", :consul do
     context "On desktop browsers" do
       scenario "Shows links to share on facebook and twitter" do
         visit proposal_path(create(:proposal))
@@ -210,7 +210,7 @@ describe "Proposals" do
       end
     end
 
-    scenario "After using the browser's back button, social buttons will have one screen reader" do
+    scenario "After using the browser's back button, social buttons will have one screen reader", :consul do
       Setting["org_name"] = "CONSUL"
       proposal = create(:proposal)
       visit proposal_path(proposal)
@@ -237,7 +237,7 @@ describe "Proposals" do
     end
   end
 
-  describe "Show sticky support button on small screens", :small_window do
+  describe "Show sticky support button on small screens", :small_window, :consul do
     scenario "On a first visit" do
       proposal = create(:proposal)
       visit proposal_path(proposal)
@@ -336,7 +336,7 @@ describe "Proposals" do
     expect(page).to have_css "meta[property='og:title'][content='#{proposal.title}']", visible: :hidden
   end
 
-  scenario "Create and publish", :with_frozen_time do
+  scenario "Create and publish", :with_frozen_time, :consul do
     author = create(:user)
     login_as(author)
 
@@ -371,7 +371,7 @@ describe "Proposals" do
     expect(page).to have_content I18n.l(Date.current)
   end
 
-  scenario "Create with invisible_captcha honeypot field", :no_js do
+  scenario "Create with invisible_captcha honeypot field", :no_js, :consul do
     author = create(:user)
     login_as(author)
 
@@ -390,7 +390,7 @@ describe "Proposals" do
     expect(page).to have_current_path(proposals_path)
   end
 
-  scenario "Create proposal too fast" do
+  scenario "Create proposal too fast", :consul do
     allow(InvisibleCaptcha).to receive(:timestamp_threshold).and_return(Float::INFINITY)
 
     author = create(:user)
@@ -410,7 +410,7 @@ describe "Proposals" do
     expect(page).to have_current_path(new_proposal_path)
   end
 
-  scenario "Responsible name is stored for anonymous users" do
+  scenario "Responsible name is stored for anonymous users", :consul do
     author = create(:user)
     login_as(author)
 
@@ -467,7 +467,7 @@ describe "Proposals" do
     expect(page).to have_content error_message
   end
 
-  scenario "JS injection is prevented but safe html is respected", :no_js do
+  scenario "JS injection is prevented but safe html is respected", :no_js, :consul do
     author = create(:user)
     login_as(author)
 
@@ -490,7 +490,7 @@ describe "Proposals" do
     expect(page.html).not_to include "&lt;p&gt;This is"
   end
 
-  scenario "Autolinking is applied to description" do
+  scenario "Autolinking is applied to description", :consul do
     author = create(:user)
     login_as(author)
 
@@ -511,7 +511,7 @@ describe "Proposals" do
     expect(page).to have_link("www.example.org", href: "http://www.example.org")
   end
 
-  scenario "JS injection is prevented but autolinking is respected", :no_js do
+  scenario "JS injection is prevented but autolinking is respected", :no_js, :consul do
     author = create(:user)
     js_injection_string = "<script>alert('hey')</script> " \
                           "<a href=\"javascript:alert('surprise!')\">click me</a> " \
@@ -557,7 +557,7 @@ describe "Proposals" do
       expect(page).not_to have_link "All city"
     end
 
-    scenario "Default whole city" do
+    scenario "Default whole city", :consul do
       create(:geozone)
       author = create(:user, :level_two)
       login_as(author)
@@ -595,7 +595,7 @@ describe "Proposals" do
       expect(page).not_to have_field("Scope of operation")
     end
 
-    scenario "Specific geozone" do
+    scenario "Specific geozone", :consul do
       create(:geozone, name: "California")
       create(:geozone, name: "New York")
       login_as(create(:user))
@@ -623,7 +623,7 @@ describe "Proposals" do
   end
 
   context "Withdrawn proposals" do
-    scenario "Withdraw" do
+    scenario "Withdraw", :consul do
       proposal = create(:proposal)
       login_as(proposal.author)
 
@@ -654,7 +654,7 @@ describe "Proposals" do
       expect(page).to have_content "There are three other better proposals with the same subject"
     end
 
-    scenario "Fields are mandatory" do
+    scenario "Fields are mandatory", :consul do
       proposal = create(:proposal)
       login_as(proposal.author)
 
@@ -762,7 +762,7 @@ describe "Proposals" do
     expect(page).to have_content "You do not have permission"
   end
 
-  scenario "Update should be posible for the author of an editable proposal" do
+  scenario "Update should be posible for the author of an editable proposal", :consul do
     proposal = create(:proposal)
     login_as(proposal.author)
 
@@ -794,7 +794,7 @@ describe "Proposals" do
   end
 
   describe "Proposal index order filters" do
-    scenario "Default order is hot_score" do
+    scenario "Default order is hot_score", :consul do
       best_proposal = create(:proposal, title: "Best proposal")
       best_proposal.update_column(:hot_score, 10)
       worst_proposal = create(:proposal, title: "Worst proposal")
@@ -1611,7 +1611,7 @@ describe "Successful proposals" do
     end
   end
 
-  describe "SDG related list" do
+  describe "SDG related list", :consul do
     let(:user) { create(:user) }
 
     before do

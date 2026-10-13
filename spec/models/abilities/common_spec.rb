@@ -171,8 +171,8 @@ describe Abilities::Common do
     it { should_not be_able_to(:destroy, proposal_document)      }
   end
 
-  it { should_not be_able_to(:edit, own_legislation_proposal) }
-  it { should_not be_able_to(:update, own_legislation_proposal) }
+  it(nil, :consul) { should_not be_able_to(:edit, own_legislation_proposal) }
+  it(nil, :consul) { should_not be_able_to(:update, own_legislation_proposal) }
 
   describe "vote legislation proposal" do
     context "when user is not level_two_or_three_verified" do

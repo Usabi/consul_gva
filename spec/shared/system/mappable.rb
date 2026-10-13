@@ -62,7 +62,7 @@ shared_examples "mappable" do |mappable_factory_name, mappable_association_name,
       expect(page).not_to have_css(".map-location")
     end
 
-    describe "When restoring the page from browser history" do
+    describe "When restoring the page from browser history", :consul do
       before { Setting["org_name"] = "CONSUL" }
 
       scenario "map should not be duplicated" do
@@ -190,7 +190,7 @@ shared_examples "mappable" do |mappable_factory_name, mappable_association_name,
       expect(page).to have_css ".map-location[data-marker-longitude='0.0']"
     end
 
-    scenario "Should edit default values from map on #{mappable_factory_name} edit page" do
+    scenario "Should edit default values from map on #{mappable_factory_name} edit page", :consul do
       original_longitude = map_location.longitude
       original_latitude = map_location.latitude
 
@@ -219,7 +219,7 @@ shared_examples "mappable" do |mappable_factory_name, mappable_association_name,
       expect(page).not_to have_css ".map-location[data-marker-longitude='#{original_longitude}']"
     end
 
-    scenario "Can not display map on #{mappable_factory_name} edit when remove map marker" do
+    scenario "Can not display map on #{mappable_factory_name} edit when remove map marker", :consul do
       do_login_for mappable.author, management: management
 
       visit send(mappable_edit_path, id: mappable.id)
