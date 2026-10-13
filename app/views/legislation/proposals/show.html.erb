@@ -25,6 +25,8 @@
           @proposal,
           @proposal.author,
           Flag.flagged?(current_user, @proposal),
+          can?(:edit, @proposal),
+          current_user&.id == @proposal.author_id,
           current_user&.voted_as_when_voted_for(@proposal)] do %>
   <div class="proposal-show legislation-proposal-show">
     <div id="<%= dom_id(@proposal) %>" class="row">
@@ -32,6 +34,18 @@
         <%= back_link_to legislation_process_proposals_path(process_id: @process) %>
 
         <h1><%= @proposal.title %></h1>
+        <% if can?(:edit, @proposal) %>
+          <p>
+            <%= link_to edit_legislation_process_proposal_path(@process, @proposal),
+                        class: "button hollow" do %>
+              <span class="icon-edit"></span>
+              <%= t("legislation.proposals.show.edit_proposal_link") %>
+            <% end %>
+          </p>
+        <% end %>
+        <% if current_user&.id == @proposal.author_id %>
+          <p class="help-text"><%= t("legislation.proposals.edit_only_without_supports") %></p>
+        <% end %>
         <% if @proposal.conflictive? %>
           <div data-alert class="callout alert margin-top">
             <strong><%= t("proposals.show.flag") %></strong>
