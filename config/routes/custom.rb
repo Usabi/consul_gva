@@ -79,3 +79,14 @@ end
 resolve "SDG::Target" do |target, options|
   [:target, options.merge(id: target)]
 end
+
+resources :documents, only: [] do
+  member do
+    put :hide
+    put :restore
+  end
+end
+
+namespace :moderation do
+  resources :documents, only: :index
+end

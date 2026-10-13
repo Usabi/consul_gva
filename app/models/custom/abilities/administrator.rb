@@ -141,6 +141,7 @@ module Abilities
              [::Legislation::Question, Legislation::Annotation, ::Legislation::Proposal]
 
       can [:create], Document
+      can [:hide, :restore], Document
       can [:destroy], Document do |document|
         document.documentable_type == "Poll::Question::Option" && can?(:update, document.documentable)
       end

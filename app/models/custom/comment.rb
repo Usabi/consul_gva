@@ -1,6 +1,8 @@
 load Rails.root.join("app", "models", "comment.rb")
 
 class Comment
+  include Documentable
+
   scope :not_as_admin_or_moderator, -> do
     where("administrator_id IS NULL AND legislator_id IS NULL AND budget_manager_id IS NULL").where(moderator_id: nil)
   end

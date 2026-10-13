@@ -1,0 +1,52 @@
+<h2><%= t("moderation.documents.index.title") %></h2>
+<p><%= t("moderation.documents.index.description") %></p>
+
+<% if @documents.any? %>
+  <h3><%= page_entries_info @documents %></h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th scope="col"><%= t("moderation.documents.index.headers.document") %></th>
+        <th scope="col"><%= t("moderation.documents.index.headers.comment") %></th>
+        <th scope="col"><%= t("moderation.documents.index.headers.moderate") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @documents.each do |document| %>
+        <% comment = Comment.with_hidden.find_by(id: document.documentable_id) %>
+        <tr id="<%= dom_id(document) %>">
+          <td>
+            <strong><%= document.title %></strong><br>
+            <span class="date"><%= l document.hidden_at.to_date %></span>
+            <span class="bullet">&nbsp;&bull;&nbsp;</span>
+            <%= document.user&.username %>
+            <span class="bullet">&nbsp;&bull;&nbsp;</span>
+            <%= document.humanized_content_type %>
+            <%= number_to_human_size(document.attachment_file_size, precision: 2) %>
+          </td>
+          <td>
+            <% if comment.present? %>
+              <% if comment.commentable.present? && !comment.hidden? && !comment.commentable.hidden? %>
+                <%= link_to comment.commentable.title, commentable_path(comment) %><br>
+              <% end %>
+              <div class="moderation-description"><%= comment.body %></div>
+            <% end %>
+          </td>
+          <td class="text-center">
+            <% if can?(:restore, document) %>
+              <%= button_to t("documents.buttons.restore_document"), restore_document_path(document),
+                            method: :put, class: "button hollow small" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @documents %>
+<% else %>
+  <div class="callout primary margin">
+    <%= t("moderation.documents.index.no_hidden_documents") %>
+  </div>
+<% end %>
