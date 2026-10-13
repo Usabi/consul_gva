@@ -4,6 +4,10 @@ ruby file: ".ruby-version"
 
 gem "rails", "~> 7.1.6"
 
+gem "drb"
+gem "fiddle"
+gem "stringio", "3.1.1" # Default gem de Ruby 3.3.10, necesario para que Passenger arranque
+
 gem "acts-as-taggable-on", "~> 12.0.0"
 gem "acts_as_votable", "~> 0.14.0"
 gem "ahoy_matey", "~> 5.4.0"
