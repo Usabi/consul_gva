@@ -1,0 +1,13 @@
+val:
+  moderation:
+    menu:
+      hidden_documents: Documents ocults
+    documents:
+      index:
+        title: Documents ocults
+        description: Documents adjunts a comentaris que han sigut ocultats per ser impropis. No són accessibles per als usuaris.
+        headers:
+          document: Document
+          comment: Comentari
+          moderate: Moderar
+        no_hidden_documents: No hi ha documents ocults.

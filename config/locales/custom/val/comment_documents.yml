@@ -1,0 +1,21 @@
+val:
+  comments:
+    form:
+      attach_document: Adjuntar document
+      choose_file: Triar fitxer
+      no_file_selected: Cap fitxer seleccionat
+      remove_file: Llevar fitxer
+      attachment_label: Document
+      attachment_help: "Formats permesos: %{accepted_content_types}. Mida màxima: %{max_file_size} MB. El document serà públic."
+    documents:
+      hidden: Ocult
+  documents:
+    buttons:
+      hide_document: Ocultar document
+      restore_document: Restaurar document
+    actions:
+      hide:
+        notice: El document s'ha ocultat correctament.
+        confirm: Segur que vols ocultar aquest document? Deixarà de ser visible per a la resta d'usuaris.
+      restore:
+        notice: El document s'ha restaurat correctament.

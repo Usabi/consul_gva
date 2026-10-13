@@ -1,0 +1,13 @@
+en:
+  moderation:
+    menu:
+      hidden_documents: Hidden documents
+    documents:
+      index:
+        title: Hidden documents
+        description: Documents attached to comments that were hidden as improper. They are not accessible to users.
+        headers:
+          document: Document
+          comment: Comment
+          moderate: Moderate
+        no_hidden_documents: There are no hidden documents.

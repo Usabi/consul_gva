@@ -694,7 +694,9 @@ ActiveRecord::Schema[7.0].define(version: 2026_01_13_100000) do
     t.boolean "admin", default: false
     t.boolean "consult_document", default: false
     t.integer "position"
+    t.datetime "hidden_at"
     t.index ["documentable_type", "documentable_id"], name: "index_documents_on_documentable_type_and_documentable_id"
+    t.index ["hidden_at"], name: "index_documents_on_hidden_at"
     t.index ["user_id", "documentable_type", "documentable_id"], name: "access_documents"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end

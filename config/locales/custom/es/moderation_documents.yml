@@ -1,0 +1,13 @@
+es:
+  moderation:
+    menu:
+      hidden_documents: Documentos ocultos
+    documents:
+      index:
+        title: Documentos ocultos
+        description: Documentos adjuntos a comentarios que han sido ocultados por impropios. No son accesibles para los usuarios.
+        headers:
+          document: Documento
+          comment: Comentario
+          moderate: Moderar
+        no_hidden_documents: No hay documentos ocultos.

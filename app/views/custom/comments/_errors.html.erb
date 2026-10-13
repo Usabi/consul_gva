@@ -1,0 +1,8 @@
+<div data-alert class="callout alert">
+  <% if @comment.errors[:body].any? || @comment.errors.empty? %>
+    <%= t("errors.messages.blank").capitalize %>
+  <% end %>
+  <% @comment.errors.full_messages_for(:"documents.attachment").each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+</div>

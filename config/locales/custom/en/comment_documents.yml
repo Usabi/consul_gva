@@ -1,0 +1,21 @@
+en:
+  comments:
+    form:
+      attach_document: Attach document
+      choose_file: Choose file
+      no_file_selected: No file selected
+      remove_file: Remove file
+      attachment_label: Document
+      attachment_help: "Allowed formats: %{accepted_content_types}. Maximum size: %{max_file_size} MB. The document will be public."
+    documents:
+      hidden: Hidden
+  documents:
+    buttons:
+      hide_document: Hide document
+      restore_document: Restore document
+    actions:
+      hide:
+        notice: The document has been hidden.
+        confirm: Are you sure you want to hide this document? It will no longer be visible to other users.
+      restore:
+        notice: The document has been restored.
