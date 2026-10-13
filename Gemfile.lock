@@ -244,7 +244,7 @@ GEM
       logger
     faraday-net_http (3.4.4)
       net-http (~> 0.5)
-    faraday-retry (2.2.1)
+    faraday-retry (2.4.0)
       faraday (~> 2.0)
     ffi (1.17.2)
     ffi (1.17.2-x86_64-linux-gnu)
@@ -813,7 +813,7 @@ DEPENDENCIES
   exiftool_vendored (~> 12.97.0)
   factory_bot_rails (~> 6.5.1)
   faker (~> 3.8.0)
-  faraday-retry (~> 2.2.1)
+  faraday-retry (~> 2.4.0)
   fiddle
   file_validators (~> 3.0.0)
   font-awesome-sass (~> 5.15.1)
