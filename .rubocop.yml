@@ -1,14 +1,7 @@
-inherit_from: .rubocop_todo.yml
-inherit_mode:
-  merge:
-    - Exclude
-
-require:
-  - rubocop-performance
-
 plugins:
   - rubocop-capybara
   - rubocop-factory_bot
+  - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
   - rubocop-rspec_rails
@@ -19,6 +12,7 @@ AllCops:
   Exclude:
     - "db/schema.rb"
     - "app/lib/ckeditor/backend/active_storage.rb"
+    - "config/initializers/disable_active_storage_pdf_auto_previews.rb"
     - "vendor/**/*"
   DisabledByDefault: true
 
@@ -29,14 +23,13 @@ Bundler/OrderedGems:
   Enabled: true
   ConsiderPunctuation: true
 
-Capybara/ClickLinkOrButtonStyle:
-  Enabled: true
-  EnforcedStyle: strict
-
-Capybara/RSpec/CurrentPathExpectation:
+Capybara/AmbiguousClick:
   Enabled: true
 
-Capybara/RSpec/NegationMatcher:
+Capybara/CurrentPathExpectation:
+  Enabled: true
+
+Capybara/NegationMatcher:
   Enabled: true
   EnforcedStyle: not_to
 
@@ -46,7 +39,7 @@ Capybara/RSpec/HaveSelector:
 Capybara/SpecificActions:
   Enabled: true
 
-Capybara/RSpec/VisibilityMatcher:
+Capybara/VisibilityMatcher:
   Enabled: true
 
 FactoryBot/AssociationStyle:
@@ -106,6 +99,9 @@ Layout/EmptyLineBetweenDefs:
   Enabled: true
 
 Layout/EmptyLines:
+  Enabled: true
+
+Layout/EmptyLinesAfterModuleInclusion:
   Enabled: true
 
 Layout/EmptyLinesAroundAccessModifier:
@@ -193,6 +189,8 @@ Layout/MultilineMethodCallBraceLayout:
 
 Layout/MultilineMethodCallIndentation:
   Enabled: true
+  Exclude:
+    - "config/environments/production.rb"
 
 Layout/MultilineOperationIndentation:
   Enabled: true
@@ -358,6 +356,14 @@ Naming/BlockForwarding:
     - "app/controllers/management/base_controller.rb"
     - "app/controllers/subscriptions_controller.rb"
 
+Naming/PredicateMethod:
+  Enabled: true
+  Exclude:
+    - "app/models/local_census_records/import.rb"
+    - "app/models/user.rb"
+    - "app/models/verification/management/email.rb"
+    - "config/initializers/foundation_form_builder.rb"
+
 Naming/RescuedExceptionsVariableName:
   Enabled: true
 
@@ -380,6 +386,9 @@ Performance/StartWith:
   Enabled: true
 
 Performance/Sum:
+  Enabled: true
+
+Performance/ZipWithoutBlock:
   Enabled: true
 
 Rails/ActionControllerFlashBeforeRender:
@@ -434,6 +443,9 @@ Rails/FindBy:
   Exclude:
     - "config/initializers/ahoy.rb"
 
+Rails/FindByOrAssignmentMemoization:
+  Enabled: true
+
 Rails/FindEach:
   Enabled: true
 
@@ -461,6 +473,9 @@ Rails/NotNullColumn:
   Enabled: true
   Exclude:
     - "db/migrate/201[5-7]*"
+
+Rails/OrderArguments:
+  Enabled: true
 
 Rails/OutputSafety:
   Enabled: true
@@ -567,6 +582,9 @@ RSpec/BeNil:
   Enabled: true
   EnforcedStyle: be
 
+RSpec/ChangeByZero:
+  Enabled: true
+
 RSpec/ContextMethod:
   Enabled: true
 
@@ -614,6 +632,9 @@ RSpec/Focus:
   Enabled: true
 
 RSpec/HookArgument:
+  Enabled: true
+
+RSpec/IncludeExamples:
   Enabled: true
 
 RSpec/InstanceVariable:
@@ -705,11 +726,16 @@ Style/AndOr:
 
 Style/ArgumentsForwarding:
   Enabled: true
+  Exclude:
+    - "bin/setup"
 
 Style/ArrayCoercion:
   Enabled: true
 
 Style/ArrayIntersect:
+  Enabled: true
+
+Style/ArrayIntersectWithSingleElement:
   Enabled: true
 
 Style/BlockDelimiters:
@@ -727,7 +753,16 @@ Style/ClassVars:
 Style/CollectionMethods:
   Enabled: true
 
+Style/CollectionQuerying:
+  Enabled: true
+
+Style/ComparableBetween:
+  Enabled: true
+
 Style/DigChain:
+  Enabled: true
+
+Style/EmptyStringInsideInterpolation:
   Enabled: true
 
 Style/FileRead:
@@ -811,6 +846,9 @@ Style/RaiseArgs:
   Enabled: true
 
 Style/RedundantArgument:
+  Enabled: true
+
+Style/RedundantArrayFlatten:
   Enabled: true
 
 Style/RedundantBegin:

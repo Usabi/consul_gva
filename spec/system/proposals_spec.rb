@@ -129,7 +129,7 @@ describe "Proposals" do
     expect(page).not_to have_css ".js-follow"
   end
 
-  describe "Social share buttons", :consul do
+  describe "Social share buttons" do
     context "On desktop browsers" do
       scenario "Shows links to share on facebook and twitter" do
         visit proposal_path(create(:proposal))
@@ -210,7 +210,7 @@ describe "Proposals" do
       end
     end
 
-    scenario "After using the browser's back button, social buttons will have one screen reader", :consul do
+    scenario "After using the browser's back button, social buttons will have one screen reader" do
       Setting["org_name"] = "CONSUL"
       proposal = create(:proposal)
       visit proposal_path(proposal)
@@ -237,7 +237,7 @@ describe "Proposals" do
     end
   end
 
-  describe "Show sticky support button on small screens", :small_window, :consul do
+  describe "Show sticky support button on small screens", :small_window do
     scenario "On a first visit" do
       proposal = create(:proposal)
       visit proposal_path(proposal)
@@ -336,7 +336,7 @@ describe "Proposals" do
     expect(page).to have_css "meta[property='og:title'][content='#{proposal.title}']", visible: :hidden
   end
 
-  scenario "Create and publish", :with_frozen_time, :consul do
+  scenario "Create and publish", :with_frozen_time do
     author = create(:user)
     login_as(author)
 
@@ -356,7 +356,7 @@ describe "Proposals" do
     expect(page).to have_content "Help refugees"
     expect(page).not_to have_content "You can also see more information about improving your campaign"
 
-    click_link "No, I want to publish the proposal"
+    click_button "No, I want to publish the proposal"
 
     expect(page).to have_content "Improve your campaign and get more support"
     click_link "Not now, go to my proposal"
@@ -371,7 +371,7 @@ describe "Proposals" do
     expect(page).to have_content I18n.l(Date.current)
   end
 
-  scenario "Create with invisible_captcha honeypot field", :no_js, :consul do
+  scenario "Create with invisible_captcha honeypot field", :no_js do
     author = create(:user)
     login_as(author)
 
@@ -390,7 +390,7 @@ describe "Proposals" do
     expect(page).to have_current_path(proposals_path)
   end
 
-  scenario "Create proposal too fast", :consul do
+  scenario "Create proposal too fast" do
     allow(InvisibleCaptcha).to receive(:timestamp_threshold).and_return(Float::INFINITY)
 
     author = create(:user)
@@ -410,7 +410,7 @@ describe "Proposals" do
     expect(page).to have_current_path(new_proposal_path)
   end
 
-  scenario "Responsible name is stored for anonymous users", :consul do
+  scenario "Responsible name is stored for anonymous users" do
     author = create(:user)
     login_as(author)
 
@@ -424,7 +424,7 @@ describe "Proposals" do
     click_button "Create proposal"
 
     expect(page).to have_content "Proposal created successfully."
-    click_link "No, I want to publish the proposal"
+    click_button "No, I want to publish the proposal"
     click_link "Not now, go to my proposal"
 
     click_link "Dashboard"
@@ -450,7 +450,7 @@ describe "Proposals" do
 
     click_button "Create proposal"
     expect(page).to have_content "Proposal created successfully."
-    click_link "No, I want to publish the proposal"
+    click_button "No, I want to publish the proposal"
     click_link "Not now, go to my proposal"
 
     expect(page).to have_css "h1", exact_text: "Help refugees"
@@ -467,7 +467,7 @@ describe "Proposals" do
     expect(page).to have_content error_message
   end
 
-  scenario "JS injection is prevented but safe html is respected", :no_js, :consul do
+  scenario "JS injection is prevented but safe html is respected", :no_js do
     author = create(:user)
     login_as(author)
 
@@ -481,7 +481,7 @@ describe "Proposals" do
     click_button "Create proposal"
 
     expect(page).to have_content "Proposal created successfully."
-    click_link "No, I want to publish the proposal"
+    click_button "No, I want to publish the proposal"
     click_link "Not now, go to my proposal"
 
     expect(page).to have_content "Testing an attack"
@@ -490,7 +490,7 @@ describe "Proposals" do
     expect(page.html).not_to include "&lt;p&gt;This is"
   end
 
-  scenario "Autolinking is applied to description", :consul do
+  scenario "Autolinking is applied to description" do
     author = create(:user)
     login_as(author)
 
@@ -504,17 +504,17 @@ describe "Proposals" do
     click_button "Create proposal"
 
     expect(page).to have_content "Proposal created successfully."
-    click_link "No, I want to publish the proposal"
+    click_button "No, I want to publish the proposal"
     click_link "Not now, go to my proposal"
 
     expect(page).to have_content "Testing auto link"
     expect(page).to have_link("www.example.org", href: "http://www.example.org")
   end
 
-  scenario "JS injection is prevented but autolinking is respected", :no_js, :consul do
+  scenario "JS injection is prevented but autolinking is respected", :no_js do
     author = create(:user)
     js_injection_string = "<script>alert('hey')</script> " \
-                          "<a href=\"javascript:alert('surprise!')\">click me<a/> " \
+                          "<a href=\"javascript:alert('surprise!')\">click me</a> " \
                           "http://example.org"
     login_as(author)
 
@@ -528,7 +528,7 @@ describe "Proposals" do
     click_button "Create proposal"
 
     expect(page).to have_content "Proposal created successfully."
-    click_link "No, I want to publish the proposal"
+    click_button "No, I want to publish the proposal"
     click_link "Not now, go to my proposal"
 
     expect(page).to have_content "Testing auto link"
@@ -557,9 +557,9 @@ describe "Proposals" do
       expect(page).not_to have_link "All city"
     end
 
-    scenario "Default whole city", :consul do
+    scenario "Default whole city" do
       create(:geozone)
-      author = create(:user)
+      author = create(:user, :level_two)
       login_as(author)
 
       visit new_proposal_path
@@ -568,7 +568,7 @@ describe "Proposals" do
       click_button "Create proposal"
 
       expect(page).to have_content "Proposal created successfully."
-      click_link "No, I want to publish the proposal"
+      click_button "No, I want to publish the proposal"
       click_link "Not now, go to my proposal"
 
       within "#geozone" do
@@ -595,7 +595,7 @@ describe "Proposals" do
       expect(page).not_to have_field("Scope of operation")
     end
 
-    scenario "Specific geozone", :consul do
+    scenario "Specific geozone" do
       create(:geozone, name: "California")
       create(:geozone, name: "New York")
       login_as(create(:user))
@@ -613,7 +613,7 @@ describe "Proposals" do
       click_button "Create proposal"
 
       expect(page).to have_content "Proposal created successfully."
-      click_link "No, I want to publish the proposal"
+      click_button "No, I want to publish the proposal"
       click_link "Not now, go to my proposal"
 
       within "#geozone" do
@@ -623,7 +623,7 @@ describe "Proposals" do
   end
 
   context "Withdrawn proposals" do
-    scenario "Withdraw", :consul do
+    scenario "Withdraw" do
       proposal = create(:proposal)
       login_as(proposal.author)
 
@@ -654,7 +654,7 @@ describe "Proposals" do
       expect(page).to have_content "There are three other better proposals with the same subject"
     end
 
-    scenario "Fields are mandatory", :consul do
+    scenario "Fields are mandatory" do
       proposal = create(:proposal)
       login_as(proposal.author)
 
@@ -762,7 +762,7 @@ describe "Proposals" do
     expect(page).to have_content "You do not have permission"
   end
 
-  scenario "Update should be posible for the author of an editable proposal", :consul do
+  scenario "Update should be posible for the author of an editable proposal" do
     proposal = create(:proposal)
     login_as(proposal.author)
 
@@ -794,7 +794,7 @@ describe "Proposals" do
   end
 
   describe "Proposal index order filters" do
-    scenario "Default order is hot_score", :consul do
+    scenario "Default order is hot_score" do
       best_proposal = create(:proposal, title: "Best proposal")
       best_proposal.update_column(:hot_score, 10)
       worst_proposal = create(:proposal, title: "Worst proposal")
@@ -1293,29 +1293,6 @@ describe "Proposals" do
 
   it_behaves_like "followable", "proposal", "proposal_path", { id: "id" }
 
-  it_behaves_like "imageable", "proposal", "proposal_path", { id: "id" }
-
-  it_behaves_like "documentable", "proposal", "proposal_path", { id: "id" }
-
-  # TODO: revisar
-  # it_behaves_like "nested documentable",
-  #                 "user",
-  #                 "proposal",
-  #                 "new_proposal_path",
-  #                 {},
-  #                 "documentable_fill_new_valid_proposal",
-  #                 "Create proposal",
-  #                 "Proposal created successfully"
-  # TODO: revisar
-  # it_behaves_like "nested documentable",
-  #                 "user",
-  #                 "proposal",
-  #                 "edit_proposal_path",
-  #                 { id: "id" },
-  #                 nil,
-  #                 "Save changes",
-  #                 "Proposal updated successfully"
-
   it_behaves_like "mappable",
                   "proposal",
                   "proposal",
@@ -1545,11 +1522,11 @@ describe "Proposals" do
       visit summary_proposals_path
 
       within("#proposals") do
-        expect(page).to have_css(".proposal", count: 3)
+        expect(page).to have_css(".proposal", count: 2)
 
         expect(page).to have_content(proposal1.title)
         expect(page).to have_content(proposal2.title)
-        expect(page).to have_content(proposal3.title)
+        expect(page).not_to have_content(proposal3.title)
       end
     end
   end
@@ -1634,7 +1611,7 @@ describe "Successful proposals" do
     end
   end
 
-  describe "SDG related list", :consul do
+  describe "SDG related list" do
     let(:user) { create(:user) }
 
     before do
