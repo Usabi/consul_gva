@@ -62,6 +62,14 @@ es:
     min_age_to_participate_description: "Los usuarios mayores de esta edad podrán participar en todos los procesos donde se necesite una cuenta verificada"
     max_votes_per_budget_per_user: Número máximo de apoyos a propuestas por usuario
     max_votes_per_budget_per_user_description: Número máximo de propuestas de gasto que un usuario puede apoyar en un presupuesto participativo
+    admin_guide_url: "URL del manual de administrador"
+    admin_guide_url_description: "Enlace de descarga del manual que se muestra en el panel de administración, pestaña Guías y recursos. Si está vacío, no se muestra el botón"
+    legislator_guide_url: "URL del manual de legislador"
+    legislator_guide_url_description: "Enlace de descarga del manual que se muestra en el panel de administración, pestaña Guías y recursos. Si está vacío, no se muestra el botón"
+    help_contact_email: "Email de contacto de ayuda"
+    help_contact_email_description: "Email que se muestra en \"¿Necesita ayuda?\" del panel de administración. Si está vacío, no se muestra"
+    help_contact_website: "Web de contacto de ayuda"
+    help_contact_website_description: "Web que se muestra en \"¿Necesita ayuda?\" del panel de administración. Si está vacío, no se muestra"
     postal_codes: "Códigos Postales"
     postal_codes_description: "Una lista de códigos postales válidos separados por comas; también puedes usar rangos utilizando \":\". Ejemplo: 00001:00010,00024,AB3 45FG,00031:00035 permitirá códigos postales entre 00001 y 00010, el 00024, el AB3 45FG, y códigos postales entre 00031 y 00035. Si dejas esta opción en blanco, cualquier código postal será válido."
     proposals:
