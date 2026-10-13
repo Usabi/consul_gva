@@ -66,6 +66,13 @@ describe "Hidden documents blob access" do
       expect(response).to have_http_status(:redirect)
     end
 
+    it "is served to moderators so they can review it" do
+      login_as(create(:moderator).user)
+      get blob_path
+
+      expect(response).to have_http_status(:redirect)
+    end
+
     it "is served again after being restored" do
       document.restore
       get blob_path
