@@ -135,6 +135,14 @@ class Admin::MenuComponent
       ]
     end
 
+    def footer_links_link
+      [
+        t("admin.menu.site_customization.footer_links"),
+        admin_footer_links_path,
+        controller_name == "footer_links"
+      ]
+    end
+
     def bulletins_link
       [
         t("admin.menu.bulletins"),
@@ -192,6 +200,7 @@ class Admin::MenuComponent
           help_texts_link,
           banners_link,
           alert_messages_link,
+          footer_links_link,
           information_texts_link,
           documents_link,
           images_link,

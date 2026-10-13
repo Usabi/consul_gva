@@ -145,6 +145,13 @@ val:
         one: Opinió del ciutadà
         other: Opinions del ciutadà
     attributes:
+      footer_link:
+        label: "Text"
+        url: "URL"
+        position: "Posició"
+        visible: "Visible"
+      footer_link/translation:
+        label: "Text"
       administrator:
         id: "ID"
         description: Descripció
