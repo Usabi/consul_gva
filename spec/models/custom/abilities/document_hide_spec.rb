@@ -12,6 +12,13 @@ describe "Abilities for hiding comment documents" do
     expect(ability).to be_able_to(:restore, document)
   end
 
+  it "lets moderators hide and restore a comment document" do
+    ability = Ability.new(create(:moderator).user)
+
+    expect(ability).to be_able_to(:hide, document)
+    expect(ability).to be_able_to(:restore, document)
+  end
+
   it "does not let regular users hide documents" do
     ability = Ability.new(create(:user))
 

@@ -2,7 +2,7 @@
 # blob URL can download the file. Documents hidden by an administrator (or
 # belonging to a hidden comment) must not be reachable through any of them
 # (redirect, proxy, representations or disk service), so every request is
-# checked here. Administrators keep access in order to review the content.
+# checked here. Administrators and moderators keep access in order to review the content.
 module HiddenDocumentBlobGuard
   extend ActiveSupport::Concern
 
@@ -15,7 +15,7 @@ module HiddenDocumentBlobGuard
     def block_restricted_document_blob
       blob = requested_blob
       return if blob.blank? || !Document.restricted_blob?(blob)
-      return if current_user&.administrator?
+      return if current_user&.administrator? || current_user&.moderator?
 
       head :not_found
     end
