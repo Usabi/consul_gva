@@ -23,12 +23,16 @@ describe "Moderation of hidden documents" do
     expect(page).not_to have_content "visible.pdf"
   end
 
-  scenario "moderators can see the list but not restore" do
+  scenario "moderator restores a hidden document from the panel" do
     login_as(create(:moderator).user)
     visit moderation_documents_path
 
-    expect(page).to have_content "oculto.pdf"
-    expect(page).not_to have_button "Restore document"
+    within "#document_#{hidden_document.id}" do
+      click_button "Restore document"
+    end
+
+    expect(page).not_to have_content "oculto.pdf"
+    expect(hidden_document.reload).not_to be_hidden
   end
 
   scenario "administrator restores a hidden document from the panel" do

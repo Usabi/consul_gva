@@ -80,7 +80,7 @@ describe "Comment documents" do
     end
   end
 
-  describe "moderation by administrators" do
+  describe "moderation by administrators and moderators" do
     let!(:comment) { create(:comment, commentable: debate, user: user, body: "Comentario con adjunto") }
     let!(:document) { create(:document, documentable: comment, user: user, title: "impropio.pdf") }
 
@@ -105,6 +105,23 @@ describe "Comment documents" do
 
       expect(page).to have_content "Comentario con adjunto"
       expect(page).not_to have_css "a .document-title", text: "impropio.pdf"
+    end
+
+    scenario "moderator hides an improper document and can restore it" do
+      login_as(create(:moderator).user)
+      visit debate_path(debate)
+
+      within "#document_#{document.id}" do
+        accept_confirm { click_button "Hide document" }
+      end
+
+      within "#document_#{document.id}" do
+        expect(page).to have_content "Hidden"
+        click_button "Restore document"
+      end
+
+      expect(page).to have_css "a .document-title", text: "impropio.pdf"
+      expect(document.reload).not_to be_hidden
     end
 
     scenario "hidden document is not shown to regular users nor in activity" do
