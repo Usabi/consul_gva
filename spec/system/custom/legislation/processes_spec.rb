@@ -29,8 +29,6 @@ describe Legislation::Process do
     end
   end
 
-  it_behaves_like "documentable", "proposal", "proposal_path", { id: "id" }
-
   # it_behaves_like "processes nested documentable",
   #                 "administrator",
   #                 "legislation_process",

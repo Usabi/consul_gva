@@ -20,9 +20,7 @@
   <% end %>
 
   <% if feature?("user.recommendations") && @recommended_debates.present? %>
-    <%= render "shared/recommended_index", recommended: @recommended_debates,
-                                           disable_recommendations_path: recommendations_disable_debates_path,
-                                           namespace: "debates" %>
+    <%= render Shared::RecommendedIndexComponent.new(@recommended_debates, namespace: "debates") %>
   <% end %>
 
   <div class="row">
