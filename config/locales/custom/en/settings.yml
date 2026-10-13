@@ -62,6 +62,14 @@ en:
     min_age_to_participate_description: "Users older than this age will be able to participate in all processes where a verified account is needed"
     max_votes_per_budget_per_user: Maximum number of proposal supports per user
     max_votes_per_budget_per_user_description: Maximum number of spending proposals that a user can support in a participatory budget
+    admin_guide_url: "Administrator guide URL"
+    admin_guide_url_description: "Download link of the guide shown in the admin dashboard, Guides and resources tab. If empty, the button is hidden"
+    legislator_guide_url: "Legislator guide URL"
+    legislator_guide_url_description: "Download link of the guide shown in the admin dashboard, Guides and resources tab. If empty, the button is hidden"
+    help_contact_email: "Help contact email"
+    help_contact_email_description: "Email shown in the \"Need help?\" block of the admin dashboard. If empty, it is hidden"
+    help_contact_website: "Help contact website"
+    help_contact_website_description: "Website shown in the \"Need help?\" block of the admin dashboard. If empty, it is hidden"
     postal_codes: "Postal Codes"
     postal_codes_description: "A list of valid postal codes separated by commas; you can also use ranges using \":\". Example: 00001:00010,00024,AB3 45FG,00031:00035 will allow postal codes between 00001 and 00010, 00024, AB3 45FG, and postal codes between 00031 and 00035. If you leave this option blank, any postal code will be valid."
     proposals:
