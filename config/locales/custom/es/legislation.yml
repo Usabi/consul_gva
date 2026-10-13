@@ -127,6 +127,9 @@ es:
       process_title: Proceso de Elaboración normativa
       index:
         start_proposal: Crear una propuesta
+      edit_only_without_supports: "La edición solo está disponible mientras la propuesta no haya recibido ningún apoyo."
+      show:
+        edit_proposal_link: Editar propuesta
     summary:
       title: "Resumen"
       votes:

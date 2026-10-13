@@ -8,6 +8,7 @@
     </div>
 
     <h1><%= t("proposals.edit.editing") %></h1>
+    <p class="help-text"><%= t("legislation.proposals.edit_only_without_supports") %></p>
 
     <%= render "form", form_url: legislation_process_proposal_path(@proposal.legislation_process_id, @proposal) %>
   </div>

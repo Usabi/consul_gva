@@ -112,6 +112,9 @@ en:
         tags_label: "Categories"
       not_verified: "For vote proposals %{verify_account}."
       process_title: Collaborative legislation process
+      edit_only_without_supports: "Editing is only available while the proposal has no supports."
+      show:
+        edit_proposal_link: Edit proposal
     summary:
       title: "Summary"
       votes:

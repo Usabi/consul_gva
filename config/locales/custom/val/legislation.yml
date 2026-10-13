@@ -124,6 +124,9 @@ val:
       form:
         tags_label: "Categoríes"
       not_verified: "Per a votar propostes %{verify_account}."
+      edit_only_without_supports: "L'edició només està disponible mentre la proposta no haja rebut cap suport."
+      show:
+        edit_proposal_link: Editar proposta
     summary:
       title: "Resumen"
       votes:
