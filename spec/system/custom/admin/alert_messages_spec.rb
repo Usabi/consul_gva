@@ -69,7 +69,10 @@ describe "Admin alert messages magement", :admin do
     visit proposals_path
 
     expect(page).to have_content "Such alert message"
-    expect(page).to have_link "Such alert message many text wow link", href: "https://www.url.com"
+    within "#notice" do
+      expect(page).to have_css "a[href='https://www.url.com']", text: "Such alert message"
+      expect(page).to have_css "a[href='https://www.url.com']", text: "many text wow link"
+    end
   end
 
   scenario "Publish an alert message with a translation different than the current locale" do
