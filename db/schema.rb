@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_11_13_123000) do
+ActiveRecord::Schema[7.0].define(version: 2026_01_13_100000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -736,6 +736,25 @@ ActiveRecord::Schema[7.0].define(version: 2025_11_13_123000) do
     t.index ["followable_type", "followable_id"], name: "index_follows_on_followable_type_and_followable_id"
     t.index ["user_id", "followable_type", "followable_id"], name: "access_follows"
     t.index ["user_id"], name: "index_follows_on_user_id"
+  end
+
+  create_table "footer_link_translations", force: :cascade do |t|
+    t.bigint "footer_link_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "label", limit: 80
+    t.index ["footer_link_id"], name: "index_footer_link_translations_on_footer_link_id"
+    t.index ["locale"], name: "index_footer_link_translations_on_locale"
+  end
+
+  create_table "footer_links", force: :cascade do |t|
+    t.string "url", null: false
+    t.integer "position", default: 0, null: false
+    t.boolean "visible", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["visible", "position"], name: "index_footer_links_on_visible_and_position"
   end
 
   create_table "geozones", id: :serial, force: :cascade do |t|
@@ -1952,16 +1971,6 @@ ActiveRecord::Schema[7.0].define(version: 2025_11_13_123000) do
     t.index ["visit_token"], name: "index_visits_on_visit_token", unique: true
     t.index ["visitor_id", "started_at"], name: "index_visits_on_visitor_id_and_started_at"
     t.index ["visitor_token", "started_at"], name: "index_visits_on_visitor_token_and_started_at"
-  end
-
-  create_table "vmcrc_siac_personas", id: :serial, force: :cascade do |t|
-    t.text "codper", null: false
-    t.text "codmap", null: false
-    t.text "nomb", null: false
-    t.text "ape1", null: false
-    t.text "ape2", null: false
-    t.text "dni", null: false
-    t.text "dcorreoint", null: false
   end
 
   create_table "votation_types", force: :cascade do |t|

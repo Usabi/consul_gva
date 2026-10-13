@@ -442,6 +442,13 @@ es:
       banner/translation:
         title: "Título"
         description: "Descripción"
+      footer_link:
+        label: "Texto"
+        url: "URL"
+        position: "Posición"
+        visible: "Visible"
+      footer_link/translation:
+        label: "Texto"
       alert_message:
         flash_key: Estilo
         flash_keys:

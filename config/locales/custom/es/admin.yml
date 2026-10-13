@@ -48,6 +48,26 @@ es:
         creating: Crear banner
       update:
         notice: "Banner actualizado correctamente"
+    footer_links:
+      index:
+        title: "Enlaces del pie de página"
+        create: "Crear enlace del pie"
+        empty: "No hay enlaces configurados. Se muestran los enlaces por defecto."
+        visible: "Sí"
+        hidden: "No"
+      form:
+        url_hint: "URL absoluta (https://...) o ruta interna (/privacy)."
+        submit_button: "Guardar enlace del pie"
+      new:
+        creating: "Crear enlace del pie"
+      edit:
+        editing: "Editar enlace del pie"
+      create:
+        notice: "Enlace del pie creado correctamente"
+      update:
+        notice: "Enlace del pie actualizado correctamente"
+      destroy:
+        notice: "Enlace del pie eliminado correctamente"
     alert_messages:
       index:
         title: Mensajes de alerta
@@ -924,10 +944,12 @@ es:
         pages: Personalizar páginas
         help_texts: Personalizar textos de ayuda
         alert_messages: Personalizar mensajes de alerta
+        footer_links: Gestionar enlaces del pie
         images: Personalizar imágenes
         content_blocks: Personalizar bloques
         information_texts: Personalizar textos
         information_texts_menu:
+          footer: "Pie de página"
           basic: "Personalización básica"
           debates: "Debates"
           community: "Comunidad"

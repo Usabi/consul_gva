@@ -1,0 +1,32 @@
+<%= translatable_form_for [:admin, @footer_link], html: { class: "footer-links-form" } do |f| %>
+  <%= render "shared/globalize_locales", resource: @footer_link %>
+
+  <%= render "shared/errors", resource: @footer_link %>
+
+  <%= f.translatable_fields do |translations_form| %>
+    <div class="small-12 medium-8 column end">
+      <%= translations_form.text_field :label, maxlength: 80 %>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="small-12 medium-8 column">
+      <%= f.text_field :url, maxlength: 255, hint: t("admin.footer_links.form.url_hint") %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 medium-4 column">
+      <%= f.number_field :position, min: 0, step: 1 %>
+    </div>
+    <div class="small-12 medium-4 column end">
+      <%= f.check_box :visible %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="actions small-12 medium-4 column">
+      <%= f.submit(class: "button expanded", value: t("admin.footer_links.form.submit_button")) %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,32 @@
+<%= link_to t("admin.footer_links.index.create"),
+            new_admin_footer_link_path,
+            class: "button float-right" %>
+
+<h2 class="inline-block"><%= t("admin.footer_links.index.title") %></h2>
+
+<% if @footer_links.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col"><%= FooterLink.human_attribute_name(:position) %></th>
+        <th scope="col"><%= FooterLink.human_attribute_name(:label) %></th>
+        <th scope="col"><%= FooterLink.human_attribute_name(:url) %></th>
+        <th scope="col"><%= FooterLink.human_attribute_name(:visible) %></th>
+        <th scope="col"><%= t("admin.actions.actions") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @footer_links.each do |footer_link| %>
+        <tr>
+          <td><%= footer_link.position %></td>
+          <td><%= footer_link.label %></td>
+          <td><%= footer_link.url %></td>
+          <td><%= t("admin.footer_links.index.#{footer_link.visible? ? "visible" : "hidden"}") %></td>
+          <td><%= render Admin::TableActionsComponent.new(footer_link) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="callout primary"><%= t("admin.footer_links.index.empty") %></div>
+<% end %>

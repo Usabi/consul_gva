@@ -140,6 +140,8 @@ namespace :admin do
 
     resources :key_systems, only: [:index] # Custom
 
+    resources :footer_links, except: [:show]
+
     resources :hidden_comments, only: :index do
       member do
         put :restore

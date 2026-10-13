@@ -14,6 +14,8 @@ class SiteCustomization::Image
     "favicon" => [16, 16],
     "map" => [420, 500],
     "logo_email" => [400, 80],
+    "logo_footer_gva" => [230, 96],
+    "logo_footer_participa" => [154, 52],
     "welcome_process" => [370, 185]
   }.freeze
 
