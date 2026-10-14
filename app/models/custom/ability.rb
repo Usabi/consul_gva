@@ -37,6 +37,12 @@ class Ability
       else
         merge Abilities::Common.new(user)
       end
+
+      # Nobody (not even administrators or legislators) can edit a legislation
+      # proposal that already has supports or whose proposals phase is not open.
+      cannot [:edit, :update], Legislation::Proposal do |proposal|
+        !proposal.editable?
+      end
     else
       merge Abilities::Everyone.new(user)
     end
