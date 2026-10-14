@@ -10,6 +10,7 @@ module Abilities
                                   Legislation::Annotation, Legislation::Proposal, Topic]
 
       can [:hide, :restore], Document
+      can :destroy, Document, documentable_type: "Comment"
     end
   end
 end
