@@ -1,4 +1,5 @@
-.comment-form .comment-attachment {
+.comment-form .comment-attachment,
+.comment-input .comment-attachment {
   margin-bottom: $line-height;
 
   summary {
@@ -8,6 +9,7 @@
     font-size: $small-font-size;
     font-weight: bold;
     list-style: none;
+    white-space: nowrap;
 
     &::-webkit-details-marker {
       display: none;

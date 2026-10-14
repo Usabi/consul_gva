@@ -35,6 +35,17 @@ describe "Users public activity" do
       expect(page).to have_content "Mi documento adjunto"
     end
 
+    scenario "Shows documents attached to comments and links to the comment" do
+      user = create(:user)
+      comment = create(:comment, user: user, body: "Comentario con informe")
+      create(:document, user: user, documentable: comment, title: "informe-comentario.pdf")
+
+      visit user_path(user, filter: "attached_documents")
+
+      expect(page).to have_content "informe-comentario.pdf"
+      expect(page).to have_link "Comentario con informe", href: comment_path(comment)
+    end
+
     scenario "Hides the filter when the user has no uploaded documents" do
       user = create(:user)
 

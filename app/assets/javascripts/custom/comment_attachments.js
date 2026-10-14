@@ -47,3 +47,29 @@
     updatePicker(input[0]);
   });
 }).call(this);
+
+// The new annotation form expects a JSON response and notifies the annotator
+// through the ajax:complete event of the form, so it is submitted separately.
+(function() {
+  "use strict";
+
+  $(document).on("ajax:aborted:file", "#new_legislation_annotation", function() {
+    var form = $(this);
+
+    $.ajax({
+      url: form.attr("action"),
+      type: "POST",
+      data: new FormData(this),
+      processData: false,
+      contentType: false,
+      dataType: "json"
+    }).always(function(_data, _status, xhr) {
+      var request = xhr && xhr.status !== undefined ? xhr : _data;
+
+      form.find(":input").prop("disabled", false);
+      form.trigger("ajax:complete", [request]);
+    });
+
+    return false;
+  });
+}).call(this);
