@@ -107,6 +107,50 @@ describe PttCaptchaApi do
     end
   end
 
+  describe "request headers" do
+    def sent_request_bytes
+      captured = nil
+      response = instance_double(Net::HTTPResponse, code: "200", body: { "idCaptcha" => captcha_id }.to_json)
+      allow(http_double).to receive(:request) do |request|
+        captured = request
+        response
+      end
+
+      described_class.create_captcha
+
+      io = StringIO.new
+      io.define_singleton_method(:continue_timeout) { nil }
+      captured.exec(io, "1.1", captured.path)
+      io.string
+    end
+
+    it "sends x-api-key and aplicacion with the exact lowercase names of the contract" do
+      raw = sent_request_bytes
+
+      expect(raw).to include("\r\nx-api-key: test-x-api-key\r\n")
+      expect(raw).to include("\r\naplicacion: test-aplicacion\r\n")
+      expect(raw).not_to include("X-Api-Key")
+      expect(raw).not_to include("Aplicacion:")
+    end
+
+    it "keeps the usual capitalization for the other headers" do
+      raw = sent_request_bytes
+
+      expect(raw).to include("\r\nContent-Type: application/json\r\n")
+      expect(raw).to include("\r\nAccept: application/json\r\n")
+    end
+
+    it "strips whitespace around the configured credentials" do
+      allow(PttCaptcha.configuration).to receive_messages(x_api_key: "  test-x-api-key\n",
+                                                          aplicacion: " test-aplicacion ")
+
+      raw = sent_request_bytes
+
+      expect(raw).to include("\r\nx-api-key: test-x-api-key\r\n")
+      expect(raw).to include("\r\naplicacion: test-aplicacion\r\n")
+    end
+  end
+
   describe ".last_error" do
     it "is nil after a successful call" do
       stub_http(body: { "idCaptcha" => captcha_id })

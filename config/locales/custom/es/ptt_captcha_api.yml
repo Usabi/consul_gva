@@ -5,8 +5,8 @@ es:
       "0301": Organismo no autorizado — revisar credenciales PAI
       "0309": Error al verificar credenciales PAI
       "0800": Operación no existe en el servicio
-      "0809": Falta cabecera x-api-key en secrets
-      "0810": Falta cabecera aplicacion en secrets
+      "0809": El BUS PAI no recibe la cabecera x-api-key (ausente, vacía o no válida para este entorno)
+      "0810": El BUS PAI no recibe la cabecera aplicacion (ausente, vacía o no válida para este entorno)
     http_errors:
       "400": Petición incorrecta
       "401": No autorizada

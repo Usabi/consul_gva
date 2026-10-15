@@ -34,6 +34,17 @@ describe "rake ptt_captcha:verify" do
     expect(output).not_to include("SECRET-APLICACION")
   end
 
+  it "logs the length and whitespace state of the credentials, never their value" do
+    allow(PttCaptcha.configuration).to receive_messages(x_api_key: " 0123456789 ", aplicacion: "ABCDE")
+
+    output = run_task.join("\n")
+
+    expect(output).to include("PTT x_api_key length: 12 (surrounding whitespace: true)")
+    expect(output).to include("PTT aplicacion length: 5 (surrounding whitespace: false)")
+    expect(output).not_to include("0123456789")
+    expect(output).not_to include("ABCDE")
+  end
+
   it "logs the Rails environment and the PTT endpoint used" do
     output = run_task.join("\n")
 
