@@ -11,6 +11,11 @@ namespace :ptt_captcha do
     logger.info "PTT x_api_key present: #{config.x_api_key.present?}"
     logger.info "PTT aplicacion present: #{config.aplicacion.present?}"
 
+    { "x_api_key" => config.x_api_key, "aplicacion" => config.aplicacion }.each do |name, value|
+      text = value.to_s
+      logger.info "PTT #{name} length: #{text.length} (surrounding whitespace: #{text != text.strip})"
+    end
+
     site_key = Rails.application.secrets.site_key.present?
     secret_key = Rails.application.secrets.secret_key.present?
     google = site_key && secret_key

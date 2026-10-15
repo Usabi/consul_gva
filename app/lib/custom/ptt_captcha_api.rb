@@ -38,8 +38,9 @@ class PttCaptchaApi
     request = Net::HTTP::Post.new(uri.path)
     request["Content-Type"] = "application/json"
     request["Accept"]       = "application/json"
-    request["x-api-key"]    = x_api_key
-    request["aplicacion"]   = aplicacion
+    request["x-api-key"]    = x_api_key.to_s.strip
+    request["aplicacion"]   = aplicacion.to_s.strip
+    keep_literal_header_names(request)
 
     request.body = body.to_json
     response = http.request(request)
@@ -56,6 +57,19 @@ class PttCaptchaApi
     record_error(path, "#{e.class}: #{e.message}")
     Rails.logger.error("PttCaptchaApi error [#{path}]: #{e.message}")
     {}
+  end
+
+  # Net::HTTP capitaliza los nombres de cabecera al enviarlos (X-Api-Key). El
+  # contrato del BUS PAI pide exactamente "x-api-key" y "aplicacion" y no todos
+  # los intermediarios comparan sin distinguir mayúsculas, así que se envían
+  # tal cual.
+  LITERAL_HEADERS = %w[x-api-key aplicacion].freeze
+
+  private_class_method def self.keep_literal_header_names(request)
+    literal = LITERAL_HEADERS
+    request.define_singleton_method(:each_capitalized) do |&block|
+      each_header { |name, value| block.call(literal.include?(name) ? name : capitalize(name), value) }
+    end
   end
 
   # El BUS devuelve los faults en XML (<err:errorMessage>) salvo que se pida
