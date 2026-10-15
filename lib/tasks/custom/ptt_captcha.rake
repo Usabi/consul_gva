@@ -11,8 +11,13 @@ namespace :ptt_captcha do
     logger.info "PTT x_api_key present: #{config.x_api_key.present?}"
     logger.info "PTT aplicacion present: #{config.aplicacion.present?}"
 
-    google = Rails.application.secrets.site_key.present? &&
-             Rails.application.secrets.secret_key.present?
+    site_key = Rails.application.secrets.site_key.present?
+    secret_key = Rails.application.secrets.secret_key.present?
+    google = site_key && secret_key
+
+    logger.info "Google site_key present: #{site_key}"
+    logger.info "Google secret_key present: #{secret_key}"
+    logger.info "Google reCAPTCHA usable: #{google}"
     keys_present = config.app_id.present? && config.x_api_key.present? && config.aplicacion.present?
 
     if keys_present

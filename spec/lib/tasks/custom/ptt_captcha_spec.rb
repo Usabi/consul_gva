@@ -48,6 +48,23 @@ describe "rake ptt_captcha:verify" do
     expect(output).to include("Captcha in use: PTT")
   end
 
+  it "logs whether the Google reCAPTCHA keys are present without exposing their values" do
+    allow(Rails.application.secrets).to receive_messages(site_key: "SECRET-SITE", secret_key: nil)
+
+    output = run_task.join("\n")
+
+    expect(output).to include("Google site_key present: true")
+    expect(output).to include("Google secret_key present: false")
+    expect(output).to include("Google reCAPTCHA usable: false")
+    expect(output).not_to include("SECRET-SITE")
+  end
+
+  it "reports Google reCAPTCHA as usable when both keys are present" do
+    allow(Rails.application.secrets).to receive_messages(site_key: "site", secret_key: "secret")
+
+    expect(run_task.join("\n")).to include("Google reCAPTCHA usable: true")
+  end
+
   context "when the PTT keys are blank" do
     before do
       allow(PttCaptcha.configuration).to receive_messages(app_id: "", x_api_key: nil, aplicacion: nil)
