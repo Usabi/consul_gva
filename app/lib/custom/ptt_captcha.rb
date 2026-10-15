@@ -1,6 +1,6 @@
 module PttCaptcha
   class Configuration
-    attr_accessor :app_id, :x_api_key, :aplicacion
+    attr_accessor :app_id, :x_api_key, :aplicacion, :base_url, :front_js_url
   end
 
   class << self

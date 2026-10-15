@@ -16,6 +16,9 @@ class PttCaptchaApi
   end
 
   def self.front_js_url
+    configured = PttCaptcha.configuration.front_js_url
+    return configured if configured.present?
+
     if Rails.env.production?
       "https://ptt-captcha-front.gva.es/ptt-captcha-front/js/ptt-captcha.js"
     else
@@ -69,6 +72,9 @@ class PttCaptchaApi
   end
 
   def self.base_url
+    configured = PttCaptcha.configuration.base_url
+    return configured.to_s.chomp("/") if configured.present?
+
     Rails.env.production? ? BASE_PROD : BASE_PRE
   end
 
