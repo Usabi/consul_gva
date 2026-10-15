@@ -28,6 +28,7 @@ namespace :ptt_captcha do
         logger.info "Captcha in use: PTT"
       else
         logger.warn "PTT create_captcha: FAILED (check PttCaptchaApi errors in log/#{Rails.env}.log)"
+        logger.warn "PTT last error: #{PttCaptchaApi.last_error}" if PttCaptchaApi.last_error.present?
         logger.warn "Captcha in use: #{google ? "Google reCAPTCHA (PTT unavailable)" : "none"}"
       end
     else

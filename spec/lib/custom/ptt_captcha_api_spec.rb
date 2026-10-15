@@ -68,6 +68,107 @@ describe PttCaptchaApi do
     end
   end
 
+  describe "XML responses from the BUS" do
+    def stub_raw_http(body:, code: "500")
+      response = instance_double(Net::HTTPResponse, code: code, body: body)
+      allow(http_double).to receive(:request).and_return(response)
+    end
+
+    it "extracts the PAI error from an XML fault" do
+      stub_raw_http(body: <<~XML)
+        <?xml version="1.0" encoding="UTF-8"?>
+        <err:RestError xmlns:err="http://www.bea.com/wli/sb/errors">
+          <err:errorMessage>[0301]Organismo no autorizado</err:errorMessage>
+        </err:RestError>
+      XML
+
+      expect(described_class.create_captcha).to be_nil
+      expect(described_class.last_error).to include("0301")
+      expect(described_class.last_error).to include("PAI")
+    end
+
+    it "reports an unrecognized XML body instead of failing to parse it" do
+      stub_raw_http(body: "<html><body>Service unavailable</body></html>", code: "503")
+
+      expect(described_class.create_captcha).to be_nil
+      expect(described_class.last_error).to include("Respuesta XML no reconocida")
+    end
+
+    it "asks for JSON responses" do
+      stub_http(body: { "idCaptcha" => captcha_id })
+      headers = {}
+      allow(Net::HTTP::Post).to receive(:new).and_wrap_original do |original, *args|
+        original.call(*args).tap { |request| headers[:request] = request }
+      end
+
+      described_class.create_captcha
+
+      expect(headers[:request]["Accept"]).to eq("application/json")
+    end
+  end
+
+  describe ".last_error" do
+    it "is nil after a successful call" do
+      stub_http(body: { "idCaptcha" => captcha_id })
+
+      described_class.create_captcha
+
+      expect(described_class.last_error).to be_nil
+    end
+
+    it "describes a PAI business error" do
+      stub_http(body: { "errorMessage" => "[0301]Organismo no autorizado" })
+
+      described_class.create_captcha
+
+      expect(described_class.last_error).to include("0301")
+      expect(described_class.last_error).to include("/crear")
+    end
+
+    it "describes an HTTP error" do
+      stub_http(body: {}, code: "401")
+
+      described_class.create_captcha
+
+      expect(described_class.last_error).to include("HTTP 401")
+    end
+
+    it "describes a timeout" do
+      allow(http_double).to receive(:request).and_raise(Net::ReadTimeout)
+
+      described_class.create_captcha
+
+      expect(described_class.last_error).to include("timeout")
+    end
+
+    it "describes a refused connection" do
+      allow(http_double).to receive(:request).and_raise(Errno::ECONNREFUSED)
+
+      described_class.create_captcha
+
+      expect(described_class.last_error).to include("Errno::ECONNREFUSED")
+    end
+
+    it "is cleared by the next successful call" do
+      allow(http_double).to receive(:request).and_raise(Errno::ECONNREFUSED)
+      described_class.create_captcha
+      stub_http(body: { "idCaptcha" => captcha_id })
+
+      described_class.create_captcha
+
+      expect(described_class.last_error).to be_nil
+    end
+
+    it "never includes the configured credentials" do
+      allow(http_double).to receive(:request).and_raise(Errno::ECONNREFUSED)
+
+      described_class.create_captcha
+
+      expect(described_class.last_error).not_to include("test-x-api-key")
+      expect(described_class.last_error).not_to include("TEST-APP")
+    end
+  end
+
   describe ".validate_captcha" do
     let(:valor) { "1234" }
 
