@@ -94,7 +94,9 @@ describe "rake ptt_captcha:verify" do
   end
 
   context "when the PTT API does not return a captcha" do
-    before { allow(PttCaptchaApi).to receive(:create_captcha).and_return(nil) }
+    before do
+      allow(PttCaptchaApi).to receive_messages(create_captcha: nil, last_error: "PAI 0301 en /crear")
+    end
 
     it "warns that the form falls back to Google and points to the application log" do
       allow(Rails.application.secrets).to receive_messages(site_key: "site", secret_key: "secret")
@@ -102,6 +104,7 @@ describe "rake ptt_captcha:verify" do
       output = run_task.join("\n")
 
       expect(output).to include("PTT create_captcha: FAILED")
+      expect(output).to include("PTT last error: PAI 0301 en /crear")
       expect(output).to include("Captcha in use: Google reCAPTCHA (PTT unavailable)")
       expect(output).to include("PttCaptchaApi")
     end
