@@ -109,7 +109,53 @@ describe PttCaptchaApi do
     end
   end
 
+  describe ".base_url" do
+    after { PttCaptcha.configuration.base_url = nil }
+
+    context "when a base_url is configured" do
+      it "returns it without trailing slash" do
+        PttCaptcha.configuration.base_url = "https://innovacion-pre.gva.es/custom/CAPTCHA_REST_v1_00/"
+
+        expect(described_class.base_url).to eq("https://innovacion-pre.gva.es/custom/CAPTCHA_REST_v1_00")
+      end
+
+      it "is used by create_captcha" do
+        PttCaptcha.configuration.base_url = "https://custom.example/CAPTCHA_REST_v1_00"
+        stub_http(body: { "idCaptcha" => captcha_id })
+
+        described_class.create_captcha
+
+        expect(Net::HTTP).to have_received(:new).with("custom.example", 443)
+      end
+    end
+
+    context "when base_url is blank" do
+      before { PttCaptcha.configuration.base_url = "" }
+
+      it "falls back to the PRE URL outside production" do
+        expect(described_class.base_url).to eq(described_class::BASE_PRE)
+      end
+
+      it "falls back to the production URL in production" do
+        allow(Rails).to receive(:env).and_return(ActiveSupport::StringInquirer.new("production"))
+
+        expect(described_class.base_url).to eq(described_class::BASE_PROD)
+      end
+    end
+  end
+
   describe ".front_js_url" do
+    context "when a front_js_url is configured" do
+      after { PttCaptcha.configuration.front_js_url = nil }
+
+      it "returns it even in production" do
+        PttCaptcha.configuration.front_js_url = "https://ptt-captcha-front-pre.gva.es/ptt-captcha-front/js/ptt-captcha.js"
+        allow(Rails).to receive(:env).and_return(ActiveSupport::StringInquirer.new("production"))
+
+        expect(described_class.front_js_url).to include("ptt-captcha-front-pre.gva.es")
+      end
+    end
+
     context "in production" do
       it "returns production URL" do
         allow(Rails).to receive(:env).and_return(ActiveSupport::StringInquirer.new("production"))
