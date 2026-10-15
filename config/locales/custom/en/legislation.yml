@@ -112,6 +112,13 @@ en:
         tags_label: "Categories"
       not_verified: "For vote proposals %{verify_account}."
       process_title: Collaborative legislation process
+      edit_only_without_supports: "Editing is only available while the proposal has no supports."
+      edit_denied:
+        supports: "Editing is not available: the proposal has already received supports."
+        closed: "Editing is not available: the proposals phase of this process is closed."
+        process_closed: "Editing is not available: this process is closed."
+      show:
+        edit_proposal_link: Edit proposal
     summary:
       title: "Summary"
       votes:

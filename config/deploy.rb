@@ -81,6 +81,15 @@ namespace :deploy do
 
   # before "deploy:restart", "puma:smart_restart"
   before "deploy:restart", "delayed_job:restart"
+
+  desc "Restart Passenger by touching tmp/restart.txt"
+  task :restart_passenger do
+    on roles(:app) do
+      execute :touch, release_path.join("tmp/restart.txt")
+    end
+  end
+
+  after :published, :restart_passenger
 end
 
 task :install_ruby do

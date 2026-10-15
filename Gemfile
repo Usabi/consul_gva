@@ -12,7 +12,7 @@ gem "acts_as_votable", "~> 0.14.0"
 gem "ahoy_matey", "~> 5.3.0"
 gem "airbrake", "~> 13.0.5"
 gem "ancestry", "~> 4.3.3"
-gem "audited", "~> 5.7.0"
+gem "audited", "~> 5.8.0"
 gem "autoprefixer-rails", "~> 10.4.21"
 gem "bing_translator", "~> 6.2.0"
 gem "cancancan", "~> 3.6.1"
@@ -40,7 +40,7 @@ gem "image_processing", "~> 1.13.0"
 gem "invisible_captcha", "~> 2.3.0"
 gem "kaminari", "~> 1.2.2"
 gem "mini_magick", "~> 4.13.2"
-gem "omniauth", "~> 2.1.2"
+gem "omniauth", "~> 2.1.4"
 gem "omniauth-facebook", "~> 10.0.0"
 gem "omniauth-google-oauth2", "~> 1.2.2"
 gem "omniauth-rails_csrf_protection", "~> 1.0.2"
@@ -66,7 +66,7 @@ gem "turnout", "~> 2.5.0"
 gem "uglifier", "~> 4.2.1"
 gem "uuidtools", "~> 2.2.0"
 gem "view_component", "~> 3.26.0"
-gem "whenever", "~> 1.0.0", require: false
+gem "whenever", "~> 1.1.2", require: false
 gem "wicked_pdf", "~> 2.8.2"
 gem "wkhtmltopdf-binary", "~> 0.12.6"
 
@@ -100,10 +100,10 @@ group :development do
   gem "capistrano3-delayed-job", "~> 1.7.6"
   gem "capistrano3-puma", "~> 6.2.0"
   gem "erb_lint", "~> 0.9.0", require: false
-  gem "faraday-retry", "~> 2.2.1", require: false
+  gem "faraday-retry", "~> 2.4.0", require: false
   gem "htmlbeautifier", "~> 1.4.3", require: false
   gem "mdl", "~> 0.18.1", require: false
-  gem "pronto", "~> 0.11.2", require: false
+  gem "pronto", "~> 0.11.5", require: false
   gem "pronto-erb_lint", "~> 0.1.6", require: false
   gem "pronto-eslint", "~> 0.11.1", require: false
   gem "pronto-rubocop", "~> 0.11.6", require: false
@@ -111,7 +111,7 @@ group :development do
   gem "rubocop", "~> 1.87.0", require: false
   gem "rubocop-capybara", "~> 2.23.0", require: false
   gem "rubocop-factory_bot", "~> 2.28.0", require: false
-  gem "rubocop-performance", "~> 1.23.1", require: false
+  gem "rubocop-performance", "~> 1.26.1", require: false
   gem "rubocop-rails", "~> 2.35.5", require: false
   gem "rubocop-rspec", "~> 3.5.0", require: false
   gem "rubocop-rspec_rails", "~> 2.31.0", require: false

@@ -1,0 +1,70 @@
+.comment-form .comment-attachment,
+.comment-input .comment-attachment {
+  margin-bottom: $line-height;
+
+  summary {
+    color: $link;
+    cursor: pointer;
+    display: inline-block;
+    font-size: $small-font-size;
+    font-weight: bold;
+    list-style: none;
+    white-space: nowrap;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::before {
+      content: "+ ";
+    }
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+
+  &[open] summary::before {
+    content: "\2212  ";
+  }
+
+  .comment-attachment-picker {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+
+    input[type="file"]:focus + .comment-attachment-button {
+      outline: 2px solid $link;
+      outline-offset: 2px;
+    }
+  }
+
+  .comment-attachment-button {
+    cursor: pointer;
+    margin: 0;
+  }
+
+  .comment-attachment-name {
+    color: $text-medium;
+    font-size: $small-font-size;
+    overflow-wrap: anywhere;
+  }
+
+  .comment-attachment-clear {
+    background: none;
+    border: 0;
+    color: $link;
+    cursor: pointer;
+    font-size: $small-font-size;
+    padding: 0;
+    text-decoration: underline;
+  }
+
+  .help-text {
+    font-style: normal;
+    margin-bottom: 0;
+  }
+}

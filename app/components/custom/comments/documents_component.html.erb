@@ -1,0 +1,34 @@
+<ul class="no-bullet document-link comment-documents">
+  <% documents.each do |document| %>
+    <li id="<%= dom_id(document) %>" class="<%= "hidden-document" if document.hidden? %>">
+      <%= link_to document.attachment, rel: "nofollow" do %>
+        <strong class="document-title"><%= document.title %></strong>
+        <small class="document-metadata">
+          <span class="document-content-type"><%= document.humanized_content_type %></span>
+          <span class="document-size"><%= number_to_human_size(document.attachment_file_size, precision: 2) %></span>
+        </small>
+      <% end %>
+
+      <% if document.hidden? %>
+        <span class="label alert"><%= t("comments.documents.hidden") %></span>
+      <% end %>
+
+      <% if can?(:destroy, document) %>
+        <%= button_to t("documents.buttons.destroy_document"), document_path(document),
+                      method: :delete, class: "delete",
+                      data: { confirm: t("documents.actions.destroy.confirm") } %>
+      <% end %>
+
+      <% if can?(:hide, document) %>
+        <% if document.hidden? %>
+          <%= button_to t("documents.buttons.restore_document"), restore_document_path(document),
+                        method: :put, class: "button hollow small" %>
+        <% else %>
+          <%= button_to t("documents.buttons.hide_document"), hide_document_path(document),
+                        method: :put, class: "delete",
+                        data: { confirm: t("documents.actions.hide.confirm") } %>
+        <% end %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

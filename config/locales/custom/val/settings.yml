@@ -62,6 +62,14 @@ val:
     min_age_to_participate_description: "Els usuaris majors d'edat podran participar en tots els processos"
     max_votes_per_budget_per_user: Nombre màxim de suports a propostes per usuari/a
     max_votes_per_budget_per_user_description: Nombre màxim de propostes que un usuari/a pot avalar en un pressupost participatiu
+    admin_guide_url: "URL del manual d'administrador"
+    admin_guide_url_description: "Enllaç de descàrrega del manual que es mostra al panell d'administració, pestanya Guies i recursos. Si està buit, no es mostra el botó"
+    legislator_guide_url: "URL del manual de legislador"
+    legislator_guide_url_description: "Enllaç de descàrrega del manual que es mostra al panell d'administració, pestanya Guies i recursos. Si està buit, no es mostra el botó"
+    help_contact_email: "Email de contacte d'ajuda"
+    help_contact_email_description: "Email que es mostra en \"Necessita ajuda?\" del panell d'administració. Si està buit, no es mostra"
+    help_contact_website: "Web de contacte d'ajuda"
+    help_contact_website_description: "Web que es mostra en \"Necessita ajuda?\" del panell d'administració. Si està buida, no es mostra"
     analytics_url: "URL d'estadístiques externes"
     feature:
       twitter_login: "Registre amb Twitter"

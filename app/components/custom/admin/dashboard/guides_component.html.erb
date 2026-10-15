@@ -15,7 +15,9 @@
               <h4><%= t("admin.dashboard.index.admin_guide") %></h4>
               <p><%= t("admin.dashboard.index.admin_description") %></p>
               <div class="guide-actions">
-                <%= link_to t("admin.dashboard.index.download_guide"), "https://gvaparticipa.gva.es/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdTFIIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--de6e1ab490cde857d4e6db27270d3caa73b3f5e3/15_10_25_new_MANUAL%20DE%20ADMINISTRACI%C3%93N%20DE%20LA%20PLATAFORMA%20CONSUL.pdf", class: "button hollow" %>
+                <% if admin_guide_url %>
+                  <%= link_to t("admin.dashboard.index.download_guide"), admin_guide_url, class: "button hollow" %>
+                <% end %>
               </div>
             </div>
           </div>
@@ -26,7 +28,9 @@
               <h4><%= t("admin.dashboard.index.legislator_guide") %></h4>
               <p><%= t("admin.dashboard.index.legislator_description") %></p>
               <div class="guide-actions">
-                <%= link_to t("admin.dashboard.index.download_guide"), "https://gvaparticipa.gva.es/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdTVIIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7f20f4ffd150b691713b139b49fc667ddeeefdb1/15_10_25_new_MANUAL%20DE%20LEGISLADOR.pdf", class: "button hollow" %>
+                <% if legislator_guide_url %>
+                  <%= link_to t("admin.dashboard.index.download_guide"), legislator_guide_url, class: "button hollow" %>
+                <% end %>
               </div>
             </div>
           </div>
@@ -36,14 +40,16 @@
   </div>
 </div>
 
-<div class="dashboard-section">
-  <div class="row column">
-    <div class="contact-info">
-      <h4><%= t("admin.dashboard.index.contact_info") %></h4>
-      <address>
-        <%= email_link %>
-        <%= website_link %>
-      </address>
+<% if contact_info? %>
+  <div class="dashboard-section">
+    <div class="row column">
+      <div class="contact-info">
+        <h4><%= t("admin.dashboard.index.contact_info") %></h4>
+        <address>
+          <%= email_link if contact_email %>
+          <%= website_link if contact_website %>
+        </address>
+      </div>
     </div>
   </div>
-</div>
+<% end %>

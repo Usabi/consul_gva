@@ -96,6 +96,8 @@ module Abilities
 
       can [:search, :update, :create, :index, :destroy], AlertMessage
 
+      can [:index, :new, :create, :edit, :update, :destroy], FooterLink
+
       can [:index, :create, :update, :destroy], Geozone
 
       can [:read, :create, :update, :destroy, :booth_assignments, :help_page], Poll
@@ -141,6 +143,8 @@ module Abilities
              [::Legislation::Question, Legislation::Annotation, ::Legislation::Proposal]
 
       can [:create], Document
+      can [:hide, :restore], Document
+      can :destroy, Document, documentable_type: "Comment"
       can [:destroy], Document do |document|
         document.documentable_type == "Poll::Question::Option" && can?(:update, document.documentable)
       end

@@ -22,13 +22,21 @@ class Setting
       if Rails.env.test?
         consul_defaults.merge({
           "homepage.widgets.feeds.selected_proposals": true,
-          "feature.citizen_newsletter": false
+          "feature.citizen_newsletter": false,
+          admin_guide_url: "",
+          legislator_guide_url: "",
+          help_contact_email: "",
+          help_contact_website: ""
         })
       else
         consul_defaults.merge({
           # Overwrite default CONSUL DEMOCRACY settings or add new settings here
           "homepage.widgets.feeds.selected_proposals": true,
-          "feature.citizen_newsletter": false
+          "feature.citizen_newsletter": false,
+          admin_guide_url: "",
+          legislator_guide_url: "",
+          help_contact_email: "",
+          help_contact_website: ""
         })
       end
     end

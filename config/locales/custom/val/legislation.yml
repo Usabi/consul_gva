@@ -124,6 +124,13 @@ val:
       form:
         tags_label: "Categoríes"
       not_verified: "Per a votar propostes %{verify_account}."
+      edit_only_without_supports: "L'edició només està disponible mentre la proposta no haja rebut cap suport."
+      edit_denied:
+        supports: "No es pot editar: la proposta ja ha rebut suports."
+        closed: "No es pot editar: la fase de propostes d'aquest procés està tancada."
+        process_closed: "No es pot editar: aquest procés està tancat."
+      show:
+        edit_proposal_link: Editar proposta
     summary:
       title: "Resumen"
       votes:

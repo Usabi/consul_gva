@@ -37,6 +37,26 @@ val:
           submit_button: Guardar canvis
       new:
         creating: Crear un banner
+    footer_links:
+      index:
+        title: "Enllaços del peu de pàgina"
+        create: "Crear enllaç del peu"
+        empty: "No hi ha enllaços configurats. Es mostren els enllaços per defecte."
+        visible: "Sí"
+        hidden: "No"
+      form:
+        url_hint: "URL absoluta (https://...) o ruta interna (/privacy)."
+        submit_button: "Guardar enllaç del peu"
+      new:
+        creating: "Crear enllaç del peu"
+      edit:
+        editing: "Editar enllaç del peu"
+      create:
+        notice: "Enllaç del peu creat correctament"
+      update:
+        notice: "Enllaç del peu actualitzat correctament"
+      destroy:
+        notice: "Enllaç del peu eliminat correctament"
     alert_messages:
       index:
         title: Missatges d'alerta
@@ -661,10 +681,12 @@ val:
         pages: Pàgines
         help_texts: Text d'ajuda
         alert_messages: Personalitzar missatges d'alerta
+        footer_links: Gestionar enllaços del peu
         images: Imatges
         content_blocks: Blocs
         information_texts: Personalitzar texts
         information_texts_menu:
+          footer: "Peu de pàgina"
           debates: "Debats"
           community: "Comunitat"
           proposals: "Iniciatives"

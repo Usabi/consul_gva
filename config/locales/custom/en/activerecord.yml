@@ -1,6 +1,13 @@
 en:
   activerecord:
     attributes:
+      footer_link:
+        label: "Label"
+        url: "URL"
+        position: "Position"
+        visible: "Visible"
+      footer_link/translation:
+        label: "Label"
       alert_message:
         flash_key: Style
         flash_keys:

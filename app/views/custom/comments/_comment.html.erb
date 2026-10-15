@@ -109,6 +109,8 @@
           <%= simple_format sanitize_and_auto_link(comment.body), {}, sanitize: false %>
         </div>
 
+        <%= render Comments::DocumentsComponent.new(comment) %>
+
         <div id="<%= dom_id(comment) %>_reply" class="reply">
           <% unless valuation %>
             <div id="<%= dom_id(comment) %>_votes" class="comment-votes float-right">
