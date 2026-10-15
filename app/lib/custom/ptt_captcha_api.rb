@@ -68,7 +68,7 @@ class PttCaptchaApi
     end
   end
 
-  private_class_method def self.base_url
+  def self.base_url
     Rails.env.production? ? BASE_PROD : BASE_PRE
   end
 
