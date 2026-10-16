@@ -1,6 +1,6 @@
 class Relationable::RelatedListComponent < ApplicationComponent
   attr_reader :relationable
-  use_helpers :current_user
+  delegate :current_user, to: :helpers
 
   def initialize(relationable)
     @relationable = relationable

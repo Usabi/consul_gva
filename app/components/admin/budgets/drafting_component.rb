@@ -1,5 +1,5 @@
 class Admin::Budgets::DraftingComponent < ApplicationComponent
-  use_helpers :can?
+  delegate :can?, to: :helpers
   attr_reader :budget
 
   def initialize(budget)

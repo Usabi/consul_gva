@@ -1,5 +1,5 @@
 class Budgets::SupportsInfoComponent < ApplicationComponent
-  use_helpers :current_user
+  delegate :current_user, to: :helpers
   attr_reader :budget
 
   def initialize(budget)

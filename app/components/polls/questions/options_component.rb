@@ -1,6 +1,6 @@
 class Polls::Questions::OptionsComponent < ApplicationComponent
   attr_reader :question
-  use_helpers :can?, :current_user, :user_signed_in?
+  delegate :can?, :current_user, :user_signed_in?, to: :helpers
 
   def initialize(question)
     @question = question

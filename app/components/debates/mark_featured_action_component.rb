@@ -1,6 +1,6 @@
 class Debates::MarkFeaturedActionComponent < ApplicationComponent
   attr_reader :debate
-  use_helpers :can?
+  delegate :can?, to: :helpers
 
   def initialize(debate)
     @debate = debate
