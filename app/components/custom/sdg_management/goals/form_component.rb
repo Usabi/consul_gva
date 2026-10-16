@@ -2,7 +2,7 @@ class SDGManagement::Goals::FormComponent < ApplicationComponent
   include TranslatableFormHelper
   include GlobalizeHelper
 
-  use_helpers :site_customization_enable_translation?
+  delegate :site_customization_enable_translation?, to: :helpers
   attr_reader :goal, :contents
 
   def initialize(goal)

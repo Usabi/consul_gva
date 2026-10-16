@@ -19,7 +19,7 @@ class Budgets::InvestmentsController
     @back_link_map_path = session[:back_link_map_path].present? ? session[:back_link_map_path] : budget_path(@budget)
     session[:back_link_investment_list] = request.fullpath
     @investments = investments.page(params[:page]).per(PER_PAGE).for_render
-    @investment_ids = @investments.ids
+    @investment_ids = @investments.unscope(:includes).ids
     @investments_in_map = investments
 
     @tag_cloud = tag_cloud
