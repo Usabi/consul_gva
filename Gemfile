@@ -25,7 +25,7 @@ gem "daemons", "~> 1.4.1"
 gem "dalli", "~> 3.2.13"
 gem "delayed_job", "< 4.2" # delayed_job 4.2.0's ActiveJob adapter requires Rails >= 7.1
 gem "delayed_job_active_record", "~> 4.1.11"
-gem "devise", "~> 4.9.4"
+gem "devise", "~> 5.0.4"
 gem "devise-security", "~> 0.18.0"
 gem "exiftool_vendored", "~> 12.97.0"
 gem "file_validators", "~> 3.0.0"
