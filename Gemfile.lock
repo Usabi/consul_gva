@@ -326,7 +326,7 @@ GEM
       rdoc
       reline (>= 0.4.2)
     json (2.21.2)
-    jwt (2.9.3)
+    jwt (2.10.3)
       base64
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
