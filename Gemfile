@@ -74,7 +74,7 @@ group :development, :test do
   gem "factory_bot_rails", "~> 6.5.1"
   gem "faker", "~> 3.8.0"
   gem "i18n-tasks", "~> 0.9.37"
-  gem "knapsack_pro", "~> 7.8.0"
+  gem "knapsack_pro", "~> 10.0.1"
   gem "launchy", "~> 3.1.1"
   gem "letter_opener_web", "~> 3.0.0"
 end
@@ -86,7 +86,7 @@ group :test do
   gem "pdf-reader", "~> 2.14.1"
   gem "rspec-rails", "~> 7.1.1"
   gem "selenium-webdriver", "~> 4.48.0"
-  gem "simplecov", "~> 0.22.0", require: false
+  gem "simplecov", "~> 1.1.1", require: false
   gem "simplecov-lcov", "~> 0.9.0", require: false
 end
 
@@ -108,7 +108,7 @@ group :development do
   gem "pronto-rubocop", "~> 0.11.6", require: false
   gem "pronto-stylelint", "~> 0.11.1", require: false
   gem "rubocop", "~> 1.90.0", require: false
-  gem "rubocop-capybara", "~> 2.23.0", require: false
+  gem "rubocop-capybara", "~> 3.0.0", require: false
   gem "rubocop-factory_bot", "~> 2.28.0", require: false
   gem "rubocop-performance", "~> 1.26.1", require: false
   gem "rubocop-rails", "~> 2.36.0", require: false
