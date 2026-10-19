@@ -8,7 +8,7 @@ shared_examples "processes nested documentable" do |login_as_name, documentable_
   if documentable_factory_name == "dashboard_action"
     let!(:documentable)           { create(documentable_factory_name) }
   else
-    let!(:documentable)           { create(documentable_factory_name, author: user) }
+    let!(:documentable) { create(documentable_factory_name, author: user) }
   end
   let!(:user_to_login) { send(login_as_name) }
   let(:management) { management }

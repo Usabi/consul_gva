@@ -17,12 +17,12 @@ class Shared::AdvancedSearchComponent
 
   def categories_search_options
     options_for_select(Tag.category.order(:name).map { |i| [i.name, i.name] },
-                       params[:advanced_search].try(:[], :tag))
+                       params[:advanced_search]&.[](:tag))
   end
 
   def geozones_search_options
     options_for_select(Geozone.order(name: :asc).map { |g| [g.name, g.id] },
-                       params[:advanced_search].try(:[], :geozone))
+                       params[:advanced_search]&.[](:geozone))
   end
 
   def council_options
@@ -31,6 +31,6 @@ class Shared::AdvancedSearchComponent
                                    .order(:title)
                                    .distinct
     options_for_select(councils.map { |c| [c.title, c.title] },
-                       params[:advanced_search].try(:[], :council))
+                       params[:advanced_search]&.[](:council))
   end
 end

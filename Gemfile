@@ -70,7 +70,7 @@ gem "wicked_pdf", "~> 2.8.2"
 gem "wkhtmltopdf-binary", "~> 0.12.6"
 
 group :development, :test do
-  gem "debug", "~> 1.9.2"
+  gem "debug", "~> 1.11.1"
   gem "factory_bot_rails", "~> 6.5.1"
   gem "faker", "~> 3.8.0"
   gem "i18n-tasks", "~> 0.9.37"
@@ -107,15 +107,15 @@ group :development do
   gem "pronto-eslint", "~> 0.11.1", require: false
   gem "pronto-rubocop", "~> 0.11.6", require: false
   gem "pronto-stylelint", "~> 0.11.1", require: false
-  gem "rubocop", "~> 1.87.0", require: false
+  gem "rubocop", "~> 1.90.0", require: false
   gem "rubocop-capybara", "~> 2.23.0", require: false
   gem "rubocop-factory_bot", "~> 2.28.0", require: false
   gem "rubocop-performance", "~> 1.26.1", require: false
-  gem "rubocop-rails", "~> 2.35.5", require: false
-  gem "rubocop-rspec", "~> 3.5.0", require: false
-  gem "rubocop-rspec_rails", "~> 2.31.0", require: false
+  gem "rubocop-rails", "~> 2.36.0", require: false
+  gem "rubocop-rspec", "~> 3.10.2", require: false
+  gem "rubocop-rspec_rails", "~> 2.32.0", require: false
   gem "rvm1-capistrano3", "~> 1.4.1", require: false
-  gem "spring", "~> 4.2.1"
+  gem "spring", "~> 4.7.0"
   gem "web-console", "~> 4.2.1"
 end
 
