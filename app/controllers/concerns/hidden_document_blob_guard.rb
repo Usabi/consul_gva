@@ -27,7 +27,7 @@ module HiddenDocumentBlobGuard
         ActiveStorage::Blob.find_signed(signed_id)
       elsif params[:encoded_key].present?
         key = ActiveStorage.verifier.verified(params[:encoded_key], purpose: :blob_key)
-        ActiveStorage::Blob.find_by(key: key[:key]) if key
+        ActiveStorage::Blob.find_by(key: key.to_h.with_indifferent_access[:key]) if key
       end
     end
 end

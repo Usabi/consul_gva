@@ -590,6 +590,7 @@ Rails/ReversibleMigration:
 # Configuration parameters: AllowImplicitReturn, AllowedReceivers.
 Rails/SaveBang:
   Exclude:
+    - 'spec/models/poll/web_vote_spec.rb'
     - 'app/controllers/admin/administrators_controller.rb'
     - 'app/controllers/application_controller.rb'
     - 'app/controllers/custom/admin/budget_investments_controller.rb'

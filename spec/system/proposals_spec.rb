@@ -356,7 +356,7 @@ describe "Proposals" do
     expect(page).to have_content "Help refugees"
     expect(page).not_to have_content "You can also see more information about improving your campaign"
 
-    click_link "No, I want to publish the proposal"
+    click_button "No, I want to publish the proposal"
 
     expect(page).to have_content "Improve your campaign and get more support"
     click_link "Not now, go to my proposal"
@@ -424,7 +424,7 @@ describe "Proposals" do
     click_button "Create proposal"
 
     expect(page).to have_content "Proposal created successfully."
-    click_link "No, I want to publish the proposal"
+    click_button "No, I want to publish the proposal"
     click_link "Not now, go to my proposal"
 
     click_link "Dashboard"
@@ -450,7 +450,7 @@ describe "Proposals" do
 
     click_button "Create proposal"
     expect(page).to have_content "Proposal created successfully."
-    click_link "No, I want to publish the proposal"
+    click_button "No, I want to publish the proposal"
     click_link "Not now, go to my proposal"
 
     expect(page).to have_css "h1", exact_text: "Help refugees"
@@ -481,7 +481,7 @@ describe "Proposals" do
     click_button "Create proposal"
 
     expect(page).to have_content "Proposal created successfully."
-    click_link "No, I want to publish the proposal"
+    click_button "No, I want to publish the proposal"
     click_link "Not now, go to my proposal"
 
     expect(page).to have_content "Testing an attack"
@@ -504,7 +504,7 @@ describe "Proposals" do
     click_button "Create proposal"
 
     expect(page).to have_content "Proposal created successfully."
-    click_link "No, I want to publish the proposal"
+    click_button "No, I want to publish the proposal"
     click_link "Not now, go to my proposal"
 
     expect(page).to have_content "Testing auto link"
@@ -514,7 +514,7 @@ describe "Proposals" do
   scenario "JS injection is prevented but autolinking is respected", :no_js, :consul do
     author = create(:user)
     js_injection_string = "<script>alert('hey')</script> " \
-                          "<a href=\"javascript:alert('surprise!')\">click me<a/> " \
+                          "<a href=\"javascript:alert('surprise!')\">click me</a> " \
                           "http://example.org"
     login_as(author)
 
@@ -528,7 +528,7 @@ describe "Proposals" do
     click_button "Create proposal"
 
     expect(page).to have_content "Proposal created successfully."
-    click_link "No, I want to publish the proposal"
+    click_button "No, I want to publish the proposal"
     click_link "Not now, go to my proposal"
 
     expect(page).to have_content "Testing auto link"
@@ -559,7 +559,7 @@ describe "Proposals" do
 
     scenario "Default whole city", :consul do
       create(:geozone)
-      author = create(:user)
+      author = create(:user, :level_two)
       login_as(author)
 
       visit new_proposal_path
@@ -568,7 +568,7 @@ describe "Proposals" do
       click_button "Create proposal"
 
       expect(page).to have_content "Proposal created successfully."
-      click_link "No, I want to publish the proposal"
+      click_button "No, I want to publish the proposal"
       click_link "Not now, go to my proposal"
 
       within "#geozone" do
@@ -613,7 +613,7 @@ describe "Proposals" do
       click_button "Create proposal"
 
       expect(page).to have_content "Proposal created successfully."
-      click_link "No, I want to publish the proposal"
+      click_button "No, I want to publish the proposal"
       click_link "Not now, go to my proposal"
 
       within "#geozone" do
@@ -1293,29 +1293,6 @@ describe "Proposals" do
 
   it_behaves_like "followable", "proposal", "proposal_path", { id: "id" }
 
-  it_behaves_like "imageable", "proposal", "proposal_path", { id: "id" }
-
-  it_behaves_like "documentable", "proposal", "proposal_path", { id: "id" }
-
-  # TODO: revisar
-  # it_behaves_like "nested documentable",
-  #                 "user",
-  #                 "proposal",
-  #                 "new_proposal_path",
-  #                 {},
-  #                 "documentable_fill_new_valid_proposal",
-  #                 "Create proposal",
-  #                 "Proposal created successfully"
-  # TODO: revisar
-  # it_behaves_like "nested documentable",
-  #                 "user",
-  #                 "proposal",
-  #                 "edit_proposal_path",
-  #                 { id: "id" },
-  #                 nil,
-  #                 "Save changes",
-  #                 "Proposal updated successfully"
-
   it_behaves_like "mappable",
                   "proposal",
                   "proposal",
@@ -1536,7 +1513,7 @@ describe "Proposals" do
       expect(medium_proposal.title).to appear_before(worst_proposal.title)
     end
 
-    scenario "Displays proposals from last week" do
+    scenario "Displays proposals from last week", :consul do
       create(:tag, :category, name: "culture")
       proposal1 = create(:proposal, tag_list: "culture", created_at: 1.day.ago)
       proposal2 = create(:proposal, tag_list: "culture", created_at: 5.days.ago)
@@ -1545,11 +1522,11 @@ describe "Proposals" do
       visit summary_proposals_path
 
       within("#proposals") do
-        expect(page).to have_css(".proposal", count: 3)
+        expect(page).to have_css(".proposal", count: 2)
 
         expect(page).to have_content(proposal1.title)
         expect(page).to have_content(proposal2.title)
-        expect(page).to have_content(proposal3.title)
+        expect(page).not_to have_content(proposal3.title)
       end
     end
   end

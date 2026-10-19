@@ -45,7 +45,7 @@ module Consul
       secrets
     end
 
-    config.load_defaults 7.0
+    config.load_defaults 7.1
 
     # Keep belongs_to fields optional by default, because that's the way
     # Rails 4 models worked
@@ -66,6 +66,9 @@ module Consul
     # Keep using ImageMagick instead of libvips for image processing in
     # order to make upgrades easier.
     config.active_storage.variant_processor = :mini_magick
+
+    # Keep using YAML to serialize the legislation_annotations ranges column
+    config.active_record.default_column_serializer = YAML
 
     # Keep reading existing data in the legislation_annotations ranges column
     config.active_record.yaml_column_permitted_classes = [ActiveSupport::HashWithIndifferentAccess, Symbol]

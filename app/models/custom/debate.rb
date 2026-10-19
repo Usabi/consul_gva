@@ -5,6 +5,7 @@ class Debate
 
   scope :sort_by_id,               -> { order("id DESC") }
   scope :sort_by_supports,         -> { order("cached_votes_up DESC") }
+  scope :sort_by_most_commented,   -> { reorder(comments_count: :desc) }
   scope :by_tag,                   ->(tag_name) { tagged_with(tag_name).distinct }
 
   def self.sort_by_title

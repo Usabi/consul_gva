@@ -467,6 +467,8 @@ describe "Admin edit translatable records", :admin do
 
         click_button "Save changes"
 
+        expect(page).to have_content "Changes saved"
+
         visit budgets_path
         find("a", text: "Name en Français").click
 
@@ -487,6 +489,8 @@ describe "Admin edit translatable records", :admin do
         select "Cast", from: "Current language"
         click_link "Remove language"
         click_button "Save"
+
+        expect(page).to have_content "Polls description updated successfully."
 
         visit polls_path
 

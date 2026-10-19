@@ -1,5 +1,6 @@
 class Admin::Geozones::IndexComponent < ApplicationComponent
   include Header
+
   attr_reader :geozones
   delegate :render_map, to: :helpers
 
