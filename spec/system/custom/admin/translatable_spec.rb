@@ -467,6 +467,8 @@ describe "Admin edit translatable records", :admin do
 
         click_button "Save changes"
 
+        expect(page).to have_content "Changes saved"
+
         visit budgets_path
         find("a", text: "Name en Français").click
 
