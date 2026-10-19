@@ -11,6 +11,7 @@ Capybara.register_driver :headless_chrome do |app|
     opts.add_argument "--no-sandbox"
     opts.add_argument "--disable-dev-shm-usage"
     opts.add_argument "--window-size=1200,800"
+    opts.binary = ENV["CHROME_BIN"] if ENV["CHROME_BIN"].present?
   end
 
   Capybara::Selenium::Driver.new(
