@@ -106,8 +106,9 @@ class PttCaptchaApi
     unless http_code == "200"
       description = I18n.t("ptt_captcha_api.http_errors.#{http_code}",
                             locale: :es, default: I18n.t("ptt_captcha_api.unknown_error", locale: :es))
-      record_error(path, "HTTP #{http_code}: #{description}")
-      Rails.logger.error("PttCaptchaApi [#{path}] HTTP #{http_code}: #{description}")
+      detail = parsed.present? ? "#{description} (respuesta: #{parsed.to_json.first(200)})" : description
+      record_error(path, "HTTP #{http_code}: #{detail}")
+      Rails.logger.error("PttCaptchaApi [#{path}] HTTP #{http_code}: #{detail}")
     end
   end
 

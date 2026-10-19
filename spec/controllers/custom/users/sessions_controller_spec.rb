@@ -19,6 +19,25 @@ describe Users::SessionsController do
       end
     end
 
+    context "when the first attempt to create the captcha fails" do
+      it "retries once and stores the id so the widget does not disappear" do
+        allow(PttCaptchaApi).to receive(:create_captcha).and_return(nil, captcha_id)
+
+        get :new
+
+        expect(session[:ptt_captcha_id]).to eq(captcha_id)
+      end
+
+      it "gives up after the retry" do
+        allow(PttCaptchaApi).to receive(:create_captcha).and_return(nil)
+
+        get :new
+
+        expect(PttCaptchaApi).to have_received(:create_captcha).twice
+        expect(session[:ptt_captcha_id]).to be_nil
+      end
+    end
+
     context "when PttCaptcha app_id is blank" do
       before { allow(PttCaptcha.configuration).to receive(:app_id).and_return("") }
 

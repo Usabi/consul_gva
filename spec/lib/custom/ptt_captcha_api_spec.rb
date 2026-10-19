@@ -245,6 +245,24 @@ describe PttCaptchaApi do
       end
     end
 
+    context "when API returns HTTP 422" do
+      it "logs the response body returned by the BUS to tell expired from reused captchas" do
+        stub_http(body: { "detalle" => "captcha caducado" }, code: "422")
+
+        expect(Rails.logger).to receive(:error).with(/422.*captcha caducado/)
+        expect(described_class.validate_captcha(captcha_id, valor)).to be false
+      end
+
+      it "keeps the response body in last_error without leaking the typed value" do
+        stub_http(body: { "detalle" => "captcha caducado" }, code: "422")
+
+        described_class.validate_captcha(captcha_id, "secreto-9876")
+
+        expect(described_class.last_error).to include("captcha caducado")
+        expect(described_class.last_error).not_to include("secreto-9876")
+      end
+    end
+
     context "when connection times out" do
       it "returns false and logs timeout" do
         allow(http_double).to receive(:request).and_raise(Net::OpenTimeout)
