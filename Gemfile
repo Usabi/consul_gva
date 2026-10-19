@@ -6,6 +6,8 @@ gem "rails", "~> 7.2.3", ">= 7.2.3.2"
 
 gem "drb"
 gem "fiddle"
+gem "logger", "1.6.0"
+gem "parser", "3.3.8.0"
 gem "stringio", "3.1.1" # Default gem de Ruby 3.3.10, necesario para que Passenger arranque
 
 gem "acts-as-taggable-on", "~> 12.0.0"

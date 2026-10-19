@@ -13,14 +13,12 @@ body > header,
   @include grid-column-gutter;
 }
 
-
 .top-bar-right {
   .is-active {
     font-weight: bold;
     text-decoration: underline;
   }
 }
-
 
 body {
 
@@ -57,7 +55,6 @@ body {
 
 @import "layout/header";
 
-
 // 03. Footer
 // ----------
 
@@ -73,7 +70,7 @@ body {
   max-width: 30vw;
   min-width: 200px;
   overflow-wrap: break-word;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
 
   .notice {
     height: auto;
@@ -113,8 +110,6 @@ body {
     display: inline-block;
   }
 }
-
-
 
 // Others
 
