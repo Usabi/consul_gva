@@ -1,6 +1,6 @@
 class Users::BudgetInvestmentTableActionsComponent < ApplicationComponent
   attr_reader :investment
-  use_helpers :can?
+  delegate :can?, to: :helpers
 
   def initialize(investment)
     @investment = investment

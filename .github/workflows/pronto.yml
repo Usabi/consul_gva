@@ -8,6 +8,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
       - run: |
           git fetch --no-tags --prune origin +refs/heads/*:refs/remotes/origin/*
       - name: Setup Ruby

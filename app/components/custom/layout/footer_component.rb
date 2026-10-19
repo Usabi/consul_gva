@@ -5,7 +5,7 @@ load Rails.root.join("app", "components", "layout", "footer_component.rb")
 
 class Layout::FooterComponent
   delegate :layout_menu_link_to, to: :helpers
-  use_helpers :image_path_for
+  delegate :image_path_for, to: :helpers
 
   def footer_logo_path(name, default)
     if SiteCustomization::Image.image_for("#{name}.png")

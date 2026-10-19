@@ -157,4 +157,54 @@ describe "Comment documents" do
       expect(page).not_to have_button "Hide document"
     end
   end
+
+  context "deleting a document" do
+    let(:comment) { create(:comment, commentable: debate, user: user) }
+    let!(:document) { create(:document, documentable: comment, user: user, title: "informe.pdf") }
+
+    scenario "the comment author deletes it" do
+      login_as(user)
+      visit debate_path(debate)
+
+      within "#comment_#{comment.id}" do
+        accept_confirm { click_button "Delete document" }
+      end
+
+      expect(page).to have_content "Document was deleted successfully"
+      expect(page).not_to have_css(".document-title", text: "informe.pdf")
+      expect(Document.where(id: document.id)).to be_empty
+    end
+
+    scenario "an administrator deletes it" do
+      login_as(create(:administrator).user)
+      visit debate_path(debate)
+
+      within "#comment_#{comment.id}" do
+        accept_confirm { click_button "Delete document" }
+      end
+
+      expect(page).not_to have_css(".document-title", text: "informe.pdf")
+      expect(Document.where(id: document.id)).to be_empty
+    end
+
+    scenario "a moderator deletes it" do
+      login_as(create(:moderator).user)
+      visit debate_path(debate)
+
+      within "#comment_#{comment.id}" do
+        accept_confirm { click_button "Delete document" }
+      end
+
+      expect(page).not_to have_css(".document-title", text: "informe.pdf")
+      expect(Document.where(id: document.id)).to be_empty
+    end
+
+    scenario "another user does not see the delete button" do
+      login_as(create(:user))
+      visit debate_path(debate)
+
+      expect(page).to have_css(".document-title", text: "informe.pdf")
+      expect(page).not_to have_button "Delete document"
+    end
+  end
 end

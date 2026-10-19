@@ -14,11 +14,15 @@ describe PttCaptcha do
         config.app_id = "APP-ID"
         config.x_api_key = "X-API-KEY"
         config.aplicacion = "APLICACION"
+        config.base_url = "https://example.test/CAPTCHA_REST_v1_00"
+        config.front_js_url = "https://example.test/ptt-captcha.js"
       end
 
       expect(described_class.configuration.app_id).to eq("APP-ID")
       expect(described_class.configuration.x_api_key).to eq("X-API-KEY")
       expect(described_class.configuration.aplicacion).to eq("APLICACION")
+      expect(described_class.configuration.base_url).to eq("https://example.test/CAPTCHA_REST_v1_00")
+      expect(described_class.configuration.front_js_url).to eq("https://example.test/ptt-captcha.js")
     end
   end
 
@@ -31,6 +35,8 @@ describe PttCaptcha do
       expect(described_class.configuration.app_id).to eq(Rails.application.secrets.ptt_app_id)
       expect(described_class.configuration.x_api_key).to eq(Rails.application.secrets.ptt_x_api_key)
       expect(described_class.configuration.aplicacion).to eq(Rails.application.secrets.ptt_aplicacion)
+      expect(described_class.configuration.base_url).to eq(Rails.application.secrets.ptt_base_url)
+      expect(described_class.configuration.front_js_url).to eq(Rails.application.secrets.ptt_front_js_url)
     end
 
     context "when app_id has a value" do

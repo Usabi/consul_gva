@@ -1,0 +1,16 @@
+<details class="comment-attachment">
+  <summary><%= t("comments.form.attach_document") %></summary>
+  <div class="comment-attachment-picker">
+    <%= file_field_tag name,
+                       id: "comment-attachment-#{css_id}",
+                       class: "show-for-sr",
+                       accept: attachment_accept,
+                       "aria-describedby": "comment-attachment-help-#{css_id}" %>
+    <%= label_tag "comment-attachment-#{css_id}", t("comments.form.choose_file"),
+                  class: "button hollow small comment-attachment-button" %>
+    <span class="comment-attachment-name"
+          data-empty="<%= t("comments.form.no_file_selected") %>"><%= t("comments.form.no_file_selected") %></span>
+    <button type="button" class="comment-attachment-clear hide"><%= t("comments.form.remove_file") %></button>
+  </div>
+  <p class="help-text" id="comment-attachment-help-<%= css_id %>"><%= attachment_help %></p>
+</details>

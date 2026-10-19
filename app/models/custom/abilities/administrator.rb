@@ -144,6 +144,7 @@ module Abilities
 
       can [:create], Document
       can [:hide, :restore], Document
+      can :destroy, Document, documentable_type: "Comment"
       can [:destroy], Document do |document|
         document.documentable_type == "Poll::Question::Option" && can?(:update, document.documentable)
       end

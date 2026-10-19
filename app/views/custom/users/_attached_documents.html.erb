@@ -21,8 +21,14 @@
         </td>
         <td>
           <% if document.documentable.present? %>
-            <%= link_to document.documentable.title,
-                        polymorphic_path(document.documentable),
+            <% documentable = document.documentable %>
+            <% documentable_label = if documentable.respond_to?(:title)
+                                      documentable.title
+                                    else
+                                      truncate(documentable&.body.to_s, length: 80)
+                                    end %>
+            <%= link_to documentable_label,
+                        polymorphic_path(documentable),
                         class: "document-link" %>
             <br>
             <small class="text-muted">

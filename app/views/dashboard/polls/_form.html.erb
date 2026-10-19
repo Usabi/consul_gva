@@ -1,4 +1,4 @@
-<%= form_for [proposal, :dashboard, poll] do |f| %>
+<%= form_for [proposal, :dashboard, @poll] do |f| %>
   <div class="row expanded">
     <div class="small-12 medium-6 column">
       <%= f.text_field :name, label: t("dashboard.polls.form.name") %>
@@ -9,14 +9,14 @@
     <div class="small-12 medium-3 column">
       <%= f.text_field :starts_at,
                        autocomplete: "off",
-                       value: poll.starts_at.present? ? l(poll.starts_at.to_date) : nil,
+                       value: @poll.starts_at.present? ? l(@poll.starts_at.to_date) : nil,
                        class: "js-calendar-full" %>
     </div>
 
     <div class="small-12 medium-3 column end">
       <%= f.text_field :ends_at,
                        autocomplete: "off",
-                       value: poll.ends_at.present? ? l(poll.ends_at.to_date) : nil,
+                       value: @poll.ends_at.present? ? l(@poll.ends_at.to_date) : nil,
                        class: "js-calendar-full" %>
     </div>
   </div>
@@ -42,7 +42,7 @@
 
   <div class="row expanded">
     <div class="small-12 medium-6 large-4 column">
-      <%= f.submit t("dashboard.polls.#{admin_submit_action(poll)}.submit"),
+      <%= f.submit t("dashboard.polls.#{admin_submit_action(@poll)}.submit"),
                    class: "button success expanded" %>
     </div>
   </div>

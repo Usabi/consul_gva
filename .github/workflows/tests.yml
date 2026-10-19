@@ -53,11 +53,14 @@ jobs:
       - name: Remove image-bundled Chrome
         run: sudo apt-get purge google-chrome-stable
       - name: Setup Chrome/Chromium 128
+        id: setup-chrome
         uses: browser-actions/setup-chrome@v2
         with:
           chrome-version: 128
           install-chromedriver: true
           install-dependencies: true
+      - name: Use Chrome 128 in system tests
+        run: echo "CHROME_BIN=${{ steps.setup-chrome.outputs.chrome-path }}" >> "$GITHUB_ENV"
       - name: Copy secrets and database files
         run: for i in config/*.example; do cp "$i" "${i/.example}"; done
       - name: Setup database

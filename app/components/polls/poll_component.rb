@@ -1,6 +1,6 @@
 class Polls::PollComponent < ApplicationComponent
   attr_reader :poll
-  use_helpers :can?
+  delegate :link_to_poll, to: :helpers
 
   def initialize(poll)
     @poll = poll

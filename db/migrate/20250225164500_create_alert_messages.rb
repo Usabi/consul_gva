@@ -11,9 +11,9 @@ class CreateAlertMessages < ActiveRecord::Migration[4.2]
 
     add_index :alert_messages, :hidden_at
 
-    create_table   :alert_message_sections do |t|
-      t.integer    :alert_message_id
-      t.integer    :web_section_id
+    create_table :alert_message_sections do |t|
+      t.integer :alert_message_id
+      t.integer :web_section_id
       t.timestamps null: false
     end
 

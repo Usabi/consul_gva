@@ -1,6 +1,6 @@
 class Polls::FormComponent < ApplicationComponent
   attr_reader :web_vote
-  use_helpers :cannot?, :current_user
+  delegate :cannot?, :current_user, to: :helpers
   delegate :poll, :questions, to: :web_vote
 
   def initialize(web_vote)
