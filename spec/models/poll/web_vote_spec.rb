@@ -13,7 +13,7 @@ describe Poll::WebVote do
       expect(poll.voters).to be_blank
       expect(question.answers).to be_blank
 
-      web_vote.update!(question.id.to_s => { option_id: option_yes.id.to_s })
+      web_vote.update(question.id.to_s => { option_id: option_yes.id.to_s })
 
       expect(poll.reload.voters.size).to eq 1
       expect(question.reload.answers.size).to eq 1
@@ -30,7 +30,7 @@ describe Poll::WebVote do
     it "updates a poll_voter with user and poll data" do
       answer = create(:poll_answer, question: question, author: user, option: option_yes)
 
-      web_vote.update!(question.id.to_s => { option_id: option_no.id.to_s })
+      web_vote.update(question.id.to_s => { option_id: option_no.id.to_s })
 
       expect(poll.reload.voters.size).to eq 1
       expect(question.reload.answers.size).to eq 1
@@ -53,7 +53,7 @@ describe Poll::WebVote do
       create(:poll_answer, author: user, question: question, option: option_a)
       create(:poll_answer, author: user, question: question, option: option_b)
 
-      web_vote.update!(question.id.to_s => { option_id: [option_c.id.to_s] })
+      web_vote.update(question.id.to_s => { option_id: [option_c.id.to_s] })
 
       expect(question.reload.answers.size).to eq 1
       expect(question.reload.answers.first.option).to eq option_c
@@ -93,7 +93,7 @@ describe Poll::WebVote do
     end
 
     it "creates a voter but does not create answers when leaving everything blank" do
-      web_vote.update!({})
+      web_vote.update({})
 
       expect(poll.reload.voters.size).to eq 1
       expect(question.reload.answers.size).to eq 0
@@ -103,7 +103,7 @@ describe Poll::WebVote do
       create(:poll_answer, question: question, author: user, option: option_yes)
       create(:poll_voter, poll: poll, user: user)
 
-      web_vote.update!({})
+      web_vote.update({})
 
       expect(poll.reload.voters.size).to eq 1
       expect(poll.voters.first.user).to eq user
@@ -161,7 +161,7 @@ describe Poll::WebVote do
       let!(:open_ended_question) { create(:poll_question_open, poll: poll) }
 
       it "creates one answer when text is present" do
-        web_vote.update!(open_ended_question.id.to_s => { answer: "  Hi  " })
+        web_vote.update(open_ended_question.id.to_s => { answer: "  Hi  " })
 
         expect(poll.reload.voters.size).to eq 1
         open_answer = open_ended_question.reload.answers.find_by(author: user)
@@ -171,7 +171,7 @@ describe Poll::WebVote do
       end
 
       it "does not create an answer but create voters when text is blank or only spaces" do
-        web_vote.update!(open_ended_question.id.to_s => { answer: "   " })
+        web_vote.update(open_ended_question.id.to_s => { answer: "   " })
 
         expect(poll.reload.voters.size).to eq 1
         expect(open_ended_question.reload.answers.where(author: user)).to be_empty
@@ -180,7 +180,7 @@ describe Poll::WebVote do
       it "deletes existing answer but keeps voters when leaving open-ended blank" do
         create(:poll_answer, question: open_ended_question, author: user, answer: "Old answer")
 
-        web_vote.update!(open_ended_question.id.to_s => { answer: "  " })
+        web_vote.update(open_ended_question.id.to_s => { answer: "  " })
 
         expect(poll.reload.voters.size).to eq 1
         expect(open_ended_question.reload.answers.where(author: user)).to be_empty
@@ -189,7 +189,7 @@ describe Poll::WebVote do
       it "updates existing open answer without creating duplicates" do
         existing = create(:poll_answer, question: open_ended_question, author: user, answer: "Old text")
 
-        web_vote.update!(open_ended_question.id.to_s => { answer: "  New text  " })
+        web_vote.update(open_ended_question.id.to_s => { answer: "  New text  " })
 
         updated = open_ended_question.reload.answers.find_by(author: user)
         expect(updated.id).to eq existing.id
