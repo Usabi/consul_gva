@@ -138,7 +138,7 @@ describe "Voter" do
       end
     end
 
-    scenario "Voting in poll and then verifying account" do
+    scenario "Voting in poll and then verifying account", :consul do
       allow_any_instance_of(Verification::Sms).to receive(:generate_confirmation_code).and_return("1357")
       user = create(:user)
       admin_user = admin.user

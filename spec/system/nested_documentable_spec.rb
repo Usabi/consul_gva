@@ -116,7 +116,7 @@ describe "Nested documentable" do
       expect(cached_attachment_field.value).to be_empty
     end
 
-    scenario "Should show document errors after documentable submit with empty document fields" do
+    scenario "Should show document errors after documentable submit with empty document fields", :consul do
       do_login_for(user, management: management_section?(path))
       visit path
 

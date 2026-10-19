@@ -1513,7 +1513,7 @@ describe "Proposals" do
       expect(medium_proposal.title).to appear_before(worst_proposal.title)
     end
 
-    scenario "Displays proposals from last week" do
+    scenario "Displays proposals from last week", :consul do
       create(:tag, :category, name: "culture")
       proposal1 = create(:proposal, tag_list: "culture", created_at: 1.day.ago)
       proposal2 = create(:proposal, tag_list: "culture", created_at: 5.days.ago)

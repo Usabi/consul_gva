@@ -488,6 +488,8 @@ describe "Admin edit translatable records", :admin do
         click_link "Remove language"
         click_button "Save"
 
+        expect(page).to have_content "Polls description updated successfully."
+
         visit polls_path
 
         expect(page).to have_content "Sondage en Français"
