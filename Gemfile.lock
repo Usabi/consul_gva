@@ -620,7 +620,7 @@ GEM
       prism (>= 1.6.0)
       tsort
     rbtree3 (0.7.1)
-    rdoc (6.15.0)
+    rdoc (8.1.0)
       erb
       prism (>= 1.6.0)
       rbs (>= 4.0.0)
