@@ -19,6 +19,25 @@ describe Users::SessionsController do
       end
     end
 
+    context "when the first attempt to create the captcha fails" do
+      it "retries once and stores the id so the widget does not disappear" do
+        allow(PttCaptchaApi).to receive(:create_captcha).and_return(nil, captcha_id)
+
+        get :new
+
+        expect(session[:ptt_captcha_id]).to eq(captcha_id)
+      end
+
+      it "gives up after the retry" do
+        allow(PttCaptchaApi).to receive(:create_captcha).and_return(nil)
+
+        get :new
+
+        expect(PttCaptchaApi).to have_received(:create_captcha).twice
+        expect(session[:ptt_captcha_id]).to be_nil
+      end
+    end
+
     context "when PttCaptcha app_id is blank" do
       before { allow(PttCaptcha.configuration).to receive(:app_id).and_return("") }
 
@@ -147,6 +166,81 @@ describe Users::SessionsController do
         expect(response.body).not_to include("data-captcha-id")
         expect(response.body).not_to include("g-recaptcha")
       end
+    end
+  end
+
+  describe "Google reCAPTCHA fallback when PTT is configured but unavailable" do
+    before do
+      allow(PttCaptchaApi).to receive(:create_captcha).and_return(nil)
+      allow(Rails.application.secrets).to receive_messages(site_key: "SITE-KEY", secret_key: "SECRET-KEY")
+    end
+
+    it "does not store a PTT captcha id on #new" do
+      get :new
+
+      expect(session[:ptt_captcha_id]).to be_nil
+    end
+
+    it "renders the Google widget instead of the PTT one on #new", render_views: true do
+      get :new
+
+      expect(response.body).not_to include("data-captcha-id")
+    end
+
+    it "validates with Google when PTT could not be created on #new" do
+      get :new
+      allow(controller).to receive(:verify_recaptcha).and_return(true)
+
+      post :create, params: { user: { login: "citizen@consul.org", password: "12345678" }}
+
+      expect(controller.current_user == user).to be_truthy
+    end
+
+    it "does not use PTT validation once the fallback is active" do
+      get :new
+      allow(controller).to receive(:verify_recaptcha).and_return(true)
+      allow(PttCaptchaApi).to receive(:validate_captcha)
+
+      post :create, params: { user: { login: "citizen@consul.org", password: "12345678" }}
+
+      expect(PttCaptchaApi).not_to have_received(:validate_captcha)
+    end
+
+    it "still blocks when Google verification fails" do
+      get :new
+      allow(controller).to receive(:verify_recaptcha).and_return(false)
+
+      post :create, params: { user: { login: "citizen@consul.org", password: "12345678" }}
+
+      expect(controller.current_user.nil?).to be_truthy
+    end
+
+    it "fails closed when the request did not go through #new (no fallback flag in session)" do
+      allow(controller).to receive(:verify_recaptcha).and_return(true)
+      allow(PttCaptchaApi).to receive(:validate_captcha).and_return(false)
+
+      post :create, params: { user: { login: "citizen@consul.org", password: "12345678" }}
+
+      expect(controller.current_user.nil?).to be_truthy
+    end
+
+    it "fails closed when Google is not configured either" do
+      allow(Rails.application.secrets).to receive_messages(site_key: "", secret_key: "")
+      get :new
+      allow(PttCaptchaApi).to receive(:validate_captcha).and_return(false)
+
+      post :create, params: { user: { login: "citizen@consul.org", password: "12345678" }}
+
+      expect(controller.current_user.nil?).to be_truthy
+    end
+
+    it "goes back to PTT when the captcha can be created again" do
+      get :new
+      allow(PttCaptchaApi).to receive(:create_captcha).and_return("NEW-ID")
+
+      get :new
+
+      expect(session[:ptt_captcha_id]).to eq("NEW-ID")
     end
   end
 end

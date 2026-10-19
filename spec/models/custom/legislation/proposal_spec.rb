@@ -13,6 +13,31 @@ describe Legislation::Proposal do
 
       expect(proposal.reload).not_to be_editable
     end
+
+    it "is false when the proposals phase has ended" do
+      proposal.process.update!(proposals_phase_end_date: Date.yesterday)
+
+      expect(proposal.reload).not_to be_editable
+    end
+
+    it "is false when the proposals phase has not started yet" do
+      proposal.process.update!(proposals_phase_start_date: Date.tomorrow,
+                               proposals_phase_end_date: Date.tomorrow + 2.days)
+
+      expect(proposal.reload).not_to be_editable
+    end
+
+    it "is false when the process has ended even if the phase dates are still open" do
+      proposal.process.update_columns(end_date: Date.yesterday)
+
+      expect(proposal.reload).not_to be_editable
+    end
+
+    it "is false when the proposals phase is disabled" do
+      proposal.process.update!(proposals_phase_enabled: false)
+
+      expect(proposal.reload).not_to be_editable
+    end
   end
 
   describe "#editable_by?" do

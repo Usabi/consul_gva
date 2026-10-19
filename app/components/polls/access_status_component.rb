@@ -1,6 +1,6 @@
 class Polls::AccessStatusComponent < ApplicationComponent
   attr_reader :poll
-  use_helpers :cannot?, :current_user
+  delegate :cannot?, :current_user, to: :helpers
 
   def initialize(poll)
     @poll = poll

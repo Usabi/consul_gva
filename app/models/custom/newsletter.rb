@@ -1,7 +1,7 @@
 load Rails.root.join("app", "models", "newsletter.rb")
 
 class Newsletter
-  serialize :segment_recipient, Array
+  serialize :segment_recipient, type: Array
 
   before_validation :sanitize_segment_recipient
 

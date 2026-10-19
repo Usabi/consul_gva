@@ -1,6 +1,30 @@
 (function() {
   "use strict";
 
+  // The PTT front script only renders the widget on DOMContentLoaded, which
+  // Turbolinks does not fire when navigating, so the div stays empty until the
+  // page is reloaded. On a full load the script has already filled the div, so
+  // this only acts on Turbolinks visits. The script is loaded asynchronously
+  // there, hence the retries until its entry point exists.
+  var renderOnTurbolinksVisit = function(widget) {
+    var attempts = 0;
+
+    var tryRender = function() {
+      if (widget.innerHTML.trim() !== "") {
+        return;
+      }
+
+      if (typeof window.captxaExtern === "function") {
+        window.captxaExtern();
+      } else if (attempts < 50) {
+        attempts += 1;
+        setTimeout(tryRender, 100);
+      }
+    };
+
+    setTimeout(tryRender, 0);
+  };
+
   App.PttCaptcha = {
     initialize: function() {
       var widget = document.querySelector("[data-captcha-id]");
@@ -16,9 +40,31 @@
 
       var captchaId = widget.dataset.captchaId;
 
+      // A cached snapshot would restore a widget bound to an expired captcha id.
+      var noCache = document.createElement("meta");
+      noCache.name = "turbolinks-cache-control";
+      noCache.content = "no-cache";
+      document.head.appendChild(noCache);
+
+      renderOnTurbolinksVisit(widget);
+
+      var submitted = false;
+
       form.addEventListener("submit", function(e) {
         e.preventDefault();
-        hiddenField.value = getCaptchaValue(captchaId);
+        // PTT only allows validating each captcha id once, so a double click
+        // or double Enter would burn the id and the second request gets a 422.
+        if (submitted) {
+          return;
+        }
+        submitted = true;
+        try {
+          hiddenField.value = getCaptchaValue(captchaId);
+        } catch (error) {
+          // Widget not rendered yet: allow retrying instead of leaving the form stuck.
+          submitted = false;
+          return;
+        }
         form.submit();
       });
     }

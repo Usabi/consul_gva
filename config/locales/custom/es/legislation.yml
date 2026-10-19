@@ -128,6 +128,10 @@ es:
       index:
         start_proposal: Crear una propuesta
       edit_only_without_supports: "La edición solo está disponible mientras la propuesta no haya recibido ningún apoyo."
+      edit_denied:
+        supports: "No se puede editar: la propuesta ya ha recibido apoyos."
+        closed: "No se puede editar: la fase de propuestas de este proceso está cerrada."
+        process_closed: "No se puede editar: este proceso está cerrado."
       show:
         edit_proposal_link: Editar propuesta
     summary:

@@ -36,7 +36,8 @@ describe "Legislation proposals edition" do
     expect(page).to have_content "Editing is only available while the proposal has no supports"
 
     visit edit_legislation_process_proposal_path(process, proposal)
-    expect(page).to have_content "You do not have permission to carry out the action"
+    expect(page).to have_content "Editing is not available: the proposal has already received supports."
+    expect(page).to have_current_path legislation_process_proposal_path(process, proposal)
   end
 
   scenario "Other users do not see the edit link" do

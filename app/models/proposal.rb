@@ -80,7 +80,7 @@ class Proposal < ApplicationRecord
   scope :not_archived,   -> { where(created_at: Setting.archived_proposals_date_limit..) }
   scope :last_week,      -> { where(created_at: 7.days.ago..) }
   scope :retired,        -> { where.not(retired_at: nil) }
-  scope :not_retired,    -> { excluding(retired) }
+  scope :not_retired,    -> { where(retired_at: nil) }
   scope :successful,     -> { where(cached_votes_up: Proposal.votes_needed_for_success..) }
   scope :unsuccessful,   -> { where(cached_votes_up: ...Proposal.votes_needed_for_success) }
   scope :public_for_api, -> { all }

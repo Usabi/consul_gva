@@ -13,6 +13,12 @@
         <span class="label alert"><%= t("comments.documents.hidden") %></span>
       <% end %>
 
+      <% if can?(:destroy, document) %>
+        <%= button_to t("documents.buttons.destroy_document"), document_path(document),
+                      method: :delete, class: "delete",
+                      data: { confirm: t("documents.actions.destroy.confirm") } %>
+      <% end %>
+
       <% if can?(:hide, document) %>
         <% if document.hidden? %>
           <%= button_to t("documents.buttons.restore_document"), restore_document_path(document),

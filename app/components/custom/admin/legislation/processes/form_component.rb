@@ -7,7 +7,7 @@ class Admin::Legislation::Processes::FormComponent
   include GlobalizeHelper
 
   attr_reader :process, :councils
-  use_helpers :admin_submit_action
+  delegate :admin_submit_action, to: :helpers
 
   def initialize(process, councils: [])
     @process = process
