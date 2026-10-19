@@ -118,8 +118,9 @@ describe Legislation::ProposalsController do
     it "explains that the proposals phase is closed" do
       legislation_process.update!(proposals_phase_end_date: Date.yesterday)
 
-      patch :update, params: { process_id: legislation_process.id, id: proposal.id,
-                               legislation_proposal: { title: new_title } }
+      patch :update, params: { process_id: legislation_process.id,
+                               id: proposal.id,
+                               legislation_proposal: { title: new_title }}
 
       expect(response).to redirect_to(legislation_process_proposal_path(legislation_process, proposal))
       expect(flash[:alert]).to eq I18n.t("legislation.proposals.edit_denied.closed")

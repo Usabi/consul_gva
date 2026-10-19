@@ -21,6 +21,30 @@ Bundler.require(*Rails.groups)
 
 module Consul
   class Application < Rails::Application
+    def secrets
+      @secrets ||= read_secrets
+    end
+
+    def read_secrets
+      secrets = ActiveSupport::OrderedOptions.new
+      path = Rails.root.join("config/secrets.yml")
+      env = Rails.env
+
+      if path.exist?
+        require "erb"
+        parsed_secrets = YAML.unsafe_load(ERB.new(IO.read(path)).result) || {}
+
+        secrets.merge!(parsed_secrets["shared"].deep_symbolize_keys) if parsed_secrets["shared"]
+        secrets.merge!(parsed_secrets[env].deep_symbolize_keys) if parsed_secrets[env]
+      end
+
+      secrets
+    end
+
+    def credentials
+      secrets
+    end
+
     config.load_defaults 7.0
 
     # Keep belongs_to fields optional by default, because that's the way

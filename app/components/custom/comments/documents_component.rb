@@ -1,6 +1,6 @@
 class Comments::DocumentsComponent < ApplicationComponent
   attr_reader :comment
-  use_helpers :can?
+  delegate :can?, to: :helpers
 
   def initialize(comment)
     @comment = comment

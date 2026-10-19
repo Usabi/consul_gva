@@ -25,7 +25,7 @@
             <% documentable_label = if documentable.respond_to?(:title)
                                       documentable.title
                                     else
-                                      truncate(documentable.try(:body).to_s, length: 80)
+                                      truncate(documentable&.body.to_s, length: 80)
                                     end %>
             <%= link_to documentable_label,
                         polymorphic_path(documentable),

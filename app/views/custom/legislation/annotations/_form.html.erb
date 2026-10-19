@@ -11,7 +11,7 @@
         </div>
       <% elsif user_signed_in? %>
         <%= form_for Legislation::Annotation.new, url: legislation_process_draft_version_annotations_path(@process, @draft_version), remote: true,
-                                                                html: { multipart: true } do |f| %>
+                                                  html: { multipart: true } do |f| %>
           <%= f.text_area :text %>
 
           <%= render Comments::AttachmentFieldComponent.new("new-annotation",

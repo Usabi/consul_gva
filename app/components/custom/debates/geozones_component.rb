@@ -1,5 +1,5 @@
 class Debates::GeozonesComponent < ApplicationComponent
-  use_helpers :image_path_for
+  delegate :image_path_for, to: :helpers
 
   def render?
     Geozone.any?

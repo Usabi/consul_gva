@@ -23,7 +23,7 @@ module CaptchaProtected
     def generate_ptt_captcha
       return unless ptt_enabled?
 
-      captcha_id = PttCaptchaApi.create_captcha
+      captcha_id = PttCaptchaApi.create_captcha.presence || PttCaptchaApi.create_captcha
 
       if captcha_id.present?
         session[:ptt_captcha_id] = captcha_id

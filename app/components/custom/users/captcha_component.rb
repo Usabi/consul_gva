@@ -1,4 +1,6 @@
 class Users::CaptchaComponent < ApplicationComponent
+  delegate :recaptcha_tags, to: :helpers
+
   def render?
     ptt_enabled? || google_enabled?
   end

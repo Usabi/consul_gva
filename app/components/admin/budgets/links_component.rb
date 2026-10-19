@@ -1,6 +1,6 @@
 class Admin::Budgets::LinksComponent < ApplicationComponent
   attr_reader :budget
-  use_helpers :can?
+  delegate :can?, to: :helpers
 
   def initialize(budget)
     @budget = budget

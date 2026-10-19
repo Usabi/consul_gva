@@ -1,6 +1,6 @@
 class Admin::Poll::Questions::Options::Documents::IndexComponent < ApplicationComponent
   attr_reader :option
-  use_helpers :can?
+  delegate :can?, to: :helpers
 
   def initialize(option)
     @option = option

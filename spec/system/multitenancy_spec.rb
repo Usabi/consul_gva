@@ -3,7 +3,7 @@ require "rails_helper"
 describe "Multitenancy", :seed_tenants do
   before { create(:tenant, schema: "mars") }
 
-  scenario "Disabled features", :no_js do
+  scenario "Disabled features", :show_exceptions do
     create(:tenant, schema: "venus")
     Tenant.switch("mars") { Setting["process.debates"] = true }
     Tenant.switch("venus") { Setting["process.debates"] = nil }
@@ -15,7 +15,9 @@ describe "Multitenancy", :seed_tenants do
     end
 
     with_subdomain("venus") do
-      expect { visit debates_path }.to raise_exception(FeatureFlags::FeatureDisabled)
+      visit debates_path
+
+      expect(page).to have_title "Forbidden"
     end
   end
 
@@ -151,7 +153,7 @@ describe "Multitenancy", :seed_tenants do
     with_subdomain("venus") do
       login_through_form_with("marty@consul.dev", password: "20151021")
 
-      expect(page).to have_content "Invalid Email or username or password."
+      expect(page).to have_content "Invalid email or username or password."
     end
   end
 
@@ -159,7 +161,7 @@ describe "Multitenancy", :seed_tenants do
     with_subdomain("mars") do
       login_through_form_with("wrong@consul.dev", password: "wrong")
 
-      expect(page).to have_content "Invalid Email or username or password"
+      expect(page).to have_content "Invalid email or username or password"
       expect(page).to have_css "html.tenant-mars"
       expect(page).not_to have_css "html.tenant-public"
     end
