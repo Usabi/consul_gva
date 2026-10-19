@@ -6,9 +6,7 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: link_or_button, strict
-Capybara/ClickLinkOrButtonStyle:
+Capybara/AmbiguousClick:
   Exclude:
     - 'spec/shared/custom/system/processes_nested_documentable.rb'
     - 'spec/system/custom/admin/legislation/questions_spec.rb'
