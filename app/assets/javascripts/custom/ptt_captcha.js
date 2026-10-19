@@ -40,6 +40,12 @@
 
       var captchaId = widget.dataset.captchaId;
 
+      // A cached snapshot would restore a widget bound to an expired captcha id.
+      var noCache = document.createElement("meta");
+      noCache.name = "turbolinks-cache-control";
+      noCache.content = "no-cache";
+      document.head.appendChild(noCache);
+
       renderOnTurbolinksVisit(widget);
 
       var submitted = false;
@@ -52,7 +58,13 @@
           return;
         }
         submitted = true;
-        hiddenField.value = getCaptchaValue(captchaId);
+        try {
+          hiddenField.value = getCaptchaValue(captchaId);
+        } catch (error) {
+          // Widget not rendered yet: allow retrying instead of leaving the form stuck.
+          submitted = false;
+          return;
+        }
         form.submit();
       });
     }
