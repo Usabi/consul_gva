@@ -253,8 +253,8 @@ FactoryBot.define do
     user
     officer factory: :poll_officer
     document_number
-    document_type    { "1" }
-    year_of_birth    { "1980" }
+    document_type { "1" }
+    year_of_birth { "1980" }
 
     trait :invalid do
       year_of_birth { Time.current.year }
