@@ -91,7 +91,7 @@ group :test do
 end
 
 group :development do
-  gem "brakeman", "~> 8.0", require: false
+  gem "brakeman", "~> 8.1", require: false
   gem "capistrano", "~> 3.20.1", require: false
   gem "capistrano-bundler", "~> 2.2.0", require: false
   gem "capistrano-npm", "~> 1.0.3", require: false
