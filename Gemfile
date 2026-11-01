@@ -65,7 +65,7 @@ gem "turnout", "~> 2.5.0"
 gem "uglifier", "~> 4.2.1"
 gem "uuidtools", "~> 2.2.0"
 gem "view_component", "~> 4.12.0"
-gem "whenever", "~> 1.1.2", require: false
+gem "whenever", "~> 1.1.4", require: false
 gem "wicked_pdf", "~> 2.8.2"
 gem "wkhtmltopdf-binary", "~> 0.12.6"
 

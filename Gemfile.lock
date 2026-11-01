@@ -792,7 +792,7 @@ GEM
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    whenever (1.1.2)
+    whenever (1.1.4)
       chronic (>= 0.6.3)
     wicked_pdf (2.8.2)
       activesupport
@@ -920,7 +920,7 @@ DEPENDENCIES
   view_component (~> 4.12.0)
   web-console (~> 4.2.1)
   webdrivers
-  whenever (~> 1.1.2)
+  whenever (~> 1.1.4)
   wicked_pdf (~> 2.8.2)
   wkhtmltopdf-binary (~> 0.12.6)
 
