@@ -5,7 +5,7 @@ gem "rails", "~> 7.2.3", ">= 7.2.3.2"
 gem "drb"
 gem "fiddle"
 gem "logger", "1.6.0"
-gem "parser", "3.3.8.0"
+gem "parser", "3.3.13.0"
 
 gem "acts-as-taggable-on", "~> 11.0.0"
 gem "acts_as_votable", "~> 0.14.0"
